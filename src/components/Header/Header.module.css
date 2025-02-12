@@ -1,0 +1,105 @@
+.header{
+    text-align: center;
+    height: 95px;
+    padding: 15px 3%;
+}
+
+a{
+    all: unset;
+    display: inline-block;
+}
+
+.headerGrid{
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 160px 1fr 30vw;
+}
+
+.logoMenu{
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.menu{
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    align-content: center;
+    justify-content: center;
+}
+
+.menuItems{
+    width: 90%;
+    max-width: 915px;
+    height: 35px;
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    gap: 3%;
+
+}
+
+.menuItems a{
+    font-size: 0.9vw;
+    font-weight: 300;
+    color: var(--txt-active);
+}
+
+.menuItems a:hover{
+    color: var(--primary);
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.socialsTheme{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.socials{
+    width: 200px;
+    background: rgba(39, 39, 39, 0.5);
+    height: 45px;
+    border-radius: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 25px;
+}
+
+
+
+
+@media (max-width: 768px) {
+    .menuItems{
+        display: none;
+    }
+}
+
+@media (max-width: 1000px) {
+    .socialsTheme{
+        padding: 0 20%;
+    }
+
+    .menuItems a{
+        font-size: 10px;
+    }
+
+    .socials{
+        display: none;
+    }
+
+    .headerGrid{
+        width: 100%;
+        height: 100%;
+        display: grid;
+        grid-template-columns: 160px 1fr 200px;
+    }
+}

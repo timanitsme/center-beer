@@ -1,3 +1,71 @@
+
+.preFooter {
+    background: linear-gradient(to bottom, var(--bg), var(--section-bg));
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 20px 5%;
+    box-sizing: border-box;
+}
+
+.phoneImg {
+    min-height: 350px;
+    max-width: 440px;
+    width: 30%;
+    height: auto;
+    align-self: flex-end;
+    margin-bottom: -30%;
+}
+
+.buttonsContainer{
+    display: flex;
+    margin-top: 20px;
+    gap: 10px;
+}
+
+.buttonsContainer svg{
+    width: 130px;
+    height: min-content;
+}
+
+.downloadButton{
+    border: none;
+    background: #2E2C2F;
+    border-radius: 5px;
+    padding: 2px 5px;
+}
+
+
+.textContainer{
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+.qrCodeContainer p{
+    font-size: 0.6vw !important;
+}
+
+.qrCodeContainer img{
+    max-width: 10vw;
+    height: auto;
+}
+
+.preFooterItems {
+    max-width: 60%;
+    text-align: left;
+    color: white;
+    align-self: flex-end;
+    margin-bottom: 50px;
+    justify-content: center;
+    display: flex;
+    gap: 20px;
+}
+
+
 .footer{
     width: 100%;
     min-height: 100px;
@@ -14,7 +82,6 @@
     width: 40%;
     max-width: 220px;
 }
-
 
 .footerTop{
     display: flex;
@@ -35,11 +102,10 @@
     align-self: center;
 }
 
-.bottomMenu a:hover{
-    color: var(--primary);
-    transition: 0.5s;
-    cursor: pointer;
+.bottomMenu a{
+    font-weight: 300;
 }
+
 
 .bottomMenuColumn{
     display: flex;
@@ -47,11 +113,7 @@
     flex-direction: column;
 }
 
-.bottomMenu a{
-    font-size: 0.9vw;
-    font-weight: 300;
-    color: var(--txt-active);
-}
+
 
 .bottomMenuColumn h1{
     font-size: 2vw;
@@ -73,18 +135,24 @@
     margin: 30px 0;
 }
 
-.footer p{
+.footer p, .preFooter p{
     font-weight: 200;
     font-size: 0.9vw;
 }
 
+.preFooter h3{
+    text-align: left;
+    font-size: 1.2vw;
+    text-transform: uppercase;
+}
+
 
 @media (max-width: 1000px) {
-    .footer p{
+    .footer p, .preFooter p{
         font-size: 10px;
     }
-    .bottomMenu a{
-        font-size: 10px;
+    .preFooter h3{
+        font-size: 12px;
     }
     .bottomMenuColumn h1{
         font-size: 15px;
@@ -92,11 +160,31 @@
     .bottomMenu{
         display: none;
     }
+    .qrCodeContainer{
+        display: none;
+    }
+    .buttonsContainer svg{
+        width: 100px;
+        height: min-content;
+    }
 
 }
 
 @media(max-width: 650px){
     .bottomMenuColumn h1{
         font-size: 10px;
+    }
+    .textContainer p, .textContainer h3{
+        display: none;
+    }
+    .phoneImg{
+        margin-bottom: -20%;
+    }
+
+    .textContainer{
+        flex-direction: row;
+    }
+    .buttonsContainer{
+        flex-direction: column;
     }
 }

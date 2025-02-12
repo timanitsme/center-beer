@@ -4,11 +4,6 @@
     padding: 15px 3%;
 }
 
-a{
-    all: unset;
-    display: inline-block;
-}
-
 .headerGrid{
     width: 100%;
     height: 100%;
@@ -45,15 +40,7 @@ a{
 }
 
 .menuItems a{
-    font-size: 0.9vw;
     font-weight: 300;
-    color: var(--txt-active);
-}
-
-.menuItems a:hover{
-    color: var(--primary);
-    transition: 0.5s;
-    cursor: pointer;
 }
 
 .socialsTheme{
@@ -86,10 +73,6 @@ a{
 @media (max-width: 1000px) {
     .socialsTheme{
         padding: 0 20%;
-    }
-
-    .menuItems a{
-        font-size: 10px;
     }
 
     .socials{

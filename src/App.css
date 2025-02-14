@@ -13,6 +13,7 @@
   --err-primary: #F64E60;
   --txt-active: #EFEFEF;
   --section-bg: #272727;
+  --primary-semi-transparent: rgba(242, 194, 71, 0.5);
 }
 
 * {
@@ -68,6 +69,8 @@ svg{
 
 .content{
   min-height: 1000px;
+  position: relative;
+  z-index: 2;
 }
 
 
@@ -83,8 +86,12 @@ h1, h2, h3{
   align-self: center;
 }
 
+h3{
+  text-transform: uppercase;
+}
+
 p{
-  color: var(--txt-active);
+  color: var(--txt-secondary);
 }
 
 .noSelect {

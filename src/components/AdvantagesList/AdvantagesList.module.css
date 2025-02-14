@@ -22,6 +22,7 @@
 }
 
 .advantagesListItem p{
+    color: var(--txt-active);
     font-weight: 200;
     font-size: 0.9vw;
 }

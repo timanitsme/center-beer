@@ -4,7 +4,8 @@ import promo1 from "../../assets/promos/promo-1.svg"
 import promo2 from "../../assets/promos/promo-2.svg"
 import ArrowButton from "../Buttons/ArrowButton/ArrowButton.jsx";
 import {useState} from "react";
-import RoundLinkButton from "../RoundLinkButton/RoundLinkButton.jsx";
+import RoundLinkButton from "../Buttons/RoundLinkButton/RoundLinkButton.jsx";
+import IconButton from "../Buttons/IconButton/IconButton.jsx";
 
 
 export default function CurrentPromos(){
@@ -29,10 +30,7 @@ export default function CurrentPromos(){
                     <h3>текущие акции</h3>
                     <p>Погрузитесь в мир выгодных предложений и специальных условий в нашем баре! Скидки на ваше любимое пиво, вкусные комбо-наборы, а также уникальные предложения для больших компаний. Не упустите шанс насладиться отличными напитками и закусками по привлекательным ценам.</p>
                 </div>
-                <button className={styles.descriptionButton}>
-                    <BeerMugsIcon/>
-                    <p>Забронировать стол</p>
-                </button>
+                <IconButton text="Забронировать стол"><BeerMugsIcon/></IconButton>
             </div>
             <div className={styles.promosPictures}>
                 <div>

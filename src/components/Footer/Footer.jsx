@@ -5,6 +5,7 @@ import QrCode from "../../assets/qr-code.svg"
 import DownloadGooglePlay from "../../assets/download-google-play.svg?react"
 import DownloadAppStore from "../../assets/download-app-store.svg?react"
 import RoundLink from "../../assets/round-link.svg?react"
+import RoundLinkButton from "../Buttons/RoundLinkButton/RoundLinkButton.jsx";
 
 export default function Footer(){
     return(
@@ -14,7 +15,7 @@ export default function Footer(){
                 <div className={styles.preFooterItems}>
                     <div className={styles.textContainer}>
                         <h3>Сообщество любителей пива, владельцев баров и мастеров-пивоваров в вашем мобильном телефоне. </h3>
-                        <p>Мы рады представить наше новое мобильное приложение, которое позволит вам пользоваться нашим сервисом еще удобнее. Теперь вы можете наслаждаться общением с друзьями, делиться впечатлениями о пиве, находить ближайшие пивные пабы и бары в несколько касаний. Будьте в курсе последних новостей, рецептов и уникальных пивных событий, где бы вы ни находились.</p>
+                        <p className={styles.textContainerP}>Мы рады представить наше новое мобильное приложение, которое позволит вам пользоваться нашим сервисом еще удобнее. Теперь вы можете наслаждаться общением с друзьями, делиться впечатлениями о пиве, находить ближайшие пивные пабы и бары в несколько касаний. Будьте в курсе последних новостей, рецептов и уникальных пивных событий, где бы вы ни находились.</p>
                         <div className={styles.buttonsContainer}>
                             <button className={styles.downloadButton}>
                                 <DownloadGooglePlay/>
@@ -22,9 +23,7 @@ export default function Footer(){
                             <button className={styles.downloadButton}>
                                 <DownloadAppStore/>
                             </button>
-                            <a>
-                                <RoundLink/>
-                            </a>
+                            <RoundLinkButton text="Скачать .apk"/>
                         </div>
                     </div>
                     <div className={styles.qrCodeContainer}>

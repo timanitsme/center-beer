@@ -9,33 +9,52 @@ import {VkIcon} from "../../assets/VkIcon.jsx";
 import {MailIcon} from "../../assets/MailIcon.jsx";
 import CenterBeerLogo from "../../assets/center-beer-logo.svg?react"
 import {BurgerIcon} from "../../assets/BurgerIcon.jsx";
+import {Link, useLocation} from "react-router-dom";
+import CloseIcon from "../../assets/close-icon.svg?react"
 
 
-export default function Header(){
+export default function Header({paths}){
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [toggleState, setToggleState] = useState(false);
-
-    const switchTheme = () =>{
+    const currentPage = useLocation().pathname;
+    const switchTheme = () => {
         setToggleState(!toggleState);
-    }
+    };
+
+    const toggleMenu = () => {
+        setIsMenuOpen(!isMenuOpen); // Переключение состояния меню
+    };
+
     return(
         <div className={styles.header}>
             <div className={styles.headerGrid}>
                 <div className={styles.logoMenu}>
-                    <BurgerIcon/>
+                    <a onClick={toggleMenu}>{isMenuOpen? <CloseIcon/> : <BurgerIcon/>}</a>
                     <CenterBeerLogo/>
                 </div>
                 <div className={styles.menu}>
                     {!isMobile &&
                         <div className={styles.menuItems}>
-                            <a>ПИВО</a>
-                            <a>БАРЫ И МАГАЗИНЫ</a>
-                            <a>МЕРОПРИЯТИЯ</a>
-                            <a>О ПРОЕКТЕ</a>
-                            <a>НОВОСТИ</a>
-                            <a>КОНТАКТЫ</a>
+                            {paths.map((path) => {
+                                return(
+                                    <Link className={currentPage === path.path? styles.active: ''} key={path.path} to={path.path}>{path.title}</Link>
+                                )
+                            })}
                         </div>
                     }
                 </div>
+                    <div className={`${styles.mobileMenu} ${isMenuOpen ? styles.open : ""}`}>
+                        {paths.map((path) => (
+                            <Link
+                                className={currentPage === path.path ? styles.active : ''}
+                                key={path.path}
+                                to={path.path}
+                                onClick={toggleMenu}
+                            >
+                                {path.title}
+                            </Link>
+                        ))}
+                    </div>
                 <div className={styles.socialsTheme}>
                     <Toggle label={toggleState ? "Темная тема" : "Светлая тема"} toggled={toggleState} onClick={switchTheme} />
                     {!isMobile &&

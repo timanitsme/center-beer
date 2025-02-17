@@ -1,4 +1,4 @@
-import RoundLinkIcon from "../../assets/round-link-icon.svg?react"
+import RoundLinkIcon from "../../../assets/round-link-icon.svg?react"
 import styles from "./RoundLinkButton.module.css"
 
 export default function RoundLinkButton({text="Кнопка"}){

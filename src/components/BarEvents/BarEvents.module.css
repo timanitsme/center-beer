@@ -1,0 +1,143 @@
+.barEventsContainer{
+    margin: 0 50px 50px 50px;
+    display: flex;
+    gap:15px
+}
+
+.barEvent{
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+}
+
+.barEvent h1{
+    width: 100%;
+    text-align: left;
+    text-transform: uppercase;
+    color: transparent;
+    -webkit-text-stroke: 1px var(--primary);
+    font-size: 3vw;
+}
+
+.soonAtBar, .eventDescriptionContainer{
+    margin: 0 calc(50px/4);
+}
+
+.eventDescription{
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    width:100%;
+    align-self: flex-start;
+    gap: 5px;
+}
+
+.eventDescription h2{
+    text-transform: uppercase;
+    text-align: left;
+    align-self: flex-start;
+    font-size: 1.5vw;
+}
+
+.eventDescription p, .orderTable{
+    font-weight: 200;
+    font-size: 0.9vw;
+}
+
+.eventDate{
+    text-transform: uppercase;
+    font-family: "Podkova", sans-serif;
+    color: var(--primary)
+}
+
+.eventDescription text{
+
+}
+
+.orderTable:hover svg{
+    color: var(--primary);
+    transition: 0.5s;
+}
+
+.eventDescriptionContainer{
+    display: flex;
+    min-height: 80%;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--section-bg);
+    border-radius: 10px;
+}
+
+.leftArrow{
+    margin-left: calc(50px/-4);
+}
+
+.rightArrow{
+    margin-right: calc(50px/-4);
+}
+
+.eventPicture{
+    width: 30%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 5px;
+}
+
+.eventPictureMobile{
+    margin: 10px 0;
+    width: calc(100% - 50px/2);
+    overflow: hidden;
+    display: none;
+    align-items: center;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 5px;
+    align-self: center;
+    justify-self: center;
+}
+
+.eventPicture img, .eventPictureMobile img{
+    max-width: 100%;
+    max-height: 100%;
+}
+
+@media (max-width: 1000px) {
+    .eventDescription p, .orderTable {
+        font-size: 10px;
+    }
+
+    .eventDescription{
+        padding: 10px;
+    }
+
+    .barEventsContainer{
+        margin: 0 25px 25px 25px;
+        gap:10px
+    }
+
+    .barEvent h1{
+        font-size: 20px;
+    }
+
+    .eventDescription h2{
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .eventDescriptionContainer{
+        min-height: initial;
+    }
+    .eventPicture{
+        display: none;
+    }
+    .barEvent{
+        width: 100%;
+    }
+    .eventPictureMobile {
+        display: flex;
+    }
+}

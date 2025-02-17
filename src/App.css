@@ -14,6 +14,9 @@
   --txt-active: #EFEFEF;
   --section-bg: #272727;
   --primary-semi-transparent: rgba(242, 194, 71, 0.5);
+  --icon-added: #FF2F2F;
+  --third: #3C3B3B;
+  --selectable: #303030;
 }
 
 * {
@@ -83,7 +86,11 @@ h1, h2, h3{
   font-family: "Podkova", sans-serif;
   color: var(--txt-primary);
   text-align: center;
-  align-self: center;
+  text-transform: uppercase;
+}
+
+h2{
+  font-size: 1.5vw;
 }
 
 h3{
@@ -117,5 +124,8 @@ p{
 @media (max-width: 1000px) {
   a{
     font-size: 10px;
+  }
+  h2{
+    font-size: 15px;
   }
 }

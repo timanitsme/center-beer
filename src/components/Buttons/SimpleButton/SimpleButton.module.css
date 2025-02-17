@@ -1,0 +1,36 @@
+.simpleButton{
+    background: var(--primary);
+    border: none;
+    border-radius: 5px;
+    display: flex;
+    gap: 5px;
+    padding: 10px;
+    width: fit-content;
+    align-items: center;
+    cursor: pointer;
+}
+
+.simpleButton:hover{
+    background: var(--primary-semi-transparent);
+    transition: 0.5s;
+}
+
+.simpleButton p{
+    font-size: 0.8vw;
+    text-wrap: nowrap;
+    text-transform: uppercase;
+    color: var(--bg)
+}
+
+@media (max-width: 1000px) {
+    .simpleButton p {
+        font-size: 10px;
+    }
+
+}
+
+@media (max-width: 768px) {
+    .iconButton{
+        padding: 5px;
+    }
+}

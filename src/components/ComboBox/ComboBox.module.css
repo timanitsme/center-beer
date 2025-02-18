@@ -126,6 +126,9 @@
 }
 
 @media (max-width: 1000px) {
+    .comboBox{
+        min-width: 150px;
+    }
     .comboBox p, .searchInput{
         font-size: 10px;
     }

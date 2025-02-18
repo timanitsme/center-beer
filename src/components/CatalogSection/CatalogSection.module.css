@@ -1,0 +1,144 @@
+.menuSection{
+    display: flex;
+    flex-direction: column;
+}
+
+.sectionHeader{
+    display: flex;
+    gap:10px;
+}
+
+.sectionDescriptionIcon {
+    width: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sectionDescriptionIcon svg{
+    height: 80%;
+    width: auto;
+    max-height: 80px;
+}
+
+.sectionDescription{
+    max-width: 70%;
+    margin-right: 10px;
+}
+
+.sectionButton{
+    max-width: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sectionHeader p{
+    font-size: 0.9vw;
+    font-weight: 200;
+}
+
+.sectionContentWide{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+    gap: 15px;
+    padding: 15px;
+    align-items: stretch;
+}
+
+.sectionContent{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+    gap: 15px;
+    padding: 15px;
+    align-items: stretch;
+}
+
+@media (max-width: 1000px) {
+    .sectionHeader{
+        width: 100%;
+    }
+    .sectionDescription{
+        align-items: center;
+        justify-content: center;
+        display: flex;
+        flex: 1;
+    }
+
+    .sectionButton{
+        margin-right: 40px;
+    }
+
+    .sectionDescription h2{
+        text-align: center;
+        align-self: center;
+    }
+    .sectionDescription p{
+        display: none;
+    }
+    .sectionHeader p{
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 900px) {
+    .sectionContentWide{
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 15px;
+        padding: 15px;
+        align-items: stretch;
+    }
+
+    .sectionContent{
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .sectionDescriptionIcon{
+        display: none;
+    }
+
+    .sectionContent{
+        padding: 10px 0;
+    }
+
+    .sectionHeader{
+        flex-direction: column;
+        align-items: flex-start;
+        overflow: auto;
+    }
+
+    .sectionDescription{
+        margin-right: 0;
+        margin-left: 20px;
+    }
+
+    .sectionDescription h2{
+        text-align: left;
+    }
+
+    .sectionButton{
+        margin-left: 60px;
+    }
+
+}
+
+@media (max-width: 600px) {
+    .sectionContentWide{
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 15px;
+        padding: 15px;
+        align-items: stretch;
+        align-content: center;
+        justify-items: center;
+    }
+}
+
+@media (max-width: 468px) {
+    .sectionContent{
+        grid-template-columns: 1fr 1fr;
+    }
+}

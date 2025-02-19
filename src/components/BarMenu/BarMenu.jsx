@@ -39,12 +39,14 @@ import Drink5 from "../../assets/bottlesMock/drink-5.svg"
 import Drink6 from "../../assets/bottlesMock/drink-6.svg"
 import StrongAlcoholCard from "../Cards/StrongAlcoCard/StrongAlcoholCard.jsx";
 import ProductCard from "../Cards/ProductCard/ProductCard.jsx";
+import Radio from "../Radio/Radio.jsx";
 
 export default function BarMenu(){
     const kitchenOptions = ["Австралийская", "Австрийская", "Авторская", "Азербайджанская", "Азиатская", "Американская"]
     const purposeOptions = ["Бизнес-ланч", "Весело напиться", "Девичник", "Деловая встреча", "Мальчишник", "Познакомиться"]
     const restaurantType = ["Банкетный зал", "Бар", "Бар-клуб", "Бургерная", "Винный бар", "Гастробар"]
     const featuresOptions = ["After-party", "DJ", "Dog-friendly", "Pre-party", "Wi-Fi", "Бильярд"]
+    const priceOptions = ["Все", "до 1 000 ₽", "1 000 - 2 000 ₽", "2 000 - 3 000 ₽", "от 3 000 ₽"]
     const cardsDraft = [
         {title: "APA", manufacturer: "13 RULES, Россия", style: "APA", strength: 4.5, density: 12, bitterness: 32, price: 180},
         {title: "ДВА ПУТЯ", manufacturer: "Konix Brewery, Заречный, Россия и еще что то", style: "Lager - Helles", strength: 4.5, density: 12, bitterness: 32, price: 280},
@@ -133,8 +135,10 @@ export default function BarMenu(){
                 <div className={styles.menuFilters}>
                     <ComboBox title="Кухня" options={kitchenOptions}/>
                     <ComboBox title="Цель посещения" options={purposeOptions}/>
+                    <Radio options={priceOptions}/>
                     <ComboBox title="Тип заведения" options={restaurantType}/>
                     <ComboBox title="Особенности" options={featuresOptions}/>
+
                 </div>
                 <div className={styles.menuItemsSections}>
                     <CatalogSection specs={specsDraft} CardComponent={DraftBeerCard} IconComponent={BeerTapIcon}></CatalogSection>

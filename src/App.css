@@ -19,11 +19,30 @@
   --selectable: #303030;
 }
 
+/*:root {
+  --bg: #ebebeb;
+  --btn-secondary: #0c0c0c;
+  --txt-primary: #000000;
+  --txt-secondary: #656565;
+  --fg: #000000;
+  --primary: #F2C247;
+  --btn-hover: #9DC3E7;
+  --err-primary: #F64E60;
+  --txt-active: #101010;
+  --section-bg: #d8d8d8;
+  --primary-semi-transparent: rgba(242, 194, 71, 0.5);
+  --icon-added: #FF2F2F;
+  --third: #c3c4c4;
+  --selectable: #cfcfcf;
+}*/
+
 * {
   font-family: "Geologica", sans-serif;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+
 }
 
 a{
@@ -118,6 +137,28 @@ p{
   max-width: 200px;
   background-size: contain;
   background-repeat: no-repeat;
+}
+
+.hrtLine{
+  width: 100%;
+  height: 1px;
+  border-radius: 10px;
+  background: var(--third);
+}
+
+.circle{
+  width: 4px;
+  height: 4px;
+  background: var(--primary);
+  border-radius: 100%;
+}
+
+.limited-text {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 5;
 }
 
 

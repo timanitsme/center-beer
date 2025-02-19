@@ -1,0 +1,23 @@
+.navChainContainer{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 200;
+}
+
+.navChainContainer a{
+    color: var(--txt-secondary)
+}
+
+.navChainContainer a:hover{
+    color: var(--txt-active);
+    transition: 0.5s;
+}
+
+
+@media (max-width: 1000px) {
+    .navChainContainer{
+        gap: 5px;
+    }
+}
+

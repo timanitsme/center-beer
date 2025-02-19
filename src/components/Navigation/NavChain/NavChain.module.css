@@ -1,0 +1,26 @@
+.navChainContainer{
+    margin: 0 50px 50px 50px;
+    background: var(--section-bg);
+    padding: 15px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 200;
+}
+
+.disabled{
+    color: var(--txt-secondary);
+}
+.disabled:hover{
+    cursor: initial;
+    color: var(--txt-secondary);
+}
+
+
+@media (max-width: 1000px) {
+    .navChainContainer{
+        margin: 0 25px 25px 25px;
+        gap: 5px;
+    }
+}

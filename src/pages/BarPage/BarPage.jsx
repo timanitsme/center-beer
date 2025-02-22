@@ -8,16 +8,18 @@ import BarMenu from "../../components/BarMenu/BarMenu.jsx";
 import {isMobile} from "react-device-detect";
 import BarNews from "../../components/BarNews/BarNews.jsx";
 import BarReviews from "../../components/BarReviews/BarReviews.jsx";
+import {getBarPagePaths, getBarPageFilterButtons, getBarPageFilters, getBarPageSections} from "./BarPageData.jsx";
+
 
 export default function BarPage(){
     return(
         <div className="content">
-            <NavChain/>
+            <NavChain paths={getBarPagePaths()}/>
             <BarInfo/>
             <BarEvents/>
             <AdvantagesList/>
             <Gallery/>
-            <BarMenu/>
+            <BarMenu filters={getBarPageFilters()} filterButtons={getBarPageFilterButtons()} sections={getBarPageSections()}/>
             <CurrentPromos/>
             <BarNews/>
             <BarReviews/>

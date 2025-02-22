@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import  styles from "./ComboBox.module.css"
-import ArrowDownIcon from "../../assets/arrow-down-icon.svg?react"
-import SearchIcon from "../../assets/search-icon.svg?react"
+import  styles from "./FilterComboBox.module.css"
+import ArrowDownIcon from "../../../assets/arrow-down-icon.svg?react"
+import SearchIcon from "../../../assets/search-icon.svg?react"
 import CheckBox from "../CheckBox/CheckBox.jsx";
 
-export default function ComboBox({ options, title, onChange }){
+export default function FilterComboBox({ options, title, onChange }){
     const [isOpen, setIsOpen] = useState(false); // Состояние для открытия/закрытия контейнера
     const [inputValue, setInputValue] = useState(''); // Значение поля поиска
     const [selectedOption, setSelectedOption] = useState(null); // Выбранная опция

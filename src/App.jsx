@@ -9,15 +9,19 @@ import EventsPage from "./pages/EventsPage/EventsPage.jsx";
 import AboutPage from "./pages/AboutPage/AboutPage.jsx";
 import NewsPage from "./pages/NewsPage/NewsPage.jsx";
 import ContactsPage from "./pages/ContactsPage/ContactsPage.jsx";
+import BarsPage from "./pages/BarsPage/BarsPage.jsx";
 
 function App() {
     const paths = [
         {title: "Пиво", path: "/beer", element: <BeerPage/>},
-        {title: "Бары и магазины", path: "/", element: <BarPage/>},
+        {title: "Бары и магазины", path: "/", element: <BarsPage/>},
         {title: "Мероприятия", path: "/events", element: <EventsPage/>},
         {title: "О проекте", path: "/about-us", element: <AboutPage/>},
         {title: "Новости", path: "/news", element: <NewsPage/>},
         {title: "Контакты", path: "/contacts", element: <ContactsPage/>},
+    ]
+    const anonymousPaths = [
+        {path: "/bar/:id", element: <BarPage/> },
     ]
 
     return (
@@ -29,9 +33,10 @@ function App() {
                 <Routes>
                     {paths.map((path) => {
                         return(<Route key={path.path} path={path.path} element={path.element}/>)
-                    })
-
-                    }
+                    })}
+                    {anonymousPaths.map((path) => {
+                        return(<Route key={path.path} path={path.path} element={path.element}/>)
+                    })}
                 </Routes>
                 <img className="bottle" src={bottlePath}></img>
                 <Footer/>

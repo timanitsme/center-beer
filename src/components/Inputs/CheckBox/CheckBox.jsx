@@ -1,5 +1,5 @@
 import styles from "./CheckBox.module.css"
-import CheckMarkIcon from "../../assets/checkmark-icon.svg?react"
+import CheckMarkIcon from "../../../assets/checkmark-icon.svg?react"
 
 export default function CheckBox({text = "Пиво"}){
     return(

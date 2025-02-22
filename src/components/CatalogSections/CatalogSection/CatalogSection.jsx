@@ -1,5 +1,5 @@
 import styles from "./CatalogSection.module.css";
-import IconButton from "../Buttons/IconButton/IconButton.jsx";
+import IconButton from "../../Buttons/IconButton/IconButton.jsx";
 import PropTypes from "prop-types";
 
 

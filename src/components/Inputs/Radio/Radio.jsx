@@ -1,12 +1,12 @@
 import styles from "./Radio.module.css"
 import {useState} from "react";
 
-export default function Radio({options}){
+export default function Radio({title, options}){
     const [selectedOption, setSelectedOption] = useState(options[0]);
 
     return(
         <div className={styles.radio}>
-            <p className={styles.radioHeader}>Цена</p>
+            <p className={styles.radioHeader}>{title}</p>
             {options.map((option => {
                 return(
                     <div key={option} className={styles.option}

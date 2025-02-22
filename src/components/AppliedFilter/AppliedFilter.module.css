@@ -1,0 +1,55 @@
+.filter{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: var(--primary);
+    padding: 4px 12px;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+.filter:hover{
+    background: var(--primary-semi-transparent);
+    transition: 0.5s;
+}
+
+.filter.secondary:hover{
+    background: var(--third);
+}
+
+.filter.secondary{
+    background: var(--section-bg);
+}
+
+.filter p{
+    color: var(--bg);
+    font-size: 0.9vw;
+    font-weight: 200;
+}
+
+.filter.secondary p{
+    color: var(--txt-secondary);
+}
+
+.filter svg{
+    color: var(--bg);
+    max-width: 22px;
+    max-height: 22px;
+}
+
+.filter.secondary svg{
+    color: var(--txt-secondary);
+}
+
+@media (max-width: 1000px) {
+    .filter p{
+        font-size: 10px;
+    }
+    .filter svg{
+        max-width: 15px;
+        max-height: 15px;
+    }
+    .filter{
+        padding: 5px 8px;
+    }
+}

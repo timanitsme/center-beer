@@ -28,6 +28,7 @@
 }
 
 .comboBoxHeader .arrow svg {
+    color: var(--primary);
     transition: transform 0.3s ease;
 }
 
@@ -64,7 +65,10 @@
     right: 12px;
     top: 50%;
     transform: translateY(-50%);
-    color: #aaa;
+}
+
+.searchIcon svg{
+    color: var(--txt-secondary);
 }
 
 .optionsList {

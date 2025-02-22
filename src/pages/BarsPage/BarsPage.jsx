@@ -2,18 +2,19 @@ import NavChain from "../../components/Navigation/NavChain/NavChain.jsx";
 import {isMobile} from "react-device-detect";
 import BarMenu from "../../components/BarMenu/BarMenu.jsx";
 import BarsCatalog from "../../components/BarsCatalog/BarsCatalog.jsx";
-import {getBeerPageFilterButtons, getBeerPageFilters} from "./BeerPageData.jsx";
+import {getBarsPageFilterButtons, getBarsPageFilters} from "./BarsPageData.jsx";
 
-export default function BeerPage(){
+export default function BarsPage(){
     const paths = [
         {title:"beer.center", path: "/"},
-        {title:"Пиво", path: "/"},
+        {title:"Бары и магазины", path: "/"},
     ]
+
 
     return(
         <div className="content">
             <NavChain paths={paths}/>
-            <BarsCatalog filterButtons={getBeerPageFilterButtons()} filters={getBeerPageFilters()}/>
+            <BarsCatalog filterButtons={getBarsPageFilterButtons()} filters={getBarsPageFilters()}/>
             {!isMobile && <div style={{height: "200px"}}></div>}
         </div>
     )

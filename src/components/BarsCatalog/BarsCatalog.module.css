@@ -10,6 +10,26 @@
     text-align: left;
 }
 
+.menuHeader{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.catalogHeader{
+    display: flex;
+    gap: 10px;
+}
+
+.catalogHeader p{
+    font-size: 0.9vw;
+    font-weight: 200;
+}
+
+.catalogHeader svg{
+    color: var(--primary)
+}
+
 .filterButtons{
     display: flex;
     flex-wrap: wrap;
@@ -36,9 +56,27 @@
     justify-content: center;
 }
 
+.toggleAndOptions{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.toggleAndOptions p{
+    font-size: 0.9vw;
+    font-weight: 200;
+    color: var(--txt-active);
+}
 
 .menuItemsSections{
     flex: 1;
+}
+
+.appliedFiltersRow{
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
 }
 
 
@@ -49,11 +87,17 @@
     .menuFilters{
         padding: 0;
     }
+    .catalogHeader p{
+        font-size: 10px;
+    }
 }
 
 @media (max-width: 768px) {
     .menuFilters{
         display: none;
+    }
+    .toggleAndOptions p{
+        font-size: 10px;
     }
 
 }

@@ -19,6 +19,10 @@
     flex: 1;
 }
 
+.bottledBeerCard.regular{
+    border-radius: 10px 10px 0 0;
+}
+
 
 .characteristics{
     display: flex;
@@ -186,6 +190,12 @@
 .favButton:hover svg{
     color: var(--primary);
     transition: 0.5s;
+}
+
+.verticalFooter{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 }
 
 @media (max-width: 1000px) {

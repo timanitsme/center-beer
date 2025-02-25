@@ -13,6 +13,7 @@
     background: var(--section-bg);
     gap: 10px;
     flex: 1;
+    justify-content: space-between;
 }
 
 .hrtLine{
@@ -91,9 +92,14 @@
     fill: var(--icon-added);
 }
 
+.textContainer .cardTextPrimary{
+    cursor: pointer;
+}
+
 .imgContainer{
     position: relative;
     display: inline-block;
+    cursor: pointer;
 }
 
 .imgContainer img{

@@ -6,6 +6,25 @@
     gap: 5px;
 }
 
+.rangeContainer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    max-width: 300px;
+}
+
+.rangeInput {
+    background: var(--third);
+    color: var(--txt-active);
+    width: 100%;
+    padding: 8px;
+    border: none;
+    font-size: 0.9vw;
+    font-weight: 200;
+    border-radius: 5px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
 
 .radio p, .radio label{
     font-size: 0.9vw;
@@ -60,7 +79,8 @@
 }
 
 @media (max-width: 1000px) {
-    .radio p, .radio label{
+    .radio p, .radio label, .rangeInput{
         font-size: 10px;
     }
+
 }

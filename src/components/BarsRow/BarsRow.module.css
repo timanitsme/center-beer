@@ -1,0 +1,105 @@
+.barsRowContainer{
+    margin: 0 50px 50px 50px;
+}
+
+.headerContainer{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.headerIcon svg{
+    color: var(--primary);
+    height: 119px;
+    width: 119px;
+}
+
+.buttonSwitch{
+    display: flex;
+    gap: 5px;
+    background: var(--section-bg);
+    padding: 5px;
+    border-radius: 10px;
+    max-height: 50px;
+    max-width: fit-content;
+}
+
+.aIconButton{
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    color: var(--txt-active);
+    font-family: Podkova, sans-serif;
+}
+
+.aIconButton svg{
+    color: var(--primary);
+}
+
+.aIconButton:hover{
+    color: var(--primary);
+}
+
+.headerDescription{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.headerBottom{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.bottomPart{
+    display: flex;
+    gap: 10px
+}
+
+
+
+.headerContainer p{
+    font-weight: 200;
+    font-size: 0.9vw;
+}
+
+.headerContainer h3{
+    text-align: left;
+}
+
+@media (max-width: 1000px) {
+    .headerContainer p {
+        font-size: 10px;
+    }
+
+    .headerContainer h3 {
+        font-size: 12px;
+    }
+
+}
+
+@media (max-width: 768px) {
+    .barsRowContainer{
+        margin: 0 25px 25px 25px;
+    }
+
+    .headerIcon svg{
+        max-height: 35px;
+        max-width: 35px;
+    }
+
+    .headerBottom{
+        flex-direction: column;
+    }
+    .buttonSwitch{
+        max-height: min-content;
+    }
+    .buttonSwitch svg{
+        max-height: 35px;
+        max-width: 35px;
+    }
+}

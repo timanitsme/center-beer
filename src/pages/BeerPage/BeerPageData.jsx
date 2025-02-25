@@ -30,9 +30,39 @@ const filters = [
         type: "combobox"
     },
     {
+        title: "Цвет",
+        options: ["Темное", "Светлое", "Красное", "Белое", "Смешанное"],
+        type: "checkboxSection"
+    },
+    {
         title: "Цена",
         options: ["Все", "до 1 000 ₽", "1 000 - 2 000 ₽", "2 000 - 3 000 ₽", "от 3 000 ₽"],
         type: "radio"
+    },
+    {
+        title: "Алкоголь",
+        options: ["Любой", "0 %", "3-5 %", "5-7 %", "7-11 %"],
+        type: "rangeRadio"
+    },
+    {
+        title: "Плотность",
+        options: ["Любая", "5 %", "5-10 %", "10-15 %", "15-20 %"],
+        type: "rangeRadio"
+    },
+    {
+        title: "Горечь",
+        options: ["Любая", "20-40", "40-60", "60-80", "Больше 80"],
+        type: "rangeRadio"
+    },
+    {
+        title: "Объём",
+        options: ["0,18 л.", "0,33 л.", "0,5 л.", "0,75 л.", "1 л.", "1,5 л." ],
+        type: "checkboxSection"
+    },
+    {
+        title: "Тара",
+        options: ["Бутылка", "Банка", "Розлив"],
+        type: "checkboxSection"
     },
     {
         title: "Бренд",

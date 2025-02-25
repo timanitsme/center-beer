@@ -1,0 +1,24 @@
+.checkbox {
+    position: relative;
+    min-width: 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.checkbox p{
+    font-size: 0.9vw;
+    text-transform: capitalize;
+}
+
+.checkboxHeader{
+    color: var(--primary) !important;
+    font-family: Podkova, sans-serif !important;
+    margin-bottom: 5px;
+}
+
+@media (max-width: 1000px) {
+    .checkbox p{
+        font-size: 10px;
+    }
+}

@@ -6,16 +6,20 @@ import BottlesPairIcon from "../../../assets/bottles-pair-icon.svg?react";
 import FavIcon from "../../../assets/fav-unfill-icon.svg?react";
 import PropTypes from "prop-types";
 import BottleIcon from "../../../assets/bottle-icon.svg?react"
+import {useNavigate} from "react-router-dom";
 
 export default function BottledBeerCard({cardInfo}){
     const [cardBookmarked, setCardBookmarked] = useState(false);
     const [cardFav, setCardFav] = useState(false);
+    const navigate = useNavigate()
+    const goToBeerPage = () => navigate("/beer/1/")
+
     return(
         <div className={styles.card}>
             <div className={styles.bottledBeerCard}>
                 <div className={styles.cardTop}>
                     <div className={styles.textContainer}>
-                        <p className={styles.cardTextPrimary}>{cardInfo.title}</p>
+                        <p className={styles.cardTextPrimary} onClick={goToBeerPage}>{cardInfo.title}</p>
                         <p className={styles.textActive}>{cardInfo.manufacturer}</p>
                     </div>
                     <div>
@@ -25,9 +29,10 @@ export default function BottledBeerCard({cardInfo}){
 
                 </div>
                 <div className={styles.imgContainer}>
-                    <img src={cardInfo.img} alt=""/>
+                    <img src={cardInfo.img} onClick={goToBeerPage} alt=""/>
                     <a onClick={() => setCardFav(!cardFav)} className={`${styles.favButton} ${cardFav? styles.added : ''}`}><FavIcon/></a>
                 </div>
+                {cardInfo.style && <p className={styles.textActive}><span style={{color: "var(--txt-secondary)"}}>Стиль:</span> {cardInfo.style}</p>}
                 <div className={styles.characteristics}>
                     <div>
                         <p className={`${styles.textActive} ${styles.secondary}`}>Крепость:</p>

@@ -15,6 +15,15 @@
     border: none;
 }
 
+.primary{
+    background: var(--primary);
+    border: none;
+}
+
+.primary p{
+    color: var(--bg) !important;
+}
+
 .iconButton:hover{
     background: var(--section-bg);
     transition: 0.5s;
@@ -25,9 +34,22 @@
     transition: 0.5s;
 }
 
+.primary:hover{
+    background: var(--primary-semi-transparent);
+    transition: 0.5s;
+}
+
 .iconButton svg{
     max-height: 26px;
     max-width: 26px;
+}
+
+.secondary svg{
+    color: var(--primary);
+}
+
+.primary svg{
+    color: var(--bg);
 }
 
 .iconButton p{

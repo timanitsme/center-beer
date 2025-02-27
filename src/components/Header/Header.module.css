@@ -16,6 +16,11 @@
     align-content: center;
     align-items: center;
     justify-content: space-between;
+    gap: 15px;
+}
+
+.logoMenu svg{
+    max-height: 50px;
 }
 
 .menu{
@@ -124,6 +129,11 @@
 @media (max-width: 1000px) {
     .socialsTheme{
         padding: 0 20%;
+    }
+
+
+    .logoMenu svg{
+        max-height: 40px;
     }
 
     .socials{

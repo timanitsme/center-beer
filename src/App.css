@@ -4,6 +4,7 @@
 
 :root {
   --bg: #141414;
+  --bg-full-opacity: rgba(20,20,20,0);
   --btn-secondary: #F3F3F3;
   --txt-primary: #FFFFFF;
   --txt-secondary: #9A9A9A;

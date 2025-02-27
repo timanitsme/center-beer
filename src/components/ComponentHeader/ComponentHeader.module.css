@@ -13,6 +13,11 @@
     text-align: left;
 }
 
+.headerIcon svg{
+    width: 119px;
+    height: 119px;
+}
+
 @media (max-width: 1000px) {
     .headerContainer p {
         font-size: 10px;

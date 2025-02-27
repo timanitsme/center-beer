@@ -4,6 +4,11 @@ import AlcoBottleIcon from "../../assets/alco-bottle-icon.svg?react";
 import CoctailIcon from "../../assets/coctail-icon.svg?react";
 import SausageIcon from "../../assets/sausage-icon.svg?react";
 
+const paths = [
+    {title:"beer.center", path: "/"},
+    {title:"Пиво", path: "/beer/"},
+]
+
 const filterButtons = [
     {text: "на кранах", icon: <BeerTapIcon/>},
     {text: "фасованное пиво", icon: <BeerCaseIcon/>},
@@ -71,5 +76,6 @@ const filters = [
     }
 ]
 
+export const getBeerPagePaths = () => paths;
 export const getBeerPageFilterButtons = () => filterButtons;
 export const getBeerPageFilters = () => filters;

@@ -1,5 +1,5 @@
 import NavChain from "../../components/Navigation/NavChain/NavChain.jsx";
-import BarInfo from "../../components/BarInfo/BarInfo.jsx";
+import BarInfo from "../../components/DetailInfo/BarInfo/BarInfo.jsx";
 import BarEvents from "../../components/BarEvents/BarEvents.jsx";
 import AdvantagesList from "../../components/AdvantagesList/AdvantagesList.jsx";
 import Gallery from "../../components/Gallery/Gallery.jsx";

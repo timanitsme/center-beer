@@ -1,0 +1,9 @@
+.newProductsContainer{
+    margin: 0 50px 50px 50px;
+}
+
+@media (max-width: 1000px) {
+    .newProductsContainer{
+        margin: 0 25px 25px 25px;
+    }
+}

@@ -10,6 +10,7 @@
     box-sizing: border-box;
 }
 
+
 .phoneImg {
     min-height: 350px;
     max-width: 440px;
@@ -152,8 +153,16 @@
     text-transform: uppercase;
 }
 
+.footerTop .bottomMenuColumn svg{
+    max-height: 45px;
+    max-width: fit-content;
+}
 
 @media (max-width: 1000px) {
+    .footerTop .bottomMenuColumn svg{
+        max-height: 40px;
+        max-width: fit-content;
+    }
     .footer p, .preFooter p{
         font-size: 10px;
     }
@@ -192,5 +201,13 @@
     }
     .buttonsContainer{
         flex-direction: column;
+    }
+}
+
+
+@media (max-width: 500px) {
+    .footerTop .bottomMenuColumn svg{
+        max-height: 20px;
+        max-width: fit-content;
     }
 }

@@ -21,7 +21,7 @@ import BottledBeerCard from "../Cards/BottledBeerCard/BottledBeerCard.jsx";
 import CheckBoxSection from "../Inputs/CheckBoxSection/CheckBoxSection.jsx";
 import RangeRadio from "../Inputs/Radio/RangeRadio.jsx";
 
-export default function BeerCatalog({filters = [], filterButtons = [], sections = []}){
+export default function BeerCatalog({filters = [], filterButtons = [], sections = [], withHeader = true}){
     const cardsBeer = [
         {title:"Terra Firma", manufacturer: "Чаща, Москва, Россия", img: Bottle1,strength: 6.5, density: 12, bitterness: 32, price: 380, rating: 5, style: "Светлый лагер"},
         {title:"Der Stern", manufacturer: "Чаща, Москва, Россия", img: Bottle2,strength: 6.5, density: 12, bitterness: 32, price: 280, rating: 4.5, style: "Светлый лагер"},
@@ -35,7 +35,7 @@ export default function BeerCatalog({filters = [], filterButtons = [], sections 
 
     return(
         <div className={styles.menuContainer}>
-            <div className={styles.menuHeader}>
+            {withHeader && <div className={styles.menuHeader}>
                 <div className={styles.catalogHeader}>
                     <div>
                         <h2>Каталог пива</h2>
@@ -44,12 +44,12 @@ export default function BeerCatalog({filters = [], filterButtons = [], sections 
                     </div>
 
                 </div>
-                <div className={styles.filterButtons}>
+                {filterButtons && <div className={styles.filterButtons}>
                     {filterButtons.map((button) => (
                         <IconButton key={button.text} text={button.text}>{button.icon}</IconButton>
                     ))}
-                </div>
-            </div>
+                </div>}
+            </div>}
             <div className={styles.menuContent}>
                 <div className={styles.menuFilters}>
                     {filters.map((filter) => {

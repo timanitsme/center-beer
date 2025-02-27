@@ -4,7 +4,7 @@ import eventPicture from "../../assets/event-picture.svg"
 import ArrowDiagonalIcon from "../../assets/arrow-diagonal-icon.svg?react"
 
 
-export default function BarEvents(){
+export default function BarEvents({title = "Скоро в баре"}){
     const handleClick = () =>{
 
     }
@@ -12,7 +12,7 @@ export default function BarEvents(){
     return(
         <div className={styles.barEventsContainer}>
             <div className={styles.barEvent}>
-                <div className={styles.soonAtBar}><h1>Скоро в баре</h1></div>
+                <div className={styles.soonAtBar}><h1>{title}</h1></div>
                 <div className={styles.eventPictureMobile}>
                     <img src={eventPicture}></img>
                 </div>

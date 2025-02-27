@@ -11,12 +11,13 @@ import NewsPage from "./pages/NewsPage/NewsPage.jsx";
 import ContactsPage from "./pages/ContactsPage/ContactsPage.jsx";
 import BarsPage from "./pages/BarsPage/BarsPage.jsx";
 import BeerDetailPage from "./pages/BeerDetailPage/BeerDetailPage.jsx";
+import BreweryDetailPage from "./pages/BreweryDetailPage/BreweryDetailPage.jsx";
 
 function App() {
     const paths = [
         {title: "Пиво", path: "/beer", element: <BeerPage/>},
         {title: "Бары и магазины", path: "/", element: <BarsPage/>},
-        {title: "Мероприятия", path: "/events", element: <EventsPage/>},
+        {title: "Мероприятия", path: "/events", element: <BreweryDetailPage/>},
         {title: "О проекте", path: "/about-us", element: <AboutPage/>},
         {title: "Новости", path: "/news", element: <NewsPage/>},
         {title: "Контакты", path: "/contacts", element: <ContactsPage/>},

@@ -7,7 +7,7 @@ import {TgIcon} from "../../assets/TgIcon.jsx";
 import {WhatsAppIcon} from "../../assets/WhatsAppIcon.jsx";
 import {VkIcon} from "../../assets/VkIcon.jsx";
 import {MailIcon} from "../../assets/MailIcon.jsx";
-import CenterBeerLogo from "../../assets/center-beer-logo.svg?react"
+import CenterBeerLogo from "../../assets/logo-new.svg?react"
 import {BurgerIcon} from "../../assets/BurgerIcon.jsx";
 import {Link, useLocation} from "react-router-dom";
 import CloseIcon from "../../assets/close-icon.svg?react"

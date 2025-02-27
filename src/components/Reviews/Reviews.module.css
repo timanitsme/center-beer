@@ -5,56 +5,6 @@
     background: var(--bg);
 }
 
-.picturesListContainer {
-    position: relative; /* Делаем контейнер относительным для позиционирования кнопок */
-    display: flex;
-    justify-content: center; /* Центрируем контейнер с картинками */
-    margin-top: 20px;
-}
-
-.picturesContainer {
-    display: flex;
-    justify-content: space-between;
-    gap: 10px; /* Расстояние между картинками */
-}
-
-.imageWrapper {
-    width: auto; /* Каждый элемент занимает ~16.66% ширины контейнера */
-    max-height: 250px; /* Фиксированная высота */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 8px;
-}
-
-.image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 8px;
-}
-
-.leftArrow,
-.rightArrow {
-    position: absolute; /* Абсолютное позиционирование кнопок */
-    top: 50%; /* Размещаем кнопки по вертикали в центре контейнера */
-    transform: translateY(-50%); /* Корректируем положение по центру */
-    z-index: 2; /* Кнопки должны быть выше картинок */
-    border: none;
-    color: white;
-    padding: 10px;
-    border-radius: 50%; /* Круглые кнопки */
-    cursor: pointer;
-}
-
-.leftArrow {
-    left: -20px; /* Смещаем кнопку влево */
-}
-
-.rightArrow {
-    right: -20px; /* Смещаем кнопку вправо */
-}
-
 .commentsSection{
     display: flex;
     gap: 20px;
@@ -197,22 +147,12 @@
         max-width: 15px;
     }
 
-    .leftArrow{
-        left: -20px;
-    }
-    .rightArrow{
-        right: -20px;
-    }
-
     .commentsSection p{
         font-size: 10px;
     }
 }
 
 @media (max-width: 600px) {
-    .imageWrapper {
-        width: calc(33.33% - 8px);
-    }
     .assessmentContainer{
         display: none;
     }

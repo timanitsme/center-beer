@@ -15,22 +15,17 @@ import Bar4 from "../../assets/barsMocks/bar-4.svg"
 import Bar5 from "../../assets/barsMocks/bar-5.svg"
 import Bar6 from "../../assets/barsMocks/bar-6.svg"
 
-export default function BarsRow(){
+export default function BarsRow({title, cards, CardComponent}){
     const [buttonSwitch, setButtonSwitch] = useState(false)
     const comboboxOptions = ["Сначала рядом со мной", "По умолчанию"]
-    const cardsBars = [
-        {title: "13 RULES (Народный бар)", img: Bar1, expensiveness: 3, address: "г. Москва, Сущевский вал, 41", metro: "Лубянка, Сретенский бульвар", rating: 5, comments: 116, closed: false},
-        {title: "13 RULES (Народный бар)", img: Bar2, expensiveness: 2, address: "г. Москва, Сущевский вал, 41", metro: "Новокузнецкая, Третьяковская", rating: 5, comments: 116, closed: false},
-        {title: "13 RULES (Народный бар)", img: Bar3, expensiveness: 1, address: "г. Москва, Сущевский вал, 41", metro: "Проспект Мира, Рижская", rating: 5, comments: 116, closed: true},
-        {title: "13 RULES (Народный бар)", img: Bar4, expensiveness: 4, address: "г. Москва, Сущевский вал, 41", metro: "Александровский сад", rating: 5, comments: 116, closed: false},
-    ]
+
 
     return(
         <div className={styles.barsRowContainer}>
             <div className={styles.headerContainer}>
                 <div className={styles.headerIcon}><BeerTapIcon/></div>
                 <div className={styles.headerDescription}>
-                    <h3>Где попробовать Czech Pilsner</h3>
+                    <h3>{title}</h3>
                     <div className={styles.headerBottom}>
                         <div className={styles.bottomPart}>
                             <div className={styles.buttonSwitch}>
@@ -47,7 +42,7 @@ export default function BarsRow(){
                     </div>
                 </div>
             </div>
-            <SimpleCatalogSection CardComponent={LightBarCard} cards={cardsBars} wideColumns={false}></SimpleCatalogSection>
+            <SimpleCatalogSection CardComponent={CardComponent} cards={cards} wideColumns={false}></SimpleCatalogSection>
         </div>
     )
 }

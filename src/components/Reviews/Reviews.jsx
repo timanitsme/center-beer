@@ -1,48 +1,20 @@
 import styles from "./Reviews.module.css"
 import ComponentHeader from "../ComponentHeader/ComponentHeader.jsx";
 import BeardIcon from "../../assets/beard-icon.svg?react"
-
-import ReviewSection from "../../assets/reviewsMocks/review-section.svg"
 import AvatarDefault from "../../assets/avatar-default.svg"
 import LikeIcon from "../../assets/like-icon.svg?react"
 import DislikeIcon from "../../assets/dislike-icon.svg?react"
 import {useEffect, useRef, useState} from "react";
-import ArrowButton from "../Buttons/ArrowButton/ArrowButton.jsx";
 import SimpleButton from "../Buttons/SimpleButton/SimpleButton.jsx";
 import IconButton from "../Buttons/IconButton/IconButton.jsx";
 import BeerBottleIcon from "../../assets/bottle-icon.svg?react";
 import HalfBeerBottleIcon from "../../assets/bottle-half-icon.svg?react";
 import EmptyBeerBottleIcon from "../../assets/bottle-empty-icon.svg?react";
 import PropTypes from "prop-types";
+import PicturesList from "../PicturesList/PicturesList.jsx";
 
 
 export default function Reviews({header, images, resume}){
-    const [currentPage, setCurrentPage] = useState(0);
-
-    const itemsPerPage = window.innerWidth <= 600 ? 3 : 6;
-
-    // Функция для переключения на следующую страницу
-    const nextPage = () => {
-        if (currentPage < Math.ceil(images.length / itemsPerPage) - 1) {
-            setCurrentPage(currentPage + 1);
-        }
-    };
-
-    // Функция для переключения на предыдущую страницу
-    const prevPage = () => {
-        if (currentPage > 0) {
-            setCurrentPage(currentPage - 1);
-        }
-    };
-
-    // Вычисление текущего набора изображений (по 6 штук)
-    const currentImages = images.slice(currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage);
-
-    // Добавляем заполнители, если в последней группе меньше 6 картинок
-    const filledImages = [...currentImages];
-    while (filledImages.length < itemsPerPage) {
-        filledImages.push(ReviewSection);
-    }
 
     const textRef = useRef(null);
     const [isTextClamped, setIsTextClamped] = useState(false);
@@ -78,23 +50,7 @@ export default function Reviews({header, images, resume}){
     return(
         <div className={styles.reviews}>
             <ComponentHeader HeaderIcon={BeardIcon} title={header.title} description={header.description}/>
-            <div className={styles.picturesListContainer}>
-                <div className={styles.leftArrow}><ArrowButton direction="left"  onClick={prevPage} withBg={false}></ArrowButton></div>
-                <div className={styles.picturesContainer}>
-                    {filledImages.map((image, index) => (
-                        <div key={index} className={styles.imageWrapper}>
-                            {image && (
-                                <img
-                                    src={image}
-                                    alt=""
-                                    className={styles.image}
-                                />
-                            )}
-                        </div>
-                    ))}
-                </div>
-                <div className={styles.rightArrow}><ArrowButton direction="right"  onClick={nextPage} withBg={false}></ArrowButton></div>
-            </div>
+            <PicturesList images={images}></PicturesList>
             <div className="hrtLine" style={{margin: "20px 0"}} />
             <div className={styles.commentsSection}>
                 <div className={styles.commentsContainer}>

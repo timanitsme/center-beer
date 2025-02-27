@@ -1,5 +1,5 @@
 import styles from "./Footer.module.css"
-import CenterBeerLogo from "../../assets/center-beer-logo.svg?react";
+import CenterBeerLogo from "../../assets/logo-new.svg?react";
 import AppPhone from "../../assets/app-phone.svg"
 import QrCode from "../../assets/qr-code.svg"
 import DownloadGooglePlay from "../../assets/download-google-play.svg?react"

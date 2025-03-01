@@ -46,7 +46,7 @@ export default function BarCard({cardInfo}){
                 </div>
                 <div className={styles.characteristics}>
                     <p className={styles.cardTextPrimary} onClick={goToBeerPage}>{cardInfo.title}</p>
-                    <p>{getExpensivenessIcons(cardInfo.expensiveness)}</p>
+                    <p style={{whiteSpace: "nowrap"}}>{getExpensivenessIcons(cardInfo.expensiveness)}</p>
                 </div>
                 <div className={`${styles.iconText} ${styles.loc}`}>
                     <LocationIcon/>

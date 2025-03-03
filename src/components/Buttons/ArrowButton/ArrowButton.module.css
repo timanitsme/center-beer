@@ -35,6 +35,7 @@
 .arrowButton svg{
     width: 60%;
     height: auto;
+    color: var(--bg);
 }
 
 @media (max-width: 500px) {

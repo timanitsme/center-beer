@@ -21,6 +21,7 @@
     gap: 10px;
 }
 
+
 .catalogHeader p{
     font-size: 0.9vw;
     font-weight: 200;
@@ -34,7 +35,9 @@
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
+    width: 100%;
 }
+
 
 .filterButtons svg{
     color: var(--primary);

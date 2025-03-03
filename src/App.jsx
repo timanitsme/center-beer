@@ -13,24 +13,28 @@ import BarsPage from "./pages/BarsPage/BarsPage.jsx";
 import BeerDetailPage from "./pages/BeerDetailPage/BeerDetailPage.jsx";
 import BreweryDetailPage from "./pages/BreweryDetailPage/BreweryDetailPage.jsx";
 import BreweryPage from "./pages/BreweryPage/BreweryPage.jsx";
+import BeerMapPage from "./pages/BeerMapPage/BeerMapPage.jsx";
+import NewsDetailPage from "./pages/NewsDetailPage/NewsDetailPage.jsx";
 
 function App() {
     const paths = [
         {title: "Пиво", path: "/beer", element: <BeerPage/>},
         {title: "Бары и магазины", path: "/", element: <BarsPage/>, children: [
                 {title: "Бары", path: "/"},
-                {title: "Пивоварни", path: "/breweries"}
+                {title: "Пивоварни", path: "/breweries"},
+                {title: "Карта баров", path: "/map"}
             ]},
         {title: "Мероприятия", path: "/events", element: <EventsPage/>},
         {title: "О проекте", path: "/about-us", element: <AboutPage/>},
-        {title: "Новости", path: "/news", element: <NewsPage/>},
+        {title: "Новости", path: "/news", element: <NewsDetailPage/>},
         {title: "Контакты", path: "/contacts", element: <ContactsPage/>},
     ]
     const anonymousPaths = [
         {path: "/breweries", element: <BreweryPage/>},
         {path: "/bar/:id", element: <BarDetailPage/> },
         {path: "/beer/:id", element: <BeerDetailPage/>},
-        {path: "/brewery/:id", element: <BreweryDetailPage/>}
+        {path: "/brewery/:id", element: <BreweryDetailPage/>},
+        {path: "/map", element: <BeerMapPage/>}
     ]
 
     return (

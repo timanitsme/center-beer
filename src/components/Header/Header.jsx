@@ -78,7 +78,7 @@ export default function Header({paths}){
                             <div className={styles.mobileMenuItem}>
                                 <Link
                                     to={path.children? currentPage: path.path}
-                                    className={((currentPage === path.path) || (path.children?.some(child => child.path === currentPage))) ? styles.active : ''}
+                                    className={`${((currentPage === path.path) || (path.children?.some(child => child.path === currentPage))) ? styles.active : ''} ${expandedPaths.includes(path.path)? styles.open: ''}`}
                                     onClick={() => {
                                         if (path.children) {
                                             toggleExpand(path.path);

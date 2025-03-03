@@ -183,6 +183,14 @@
     color: var(--primary);
 }
 
+.mobileMenu a svg {
+    transition: transform 0.3s ease;
+}
+
+.mobileMenu a.open svg {
+    transform: rotate(180deg);
+}
+
 
 
 .mobileMenuItem svg{

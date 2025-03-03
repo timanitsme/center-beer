@@ -20,6 +20,18 @@
   --selectable: #303030;
 }
 
+.leaflet-container{
+  height: 100%;
+}
+
+.leaflet-popup-content-wrapper {
+  background: var(--section-bg);
+}
+
+.leaflet-control-attribution.leaflet-control{
+  display: none;
+}
+
 /*:root {
   --bg: #ebebeb;
   --btn-secondary: #0c0c0c;

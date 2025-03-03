@@ -6,7 +6,7 @@
 
 .searchInput {
     width: 100%;
-    padding: 8px;
+    padding: 8px 15px 8px 8px;
     border-radius: 5px;
     color: var(--txt-active);
     font-size: 0.9vw;

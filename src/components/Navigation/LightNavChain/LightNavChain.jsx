@@ -1,11 +1,6 @@
 import styles from "./LightNavChain.module.css";
 
-export default function LightNavChain(){
-    const paths = [
-        {title:"Новости"},
-        {title:"Пиво"},
-    ]
-
+export default function LightNavChain({paths}){
     return(
         <div className={styles.navChainContainer}>
             {paths.map((path, index) => {

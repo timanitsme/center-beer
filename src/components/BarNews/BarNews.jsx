@@ -15,6 +15,11 @@ export default function BarNews(){
                 "Результаты исследования представлены в статье в журнале Frontiers in Bioengineering and Biotechnology."},
 
     ]
+    const paths = [
+        {title: "Новости"},
+        {title: "Пиво"},
+    ]
+
     return(
         <div className={styles.news}>
             <div className={styles.mobileHeader}>
@@ -31,7 +36,7 @@ export default function BarNews(){
                 {news.map((item => {
                     return(
                         <div key={item.title} className={styles.newsCard}>
-                            <LightNavChain/>
+                            <LightNavChain paths={paths}/>
                             <h3>{item.title}</h3>
                             <p className="limited-text">{item.description}</p>
                             <div className="hrtLine" style={{margin: "10px 0"}}/>

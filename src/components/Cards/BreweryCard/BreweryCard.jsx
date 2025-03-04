@@ -45,10 +45,9 @@ export default function BreweryCard({cardInfo}){
                 </div>
                 <div className={`${styles.cardBottom} ${styles.mobile}`}>
                     <div className={styles.productsRow}>
-                        <div className={styles.product}><p>Пиво</p></div>
-                        <div className={styles.product}><p>Крепкий алкоголь</p></div>
-                        <div className={styles.product}><p>Вино</p></div>
-                        <div className={styles.product}><p>Б/а напитки</p></div>
+                        {cardInfo.options.map((option, index) =>
+                            <div key={index} className={styles.product}><p>{option}</p></div>
+                        )}
                     </div>
                     <a onClick={() => setCardFav(!cardFav)} className={`${styles.favButton} ${cardFav? styles.added : ''}`}><FavIcon/></a>
                 </div>

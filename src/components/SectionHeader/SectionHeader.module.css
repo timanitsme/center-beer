@@ -1,0 +1,36 @@
+.catalogHeader.margin{
+    margin: 0 50px 10px 50px;
+}
+
+.catalogHeader h2{
+    align-self: flex-start;
+    text-align: left;
+}
+
+.catalogHeader{
+    display: flex;
+    gap: 10px;
+}
+
+
+.catalogHeader p{
+    font-size: 0.9vw;
+    font-weight: 200;
+}
+
+.catalogHeader svg{
+    color: var(--primary)
+}
+
+@media (max-width: 1000px) {
+    .catalogHeader p{
+        font-size: 10px;
+    }
+    .catalogHeader.margin{
+        margin: 0 25px 25px 25px;
+    }
+
+    .filler{
+        display: none;
+    }
+}

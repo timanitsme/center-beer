@@ -26,7 +26,7 @@ function App() {
             ]},
         {title: "Мероприятия", path: "/events", element: <EventsPage/>},
         {title: "О проекте", path: "/about-us", element: <AboutPage/>},
-        {title: "Новости", path: "/news", element: <NewsDetailPage/>},
+        {title: "Новости", path: "/news", element: <NewsPage/>},
         {title: "Контакты", path: "/contacts", element: <ContactsPage/>},
     ]
     const anonymousPaths = [
@@ -34,6 +34,7 @@ function App() {
         {path: "/bar/:id", element: <BarDetailPage/> },
         {path: "/beer/:id", element: <BeerDetailPage/>},
         {path: "/brewery/:id", element: <BreweryDetailPage/>},
+        {path: "/news/:id", element: <NewsDetailPage/>},
         {path: "/map", element: <BeerMapPage/>}
     ]
 

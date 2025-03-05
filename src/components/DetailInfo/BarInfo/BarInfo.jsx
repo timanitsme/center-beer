@@ -48,7 +48,7 @@ export default function BarInfo({barInfo}){
         <div>
             <div className={styles.barInfoContainer}>
                 <div className={styles.barIcons}>
-                    <BarLogo/>
+                    {barInfo.logo !== undefined && barInfo.logo !== "" ? <img className={styles.logoImg} src={barInfo.logo} alt=""></img> :<BarLogo/>}
                     <div className={styles.socials}>
                         {barInfo["social_media"].tg && <a href={barInfo["social_media"].tg}><TgIcon/></a>}
                         {barInfo["social_media"].vk && <a href={barInfo["social_media"].vk}><VkIcon/></a>}

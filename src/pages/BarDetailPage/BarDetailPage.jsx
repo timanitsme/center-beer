@@ -31,7 +31,7 @@ export default function BarDetailPage(){
                     <BarInfo barInfo={data[0]}/>
                     <BarEvents/>
                     <AdvantagesList barInfo={data[0]}/>
-                    <Gallery pictures={data[0].gallery}/>
+                    {data[0].gallery.length != 0 && <Gallery pictures={data[0].gallery}/>}
                     <BarMenu filters={getBarPageFilters()} filterButtons={getBarPageFilterButtons()} sections={getBarPageSections()}/>
                     <CurrentPromos/>
                     <BarNews/>

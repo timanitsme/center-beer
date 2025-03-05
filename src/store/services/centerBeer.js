@@ -48,4 +48,5 @@ export const centerBeerApi = createApi({
     })
 })
 
-export const { useGetBarsQuery, useGetBarInfoQuery } = centerBeerApi
+export const { useGetBarsQuery, useGetBarInfoQuery, useGetBarsFiltersQuery, useGetStylesQuery,
+    useGetBarTypesQuery, useGetBreweryTypesQuery, useGetCountriesQuery, useGetCitiesQuery } = centerBeerApi

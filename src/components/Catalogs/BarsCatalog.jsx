@@ -21,17 +21,31 @@ import Toggle from "../Toggle/Toggle.jsx";
 import {useState} from "react";
 import AppliedFilter from "../AppliedFilter/AppliedFilter.jsx";
 import {useGetBarsQuery} from "../../store/services/centerBeer";
+import {useNavigate} from "react-router-dom";
 
 
 export default function BarsCatalog({filters = [], filterButtons = [], sections = []}){
-    const { data, isLoading, error } = useGetBarsQuery({
+    const navigate = useNavigate()
+    const [filterValues, setFilterValues] = useState({
         lim: 24,
         offset: 0,
-        type_ids: [1]
+        city_id: '',
+        subways_ids: [],
+        kitchen_ids: [],
+        visit_type_ids: [],
+        type_ids: [],
+        feature_ids: [],
+        onlyOpened: false
     });
-    if (!isLoading && !error){
-        console.log(JSON.stringify(data));
-    }
+
+    const { data, isLoading, error } = useGetBarsQuery(filterValues);
+
+    const handleFilterChange = (filterKey, value) =>{
+        setFilterValues(prevState => ({
+            ...prevState,
+            [filterKey]: value
+        }));
+    };
 
     const [onlyOpened, setOnlyOpened] = useState(false);
 
@@ -45,7 +59,7 @@ export default function BarsCatalog({filters = [], filterButtons = [], sections 
                         <p>Собрали для вас список лучших пивных баров, где можно насладиться свежесваренным пивом, закусками и уютной атмосферой. От классических пабов до оригинальных крафтовых баров — каждый найдет место по вкусу.</p>
                     </div>
                     <div>
-                        <IconButton text="Все бары на карте"><LocationIcon/></IconButton>
+                        <IconButton text="Все бары на карте" onClick={() => navigate("/map")}><LocationIcon/></IconButton>
                     </div>
                 </div>
                 <div className={styles.filterButtons}>
@@ -59,9 +73,11 @@ export default function BarsCatalog({filters = [], filterButtons = [], sections 
                     {filters.map((filter) => {
                         switch (filter.type) {
                             case "combobox":
-                                return <FilterComboBox key={filter.title} title={filter.title} options={filter.options} />;
+                                return <FilterComboBox key={filter.title} title={filter.title}
+                                                       options={filter.options} onChange={(value) => handleFilterChange(filter.title.toLowerCase().replace(/\s+/g, '_'), value)} />;
                             case "radio":
-                                return <Radio key={filter.title} title={filter.title} options={filter.options} />;
+                                return <Radio key={filter.title} title={filter.title}
+                                              options={filter.options} />;
                             case "checkbox":
                                 return <CheckBox text={filter.title}/>
                             case "search":

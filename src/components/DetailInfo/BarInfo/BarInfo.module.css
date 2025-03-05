@@ -100,6 +100,10 @@
     transition: 0.5s;
 }
 
+.logoImg{
+    max-width: 119px;
+}
+
 .circle{
     width: 4px;
     height: 4px;
@@ -172,6 +176,12 @@
         max-height: 50px;
         vertical-align: top;
     }
+    .logoImg{
+        max-width: 70px;
+        max-height: 70px;
+        vertical-align: top;
+    }
+
     .barDescription{
         max-width: 100%;
     }

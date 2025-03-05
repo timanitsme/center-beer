@@ -2,7 +2,7 @@ import {createApi, fetchBaseQuery}  from "@reduxjs/toolkit/query/react";
 
 export const centerBeerApi = createApi({
     reducerPath: 'centerBeerApi',
-    baseQuery: fetchBaseQuery({baseUrl: 'https://api.center.beer/web/'}),
+    baseQuery: fetchBaseQuery({baseUrl: '/api'}),
     endpoints: (builder) => ({
         getBars: (builder.query({
             query: ({lim, offset, city_id, subways_ids, kitchen_ids, visit_type_ids, type_ids, feature_ids}) => {

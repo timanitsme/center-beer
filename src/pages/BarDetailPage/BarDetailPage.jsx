@@ -20,8 +20,8 @@ import {useParams} from "react-router-dom";
 
 
 export default function BarDetailPage(){
-    const {id} = useParams();
-    const {data, isLoading, error} = useGetBarInfoQuery(id)
+    const {alias} = useParams();
+    const {data, isLoading, error} = useGetBarInfoQuery(alias)
     if (!isLoading && !error) console.log(JSON.stringify(data));
     return(
         <div className="content">

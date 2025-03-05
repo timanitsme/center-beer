@@ -31,7 +31,7 @@ function App() {
     ]
     const anonymousPaths = [
         {path: "/breweries", element: <BreweryPage/>},
-        {path: "/bar/:id", element: <BarDetailPage/> },
+        {path: "/bar/:alias", element: <BarDetailPage/> },
         {path: "/beer/:id", element: <BeerDetailPage/>},
         {path: "/brewery/:id", element: <BreweryDetailPage/>},
         {path: "/news/:id", element: <NewsDetailPage/>},

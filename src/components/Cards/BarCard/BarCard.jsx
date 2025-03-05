@@ -17,7 +17,7 @@ export default function BarCard({cardInfo}){
 
     const rating = 4.9
 
-    const goToBeerPage = () => navigate(`/bar/${cardInfo.id}`);
+    const goToBeerPage = () => navigate(`/bar/${cardInfo.alias}`);
 
     const getExpensivenessIcons = (expensiveness) => {
         const icons = [];

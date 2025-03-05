@@ -19,7 +19,7 @@ export const centerBeerApi = createApi({
             }
         })),
         getBarInfo: (builder.query({
-            query: (id) => `getBarInfo?id=${id}`
+            query: (alias) => `getBarInfo?alias=${alias}`
         })),
         getBarsFilters: (builder.query({
             query: (cityId) => `getBarsFilters?id=${cityId}`

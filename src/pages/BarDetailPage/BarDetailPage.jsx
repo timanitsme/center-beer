@@ -15,21 +15,31 @@ import {
     getBarPageSections,
     getBarReviewsImages, getBarReviewsHeader, getBarReviewsResume
 } from "./BarDetailPageData.jsx";
+import {useGetBarInfoQuery} from "../../store/services/centerBeer.js";
+import {useParams} from "react-router-dom";
 
 
 export default function BarDetailPage(){
-
+    const {id} = useParams();
+    const {data, isLoading, error} = useGetBarInfoQuery(id)
+    if (!isLoading && !error) console.log(JSON.stringify(data));
     return(
         <div className="content">
             <NavChain paths={getBarPagePaths()}/>
-            <BarInfo/>
-            <BarEvents/>
-            <AdvantagesList/>
-            <Gallery/>
-            <BarMenu filters={getBarPageFilters()} filterButtons={getBarPageFilterButtons()} sections={getBarPageSections()}/>
-            <CurrentPromos/>
-            <BarNews/>
-            <Reviews images={getBarReviewsImages()} header={getBarReviewsHeader()} resume={getBarReviewsResume()}/>
+            {!isLoading && !error &&
+                <>
+                    <BarInfo barInfo={data[0]}/>
+                    <BarEvents/>
+                    <AdvantagesList barInfo={data[0]}/>
+                    <Gallery pictures={data[0].gallery}/>
+                    <BarMenu filters={getBarPageFilters()} filterButtons={getBarPageFilterButtons()} sections={getBarPageSections()}/>
+                    <CurrentPromos/>
+                    <BarNews/>
+                    <Reviews images={getBarReviewsImages()} header={getBarReviewsHeader()} resume={getBarReviewsResume()}/>
+
+                </>
+
+            }
             {!isMobile && <div style={{height: "200px"}}></div>}
         </div>
     )

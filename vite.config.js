@@ -7,7 +7,14 @@ export default defineConfig({
   plugins: [react(), svgr()],
   server: {
     host: true,
-    historyApiFallback: true
+    historyApiFallback: true,
+    proxy:{
+      '/api': {
+        target: "https://api.center.beer/web/",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, '')
+      }
+    }
   }
 })
 

@@ -1,6 +1,5 @@
 import NavChain from "../../components/Navigation/NavChain/NavChain.jsx";
 import {isMobile} from "react-device-detect";
-import BarMenu from "../../components/BarMenu/BarMenu.jsx";
 import BarsCatalog from "../../components/Catalogs/BarsCatalog.jsx";
 import {getBarsPageFilterButtons, getBarsPageFilters} from "./BarsPageData.jsx";
 

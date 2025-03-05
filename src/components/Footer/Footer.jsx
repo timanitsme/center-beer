@@ -52,8 +52,8 @@ export default function Footer(){
                             </div>
                         </div>
                         <div className={styles.bottomMenuColumn} style={{gap: "5px", textAlign: "end", marginLeft: "auto" }}>
-                            <h1>+7 (499) 938-46-71</h1>
-                            <p>hello@center.beer</p>
+                            <h1>+7 (499) 938-46-81</h1>
+                            <a href="mailto:hello@center.beer">hello@center.beer</a>
                         </div>
 
                     </div>

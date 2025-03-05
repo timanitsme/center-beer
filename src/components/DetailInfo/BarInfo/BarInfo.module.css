@@ -154,6 +154,10 @@
     .barDescription p, .ratingAndComments p, .barInfo p{
         font-size: 10px;
     }
+    .socials{
+        display: none;
+    }
+
     .barInfo.regular{
         display: none;
     }

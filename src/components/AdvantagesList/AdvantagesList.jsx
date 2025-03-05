@@ -5,12 +5,12 @@ import GlassesIcon from "../../assets/advantages/GlassesIcon.jsx";
 import ShieldIcon from "../../assets/advantages/ShieldIcon.jsx";
 
 
-export default function AdvantagesList(){
+export default function AdvantagesList({barInfo}){
     const advantages = [
-        {icon: <WalletIcon/>, title: "СРЕДНИЙ ЧЕК", description: ["2500 ₽"]},
-        {icon: <DeskIcon/>, title: "КУХНЯ", description: ["Европейская", "Итальянская", "Русская", "Авторская", "Азиатская"]},
-        {icon: <GlassesIcon/>, title: "ЦЕЛЬ ПОСЕЩЕНИЯ", description: ["Деловая встреча", "Романтическая встреча", "Семейный ужин", "Ужин с друзьями"]},
-        {icon: <ShieldIcon/>, title: "ОСОБЕННОСТИ", description: ["WiFi","Летняя терраса","Принимаются карты"]},
+        {icon: <WalletIcon/>, title: "СРЕДНИЙ ЧЕК", description: [`${barInfo["average_bill"]}₽`]},
+        {icon: <DeskIcon/>, title: "КУХНЯ", description: barInfo["kitchen"]},
+        {icon: <GlassesIcon/>, title: "ЦЕЛЬ ПОСЕЩЕНИЯ", description: barInfo["visit_types"]},
+        {icon: <ShieldIcon/>, title: "ОСОБЕННОСТИ", description: barInfo["properties"]},
     ]
 
 

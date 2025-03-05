@@ -20,17 +20,18 @@ import ComboBox from "../Inputs/ComboBox/ComboBox.jsx";
 import Toggle from "../Toggle/Toggle.jsx";
 import {useState} from "react";
 import AppliedFilter from "../AppliedFilter/AppliedFilter.jsx";
+import {useGetBarsQuery} from "../../store/services/centerBeer";
 
 
 export default function BarsCatalog({filters = [], filterButtons = [], sections = []}){
-    const cardsBars = [
-        {title: "13 RULES (Народный бар)", img: Bar1, expensiveness: 3, address: "г. Москва, Сущевский вал, 41", metro: "Лубянка, Сретенский бульвар", rating: 5, comments: 116, closed: false},
-        {title: "13 RULES (Народный бар)", img: Bar2, expensiveness: 2, address: "г. Москва, Сущевский вал, 41", metro: "Новокузнецкая, Третьяковская", rating: 5, comments: 116, closed: false},
-        {title: "13 RULES (Народный бар)", img: Bar3, expensiveness: 1, address: "г. Москва, Сущевский вал, 41", metro: "Проспект Мира, Рижская", rating: 5, comments: 116, closed: true},
-        {title: "13 RULES (Народный бар)", img: Bar4, expensiveness: 4, address: "г. Москва, Сущевский вал, 41", metro: "Александровский сад", rating: 5, comments: 116, closed: false},
-        {title: "13 RULES (Народный бар)", img: Bar5, expensiveness: 1, address: "г. Москва, Сущевский вал, 41", metro: "Лубянка, Сретенский бульвар", rating: 5, comments: 116, closed: false},
-        {title: "13 RULES (Народный бар)", img: Bar6, expensiveness: 3, address: "г. Москва, Сущевский вал, 41", metro: "Новокузнецкая, Третьяковская", rating: 5, comments: 116, closed: false},
-    ]
+    const { data, isLoading, error } = useGetBarsQuery({
+        lim: 24,
+        offset: 0,
+        type_ids: [1]
+    });
+    if (!isLoading && !error){
+        console.log(JSON.stringify(data));
+    }
 
     const [onlyOpened, setOnlyOpened] = useState(false);
 
@@ -97,7 +98,10 @@ export default function BarsCatalog({filters = [], filterButtons = [], sections 
                         <ComboBox options={["По убыванию", "По возрастанию"]}></ComboBox>
                         <Toggle label={"Только открытые"} toggled={onlyOpened} onClick={() => setOnlyOpened(!onlyOpened)}/>
                     </div>
-                    <SimpleCatalogSection cards={cardsBars} CardComponent={BarCard} wideColumns={false}/>
+                    { !isLoading && !error &&
+                        <SimpleCatalogSection cards={data} CardComponent={BarCard} wideColumns={false}/>
+                    }
+
 
                 </div>
             </div>

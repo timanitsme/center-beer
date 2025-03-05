@@ -110,12 +110,12 @@ export default function Header({paths}){
                         ))}
                     </div>
                 <div className={styles.socialsTheme}>
-                    <Toggle label={toggleState ? "Темная тема" : "Светлая тема"} toggled={toggleState} onClick={switchTheme} />
+                    {/*<Toggle label={toggleState ? "Темная тема" : "Светлая тема"} toggled={toggleState} onClick={switchTheme} />*/}
                     {!isMobile &&
                     <div className={styles.socials}>
-                        <TgIcon/>
-                        <WhatsAppIcon/>
-                        <a href="https://vk.com/center.beer.news"><VkIcon/></a>
+                        <a href="https://t.me/Alexomel81"><TgIcon/></a>
+                        {/*<WhatsAppIcon/>*/}
+                        <a href="https://vk.com/center.beer"><VkIcon/></a>
                         <a href="mailto:hello@center.beer"><MailIcon/></a>
                     </div>
                     }

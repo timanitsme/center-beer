@@ -1,11 +1,8 @@
 import styles from "./Gallery.module.css"
-import Gallery1 from "../../assets/gallery/gallery-1.svg"
-import Gallery2 from "../../assets/gallery/gallery-2.svg"
-import Gallery3 from "../../assets/gallery/gallery-3.svg"
 import {useRef} from "react";
 import ArrowButton from "../Buttons/ArrowButton/ArrowButton.jsx";
 
-export default function Gallery(){
+export default function Gallery({pictures}){
     const galleryRef = useRef(null);
 
     // Функция для прокрутки влево
@@ -35,12 +32,10 @@ export default function Gallery(){
     return(
         <div className={styles.galleryContainer}>
             <div className={styles.galleryPictures} ref={galleryRef}>
-                <img src={Gallery1}/>
-                <img src={Gallery2}/>
-                <img src={Gallery3}/>
-                <img src={Gallery1}/>
-                <img src={Gallery2}/>
-                <img src={Gallery3}/>
+                {pictures.map((picture, index) =>
+                    <img key={index} src={picture} alt=""/>
+                )}
+
             </div>
             <div className={styles.galleryButtons}>
                 <ArrowButton direction="left" onClick={scrollLeft}></ArrowButton>

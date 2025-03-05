@@ -24,10 +24,10 @@ function App() {
                 {title: "Пивоварни", path: "/breweries"},
                 {title: "Карта баров", path: "/map"}
             ]},
-        {title: "Мероприятия", path: "/events", element: <EventsPage/>},
-        {title: "О проекте", path: "/about-us", element: <AboutPage/>},
+        {title: "Мероприятия", path: "https://center.beer/craft-events/", element: <EventsPage/>}, // /events
+        {title: "О проекте", path: "https://center.beer/about/", element: <AboutPage/>}, // /about-us
         {title: "Новости", path: "/news", element: <NewsPage/>},
-        {title: "Контакты", path: "/contacts", element: <ContactsPage/>},
+        {title: "Контакты", path: "https://center.beer/about-us/contact/", element: <ContactsPage/>}, // /contacts
     ]
     const anonymousPaths = [
         {path: "/breweries", element: <BreweryPage/>},

@@ -21,7 +21,7 @@ import HalfBeerBottleIcon from "../../../assets/bottle-half-icon.svg?react"
 import EmptyBeerBottleIcon from "../../../assets/bottle-empty-icon.svg?react"
 
 
-export default function BarInfo(){
+export default function BarInfo({barInfo}){
     const [isFavourite, setIsFavourite] = useState(false);
     const [isBookmarked, setIsBookmarked] = useState(false);
     const rating = 3.5
@@ -50,15 +50,15 @@ export default function BarInfo(){
                 <div className={styles.barIcons}>
                     <BarLogo/>
                     <div className={styles.socials}>
-                        <TgIcon/>
-                        <a href="https://vk.com/center.beer.news"><VkIcon/></a>
-                        <a href="mailto:hello@center.beer"><MailIcon/></a>
+                        {barInfo["social_media"].tg && <a href={barInfo["social_media"].tg}><TgIcon/></a>}
+                        {barInfo["social_media"].vk && <a href={barInfo["social_media"].vk}><VkIcon/></a>}
+                        <a href={`mailto:${barInfo.email}`}><MailIcon/></a>
                     </div>
                 </div>
                 <div className={styles.barDescription}>
-                    <h2>13 rules (народный бар)</h2>
+                    <h2>{barInfo.name}</h2>
 
-                    <p>Добро пожаловать в бар 13 RULES — идеальное место для ценителей крафтового пива и домашней атмосферы. В двух шагах от метро Марьина Роща и Савёловская, вас ждёт атмосферный паб с живой музыкой, домашними настойками и трансляциями спортивных событий. Наслаждайтесь вкусными бизнес-ланчами, воспользуйтесь скидками и акциями. Забронируйте стол сейчас и откройте новый уровень отдыха с друзьями и близкими!</p>
+                    <p>{barInfo.description}</p>
 
                     <div className={styles.barButtons}>
                         <IconButton text="меню"><SausageIcon/></IconButton>
@@ -81,8 +81,8 @@ export default function BarInfo(){
                         <div className={styles.circle}/>
                         <a> <CommentIcon/> 116 комментариев</a>
                     </div>
-                    <h2>+7 (916) 298-06-14</h2>
-                    <p>г. Москва, Сущевский вал, 41</p>
+                    <h2>{barInfo.contacts}</h2>
+                    <p>{barInfo.address}</p>
                     <a className={styles.aUnderlinedIconButton}><CommentIcon/>Связаться с нами</a>
                     <a className={styles.aUnderlinedIconButton}><CalendarIcon/>График работы</a>
                     <div>

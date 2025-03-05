@@ -4,7 +4,7 @@ import BookMarkIcon from "../../../assets/bookmark-unfill-icon.svg?react";
 import BottleIcon from "../../../assets/bottle-icon.svg?react";
 import FavIcon from "../../../assets/fav-unfill-icon.svg?react";
 import PropTypes from "prop-types";
-import MetroIcon from "../../../assets/metro-icon.svg?react"
+import MetroIcon from "../../../assets/functionalIcons/MetroIcon.jsx";
 import LocationIcon from "../../../assets/location-filled-icon.svg?react"
 import CommentIcon from "../../../assets/comment-icon.svg?react"
 import {useNavigate} from "react-router-dom";
@@ -15,7 +15,9 @@ export default function BarCard({cardInfo}){
     const [cardFav, setCardFav] = useState(false);
     const navigate = useNavigate();
 
-    const goToBeerPage = () => navigate("/bar/1");
+    const rating = 4.9
+
+    const goToBeerPage = () => navigate(`/bar/${cardInfo.id}`);
 
     const getExpensivenessIcons = (expensiveness) => {
         const icons = [];
@@ -41,27 +43,27 @@ export default function BarCard({cardInfo}){
                     {/*{cardInfo.rating && <p className={styles.ratingText}><BottleIcon/> ({cardInfo.rating.toFixed(1)})</p>}*/}
                 </div>
                 <div className={styles.imgContainer}>
-                    <img src={cardInfo.img} onClick={goToBeerPage} alt=""/>
+                    <img src={cardInfo.preview} onClick={goToBeerPage} alt=""/>
                     <a onClick={() => setCardFav(!cardFav)} className={`${styles.favButton} ${cardFav? styles.added : ''}`}><FavIcon/></a>
                 </div>
                 <div className={styles.characteristics}>
-                    <p className={styles.cardTextPrimary} onClick={goToBeerPage}>{cardInfo.title}</p>
-                    <p style={{whiteSpace: "nowrap"}}>{getExpensivenessIcons(cardInfo.expensiveness)}</p>
+                    <p className={styles.cardTextPrimary} onClick={goToBeerPage}>{cardInfo.name}</p>
+                    <p style={{whiteSpace: "nowrap"}}>{getExpensivenessIcons(cardInfo["average_bill_icon"])}</p>
                 </div>
                 <div className={`${styles.iconText} ${styles.loc}`}>
                     <LocationIcon/>
                     <p>{cardInfo.address}</p>
                 </div>
                 <div className={`${styles.iconText} ${styles.metro}`}>
-                    <MetroIcon/>
-                    <p>{cardInfo.metro}</p>
+                    <MetroIcon color={cardInfo.subway.color}/>
+                    <p>{cardInfo.subway.name}</p>
                 </div>
 
                 <div className={styles.characteristics}>
                     <div>
-                        {cardInfo.rating && <><BottleIcon/> <p className={styles.ratingText}> ({cardInfo.rating.toFixed(1)})</p></>}
+                        {rating && <><BottleIcon/> <p className={styles.ratingText}> ({rating.toFixed(1)})</p></>}
                         <div className="circle"/>
-                        <CommentIcon/><p>{cardInfo.comments}</p>
+                        <CommentIcon/><p>{0}</p>
                     </div>
                     <div>
                         <div className={`${styles.bigCircle} ${cardInfo.closed ? styles.red : styles.green}`}/>

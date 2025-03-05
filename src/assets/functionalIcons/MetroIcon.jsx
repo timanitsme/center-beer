@@ -1,0 +1,16 @@
+
+export default function MetroIcon({color = "currentColor"}){
+
+    return(
+        <svg width="18" height="12" viewBox="0 0 18 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g clipPath="url(#clip0_5220_5696)">
+                <path d="M16.7242 10.1725L12.5173 0L8.97 5.9475L5.4227 0L1.21578 10.1757H0V11.7049H6.33496V10.1757H5.39726L6.30952 7.64887L8.97 11.8251L11.6305 7.64887L12.5427 10.1757H11.605V11.7049H17.9654V10.1757L16.7242 10.1725Z" fill={color}/>
+            </g>
+            <defs>
+                <clipPath id="clip0_5220_5696">
+                    <rect width="18" height="12" fill="white"/>
+                </clipPath>
+            </defs>
+        </svg>
+    )
+}

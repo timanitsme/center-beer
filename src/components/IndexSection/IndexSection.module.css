@@ -1,0 +1,70 @@
+.sectionContainer{
+    margin: 0 50px 50px 50px;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.titleContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: center;
+    overflow: hidden;
+    height: 0;
+}
+
+.titleContainer.show{
+    height: fit-content;
+    transition: height 1s linear;
+}
+
+
+.sectionContainer h1{
+    font-size: 2vw;
+}
+
+.sectionContainer p{
+    font-size: 0.9vw;
+    font-weight: 200;
+}
+
+.cap svg{
+    max-width: 100px;
+    height: fit-content;
+}
+
+.cap.show{
+    position: relative;
+}
+
+.cap{
+    position: absolute;
+}
+
+.bottle svg{
+    max-width: 220px;
+    height: fit-content;
+}
+
+.textPrimary{
+    color: var(--primary);
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: 300;
+}
+
+
+@media (max-width: 1000px) {
+    .sectionContainer{
+        margin: 0 25px 25px 25px;
+    }
+    .sectionContainer p{
+        font-size: 10px;
+    }
+    .sectionContainer h1{
+        font-size: 20px;
+    }
+}

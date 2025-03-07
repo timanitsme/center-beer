@@ -15,6 +15,7 @@ import BreweryDetailPage from "./pages/BreweryDetailPage/BreweryDetailPage.jsx";
 import BreweryPage from "./pages/BreweryPage/BreweryPage.jsx";
 import BeerMapPage from "./pages/BeerMapPage/BeerMapPage.jsx";
 import NewsDetailPage from "./pages/NewsDetailPage/NewsDetailPage.jsx";
+import IndexPage from "./pages/IndexPage/IndexPage.jsx";
 
 function App() {
     const paths = [
@@ -24,7 +25,7 @@ function App() {
                 {title: "Пивоварни", path: "/breweries"},
                 {title: "Карта баров", path: "/map"}
             ]},
-        {title: "Мероприятия", path: "https://center.beer/craft-events/", element: <EventsPage/>}, // /events
+        {title: "Мероприятия", path: "events", element: <IndexPage/>}, // /events
         {title: "О проекте", path: "https://center.beer/about/", element: <AboutPage/>}, // /about-us
         {title: "Новости", path: "/news", element: <NewsPage/>},
         {title: "Контакты", path: "https://center.beer/about-us/contact/", element: <ContactsPage/>}, // /contacts

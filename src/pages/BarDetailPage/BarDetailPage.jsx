@@ -26,17 +26,16 @@ export default function BarDetailPage(){
     return(
         <div className="content">
             <NavChain paths={getBarPagePaths()}/>
-            {!isLoading && !error &&
+            {!isLoading && !error && data && data.length > 0 &&
                 <>
                     <BarInfo barInfo={data[0]}/>
                     <BarEvents/>
                     <AdvantagesList barInfo={data[0]}/>
-                    {data[0].gallery.length != 0 && <Gallery pictures={data[0].gallery}/>}
+                    {data[0]?.gallery?.length !== 0 && <Gallery pictures={data[0].gallery}/>}
                     <BarMenu filters={getBarPageFilters()} filterButtons={getBarPageFilterButtons()} sections={getBarPageSections()}/>
                     <CurrentPromos/>
                     <BarNews/>
                     <Reviews images={getBarReviewsImages()} header={getBarReviewsHeader()} resume={getBarReviewsResume()}/>
-
                 </>
 
             }

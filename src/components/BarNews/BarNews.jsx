@@ -4,8 +4,11 @@ import NewsPhoto from "../../assets/news-photo.svg";
 import LightNavChain from "../Navigation/LightNavChain/LightNavChain.jsx";
 import RoundLinkButton from "../Buttons/RoundLinkButton/RoundLinkButton.jsx";
 import ComponentHeader from "../ComponentHeader/ComponentHeader.jsx";
+import {useNavigate} from "react-router-dom";
 
-export default function BarNews(){
+export default function BarNews({description = "Будьте с нами, чтобы не пропустить ни одного яркого момента и всегда быть в курсе всех новостей и предложений бара.", picture = NewsPhoto}){
+    const navigate = useNavigate()
+
     const news = [
         {title: "Крупнейшие российские производители пива предупредили о повышении цен вплоть до 15%", description: "Крупнейшие производители пива и безалкогольных напитков предупредили розницу о предстоящем подорожании своей продукции с 1 апреля."},
         {title: "Производитель сигарет Altria Group продаст акции AB InBev", description: "Производитель Marlboro избавится от 35 млн акций пивоваренной компании. Altria стала владельцем доли в AB InBev в ходе слияния с SABMiller, в которой ей принадлежало 27 процентов. В результате слияния Altria получила 9,6 процента объединённой компании, два места в совете директоров и ещё около 5 млрд долларов наличными. Сегодня общая доля Altria в AB InBev оценивается примерно в 12,7 млрд долларов. AB InBev сообщила, что акции на 200 млн у Altria она выкупит самостоятельно."},
@@ -27,9 +30,9 @@ export default function BarNews(){
                 <h3>Новости</h3>
             </div>
             <div className={styles.newsHeader}>
-                <ComponentHeader title="Новости" description="Будьте с нами, чтобы не пропустить ни одного яркого момента и всегда быть в курсе всех новостей и предложений бара." HeaderIcon={BeerCalendarIcon}/>
+                <ComponentHeader title="Новости" description={description} HeaderIcon={BeerCalendarIcon}/>
                 <div className={styles.pictureContainer}>
-                    <img src={NewsPhoto} alt=""></img>
+                    <img src={picture} alt=""></img>
                 </div>
             </div>
             <div className={styles.newsContainer}>
@@ -44,7 +47,7 @@ export default function BarNews(){
                     )
                 }))}
                 <div className={styles.buttonContainer}>
-                    <RoundLinkButton text="Все новости"></RoundLinkButton>
+                    <RoundLinkButton onClick={() => navigate("/news")} text="Все новости"></RoundLinkButton>
                 </div>
 
             </div>

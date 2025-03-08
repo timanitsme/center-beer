@@ -2,7 +2,7 @@ import styles from "./Gallery.module.css"
 import {useRef} from "react";
 import ArrowButton from "../Buttons/ArrowButton/ArrowButton.jsx";
 
-export default function Gallery({pictures}){
+export default function Gallery({pictures= []}){
     const galleryRef = useRef(null);
 
     // Функция для прокрутки влево
@@ -37,10 +37,10 @@ export default function Gallery({pictures}){
                 )}
 
             </div>
-            <div className={styles.galleryButtons}>
+            { pictures && pictures.length !== 0 && <div className={styles.galleryButtons}>
                 <ArrowButton direction="left" onClick={scrollLeft}></ArrowButton>
                 <ArrowButton direction="right" onClick={scrollRight}></ArrowButton>
-            </div>
+            </div>}
         </div>
     )
 }

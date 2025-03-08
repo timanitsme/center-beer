@@ -1,0 +1,96 @@
+.visitSection{
+    margin: 0 50px 50px 50px;
+    display: flex;
+    flex-direction: column;
+    background: var(--section-bg);
+    padding: 20px;
+    border-radius: 10px;
+    gap: 15px;
+    position: relative;
+    background-image: url('../../assets/visit-background.svg');
+    background-size: clamp(200px, 20%, 400px);
+    background-repeat: no-repeat;
+    background-position: right bottom;
+    transition: background-image 0.3s ease-in-out;
+}
+
+
+
+.visitSection h3{
+    text-align: left;
+    font-size: 1.2vw;
+}
+
+.visitSection p{
+    font-size: 0.9vw;
+    font-weight: 200;
+}
+
+.bottlesContainer{
+    display: flex;
+    gap: 5px;
+}
+
+.advantagesRow{
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.advantage{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.advantage p{
+    text-align: center;
+}
+
+.advantage svg{
+    width: 50px;
+    height: fit-content;
+}
+
+.visitSection img{
+    position: absolute;
+    max-height: 300px;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+}
+
+.widthLimit{
+    max-width: 80%;
+}
+
+@media (max-width: 1000px) {
+    .visitSection{
+        margin: 0 25px 25px 25px;
+
+    }
+    .visitSection h3{
+        font-size: 12px;
+    }
+    .visitSection p{
+        font-size: 10px;
+    }
+}
+
+
+@media (max-width: 500px) {
+    .visitSection{
+        background-image: none;
+    }
+    .advantage svg{
+        width: 25px;
+        height: fit-content;
+    }
+    .advantagesRow{
+        justify-content: center;
+    }
+    .widthLimit{
+        max-width: 100%;
+    }
+}

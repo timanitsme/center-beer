@@ -1,0 +1,43 @@
+.cardsContainer{
+    margin: 0 0 50px 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.cardsButtons{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.cardsPictures{
+    display: flex;
+    gap: 10px;
+    overflow: hidden;
+}
+
+.cardsPictures img{
+    max-height: 450px;
+}
+
+@media (max-width: 500px) {
+    .cardsPictures img{
+        max-height: initial;
+        max-width: 300px;
+    }
+}
+
+@media (max-width: 768px) {
+    .cardsPictures img{
+        max-height: initial;
+        max-width: 300px;
+    }
+}
+
+@media (max-width: 1000px) {
+    .cardsContainer{
+        margin: 0 25px 25px 25px;
+    }
+}
+

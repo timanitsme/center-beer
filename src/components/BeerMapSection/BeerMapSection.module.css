@@ -1,0 +1,46 @@
+.mapContainer {
+    margin: 0 50px 50px 50px;
+    height: 550px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.markerPopUp button{
+    margin-top: 5px;
+    padding: 5px;
+}
+
+.markerPopUp button:hover{
+    background: var(--third);
+    transition: 0.5s;
+}
+
+
+.markerPopUp h3{
+    text-align: left !important;
+    font-size: 1.2vw;
+}
+
+.markerPopUp p{
+    margin: 0;
+    font-size: 0.9vw;
+}
+
+.active{
+    color: var(--fg);
+}
+
+@media (max-width: 1000px){
+    .markerPopUp p{
+        font-size: 10px;
+    }
+    .markerPopUp h3{
+        font-size: 12px;
+    }
+
+    .mapContainer{
+        margin: 0 25px 25px 25px;
+        height: 350px;
+    }
+}

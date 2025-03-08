@@ -12,12 +12,13 @@
     flex-direction: column;
     gap: 5px;
     align-items: center;
+    justify-content: center;
     overflow: hidden;
     height: 0;
 }
 
 .titleContainer.show{
-    height: fit-content;
+    height: 200px;
     transition: height 1s linear;
 }
 
@@ -47,6 +48,31 @@
 .bottle svg{
     max-width: 220px;
     height: fit-content;
+}
+
+.cardContainer{
+    width: 100%;
+    display: flex;
+    gap: 20px;
+    position: absolute;
+    bottom: 15%;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.videoCardContainer{
+    width: 100%;
+    display: flex;
+    gap: 20px;
+    position: absolute;
+    bottom: 55%;
+    justify-content: center;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.videoCardContainer{
+    bottom: 50%;
 }
 
 .textPrimary{

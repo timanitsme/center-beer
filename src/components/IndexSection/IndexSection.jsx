@@ -3,10 +3,52 @@ import SimpleButton from "../Buttons/SimpleButton/SimpleButton.jsx";
 import Cap from "../../assets/cap.svg?react"
 import NoCapBottle from "../../assets/bottle-no-cap.svg?react"
 import IndexBackground from "../../assets/index-background.svg"
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import BarImage1 from "../../assets/barsMocks/bar-3.svg"
+import BarImage2 from "../../assets/barsMocks/bar-2.svg"
+import BarImage3 from "../../assets/barsMocks/bar-5.svg"
+import BarImage4 from "../../assets/barsMocks/bar-4.svg"
+import BarImage5 from "../../assets/barsMocks/bar-1.svg"
+import CardGallery from "../CardGallery/CardGallery.jsx"
+import MinimalBarCard from "../Cards/BarCard/MinimalBarCard.jsx";
+import CardsList from "../CardsList/CardsList.jsx";
+import VideoImage1 from "../../assets/videoMocks/video-image-1.svg"
+import VideoImage2 from "../../assets/videoMocks/video-image-2.svg"
+import VideoImage3 from "../../assets/videoMocks/video-image-3.svg"
+import VideoImage4 from "../../assets/videoMocks/video-image-4.svg"
+import VideoImage5 from "../../assets/videoMocks/video-image-5.svg"
+import VideoImage6 from "../../assets/videoMocks/video-image-6.svg"
+import VideoCard from "../Cards/VideoCard/VideoCard.jsx";
 
 export default function IndexSection(){
     const [showTitle, setShowTitle] = useState(false);
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setShowTitle(true);
+        }, 1000);
+        return () => clearTimeout(timer);
+    }, []);
+
+    const barCards = [
+        {title: "13 RULES (Народный бар)", img: BarImage1, address: "г.Москва, Сущевский вал, 41"},
+        {title: "13 Rules (Котельники)", img: BarImage2, address: "Котельники, ул. Сосновая 1к.3"},
+        {title: "13 Rules (Воронеж)", img: BarImage3, address: "ул. Ворошилова, 1Г"},
+        {title: "13 Rules (Киров)", img: BarImage4, address: "г.Киров, Московская, 33"},
+        {title: "13 Rules (Ковров)", img: BarImage5, address: "г.Ковров, проезд Брюсова д. 4/1"},
+    ]
+
+    const videoCards = [
+        {title: "Пиво с другой планеты. Пробуем впервые.", img: VideoImage1, author: "Артем Иванов", date: "12 минут назад"},
+        {title: "ПРОБУЕМ НОВОЕ ПИВО ИЗ  ПЯТЕРОЧКИ", img: VideoImage2, author: "Артем Иванов", date: "12 минут назад"},
+        {title: "ПРОБУЕМ НЕ ДОРОГОЕ ПИВО ИЗ \"ЧИЖИК\"", img: VideoImage3, author: "Артем Иванов", date: "12 минут назад"},
+        {title: "Как на самом деле немцы пьют пиво. Факты, о которых вы не знали - Meet The Germans на русском", img: VideoImage4, author: "Артем Иванов", date: "12 минут назад"},
+        {title: "Как пили ПИВО в СССР? Легендарное ЖИГУЛЕВСКОЕ", img: VideoImage5, author: "Артем Иванов", date: "12 минут назад"},
+        {title: "ПОСЛАЛИ ЗА ПИВОМ | АРОМАТНЫЙ МИР | АНЯ, ТЫ ЧТО КУПИЛА?!", img: VideoImage6, author: "Артем Иванов", date: "12 минут назад"},
+
+    ]
+
+
 
     return(
         <div className={styles.sectionContainer}>
@@ -20,7 +62,20 @@ export default function IndexSection(){
                 </div>
                 <SimpleButton text="Подробнее о проекте"></SimpleButton>
             </div>
-            <div className={styles.bottle} onClick={() => setShowTitle(!showTitle)}><NoCapBottle/></div>
+            <div className={styles.bottle}><NoCapBottle/></div>
+            <div className={`${styles.videoCardContainer} ${showTitle? styles.show: ""}`}>
+                {videoCards.map((card, index) => (
+                    <VideoCard key={index} cardInfo={card}/>
+                ))
+                }
+            </div>
+
+            <div className={styles.cardContainer}>
+                {barCards.map((card, index) => (
+                    <MinimalBarCard key={index} cardInfo={card}></MinimalBarCard>
+                ))
+                }
+            </div>
         </div>
     )
 }

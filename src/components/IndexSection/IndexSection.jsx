@@ -65,14 +65,14 @@ export default function IndexSection(){
             <div className={styles.bottle}><NoCapBottle/></div>
             <div className={`${styles.videoCardContainer} ${showTitle? styles.show: ""}`}>
                 {videoCards.map((card, index) => (
-                    <VideoCard key={index} cardInfo={card}/>
+                    <div className={styles.cardWrapper} key={index}><VideoCard cardInfo={card}/></div>
                 ))
                 }
             </div>
 
             <div className={styles.cardContainer}>
                 {barCards.map((card, index) => (
-                    <MinimalBarCard key={index} cardInfo={card}></MinimalBarCard>
+                    <div className={styles.cardWrapper} key={index}><MinimalBarCard cardInfo={card}></MinimalBarCard></div>
                 ))
                 }
             </div>

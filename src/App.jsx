@@ -16,6 +16,8 @@ import BreweryPage from "./pages/BreweryPage/BreweryPage.jsx";
 import BeerMapPage from "./pages/BeerMapPage/BeerMapPage.jsx";
 import NewsDetailPage from "./pages/NewsDetailPage/NewsDetailPage.jsx";
 import IndexPage from "./pages/IndexPage/IndexPage.jsx";
+import DistributorsPage from "./pages/DistributorsPage/DistributorsPage.jsx";
+import DistributorDetailPage from "./pages/DistributorDetailPage/DistributorDetailPage.jsx";
 
 function App() {
     const paths = [
@@ -23,20 +25,23 @@ function App() {
         {title: "Бары и магазины", path: "/", element: <BarsPage/>, children: [
                 {title: "Бары", path: "/"},
                 {title: "Пивоварни", path: "/breweries"},
+                {title: "Дистрибьюторы", path: "/distributors"},
                 {title: "Карта баров", path: "/map"}
             ]},
-        {title: "Мероприятия", path: "events", element: <IndexPage/>}, // /events
+        {title: "Мероприятия", path: "events", element: <EventsPage/>}, // /events
         {title: "О проекте", path: "https://center.beer/about/", element: <AboutPage/>}, // /about-us
         {title: "Новости", path: "/news", element: <NewsPage/>},
         {title: "Контакты", path: "https://center.beer/about-us/contact/", element: <ContactsPage/>}, // /contacts
     ]
     const anonymousPaths = [
         {path: "/breweries", element: <BreweryPage/>},
+        {path: "/distributors", element: <DistributorsPage/>},
         {path: "/bar/:alias", element: <BarDetailPage/> },
         {path: "/beer/:id", element: <BeerDetailPage/>},
         {path: "/brewery/:id", element: <BreweryDetailPage/>},
         {path: "/news/:id", element: <NewsDetailPage/>},
-        {path: "/map", element: <BeerMapPage/>}
+        {path: "/map", element: <BeerMapPage/>},
+        {path: "/distributor/:id", element: <DistributorDetailPage/>}
     ]
 
     return (

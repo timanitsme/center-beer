@@ -10,7 +10,12 @@ import ComboBox from "../Inputs/ComboBox/ComboBox.jsx";
 import Toggle from "../Toggle/Toggle.jsx";
 import {useEffect, useMemo, useState} from "react";
 import AppliedFilter from "../AppliedFilter/AppliedFilter.jsx";
-import {useGetBarsFiltersQuery, useGetBarsQuery, useGetBarTypesQuery} from "../../store/services/centerBeer";
+import {
+    useGetBarsFiltersQuery,
+    useGetBarsQuery,
+    useGetBarTypesQuery,
+    useGetCitiesQuery
+} from "../../store/services/centerBeer";
 import {useNavigate} from "react-router-dom";
 import FilterItem from "../ApiInputs/FilterItem/FilterItem.jsx";
 import Search from "../ApiInputs/Search/Search.jsx";
@@ -28,7 +33,8 @@ export default function BarsCatalog({filters = [], filterButtons = [], sections 
         visit_types: {title: "Цель посещения", component: "combobox", id: "visit_type_ids"},
         prices: {title: "Цена", component: "radio", id: "price"},
         types: {title: "Тип заведения", component: "combobox", id: "type_ids"},
-        features: {title: "Особенности", component: "combobox", id: "feature_ids"}
+        feautures: {title: "Особенности", component: "combobox", id: "feature_ids"},
+        cities: {title: "Города", id: "city_id"}
     }
 
     // Фильтры, от изменения которых изменяется запрос
@@ -41,7 +47,7 @@ export default function BarsCatalog({filters = [], filterButtons = [], sections 
         visit_type_ids: [],
         type_ids: [],
         feature_ids: [],
-        onlyOpened: false
+        only_opened: false
     });
 
     // Временные фильтры (хранят выбранные значения до применения)
@@ -52,26 +58,43 @@ export default function BarsCatalog({filters = [], filterButtons = [], sections 
         visit_type_ids: [],
         type_ids: [],
         feature_ids: [],
-        onlyOpened: false,
+        only_opened: false,
     });
 
     // Получение данных с API
     const {data: barsData, isLoading: barsIsLoading, error: barsError } = useGetBarsQuery(filterValues);
     const {data: barFilters, isLoading: barFiltersIsLoading, error: barFiltersError} = useGetBarsFiltersQuery()
+    const {data: cities, isLoading: citiesIsLoading, error: citiesError} = useGetCitiesQuery()
+
 
     useEffect(() => {
         if (barFilters && !barFiltersIsLoading && !barFiltersError) {
             const nameMap = {};
+
+            // Обработка barFilters
             Object.entries(barFilters[0]).forEach(([key, options]) => {
                 nameMap[barFilterSpecs[key]?.id || key] = options.reduce((acc, option) => {
                     acc[option.id] = option.name; // Предполагается, что у опций есть `id` и `name`
                     return acc;
                 }, {});
             });
-            console.log("Generated filterNameMap:", nameMap);
+
+            console.log("Generated filterNameMap from barFilters:", nameMap);
+
+            // Обработка cities
+            if (cities && !citiesIsLoading && !citiesError) {
+                nameMap["city_id"] = cities.reduce((acc, city) => {
+                    acc[city.id.toString()] = city.name; // Предполагается, что у городов есть `id` и `name`
+                    return acc;
+                }, {});
+            }
+            // Обработка only_opened
+            nameMap["only_opened"] = {value: "Только открытые"}
+
+            console.log("Generated filterNameMap with cities:", nameMap);
             setFilterNameMap(nameMap);
         }
-    }, [barFilters, barFiltersIsLoading, barFiltersError]);
+    }, [barFilters, barFiltersIsLoading, barFiltersError, cities, citiesIsLoading, citiesError]);
 
     // Подготовка фильтров
     const filtersConfig = useMemo(() => {
@@ -95,11 +118,32 @@ export default function BarsCatalog({filters = [], filterButtons = [], sections 
         console.log(`selectedFilters: ${JSON.stringify(selectedFilters)}`);
     };
 
+    const handleSingleFilterChange = (filterKey, value) => {
+        setSelectedFilters((prevState) => ({
+            ...prevState,
+            [filterKey]: value,
+        }));
+        console.log(`selectedFilters: ${JSON.stringify(selectedFilters)}`);
+    }
+
+    const handleSingleFilterApply = (filterKey, value) => {
+        setSelectedFilters((prevState) => ({
+            ...prevState,
+            [filterKey]: value,
+        }));
+        setFilterValues((prevState) => ({
+            ...prevState,
+            [filterKey]: value,
+        }));
+        console.log(`new val: ${value}`)
+    }
+
     // Применение фильтров
     const applyFilters = () => {
         setFilterValues(selectedFilters);
     }
 
+    // Сброс фильтров
     const resetFilters = () => {
 
         const initialState = {
@@ -111,7 +155,7 @@ export default function BarsCatalog({filters = [], filterButtons = [], sections 
             visit_type_ids: [],
             type_ids: [],
             feature_ids: [],
-            onlyOpened: false,
+            only_opened: false,
         };
         setFilterValues(initialState)
         setSelectedFilters(initialState)
@@ -125,8 +169,6 @@ export default function BarsCatalog({filters = [], filterButtons = [], sections 
             return () => clearTimeout(timeout);
         }
     }, [resetFilterComboBox]);
-
-    const [onlyOpened, setOnlyOpened] = useState(false);
 
 
     const removeFilter = (filterKey, idToRemove) => {
@@ -188,7 +230,7 @@ export default function BarsCatalog({filters = [], filterButtons = [], sections 
             </div>
             <div className={styles.menuContent}>
                 <div className={styles.menuFilters}>
-                    <Search title="Поиск" onChange={(value) => handleFilterChange("city_id", value)}></Search>
+                    <Search title="Поиск" onChange={(value) => {console.log(`value: ${value}`); handleSingleFilterChange("city_id", value)}}></Search>
                     {filtersConfig.map((filter) => (
                         <FilterItem
                             key={filter.key}
@@ -210,7 +252,6 @@ export default function BarsCatalog({filters = [], filterButtons = [], sections 
                                 return value.map((id) => {
                                     const filterName = filterNameMap[filterKey]?.[id];
                                     if (!filterName) return null;
-
                                     return (
                                         <AppliedFilter key={`${filterKey}-${id}`} onClick={() => removeFilter(filterKey, id)}>
                                             <p>{filterName}</p>
@@ -220,12 +261,20 @@ export default function BarsCatalog({filters = [], filterButtons = [], sections 
                             }
 
                             // Если значение не массив (например, строка или булево значение)
-                            if (typeof value === "string" || typeof value === "boolean") {
+                            if (typeof value === "string") {
                                 return (
                                     <AppliedFilter key={filterKey} onClick={() => removeFilter(filterKey, value)}>
                                         <p>{filterNameMap[filterKey]?.[value] || value.toString()}</p>
                                     </AppliedFilter>
                                 );
+                            }
+
+                            if (typeof value === "boolean"){
+                                return (
+                                    <AppliedFilter key={filterKey} onClick={() => removeFilter(filterKey, value)}>
+                                        <p>{filterNameMap[filterKey].value}</p>
+                                    </AppliedFilter>
+                                )
                             }
 
                             return null;
@@ -237,7 +286,7 @@ export default function BarsCatalog({filters = [], filterButtons = [], sections 
                     </div>
                     <div className={styles.toggleAndOptions}>
                         <ComboBox options={["По убыванию", "По возрастанию"]}></ComboBox>
-                        <Toggle label={"Только открытые"} toggled={onlyOpened} onClick={() => setOnlyOpened(!onlyOpened)}/>
+                        <Toggle label={"Только открытые"} toggled={filterValues.only_opened} onClick={() => handleSingleFilterApply("only_opened", !filterValues.only_opened)}/>
                     </div>
                     { !barsIsLoading && !barsError &&
                         <SimpleCatalogSection cards={barsData} CardComponent={BarCard} wideColumns={false}/>

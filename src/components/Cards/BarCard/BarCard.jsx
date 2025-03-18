@@ -11,8 +11,8 @@ import {useNavigate} from "react-router-dom";
 
 
 export default function BarCard({cardInfo}){
-    const [cardBookmarked, setCardBookmarked] = useState(false);
-    const [cardFav, setCardFav] = useState(false);
+    const [cardBookmarked, setCardBookmarked] = useState(cardInfo.is_favor || false);
+    const [cardFav, setCardFav] = useState(cardInfo?.is_liked || false);
     const navigate = useNavigate();
 
     const rating = 4.9

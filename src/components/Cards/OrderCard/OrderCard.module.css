@@ -1,0 +1,113 @@
+
+.card{
+    display: flex;
+    flex-direction: column;
+    border: 2px solid var(--third);
+    padding: 15px;
+    border-radius: 10px;
+    gap: 10px;
+}
+
+.card h3{
+    text-transform: none;
+    text-align: left;
+    font-size: 1.2vw;
+    color: var(--primary);
+    font-weight: 300;
+}
+
+.headerRow{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dateAndStatus{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.status{
+    background: var(--third);
+    padding: 3px 7px;
+    border-radius: 15px;
+}
+
+.status p{
+    font-size: 0.8vw;
+}
+
+.status.delivered{
+    background: var(--primary);
+}
+
+.status.preparing{
+    background: var(--third);
+}
+
+.status.delivered p{
+    color: var(--bg);
+}
+
+.status.preparing p{
+    color: var(--primary);
+}
+
+
+.description{
+    width: 80%;
+    display: grid;
+    grid-template-columns: minmax(min-content, 25%) auto;
+}
+
+.p{
+    font-size: 0.9vw;
+    font-weight: 200;
+}
+
+.active{
+    color: var(--txt-active);
+}
+
+.itemsRow{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.imageWrapper{
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    width: 60px;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 5px;
+}
+
+.imageWrapper img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 5px;
+}
+
+@media (max-width: 1000px) {
+    .card h3{
+        font-size: 12px;
+    }
+    .card p{
+        font-size: 10px;
+    }
+    .status p{
+        font-size: 8px;
+    }
+    .description{
+        width: 100%;
+    }
+    .imageWrapper{
+        width: 40px;
+    }
+}

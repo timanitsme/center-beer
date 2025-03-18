@@ -7,12 +7,13 @@ import {useGetCitiesQuery} from "../../../store/services/centerBeer.js";
 export default function Search({title, onChange}){
     const [inputValue, setInputValue] = useState(''); // Значение поля поиска
     const [filteredSuggestions, setFilteredSuggestions] = useState([]);
+    const [selectedSuggestion, setSelectedSuggestion] = useState({});
     const {data: cities = [], isLoading, error} = useGetCitiesQuery(inputValue)
 
 
     useEffect(() => {
         if (inputValue.trim() !== '') {
-            setFilteredSuggestions(cities);
+            setFilteredSuggestions(cities.slice(0, 5));
         }
     }, [cities, inputValue]);
 
@@ -26,11 +27,9 @@ export default function Search({title, onChange}){
 
     // Обработчик выбора подсказки
     const handleSuggestionClick = (suggestion) => {
-        console.log("I've been clicked")
         setInputValue(suggestion.name); // Устанавливаем выбранную подсказку в поле ввода
-        console.log(`suggestion: ${JSON.stringify(suggestion)}`)
-        setFilteredSuggestions([]); // Очищаем список подсказок
-        if (onChange && suggestion?.id !== undefined && suggestion.id !== 0) onChange(suggestion.id)
+        if (suggestion?.id !== undefined && suggestion.id !== 0) onChange(suggestion.id);
+        setFilteredSuggestions([]);
     };
 
     if (error || isLoading) return null
@@ -42,7 +41,13 @@ export default function Search({title, onChange}){
                 value={inputValue}
                 onChange={handleInputChange}
                 onFocus={handleInputChange}
-                onBlur={() => setFilteredSuggestions([])}
+                onBlur={(event) => {
+                    setTimeout(() => {
+                        if (!event.relatedTarget || !event.relatedTarget.closest(`.${styles.suggestionsList}`)) {
+                            setFilteredSuggestions([]);
+                        }
+                    }, 250);
+                }}
                 placeholder={title}
                 className={styles.searchInput}
             />
@@ -52,7 +57,7 @@ export default function Search({title, onChange}){
                     {filteredSuggestions.map((suggestion, index) => (
                         <li
                             key={index}
-                            onClick={() => handleSuggestionClick(suggestion)}
+                            onClick={(e) => {e.stopPropagation(); handleSuggestionClick({...suggestion})}}
                             className={styles.suggestionItem}
                         >
                             {suggestion.name}

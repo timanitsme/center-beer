@@ -1,0 +1,51 @@
+.ordersSection{
+    background: var(--section-bg);
+    width: calc(100% - 50px);
+    display: flex;
+    flex-direction: column;
+    margin-right: 50px;
+    padding: 15px;
+    border-radius: 10px;
+    gap: 10px;
+}
+
+.ordersSection p{
+    font-size: 0.9vw;
+    font-weight: 300;
+}
+
+.ordersSection h3{
+    text-transform: none;
+    font-size: 1.2vw;
+}
+
+.ordersSection a p{
+    text-decoration-line: underline;
+    color: var(--txt-active);
+}
+
+.ordersSection a:hover p{
+    color: var(--primary);
+    transition: 0.5s;
+}
+
+.headerRow{
+    display: flex;
+    justify-content: space-between;
+}
+
+
+@media (max-width: 1000px) {
+    .ordersSection{
+        width: calc(100% - 25px);
+        margin-right: 25px;
+    }
+
+    .ordersSection p{
+        font-size: 10px;
+    }
+
+    .ordersSection h3{
+        font-size: 12px;
+    }
+}

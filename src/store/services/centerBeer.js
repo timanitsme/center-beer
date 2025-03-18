@@ -5,7 +5,7 @@ export const centerBeerApi = createApi({
     baseQuery: fetchBaseQuery({baseUrl: '/api'}),
     endpoints: (builder) => ({
         getBars: (builder.query({
-            query: ({lim, offset, city_id, subways_ids, kitchen_ids, visit_type_ids, type_ids, feature_ids}) => {
+            query: ({lim, offset, city_id, subways_ids, kitchen_ids, visit_type_ids, type_ids, feature_ids, only_opened}) => {
                 const params = new URLSearchParams();
                 if (lim !== undefined) params.append('lim', lim);
                 if (offset !== undefined) params.append('offset', offset);
@@ -15,6 +15,7 @@ export const centerBeerApi = createApi({
                 if (visit_type_ids !== undefined) params.append('visit_type_ids', visit_type_ids);
                 if (type_ids !== undefined) params.append('type_ids', type_ids);
                 if (feature_ids !== undefined) params.append('feature_ids', feature_ids);
+                if (only_opened !== undefined) params.append('only_opened', only_opened.toString())
                 return(`getBars?${params.toString()}`)
             }
         })),

@@ -1,0 +1,85 @@
+.accountSection{
+    margin: 0 50px 50px 50px;
+}
+
+
+.accountSection p{
+    font-size: 0.9vw;
+    font-weight: 200;
+}
+
+.accountSection .bold{
+    font-size: 1.0vw;
+    font-weight: 300;
+    color: var(--fg);
+}
+
+.accountSection .active{
+    color: var(--fg);
+}
+
+.sideContent{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: max-content;
+}
+
+.avatar{
+    border-radius: 100px;
+    max-height: 120px;
+    max-width: 120px;
+}
+
+.innerList{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-left: 10px;
+}
+
+.innerList li{
+    list-style-type: none;
+}
+
+.innerList a{
+    color: var(--txt-secondary);
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.innerList a:hover{
+    color: var(--txt-active);
+    transition: 0.5s;
+}
+
+.quantity{
+    background: var(--primary);
+    padding: 2px 5px;
+    border-radius: 10px;
+}
+
+.quantity p{
+    font-size: 0.7vw;
+    color: var(--bg);
+}
+
+@media (max-width: 1000px) {
+    .accountSection{
+        margin: 0 25px 25px 25px;
+    }
+    .accountSection p{
+        font-size: 10px;
+    }
+    .accountSection .bold{
+        font-size: 11px;
+    }
+    .quantity p{
+        font-size: 7px;
+    }
+    .avatar{
+        max-width: 60px;
+        max-height: 60px;
+    }
+}

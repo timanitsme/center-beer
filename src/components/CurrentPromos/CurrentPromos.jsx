@@ -3,24 +3,30 @@ import BeerMugsIcon from "../../assets/beer-mugs-icon.svg?react"
 import promo1 from "../../assets/promos/promo-1.svg"
 import promo2 from "../../assets/promos/promo-2.svg"
 import ArrowButton from "../Buttons/ArrowButton/ArrowButton.jsx";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import RoundLinkButton from "../Buttons/RoundLinkButton/RoundLinkButton.jsx";
 import IconButton from "../Buttons/IconButton/IconButton.jsx";
+import {useGetBarPromoQuery} from "../../store/services/centerBeer.js";
 
 
-export default function CurrentPromos(){
-    const images = [promo1, promo2, promo1, promo1, promo2, promo2, promo1];
+export default function CurrentPromos({barId = 1}){
+    const {data: promos, isLoading: promosIsLoading, error: promosError} = useGetBarPromoQuery({bar_id: barId})
+
+    //const images = [promo1, promo2, promo1, promo1, promo2, promo2, promo1];
     const [currentIndex, setCurrentIndex] = useState(0);
 
     // Функция для показа следующих двух изображений
     const showNext = () => {
-        setCurrentIndex((prevIndex) => currentIndex < images.length-2 ? prevIndex + 2 : prevIndex);
+        setCurrentIndex((prevIndex) => currentIndex < promos[0]?.promo_list?.length-2 ? prevIndex + 2 : prevIndex);
     };
 
     // Функция для показа предыдущих двух изображений
     const showPrevious = () => {
         setCurrentIndex((prevIndex) => currentIndex > 0 ? prevIndex-2 : prevIndex);
     };
+
+    if (!promos || promos?.length === 0 || promosIsLoading || promosError) return null
+
 
     return(
         <div className={styles.currentPromosContainer}>
@@ -34,10 +40,10 @@ export default function CurrentPromos(){
             </div>
             <div className={styles.promosPictures}>
                 <div>
-                    <img src={images[currentIndex]} alt=""/>
+                    <img src={promos[0]?.promo_list[currentIndex]?.preview} alt=""/>
                 </div>
                 <div>
-                    {currentIndex < images.length-1 ? <img src={images[currentIndex+1]} alt=""/> : <img src={images[0]} style={{visibility: "hidden"}} alt=""/>}
+                    {currentIndex < promos[0]?.promo_list?.length-1 ? <img src={promos[0].promo_list[currentIndex+1]?.preview} alt=""/> : <img src={promos[0].promo_list[0]?.preview} style={{visibility: "hidden"}} alt=""/>}
                 </div>
             </div>
             <div className={styles.promosButtons}>

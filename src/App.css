@@ -101,6 +101,9 @@ svg{
   color: var(--primary);
 }
 
+.iconSecondary{
+  fill: var(--bg);
+}
 .contentContainer{
 
   width: 100%;

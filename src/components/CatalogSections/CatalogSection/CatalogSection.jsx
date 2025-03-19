@@ -9,15 +9,15 @@ export default function CatalogSection({specs, CardComponent, IconComponent, wid
             <div className={styles.sectionHeader}>
                 <div className={styles.sectionDescriptionIcon}><IconComponent/></div>
                 <div className={styles.sectionDescription}>
-                    <h2>{specs.header}</h2>
-                    <p>{specs.description}</p>
+                    <h2>{specs?.header}</h2>
+                    <p>{specs?.description}</p>
                 </div>
                 <div className={styles.sectionButton}><IconButton text="Забронировать стол"><IconComponent/></IconButton></div>
             </div>
             <div className={wideColumns ? styles.sectionContentWide : styles.sectionContent}>
-                {specs.cards.map((cardInfo) => {
+                {/*specs.cards.map((cardInfo) => {
                     return (<CardComponent key={cardInfo.title} cardInfo={cardInfo}/>)
-                })}
+                })*/}
             </div>
 
         </div>

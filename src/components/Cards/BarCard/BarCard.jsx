@@ -9,13 +9,15 @@ import LocationIcon from "../../../assets/location-filled-icon.svg?react"
 import CommentIcon from "../../../assets/comment-icon.svg?react"
 import {useNavigate} from "react-router-dom";
 
-
 export default function BarCard({cardInfo}){
     const [cardBookmarked, setCardBookmarked] = useState(cardInfo.is_favor || false);
     const [cardFav, setCardFav] = useState(cardInfo?.is_liked || false);
     const navigate = useNavigate();
-
+    const today = new Date()
+    const dayOfWeek = today.getDate()
     const rating = 4.9
+
+    const getDayOfWeek = () =>  dayOfWeek === 0? 6: dayOfWeek-1
 
     const goToBeerPage = () => navigate(`/bar/${cardInfo.alias}`);
 
@@ -66,8 +68,8 @@ export default function BarCard({cardInfo}){
                         <CommentIcon/><p>{0}</p>
                     </div>
                     <div>
-                        <div className={`${styles.bigCircle} ${cardInfo.closed ? styles.red : styles.green}`}/>
-                        <p>{cardInfo.closed? "закрыт":"открыт"}</p>
+                        <div className={`${styles.bigCircle} ${cardInfo?.work_time_list[getDayOfWeek()]?.active? styles.green : styles.red}`}/>
+                        <p>{cardInfo?.work_time_list[getDayOfWeek()]?.active? "открыт":"закрыт"}</p>
                     </div>
                 </div>
 

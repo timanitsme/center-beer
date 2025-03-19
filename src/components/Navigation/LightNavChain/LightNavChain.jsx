@@ -1,4 +1,5 @@
 import styles from "./LightNavChain.module.css";
+import {Link} from "react-router-dom";
 
 export default function LightNavChain({paths}){
     return(
@@ -7,7 +8,7 @@ export default function LightNavChain({paths}){
                 const isLast = paths.length - 1 === index;
                 return(
                     <>
-                        <a>{path.title}</a>
+                        <Link to={path?.path || ""}>{path.title}</Link>
                         {!isLast && <div className="circle"/>}
                     </>)
             })}

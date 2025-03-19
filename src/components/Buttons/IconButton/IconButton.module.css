@@ -48,9 +48,19 @@
     color: var(--primary);
 }
 
+.secondary svg :global(.iconSecondary) {
+    fill: var(--bg);
+}
+
+
 .primary svg{
     color: var(--bg);
 }
+
+.primary svg :global(.iconSecondary){
+    fill: var(--primary)
+}
+
 
 .iconButton p{
     font-size: 0.8vw;

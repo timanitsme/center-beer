@@ -15,27 +15,28 @@ import {
     getBarPageSections,
     getBarReviewsImages, getBarReviewsHeader, getBarReviewsResume
 } from "./BarDetailPageData.jsx";
-import {useGetBarInfoQuery} from "../../store/services/centerBeer.js";
+import {useGetBarEventsQuery, useGetBarInfoQuery} from "../../store/services/centerBeer.js";
 import {useParams} from "react-router-dom";
 
 
 export default function BarDetailPage(){
     const {alias} = useParams();
     const {data, isLoading, error} = useGetBarInfoQuery(alias)
-    if (!isLoading && !error) console.log(JSON.stringify(data));
+
+
     return(
         <div className="content">
             <NavChain paths={getBarPagePaths()}/>
             {!isLoading && !error && data && data.length > 0 &&
                 <>
                     <BarInfo barInfo={data[0]}/>
-                    <BarEvents/>
+                    <BarEvents barId={data[0].id}/>
                     <AdvantagesList barInfo={data[0]}/>
                     {data[0]?.gallery?.length !== 0 && <Gallery pictures={data[0].gallery}/>}
                     <BarMenu filters={getBarPageFilters()} filterButtons={getBarPageFilterButtons()} sections={getBarPageSections()}/>
-                    <CurrentPromos/>
-                    <BarNews/>
-                    <Reviews images={getBarReviewsImages()} header={getBarReviewsHeader()} resume={getBarReviewsResume()}/>
+                    <CurrentPromos barId={data[0].id}/>
+                    <BarNews barId={data[0].id}/>
+                    {/*<Reviews images={getBarReviewsImages()} header={getBarReviewsHeader()} resume={getBarReviewsResume()}/>*/}
                 </>
 
             }

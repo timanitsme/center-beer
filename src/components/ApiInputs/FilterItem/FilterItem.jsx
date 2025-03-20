@@ -4,7 +4,7 @@ import Radio from "../Radio/Radio.jsx";
 import Search from "../Search/Search.jsx";
 
 
-export default function FilterItem({ filter, onChange, reset }) {
+export default function FilterItem({ filter, onChange, reset, filterKey = "" }) {
     const renderComponent = () => {
         switch (filter.componentType) {
             case "checkbox":
@@ -34,6 +34,7 @@ export default function FilterItem({ filter, onChange, reset }) {
                         onChange={onChange}
                         reset={reset}
                         defaultOption={{name: "все", id: 0}}
+                        filterKey={filterKey}
                     />
                 )
             case "search":

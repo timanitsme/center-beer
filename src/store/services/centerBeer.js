@@ -212,5 +212,7 @@ export const { useGetBarsQuery, useGetBarInfoQuery, useGetBarsFiltersQuery,
     useGetStylesQuery, useGetBarTypesQuery, useGetBreweryTypesQuery,
     useGetCountriesQuery, useGetCitiesQuery, useGetBarEventsQuery,
     useGetBarPromoQuery, useGetBarNewsQuery, useGetBarMenuTabsQuery,
-    useLazyGetBarMenuFoodQuery, useLazyGetBarMenuBottleQuery, useLazyGetBarMenuBeerQuery,
-    useLazyGetBarMenuAlcQuery, useLazyGetBarMenuCocktailsQuery, } = centerBeerApi
+    useGetBarMenuFoodQuery, useGetBarMenuBottleQuery, useGetBarMenuBeerQuery,
+    useGetBarMenuAlcQuery, useGetBarMenuCocktailsQuery, useGetBarMenuFoodFiltersQuery,
+    useGetBarMenuBottleFiltersQuery, useGetBarMenuBeerFiltersQuery, useGetBarMenuAlcFiltersQuery,
+    useGetBarMenuCocktailsFiltersQuery} = centerBeerApi

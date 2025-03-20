@@ -1,7 +1,7 @@
 import styles from "./Radio.module.css"
 import {useEffect, useState} from "react";
 
-export default function Radio({title, options, onChange, reset, defaultOption}){
+export default function Radio({title, options, onChange, reset, defaultOption, filterKey=""}){
 
     const getDefaultOption = () => {
         // Если передан defaultOption, используем его
@@ -27,7 +27,6 @@ export default function Radio({title, options, onChange, reset, defaultOption}){
             onChange({options: option.id, names: option.name});
         }
     }
-
     return(
         <div className={styles.radio}>
             <p className={styles.radioHeader}>{title}</p>
@@ -36,7 +35,8 @@ export default function Radio({title, options, onChange, reset, defaultOption}){
                     <input
                         type="radio"
                         value={defaultOption?.id || title}
-                        name={title}
+                        defaultChecked={true}
+                        name={`${filterKey}-${title}`}
                         checked={selectedOption.id === defaultOption.id} // Сравниваем по id
                     />
                     <span className={styles.radioButton}></span>

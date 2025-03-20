@@ -6,46 +6,51 @@ import FavIcon from "../../../assets/fav-unfill-icon.svg?react";
 import IconButton from "../../Buttons/IconButton/IconButton.jsx";
 import BottlesPairIcon from "../../../assets/bottles-pair-icon.svg?react";
 import PropTypes from "prop-types";
+import cardImagePlaceholder from "../../../assets/placeholders/card-image-placeholder.svg"
+
 
 export default function StrongAlcoholCard ({cardInfo}){
     const [cardBookmarked, setCardBookmarked] = useState(false);
     const [cardFav, setCardFav] = useState(false);
+    const formatNumber = (num) => Number(num).toString()
+    const [imageSrc, setImageSrc] = useState(cardInfo?.photo || cardImagePlaceholder)
+
     return(
         <div className={styles.card}>
             <div className={styles.strongAlcoholCard}>
                 <div className={styles.cardTop}>
                     <div className={styles.textContainer}>
-                        <p className={styles.cardTextPrimary}>{cardInfo.title}</p>
-                        <p className={styles.textActive}>{cardInfo.description}</p>
+                        <p className={styles.cardTextPrimary}>{cardInfo?.name}</p>
+                        <p className={styles.textActive}>{[cardInfo?.alc_type, cardInfo?.country].join(", ")}</p>
                     </div>
                     <div>
                         <a onClick={() => setCardBookmarked(!cardBookmarked)} className={`${styles.bookMarkButton} ${cardBookmarked && styles.added}`}><BookMarkIcon/></a>
-                        {cardInfo.rating && <p className={styles.ratingText}><BottleIcon/> ({cardInfo.rating.toFixed(1)})</p>}
+                        {cardInfo?.rating && <p className={styles.ratingText}><BottleIcon/> ({cardInfo?.rating.toFixed(1)})</p>}
                     </div>
 
                 </div>
                 <div className={styles.imgContainer}>
-                    <img src={cardInfo.img} alt=""/>
+                    <img src={imageSrc} onError={() => setImageSrc(cardImagePlaceholder)} alt=""/>
                     <a onClick={() => setCardFav(!cardFav)} className={`${styles.favButton} ${cardFav? styles.added : ''}`}><FavIcon/></a>
                 </div>
                 <div className={styles.characteristics}>
                     <div>
                         <p className={`${styles.textActive} ${styles.secondary}`}>Крепость:</p>
-                        <p className={styles.textMedium}>{cardInfo.strength}%</p>
+                        <p className={styles.textActive}>{formatNumber(cardInfo?.abv)}%</p>
                     </div>
-                    {cardInfo.exposure && <div>
+                    {cardInfo.age && <div>
                         <p className={`${styles.textActive} ${styles.secondary}`}>Выдержка:</p>
-                        <p className={styles.textMedium}>{cardInfo.exposure}</p>
+                        <p className={styles.textActive}>{cardInfo?.age}</p>
                     </div>}
                     <div>
                         <p className={`${styles.textActive} ${styles.secondary}`}>Объем:</p>
-                        <p className={styles.textMedium}>{cardInfo.volume} л.</p>
+                        <p className={styles.textActive}>{cardInfo?.vol}</p>
                     </div>
                 </div>
 
             </div>
             <div className={styles.cardFooter}>
-                <p className={styles.cardTextPrimary}>{cardInfo.price.toLocaleString("ru-Ru")}₽</p>
+                <p className={styles.cardTextPrimary}>{Number(cardInfo.price).toLocaleString("ru-Ru")}₽</p>
                 <IconButton text="Купить"><BottlesPairIcon/></IconButton>
             </div>
         </div>

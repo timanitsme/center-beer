@@ -28,8 +28,8 @@ export default function BarsCatalog({filters = [], filterButtons = [], sections 
 
     // Спецификация фильтров
     const barFilterSpecs = {
-        kitchen: {title: "Кухня", component: "combobox", id: "subways_ids"},
-        subways: {title: "Метро", component: "combobox", id: "kitchen_ids"},
+        kitchen: {title: "Кухня", component: "combobox", id: "kitchen_ids"},
+        subways: {title: "Метро", component: "combobox", id: "subways_ids"},
         visit_types: {title: "Цель посещения", component: "combobox", id: "visit_type_ids"},
         prices: {title: "Цена", component: "radio", id: "price"},
         types: {title: "Тип заведения", component: "combobox", id: "type_ids"},

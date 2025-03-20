@@ -3,7 +3,9 @@ import IconButton from "../../Buttons/IconButton/IconButton.jsx";
 import PropTypes from "prop-types";
 
 
-export default function CatalogSection({specs, CardComponent, IconComponent, wideColumns=false}){
+export default function CatalogSection({specs, CardComponent, IconComponent, cards = {}, wideColumns=false}){
+    if (!cards || cards.isLoading || cards.error || !cards?.data || cards?.data?.length === 0) return null
+
     return(
         <div className={styles.menuSection}>
             <div className={styles.sectionHeader}>
@@ -15,9 +17,7 @@ export default function CatalogSection({specs, CardComponent, IconComponent, wid
                 <div className={styles.sectionButton}><IconButton text="Забронировать стол"><IconComponent/></IconButton></div>
             </div>
             <div className={wideColumns ? styles.sectionContentWide : styles.sectionContent}>
-                {/*specs.cards.map((cardInfo) => {
-                    return (<CardComponent key={cardInfo.title} cardInfo={cardInfo}/>)
-                })*/}
+                {cards?.data && cards?.data?.length > 0 && cards?.data?.map((cardInfo, index) => <CardComponent key={index} cardInfo={cardInfo}/>)}
             </div>
 
         </div>

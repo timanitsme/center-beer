@@ -6,22 +6,24 @@ import FavIcon from "../../../assets/fav-unfill-icon.svg?react";
 import IconButton from "../../Buttons/IconButton/IconButton.jsx";
 import BottlesPairIcon from "../../../assets/bottles-pair-icon.svg?react";
 import PropTypes from "prop-types";
+import cardImagePlaceholder from "../../../assets/placeholders/card-image-placeholder.svg"
 
 export default function ProductCard({cardInfo}){
     const [cardBookmarked, setCardBookmarked] = useState(false);
     const [cardFav, setCardFav] = useState(false);
+    const [imageSrc, setImageSrc] = useState(cardInfo?.photo || cardImagePlaceholder)
     return(
         <div className={styles.card}>
             <div className={styles.productCard}>
-                <div className={styles.imgContainer}>
-                    <img src={cardInfo.img} alt=""/>
+                <div className={`${styles.imgContainer} ${imageSrc === cardImagePlaceholder? styles.third : ''}`}>
+                    <img src={imageSrc} onError={() => setImageSrc(cardImagePlaceholder)} alt=""/>
                 </div>
                 <div className={styles.cardTop}>
                     <div className={styles.textContainer}>
-                        <p className={styles.cardTextPrimary}>{cardInfo.title}</p>
-                        <p className={styles.textActive}>{cardInfo.description}</p>
+                        <p className={`${styles.cardTextPrimary} ${styles.cardTitle}`}>{cardInfo?.name}</p>
+                        <p className={`${styles.textActive} ${styles.description}`}>{cardInfo.description}</p>
                     </div>
-                    <div>
+                    <div className={styles.bookMarkContainer}>
                         <a onClick={() => setCardBookmarked(!cardBookmarked)} className={`${styles.bookMarkButton} ${cardBookmarked && styles.added}`}><BookMarkIcon/></a>
                     </div>
 
@@ -30,9 +32,9 @@ export default function ProductCard({cardInfo}){
 
             </div>
             <div className={styles.cardFooter}>
-                <p className={styles.textActive}><span style={{color: "var(--txt-secondary)"}}>Вес:</span> {cardInfo.weight} {cardInfo.weightSpan ? cardInfo.weightSpan : "гр."}</p>
+                <p className={styles.textActive}><span style={{color: "var(--txt-secondary)"}}>Вес:</span> {cardInfo.vol}</p>
                 <div className={styles.cardFooterLeft}>
-                    <p className={styles.cardTextPrimary}>{cardInfo.price.toLocaleString("ru-Ru")}₽</p>
+                    <p className={styles.cardTextPrimary}>{Number(cardInfo.price).toLocaleString("ru-Ru")}₽</p>
                     <IconButton text="Купить"><BottlesPairIcon/></IconButton>
                     <a onClick={() => setCardFav(!cardFav)} className={`${styles.favButton} ${cardFav? styles.added : ''}`}><FavIcon/></a>
                 </div>

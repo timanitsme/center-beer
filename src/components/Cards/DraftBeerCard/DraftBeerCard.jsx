@@ -9,14 +9,18 @@ import PropTypes from "prop-types"
 export default function DraftBeerCard({cardInfo}){
     const [cardBookmarked, setCardBookmarked] = useState(false);
     const [cardFav, setCardFav] = useState(false);
+
+    const formatNumber = (num) => Number(num).toString()
+
+
     return(
         <div className={styles.card}>
             <div className={styles.draftBeerCard}>
                 <div className={styles.cardTop}>
                     <div>
-                        <p className={styles.cardTextPrimary}>{cardInfo.title}</p>
-                        <p className={styles.textActive}>{cardInfo.manufacturer}</p>
-                        <p className={styles.textMedium}><span style={{color: "var(--txt-secondary)"}}>Стиль:</span> {cardInfo.style}</p>
+                        <p className={styles.cardTextPrimary}>{cardInfo?.name}</p>
+                        <p className={styles.textActive}>{cardInfo?.brewery}</p>
+                        <p className={styles.textMedium}><span style={{color: "var(--txt-secondary)"}}>Стиль:</span> {cardInfo?.style}</p>
                     </div>
                     <a onClick={() => setCardBookmarked(!cardBookmarked)} className={`${styles.bookMarkButton} ${cardBookmarked && styles.added}`}><BookMarkIcon/></a>
                 </div>
@@ -24,21 +28,21 @@ export default function DraftBeerCard({cardInfo}){
                 <div className={styles.characteristics}>
                     <div>
                         <p className={`${styles.textActive} ${styles.secondary}`}>Крепость:</p>
-                        <p className={styles.textMedium}>{cardInfo.strength}%</p>
+                        <p className={styles.textActive}>{formatNumber(cardInfo?.abv)}%</p>
                     </div>
                     <div>
                         <p className={`${styles.textActive} ${styles.secondary}`}>Плотность:</p>
-                        <p className={styles.textMedium}>{cardInfo.density}%</p>
+                        <p className={styles.textActive}>{formatNumber(cardInfo?.og)}%</p>
                     </div>
                     <div>
                         <p className={`${styles.textActive} ${styles.secondary}`}>Горечь</p>
-                        <p className={styles.textMedium}>{cardInfo.bitterness}</p>
+                        <p className={styles.textActive}>{formatNumber(cardInfo?.ibu)}</p>
                     </div>
                 </div>
 
             </div>
             <div className={styles.cardFooter}>
-                <p className={styles.cardTextPrimary}>{cardInfo.price}₽</p>
+                <p className={styles.cardTextPrimary}>{Number(cardInfo.price).toLocaleString("ru-Ru")}₽</p>
                 <IconButton text="Купить"><BottlesPairIcon/></IconButton>
                 <a onClick={() => setCardFav(!cardFav)} className={`${styles.favButton} ${cardFav? styles.added : ''}`}><FavIcon/></a>
             </div>

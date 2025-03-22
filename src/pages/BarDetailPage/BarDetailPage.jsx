@@ -15,27 +15,42 @@ import {
     getBarPageSections,
     getBarReviewsImages, getBarReviewsHeader, getBarReviewsResume
 } from "./BarDetailPageData.jsx";
-import {useGetBarEventsQuery, useGetBarInfoQuery} from "../../store/services/centerBeer.js";
+import {useGetBarEventsQuery, useGetBarInfoByIdQuery, useGetBarInfoQuery} from "../../store/services/centerBeer.js";
 import {useParams} from "react-router-dom";
+import {useRef, useState} from "react";
+import BeerMugsIcon from "../../assets/beer-mugs-icon.svg?react"
+import SausageIcon from "../../assets/sausage-icon.svg?react"
+import FlagsIcon from "../../assets/flags-icon.svg?react"
+import SimpleModal from "../../components/Modals/SimpleModal/SimpleModal.jsx";
 
 
 export default function BarDetailPage(){
     const {alias} = useParams();
     const {data, isLoading, error} = useGetBarInfoQuery(alias)
+    //const id = 1
+    //const {data, isLoading, error} = useGetBarInfoByIdQuery(id)
 
+    const menuRef = useRef(null)
+    const promosRef = useRef(null)
+    const newsRef = useRef(null)
+    const sections = [
+        {title: "меню", IconComponent: <SausageIcon/>, ref: menuRef},
+        {title: "скидки и акции", IconComponent: <FlagsIcon/>, ref: promosRef},
+        {title: "новости", IconComponent: <BeerMugsIcon/>, ref: newsRef}
+    ]
 
     return(
         <div className="content">
             <NavChain paths={getBarPagePaths()}/>
             {!isLoading && !error && data && data.length > 0 &&
                 <>
-                    <BarInfo barInfo={data[0]}/>
+                    <BarInfo barInfo={data[0]} sections={sections}/>
                     <BarEvents barId={data[0].id}/>
                     <AdvantagesList barInfo={data[0]}/>
                     {data[0]?.gallery?.length !== 0 && <Gallery pictures={data[0].gallery}/>}
-                    <BarMenu filters={getBarPageFilters()} filterButtons={getBarPageFilterButtons()} sections={getBarPageSections()}/>
-                    <CurrentPromos barId={data[0].id}/>
-                    <BarNews barId={data[0].id}/>
+                    <BarMenu filters={getBarPageFilters()} filterButtons={getBarPageFilterButtons()} sections={getBarPageSections()} ref={menuRef}/>
+                    <CurrentPromos barId={data[0].id} ref={promosRef}/>
+                    <BarNews barId={data[0].id} ref={newsRef}/>
                     {/*<Reviews images={getBarReviewsImages()} header={getBarReviewsHeader()} resume={getBarReviewsResume()}/>*/}
                 </>
 

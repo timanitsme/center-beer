@@ -79,8 +79,6 @@ export default function BarsCatalog({filters = [], filterButtons = [], sections 
                 }, {});
             });
 
-            console.log("Generated filterNameMap from barFilters:", nameMap);
-
             // Обработка cities
             if (cities && !citiesIsLoading && !citiesError) {
                 nameMap["city_id"] = cities.reduce((acc, city) => {
@@ -90,8 +88,6 @@ export default function BarsCatalog({filters = [], filterButtons = [], sections 
             }
             // Обработка only_opened
             nameMap["only_opened"] = {value: "Только открытые"}
-
-            console.log("Generated filterNameMap with cities:", nameMap);
             setFilterNameMap(nameMap);
         }
     }, [barFilters, barFiltersIsLoading, barFiltersError, cities, citiesIsLoading, citiesError]);

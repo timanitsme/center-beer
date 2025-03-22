@@ -1,0 +1,11 @@
+.imageWrapper{
+    position: relative;
+    width: fit-content;
+    height: fit-content;
+}
+
+.imageWrapper img{
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+}

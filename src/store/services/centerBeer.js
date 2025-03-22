@@ -53,6 +53,9 @@ export const centerBeerApi = createApi({
         getBarInfo: (builder.query({
             query: (alias) => `getBarInfo?alias=${alias}`
         })),
+        getBarInfoById: (builder.query({
+            query: (id) => `getBarInfo?id=${id}`
+        })),
         getBarMenuTabs: (builder.query({
             query: (bar_id) => `getBarMenuTabs?bar_id=${bar_id}`
         })),
@@ -215,4 +218,4 @@ export const { useGetBarsQuery, useGetBarInfoQuery, useGetBarsFiltersQuery,
     useGetBarMenuFoodQuery, useGetBarMenuBottleQuery, useGetBarMenuBeerQuery,
     useGetBarMenuAlcQuery, useGetBarMenuCocktailsQuery, useGetBarMenuFoodFiltersQuery,
     useGetBarMenuBottleFiltersQuery, useGetBarMenuBeerFiltersQuery, useGetBarMenuAlcFiltersQuery,
-    useGetBarMenuCocktailsFiltersQuery} = centerBeerApi
+    useGetBarMenuCocktailsFiltersQuery, useGetBarInfoByIdQuery} = centerBeerApi

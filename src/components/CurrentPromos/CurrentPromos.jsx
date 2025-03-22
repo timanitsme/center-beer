@@ -9,7 +9,7 @@ import IconButton from "../Buttons/IconButton/IconButton.jsx";
 import {useGetBarPromoQuery} from "../../store/services/centerBeer.js";
 
 
-export default function CurrentPromos({barId = 1}){
+export default function CurrentPromos({barId = 1, ref}){
     const {data: promos, isLoading: promosIsLoading, error: promosError} = useGetBarPromoQuery({bar_id: barId})
 
     //const images = [promo1, promo2, promo1, promo1, promo2, promo2, promo1];
@@ -29,7 +29,7 @@ export default function CurrentPromos({barId = 1}){
 
 
     return(
-        <div className={styles.currentPromosContainer}>
+        <div className={styles.currentPromosContainer} ref={ref}>
             <div className={styles.promosDescriptionContainer}>
                 <div className={styles.descriptionIcon}><BeerMugsIcon/></div>
                 <div className={styles.promosDescription}>

@@ -34,6 +34,13 @@
     margin-left: auto;
 }
 
+.appliedFiltersRow{
+    display: flex;
+    gap: 10px;
+    margin: 15px;
+    flex-wrap: wrap;
+}
+
 .sectionHeader p{
     font-size: 0.9vw;
     font-weight: 200;

@@ -21,10 +21,20 @@ import HalfBeerBottleIcon from "../../../assets/bottle-half-icon.svg?react"
 import EmptyBeerBottleIcon from "../../../assets/bottle-empty-icon.svg?react"
 
 
-export default function BarInfo({barInfo}){
+export default function BarInfo({barInfo, sections = []}){
     const [isFavourite, setIsFavourite] = useState(false);
     const [isBookmarked, setIsBookmarked] = useState(false);
     const rating = 3.5
+
+    const handleScroll = (targetRef) => {
+        if (targetRef.current) {
+            const elementPosition = targetRef.current.getBoundingClientRect().top + window.scrollY;
+            window.scrollTo({
+                top: elementPosition,
+                behavior: "smooth",
+            });
+        }
+    };
 
     const getRatingIcons = (rating) => {
         const icons = [];
@@ -61,10 +71,9 @@ export default function BarInfo({barInfo}){
                     <p>{barInfo.description}</p>
 
                     <div className={styles.barButtons}>
-                        <IconButton text="меню"><SausageIcon/></IconButton>
-                        <IconButton text="скидки и акции"><FlagsIcon/></IconButton>
-                        <IconButton text="новости"><BeerMugsIcon/></IconButton>
-                        <IconButton text="приложение"><PhoneIcon/></IconButton>
+                        {sections.map((section, index) =>
+                            <IconButton key={index} onClick={() => handleScroll(section.ref)} text={section.title}>{section.IconComponent}</IconButton>
+                        )}
                         <SimpleButton text={"забронировать стол"}/>
                     </div>
                 </div>

@@ -1,13 +1,17 @@
 .barEventsContainer{
     margin: 0 50px 50px 50px;
     display: flex;
-    gap:15px
+    gap:15px;
+    /*height: 600px;*/
+    min-height: 400px;
+    align-items: center;
 }
 
 .barEvent{
+    position: relative;
     display: flex;
     flex-direction: column;
-    width: 70%;
+    width: 75%;
 }
 
 .barEvent h1{
@@ -31,6 +35,7 @@
     align-self: flex-start;
     gap: 5px;
 }
+
 
 .eventDescription h2{
     text-transform: uppercase;
@@ -61,7 +66,8 @@
 
 .eventDescriptionContainer{
     display: flex;
-    min-height: 80%;
+    /*min-height: 80%;*/
+    height: fit-content;
     justify-content: space-between;
     align-items: center;
     background: var(--section-bg);
@@ -77,14 +83,14 @@
 }
 
 .eventPicture{
-    width: 30%;
+    max-width: 25%;
     overflow: hidden;
     display: flex;
     align-items: center;
     object-fit: cover;
     object-position: center;
     border-radius: 5px;
-    max-height: 300px;
+    max-height: 100%;
     justify-content: center;
     cursor: pointer;
     position: relative;

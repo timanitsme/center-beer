@@ -4,13 +4,16 @@ import eventPicture from "../../assets/event-picture.svg"
 import ArrowDiagonalIcon from "../../assets/arrow-diagonal-icon.svg?react"
 import {useGetBarEventsQuery} from "../../store/services/centerBeer.js";
 import {useEffect, useMemo, useState} from "react";
-import {Link} from "react-router-dom";
+import {Link, useNavigate, useNavigation} from "react-router-dom";
 
 
 export default function BarEvents({title = "Скоро в баре", barId=1}){
     const {data: events, isLoading: eventsIsLoading, error: eventsError} = useGetBarEventsQuery({bar_id: barId})
-    const [containerHeight, setContainerHeight] = useState(400);
+    const [containerHeight, setContainerHeight] = useState(500);
     const memoizedEvents = useMemo(() => events, [events]);
+
+
+
 
     const getImageSize = (url, containerWidth, callback) => {
         const img = new Image();
@@ -89,7 +92,7 @@ export default function BarEvents({title = "Скоро в баре", barId=1}){
         window.addEventListener("resize", handleResize);
         // Очистка слушателя
         return () => window.removeEventListener("resize", handleResize);
-    }, [memoizedEvents]);
+    }, [memoizedEvents, eventsIsLoading]);
 
 
     if (eventsIsLoading || eventsError || !events || events.length === 0) return null;
@@ -118,7 +121,7 @@ export default function BarEvents({title = "Скоро в баре", barId=1}){
                 </div>
             </div>
             <div className={styles.eventPicture}>
-                <img src={currentEvent?.preview} alt=""></img>
+                <img onClick={() => window.location.href = currentEvent?.url} src={currentEvent?.preview} alt=""></img>
             </div>
         </div>
     )

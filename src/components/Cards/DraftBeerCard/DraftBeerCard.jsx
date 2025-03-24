@@ -7,8 +7,8 @@ import {useState} from "react";
 import PropTypes from "prop-types"
 
 export default function DraftBeerCard({cardInfo}){
-    const [cardBookmarked, setCardBookmarked] = useState(false);
-    const [cardFav, setCardFav] = useState(false);
+    const [cardBookmarked, setCardBookmarked] = useState(cardInfo.is_favor || false);
+    const [cardFav, setCardFav] = useState(cardInfo.is_liked || false);
 
     const formatNumber = (num) => Number(num).toString()
 

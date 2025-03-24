@@ -87,7 +87,7 @@ export default function BarsCatalog({filters = [], filterButtons = [], sections 
                 }, {});
             }
             // Обработка only_opened
-            nameMap["only_opened"] = {value: "Только открытые"}
+            nameMap["only_opened"] = {}// value: "Только открытые"
             setFilterNameMap(nameMap);
         }
     }, [barFilters, barFiltersIsLoading, barFiltersError, cities, citiesIsLoading, citiesError]);
@@ -95,7 +95,7 @@ export default function BarsCatalog({filters = [], filterButtons = [], sections 
     // Подготовка фильтров
     const filtersConfig = useMemo(() => {
         if (!barFilters || barFiltersIsLoading || barFiltersError) return [];
-        return Object.entries(barFilters[0]).map(([key, options]) => {
+        return Object?.entries(barFilters[0])?.map(([key, options]) => {
             const spec = barFilterSpecs[key]
             return  {
                 title: spec?.title || key, // Используем маппинг заголовков
@@ -266,11 +266,14 @@ export default function BarsCatalog({filters = [], filterButtons = [], sections 
                             }
 
                             if (typeof value === "boolean"){
-                                return (
-                                    <AppliedFilter key={filterKey} onClick={() => removeFilter(filterKey, value)}>
-                                        <p>{filterNameMap[filterKey].value}</p>
-                                    </AppliedFilter>
-                                )
+                                if (filterNameMap[filterKey].value){
+                                    return (
+                                        <AppliedFilter key={filterKey} onClick={() => removeFilter(filterKey, value)}>
+                                            <p>{filterNameMap[filterKey].value}</p>
+                                        </AppliedFilter>
+                                    )
+                                }
+
                             }
 
                             return null;
@@ -282,7 +285,7 @@ export default function BarsCatalog({filters = [], filterButtons = [], sections 
                     </div>
                     <div className={styles.toggleAndOptions}>
                         <ComboBox options={["По убыванию", "По возрастанию"]}></ComboBox>
-                        <Toggle label={"Только открытые"} toggled={filterValues.only_opened} onClick={() => handleSingleFilterApply("only_opened", !filterValues.only_opened)}/>
+                        <Toggle reset={resetFilterComboBox} label={"Только открытые"} toggled={filterValues.only_opened} onClick={() => handleSingleFilterApply("only_opened", !filterValues.only_opened)}/>
                     </div>
                     { !barsIsLoading && !barsError &&
                         <SimpleCatalogSection cards={barsData} CardComponent={BarCard} wideColumns={false}/>

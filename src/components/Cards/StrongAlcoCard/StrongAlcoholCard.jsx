@@ -10,8 +10,8 @@ import cardImagePlaceholder from "../../../assets/placeholders/card-image-placeh
 
 
 export default function StrongAlcoholCard ({cardInfo}){
-    const [cardBookmarked, setCardBookmarked] = useState(false);
-    const [cardFav, setCardFav] = useState(false);
+    const [cardBookmarked, setCardBookmarked] = useState(cardInfo.is_favor || false);
+    const [cardFav, setCardFav] = useState(cardInfo.is_liked || false);
     const formatNumber = (num) => Number(num).toString()
     const [imageSrc, setImageSrc] = useState(cardInfo?.photo || cardImagePlaceholder)
 
@@ -29,7 +29,7 @@ export default function StrongAlcoholCard ({cardInfo}){
                     </div>
 
                 </div>
-                <div className={styles.imgContainer}>
+                <div className={`${styles.imgContainer} ${imageSrc === cardImagePlaceholder? styles.third : ''}`}>
                     <img src={imageSrc} onError={() => setImageSrc(cardImagePlaceholder)} alt=""/>
                     <a onClick={() => setCardFav(!cardFav)} className={`${styles.favButton} ${cardFav? styles.added : ''}`}><FavIcon/></a>
                 </div>

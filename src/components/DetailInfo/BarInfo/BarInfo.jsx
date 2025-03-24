@@ -22,8 +22,8 @@ import EmptyBeerBottleIcon from "../../../assets/bottle-empty-icon.svg?react"
 
 
 export default function BarInfo({barInfo, sections = []}){
-    const [isFavourite, setIsFavourite] = useState(false);
-    const [isBookmarked, setIsBookmarked] = useState(false);
+    const [isFavourite, setIsFavourite] = useState(barInfo.is_favor || false);
+    const [isBookmarked, setIsBookmarked] = useState(barInfo.is_liked || false);
     const rating = 3.5
 
     const handleScroll = (targetRef) => {

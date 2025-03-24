@@ -20,6 +20,8 @@
     margin: 25px;
     min-height: 100px;
     min-width: 100px;
+    max-width: 95vw;
+    max-height: 95vh;
 }
 
 .modalContent p{

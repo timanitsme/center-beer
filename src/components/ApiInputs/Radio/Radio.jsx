@@ -35,9 +35,9 @@ export default function Radio({title, options, onChange, reset, defaultOption, f
                     <input
                         type="radio"
                         value={defaultOption?.id || title}
-                        defaultChecked={true}
                         name={`${filterKey}-${title}`}
                         checked={selectedOption.id === defaultOption.id} // Сравниваем по id
+                        onChange={() => handleRadioChange(defaultOption)}
                     />
                     <span className={styles.radioButton}></span>
                     <p>{defaultOption.name}</p>
@@ -47,7 +47,8 @@ export default function Radio({title, options, onChange, reset, defaultOption, f
                 return(
                     <div key={index} className={styles.option}
                          onClick={() => handleRadioChange(option)}>
-                        <input type="radio" value={option?.id || title} name={title} checked={selectedOption === option} />
+                        <input type="radio" value={option?.id || title} name={title}
+                               checked={selectedOption === option} onChange={() => handleRadioChange(option)}/>
                         <span className={styles.radioButton}></span>
                         <p>{option.name}</p>
                     </div>

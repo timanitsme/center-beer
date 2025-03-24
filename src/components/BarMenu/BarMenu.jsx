@@ -30,20 +30,28 @@ import FilterItem from "../ApiInputs/FilterItem/FilterItem.jsx";
 import AppliedFilter from "../AppliedFilter/AppliedFilter.jsx";
 
 export default function BarMenu({filters, filterButtons, sections, ref, barId = 1}){
+    // Состояние для хранения имен применяемых фильтров
     const [filterNameMap, setFilterNameMap] = useState({});
+
+    // Получение всех вкладок
     const {data: tabs, isLoading: tabsIsLoading, error: tabsError} = useGetBarMenuTabsQuery(barId)
-    const beerFilters = useGetBarMenuBeerFiltersQuery(barId)
-    const bottleFilters = useGetBarMenuBottleFiltersQuery(barId)
-    const alcFilters = useGetBarMenuAlcFiltersQuery(barId)
-    const cocktailsFilters = useGetBarMenuCocktailsFiltersQuery(barId)
-    const foodFilters = useGetBarMenuFoodFiltersQuery(barId)
+
+
+    const [selectedTab, setSelectedTab] = useState("")
+
+    // Получение всех фильтров с api
+    const beerFilters = useGetBarMenuBeerFiltersQuery(barId, {skip: selectedTab !== "beer"})
+    const bottleFilters = useGetBarMenuBottleFiltersQuery(barId, {skip: selectedTab !== "beer_bottle"})
+    const alcFilters = useGetBarMenuAlcFiltersQuery(barId, {skip: selectedTab !== "alc"})
+    const cocktailsFilters = useGetBarMenuCocktailsFiltersQuery(barId, {skip: selectedTab !== "cocktails"})
+    const foodFilters = useGetBarMenuFoodFiltersQuery(barId, {skip: selectedTab !== "food"})
+
 
     const [filteredTabs, setFilteredTabs] = useState([])
-    const [selectedTab, setSelectedTab] = useState("")
-    const [tabDataMap, setTabDataMap] = useState({});
+
     const [tabIsInitialized, setTabIsInitialized] = useState(false)
 
-
+    // Изначальные состояния для осуществления запросов с фильтрами
     const initialStates = {
         beer: { bar_id: barId, lim: 24, offset: 0, color_ids: [], abv_id: '', abv_from: '', abv_to: '', og_id: '', og_from: '', og_to: '', ibu_id: '', ibu_from: '', ibu_to: '', brew_ids: [], price_ids: ''},
         beer_bottle: { bar_id: barId, lim: 24, offset: 0, color_ids: [], abv_id: '', abv_from: '', abv_to: '', og_id: '', og_from: '', og_to: '', ibu_id: '', ibu_from: '', ibu_to: '', pack_ids: [], brew_ids: [], price_ids: ''},
@@ -52,6 +60,7 @@ export default function BarMenu({filters, filterButtons, sections, ref, barId = 
         food: {bar_id: barId, lim: 24, offset: 0, kitchen_ids: [], price_ids: ''}
     }
 
+    // Примененные фильтры
     const [tabFilterValues, setTabFilterValues] = useState(() => {
         const initialFilterValues = {};
         Object.keys(initialStates).forEach((key) => {
@@ -60,6 +69,7 @@ export default function BarMenu({filters, filterButtons, sections, ref, barId = 
         return initialFilterValues;
     });
 
+    // Выбранные (но не примененные фильтры)
     const [tabSelectedFilters, setTabSelectedFilters] = useState(() => {
         const initialSelectedFilters = {};
         Object.keys(initialStates).forEach((key) => {
@@ -69,20 +79,21 @@ export default function BarMenu({filters, filterButtons, sections, ref, barId = 
     });
 
 
+    // Спецификация фильтров (отображаемые названия, компонент и id, в котором фильтр отображается в запросе)
     const filterSpecs = {
         beer: {
             colors: {title: "Цвет", component: "checkboxSection", id: "color_ids"},
             prices: {title: "Цена", component: "radio", id: "price_ids"},
-            abv: {title: "Алкоголь", component: "radio", id: "abv_id"},
-            og: {title: "Плотность", component: "radio", id: "og_id"},
-            ibu: {title: "Горечь", component: "radio", id: "ibu_id"}
+            abv: {title: "Алкоголь", component: "rangeRadio", id: "abv"},
+            og: {title: "Плотность", component: "rangeRadio", id: "og"},
+            ibu: {title: "Горечь", component: "rangeRadio", id: "ibu"}
         },
         beer_bottle: {
             colors: {title: "Цвет", component: "checkboxSection", id: "color_ids"},
             prices: {title: "Цена", component: "radio", id: "price_ids"},
-            abv: {title: "Алкоголь", component: "radio", id: "abv_id"},
-            og: {title: "Плотность", component: "radio", id: "og_id"},
-            ibu: {title: "Горечь", component: "radio", id: "ibu_id"},
+            abv: {title: "Алкоголь", component: "rangeRadio", id: "abv"},
+            og: {title: "Плотность", component: "rangeRadio", id: "og"},
+            ibu: {title: "Горечь", component: "rangeRadio", id: "ibu"},
             /*pack_vol: {title: "Объём", component: "", id: "ibu_id"},*/
             pack_type: {title: "Тара", component: "checkboxSection", id: "pack_ids"},
         },
@@ -98,14 +109,14 @@ export default function BarMenu({filters, filterButtons, sections, ref, barId = 
         }
     }
 
-    const {data: beerData, isLoading: beerIsLoading, error: beerError} = useGetBarMenuBeerQuery(tabFilterValues.beer)
-    const {data: bottleData, isLoading: bottleIsLoading, error: bottleError} = useGetBarMenuBottleQuery(tabFilterValues.beer_bottle)
-    const {data: alcData, isLoading: alcIsLoading, error: alcError} = useGetBarMenuAlcQuery(tabFilterValues.alc)
-    const {data: cocktailsData, isLoading: cocktailsIsLoading, error: cocktailsError} = useGetBarMenuCocktailsQuery(tabFilterValues.cocktails)
-    const {data: foodData, isLoading: foodIsLoading, error: foodError} = useGetBarMenuFoodQuery(tabFilterValues.food)
+    // Получение данных товаров по заданным фильтрам
+    const {data: beerData, isLoading: beerIsLoading, error: beerError} = useGetBarMenuBeerQuery(tabFilterValues.beer, {skip: selectedTab !== "beer"})
+    const {data: bottleData, isLoading: bottleIsLoading, error: bottleError} = useGetBarMenuBottleQuery(tabFilterValues.beer_bottle, {skip: selectedTab !== "beer_bottle"})
+    const {data: alcData, isLoading: alcIsLoading, error: alcError} = useGetBarMenuAlcQuery(tabFilterValues.alc, {skip: selectedTab !== "alc"})
+    const {data: cocktailsData, isLoading: cocktailsIsLoading, error: cocktailsError} = useGetBarMenuCocktailsQuery(tabFilterValues.cocktails, {skip: selectedTab !== "cocktails"})
+    const {data: foodData, isLoading: foodIsLoading, error: foodError} = useGetBarMenuFoodQuery(tabFilterValues.food, {skip: selectedTab !== "food"})
 
-
-
+    // Спецификация вкладок
     const tabsSpecs = useMemo(() => {
         const specs = {
             beer: {icon: BeerTapIcon, hook: useGetBarMenuBeerQuery, wideColumns: false, filterTitle: "На кранах", CardComponent: DraftBeerCard, data: beerData, isLoading: beerIsLoading, error: beerError, filters: beerFilters, filterValues: tabFilterValues.beer, selectedFilters: tabSelectedFilters.beer },
@@ -126,6 +137,7 @@ export default function BarMenu({filters, filterButtons, sections, ref, barId = 
         initialStates
     ])
 
+    // Состояние для сброса фильтров конкретной вкладки (а именно для сброса галочек, т.е. визуально выбранных фильтров)
     const [tabResetFilters, setTabResetFilters] = useState(() => {
         const resetFiltersStates = {};
         Object.keys(tabsSpecs).forEach((key) => {
@@ -134,14 +146,16 @@ export default function BarMenu({filters, filterButtons, sections, ref, barId = 
         return resetFiltersStates;
     });
 
+
+    // Применение фильтров для конкретной вкладки
     const applyFilters = (alias) => {
         setTabFilterValues((prevState) => ({
             ...prevState,
             [alias]: tabSelectedFilters[alias],
         }));
-
     };
 
+    // Сброс фильтров для конкретной вкладки
     const resetFilters = (alias) => {
         setTabFilterValues((prevState) => ({
             ...prevState,
@@ -153,20 +167,38 @@ export default function BarMenu({filters, filterButtons, sections, ref, barId = 
         }));
         setTabResetFilters((prevState) => ({
             ...prevState,
-            [alias]: false,
+            [alias]: true,
         }));
     }
 
+    // Обработка изменения фильтра (добавление измененных данных в выбранные фильтры)
     const handleFilterChange = (tabAlias, filterKey, value) => {
-        setTabSelectedFilters((prevState) => ({
-            ...prevState,
-            [tabAlias]: {
-                ...prevState[tabAlias],
-                [filterKey]: Array.isArray(value.options) ? value.options : [value.options],
-            },
-        }));
+        console.log(value)
+        console.log(filterKey)
+        if (typeof value.options === "object"){
+            setTabSelectedFilters((prevState) => ({
+                ...prevState,
+                [tabAlias]: {
+                    ...prevState[tabAlias],
+                    [`${filterKey}_id`]: [value.options.id],
+                    [`${filterKey}_to`]: [value.options.to],
+                    [`${filterKey}_from`]: [value.options.from],
+                },
+            }));
+        }
+        else{
+            setTabSelectedFilters((prevState) => ({
+                ...prevState,
+                [tabAlias]: {
+                    ...prevState[tabAlias],
+                    [filterKey]: Array.isArray(value.options) ? value.options : [value.options],
+                },
+            }));
+        }
+        console.log(JSON.stringify(tabSelectedFilters))
     };
 
+    // Конфигурация фильтров
     const filtersConfig = useMemo(() => {
         return (alias) => {
             const tabSpec = tabsSpecs[alias];
@@ -184,6 +216,7 @@ export default function BarMenu({filters, filterButtons, sections, ref, barId = 
         };
     }, [tabsSpecs]);
 
+    // Генерация наименований, которые будут отображаться в выбранных фильтрах
     useEffect(() => {
         const updatedFilterNameMap = {};
 
@@ -197,7 +230,10 @@ export default function BarMenu({filters, filterButtons, sections, ref, barId = 
                 // Обработка filters для конкретной вкладки
                 Object.entries(tabFilters[0]).forEach(([key, options]) => {
                     nameMap[tabFilterSpec[key]?.id || key] = options.reduce((acc, option) => {
-                        acc[option.id] = option.name; // Предполагается, что у опций есть `id` и `name`
+                        if (tabFilterSpec[key]?.title)
+                            acc[option.id] = `${tabFilterSpec[key].title}: ${option.name}`; // Предполагается, что у опций есть `id` и `name`
+                        else
+                            acc[option.id] = option.name;
                         return acc;
                     }, {});
                 });
@@ -216,6 +252,7 @@ export default function BarMenu({filters, filterButtons, sections, ref, barId = 
         });
     }, [tabsSpecs, filterSpecs]);
 
+    // Подсчет количества примененных фильтров
     const countAppliedFilters = (alias) => {
         // Проверяем, что tabFilterValues[alias] существует
         if (!tabFilterValues[alias]) return 0;
@@ -238,7 +275,7 @@ export default function BarMenu({filters, filterButtons, sections, ref, barId = 
         return count;
     };
 
-
+    // Обработка удаления конкретного фильтра по клику в applied filters
     const removeFilter = (tabAlias, filterKey, idToRemove) => {
         setTabFilterValues((prev) => {
             const currentTabFilters = prev[tabAlias]; // Фильтры текущей вкладки
@@ -266,7 +303,7 @@ export default function BarMenu({filters, filterButtons, sections, ref, barId = 
         });
     };
 
-
+    // Установка первой вкладки в качестве выбранной при загрузке страницы
     useEffect(() => {
         if (tabs && !tabsIsLoading && !tabsError && tabs?.length > 0 ){
             if (selectedTab === "" && !tabIsInitialized){
@@ -283,6 +320,19 @@ export default function BarMenu({filters, filterButtons, sections, ref, barId = 
         }
     }, [tabs, selectedTab, tabsIsLoading, tabsError]);
 
+    useEffect(() => {
+        if (tabResetFilters[selectedTab]) {
+            const timeout = setTimeout(() => {
+                setTabResetFilters((prevState) => ({
+                    ...prevState,
+                    [selectedTab]: false,
+                }));
+            }, 1);
+
+            return () => clearTimeout(timeout);
+        }
+    }, [tabResetFilters]);
+
     if (!tabs || tabsIsLoading || tabsError || tabs?.length === 0) return null
 
     return(
@@ -292,7 +342,7 @@ export default function BarMenu({filters, filterButtons, sections, ref, barId = 
                 <div className={styles.filterButtons}>
                     {tabs?.map((tab, index) => {
                         const IconComponent = tabsSpecs[tab?.alias]?.icon || AlcoBottleIcon
-                        return (<IconButton style={selectedTab === tab?.alias? "primary": ""} onClick={() => selectedTab === tab?.alias? setSelectedTab(""): setSelectedTab(tab?.alias)} key={index} text={tabsSpecs[tab?.alias]?.filterTitle || tab?.header || ""}><IconComponent/></IconButton>)
+                        return (<IconButton style={selectedTab === tab?.alias? "primary": ""} onClick={() => selectedTab !== tab?.alias && setSelectedTab(tab?.alias)} key={index} text={tabsSpecs[tab?.alias]?.filterTitle || tab?.header || ""}><IconComponent/></IconButton>)
                     }
 
                     )}
@@ -312,7 +362,7 @@ export default function BarMenu({filters, filterButtons, sections, ref, barId = 
                                 filter={filter}
                                 filterKey={tab.alias}
                                 onChange={(value) => handleFilterChange(tab.alias, filter.key, value)}
-                                reset={tabResetFilters.alias}
+                                reset={tabResetFilters[tab.alias]}
                             />
                         ))}
                         <SimpleButton onClick={() => applyFilters(tab.alias)} text="Применить фильтры"></SimpleButton>

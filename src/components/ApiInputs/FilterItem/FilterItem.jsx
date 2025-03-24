@@ -2,6 +2,7 @@ import FilterComboBox from "../FilterComboBox/FilterComboBox.jsx";
 import CheckBoxSection from "../CheckBoxSection/CheckBoxSection.jsx";
 import Radio from "../Radio/Radio.jsx";
 import Search from "../Search/Search.jsx";
+import RangeRadio from "../Radio/RangeRadio.jsx";
 
 
 export default function FilterItem({ filter, onChange, reset, filterKey = "" }) {
@@ -29,6 +30,17 @@ export default function FilterItem({ filter, onChange, reset, filterKey = "" }) 
             case "radio":
                 return (
                     <Radio
+                        title={filter.title}
+                        options={filter.options}
+                        onChange={onChange}
+                        reset={reset}
+                        defaultOption={{name: "все", id: 0}}
+                        filterKey={filterKey}
+                    />
+                )
+            case "rangeRadio":
+                return (
+                    <RangeRadio
                         title={filter.title}
                         options={filter.options}
                         onChange={onChange}

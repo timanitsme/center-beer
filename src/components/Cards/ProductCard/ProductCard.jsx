@@ -9,8 +9,8 @@ import PropTypes from "prop-types";
 import cardImagePlaceholder from "../../../assets/placeholders/card-image-placeholder.svg"
 
 export default function ProductCard({cardInfo}){
-    const [cardBookmarked, setCardBookmarked] = useState(false);
-    const [cardFav, setCardFav] = useState(false);
+    const [cardBookmarked, setCardBookmarked] = useState(cardInfo.is_favor || false);
+    const [cardFav, setCardFav] = useState(cardInfo.is_liked || false);
     const [imageSrc, setImageSrc] = useState(cardInfo?.photo || cardImagePlaceholder)
     return(
         <div className={styles.card}>

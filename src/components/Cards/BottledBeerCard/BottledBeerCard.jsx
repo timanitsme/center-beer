@@ -10,8 +10,8 @@ import {useNavigate} from "react-router-dom";
 import cardImagePlaceholder from "../../../assets/placeholders/card-image-placeholder.svg"
 
 export default function BottledBeerCard({cardInfo}){
-    const [cardBookmarked, setCardBookmarked] = useState(false);
-    const [cardFav, setCardFav] = useState(false);
+    const [cardBookmarked, setCardBookmarked] = useState(cardInfo.is_favor || false);
+    const [cardFav, setCardFav] = useState(cardInfo.is_liked || false);
     const navigate = useNavigate()
     const goToBeerPage = () => navigate("/beer/1/")
 
@@ -32,7 +32,7 @@ export default function BottledBeerCard({cardInfo}){
                     </div>
 
                 </div>
-                <div className={styles.imgContainer}>
+                <div className={`${styles.imgContainer} ${imageSrc === cardImagePlaceholder? styles.third : ''}`}>
                     <img src={imageSrc} onError={() => setImageSrc(cardImagePlaceholder)} onClick={goToBeerPage} alt=""/>
                     <a onClick={() => setCardFav(!cardFav)} className={`${styles.favButton} ${cardFav? styles.added : ''}`}><FavIcon/></a>
                 </div>

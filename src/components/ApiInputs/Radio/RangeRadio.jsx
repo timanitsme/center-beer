@@ -18,17 +18,24 @@ export default function RangeRadio({title, options, onChange, reset, defaultOpti
     useEffect(() => {
         if (reset){
             setSelectedOption(getDefaultOption())
+            setRange({ from: "", to: "" })
         }
     }, [reset, options, defaultOption]);
 
     const handleFromChange = (event) => {
         const value = event.target.value;
         setRange((prev) => ({ ...prev, from: value.replace(/\D/, "") })); // Разрешаем только числа
+        if (onChange){
+            onChange({options: {id: selectedOption.id, from: value.replace(/\D/, ""), to: range.to}, names: selectedOption.name});
+        }
     };
 
     const handleToChange = (event) => {
         const value = event.target.value;
         setRange((prev) => ({ ...prev, to: value.replace(/\D/, "") })); // Разрешаем только числа
+        if (onChange){
+            onChange({options: {id: selectedOption.id, from: range.from, to: value.replace(/\D/, "")}, names: selectedOption.name});
+        }
     };
 
     const handleRadioChange = (option) =>{

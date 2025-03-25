@@ -60,6 +60,18 @@ export default function BarMenu({filters, filterButtons, sections, ref, barId = 
         food: {bar_id: barId, lim: 24, offset: 0, kitchen_ids: [], price_ids: ''}
     }
 
+    // Функция для определения, является ли параметр множественного выбора
+    function isMultiSelectParam(paramName) {
+        return /^og|^abv|^ibu/.test(paramName);
+    }
+
+    // Создание массива параметров множественного выбора для каждого tabAlias
+    const multiSelectParams = Object.keys(initialStates).reduce((acc, tabAlias) => {
+        acc[tabAlias] = Object.keys(initialStates[tabAlias])
+            .filter(isMultiSelectParam); // Оставляем только параметры, соответствующие условию
+        return acc;
+    }, {});
+
     // Примененные фильтры
     const [tabFilterValues, setTabFilterValues] = useState(() => {
         const initialFilterValues = {};
@@ -85,8 +97,15 @@ export default function BarMenu({filters, filterButtons, sections, ref, barId = 
             colors: {title: "Цвет", component: "checkboxSection", id: "color_ids"},
             prices: {title: "Цена", component: "radio", id: "price_ids"},
             abv: {title: "Алкоголь", component: "rangeRadio", id: "abv"},
+            abv_from: {title: "Алкоголь от", id: "abv_from"},
+            abv_to: {title: "Алкоголь до", id: "abv_to"},
             og: {title: "Плотность", component: "rangeRadio", id: "og"},
-            ibu: {title: "Горечь", component: "rangeRadio", id: "ibu"}
+            og_from: {title: "Плотность от", id: "og_from"},
+            og_to: {title: "Плотность до", id: "og_to"},
+            ibu: {title: "Горечь", component: "rangeRadio", id: "ibu"},
+            ibu_from: {title: "Горечь от", id: "ibu_from"},
+            ibu_to: {title: "Горечь до", id: "ibu_to"},
+
         },
         beer_bottle: {
             colors: {title: "Цвет", component: "checkboxSection", id: "color_ids"},
@@ -173,9 +192,7 @@ export default function BarMenu({filters, filterButtons, sections, ref, barId = 
 
     // Обработка изменения фильтра (добавление измененных данных в выбранные фильтры)
     const handleFilterChange = (tabAlias, filterKey, value) => {
-        console.log(value)
-        console.log(filterKey)
-        if (typeof value.options === "object"){
+        if (multiSelectParams[tabAlias].includes(`${filterKey}_id`)){
             setTabSelectedFilters((prevState) => ({
                 ...prevState,
                 [tabAlias]: {
@@ -195,7 +212,6 @@ export default function BarMenu({filters, filterButtons, sections, ref, barId = 
                 },
             }));
         }
-        console.log(JSON.stringify(tabSelectedFilters))
     };
 
     // Конфигурация фильтров
@@ -226,15 +242,18 @@ export default function BarMenu({filters, filterButtons, sections, ref, barId = 
 
             if (tabFilters && !tabsSpecs[alias]?.filters?.isLoading && !tabsSpecs[alias]?.filters?.isError) {
                 const nameMap = {};
-
                 // Обработка filters для конкретной вкладки
                 Object.entries(tabFilters[0]).forEach(([key, options]) => {
                     nameMap[tabFilterSpec[key]?.id || key] = options.reduce((acc, option) => {
-                        if (tabFilterSpec[key]?.title)
+                        if (tabFilterSpec[key]?.title && option?.name){
                             acc[option.id] = `${tabFilterSpec[key].title}: ${option.name}`; // Предполагается, что у опций есть `id` и `name`
-                        else
+                            return acc;
+                        }
+                        else if (option?.name){
                             acc[option.id] = option.name;
-                        return acc;
+                            return acc;
+                        }
+
                     }, {});
                 });
 
@@ -299,6 +318,20 @@ export default function BarMenu({filters, filterButtons, sections, ref, barId = 
                         [filterKey]: "",
                     },
                 };
+            }
+        });
+    };
+
+    // Обработка удаления конкретного фильтра по клику в applied filters
+    const removeRangeRadioFilter = (tabAlias, filterKey) => {
+        setTabFilterValues((prev) => {
+            const currentTabFilters = prev[tabAlias];
+                return {
+                    ...prev,
+                    [tabAlias]: {
+                        ...currentTabFilters,
+                        [filterKey]: "",
+                    },
             }
         });
     };
@@ -381,17 +414,49 @@ export default function BarMenu({filters, filterButtons, sections, ref, barId = 
                                 {Object.entries(tabFilterValues[tab.alias] || {}).map(([filterKey, value]) => {
                                     // Пропускаем пустые значения
                                     if (!value || (Array.isArray(value) && value.length === 0)) return null;
-
                                     // Если значение — массив, обрабатываем каждый элемент
                                     if (Array.isArray(value)) {
                                         return value.map((id) => {
-                                            const filterName = filterNameMap[tab.alias][filterKey]?.[id];
-                                            if (!filterName) return null;
-                                            return (
-                                                <AppliedFilter key={`${filterKey}-${id}`} onClick={() => removeFilter(tab.alias,filterKey, id)}>
-                                                    <p>{filterName}</p>
-                                                </AppliedFilter>
-                                            );
+                                            if (multiSelectParams[tab.alias].includes(filterKey)){
+                                                const filterName = filterKey.split("_")[0]
+                                                const filterDirection = filterKey.split("_")[1]
+                                                if (!filterName) return null;
+                                                if (filterDirection === "id"){
+                                                    const filterValue = filterNameMap[tab.alias][filterName]?.[id]
+                                                    return <>
+                                                        {filterValue && <AppliedFilter key={`${filterKey}`} onClick={() => removeFilter(tab.alias, filterKey, id)}>
+                                                            <p>{filterValue}</p>
+                                                        </AppliedFilter>}
+                                                    </>
+                                                }
+                                                else if (filterDirection === "from"){
+                                                    const filterValueFrom = tabFilterValues[tab.alias][`${filterName}_from`]
+                                                    return <>
+                                                        {filterValueFrom && <AppliedFilter key={`${filterKey}_from`} onClick={() => removeRangeRadioFilter(tab.alias,filterKey)}>
+                                                            <p>{`${filterSpecs[tab.alias][filterName]?.title} от: ${filterValueFrom}`}</p>
+                                                        </AppliedFilter>}
+                                                    </>
+                                                }
+                                                else if (filterDirection === "to"){
+                                                    const filterValueTo = tabFilterValues[tab.alias][`${filterName}_to`]
+                                                    return <>
+                                                        {filterValueTo && <AppliedFilter key={`${filterKey}-to`} onClick={() => removeRangeRadioFilter(tab.alias,filterKey)}>
+                                                            <p>{`${filterSpecs[tab.alias][filterName]?.title} до: ${filterValueTo}`}</p>
+                                                        </AppliedFilter>}
+                                                    </>
+                                                }
+                                            }
+                                            else{
+                                                const filterName = filterNameMap[tab.alias][filterKey]?.[id];
+                                                if (!filterName) return null;
+                                                return (
+                                                    <AppliedFilter key={`${filterKey}-${id}`} onClick={() => removeFilter(tab.alias,filterKey, id)}>
+                                                        <p>{filterName}</p>
+                                                    </AppliedFilter>
+                                                );
+                                            }
+
+
                                         });
                                     }
 
@@ -422,17 +487,10 @@ export default function BarMenu({filters, filterButtons, sections, ref, barId = 
                             <div className={tabsSpecs[tab.alias]?.wideColumns ? styles.sectionContentWide : styles.sectionContent}>
                                 {tabSpec?.data && tabSpec?.data?.length > 0 && tabSpec?.data?.map((cardInfo, index) => <CardComponent key={index} cardInfo={cardInfo}/>)}
                             </div>
-
                         </div>
-                        {/*<CatalogSection cards={{data: tabSpec?.data || {}, isLoading: tabSpec?.isLoading || false, error: tabSpec?.error || false}} specs={tab}
-                                        CardComponent={tabsSpecs[tab.alias]?.CardComponent || ProductCard} IconComponent={tabsSpecs[tab.alias]?.icon || AlcoBottleIcon }
-                                        wideColumns={tabsSpecs[tab.alias]?.wideColumns} resetFilters={resetFilters} countAppliedFilters={countAppliedFilters} alias={tab.alias}
-                                        removeFilter={removeFilter} filterNameMap={filterNameMap}/>*/}
                     </div>
                 </div>)}
             )}
-
-
         </div>
     )
 }

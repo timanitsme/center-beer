@@ -24,10 +24,10 @@ import FlagsIcon from "../../assets/flags-icon.svg?react"
 
 
 export default function BarDetailPage(){
-    //const {alias} = useParams();
-    //const {data, isLoading, error} = useGetBarInfoQuery(alias)
-    const id = 1
-    const {data, isLoading, error} = useGetBarInfoByIdQuery(id)
+    const {alias} = useParams();
+    const {data, isLoading, error} = useGetBarInfoQuery(alias)
+    //const id = 1
+    //const {data, isLoading, error} = useGetBarInfoByIdQuery(id)
 
     const menuRef = useRef(null)
     const promosRef = useRef(null)

@@ -74,7 +74,7 @@ export default function BarInfo({barInfo, sections = []}){
                         {sections.map((section, index) =>
                             <IconButton key={index} onClick={() => handleScroll(section.ref)} text={section.title}>{section.IconComponent}</IconButton>
                         )}
-                        <SimpleButton text={"забронировать стол"}/>
+                        {/*<SimpleButton text={"забронировать стол"}/>*/}
                     </div>
                 </div>
                 <div className={`${styles.barInfo} ${styles.regular}`}>
@@ -92,11 +92,11 @@ export default function BarInfo({barInfo, sections = []}){
                     </div>
                     <h2>{barInfo.contacts}</h2>
                     <p>{barInfo.address}</p>
-                    <a className={styles.aUnderlinedIconButton}><CommentIcon/>Связаться с нами</a>
-                    <a className={styles.aUnderlinedIconButton}><CalendarIcon/>График работы</a>
+                    <a className={styles.aUnderlinedIconButton} href="https://center.beer/about-us/contact/"><CommentIcon/>Связаться с нами</a>
+                    {/*FIXME <a className={styles.aUnderlinedIconButton}><CalendarIcon/>График работы</a>*/}
                     <div>
-                        <IconButton text="Найти на карте" style="secondary"><LocationIcon/></IconButton>
-                        <IconButton text="Заказать такси" style="secondary"><TaxiIcon/></IconButton>
+                        {/* FIXME <IconButton text="Найти на карте" style="secondary"><LocationIcon/></IconButton>*/}
+                        {/* FIXME <IconButton text="Заказать такси" style="secondary"><TaxiIcon/></IconButton>*/}
                     </div>
                 </div>
             </div>

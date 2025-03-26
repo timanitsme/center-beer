@@ -63,7 +63,7 @@ export default function BarsCatalog({filters = [], filterButtons = [], sections 
 
     // Получение данных с API
     const {data: barsData, isLoading: barsIsLoading, error: barsError } = useGetBarsQuery(filterValues);
-    const {data: barFilters, isLoading: barFiltersIsLoading, error: barFiltersError} = useGetBarsFiltersQuery()
+    const {data: barFilters, isLoading: barFiltersIsLoading, error: barFiltersError} = useGetBarsFiltersQuery(1)
     const {data: cities, isLoading: citiesIsLoading, error: citiesError} = useGetCitiesQuery()
 
 
@@ -94,6 +94,7 @@ export default function BarsCatalog({filters = [], filterButtons = [], sections 
 
     // Подготовка фильтров
     const filtersConfig = useMemo(() => {
+        console.log(`bar filters: ${barFilters}`)
         if (!barFilters || barFiltersIsLoading || barFiltersError) return [];
         return Object?.entries(barFilters[0])?.map(([key, options]) => {
             const spec = barFilterSpecs[key]

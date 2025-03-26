@@ -142,7 +142,7 @@ export default function BarMenu({filters, filterButtons, sections, ref, barId = 
             beer_bottle: {icon: BottlesPairIcon, hook: useGetBarMenuBottleQuery, wideColumns: false, filterTitle: "Фасованное пиво", CardComponent: BottledBeerCard, data: bottleData, isLoading: bottleIsLoading, error: bottleError, filters: bottleFilters, filterValues: tabFilterValues.beer_bottle, selectedFilters: tabSelectedFilters.beer_bottle},
             alc: {icon: AlcoBottleIcon, hook: useGetBarMenuAlcQuery, wideColumns: false, filterTitle: "Крепкий алкоголь", CardComponent: StrongAlcoholCard, data: alcData, isLoading: alcIsLoading, error: alcError, filters: alcFilters, filterValues: tabFilterValues.alc, selectedFilters: tabSelectedFilters.alc},
             cocktails: {icon: CoctailIcon, hook: useGetBarMenuCocktailsQuery, wideColumns: true, filterTitle: "Безалкогольные напитки", CardComponent: ProductCard, data: cocktailsData, isLoading: cocktailsIsLoading, error: cocktailsError, filters: cocktailsFilters, filterValues: tabFilterValues.cocktails, selectedFilters: tabSelectedFilters.cocktails},
-            food: {icon: MeatIcon, hook: useGetBarMenuFoodQuery, wideColumns: true, filterTitle: "Еда", CardComponent: ProductCard, data: foodData, isLoading: foodIsLoading, error: foodError, filters: foodFilters,  },
+            //food: {icon: MeatIcon, hook: useGetBarMenuFoodQuery, wideColumns: true, filterTitle: "Еда", CardComponent: ProductCard, data: foodData, isLoading: foodIsLoading, error: foodError, filters: foodFilters,  },
             //tincture: {icon: AlcoBottleIcon, wideColumns: false, filterTitle: "Настойки", CardComponent: ProductCard}
         }
         Object.keys(specs).forEach((key)=>{
@@ -375,6 +375,7 @@ export default function BarMenu({filters, filterButtons, sections, ref, barId = 
                 <div className={styles.filterButtons}>
                     {tabs?.map((tab, index) => {
                         const IconComponent = tabsSpecs[tab?.alias]?.icon || AlcoBottleIcon
+                        if (tab?.alias === "food" || tab?.alias === "tincture") return null //FIXME: Временнное решение, позже убрать
                         return (<IconButton style={selectedTab === tab?.alias? "primary": ""} onClick={() => selectedTab !== tab?.alias && setSelectedTab(tab?.alias)} key={index} text={tabsSpecs[tab?.alias]?.filterTitle || tab?.header || ""}><IconComponent/></IconButton>)
                     }
 
@@ -408,7 +409,7 @@ export default function BarMenu({filters, filterButtons, sections, ref, barId = 
                                     <h2>{tab?.header}</h2>
                                     <p>{tab?.description}</p>
                                 </div>
-                                <div className={styles.sectionButton}><IconButton text="Забронировать стол"><IconComponent/></IconButton></div>
+                                {/*FIXME <div className={styles.sectionButton}><IconButton text="Забронировать стол"><IconComponent/></IconButton></div>*/}
                             </div>
                             <div className={styles.appliedFiltersRow}>
                                 {Object.entries(tabFilterValues[tab.alias] || {}).map(([filterKey, value]) => {

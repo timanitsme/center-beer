@@ -47,7 +47,7 @@ export default function BarNews({barId = 1, ref, description = "Будьте с 
                         <div key={index} className={styles.newsCard}>
                             <LightNavChain paths={paths}/>
                             <h3>{item?.title}</h3>
-                            <p className="limited-text">{item?.text}</p>
+                            <div className="limited-text" dangerouslySetInnerHTML={{ __html: item?.text }} />
                             <div className="hrtLine" style={{margin: "10px 0"}}/>
                         </div>
                     )

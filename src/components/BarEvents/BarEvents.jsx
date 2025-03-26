@@ -111,7 +111,7 @@ export default function BarEvents({title = "Скоро в баре", barId=1}){
                     <div className={styles.eventDescription}>
                         <h2>{currentEvent?.title}</h2>
                         <p className={styles.eventDate}>{currentEvent?.date_formated}</p>
-                        <p>{currentEvent?.text}</p>
+                        <div dangerouslySetInnerHTML={{ __html: currentEvent?.text }} />
                         <Link to={currentEvent?.url} className={styles.orderTable}>
                             Подробнее
                             <ArrowDiagonalIcon/>

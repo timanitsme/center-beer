@@ -19,12 +19,16 @@ import CalendarIcon from "../../../assets/calendar-icon.svg?react"
 import BeerBottleIcon from "../../../assets/bottle-icon.svg?react"
 import HalfBeerBottleIcon from "../../../assets/bottle-half-icon.svg?react"
 import EmptyBeerBottleIcon from "../../../assets/bottle-empty-icon.svg?react"
+import WorktimeModal from "../../Modals/WorktimeModal/WorktimeModal.jsx";
+import {useNavigate} from "react-router-dom";
 
 
 export default function BarInfo({barInfo, sections = []}){
+    const [showModal, setShowModal] = useState(false)
     const [isFavourite, setIsFavourite] = useState(barInfo.is_favor || false);
     const [isBookmarked, setIsBookmarked] = useState(barInfo.is_liked || false);
     const rating = 3.5
+    const navigate = useNavigate()
 
     const handleScroll = (targetRef) => {
         if (targetRef.current) {
@@ -93,10 +97,10 @@ export default function BarInfo({barInfo, sections = []}){
                     <h2>{barInfo.contacts}</h2>
                     <p>{barInfo.address}</p>
                     <a className={styles.aUnderlinedIconButton} href="https://center.beer/about-us/contact/"><CommentIcon/>Связаться с нами</a>
-                    <a className={styles.aUnderlinedIconButton}><CalendarIcon/>График работы</a>
+                    <a className={styles.aUnderlinedIconButton} onClick={() => setShowModal(true)}><CalendarIcon/>График работы</a>
                     <div>
-                        <IconButton text="Найти на карте" style="secondary"><LocationIcon/></IconButton>
-                        <IconButton text="Заказать такси" style="secondary"><TaxiIcon/></IconButton>
+                        <IconButton text="Найти на карте" onClick={() => navigate("/map")} style="secondary"><LocationIcon/></IconButton>
+                        <IconButton text="Заказать такси" onClick={() => window.location.href = `https://3.redirect.appmetrica.yandex.com/route?end-lat=${barInfo?.lon}&end-lon=${barInfo?.lat}&ref=centerbeer&appmetrica_tracking_id=25395763362139037`} style="secondary"><TaxiIcon/></IconButton>
                     </div>
                 </div>
             </div>
@@ -118,7 +122,7 @@ export default function BarInfo({barInfo, sections = []}){
                 <a className={styles.aUnderlinedIconButton}><CommentIcon/>Связаться с нами</a>
                 <a className={styles.aUnderlinedIconButton}><CalendarIcon/>График работы</a>
                 <div>
-                    <IconButton text="Найти на карте" style="secondary"><LocationIcon/></IconButton>
+                    <IconButton text="Найти на карте" onClick={() => navigate("/map")} style="secondary"><LocationIcon/></IconButton>
                     <IconButton text="Заказать такси" style="secondary"><TaxiIcon/></IconButton>
                 </div>
             </div>
@@ -129,6 +133,7 @@ export default function BarInfo({barInfo, sections = []}){
                 <IconButton text="приложение"><PhoneIcon/></IconButton>
                 <SimpleButton text={"забронировать стол"}/>
             </div>
+            <WorktimeModal setShow={setShowModal} show={showModal} workTimeList={barInfo["work_time_list"]}/>
         </div>
 
     )

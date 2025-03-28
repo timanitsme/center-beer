@@ -35,7 +35,7 @@ export default function FilterComboBox({ options, title, onChange, reset }){
 
     // Сброс выбранных опций
     useEffect(() => {
-        if (reset) {
+        if (reset?.reset) {
             setSelectedOptions([]);
         }
     }, [reset]);

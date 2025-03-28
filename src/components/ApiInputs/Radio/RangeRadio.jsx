@@ -16,11 +16,11 @@ export default function RangeRadio({title, options, onChange, reset, defaultOpti
     const [range, setRange] = useState({ from: "", to: "" }); // Состояние для значений "от" и "до"
 
     useEffect(() => {
-        if (reset){
+        if (reset?.reset){
             setSelectedOption(getDefaultOption())
             setRange({ from: "", to: "" })
         }
-    }, [reset, options, defaultOption]);
+    }, [reset]);
 
     const handleFromChange = (event) => {
         const value = event.target.value;

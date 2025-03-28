@@ -15,10 +15,10 @@ export default function Radio({title, options, onChange, reset, defaultOption, f
     const [selectedOption, setSelectedOption] = useState(getDefaultOption());
 
     useEffect(() => {
-        if (reset){
+        if (reset?.reset){
             setSelectedOption(getDefaultOption())
         }
-    }, [reset, options, defaultOption]);
+    }, [reset]);
 
 
     const handleRadioChange = (option) =>{

@@ -21,8 +21,15 @@ export default function CheckBoxSection({title, options, onChange, reset}){
 
     // Сброс выбранных опций
     useEffect(() => {
-        if (reset) {
-            setSelectedOptions([]);
+        if (reset?.reset) {
+            if (reset?.id !== 0){
+                console.log(`reset id: ${typeof reset.id} reset: ${reset.id} selectedOptions: ${JSON.stringify(selectedOptions)}`)
+                setSelectedOptions((prev) => prev.filter(x => x.id !== reset?.id));
+
+            }
+            else{
+                setSelectedOptions([]);
+            }
         }
     }, [reset]);
 

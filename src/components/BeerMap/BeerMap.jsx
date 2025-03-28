@@ -1,14 +1,29 @@
 import styles from "./BeerMap.module.css"
 import {MapContainer, Marker, Popup, TileLayer} from "react-leaflet";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import L from "leaflet"
 import MapMarker from "../../assets/map-marker.svg"
 import HopIcon from "../../assets/hop-icon.svg?react"
 import IconButton from "../Buttons/IconButton/IconButton.jsx";
 import {useNavigate} from "react-router-dom";
+import {useGetBarsQuery} from "../../store/services/centerBeer.js";
 
 
 export default function BeerMap(){
+
+    const [filterValues, setFilterValues] = useState({
+        lim: 24,
+        offset: 0,
+        city_id: '',
+        subways_ids: [],
+        kitchen_ids: [],
+        visit_type_ids: [],
+        type_ids: [],
+        feature_ids: [],
+        only_opened: false
+    });
+
+    const {data: barsData, isLoading: barsIsLoading, error: barsError } = useGetBarsQuery(filterValues);
     const markers = [
         {position: [55.731945, 37.617379], title: "13 rules",  address: "ул. Такая-то д.19", phone: "+7 (916) 298-06-14"},
         {position: [55.755820, 37.617633], title: "13 rules",  address: "ул. Такая-то д.19", phone: "+7 (916) 298-06-14"},
@@ -32,7 +47,7 @@ export default function BeerMap(){
         iconSize: [35,35],
     });
 
-
+    if (!barsData || barsIsLoading || barsError) return null
     return(
      <div className={styles.mapContainer}>
          <MapContainer center={[55.755820, 37.617633]} zoom={13} scrollWheelZoom={true}>

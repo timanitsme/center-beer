@@ -6,7 +6,7 @@ export default function SimpleCatalogSection({cards, CardComponent, wideColumns=
         <div className={styles.menuSection}>
             <div className={wideColumns ? styles.sectionContentWide : styles.sectionContent}>
                 {cards.map((cardInfo) => {
-                    return (<CardComponent key={cardInfo.title} cardInfo={cardInfo}/>)
+                    return (<CardComponent key={cardInfo.name} cardInfo={cardInfo}/>)
                 })}
             </div>
 

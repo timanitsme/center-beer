@@ -33,6 +33,9 @@ export default function BarMenu({filters, filterButtons, sections, ref, barId = 
     // Состояние для хранения имен применяемых фильтров
     const [filterNameMap, setFilterNameMap] = useState({});
 
+
+    const [resetOneFilter, setResetOneFilter] = useState("")
+
     // Получение всех вкладок
     const {data: tabs, isLoading: tabsIsLoading, error: tabsError} = useGetBarMenuTabsQuery(barId)
 
@@ -156,11 +159,15 @@ export default function BarMenu({filters, filterButtons, sections, ref, barId = 
         initialStates
     ])
 
+    // FIXME: Reset
     // Состояние для сброса фильтров конкретной вкладки (а именно для сброса галочек, т.е. визуально выбранных фильтров)
     const [tabResetFilters, setTabResetFilters] = useState(() => {
         const resetFiltersStates = {};
-        Object.keys(tabsSpecs).forEach((key) => {
-            resetFiltersStates[key] = false;
+        Object.keys(filterSpecs).forEach((alias) => {
+            resetFiltersStates[alias] = {};
+            Object.values(filterSpecs[alias]).forEach((value) => {
+                resetFiltersStates[alias][value.id] = {reset: false, id: 0};
+            });
         });
         return resetFiltersStates;
     });
@@ -174,6 +181,7 @@ export default function BarMenu({filters, filterButtons, sections, ref, barId = 
         }));
     };
 
+    // FIXME: Reset
     // Сброс фильтров для конкретной вкладки
     const resetFilters = (alias) => {
         setTabFilterValues((prevState) => ({
@@ -184,10 +192,16 @@ export default function BarMenu({filters, filterButtons, sections, ref, barId = 
             ...prevState,
             [alias]: initialStates[alias],
         }));
-        setTabResetFilters((prevState) => ({
-            ...prevState,
-            [alias]: true,
-        }));
+        setTabResetFilters((prevState) => {
+            const newState = {};
+            Object.keys(prevState).forEach((alias) => {
+                newState[alias] = {};
+                Object.values(filterSpecs[alias]).forEach((value) => {
+                    newState[alias][value.id] = {reset: true, id: 0}; // Устанавливаем значение `true` для всех фильтров
+                });
+            });
+            return newState;
+        });
     }
 
     // Обработка изменения фильтра (добавление измененных данных в выбранные фильтры)
@@ -294,8 +308,33 @@ export default function BarMenu({filters, filterButtons, sections, ref, barId = 
         return count;
     };
 
+    //FIXME: Reset
     // Обработка удаления конкретного фильтра по клику в applied filters
-    const removeFilter = (tabAlias, filterKey, idToRemove) => {
+    const removeFilter = (tabAlias, filterKey, idToRemove, resetKey=null) => {
+        setTabSelectedFilters((prev) => {
+            const currentSelectedFilters = prev[tabAlias]; // Фильтры текущей вкладки
+            const currentValue = currentSelectedFilters[filterKey];
+
+            if (Array.isArray(currentValue)) {
+                // Удаляем элемент из массива
+                return {
+                    ...prev,
+                    [tabAlias]: {
+                        ...currentSelectedFilters,
+                        [filterKey]: currentValue.filter((id) => id !== idToRemove),
+                    },
+                };
+            } else {
+                // Сбрасываем не массивное значение
+                return {
+                    ...prev,
+                    [tabAlias]: {
+                        ...currentSelectedFilters,
+                        [filterKey]: "",
+                    },
+                };
+            }
+        });
         setTabFilterValues((prev) => {
             const currentTabFilters = prev[tabAlias]; // Фильтры текущей вкладки
             const currentValue = currentTabFilters[filterKey];
@@ -320,19 +359,65 @@ export default function BarMenu({filters, filterButtons, sections, ref, barId = 
                 };
             }
         });
+        if (resetKey){
+            setResetOneFilter(`${resetKey}`)
+            setTabResetFilters((prev) => ({
+                ...prev,
+                [tabAlias]: {
+                    ...prev[tabAlias],
+                    [resetKey]: {reset: true, id: idToRemove},
+                },
+            }));
+        }
+        else{
+            setResetOneFilter(`${filterKey}`)
+            setTabResetFilters((prev) => ({
+                ...prev,
+                [tabAlias]: {
+                    ...prev[tabAlias],
+                    [filterKey]: {reset: true, id: idToRemove},
+                },
+            }));
+        }
     };
 
+
+    //TODO: Некорректно прописан reset
     // Обработка удаления конкретного фильтра по клику в applied filters
-    const removeRangeRadioFilter = (tabAlias, filterKey) => {
+    const removeRangeRadioFilter = (tabAlias, filterName) => {
+        setTabSelectedFilters((prev) => {
+            const currentTabSelectedFilters = prev[tabAlias];
+            return {
+                ...prev,
+                [tabAlias]: {
+                    ...currentTabSelectedFilters,
+                    [`${filterName}_from`]: "",
+                    [`${filterName}_to`]: "",
+                },
+            }
+        });
         setTabFilterValues((prev) => {
             const currentTabFilters = prev[tabAlias];
                 return {
                     ...prev,
                     [tabAlias]: {
                         ...currentTabFilters,
-                        [filterKey]: "",
+                        [`${filterName}_from`]: "",
+                        [`${filterName}_to`]: "",
                     },
             }
+        });
+        console.log(`filter name: ${filterName}`)
+        setTabResetFilters((prev) => {
+            const updatedTab = {
+                ...prev[tabAlias], // Копируем текущие значения для tabAlias
+                [`${filterName}_from`]: { reset: true, id: 0 }, // Обновляем abv_from
+                [`${filterName}_to`]: { reset: true, id: 0 },   // Обновляем abv_to
+            };
+            return {
+                ...prev, // Копируем весь объект prev
+                [tabAlias]: updatedTab, // Обновляем только tabAlias
+            };
         });
     };
 
@@ -353,17 +438,28 @@ export default function BarMenu({filters, filterButtons, sections, ref, barId = 
         }
     }, [tabs, selectedTab, tabsIsLoading, tabsError]);
 
+    // FIXME: Reset
     useEffect(() => {
-        if (tabResetFilters[selectedTab]) {
+        if (tabResetFilters[selectedTab] && Object?.values(tabResetFilters[selectedTab])?.some(value => value.reset === true)) {
             const timeout = setTimeout(() => {
-                setTabResetFilters((prevState) => ({
-                    ...prevState,
-                    [selectedTab]: false,
-                }));
+                setTabResetFilters((prevState) => {
+                    const newTabResetFilters = { ...prevState };
+                    // Сбрасываем все фильтры для выбранного алиаса
+                    newTabResetFilters[selectedTab] = {};
+                    Object.values(filterSpecs[selectedTab]).forEach((value) => {
+                        newTabResetFilters[selectedTab][value.id] = {reset: false, id: 0};
+
+                    });
+                    return newTabResetFilters;
+                });
             }, 1);
 
             return () => clearTimeout(timeout);
         }
+    }, [tabResetFilters]);
+
+    useEffect(() => {
+        console.log(`reset filters: ${JSON.stringify(tabResetFilters[selectedTab])}`)
     }, [tabResetFilters]);
 
     if (!tabs || tabsIsLoading || tabsError || tabs?.length === 0) return null
@@ -390,15 +486,18 @@ export default function BarMenu({filters, filterButtons, sections, ref, barId = 
 
                 return(<div key={index} className={styles.menuContent}>
                     <div className={styles.menuFilters}>
-                        {filtersConfig(tab.alias).map((filter) => (
-                            <FilterItem
-                                key={filter.key}
-                                filter={filter}
-                                filterKey={tab.alias}
-                                onChange={(value) => handleFilterChange(tab.alias, filter.key, value)}
-                                reset={tabResetFilters[tab.alias]}
-                            />
-                        ))}
+
+                        {filtersConfig(tab.alias).map((filter) => {
+                            return(
+                                <FilterItem
+                                    key={filter.key}
+                                    filter={filter}
+                                    filterKey={tab.alias}
+                                    onChange={(value) => handleFilterChange(tab.alias, filter.key, value)}
+                                    reset={tabResetFilters[tab.alias][filter.key]}
+                                />
+                            )
+                        })}
                         <SimpleButton onClick={() => applyFilters(tab.alias)} text="Применить фильтры"></SimpleButton>
                     </div>
                     <div className={styles.menuItemsSections}>
@@ -409,7 +508,7 @@ export default function BarMenu({filters, filterButtons, sections, ref, barId = 
                                     <h2>{tab?.header}</h2>
                                     <p>{tab?.description}</p>
                                 </div>
-                                {/*FIXME <div className={styles.sectionButton}><IconButton text="Забронировать стол"><IconComponent/></IconButton></div>*/}
+                                <div className={styles.sectionButton}><IconButton text="Забронировать стол"><IconComponent/></IconButton></div>
                             </div>
                             <div className={styles.appliedFiltersRow}>
                                 {Object.entries(tabFilterValues[tab.alias] || {}).map(([filterKey, value]) => {
@@ -425,27 +524,31 @@ export default function BarMenu({filters, filterButtons, sections, ref, barId = 
                                                 if (filterDirection === "id"){
                                                     const filterValue = filterNameMap[tab.alias][filterName]?.[id]
                                                     return <>
-                                                        {filterValue && <AppliedFilter key={`${filterKey}`} onClick={() => removeFilter(tab.alias, filterKey, id)}>
+                                                        {filterValue && <AppliedFilter key={`${filterKey}`} onClick={() => removeFilter(tab.alias, filterKey, id, filterName)}>
                                                             <p>{filterValue}</p>
                                                         </AppliedFilter>}
                                                     </>
                                                 }
-                                                else if (filterDirection === "from"){
+                                                else if ((filterDirection === "from")){
                                                     const filterValueFrom = tabFilterValues[tab.alias][`${filterName}_from`]
+                                                    const filterValueTo = tabFilterValues[tab.alias][`${filterName}_to`]
+                                                    console.log(`filterValue from: ${JSON.stringify(filterValueFrom)}`)
+                                                    if (JSON.stringify(filterValueFrom) === '[""]' && JSON.stringify(filterValueTo) === '[""]' || JSON.stringify(filterValueFrom) === '[null]' && JSON.stringify(filterValueTo) === '[null]') return null
                                                     return <>
-                                                        {filterValueFrom && <AppliedFilter key={`${filterKey}_from`} onClick={() => removeRangeRadioFilter(tab.alias,filterKey)}>
-                                                            <p>{`${filterSpecs[tab.alias][filterName]?.title} от: ${filterValueFrom}`}</p>
-                                                        </AppliedFilter>}
+                                                        <AppliedFilter key={`${filterKey}_from`} onClick={() => removeRangeRadioFilter(tab.alias, filterName)}>
+                                                            <p>{`${filterSpecs[tab.alias][filterName]?.title}: ${JSON.stringify(filterValueFrom) === '[""]'? "0": filterValueFrom} - ${JSON.stringify(filterValueTo) === '[""]' ? "∞" : filterValueTo}`}</p>
+                                                        </AppliedFilter>
                                                     </>
                                                 }
-                                                else if (filterDirection === "to"){
+                                                /*else if (filterDirection === "to" && tabFilterValues[tab.alias][`${filterName}_to`]){
                                                     const filterValueTo = tabFilterValues[tab.alias][`${filterName}_to`]
+                                                    if (JSON.stringify(filterValueTo) === '[""]') return null
                                                     return <>
                                                         {filterValueTo && <AppliedFilter key={`${filterKey}-to`} onClick={() => removeRangeRadioFilter(tab.alias,filterKey)}>
                                                             <p>{`${filterSpecs[tab.alias][filterName]?.title} до: ${filterValueTo}`}</p>
                                                         </AppliedFilter>}
                                                     </>
-                                                }
+                                                }*/
                                             }
                                             else{
                                                 const filterName = filterNameMap[tab.alias][filterKey]?.[id];

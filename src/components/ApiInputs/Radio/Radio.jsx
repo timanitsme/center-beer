@@ -31,7 +31,7 @@ export default function Radio({title, options, onChange, reset, defaultOption, f
         <div className={styles.radio}>
             <p className={styles.radioHeader}>{title}</p>
             {defaultOption && !options.some(opt => opt.id === defaultOption.id) && (
-                <div className={styles.option} onClick={() => setSelectedOption(getDefaultOption())}>
+                <div className={styles.option} onClick={() => handleRadioChange(getDefaultOption())}>
                     <input
                         type="radio"
                         value={defaultOption?.id || title}

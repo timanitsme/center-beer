@@ -22,26 +22,47 @@ export default function RangeRadio({title, options, onChange, reset, defaultOpti
         }
     }, [reset]);
 
+    useEffect(() => {
+        console.log(`title: ${title} selectedOption id: ${selectedOption.id}`)
+    }, [selectedOption]);
+
     const handleFromChange = (event) => {
+        const def = getDefaultOption()
+        let newOption = selectedOption.id
+        if (selectedOption !== def){
+            setSelectedOption(def)
+            newOption = def.id
+        }
         const value = event.target.value;
         setRange((prev) => ({ ...prev, from: value.replace(/\D/, "") })); // Разрешаем только числа
         if (onChange){
-            onChange({options: {id: selectedOption.id, from: value.replace(/\D/, ""), to: range.to}, names: selectedOption.name});
+            onChange({options: {id: newOption, from: value.replace(/\D/, ""), to: range.to}, names: selectedOption.name});
         }
     };
 
     const handleToChange = (event) => {
+        const def = getDefaultOption()
+        let newOption = selectedOption.id
+        if (selectedOption !== def){
+            setSelectedOption(def)
+            newOption = def.id
+        }
         const value = event.target.value;
         setRange((prev) => ({ ...prev, to: value.replace(/\D/, "") })); // Разрешаем только числа
         if (onChange){
-            onChange({options: {id: selectedOption.id, from: range.from, to: value.replace(/\D/, "")}, names: selectedOption.name});
+            onChange({options: {id: newOption, from: range.from, to: value.replace(/\D/, "")}, names: selectedOption.name});
         }
     };
 
     const handleRadioChange = (option) =>{
+        let newRange = { from: range.from, to: range.to }
+        if (range.from !== "" || range.to !== ""){
+            setRange({ from: "", to: "" })
+            newRange = {from: "", to: ""}
+        }
         setSelectedOption(option)
         if (onChange){
-            onChange({options: {id: option.id, from: range.from, to: range.to}, names: option.name});
+            onChange({options: {id: option.id, from: newRange.from, to: newRange.to}, names: option.name});
         }
     }
 
@@ -67,7 +88,7 @@ export default function RangeRadio({title, options, onChange, reset, defaultOpti
                 />
             </div>
             {defaultOption && !options.some(opt => opt.id === defaultOption.id) && (
-                <div className={styles.option} onClick={() => setSelectedOption(getDefaultOption())}>
+                <div className={styles.option} onClick={() => handleRadioChange(defaultOption)}>
                     <input
                         type="radio"
                         value={defaultOption?.id || title}

@@ -21,7 +21,7 @@ import BottlesPairIcon from "../../assets/bottles-pair-icon.svg?react";
 import MeatIcon from "../../assets/meat-icon.svg?react";
 import AlcoBottleIcon from "../../assets/alco-bottle-icon.svg?react";
 import CoctailIcon from "../../assets/coctail-icon.svg?react"
-import {useEffect, useMemo, useState} from "react";
+import {Fragment, useEffect, useMemo, useState} from "react";
 import DraftBeerCard from "../Cards/DraftBeerCard/DraftBeerCard.jsx";
 import BottledBeerCard from "../Cards/BottledBeerCard/BottledBeerCard.jsx";
 import StrongAlcoholCard from "../Cards/StrongAlcoCard/StrongAlcoholCard.jsx";
@@ -206,9 +206,7 @@ export default function BarMenu({filters, filterButtons, sections, ref, barId = 
 
     // Обработка изменения фильтра (добавление измененных данных в выбранные фильтры)
     const handleFilterChange = (tabAlias, filterKey, value) => {
-        console.log('wacao nima')
         if (multiSelectParams[tabAlias].includes(`${filterKey}_id`)){
-            console.log(`${filterKey}_id value: ${value.options.id}`)
             setTabSelectedFilters((prevState) => ({
                 ...prevState,
                 [tabAlias]: {
@@ -536,15 +534,6 @@ export default function BarMenu({filters, filterButtons, sections, ref, barId = 
                                                         </AppliedFilter>
                                                     </>
                                                 }
-                                                /*else if (filterDirection === "to" && tabFilterValues[tab.alias][`${filterName}_to`]){
-                                                    const filterValueTo = tabFilterValues[tab.alias][`${filterName}_to`]
-                                                    if (JSON.stringify(filterValueTo) === '[""]') return null
-                                                    return <>
-                                                        {filterValueTo && <AppliedFilter key={`${filterKey}-to`} onClick={() => removeRangeRadioFilter(tab.alias,filterKey)}>
-                                                            <p>{`${filterSpecs[tab.alias][filterName]?.title} до: ${filterValueTo}`}</p>
-                                                        </AppliedFilter>}
-                                                    </>
-                                                }*/
                                             }
                                             else{
                                                 const filterName = filterNameMap[tab.alias][filterKey]?.[id];
@@ -584,7 +573,20 @@ export default function BarMenu({filters, filterButtons, sections, ref, barId = 
                                     <p>Сбросить фильтры</p>
                                 </AppliedFilter>}
                             </div>
+                            {tabSpec?.data && tab.alias === "food" && Object.keys(tabSpec?.data)?.map((tabNum, index) => {
+                                return(
+                                    <Fragment key={index}>
+                                        <div key={index} className={`${styles.sectionDescription} ${styles.row}`}>
+                                            <h2>{tabSpec?.data[tabNum]?.name}</h2>
+                                        </div>
+                                        <div className={tabsSpecs[tab.alias]?.wideColumns ? styles.sectionContentWide : styles.sectionContent}>
+                                            {tabSpec?.data[tabNum]?.menu && tabSpec?.data[tabNum]?.menu?.length > 0 && tabSpec?.data[tabNum]?.menu?.map((cardInfo, index) => <CardComponent key={index} cardInfo={cardInfo}/>)}
+                                        </div>
+                                    </Fragment>
+                                )
+                            })}
                             <div className={tabsSpecs[tab.alias]?.wideColumns ? styles.sectionContentWide : styles.sectionContent}>
+
                                 {tabSpec?.data && tabSpec?.data?.length > 0 && tabSpec?.data?.map((cardInfo, index) => <CardComponent key={index} cardInfo={cardInfo}/>)}
                             </div>
                         </div>

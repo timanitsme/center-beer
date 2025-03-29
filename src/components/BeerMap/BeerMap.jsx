@@ -46,6 +46,7 @@ export default function BeerMap(){
         popupAnchor:  [-0, -0],
         iconSize: [35,35],
     });
+    const goToBarPage = (alias) => navigate(`/bar/${alias}`);
 
     if (!barsData || barsIsLoading || barsError) return null
     return(
@@ -54,14 +55,14 @@ export default function BeerMap(){
              <TileLayer
                  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
              />
-             {markers.map((marker, index) =>
-                 <Marker key={index} position={marker.position} icon={myIcon}>
+             {barsData.length !== 0 && !barsIsLoading && !barsError && barsData.map((marker, index) =>
+                 <Marker key={index} position={[marker?.lon, marker?.lat]} icon={myIcon}>
                      <Popup>
                          <div className={styles.markerPopUp}>
-                             <h3>{marker.title}</h3>
-                             <p><span className={styles.active}>Адрес:</span> {marker.address}</p>
-                             <p><span className={styles.active}>Телефон:</span> {marker.phone}</p>
-                             <IconButton text={"Подробнее"} onClick={() => navigate("/bar/1")}><HopIcon/></IconButton>
+                             <h3>{marker?.name}</h3>
+                             <p><span className={styles.active}>Адрес:</span> {marker?.address}</p>
+                             <p><span className={styles.active}>Телефон:</span> {marker?.contacts}</p>
+                             <IconButton text={"Подробнее"} onClick={() => goToBarPage(marker?.alias)}><HopIcon/></IconButton>
                          </div>
                      </Popup>
                  </Marker>)}

@@ -4,12 +4,18 @@ import CloseIcon from "../../../assets/close-icon.svg?react"
 import {useEffect, useState} from "react";
 import {useGetCitiesQuery} from "../../../store/services/centerBeer.js";
 
-export default function Search({title, onChange}){
+export default function Search({title, onChange, reset}){
     const [inputValue, setInputValue] = useState(''); // Значение поля поиска
     const [filteredSuggestions, setFilteredSuggestions] = useState([]);
     const [selectedSuggestion, setSelectedSuggestion] = useState({});
     const {data: cities = [], isLoading, error} = useGetCitiesQuery(inputValue)
 
+
+    useEffect(() => {
+        if (reset?.reset){
+            setInputValue("")
+        }
+    }, [reset]);
 
     useEffect(() => {
         if (inputValue.trim() !== '') {

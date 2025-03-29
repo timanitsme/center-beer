@@ -125,9 +125,22 @@
     align-items: stretch;
 }
 
+.row{
+    margin-left: 70px;
+}
+
 @media (max-width: 1000px) {
     .sectionHeader{
         width: 100%;
+    }
+    .row{
+        margin-left: 0;
+    }
+    .row.sectionDescription{
+        align-items: center;
+        justify-content: flex-start;
+        display: flex;
+        flex: 1;
     }
     .sectionDescription{
         align-items: center;

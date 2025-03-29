@@ -1,0 +1,77 @@
+.comboBox {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.comboBoxHeader {
+
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
+    border-radius: 5px 5px 5px 5px;
+    cursor: pointer;
+    background-color: var(--third);
+
+}
+
+
+.comboBoxHeader p{
+    color: var(--txt-active);
+    font-size: 0.9vw;
+    font-weight: 200;
+}
+
+.comboBoxHeader .arrow{
+    margin-left: 10px;
+}
+
+.comboBoxHeader .arrow svg{
+    color: var(--txt-secondary);
+}
+
+.comboBoxHeader .arrow svg {
+    transition: transform 0.3s ease;
+}
+
+.comboBoxHeader .arrow.open svg {
+    transform: rotate(180deg);
+}
+
+.optionsList {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    margin-top: 5px;
+    padding: 0;
+    list-style: none;
+    background: var(--section-bg);
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+}
+
+.optionItem {
+    padding: 8px 12px;
+    cursor: pointer;
+    color: var(--txt-active);
+    font-size: clamp(10px, 0.9vw, 15px);
+    font-weight: 200;
+    border-radius: 5px;
+}
+
+.optionItem:hover {
+    background-color: var(--third);
+}
+
+@media (max-width: 1000px) {
+    .comboBoxHeader p{
+        font-size: 10px;
+    }
+    .comboBoxHeader{
+        padding: 4px 8px;
+    }
+}

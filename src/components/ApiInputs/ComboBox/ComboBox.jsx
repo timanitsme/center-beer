@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import styles from "./ComboBox.module.css";
 import ArrowDownIcon from "../../../assets/arrow-down-icon.svg?react";
 import CheckBox from "../CheckBox/CheckBox.jsx";
@@ -22,7 +22,7 @@ export default function ComboBox({ options, onChange }){
                 className={`${styles.comboBoxHeader} ${!isOpen? styles.closed: ''}`}
                 onClick={() => setIsOpen(!isOpen)} // Переключаем состояние isOpen
             >
-                <p>{selectedOption}</p>
+                <p>{selectedOption?.name}</p>
                 <span className={`${styles.arrow} ${isOpen ? styles.open : ''}`}><ArrowDownIcon/></span>
             </div>
             {isOpen && (
@@ -33,7 +33,7 @@ export default function ComboBox({ options, onChange }){
                             onClick={() => handleOptionSelect(option)}
                             className={styles.optionItem}
                         >
-                            {option}
+                            {option.name}
                         </li>
                     ))}
                 </ul>

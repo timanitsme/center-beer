@@ -22,9 +22,6 @@ export default function RangeRadio({title, options, onChange, reset, defaultOpti
         }
     }, [reset]);
 
-    useEffect(() => {
-        console.log(`title: ${title} selectedOption id: ${selectedOption.id}`)
-    }, [selectedOption]);
 
     const handleFromChange = (event) => {
         const def = getDefaultOption()

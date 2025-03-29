@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 import LocationIcon from "../../assets/location-filled-icon.svg?react"
 import SimpleCatalogSection from "../CatalogSections/SimpleCatalogSection/SimpleCatalogSection.jsx";
 import BarCard from "../Cards/BarCard/BarCard.jsx";
-import ComboBox from "../Inputs/ComboBox/ComboBox.jsx";
+import ComboBox from "../ApiInputs/ComboBox/ComboBox.jsx";
 import Toggle from "../Toggle/Toggle.jsx";
 import {useEffect, useMemo, useState} from "react";
 import AppliedFilter from "../AppliedFilter/AppliedFilter.jsx";
@@ -23,7 +23,6 @@ import Search from "../ApiInputs/Search/Search.jsx";
 
 export default function BarsCatalog({filters = [], filterButtons = [], sections = []}){
     const navigate = useNavigate()
-    const [resetFilterComboBox, setResetFilterComboBox] = useState(false); // Управление сбросом фильтров
     const [filterNameMap, setFilterNameMap] = useState({});
 
     // Спецификация фильтров
@@ -31,10 +30,12 @@ export default function BarsCatalog({filters = [], filterButtons = [], sections 
         kitchen: {title: "Кухня", component: "combobox", id: "kitchen_ids"},
         subways: {title: "Метро", component: "combobox", id: "subways_ids"},
         visit_types: {title: "Цель посещения", component: "combobox", id: "visit_type_ids"},
-        prices: {title: "Цена", component: "radio", id: "price"},
+        prices: {title: "Цена", component: "radio", id: "price_ids"},
         types: {title: "Тип заведения", component: "combobox", id: "type_ids"},
         feautures: {title: "Особенности", component: "combobox", id: "feature_ids"},
-        cities: {title: "Города", id: "city_id"}
+        cities: {title: "Города", id: "city_id"},
+        open: {title: "Только открытые", id: "only_opened"},
+        sort_by: {title: "Сортировка", id: "sort_by"}
     }
 
     // Фильтры, от изменения которых изменяется запрос
@@ -45,9 +46,11 @@ export default function BarsCatalog({filters = [], filterButtons = [], sections 
         subways_ids: [],
         kitchen_ids: [],
         visit_type_ids: [],
+        price_ids: [],
         type_ids: [],
         feature_ids: [],
-        only_opened: false
+        only_opened: false,
+        sort_by: "popular"
     });
 
     // Временные фильтры (хранят выбранные значения до применения)
@@ -56,25 +59,38 @@ export default function BarsCatalog({filters = [], filterButtons = [], sections 
         subways_ids: [],
         kitchen_ids: [],
         visit_type_ids: [],
+        price_ids: [],
         type_ids: [],
         feature_ids: [],
         only_opened: false,
+        sort_by: "popular"
+    });
+
+    const [tabResetFilters, setTabResetFilters] = useState(() => {
+        const resetFiltersStates = {};
+        Object.values(barFilterSpecs).forEach((value) => {
+            resetFiltersStates[value.id] = {reset: false, id: 0};
+        });
+        return resetFiltersStates;
     });
 
     // Получение данных с API
     const {data: barsData, isLoading: barsIsLoading, error: barsError } = useGetBarsQuery(filterValues);
-    const {data: barFilters, isLoading: barFiltersIsLoading, error: barFiltersError} = useGetBarsFiltersQuery(1)
+    const {data: barFilters, isLoading: barFiltersIsLoading, error: barFiltersError} = useGetBarsFiltersQuery(filterValues["city_id"] || 1)
     const {data: cities, isLoading: citiesIsLoading, error: citiesError} = useGetCitiesQuery()
-
+    const sortFilters =[
+        {id: "popular", name: "Популярное"},
+        {id: "price", name: "По цене"},
+        {id: "rating", name: "По отзывам"},
+    ]
 
     useEffect(() => {
         if (barFilters && !barFiltersIsLoading && !barFiltersError) {
             const nameMap = {};
-
             // Обработка barFilters
             Object.entries(barFilters[0]).forEach(([key, options]) => {
                 nameMap[barFilterSpecs[key]?.id || key] = options.reduce((acc, option) => {
-                    acc[option.id] = option.name; // Предполагается, что у опций есть `id` и `name`
+                    acc[option.id] = `${barFilterSpecs[key].title}: ${option.name}`; // Предполагается, что у опций есть `id` и `name`
                     return acc;
                 }, {});
             });
@@ -82,7 +98,7 @@ export default function BarsCatalog({filters = [], filterButtons = [], sections 
             // Обработка cities
             if (cities && !citiesIsLoading && !citiesError) {
                 nameMap["city_id"] = cities.reduce((acc, city) => {
-                    acc[city.id.toString()] = city.name; // Предполагается, что у городов есть `id` и `name`
+                    acc[city.id.toString()] = `Город: ${city.name}`; // Предполагается, что у городов есть `id` и `name`
                     return acc;
                 }, {});
             }
@@ -94,7 +110,6 @@ export default function BarsCatalog({filters = [], filterButtons = [], sections 
 
     // Подготовка фильтров
     const filtersConfig = useMemo(() => {
-        console.log(`bar filters: ${barFilters}`)
         if (!barFilters || barFiltersIsLoading || barFiltersError) return [];
         return Object?.entries(barFilters[0])?.map(([key, options]) => {
             const spec = barFilterSpecs[key]
@@ -110,9 +125,8 @@ export default function BarsCatalog({filters = [], filterButtons = [], sections 
     const handleFilterChange = (filterKey, value) => {
         setSelectedFilters((prevState) => ({
             ...prevState,
-            [filterKey]: Array.isArray(value.options) ? value.options : [value.options],
+            [filterKey]: Array.isArray(value.options) ? value.options : [value.options === 0? '': value.options],
         }));
-        console.log(`selectedFilters: ${JSON.stringify(selectedFilters)}`);
     };
 
     const handleSingleFilterChange = (filterKey, value) => {
@@ -120,7 +134,6 @@ export default function BarsCatalog({filters = [], filterButtons = [], sections 
             ...prevState,
             [filterKey]: value,
         }));
-        console.log(`selectedFilters: ${JSON.stringify(selectedFilters)}`);
     }
 
     const handleSingleFilterApply = (filterKey, value) => {
@@ -132,7 +145,6 @@ export default function BarsCatalog({filters = [], filterButtons = [], sections 
             ...prevState,
             [filterKey]: value,
         }));
-        console.log(`new val: ${value}`)
     }
 
     // Применение фильтров
@@ -150,22 +162,40 @@ export default function BarsCatalog({filters = [], filterButtons = [], sections 
             subways_ids: [],
             kitchen_ids: [],
             visit_type_ids: [],
+            price_ids: [],
             type_ids: [],
             feature_ids: [],
             only_opened: false,
+            sort_by: "popular"
         };
         setFilterValues(initialState)
         setSelectedFilters(initialState)
-        setResetFilterComboBox(true);
+        setTabResetFilters(() => {
+            const newState = {};
+            Object.values(barFilterSpecs).forEach((value) => {
+                newState[value.id] = {reset: true, id: 0}; // Устанавливаем значение `true` для всех фильтров
+            });
+            return newState;
+        });
     }
 
     // Возвращение reset к изначальному состоянию
     useEffect(() => {
-        if (resetFilterComboBox) {
-            const timeout = setTimeout(() => setResetFilterComboBox(false), 1);
+        if (tabResetFilters && Object?.values(tabResetFilters)?.some(value => value.reset === true)) {
+            const timeout = setTimeout(() => {
+                setTabResetFilters((prevState) => {
+                    const newTabResetFilters = { ...prevState };
+                    Object.values(barFilterSpecs).forEach((value) => {
+                        newTabResetFilters[value.id] = {reset: false, id: 0};
+                    });
+                    return newTabResetFilters;
+                });
+            }, 1);
+
             return () => clearTimeout(timeout);
         }
-    }, [resetFilterComboBox]);
+
+    }, [tabResetFilters]);
 
 
     const removeFilter = (filterKey, idToRemove) => {
@@ -185,7 +215,27 @@ export default function BarsCatalog({filters = [], filterButtons = [], sections 
                     [filterKey]: "",
                 };
             }
+
         });
+        setSelectedFilters((prev) => {
+            const currentValue = prev[filterKey];
+            if (Array.isArray(currentValue)) {
+                return {
+                    ...prev,
+                    [filterKey]: currentValue.filter((id) => id !== idToRemove),
+                };
+            } else {
+                return {
+                    ...prev,
+                    [filterKey]: "",
+                };
+            }
+
+        });
+        setTabResetFilters((prev) => ({
+            ...prev,
+            [filterKey]: {reset: true, id: idToRemove},
+        }));
     };
 
     const countAppliedFilters = () => {
@@ -193,17 +243,18 @@ export default function BarsCatalog({filters = [], filterButtons = [], sections 
 
         Object.entries(filterValues).forEach(([filterKey, value]) => {
             // Если значение — массив, считаем его длину
-            if (Array.isArray(value) && value.length > 0) {
+            if (Array.isArray(value) && value.length > 0 && JSON.stringify(value) !== '[""]') {
                 count += value.length;
             }
             // Если значение — строка или булево значение, учитываем его как один фильтр
             else if (typeof value === "string" && value.trim() !== "") {
-                count += 1;
+                if (filterKey !== "sort_by")
+                    count += 1;
             } else if (typeof value === "boolean" && value) {
-                count += 1;
+                if (filterKey !== "only_opened")
+                    count += 1;
             }
         });
-
         return count;
     };
 
@@ -219,21 +270,16 @@ export default function BarsCatalog({filters = [], filterButtons = [], sections 
                         <IconButton text="Все бары на карте" onClick={() => navigate("/map")}><LocationIcon/></IconButton>
                     </div>
                 </div>
-                {/*<div className={styles.filterButtons}>
-                    {filterButtons.map((button) => (
-                        <IconButton key={button.text} text={button.text}>{button.icon}</IconButton>
-                    ))}
-                </div>*/}
             </div>
             <div className={styles.menuContent}>
                 <div className={styles.menuFilters}>
-                    <Search title="Поиск" onChange={(value) => {console.log(`value: ${value}`); handleSingleFilterChange("city_id", value)}}></Search>
+                    <Search title="Поиск" reset={tabResetFilters["city_id"]} onChange={(value) => handleSingleFilterChange("city_id", value)}></Search>
                     {filtersConfig.map((filter) => (
                         <FilterItem
                             key={filter.key}
                             filter={filter}
                             onChange={(value) => handleFilterChange(filter.key, value)}
-                            reset={resetFilterComboBox}
+                            reset={tabResetFilters[filter.key]}
                         />
                     ))}
                     <SimpleButton text="Применить фильтры" onClick={applyFilters}></SimpleButton>
@@ -243,7 +289,7 @@ export default function BarsCatalog({filters = [], filterButtons = [], sections 
                         {Object.entries(filterValues).map(([filterKey, value]) => {
                             // Пропускаем пустые значения
                             if (!value || (Array.isArray(value) && value.length === 0)) return null;
-
+                            if (filterKey === "sort_by") return null
                             // Если значение — массив, обрабатываем каждый элемент
                             if (Array.isArray(value)) {
                                 return value.map((id) => {
@@ -285,8 +331,8 @@ export default function BarsCatalog({filters = [], filterButtons = [], sections 
                         </AppliedFilter>}
                     </div>
                     <div className={styles.toggleAndOptions}>
-                        <ComboBox options={["По убыванию", "По возрастанию"]}></ComboBox>
-                        <Toggle reset={resetFilterComboBox} label={"Только открытые"} toggled={filterValues.only_opened} onClick={() => handleSingleFilterApply("only_opened", !filterValues.only_opened)}/>
+                        {sortFilters &&  <ComboBox options={sortFilters} onChange={(value) => handleSingleFilterApply("sort_by", value.id)}></ComboBox>}
+                        <Toggle reset={tabResetFilters["only_opened"]} label={"Только открытые"} toggled={filterValues.only_opened} onClick={() => handleSingleFilterApply("only_opened", !filterValues.only_opened)}/>
                     </div>
                     { !barsIsLoading && !barsError &&
                         <SimpleCatalogSection cards={barsData} CardComponent={BarCard} wideColumns={false}/>

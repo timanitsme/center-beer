@@ -32,7 +32,7 @@ export default function ProductCard({cardInfo}){
 
             </div>
             <div className={styles.cardFooter}>
-                <p className={styles.textActive}><span style={{color: "var(--txt-secondary)"}}>Вес:</span> {cardInfo.vol}</p>
+                <p className={styles.textActive}><span style={{color: "var(--txt-secondary)"}}>Вес:</span> {cardInfo?.vol || `${cardInfo?.weight} гр.`}</p>
                 <div className={styles.cardFooterLeft}>
                     <p className={styles.cardTextPrimary}>{Number(cardInfo.price).toLocaleString("ru-Ru")}₽</p>
                     <IconButton text="Купить"><BottlesPairIcon/></IconButton>

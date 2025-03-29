@@ -6,7 +6,7 @@ export const centerBeerApi = createApi({
     endpoints: (builder) => ({
         // Каталог баров
         getBars: (builder.query({
-            query: ({lim, offset, city_id, subways_ids, kitchen_ids, visit_type_ids, type_ids, feature_ids, only_opened}) => {
+            query: ({lim, offset, city_id, subways_ids, kitchen_ids, visit_type_ids, price_ids, type_ids, feature_ids, only_opened, sort_by}) => {
                 const params = new URLSearchParams();
                 if (lim !== undefined) params.append('lim', lim);
                 if (offset !== undefined) params.append('offset', offset);
@@ -14,9 +14,11 @@ export const centerBeerApi = createApi({
                 if (subways_ids !== undefined) params.append('subways_ids', subways_ids);
                 if (kitchen_ids !== undefined) params.append('kitchen_ids', kitchen_ids);
                 if (visit_type_ids !== undefined) params.append('visit_type_ids', visit_type_ids);
+                if (price_ids !== undefined) params.append('price_ids', price_ids);
                 if (type_ids !== undefined) params.append('type_ids', type_ids);
                 if (feature_ids !== undefined) params.append('feature_ids', feature_ids);
                 if (only_opened !== undefined) params.append('only_opened', only_opened.toString())
+                if (sort_by !== undefined) params.append('sort_by', sort_by)
                 return(`getBars?${params.toString()}`)
             }
         })),

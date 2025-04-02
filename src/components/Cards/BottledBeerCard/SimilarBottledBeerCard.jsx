@@ -6,17 +6,22 @@ import BottlesPairIcon from "../../../assets/bottles-pair-icon.svg?react";
 import FavIcon from "../../../assets/fav-unfill-icon.svg?react";
 import PropTypes from "prop-types";
 import BottleIcon from "../../../assets/bottle-icon.svg?react"
+import cardImagePlaceholder from "../../../assets/placeholders/card-image-placeholder.svg"
 
 export default function SimilarBottledBeerCard({cardInfo}){
-    const [cardBookmarked, setCardBookmarked] = useState(false);
-    const [cardFav, setCardFav] = useState(false);
+    const [cardBookmarked, setCardBookmarked] = useState(cardInfo?.is_favor || false);
+    const [cardFav, setCardFav] = useState(cardInfo?.is_liked || false);
+    const formatNumber = (num) => Number(num).toString()
+    console.log(cardInfo?.photo)
+    const [imageSrc, setImageSrc] = useState(cardInfo?.photo || cardImagePlaceholder)
+
     return(
         <div className={styles.card}>
             <div className={styles.bottledBeerCard}>
                 <div className={styles.cardTop}>
                     <div className={styles.textContainer}>
-                        <p className={styles.cardTextPrimary}>{cardInfo.title}</p>
-                        <p className={styles.textActive}>{cardInfo.manufacturer}</p>
+                        <p className={styles.cardTextPrimary}>{cardInfo?.name}</p>
+                        <p className={styles.textActive}>{[cardInfo?.brewery_name, cardInfo?.city, cardInfo?.country].join(", ")}</p>
                     </div>
                     <div>
                         <a onClick={() => setCardBookmarked(!cardBookmarked)} className={`${styles.bookMarkButton} ${cardBookmarked && styles.added}`}><BookMarkIcon/></a>
@@ -25,29 +30,29 @@ export default function SimilarBottledBeerCard({cardInfo}){
 
                 </div>
                 <div className={styles.imgContainer}>
-                    <img src={cardInfo.img} alt=""/>
+                    <img src={imageSrc} onError={() => setImageSrc(cardImagePlaceholder)} alt=""/>
                     <a onClick={() => setCardFav(!cardFav)} className={`${styles.favButton} ${cardFav? styles.added : ''}`}><FavIcon/></a>
                 </div>
                 {cardInfo.style && <p className={styles.textActive}><span style={{color: "var(--txt-secondary)"}}>Стиль:</span> {cardInfo.style}</p>}
                 <div className={styles.characteristics}>
                     <div>
                         <p className={`${styles.textActive} ${styles.secondary}`}>Крепость:</p>
-                        <p className={styles.textMedium}>{cardInfo.strength}%</p>
+                        <p className={styles.textMedium}>{formatNumber(cardInfo?.abv)}%</p>
                     </div>
                     <div>
                         <p className={`${styles.textActive} ${styles.secondary}`}>Плотность:</p>
-                        <p className={styles.textMedium}>{cardInfo.density}%</p>
+                        <p className={styles.textMedium}>{formatNumber(cardInfo?.og)}%</p>
                     </div>
                     <div>
                         <p className={`${styles.textActive} ${styles.secondary}`}>Горечь</p>
-                        <p className={styles.textMedium}>{cardInfo.bitterness}</p>
+                        <p className={styles.textMedium}>{formatNumber(cardInfo?.ibu)}</p>
                     </div>
                 </div>
 
             </div>
             <div className={styles.cardFooter}>
                 <p className={styles.textActive} style={{color: "var(--txt-secondary)"}}> Средняя цена:</p>
-                <p className={styles.cardTextPrimary}>{cardInfo.price}₽</p>
+                <p className={styles.cardTextPrimary}>{Number(cardInfo?.avg_price).toLocaleString("ru-Ru")}₽</p>
             </div>
         </div>
     )

@@ -27,13 +27,14 @@ export const centerBeerApi = createApi({
         })),
         //Каталог пива
         getBeers: (builder.query({
-            query: ({lim, offset, sort_by, with_reviews, city_id, color_ids, price_ids, abv_id, abv_from, abv_to, og_id, og_from, og_to, ibu_id, ibu_from, ibu_to, vol_ids, pack_ids, brew_ids}) => {
+            query: ({lim, offset, sort_by, with_reviews, city_id, color_ids, country_ids, price_ids, abv_id, abv_from, abv_to, og_id, og_from, og_to, ibu_id, ibu_from, ibu_to, vol_ids, pack_ids, brew_ids}) => {
                 const params = new URLSearchParams();
                 if (lim !== undefined) params.append("lim", lim);
                 if (offset !== undefined) params.append("offset", offset);
                 if (sort_by !== undefined) params.append("sort_by", sort_by);
                 if (with_reviews !== undefined) params.append("with_reviews", with_reviews);
                 if (city_id !== undefined) params.append("city_id", city_id);
+                if (country_ids !== undefined) params.append("country_ids", country_ids);
                 if (color_ids !== undefined) params.append("color_ids", color_ids);
                 if (price_ids !== undefined) params.append("price_ids", price_ids);
                 if (abv_id !== undefined) params.append("abv_id", abv_id);
@@ -51,12 +52,21 @@ export const centerBeerApi = createApi({
                 return(`getBeers?${params.toString()}`)
             }
         })),
+        getBeersFilters: (builder.query({
+            query: (cityId) => `getBeersFilters?id=${cityId}`
+        })),
         //Страница бара
         getBarInfo: (builder.query({
             query: (alias) => `getBarInfo?alias=${alias}`
         })),
+        getBeerInfo: (builder.query({
+            query: (alias) => `getBeerInfo?alias=${alias}`
+        })),
         getBarInfoById: (builder.query({
             query: (id) => `getBarInfo?id=${id}`
+        })),
+        getBeerInfoById: (builder.query({
+            query: (id) => `getBeerInfo?id=${id}`
         })),
         getBarMenuTabs: (builder.query({
             query: (bar_id) => `getBarMenuTabs?bar_id=${bar_id}`
@@ -220,4 +230,5 @@ export const { useGetBarsQuery, useGetBarInfoQuery, useGetBarsFiltersQuery,
     useGetBarMenuFoodQuery, useGetBarMenuBottleQuery, useGetBarMenuBeerQuery,
     useGetBarMenuAlcQuery, useGetBarMenuCocktailsQuery, useGetBarMenuFoodFiltersQuery,
     useGetBarMenuBottleFiltersQuery, useGetBarMenuBeerFiltersQuery, useGetBarMenuAlcFiltersQuery,
-    useGetBarMenuCocktailsFiltersQuery, useGetBarInfoByIdQuery} = centerBeerApi
+    useGetBarMenuCocktailsFiltersQuery, useGetBarInfoByIdQuery, useGetBeersQuery,
+    useGetBeersFiltersQuery, useGetBeerInfoQuery} = centerBeerApi

@@ -13,23 +13,17 @@ import Bar4 from "../../assets/barsMocks/bar-4.svg";
 const paths = [
     {title:"beer.center", path: "/"},
     {title:"Пиво", path: "/beer/"},
-    {title:"Czech Pilsner", path: ""}
 ]
 
 // Reviews
-const reviewsHeader = {
-    title: "отзывы о Czech Pilsner",
-    description: "Отзывы любителей пива, которые уже успели попробовать и оценить Czech Pilsner. Поделитесь и вы своим впечатлением о пиве Czech Pilsner, чтобы помочь другим сделать правильный выбор и насладиться этим напитком так же, как и вы."
+const reviewsHeader = (title) => {
+    return({
+        title: `отзывы о ${title}`,
+        description: `Отзывы любителей пива, которые уже успели попробовать и оценить ${title}. Поделитесь и вы своим впечатлением о пиве ${title}, чтобы помочь другим сделать правильный выбор и насладиться этим напитком так же, как и вы.`
+    })
 }
 
 const reviewsImages = [Review1, Review2, Review3, Review4, Review5, Review6, Review2, Review3, Review1, Review6, Review4, Review5]
-
-const reviewsResume = {
-    title: "Пиво нравится",
-    rated: "Czech Pilsner оценило 344 посетителя.",
-    rating: 4.9,
-    description: "В среднем это на 15% выше, чем у других сортов пива в нашем рейтинге."
-}
 
 const cardsBars = [
     {title: "13 RULES (Народный бар)", img: Bar1, expensiveness: 3, address: "г. Москва, Сущевский вал, 41", metro: "Лубянка, Сретенский бульвар", rating: 5, comments: 116, closed: false},
@@ -39,7 +33,6 @@ const cardsBars = [
 ]
 
 export const getBeerDetailPaths = () => paths;
-export const getBeerDetailReviewsHeader = () => reviewsHeader;
+export const getBeerDetailReviewsHeader = (title) => reviewsHeader(title);
 export const getBeerDetailReviewsImages = () => reviewsImages;
-export const getBeerDetailReviewsResume = () => reviewsResume;
 export const getBeerDetailBarsRowCards = () => cardsBars;

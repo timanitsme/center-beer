@@ -13,7 +13,7 @@ export default function BottledBeerCard({cardInfo}){
     const [cardBookmarked, setCardBookmarked] = useState(cardInfo.is_favor || false);
     const [cardFav, setCardFav] = useState(cardInfo.is_liked || false);
     const navigate = useNavigate()
-    const goToBeerPage = () => navigate("/beer/1/")
+    const goToBeerPage = (alias) => navigate(`/beer/${alias}/`)
 
     const formatNumber = (num) => Number(num).toString()
     const [imageSrc, setImageSrc] = useState(cardInfo?.photo || cardImagePlaceholder)
@@ -23,7 +23,7 @@ export default function BottledBeerCard({cardInfo}){
             <div className={styles.bottledBeerCard}>
                 <div className={styles.cardTop}>
                     <div className={styles.textContainer}>
-                        <p className={styles.cardTextPrimary} onClick={goToBeerPage}>{cardInfo?.name}</p>
+                        <p className={styles.cardTextPrimary} onClick={() => goToBeerPage(cardInfo?.alias || cardInfo?.beer_alias)}>{cardInfo?.name}</p>
                         <p className={styles.textActive}>{cardInfo?.brewery}</p>
                     </div>
                     <div>
@@ -33,7 +33,7 @@ export default function BottledBeerCard({cardInfo}){
 
                 </div>
                 <div className={`${styles.imgContainer} ${imageSrc === cardImagePlaceholder? styles.third : ''}`}>
-                    <img src={imageSrc} onError={() => setImageSrc(cardImagePlaceholder)} onClick={goToBeerPage} alt=""/>
+                    <img src={imageSrc} onError={() => setImageSrc(cardImagePlaceholder)} onClick={() => goToBeerPage(cardInfo?.alias || cardInfo?.beer_alias)} alt=""/>
                     <a onClick={() => setCardFav(!cardFav)} className={`${styles.favButton} ${cardFav? styles.added : ''}`}><FavIcon/></a>
                 </div>
                 {cardInfo?.style && <p className={styles.textActive}><span style={{color: "var(--txt-secondary)"}}>Стиль:</span> {cardInfo?.style}</p>}

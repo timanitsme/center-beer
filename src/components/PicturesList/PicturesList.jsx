@@ -3,10 +3,15 @@ import ArrowButton from "../Buttons/ArrowButton/ArrowButton.jsx";
 import {useState} from "react";
 import ReviewSection from "../../assets/reviewsMocks/review-section.svg";
 import PropTypes from "prop-types";
+import SingleImageModal from "../Modals/SingleImageModal/SingleImageModal.jsx";
+import placeholder from "../../assets/placeholders/card-image-placeholder.svg"
+import ImageVideoModal from "../Modals/ImageVideoModal/ImageVideoModal.jsx";
+import PlayButtonIcon from "../../assets/play-button-icon.svg?react"
 
 export default function PicturesList({images, style="default"}){
     const [currentPage, setCurrentPage] = useState(0);
-
+    const [showModal, setShowModal] = useState(false)
+    const [currentImage, setCurrentImage] = useState(placeholder)
     const itemsPerPage = style === "secondary" ? window.innerWidth <= 600 ? 3 : 5 : window.innerWidth <= 600 ? 3 : 6;
 
     // Функция для переключения на следующую страницу
@@ -37,18 +42,31 @@ export default function PicturesList({images, style="default"}){
             <div className={styles.leftArrow}><ArrowButton direction="left"  onClick={prevPage} withBg={false}></ArrowButton></div>
             <div className={styles.picturesContainer}>
                 {filledImages.map((image, index) => (
-                    <div key={index} className={`${styles.imageWrapper} ${style === "secondary"? styles.secondary: ""}`}>
-                        {image && (
+                    <div key={index} className={`${styles.imageWrapper} ${style === "secondary"? styles.secondary: ""} ${image?.type === "video"? styles.video: ''}`}>
+                        {image?.preview && image?.type === "image" && (
                             <img
-                                src={image}
+                                src={image?.preview}
                                 alt=""
+                                onClick={() => {setCurrentImage(image); setShowModal(true)}}
                                 className={styles.image}
                             />
+                        )}
+                        {image?.preview && image?.type === "video" && (
+                            <>
+                                <img
+                                    src={image?.preview}
+                                    alt=""
+                                    onClick={() => {setCurrentImage(image); setShowModal(true)}}
+                                    className={styles.image}
+                                />
+                                <PlayButtonIcon/>
+                            </>
                         )}
                     </div>
                 ))}
             </div>
             <div className={styles.rightArrow}><ArrowButton direction="right"  onClick={nextPage} withBg={false}></ArrowButton></div>
+            <ImageVideoModal show={showModal} setSrc={setCurrentImage} setShow={setShowModal} src={currentImage}></ImageVideoModal>
         </div>
     )
 }

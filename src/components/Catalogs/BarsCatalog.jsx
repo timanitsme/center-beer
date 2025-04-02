@@ -305,11 +305,22 @@ export default function BarsCatalog({filters = [], filterButtons = [], sections 
 
                             // Если значение не массив (например, строка или булево значение)
                             if (typeof value === "string") {
-                                return (
-                                    <AppliedFilter key={filterKey} onClick={() => removeFilter(filterKey, value)}>
-                                        <p>{filterNameMap[filterKey]?.[value] || value.toString()}</p>
-                                    </AppliedFilter>
-                                );
+                                if (filterKey === "city_id"){
+                                    return (
+                                        <AppliedFilter key={filterKey} onClick={() => removeFilter(filterKey, value)}>
+                                            <LocationIcon></LocationIcon>
+                                            <p>{filterNameMap[filterKey]?.[value] || value.toString()}</p>
+                                        </AppliedFilter>
+                                    );
+                                }
+                                else{
+                                    return (
+                                        <AppliedFilter key={filterKey} onClick={() => removeFilter(filterKey, value)}>
+                                            <p>{filterNameMap[filterKey]?.[value] || value.toString()}</p>
+                                        </AppliedFilter>
+                                    );
+                                }
+
                             }
 
                             if (typeof value === "boolean"){

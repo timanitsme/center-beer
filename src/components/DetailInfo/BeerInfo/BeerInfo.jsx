@@ -3,36 +3,25 @@ import {useState} from "react";
 import BeerBottleIcon from "../../../assets/bottle-icon.svg?react";
 import HalfBeerBottleIcon from "../../../assets/bottle-half-icon.svg?react";
 import EmptyBeerBottleIcon from "../../../assets/bottle-empty-icon.svg?react";
-import BarLogo from "../../../assets/bar-info/bar-logo.svg?react";
-import {TgIcon} from "../../../assets/TgIcon.jsx";
-import {VkIcon} from "../../../assets/VkIcon.jsx";
-import {MailIcon} from "../../../assets/MailIcon.jsx";
 import IconButton from "../../Buttons/IconButton/IconButton.jsx";
-import SausageIcon from "../../../assets/sausage-icon.svg?react";
-import FlagsIcon from "../../../assets/flags-icon.svg?react";
-import BeerMugsIcon from "../../../assets/beer-mugs-icon.svg?react";
-import PhoneIcon from "../../../assets/phone-icon.svg?react";
-import SimpleButton from "../../Buttons/SimpleButton/SimpleButton.jsx";
 import FavsIcon from "../../../assets/fav-unfill-icon.svg?react";
 import BookMarkIcon from "../../../assets/bookmark-unfill-icon.svg?react";
 import CommentIcon from "../../../assets/comment-icon.svg?react";
-import CalendarIcon from "../../../assets/calendar-icon.svg?react";
-import LocationIcon from "../../../assets/location-icon.svg?react";
-import TaxiIcon from "../../../assets/taxi-icon.svg?react";
 import CheckInIcon from "../../../assets/check-in-icon.svg?react"
 import BottlesPairIcon from "../../../assets/bottles-pair-icon.svg?react"
 import HopIcon from "../../../assets/hop-icon.svg?react"
-import BeerDetailPicture1 from "../../../assets/bottlesMock/beer-detail-picture-1.svg"
-import BeerDetailPicture2 from "../../../assets/bottlesMock/beer-detail-picture-2.svg"
-import BeerDetailPicture3 from "../../../assets/bottlesMock/beer-detail-picture-3.svg"
-import BeerDetailPicture4 from "../../../assets/bottlesMock/beer-detail-picture-4.svg"
+import PlayButtonIcon from "../../../assets/play-button-icon.svg?react"
+import SingleImageModal from "../../Modals/SingleImageModal/SingleImageModal.jsx";
+import ImageVideoModal from "../../Modals/ImageVideoModal/ImageVideoModal.jsx";
 
-export default function BeerInfo(){
-    const [isFavourite, setIsFavourite] = useState(false);
-    const [isBookmarked, setIsBookmarked] = useState(false);
+export default function BeerInfo({beerInfo={}}){
+    const [isFavourite, setIsFavourite] = useState(beerInfo?.is_favor || false);
+    const [isBookmarked, setIsBookmarked] = useState(beerInfo?.is_liked || false);
     const rating = 3.5
-    const pictures = [BeerDetailPicture1, BeerDetailPicture2, BeerDetailPicture3, BeerDetailPicture4]
-    const [selectedPicture, setSelectedPicture] = useState(pictures[0])
+    const [selectedPicture, setSelectedPicture] = useState(beerInfo?.gallery[0])
+    const [showModal ,setShowModal] = useState(false)
+
+    const formatNumber = (num) => Number(num).toString()
 
     const getRatingIcons = (rating) => {
         const icons = [];
@@ -57,36 +46,40 @@ export default function BeerInfo(){
             <div className={styles.barInfoContainer}>
                 <div className={styles.beerPictures}>
                     <div className={styles.picturesColumn}>
-                        {pictures.map((picture, index) =>(
-                            <div key={index} className={picture === selectedPicture? styles.selected : ""}><img src={picture} onClick={() => setSelectedPicture(picture)} alt=""/></div>
+                        {beerInfo?.gallery.map((picture, index) =>(
+                            <div key={index} onClick={() => setSelectedPicture(picture)} className={`${picture === selectedPicture? styles.selected : ""} ${styles.sidePictureContainer}`}>
+                                {picture?.type === "video" && <PlayButtonIcon/>}
+                                <img src={picture?.preview} alt=""/>
+                            </div>
                         ))}
                     </div>
-                    <div>
-                        <img src={selectedPicture} alt=""/>
+                    <div className={styles.selectedPictureContainer} onClick={() => setShowModal(true)}>
+                        {selectedPicture?.type === "video" && <PlayButtonIcon/>}
+                        <img src={selectedPicture.preview} alt=""/>
                     </div>
                 </div>
                 <div className={styles.barDescription}>
-                    <h2 className={styles.beerTitle}>Czech Pilsner</h2>
+                    <h2 className={styles.beerTitle}>{beerInfo?.name}</h2>
                     <div className={styles.characteristics}>
                         <div className={styles.characteristic}>
                             <HopIcon/>
-                            <p>Крепость: <span style={{color: "var(--txt-primary)"}}>5%</span></p>
+                            <p>Крепость: <span style={{color: "var(--txt-primary)"}}>{formatNumber(beerInfo?.abv || "0")}%</span></p>
                         </div>
                         <div className={styles.characteristic}>
                             <HopIcon/>
-                            <p>Плотность: <span style={{color: "var(--txt-primary)"}}>12%</span></p>
+                            <p>Плотность: <span style={{color: "var(--txt-primary)"}}>{formatNumber(beerInfo?.og || '0')}%</span></p>
                         </div>
                         <div className={styles.characteristic}>
                             <HopIcon/>
-                            <p>Горечь: <span style={{color: "var(--txt-primary)"}}>32</span></p>
+                            <p>Горечь: <span style={{color: "var(--txt-primary)"}}>{formatNumber(beerInfo?.ibu || '0')}</span></p>
                         </div>
                     </div>
-                    <p className={styles.notMobile}>Классический светлый пилснер в чешском стиле. Сваренный на светлом солоде типа пилс, с жатецким хмелем Saaz. Прозрачного золотистого цвета, с плотной пенной шапкой. Имеет насыщенный хмелевой аромат с цветочными нотами. Вкус яркий, искристый с отличным хмелево-солодовым балансом. Горечь уверенная, но не выпирающая. Послевкусие хмелевое.</p>
+                    <p className={styles.notMobile}>{beerInfo?.description}</p>
                     <div className={styles.notMobile}>
                         <ul className={styles.characteristicsList}>
-                            <li><p>Пивоварня: <a href="">Švyturys</a></p></li>
-                            <li><p>Стиль: <a href="">Altbier (Альтбир)</a></p></li>
-                            <li><p>Начало выпуска: <p style={{color: "var(--txt-active)"}}>09.07.2019</p></p></li>
+                            <li><p>Пивоварня: <a href="">{beerInfo?.brewery_name}</a></p></li>
+                            <li><p>Стиль: <a href="">{beerInfo?.style_name}</a></p></li>
+                            <li><p>Начало выпуска: <p style={{color: "var(--txt-active)"}}>{beerInfo?.start_date_sales}</p></p></li>
                             <li><p>Производство: <p style={{color: "var(--txt-active)"}}>постоянный выпуск</p></p></li>
                         </ul>
                     </div>
@@ -142,6 +135,15 @@ export default function BeerInfo(){
                     </ul>
                 </div>
             </div>
+            <ImageVideoModal src={selectedPicture} setSrc={setSelectedPicture} show={showModal} setShow={setShowModal} />
+
+
+
+
+
+
+
+
         </div>
 
     )

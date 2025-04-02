@@ -43,7 +43,6 @@ import Review6 from "../../assets/reviewsMocks/review-6.svg";
 const paths = [
     {title:"beer.center", path: "/"},
     {title:"Бары и магазины", path: "/"},
-    {title:"13 RULES (Народный бар)", path: ""}
 ]
 
 

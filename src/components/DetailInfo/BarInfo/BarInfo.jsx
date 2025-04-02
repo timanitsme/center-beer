@@ -23,7 +23,7 @@ import WorktimeModal from "../../Modals/WorktimeModal/WorktimeModal.jsx";
 import {useNavigate} from "react-router-dom";
 
 
-export default function BarInfo({barInfo, sections = []}){
+export default function BarInfo({barInfo={}, sections = []}){
     const [showModal, setShowModal] = useState(false)
     const [isFavourite, setIsFavourite] = useState(barInfo.is_favor || false);
     const [isBookmarked, setIsBookmarked] = useState(barInfo.is_liked || false);

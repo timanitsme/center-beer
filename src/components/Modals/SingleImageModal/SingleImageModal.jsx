@@ -7,7 +7,7 @@ export default function SingleImageModal({src, setSrc, show, setShow}){
     return(
         <SimpleModal show={show} setShow={setShow}>
             <div className={styles.imageWrapper}>
-                <img src={src} alt="" onError={() => setSrc(ImagePlaceholder)}/>
+                <img onClick={() => setShow(false) } src={src} alt="" onError={() => setSrc(ImagePlaceholder)}/>
             </div>
         </SimpleModal>
     )

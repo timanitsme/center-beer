@@ -37,6 +37,7 @@
     display: flex;
     justify-content: space-between;
     gap: 10px; /* Расстояние между картинками */
+    width: 100%;
 }
 
 .imageWrapper {
@@ -46,6 +47,20 @@
     justify-content: center;
     align-items: center;
     border-radius: 8px;
+    cursor: zoom-in;
+}
+
+.imageWrapper svg{
+    position: absolute;
+}
+
+.imageWrapper:hover svg{
+    color: var(--primary-semi-transparent);
+    transition: 0.5s;
+}
+
+.video{
+    cursor: pointer;
 }
 
 .imageWrapper.secondary{

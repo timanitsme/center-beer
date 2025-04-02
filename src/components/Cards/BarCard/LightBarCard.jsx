@@ -10,12 +10,12 @@ import CommentIcon from "../../../assets/comment-icon.svg?react"
 import {useNavigate} from "react-router-dom";
 
 
-export default function LightBarCard({cardInfo}){
-    const [cardBookmarked, setCardBookmarked] = useState(false);
-    const [cardFav, setCardFav] = useState(false);
+export default function LightBarCard({cardInfo, title}){
+    const [cardBookmarked, setCardBookmarked] = useState(cardInfo.is_favor || false);
+    const [cardFav, setCardFav] = useState(cardInfo.is_liked || false);
     const navigate = useNavigate();
 
-    const goToBeerPage = () => navigate("/bar/1");
+    const goToBarPage = () => navigate("/bar/1");
 
     const getExpensivenessIcons = (expensiveness) => {
         const icons = [];
@@ -41,20 +41,20 @@ export default function LightBarCard({cardInfo}){
                     {/*{cardInfo.rating && <p className={styles.ratingText}><BottleIcon/> ({cardInfo.rating.toFixed(1)})</p>}*/}
                 </div>
                 <div className={styles.imgContainer}>
-                    <img src={cardInfo.img} onClick={goToBeerPage} alt=""/>
+                    <img src={cardInfo?.preview} onClick={goToBarPage} alt=""/>
                     <a onClick={() => setCardFav(!cardFav)} className={`${styles.favButton} ${cardFav? styles.added : ''}`}><FavIcon/></a>
                 </div>
                 <div className={styles.characteristics}>
-                    <p className={styles.cardTextPrimary} onClick={goToBeerPage}>{cardInfo.title}</p>
+                    <p className={styles.cardTextPrimary} onClick={goToBarPage}>{cardInfo?.name}</p>
                 </div>
                 <div className={`${styles.iconText} ${styles.loc}`}>
-                    <p>{cardInfo.address}</p>
+                    <p>{cardInfo?.address}</p>
                 </div>
             </div>
             <div className={styles.cardFooter}>
                 <div className={styles.verticalFooter}>
-                    <p className={styles.textActive}>Стоимость Czech Pilsner здесь:</p>
-                    <p className={styles.cardTextPrimary}>380₽</p>
+                    <p className={styles.textActive}>Стоимость {title} здесь:</p>
+                    <p className={styles.cardTextPrimary}>{Number(cardInfo?.price).toLocaleString("ru-Ru")}₽</p>
                 </div>
             </div>
         </div>

@@ -38,7 +38,7 @@ function App() {
         {path: "/breweries", element: <BreweryPage/>},
         {path: "/distributors", element: <DistributorsPage/>},
         {path: "/bar/:alias", element: <BarDetailPage/> },
-        {path: "/beer/:id", element: <BeerDetailPage/>},
+        {path: "/beer/:alias", element: <BeerDetailPage/>},
         {path: "/brewery/:id", element: <BreweryDetailPage/>},
         {path: "/news/:id", element: <NewsDetailPage/>},
         {path: "/map", element: <BeerMapPage/>},

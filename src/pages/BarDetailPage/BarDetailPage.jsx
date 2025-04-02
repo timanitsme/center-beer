@@ -21,6 +21,7 @@ import {useEffect, useRef, useState} from "react";
 import BeerMugsIcon from "../../assets/beer-mugs-icon.svg?react"
 import SausageIcon from "../../assets/sausage-icon.svg?react"
 import FlagsIcon from "../../assets/flags-icon.svg?react"
+import {getBeerDetailPaths} from "../BeerDetailPage/BeerDetailPageData.jsx";
 
 
 export default function BarDetailPage(){
@@ -44,9 +45,9 @@ export default function BarDetailPage(){
 
     return(
         <div className="content">
-            <NavChain paths={getBarPagePaths()}/>
             {!isLoading && !error && data && data.length > 0 &&
                 <>
+                    <NavChain paths={[...getBarPagePaths(), {title:data[0].name, path: ""}]}/>
                     <BarInfo barInfo={data[0]} sections={sections}/>
                     <AdvantagesList barInfo={data[0]}/>
                     <BarEvents barId={data[0].id}/>

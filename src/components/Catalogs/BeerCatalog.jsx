@@ -15,10 +15,13 @@ import {
 } from "../../store/services/centerBeer.js";
 import FilterItem from "../ApiInputs/FilterItem/FilterItem.jsx";
 import BottledBeerCard from "../Cards/BottledBeerCard/BottledBeerCard.jsx";
+import {isMobile} from "react-device-detect";
+import FiltersModal from "../Modals/FiltersModal/FiltersModal.jsx";
 
 
 export default function BeerCatalog({filters = [], filterButtons = [], sections = [], withHeader = true}){
     const [filterNameMap, setFilterNameMap] = useState({});
+    const [showFiltersModal, setShowFiltersModal] = useState(false)
 
     // Спецификация фильтров
     const beerFilterSpecs = {
@@ -301,9 +304,8 @@ export default function BeerCatalog({filters = [], filterButtons = [], sections 
                 </div>
             </div>
             <div className={styles.menuContent}>
-                <div className={styles.menuFilters}>
+                {!isMobile && <div className={styles.menuFilters}>
                     <Search title="Поиск" reset={tabResetFilters["city_id"]} onChange={(value) => handleSingleFilterChange("city_id", value)}></Search>
-                    {console.log(JSON.stringify(filtersConfig))}
                     {filtersConfig.map((filter) => (
                         <FilterItem
                             key={filter.key}
@@ -313,7 +315,7 @@ export default function BeerCatalog({filters = [], filterButtons = [], sections 
                         />
                     ))}
                     <SimpleButton text="Применить фильтры" onClick={applyFilters}></SimpleButton>
-                </div>
+                </div>}
                 <div className={styles.menuItemsSections}>
                     <div className={styles.appliedFiltersRow}>
                         {Object.entries(filterValues).map(([filterKey, value]) => {
@@ -399,16 +401,29 @@ export default function BeerCatalog({filters = [], filterButtons = [], sections 
                         </AppliedFilter>}
                     </div>
                     <div className={styles.toggleAndOptions}>
+                        {isMobile && <SimpleButton textStyle={"black"} text="ФИЛЬТРЫ" onClick={() => setShowFiltersModal(true)} style="primary"></SimpleButton>}
                         {sortFilters &&  <ComboBox options={sortFilters} onChange={(value) => handleSingleFilterApply("sort_by", value.id)}></ComboBox>}
                         <Toggle reset={tabResetFilters["with_reviews"]} label={"Только с отзывами"} toggled={filterValues.with_reviews} onClick={() => handleSingleFilterApply("with_reviews", !filterValues.with_reviews)}/>
                     </div>
                     { !beerIsLoading && !beerError &&
                         <SimpleCatalogSection cards={beerData} CardComponent={BottledBeerCard} wideColumns={false}/>
                     }
-
-
                 </div>
             </div>
+            {isMobile &&
+                <FiltersModal setShow={setShowFiltersModal} show={showFiltersModal}>
+                    <Search title="Поиск" reset={tabResetFilters["city_id"]} onChange={(value) => handleSingleFilterChange("city_id", value)}></Search>
+                    {filtersConfig.map((filter) => (
+                        <FilterItem
+                            key={filter.key}
+                            filter={filter}
+                            onChange={(value) => handleFilterChange(filter.key, value)}
+                            reset={tabResetFilters[filter.key]}
+                        />
+                    ))}
+                    <SimpleButton text="Применить фильтры" onClick={() => {setShowFiltersModal(false); applyFilters()}}></SimpleButton>
+                </FiltersModal>
+            }
         </div>
     )
 }

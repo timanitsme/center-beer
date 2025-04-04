@@ -19,11 +19,15 @@ import {
 import {useNavigate} from "react-router-dom";
 import FilterItem from "../ApiInputs/FilterItem/FilterItem.jsx";
 import Search from "../ApiInputs/Search/Search.jsx";
+import SimpleModal from "../Modals/SimpleModal/SimpleModal.jsx";
+import FiltersModal from "../Modals/FiltersModal/FiltersModal.jsx";
+import {isMobile} from "react-device-detect";
 
 
 export default function BarsCatalog({filters = [], filterButtons = [], sections = []}){
     const navigate = useNavigate()
     const [filterNameMap, setFilterNameMap] = useState({});
+    const [showFiltersModal, setShowFiltersModal] = useState(false)
 
     // Спецификация фильтров
     const barFilterSpecs = {
@@ -272,7 +276,7 @@ export default function BarsCatalog({filters = [], filterButtons = [], sections 
                 </div>
             </div>
             <div className={styles.menuContent}>
-                <div className={styles.menuFilters}>
+                {!isMobile && <div className={styles.menuFilters}>
                     <Search title="Поиск" reset={tabResetFilters["city_id"]} onChange={(value) => handleSingleFilterChange("city_id", value)}></Search>
                     {filtersConfig.map((filter) => (
                         <FilterItem
@@ -283,7 +287,7 @@ export default function BarsCatalog({filters = [], filterButtons = [], sections 
                         />
                     ))}
                     <SimpleButton text="Применить фильтры" onClick={applyFilters}></SimpleButton>
-                </div>
+                </div>}
                 <div className={styles.menuItemsSections}>
                     <div className={styles.appliedFiltersRow}>
                         {Object.entries(filterValues).map(([filterKey, value]) => {
@@ -342,8 +346,10 @@ export default function BarsCatalog({filters = [], filterButtons = [], sections 
                         </AppliedFilter>}
                     </div>
                     <div className={styles.toggleAndOptions}>
+                        {isMobile && <SimpleButton textStyle={"black"} text="ФИЛЬТРЫ" onClick={() => setShowFiltersModal(true)} style="primary"></SimpleButton>}
                         {sortFilters &&  <ComboBox options={sortFilters} onChange={(value) => handleSingleFilterApply("sort_by", value.id)}></ComboBox>}
                         <Toggle reset={tabResetFilters["only_opened"]} label={"Только открытые"} toggled={filterValues.only_opened} onClick={() => handleSingleFilterApply("only_opened", !filterValues.only_opened)}/>
+
                     </div>
                     { !barsIsLoading && !barsError &&
                         <SimpleCatalogSection cards={barsData} CardComponent={BarCard} wideColumns={false}/>
@@ -352,6 +358,20 @@ export default function BarsCatalog({filters = [], filterButtons = [], sections 
 
                 </div>
             </div>
+            {isMobile &&
+                <FiltersModal setShow={setShowFiltersModal} show={showFiltersModal}>
+                    <Search title="Поиск" reset={tabResetFilters["city_id"]} onChange={(value) => handleSingleFilterChange("city_id", value)}></Search>
+                    {filtersConfig.map((filter) => (
+                        <FilterItem
+                            key={filter.key}
+                            filter={filter}
+                            onChange={(value) => handleFilterChange(filter.key, value)}
+                            reset={tabResetFilters[filter.key]}
+                        />
+                    ))}
+                    <SimpleButton text="Применить фильтры" onClick={() => {setShowFiltersModal(false); applyFilters()}}></SimpleButton>
+                </FiltersModal>
+            }
         </div>
     )
 }

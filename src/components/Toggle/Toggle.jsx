@@ -8,11 +8,6 @@ export default function Toggle( {label, toggled, onClick, reset}) {
         toggle(!isToggled)
         onClick(!isToggled)
     }
-    /*useEffect(() => {
-        if (reset){
-            toggle(false)
-        }
-    }, [reset]);*/
 
     return (
         <label className={styles.toggle}>

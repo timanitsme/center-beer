@@ -39,6 +39,9 @@
 
 .leaflet-container{
   height: 100%;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
 }
 
 .leaflet-popup-content-wrapper {

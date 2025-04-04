@@ -16,10 +16,15 @@
     gap: 10px;
 }
 
+.menuHeader p, .menuHeader a{
+    font-size: 0.9vw;
+}
+
 .catalogHeader{
     display: flex;
     gap: 10px;
 }
+
 
 
 .catalogHeader p{
@@ -89,6 +94,10 @@
         padding: 0;
     }
     .catalogHeader p{
+        font-size: 10px;
+    }
+
+    .menuHeader p, .menuHeader a{
         font-size: 10px;
     }
 }

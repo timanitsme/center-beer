@@ -116,6 +116,11 @@
     align-items: stretch;
 }
 
+.mobileButtons{
+    display: flex;
+    flex-direction: row;
+}
+
 .sectionContent{
     display: grid;
     justify-content: center;
@@ -181,6 +186,10 @@
 
 @media (max-width: 768px) {
     .sectionDescriptionIcon{
+        display: none;
+    }
+
+    .mobileOff{
         display: none;
     }
 

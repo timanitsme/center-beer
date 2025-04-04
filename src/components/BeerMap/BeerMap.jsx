@@ -9,29 +9,16 @@ import {useNavigate} from "react-router-dom";
 import {useGetBarsQuery} from "../../store/services/centerBeer.js";
 
 
-export default function BeerMap(){
+export default function BeerMap({data = []}){
 
-    const [filterValues, setFilterValues] = useState({
-        lim: 24,
-        offset: 0,
-        city_id: '',
-        subways_ids: [],
-        kitchen_ids: [],
-        visit_type_ids: [],
-        type_ids: [],
-        feature_ids: [],
-        only_opened: false
-    });
-
-    const {data: barsData, isLoading: barsIsLoading, error: barsError } = useGetBarsQuery(filterValues);
     const markers = [
-        {position: [55.731945, 37.617379], title: "13 rules",  address: "ул. Такая-то д.19", phone: "+7 (916) 298-06-14"},
-        {position: [55.755820, 37.617633], title: "13 rules",  address: "ул. Такая-то д.19", phone: "+7 (916) 298-06-14"},
-        {position: [55.743954, 37.684563], title: "13 rules",  address: "ул. Такая-то д.19", phone: "+7 (916) 298-06-14"},
-        {position: [55.794747, 37.532642], title: "13 rules",  address: "ул. Такая-то д.19", phone: "+7 (916) 298-06-14"},
-        {position: [59.915611, 30.336299], title: "13 rules",  address: "ул. Такая-то д.19", phone: "+7 (916) 298-06-14"},
-        {position: [59.894900, 30.289223], title: "13 rules",  address: "ул. Такая-то д.19", phone: "+7 (916) 298-06-14"},
-        {position: [59.939466, 30.426361], title: "13 rules",  address: "ул. Такая-то д.19", phone: "+7 (916) 298-06-14"},
+        {lon: 55.731945, lat: 37.617379, name: "13 rules",  address: "ул. Такая-то д.19", phone: "+7 (916) 298-06-14"},
+        {lon: 55.755820, lat: 37.617633, name: "13 rules",  address: "ул. Такая-то д.19", phone: "+7 (916) 298-06-14"},
+        {lon: 55.743954, lat: 37.684563, name: "13 rules",  address: "ул. Такая-то д.19", phone: "+7 (916) 298-06-14"},
+        {lon: 55.794747, lat: 37.532642, name: "13 rules",  address: "ул. Такая-то д.19", phone: "+7 (916) 298-06-14"},
+        {lon: 59.915611, lat: 30.336299, name: "13 rules",  address: "ул. Такая-то д.19", phone: "+7 (916) 298-06-14"},
+        {lon: 59.894900, lat: 30.289223, name: "13 rules",  address: "ул. Такая-то д.19", phone: "+7 (916) 298-06-14"},
+        {lon: 59.939466, lat: 30.426361, name: "13 rules",  address: "ул. Такая-то д.19", phone: "+7 (916) 298-06-14"},
     ]
 
     const navigate = useNavigate()
@@ -48,25 +35,25 @@ export default function BeerMap(){
     });
     const goToBarPage = (alias) => navigate(`/bar/${alias}`);
 
-    if (!barsData || barsIsLoading || barsError) return null
+    if (!data) return null
     return(
-     <div className={styles.mapContainer}>
-         <MapContainer center={[55.755820, 37.617633]} zoom={13} scrollWheelZoom={true}>
-             <TileLayer
-                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-             />
-             {barsData.length !== 0 && !barsIsLoading && !barsError && barsData.map((marker, index) =>
-                 <Marker key={index} position={[marker?.lon, marker?.lat]} icon={myIcon}>
-                     <Popup>
-                         <div className={styles.markerPopUp}>
-                             <h3>{marker?.name}</h3>
-                             <p><span className={styles.active}>Адрес:</span> {marker?.address}</p>
-                             <p><span className={styles.active}>Телефон:</span> {marker?.contacts}</p>
-                             <IconButton text={"Подробнее"} onClick={() => goToBarPage(marker?.alias)}><HopIcon/></IconButton>
-                         </div>
-                     </Popup>
-                 </Marker>)}
-         </MapContainer>
-     </div>
+        <div className={styles.mapContainer}>
+            <MapContainer center={[55.755820, 37.617633]} zoom={13} scrollWheelZoom={true}>
+                <TileLayer
+                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                />
+                {data?.length !== 0 && data?.map((marker, index) =>
+                    <Marker key={index} position={[marker?.lon, marker?.lat]} icon={myIcon}>
+                        <Popup>
+                            <div className={styles.markerPopUp}>
+                                <h3>{marker?.name}</h3>
+                                <p><span className={styles.active}>Адрес:</span> {marker?.address}</p>
+                                <p><span className={styles.active}>Телефон:</span> {marker?.contacts}</p>
+                                <IconButton text={"Подробнее"} onClick={() => goToBarPage(marker?.alias)}><HopIcon/></IconButton>
+                            </div>
+                        </Popup>
+                    </Marker>)}
+            </MapContainer>
+        </div>
     )
 }

@@ -39,6 +39,10 @@
     color: var(--txt-active);
 }
 
+.black{
+    color: var(--bg) !important;
+}
+
 @media (max-width: 1000px) {
     .simpleButton p, .simpleButton.secondary p {
         font-size: 10px;

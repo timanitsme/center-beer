@@ -28,11 +28,14 @@ import StrongAlcoholCard from "../Cards/StrongAlcoCard/StrongAlcoholCard.jsx";
 import ProductCard from "../Cards/ProductCard/ProductCard.jsx";
 import FilterItem from "../ApiInputs/FilterItem/FilterItem.jsx";
 import AppliedFilter from "../AppliedFilter/AppliedFilter.jsx";
+import {isMobile} from "react-device-detect";
+import FiltersModal from "../Modals/FiltersModal/FiltersModal.jsx";
+import Search from "../ApiInputs/Search/Search.jsx";
 
 export default function BarMenu({filters, filterButtons, sections, ref, barId = 1}){
     // Состояние для хранения имен применяемых фильтров
     const [filterNameMap, setFilterNameMap] = useState({});
-
+    const [showFiltersModal, setShowFiltersModal] = useState(false)
 
     const [resetOneFilter, setResetOneFilter] = useState("")
 
@@ -480,21 +483,23 @@ export default function BarMenu({filters, filterButtons, sections, ref, barId = 
                 const CardComponent = tabsSpecs[tab.alias]?.CardComponent || ProductCard
 
                 return(<div key={index} className={styles.menuContent}>
-                    <div className={styles.menuFilters}>
+                    {!isMobile &&
+                        <div className={styles.menuFilters}>
 
-                        {filtersConfig(tab.alias).map((filter) => {
-                            return(
-                                <FilterItem
-                                    key={filter.key}
-                                    filter={filter}
-                                    filterKey={tab.alias}
-                                    onChange={(value) => handleFilterChange(tab.alias, filter.key, value)}
-                                    reset={tabResetFilters[tab.alias][filter.key]}
-                                />
-                            )
-                        })}
-                        <SimpleButton onClick={() => applyFilters(tab.alias)} text="Применить фильтры"></SimpleButton>
-                    </div>
+                            {filtersConfig(tab.alias).map((filter) => {
+                                return(
+                                    <FilterItem
+                                        key={filter.key}
+                                        filter={filter}
+                                        filterKey={tab.alias}
+                                        onChange={(value) => handleFilterChange(tab.alias, filter.key, value)}
+                                        reset={tabResetFilters[tab.alias][filter.key]}
+                                    />
+                                )
+                            })}
+                            <SimpleButton onClick={() => applyFilters(tab.alias)} text="Применить фильтры"></SimpleButton>
+                        </div>
+                    }
                     <div className={styles.menuItemsSections}>
                         <div className={styles.menuSection}>
                             <div className={styles.sectionHeader}>
@@ -503,7 +508,11 @@ export default function BarMenu({filters, filterButtons, sections, ref, barId = 
                                     <h2>{tab?.header}</h2>
                                     <p>{tab?.description}</p>
                                 </div>
-                                <div className={styles.sectionButton}><IconButton text="Забронировать стол"><IconComponent/></IconButton></div>
+                                {!isMobile && <div className={`${styles.sectionButton} ${styles.mobileOff}` }><IconButton text="Забронировать стол"><IconComponent/></IconButton></div>}
+                                {isMobile && <div className={styles.mobileButtons}>
+                                    <SimpleButton textStyle={"black"} text="ФИЛЬТРЫ" onClick={() => setShowFiltersModal(true)} style="primary"></SimpleButton>
+                                    <div className={styles.sectionButton}><IconButton text="Забронировать стол"><IconComponent/></IconButton></div>
+                                </div>}
                             </div>
                             <div className={styles.appliedFiltersRow}>
                                 {Object.entries(tabFilterValues[tab.alias] || {}).map(([filterKey, value]) => {
@@ -593,6 +602,22 @@ export default function BarMenu({filters, filterButtons, sections, ref, barId = 
                     </div>
                 </div>)}
             )}
+            {isMobile &&
+                <FiltersModal setShow={setShowFiltersModal} show={showFiltersModal}>
+                    {filtersConfig(selectedTab).map((filter) => {
+                        return(
+                            <FilterItem
+                                key={filter.key}
+                                filter={filter}
+                                filterKey={selectedTab}
+                                onChange={(value) => handleFilterChange(selectedTab, filter.key, value)}
+                                reset={tabResetFilters[selectedTab][filter.key]}
+                            />
+                        )
+                    })}
+                    <SimpleButton onClick={() => {setShowFiltersModal(false); applyFilters(selectedTab)}} text="Применить фильтры"></SimpleButton>
+                </FiltersModal>
+            }
         </div>
     )
 }

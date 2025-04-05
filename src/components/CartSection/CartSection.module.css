@@ -1,0 +1,316 @@
+.cartSection{
+    margin: 0 50px 0 50px;
+}
+
+.cartSection h2{
+    text-align: left;
+    font-size: 1.5vw;
+}
+
+.cartSection p{
+    font-size: 0.9vw;
+    font-weight: 200;
+}
+
+.cartContainer{
+    display: flex;
+    gap: 15px;
+}
+
+.leftSide{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.rightSide{
+    max-width: 25%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.cartSummary{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    background: var(--section-bg);
+    gap: 20px;
+}
+
+.cartSummary button{
+    width: 100%;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+
+.col{
+    display: flex;
+    flex-direction: column;
+}
+
+.row{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.title{
+    font-family: "Podkova", sans-serif;
+    color: var(--txt-active);
+    font-weight: 500 !important;
+    font-size: 1.2vw !important;
+}
+
+.summaryRow{
+    display: flex;
+    justify-content: space-between;
+}
+
+.active{
+    color: var(--txt-active);
+}
+
+.primary {
+    color: var(--primary);
+}
+
+.pointsSection{
+    background: var(--section-bg);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.promoSection{
+    background: var(--section-bg);
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.paymentSection{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background: var(--section-bg);
+    border-radius: 10px;
+}
+
+.deliverySection{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background: var(--section-bg);
+    border-radius: 10px;
+}
+
+.paymentMethods{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: space-around;
+}
+
+.deliveryMethods{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.delMethod{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid var(--third);
+    gap: 10px;
+    height: fit-content;
+}
+
+.method{
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid var(--third);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    cursor: pointer;
+}
+
+.method svg{
+    color: var(--txt-secondary);
+}
+
+.method:hover{
+    background: var(--third);
+    transition: 0.5s;
+}
+
+.method:hover svg{
+    scale: 1.1;
+    transition: 0.5s;
+}
+
+.method.active{
+    background: var(--third);
+    border: 1px solid var(--primary);
+}
+
+.delBar{
+    display: flex;
+    gap: 10px;
+    margin-left: 25px;
+}
+
+.barContent svg{
+    color: var(--txt-secondary);
+    height: 12px;
+    width: min-content;
+}
+
+.circle{
+    width: 10px;
+    height: 10px;
+    border-radius: 10px;
+}
+
+.opened{
+    background: #2AC02A;
+}
+
+.imagesRow{
+    display: flex;
+    gap: 5px;
+    margin-bottom: 5px;
+}
+
+.imagesRow .imageWrapper{
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 5px;
+}
+
+.imagesRow .imageWrapper{
+    width: 50px;
+}
+
+.good .imageWrapper{
+    width: 130px;
+}
+
+.imageWrapper img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 5px;
+}
+
+.tableHeader{
+    background: var(--section-bg);
+    padding: 15px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.goodsListSection{
+    background: var(--section-bg);
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.good{
+    display: flex;
+    gap: 15px;
+}
+
+.plusMinusButton{
+    border-radius: 10px;
+    background: var(--third);
+    padding: 15px;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+}
+
+.plusMinusButton:hover{
+    background: var(--txt-secondary);
+    transition: 0.5s;
+
+}
+
+.centerGood{
+    align-self: center;
+}
+
+.buttonsRow{
+    display: flex;
+    height: 50px;
+    gap: 5px;
+    align-self: center;
+}
+
+.buttonsRow input{
+    width: 70px;
+    border-radius: 10px;
+    text-align: center;
+    padding: 8px;
+}
+
+.trashButton{
+    align-self: center;
+}
+
+.trashButton svg:hover{
+    color: var(--txt-active);
+    transition: 0.5s;
+}
+
+.goodDescription{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.characteristicsRow{
+    display: flex;
+    gap: 15px;
+}
+
+.characteristic{
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+@media (max-width: 1000px) {
+    .title{
+        font-size: 12px;
+    }
+    .cartSection h2{
+        font-size: 15px;
+    }
+    .cartSection p{
+        font-size: 10px;
+    }
+    .imagesRow .imageWrapper{
+        width: 40px;
+    }
+}

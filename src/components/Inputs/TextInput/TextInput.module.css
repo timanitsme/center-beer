@@ -1,0 +1,17 @@
+.textInput {
+    width: 100%;
+    padding: 8px 15px 8px 8px;
+    border-radius: 5px;
+    color: var(--txt-active);
+    font-size: 0.9vw;
+    font-weight: 200;
+    border: none;
+    outline: none;
+    background: var(--third);
+}
+
+@media (max-width: 1000px) {
+    .textInput{
+        font-size: 10px;
+    }
+}

@@ -20,6 +20,8 @@ import DistributorsPage from "./pages/DistributorsPage/DistributorsPage.jsx";
 import DistributorDetailPage from "./pages/DistributorDetailPage/DistributorDetailPage.jsx";
 import PersonalAccountPage from "./pages/PersonalAccountPage/PersonalAccountPage.jsx";
 import CartPage from "./pages/CartPage/CartPage.jsx";
+import AuthorizationPage from "./pages/AuthorizationPage/AuthorizationPage.jsx";
+import RestorePasswordPage from "./pages/RestorePasswordPage/RestorePasswordPage.jsx";
 
 function App() {
     const paths = [
@@ -30,7 +32,7 @@ function App() {
                 {title: "Дистрибьюторы", path: "/distributors"},
                 {title: "Карта баров", path: "/map"}
             ]},
-        {title: "Мероприятия", path: "events", element: <CartPage/>}, // /events
+        {title: "Мероприятия", path: "events", element: <PersonalAccountPage/>}, // /events
         {title: "О проекте", path: "https://center.beer/about/", element: <AboutPage/>}, // /about-us
         {title: "Новости", path: "/news", element: <NewsPage/>},
         {title: "Контакты", path: "https://center.beer/about-us/contact/", element: <ContactsPage/>}, // /contacts

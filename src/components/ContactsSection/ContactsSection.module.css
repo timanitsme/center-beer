@@ -1,0 +1,192 @@
+.contactsSection{
+    display: flex;
+    flex-direction: column;
+    margin: 0 50px 0 50px;
+}
+
+.contactsSection p{
+    font-size: 0.9vw;
+    font-weight: 200;
+}
+
+.section{
+    margin-top: 25px;
+}
+
+.outlineTitle{
+    width: 100%;
+    text-align: left;
+    text-transform: uppercase;
+    color: transparent;
+    -webkit-text-stroke: 1px var(--third);
+    font-size: 5vw;
+}
+
+.title{
+    font-family: "Podkova", sans-serif;
+    font-size: 1.2vw !important;
+    color: var(--txt-active);
+    text-align: center;
+}
+
+.authContent{
+    background: var(--form-bg);
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    align-self: center;
+    padding: 25px 40px;
+    border-radius: 10px;
+    gap: 15px;
+}
+
+.formRow{
+    display: grid;
+    grid-template-columns: 30% 70%;
+    align-items: flex-start;
+    gap: 30px;
+}
+
+.formRow h2{
+    text-align: left;
+    text-transform: none;
+}
+
+.col{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.center{
+    justify-content: center;
+    align-self: center;
+}
+
+.innerRow{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.dottedA{
+    font-weight: 200;
+    color: var(--txt-secondary);
+    text-decoration-line: underline;
+    text-decoration-style: dotted;
+    text-decoration-color: var(--txt-secondary);
+}
+
+.dottedA:hover{
+    color: var(--txt-active);
+    text-decoration-color: var(--txt-active);
+    transition: 0.5s;
+}
+
+.underline{
+    text-decoration-line: underline;
+}
+
+.formRow input{
+    width: 300px;
+}
+
+.contactsRow{
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    justify-content: space-between;
+
+}
+
+.contactsRow h2{
+    text-align: left;
+    text-transform: none;
+}
+
+.contactsRow h2:hover{
+    color: var(--primary);
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.contactsCol{
+    display: flex;
+    flex-direction: column;
+}
+
+.area{
+    background: var(--third);
+    font-size: 0.9vw;
+    font-weight: 200;
+    padding: 8px 15px 8px 8px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    color: var(--txt-active);
+    resize: none;
+    height: 150px !important;
+    max-width: 700px;
+}
+
+.row{
+    display: flex;
+    gap: 15px;
+}
+
+@media (max-width: 1000px) {
+    .area{
+        font-size: 10px;
+    }
+    .outlineTitle{
+        font-size: 50px;
+    }
+    .title{
+        font-size: 12px !important;
+    }
+    .contactsSection p{
+        font-size: 10px;
+    }
+    .contactsSection{
+        margin: 0 25px 0 25px;
+    }
+}
+
+@media (max-width: 700px) {
+    .formRow{
+        grid-template-columns: 1fr 1fr;
+    }
+    .formRow input{
+        width: 150px;
+    }
+    .authContent{
+        padding: 15px 30px;
+    }
+}
+
+@media (max-width: 600px) {
+    .outlineTitle{
+        font-size: 30px;
+    }
+}
+
+@media (max-width: 450px) {
+    .contactsRow h2{
+        font-size: 10px;
+    }
+    .socials{
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        justify-content: center;
+    }
+
+    .socials h2{
+        text-align: center;
+    }
+    .row{
+        gap: 5px;
+        align-self: center;
+    }
+}

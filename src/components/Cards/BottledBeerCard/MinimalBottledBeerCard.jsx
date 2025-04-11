@@ -13,7 +13,7 @@ export default function MinimalBottledBeerCard({cardInfo}){
 
     return(
         <div className={styles.card}>
-            <div className={styles.bottledBeerCard}>
+            <div className={`${styles.bottledBeerCard} ${styles.round}`}>
                 <div className={styles.cardTop}>
                     <div></div>
                     <div>

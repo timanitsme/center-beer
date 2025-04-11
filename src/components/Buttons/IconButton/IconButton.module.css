@@ -61,6 +61,20 @@
     fill: var(--primary)
 }
 
+.third{
+    border: none;
+    background: var(--third);
+}
+
+.third p{
+    text-transform: none !important;
+    font-family: "Podkova", sans-serif;
+}
+
+.third svg:hover{
+    color: var(--txt-active);
+}
+
 
 .iconButton p{
     font-size: 0.8vw;

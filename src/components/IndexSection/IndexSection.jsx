@@ -22,12 +22,19 @@ import VideoCard from "../Cards/VideoCard/VideoCard.jsx";
 
 export default function IndexSection(){
     const [showTitle, setShowTitle] = useState(false);
+    const [showCards, setShowCards] = useState(false)
 
     useEffect(() => {
         const timer = setTimeout(() => {
             setShowTitle(true);
         }, 1000);
-        return () => clearTimeout(timer);
+        const cardsTimer = setTimeout(() => {
+            setShowCards(true);
+        }, 1000);
+        return () => {
+            clearTimeout(timer)
+            clearTimeout(cardsTimer)
+        };
     }, []);
 
     const barCards = [
@@ -70,7 +77,7 @@ export default function IndexSection(){
                 }
             </div>
 
-            <div className={styles.cardContainer}>
+            <div className={`${styles.cardContainer} ${showTitle? styles.show: ""}`}>
                 {barCards.map((card, index) => (
                     <div className={styles.cardWrapper} key={index}><MinimalBarCard cardInfo={card}></MinimalBarCard></div>
                 ))

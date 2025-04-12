@@ -37,8 +37,9 @@
 
 @media (max-width: 1000px) {
     .ordersSection{
-        width: calc(100% - 25px);
+        width: calc(100% - 50px);
         margin-right: 25px;
+        margin-left: 25px;
     }
 
     .ordersSection p{

@@ -25,6 +25,19 @@
     width: max-content;
 }
 
+.mobile.sideContent{
+    flex-direction: row !important;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.overflow{
+    flex-wrap: wrap;
+    word-break: break-word;
+    white-space: normal;
+    max-width: 100%;
+}
+
 .avatar{
     border-radius: 100px;
     max-height: 120px;

@@ -6,9 +6,22 @@ import {useGetCitiesQuery} from "../../../store/services/centerBeer.js";
 
 export default function Search({title, onChange, reset}){
     const [inputValue, setInputValue] = useState(''); // Значение поля поиска
+    const [debouncedInput, setDebouncedInput] = useState(inputValue);
     const [filteredSuggestions, setFilteredSuggestions] = useState([]);
     const [selectedSuggestion, setSelectedSuggestion] = useState({});
-    const {data: cities = [], isLoading, error} = useGetCitiesQuery(inputValue)
+    const {data: cities = [], isLoading, error} = useGetCitiesQuery(debouncedInput)
+
+    useEffect(() => {
+        const handler = setTimeout(() => {
+            if ((inputValue === '' || inputValue.length >= 2) && debouncedInput !== inputValue){
+                setDebouncedInput(inputValue);
+            }
+        }, 500);
+
+        return () => {
+            clearTimeout(handler);
+        };
+    }, [inputValue]);
 
 
     useEffect(() => {
@@ -33,6 +46,7 @@ export default function Search({title, onChange, reset}){
 
     // Обработчик выбора подсказки
     const handleSuggestionClick = (suggestion) => {
+        setDebouncedInput(suggestion.name)
         setInputValue(suggestion.name); // Устанавливаем выбранную подсказку в поле ввода
         if (suggestion?.id !== undefined && suggestion.id !== 0) onChange(suggestion.id);
         setFilteredSuggestions([]);

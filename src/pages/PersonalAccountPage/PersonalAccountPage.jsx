@@ -20,6 +20,7 @@ import BeerImage3 from "../../assets/bottlesMock/bottle-3.svg"
 import BeerImage4 from "../../assets/bottlesMock/bottle-4.svg"
 import BeerImage5 from "../../assets/bottlesMock/bottle-5.svg"
 import MinimalBottledBeerCard from "../../components/Cards/BottledBeerCard/MinimalBottledBeerCard.jsx";
+import {isMobile} from "react-device-detect";
 
 export default function PersonalAccountPage(){
     const [showModal, setShowModal] = useState(false)
@@ -43,8 +44,9 @@ export default function PersonalAccountPage(){
         <div className="content">
             <NavChain paths={GetPersonalAccountPaths()}></NavChain>
             <div style={{display: "flex"}}>
-                <PersonalAccount/>
+                {!isMobile && <PersonalAccount/>}
                 <div style={{display: "flex", flexDirection: "column", width: "100%", gap: "25px"}}>
+                    {isMobile && <PersonalAccount isMobile={true}/>}
                     <ActiveOrders></ActiveOrders>
                     <LatestReviews></LatestReviews>
                     <ShortenedRowSection title="Избранные бары" cards={barCards} CardComponent={MinimalBarCard}></ShortenedRowSection>

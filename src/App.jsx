@@ -32,7 +32,7 @@ function App() {
                 {title: "Дистрибьюторы", path: "/distributors"},
                 {title: "Карта баров", path: "/map"}
             ]},
-        {title: "Мероприятия", path: "events", element: <IndexPage/>}, // /events
+        {title: "Мероприятия", path: "events", element: <CartPage/>}, // /events
         {title: "О проекте", path: "https://center.beer/about/", element: <AboutPage/>}, // /about-us
         {title: "Новости", path: "/news", element: <NewsPage/>},
         {title: "Контакты", path: "/contacts", element: <ContactsPage/>}, // /contacts

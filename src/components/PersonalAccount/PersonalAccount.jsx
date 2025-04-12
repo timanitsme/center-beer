@@ -1,14 +1,22 @@
 import styles from "./PersonalAccount.module.css"
 import AvatarMock from "../../assets/avatar-mock.svg"
 
-export default function PersonalAccount(){
+export default function PersonalAccount({isMobile = false}){
+
 
     return(
-        <div className={styles.accountSection}>
-            <div className={styles.sideContent}>
-                <img className={styles.avatar} src={AvatarMock} alt=''></img>
-                <p className={styles.bold}>Вячеслав Крыжовников</p>
-
+        <div className={`${styles.accountSection}`}>
+            <div className={`${styles.sideContent} ${isMobile? styles.mobile: ""}`}>
+                {!isMobile &&
+                    <>
+                        <img className={styles.avatar} src={AvatarMock} alt=''></img>
+                        <p className={styles.bold}>Вячеслав Крыжовников</p>
+                    </>
+                }
+                {isMobile && <div style={{display: "flex", flexDirection: "column", maxWidth: "100px", gap: "5px"}}>
+                    <img className={styles.avatar} src={AvatarMock} alt=''></img>
+                    <p className={`${styles.bold} ${styles.overflow}`}>Вячеслав Крыжовников</p>
+                </div>}
                 <div>
                     <p className={styles.bold}>Покупки</p>
                     <ul className={styles.innerList}>
@@ -27,9 +35,6 @@ export default function PersonalAccount(){
                         <li><a href="">Избранное <div className={styles.quantity}><p>64</p></div> </a></li>
                     </ul>
                 </div>
-
-            </div>
-            <div className={styles.mainContent}>
 
             </div>
         </div>

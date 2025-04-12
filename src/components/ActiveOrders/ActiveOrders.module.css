@@ -43,8 +43,9 @@
 
 @media (max-width: 1000px) {
     .ordersSection{
-        width: calc(100% - 25px);
-        margin-right: 25px;
+        width: calc(100% - 50px);
+        margin: 0 25px 0 25px;
+        padding: 10px;
     }
 
     .ordersSection p{

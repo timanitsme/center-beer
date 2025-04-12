@@ -43,10 +43,11 @@
 
 @media (max-width: 1000px) {
     .sectionContainer{
-        width: calc(100% - 25px);
+        width: calc(100% - 50px);
         display: flex;
         flex-direction: column;
         margin-right: 25px;
+        margin-left: 25px;
         gap: 10px;
     }
 
@@ -57,4 +58,6 @@
     .showMore p{
         font-size: 10px;
     }
+
+
 }

@@ -4,7 +4,7 @@ import CheckBox from "../Inputs/CheckBox/CheckBox.jsx";
 import CheckBoxChild from "../Inputs/CheckBox/CheckBoxChild.jsx";
 import Toggle from "../Toggle/Toggle.jsx";
 import TextInput from "../Inputs/TextInput/TextInput.jsx";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import MirIcon from "../../assets/payments/mir-pay-icon.svg?react"
 import SberIcon from "../../assets/payments/sber-pay-icon.svg?react"
 import SbpIcon from "../../assets/payments/sbp-icon.svg?react"
@@ -33,6 +33,29 @@ export default function CartSection(){
         {id: 5, Icon: WalletIcon, text: "Наличными при получении"},
     ]
     const [selectedMethod, setSelectedMethod] = useState(methods[0].id)
+    const [cardMinStyle, setCardMinStyle] = useState(false)
+
+    const cards = [
+        {title: "Небо над тагилом", image: Bottle1, manufacturer: "Бакунин, Санкт-Петербург, Россия", price: 760, abv: "6,5", og: "12", ibu: "32"},
+        {title: "Небо над тагилом", image: Bottle1, manufacturer: "Бакунин, Санкт-Петербург, Россия", price: 760, abv: "6,5", og: "12", ibu: "32"},
+        {title: "Небо над тагилом", image: Bottle1, manufacturer: "Бакунин, Санкт-Петербург, Россия", price: 760, abv: "6,5", og: "12", ibu: "32"},
+        {title: "Небо над тагилом", image: Bottle1, manufacturer: "Бакунин, Санкт-Петербург, Россия", price: 760, abv: "6,5", og: "12", ibu: "32"},
+    ]
+
+    useEffect(() => {
+        const handleResize = () => {
+            if (window.innerWidth >= 550) {
+                setCardMinStyle(false)
+            }
+            else {
+                setCardMinStyle(true)
+            }
+        };
+
+        handleResize();
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, [cards]);
 
 
     return(
@@ -45,110 +68,92 @@ export default function CartSection(){
                         <p className={styles.primary}>Удалить выбранное</p>
                     </div>
                     <div className={styles.goodsListSection}>
-                        <div className={styles.good}>
-                            <CheckBoxChild/>
-                            <div className={styles.imageWrapper}><img src={Bottle1} alt=""/></div>
-                            <div className={styles.goodDescription}>
-                                <p className={`${styles.title} ${styles.primary}`} style={{textTransform: "uppercase"}}>Небо над Тагилом</p>
-                                <p className={styles.active}>Бакунин, Санкт-Петербург, Россия</p>
-                                <div className={styles.characteristicsRow}>
-                                    <div className={styles.characteristic}>
-                                        <p>Крепость:</p>
-                                        <p className={styles.active}>6,5%</p>
-                                    </div>
-                                    <div className={styles.characteristic}>
-                                        <p>Плотность:</p>
-                                        <p className={styles.active}>12%</p>
-                                    </div>
-                                    <div className={styles.characteristic}>
-                                        <p>Горечь:</p>
-                                        <p className={styles.active}>32</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className={styles.buttonsRow}>
-                                <div className={styles.plusMinusButton}><PlusIcon/></div>
-                                <TextInput placeholder="0"></TextInput>
-                                <div className={styles.plusMinusButton}><MinusIcon/></div>
-                            </div>
-                            <div className={styles.centerGood}>
-                                <p className={`${styles.title} ${styles.primary}`}>760₽</p>
-                            </div>
-                            <div className={styles.trashButton}>
-                                <TrashIcon></TrashIcon>
-                            </div>
-                        </div>
-                        <div className="hrtLine"/>
-                        <div className={styles.good}>
-                            <CheckBoxChild/>
-                            <div className={styles.imageWrapper}><img src={Bottle1} alt=""/></div>
-                            <div className={styles.goodDescription}>
-                                <p className={`${styles.title} ${styles.primary}`} style={{textTransform: "uppercase"}}>Небо над Тагилом</p>
-                                <p className={styles.active}>Бакунин, Санкт-Петербург, Россия</p>
-                                <div className={styles.characteristicsRow}>
-                                    <div className={styles.characteristic}>
-                                        <p>Крепость:</p>
-                                        <p className={styles.active}>6,5%</p>
-                                    </div>
-                                    <div className={styles.characteristic}>
-                                        <p>Плотность:</p>
-                                        <p className={styles.active}>12%</p>
-                                    </div>
-                                    <div className={styles.characteristic}>
-                                        <p>Горечь:</p>
-                                        <p className={styles.active}>32</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className={styles.buttonsRow}>
-                                <div className={styles.plusMinusButton}><PlusIcon/></div>
-                                <TextInput placeholder="0"></TextInput>
-                                <div className={styles.plusMinusButton}><MinusIcon/></div>
-                            </div>
-                            <div className={styles.centerGood}>
-                                <p className={`${styles.title} ${styles.primary}`}>760₽</p>
-                            </div>
-                            <div className={styles.trashButton}>
-                                <TrashIcon></TrashIcon>
-                            </div>
-                        </div>
-                        <div className="hrtLine"/>
-                        <div className={styles.good}>
-                            <CheckBoxChild/>
-                            <div className={styles.imageWrapper}><img src={Bottle1} alt=""/></div>
-                            <div className={styles.goodDescription}>
-                                <p className={`${styles.title} ${styles.primary}`} style={{textTransform: "uppercase"}}>Небо над Тагилом</p>
-                                <p className={styles.active}>Бакунин, Санкт-Петербург, Россия</p>
-                                <div className={styles.characteristicsRow}>
-                                    <div className={styles.characteristic}>
-                                        <p>Крепость:</p>
-                                        <p className={styles.active}>6,5%</p>
-                                    </div>
-                                    <div className={styles.characteristic}>
-                                        <p>Плотность:</p>
-                                        <p className={styles.active}>12%</p>
-                                    </div>
-                                    <div className={styles.characteristic}>
-                                        <p>Горечь:</p>
-                                        <p className={styles.active}>32</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className={styles.buttonsRow}>
-                                <div className={styles.plusMinusButton}><PlusIcon/></div>
-                                <TextInput placeholder="0"></TextInput>
-                                <div className={styles.plusMinusButton}><MinusIcon/></div>
-                            </div>
-                            <div className={styles.centerGood}>
-                                <p className={`${styles.title} ${styles.primary}`}>760₽</p>
-                            </div>
-                            <div className={styles.trashButton}>
-                                <TrashIcon></TrashIcon>
-                            </div>
-                        </div>
-
-
-
+                        {cards.map((card, index) => {
+                            if (cardMinStyle){
+                                return(
+                                    <>
+                                        <div className={styles.good}>
+                                            <CheckBoxChild/>
+                                            <div style={{display: "flex", gap: "15px", flexDirection: "column"}}>
+                                                <div style={{display: "flex", gap: "15px"}}>
+                                                    <div className={styles.imageWrapper}><img src={card.image} alt=""/></div>
+                                                    <div className={styles.buttonsRow}>
+                                                        <div className={styles.plusMinusButton}><PlusIcon/></div>
+                                                        <TextInput placeholder="0"></TextInput>
+                                                        <div className={styles.plusMinusButton}><MinusIcon/></div>
+                                                    </div>
+                                                    <div className={styles.centerGood}>
+                                                        <p className={`${styles.title} ${styles.primary}`}>{card.price}₽</p>
+                                                    </div>
+                                                    <div className={styles.trashButton}>
+                                                        <TrashIcon></TrashIcon>
+                                                    </div>
+                                                </div>
+                                                <div className={styles.goodDescription}>
+                                                    <p className={`${styles.title} ${styles.primary}`} style={{textTransform: "uppercase"}}>{card.title}</p>
+                                                    <p className={styles.active}>{card.manufacturer}</p>
+                                                    <div className={styles.characteristicsRow}>
+                                                        <div className={styles.characteristic}>
+                                                            <p>Крепость:</p>
+                                                            <p className={styles.active}>{card.abv}%</p>
+                                                        </div>
+                                                        <div className={styles.characteristic}>
+                                                            <p>Плотность:</p>
+                                                            <p className={styles.active}>{card.og}%</p>
+                                                        </div>
+                                                        <div className={styles.characteristic}>
+                                                            <p>Горечь:</p>
+                                                            <p className={styles.active}>{card.ibu}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {index !== cards.length-1 && <div className="hrtLine"/>}
+                                    </>
+                                )
+                            }
+                            else{
+                                return(
+                                    <>
+                                        <div key={index} className={styles.good}>
+                                            <CheckBoxChild/>
+                                            <div className={styles.imageWrapper}><img src={Bottle1} alt=""/></div>
+                                            <div className={styles.goodDescription}>
+                                                <p className={`${styles.title} ${styles.primary}`} style={{textTransform: "uppercase"}}>Небо над Тагилом</p>
+                                                <p className={styles.active}>Бакунин, Санкт-Петербург, Россия</p>
+                                                <div className={styles.characteristicsRow}>
+                                                    <div className={styles.characteristic}>
+                                                        <p>Крепость:</p>
+                                                        <p className={styles.active}>6,5%</p>
+                                                    </div>
+                                                    <div className={styles.characteristic}>
+                                                        <p>Плотность:</p>
+                                                        <p className={styles.active}>12%</p>
+                                                    </div>
+                                                    <div className={styles.characteristic}>
+                                                        <p>Горечь:</p>
+                                                        <p className={styles.active}>32</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div className={styles.buttonsRow}>
+                                                <div className={styles.plusMinusButton}><PlusIcon/></div>
+                                                <TextInput placeholder="0"></TextInput>
+                                                <div className={styles.plusMinusButton}><MinusIcon/></div>
+                                            </div>
+                                            <div className={styles.centerGood}>
+                                                <p className={`${styles.title} ${styles.primary}`}>760₽</p>
+                                            </div>
+                                            <div className={styles.trashButton}>
+                                                <TrashIcon></TrashIcon>
+                                            </div>
+                                        </div>
+                                        {index !== cards.length-1 && <div className="hrtLine"/>}
+                                    </>
+                                )
+                            }
+                        })}
 
 
                     </div>
@@ -220,10 +225,9 @@ export default function CartSection(){
                             })}
                         </div>
                     </div>
-
-
-
                 </div>
+
+
                 <div className={styles.rightSide}>
                     <div className={styles.cartSummary}>
                         <p className={styles.title}>Ваша корзина</p>
@@ -250,21 +254,24 @@ export default function CartSection(){
                             <p>Соглашаюсь с условиями использования и политикой конфиденциальности</p>
                         </CheckBoxChild>
                     </div>
-                    <div className={styles.pointsSection}>
-                        <div className={styles.row}>
-                            <Toggle/>
-                            <p className={styles.title}>Списать баллы</p>
+                    <div className={styles.mobileCol}>
+                        <div className={styles.pointsSection}>
+                            <div className={styles.row}>
+                                <Toggle/>
+                                <p className={styles.title}>Списать баллы</p>
+                            </div>
+                            <p>У вас накоплено 266 баллов</p>
+                            <p>Можно оплатить <span className={`${styles.title} ${styles.primary}`}>266₽</span></p>
                         </div>
-                        <p>У вас накоплено 266 баллов</p>
-                        <p>Можно оплатить <span className={`${styles.title} ${styles.primary}`}>266₽</span></p>
-                    </div>
-                    <div className={styles.promoSection}>
-                        <p className={styles.title}>Промокод</p>
-                        <div className={styles.row}>
-                            <TextInput placeholder="Введите код" inputValue={promo} setInputValue={setPromo}></TextInput>
-                            <SimpleButton style="secondary" text="Применить"></SimpleButton>
+                        <div className={styles.promoSection}>
+                            <p className={styles.title}>Промокод</p>
+                            <div className={styles.row}>
+                                <TextInput placeholder="Введите код" inputValue={promo} setInputValue={setPromo}></TextInput>
+                                <SimpleButton style="secondary" text="Применить"></SimpleButton>
+                            </div>
                         </div>
                     </div>
+
 
                 </div>
             </div>

@@ -125,8 +125,28 @@
     }
     .description{
         width: 100%;
+        grid-template-columns: minmax(min-content, 20%) auto;
     }
     .imageWrapper{
-        width: 40px;
+        max-width: 40px;
+        max-height: 40px;
+        min-width: 40px;
+        min-height: 40px;
+    }
+    .flexRow button{
+        padding: 5px;
+    }
+    .flexRow svg{
+        width: 10px;
+        height: min-content;
+    }
+    .flexRow{
+        gap: 5px;
+    }
+}
+
+@media (max-width: 600px) {
+    .description{
+        grid-template-columns: minmax(min-content, 35%) auto;
     }
 }

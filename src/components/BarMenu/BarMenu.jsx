@@ -41,7 +41,7 @@ export default function BarMenu({filters, filterButtons, sections, ref, barId = 
 
     // Получение всех вкладок
     const {data: tabs, isLoading: tabsIsLoading, error: tabsError} = useGetBarMenuTabsQuery(barId)
-
+    const [foodSelectedTab, setFoodSelectedTab] = useState("")
 
     const [selectedTab, setSelectedTab] = useState("")
 
@@ -514,6 +514,13 @@ export default function BarMenu({filters, filterButtons, sections, ref, barId = 
                                     <div className={styles.sectionButton}><IconButton text="Забронировать стол"><IconComponent/></IconButton></div>
                                 </div>}
                             </div>
+                            <div className={styles.appliedFiltersRow} style={{marginBottom: "0px"}}>
+                                {tabSpec?.data && tab.alias === "food" && Object.keys(tabSpec?.data)?.map((tabNum, index) => {
+                                    return(
+                                        <IconButton style={tabNum === foodSelectedTab? "primary": "default"} key={index} text={tabSpec?.data[tabNum]?.name} onClick={() => {if (tabNum !== foodSelectedTab) setFoodSelectedTab(tabNum); else setFoodSelectedTab("")}}></IconButton>
+                                    )
+                                })}
+                            </div>
                             <div className={styles.appliedFiltersRow}>
                                 {Object.entries(tabFilterValues[tab.alias] || {}).map(([filterKey, value]) => {
                                     // Пропускаем пустые значения
@@ -583,16 +590,18 @@ export default function BarMenu({filters, filterButtons, sections, ref, barId = 
                                 </AppliedFilter>}
                             </div>
                             {tabSpec?.data && tab.alias === "food" && Object.keys(tabSpec?.data)?.map((tabNum, index) => {
-                                return(
-                                    <Fragment key={index}>
-                                        <div key={index} className={`${styles.sectionDescription} ${styles.row}`}>
-                                            <h2>{tabSpec?.data[tabNum]?.name}</h2>
-                                        </div>
-                                        <div className={tabsSpecs[tab.alias]?.wideColumns ? styles.sectionContentWide : styles.sectionContent}>
-                                            {tabSpec?.data[tabNum]?.menu && tabSpec?.data[tabNum]?.menu?.length > 0 && tabSpec?.data[tabNum]?.menu?.map((cardInfo, index) => <CardComponent key={index} cardInfo={cardInfo}/>)}
-                                        </div>
-                                    </Fragment>
-                                )
+                                if (foodSelectedTab === "" || foodSelectedTab === tabNum){
+                                    return(
+                                        <Fragment key={index}>
+                                            <div key={index} className={`${styles.sectionDescription} ${styles.row}`}>
+                                                <h2>{tabSpec?.data[tabNum]?.name}</h2>
+                                            </div>
+                                            <div className={tabsSpecs[tab.alias]?.wideColumns ? styles.sectionContentWide : styles.sectionContent}>
+                                                {tabSpec?.data[tabNum]?.menu && tabSpec?.data[tabNum]?.menu?.length > 0 && tabSpec?.data[tabNum]?.menu?.map((cardInfo, index) => <CardComponent key={index} cardInfo={cardInfo}/>)}
+                                            </div>
+                                        </Fragment>
+                                    )
+                                }
                             })}
                             <div className={tabsSpecs[tab.alias]?.wideColumns ? styles.sectionContentWide : styles.sectionContent}>
 

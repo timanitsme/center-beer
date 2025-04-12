@@ -5,13 +5,38 @@ import BarImage3 from "../../assets/barsMocks/bar-5.svg";
 import BarImage4 from "../../assets/barsMocks/bar-4.svg";
 import BarImage5 from "../../assets/barsMocks/bar-1.svg";
 import MinimalBarCard from "../Cards/BarCard/MinimalBarCard.jsx";
+import {useEffect, useState} from "react";
 
 export default function ShortenedRowSection({title, cards=[], CardComponent}){
+    const [visibleCards, setVisibleCards] = useState([]);
+
+    useEffect(() => {
+        const handleResize = () => {
+            if (window.innerWidth >= 1000) {
+                setVisibleCards(cards.slice(0, 5)); // Показать 5 карточек
+            } else if (window.innerWidth >= 768) {
+                setVisibleCards(cards.slice(0, 3)); // Показать 3 карточки
+            }
+            else {
+                setVisibleCards(cards.slice(0, 2)); // Показать 2 карточки
+            }
+        };
+
+        // Устанавливаем начальное состояние
+        handleResize();
+
+        // Добавляем обработчик изменения размера окна
+        window.addEventListener("resize", handleResize);
+
+        // Очищаем обработчик при размонтировании компонента
+        return () => window.removeEventListener("resize", handleResize);
+    }, [cards]);
+
     return(
         <div className={styles.sectionContainer}>
             <h3>{title}</h3>
             <div className={styles.cardsRow}>
-                {cards.length > 0 && cards?.map((card, index) => {
+                {cards.length > 0 && visibleCards?.map((card, index) => {
                     return <CardComponent key={index} cardInfo={card}></CardComponent>
                 })}
                 <div className={styles.showMore}>

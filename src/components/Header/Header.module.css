@@ -21,6 +21,17 @@
 
 .logoMenu svg{
     max-height: 50px;
+    max-width: 111px;
+    height: auto;
+    width: auto;
+}
+
+.logoWrapper {
+    display: inline-block;
+    width: fit-content;
+    height: fit-content;
+    margin: 0;
+    padding: 0;
 }
 
 .menu{

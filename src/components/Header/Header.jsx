@@ -44,7 +44,9 @@ export default function Header({paths}){
             <div className={styles.headerGrid}>
                 <div className={styles.logoMenu}>
                     <a onClick={toggleMenu}>{isMenuOpen? <CloseIcon/> : <BurgerIcon/>}</a>
-                    <CenterBeerLogo/>
+                    <div className={styles.logoWrapper} onClick={() => navigate("/")}>
+                        <CenterBeerLogo/>
+                    </div>
                 </div>
                 <div className={styles.menu}>
                     {!isMobile &&

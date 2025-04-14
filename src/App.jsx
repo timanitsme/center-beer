@@ -26,8 +26,8 @@ import RestorePasswordPage from "./pages/RestorePasswordPage/RestorePasswordPage
 function App() {
     const paths = [
         {title: "Пиво", path: "/beer", element: <BeerPage/>},
-        {title: "Бары и магазины", path: "/", element: <BarsPage/>, children: [
-                {title: "Бары", path: "/"},
+        {title: "Бары и магазины", path: "/bars", element: <BarsPage/>, children: [
+                {title: "Бары", path: "/bars"},
                 {title: "Пивоварни", path: "/breweries"},
                 {title: "Дистрибьюторы", path: "/distributors"},
                 {title: "Карта баров", path: "/map"}
@@ -38,6 +38,7 @@ function App() {
         {title: "Контакты", path: "/contacts", element: <ContactsPage/>}, // /contacts
     ]
     const anonymousPaths = [
+        {path: "/", element: <IndexPage/>},
         {path: "/breweries", element: <BreweryPage/>},
         {path: "/distributors", element: <DistributorsPage/>},
         {path: "/bar/:alias", element: <BarDetailPage/> },

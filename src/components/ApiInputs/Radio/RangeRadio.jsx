@@ -65,7 +65,7 @@ export default function RangeRadio({title, options, onChange, reset, defaultOpti
 
     return(
         <div className={styles.radio}>
-            <p className={styles.radioHeader}>{title}</p>
+            <p className={`${styles.radioHeader} noSelect`}>{title}</p>
             <div className={styles.rangeContainer}>
                 <input
                     type="text"
@@ -94,7 +94,7 @@ export default function RangeRadio({title, options, onChange, reset, defaultOpti
                         onChange={() => handleRadioChange(defaultOption)}
                     />
                     <span className={styles.radioButton}></span>
-                    <p>{defaultOption.name}</p>
+                    <p className="noSelect">{defaultOption.name}</p>
                 </div>
             )}
             {options.map((option, index) => {
@@ -104,7 +104,7 @@ export default function RangeRadio({title, options, onChange, reset, defaultOpti
                         <input type="radio" value={option?.id || title} name={title} checked={selectedOption === option}
                                onChange={() => handleRadioChange(option)}/>
                         <span className={styles.radioButton}></span>
-                        <p>{option.name}</p>
+                        <p className="noSelect">{option.name}</p>
                     </div>
                 )
             })}

@@ -5,6 +5,7 @@ import PostImage2 from "../../assets/postsMocks/post-image-2.svg"
 import PostImage3 from "../../assets/postsMocks/post-image-3.svg"
 import PostImage4 from "../../assets/postsMocks/post-image-4.svg"
 import PostCard from "../Cards/PostCard/PostCard.jsx";
+import {useNavigate} from "react-router-dom";
 
 export default function PopularPosts(){
     const postCards = [
@@ -13,12 +14,13 @@ export default function PopularPosts(){
         {title: "Всё о пивных бокалах", image: PostImage3, description: "Не обязательно иметь на все 120 сортов по бокалу. В качестве основных точно найдете в старом серванте ноники или тумблеры. Не отказывайтесь от винных, коньячных и бокалов для шампанского. Они вполне могут заменить тюльпаны, кубки, чаши, снифтеры и подойдут для изысканных сортов пива."},
         {title: "Производство крафтового пива под запретом?", image: PostImage4, description: "Последние пару дней СМИ усиленно спекулируют на теме закрытия крафтовой ниши и дурят головы простым людям некорректной информацией. Меня уже засыпали сообщениями небезразличные клиенты, друзья и знакомые с просьбой прокомментировать ситуацию на пивном рынке или просто узнать, как мой бизнес будет жить дальше."}
     ]
+    const navigate = useNavigate()
 
     return(
         <div className={styles.postsSection}>
             <div className={styles.postsHeader}>
                 <h1>Популярные статьи</h1>
-                <div className={styles.buttonContainer}><RoundLinkButton text="Все статьи"/></div>
+                <div className={styles.buttonContainer}><RoundLinkButton text="Все статьи" onClick={() => navigate("news")}/></div>
             </div>
             <div className={styles.postsContainer}>
                 {postCards.map((card, index) => {

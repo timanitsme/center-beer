@@ -42,7 +42,7 @@ import Review6 from "../../assets/reviewsMocks/review-6.svg";
 // Navigation
 const paths = [
     {title:"beer.center", path: "/"},
-    {title:"Бары и магазины", path: "/"},
+    {title:"Бары и магазины", path: "/bars"},
 ]
 
 

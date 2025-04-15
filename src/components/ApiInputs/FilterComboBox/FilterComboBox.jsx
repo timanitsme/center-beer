@@ -57,7 +57,7 @@ export default function FilterComboBox({ options, title, onChange, reset }){
                 className={`${styles.comboBoxHeader} ${!isOpen? styles.closed: ''}`}
                 onClick={() => setIsOpen(!isOpen)} // Переключаем состояние isOpen
             >
-                <p>{title}</p>
+                <p className="noSelect">{title}</p>
                 <span className={`${styles.arrow} ${isOpen ? styles.open : ''}`}><ArrowDownIcon/></span>
             </div>
 
@@ -81,7 +81,7 @@ export default function FilterComboBox({ options, title, onChange, reset }){
                         {filteredOptions.map((option, index) => (
                             <li
                                 key={index}
-                                className={styles.optionItem}
+                                className={`${styles.optionItem} noSelect`}
                             >
                                 <CheckBox text={option.name} checked={selectedOptions.some((item) => item.id === option.id)} onChange={() => handleCheckboxChange(option)} />
                             </li>

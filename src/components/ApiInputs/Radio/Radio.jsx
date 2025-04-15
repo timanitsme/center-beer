@@ -29,7 +29,7 @@ export default function Radio({title, options, onChange, reset, defaultOption, f
     }
     return(
         <div className={styles.radio}>
-            <p className={styles.radioHeader}>{title}</p>
+            <p className={`${styles.radioHeader} noSelect`}>{title}</p>
             {defaultOption && !options.some(opt => opt.id === defaultOption.id) && (
                 <div className={styles.option} onClick={() => handleRadioChange(getDefaultOption())}>
                     <input
@@ -40,7 +40,7 @@ export default function Radio({title, options, onChange, reset, defaultOption, f
                         onChange={() => handleRadioChange(defaultOption)}
                     />
                     <span className={styles.radioButton}></span>
-                    <p>{defaultOption.name}</p>
+                    <p className="noSelect">{defaultOption.name}</p>
                 </div>
             )}
             {options.map((option, index) => {
@@ -50,7 +50,7 @@ export default function Radio({title, options, onChange, reset, defaultOption, f
                         <input type="radio" value={option?.id || title} name={title}
                                checked={selectedOption === option} onChange={() => handleRadioChange(option)}/>
                         <span className={styles.radioButton}></span>
-                        <p>{option.name}</p>
+                        <p className="noSelect">{option.name}</p>
                     </div>
                 )
             })}

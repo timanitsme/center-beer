@@ -53,7 +53,7 @@
     align-content: center;
     justify-content: center;
     gap: 3%;
-
+    overflow: hidden;
 }
 
 .menuItems a{

@@ -7,6 +7,7 @@ import EventPicture3 from "../../assets/eventsMocks/event-picture-3.svg"
 import RoundLinkButton from "../Buttons/RoundLinkButton/RoundLinkButton.jsx";
 import ArrowLeftIcon from "../../assets/arrow-left-icon.svg?react"
 import ArrowRightIcon from "../../assets/arrow-right-icon.svg?react"
+import {useNavigate} from "react-router-dom";
 
 
 export default function IndexEvents(){
@@ -14,6 +15,8 @@ export default function IndexEvents(){
     const datesRef = useRef(null);
     const [selectedDate, setSelectedDate] = useState(new Date());
     const [currentMonth, setCurrentMonth] = useState(new Date());
+    const navigate = useNavigate()
+
 
     const events = [
         {date: "06-01-25", title: "CRAFT MAGIC NIGHT 2025 (Новосибирск)", image: EventPicture1, description: "6 января 2025 года в Новосибирском Академгородке, в ресторане GUSI, пройдёт 5-й, юбилейный фестиваль CRAFT MAGIC NIGHT — празднование Рождества в формате пивной безлимит."},
@@ -202,7 +205,7 @@ export default function IndexEvents(){
                         <ArrowButton direction="left" onClick={scrollLeft}></ArrowButton>
                         <ArrowButton direction="right" onClick={scrollRight}></ArrowButton>
                     </div>
-                    <div><RoundLinkButton text="Все мероприятия"/></div>
+                    <div><RoundLinkButton text="Все мероприятия" onClick={() => navigate("/events")}/></div>
                 </div>
 
             </div>

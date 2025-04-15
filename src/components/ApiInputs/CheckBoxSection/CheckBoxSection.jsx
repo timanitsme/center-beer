@@ -35,7 +35,7 @@ export default function CheckBoxSection({title, options, onChange, reset}){
 
     return(
         <div className={styles.checkbox}>
-            <p className={styles.checkboxHeader}>{title}</p>
+            <p className={`${styles.checkboxHeader} noSelect`}>{title}</p>
             {options.map((option, index) => (
                 <CheckBox key={index} text={option.name} checked={selectedOptions.some((item) => item.id === option.id)} onChange={() => handleCheckboxChange(option)} />
             ))}

@@ -19,10 +19,12 @@ import VideoImage4 from "../../assets/videoMocks/video-image-4.svg"
 import VideoImage5 from "../../assets/videoMocks/video-image-5.svg"
 import VideoImage6 from "../../assets/videoMocks/video-image-6.svg"
 import VideoCard from "../Cards/VideoCard/VideoCard.jsx";
+import {useNavigate} from "react-router-dom";
 
 export default function IndexSection(){
     const [showTitle, setShowTitle] = useState(false);
     const [showCards, setShowCards] = useState(false)
+    const navigate = useNavigate()
 
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -67,7 +69,7 @@ export default function IndexSection(){
                     <h1 style={{color: "var(--txt-secondary)"}}>Для тех, кто его</h1>
                     <h1>Варит, любит и продаёт</h1>
                 </div>
-                <SimpleButton text="Подробнее о проекте"></SimpleButton>
+                <SimpleButton text="Подробнее о проекте" onClick={() => window.location.href="https://center.beer/about/"}></SimpleButton>
             </div>
             <div className={styles.bottle}><NoCapBottle/></div>
             <div className={`${styles.videoCardContainer} ${showTitle? styles.show: ""}`}>

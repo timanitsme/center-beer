@@ -8,6 +8,10 @@
     align-items: center;
 }
 
+.customCheckbox:hover{
+    cursor: pointer;
+}
+
 .customCheckbox p{
     font-size: clamp(10px, 0.9vw, 15px);
     font-weight: 200;

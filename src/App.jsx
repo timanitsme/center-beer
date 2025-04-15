@@ -22,6 +22,7 @@ import PersonalAccountPage from "./pages/PersonalAccountPage/PersonalAccountPage
 import CartPage from "./pages/CartPage/CartPage.jsx";
 import AuthorizationPage from "./pages/AuthorizationPage/AuthorizationPage.jsx";
 import RestorePasswordPage from "./pages/RestorePasswordPage/RestorePasswordPage.jsx";
+import ErrorBoundary from "./utils/ErrorBoundary/ErrorBoundary.jsx";
 
 function App() {
     const paths = [
@@ -57,10 +58,10 @@ function App() {
             <div className="contentContainer">
                 <Routes>
                     {paths.map((path) => {
-                        return(<Route key={path.path} path={path.path} element={path.element}/>)
+                        return(<Route key={path.path} path={path.path} element={<ErrorBoundary>{path.element}</ErrorBoundary>}/>)
                     })}
                     {anonymousPaths.map((path) => {
-                        return(<Route key={path.path} path={path.path} element={path.element}/>)
+                        return(<Route key={path.path} path={path.path} element={<ErrorBoundary>{path.element}</ErrorBoundary>}/>)
                     })}
                 </Routes>
                 <img className="bottle" src={bottlePath}></img>

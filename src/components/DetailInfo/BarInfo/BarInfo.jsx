@@ -58,6 +58,10 @@ export default function BarInfo({barInfo={}, sections = []}){
         return icons;
     };
 
+    const today = new Date()
+    const dayOfWeek = today.getDay()
+    const getDayOfWeek = () =>  dayOfWeek === 0? 6: dayOfWeek-1
+    const intervals = barInfo?.work_time_list[getDayOfWeek()]?.interval?.split(" - ")
     return(
         <div>
             <div className={styles.barInfoContainer}>
@@ -70,10 +74,14 @@ export default function BarInfo({barInfo={}, sections = []}){
                     </div>
                 </div>
                 <div className={styles.barDescription}>
-                    <h2>{barInfo.name}</h2>
-
+                    <div className={styles.descriptionRow}>
+                        <h2>{barInfo.name}</h2>
+                        <div className={styles.openedSection}>
+                            <div className={`${styles.bigCircle} ${barInfo?.work_time_list[getDayOfWeek()]?.active? styles.green : styles.red}`}/>
+                            <p>{barInfo?.work_time_list[getDayOfWeek()]?.active? `открыт до ${intervals?.[1]}`:`закрыт до ${intervals?.[0]}`}</p>
+                        </div>
+                    </div>
                     <p>{barInfo.description}</p>
-
                     <div className={styles.barButtons}>
                         {sections.map((section, index) =>
                             <IconButton key={index} onClick={() => handleScroll(section.ref)} text={section.title}>{section.IconComponent}</IconButton>

@@ -14,7 +14,7 @@ export default function BarCard({cardInfo}){
     const [cardFav, setCardFav] = useState(cardInfo?.is_liked || false);
     const navigate = useNavigate();
     const today = new Date()
-    const dayOfWeek = today.getDate()
+    const dayOfWeek = today.getDay()
     const rating = 4.9
 
     const getDayOfWeek = () =>  dayOfWeek === 0? 6: dayOfWeek-1

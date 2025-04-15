@@ -3,7 +3,7 @@ import TextInput from "../Inputs/TextInput/TextInput.jsx";
 import SimpleButton from "../Buttons/SimpleButton/SimpleButton.jsx";
 import IconButton from "../Buttons/IconButton/IconButton.jsx";
 import {VkIcon} from "../../assets/VkIcon.jsx";
-import {WhatsAppIcon} from "../../assets/WhatsAppIcon.jsx";
+import {MailIcon} from "../../assets/MailIcon.jsx";
 import {TgIcon} from "../../assets/TgIcon.jsx";
 
 export default function ContactsSection(){
@@ -20,7 +20,7 @@ export default function ContactsSection(){
                     <p>Для вопросов и предложений</p>
                 </div>
                 <div className={styles.contactsCol}>
-                    <h2>#center.beer</h2>
+                    <h2>@Alexomel81</h2>
                     <p>Для сообщений в Telegram</p>
                 </div>
             </div>
@@ -44,9 +44,9 @@ export default function ContactsSection(){
                         <h2>Мы в социальных сетях</h2>
                     </div>
                     <div className={styles.row}>
-                        <IconButton style="third" text={"Telegram"}><TgIcon/></IconButton>
-                        <IconButton style="third" text={"Whatsapp"}><WhatsAppIcon/></IconButton>
-                        <IconButton style="third" text={"Вконтакте"}><VkIcon/></IconButton>
+                        <IconButton style="third" onClick={() => window.location.href="https://t.me/Alexomel81"} text={"Telegram"}><TgIcon/></IconButton>
+                        <IconButton style="third" text={"Почта"} onClick={() => window.location.href="mailto:hello@center.beer"}><MailIcon/></IconButton>
+                        <IconButton style="third" onClick={() => window.location.href="https://vk.com/center.beer"} text={"Вконтакте"}><VkIcon/></IconButton>
                     </div>
                 </div>
             </div>

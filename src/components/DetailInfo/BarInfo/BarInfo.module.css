@@ -29,8 +29,14 @@
     max-width: 60%;
 }
 
-.barDescription h2, .barInfo h2{
+.barInfo h2{
     width: 100%;
+    text-align: left;
+    text-transform: uppercase;
+    font-size: 2vw;
+}
+
+.barDescription h2{
     text-align: left;
     text-transform: uppercase;
     font-size: 2vw;
@@ -60,6 +66,33 @@
     gap: 10px;
     justify-content: center;
     margin: 0 25px 25px 25px;
+}
+
+.bigCircle{
+    height: 5px;
+    width: 5px;
+    border-radius: 100%;
+}
+
+.red{
+    background-color: var(--icon-added);
+}
+
+.green{
+    background-color: #2AC02A;
+}
+
+.descriptionRow{
+    width: 100%;
+    display: flex;
+    gap: 5px;
+}
+
+.openedSection{
+    align-self: flex-start;
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }
 
 .barInfo{

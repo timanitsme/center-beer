@@ -1,0 +1,13 @@
+.sidebar{
+    height: 100%;
+    width: 0px;
+    transition: width 0.3s;
+    z-index: 800;
+}
+
+.sidebar.expanded {
+    width: 270px;
+    transition: width 0.3s;
+}
+
+

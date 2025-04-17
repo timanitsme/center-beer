@@ -23,6 +23,8 @@ import CartPage from "./pages/CartPage/CartPage.jsx";
 import AuthorizationPage from "./pages/AuthorizationPage/AuthorizationPage.jsx";
 import RestorePasswordPage from "./pages/RestorePasswordPage/RestorePasswordPage.jsx";
 import ErrorBoundary from "./utils/ErrorBoundary/ErrorBoundary.jsx";
+import EventMapPage from "./pages/EventMapPage/EventMapPage.jsx";
+import {cloneElement, useState} from "react";
 
 function App() {
     const paths = [
@@ -33,7 +35,7 @@ function App() {
                 {title: "Дистрибьюторы", path: "/distributors"},
                 {title: "Карта баров", path: "/map"}
             ]},
-        {title: "Мероприятия", path: "events", element: <CartPage/>}, // /events
+        {title: "Мероприятия", path: "events", element: <PersonalAccountPage/>}, // /events
         {title: "О проекте", path: "https://center.beer/about/", element: <AboutPage/>}, // /about-us
         {title: "Новости", path: "/news", element: <NewsPage/>},
         {title: "Контакты", path: "/contacts", element: <ContactsPage/>}, // /contacts
@@ -47,9 +49,10 @@ function App() {
         {path: "/brewery/:id", element: <BreweryDetailPage/>},
         {path: "/news/:id", element: <NewsDetailPage/>},
         {path: "/map", element: <BeerMapPage/>},
-        {path: "/distributor/:id", element: <DistributorDetailPage/>}
+        {path: "/distributor/:id", element: <DistributorDetailPage/>},
+        {path: "/event-map/", element: <EventMapPage/>, hideFooter: true}
     ]
-
+    const [hideFooter, setHideFooter] = useState(false);
     return (
     <BrowserRouter>
         <div className="app">
@@ -58,14 +61,14 @@ function App() {
             <div className="contentContainer">
                 <Routes>
                     {paths.map((path) => {
-                        return(<Route key={path.path} path={path.path} element={<ErrorBoundary>{path.element}</ErrorBoundary>}/>)
+                        return(<Route key={path.path} path={path.path} element={<ErrorBoundary>{cloneElement(path.element, { setHideFooter })}</ErrorBoundary>}/>)
                     })}
                     {anonymousPaths.map((path) => {
-                        return(<Route key={path.path} path={path.path} element={<ErrorBoundary>{path.element}</ErrorBoundary>}/>)
+                        return(<Route key={path.path} path={path.path} element={<ErrorBoundary>{cloneElement(path.element, { setHideFooter })}</ErrorBoundary>}/>)
                     })}
                 </Routes>
-                <img className="bottle" src={bottlePath}></img>
-                <Footer/>
+                {!hideFooter && <img className="bottle" src={bottlePath}></img>}
+                {!hideFooter && <Footer />}
             </div>
         </div>
     </BrowserRouter>

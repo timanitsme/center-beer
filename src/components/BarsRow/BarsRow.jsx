@@ -7,20 +7,17 @@ import LocationIcon from "../../assets/location-filled-icon.svg?react";
 import CheckBox from "../Inputs/CheckBox/CheckBox.jsx";
 import ComboBox from "../Inputs/ComboBox/ComboBox.jsx";
 import SimpleCatalogSection from "../CatalogSections/SimpleCatalogSection/SimpleCatalogSection.jsx";
-import LightBarCard from "../Cards/BarCard/LightBarCard.jsx";
-import Bar1 from "../../assets/barsMocks/bar-1.svg"
-import Bar2 from "../../assets/barsMocks/bar-2.svg"
-import Bar3 from "../../assets/barsMocks/bar-3.svg"
-import Bar4 from "../../assets/barsMocks/bar-4.svg"
-import Bar5 from "../../assets/barsMocks/bar-5.svg"
-import Bar6 from "../../assets/barsMocks/bar-6.svg"
 import {Link} from "react-router-dom";
+import MarketBar1 from "../../../src/assets/marketBarRowMocks/market-bar-1.png"
+import MarketBar2 from "../../../src/assets/marketBarRowMocks/market-bar-2.png"
+import MarketBar3 from "../../../src/assets/marketBarRowMocks/market-bar-3.png"
+import MarketBar4 from "../../../src/assets/marketBarRowMocks/market-bar-4.png"
 
 export default function BarsRow({title, barCards, marketCards, CardComponent}){
     const [buttonSwitch, setButtonSwitch] = useState('market')
     const comboboxOptions = ["Сначала рядом со мной", "По умолчанию"]
     const [currentCards, setCurrentCards] = useState(marketCards)
-
+    const placeholders = [MarketBar1, MarketBar2, MarketBar3, MarketBar4]
     return(
         <div className={styles.barsRowContainer}>
             <div className={styles.headerContainer}>
@@ -43,6 +40,14 @@ export default function BarsRow({title, barCards, marketCards, CardComponent}){
                     </div>
                 </div>
             </div>
+            {currentCards?.length === 0 &&
+                <div className={styles.placeholdersRow}>
+                    {placeholders.map((placeholder, index) => {
+                        return <div key={index} className={styles.imageWrapper}><img src={placeholder}></img></div>
+
+                    })}
+                </div>
+            }
             <SimpleCatalogSection CardComponent={CardComponent} cards={currentCards} wideColumns={false} title={title}></SimpleCatalogSection>
         </div>
     )

@@ -20,7 +20,7 @@ export default function PersonalAccount({isMobile = false}){
                 <div>
                     <p className={styles.bold}>Покупки</p>
                     <ul className={styles.innerList}>
-                        <li><a href="">Активные заказы <div className={styles.quantity}><p>2</p></div></a></li>
+                        <li><a href="">Активные заказы <div className="quantity"><p>2</p></div></a></li>
                         <li><a href="">Архив заказов</a></li>
                         <li><a href="">Настройки покупок</a></li>
                     </ul>
@@ -32,7 +32,7 @@ export default function PersonalAccount({isMobile = false}){
                         <li><a href="">Личные данные</a></li>
                         <li><a href="">Мои адреса</a></li>
                         <li><a href="">Мои отзывы</a></li>
-                        <li><a href="">Избранное <div className={styles.quantity}><p>64</p></div> </a></li>
+                        <li><a href="">Избранное <div className="quantity"><p>64</p></div> </a></li>
                     </ul>
                 </div>
 

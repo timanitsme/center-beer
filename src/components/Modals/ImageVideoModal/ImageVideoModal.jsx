@@ -1,9 +1,9 @@
 import styles from "./ImageVideoModal.module.css"
 import SimpleModal from "../SimpleModal/SimpleModal.jsx";
 import ImagePlaceholder from "../../../assets/placeholders/card-image-placeholder.svg";
+import {useEffect, useRef} from "react";
 
 export default function ImageVideoModal({src, setSrc, show, setShow}){
-
     const handleError = () => {
     }
 
@@ -14,7 +14,7 @@ export default function ImageVideoModal({src, setSrc, show, setShow}){
             </div>}
 
             {src.type === "video" && <div className={styles.imageWrapper}>
-                 <div dangerouslySetInnerHTML={{__html: src?.iframe}}></div>
+                 <iframe style={{width: "50vw", aspectRatio: "16/9"}} src={src?.iframe || src?.url} frameBorder="0" allowFullScreen></iframe>
             </div>}
 
         </SimpleModal>

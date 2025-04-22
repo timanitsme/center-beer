@@ -80,7 +80,7 @@ export default function BeerInfo({beerInfo={}}){
                             <li><p>Пивоварня: <a href="">{beerInfo?.brewery_name}</a></p></li>
                             <li><p>Стиль: <a href="">{beerInfo?.style_name}</a></p></li>
                             <li><p>Начало выпуска: <p style={{color: "var(--txt-active)"}}>{beerInfo?.start_date_sales}</p></p></li>
-                            <li><p>Производство: <p style={{color: "var(--txt-active)"}}>постоянный выпуск</p></p></li>
+                            <li><p>Производство: <p style={{color: "var(--txt-active)"}}>{beerInfo?.production}</p></p></li>
                         </ul>
                     </div>
                 </div>
@@ -91,9 +91,9 @@ export default function BeerInfo({beerInfo={}}){
                     </div>
                     <div className={styles.ratingAndComments}>
                         <div className={styles.beerBottles}>
-                            {getRatingIcons(rating)}
+                            {getRatingIcons(beerInfo?.rating)}
                         </div>
-                        <p>({rating})</p>
+                        <p>({beerInfo?.rating})</p>
                         <div className={styles.circle}/>
                         <a> <CommentIcon/> 116 комментариев</a>
                     </div>
@@ -112,9 +112,9 @@ export default function BeerInfo({beerInfo={}}){
                 </div>
                 <div className={styles.ratingAndComments}>
                     <div className={styles.beerBottles}>
-                        {getRatingIcons(rating)}
+                        {getRatingIcons(beerInfo?.rating)}
                     </div>
-                    <p>({rating})</p>
+                    <p>({beerInfo?.rating})</p>
                     <div className={styles.circle}/>
                     <a> <CommentIcon/> 116 комментариев</a>
                 </div>
@@ -128,10 +128,10 @@ export default function BeerInfo({beerInfo={}}){
                 <p>Классический светлый пилснер в чешском стиле. Сваренный на светлом солоде типа пилс, с жатецким хмелем Saaz. Прозрачного золотистого цвета, с плотной пенной шапкой. Имеет насыщенный хмелевой аромат с цветочными нотами. Вкус яркий, искристый с отличным хмелево-солодовым балансом. Горечь уверенная, но не выпирающая. Послевкусие хмелевое.</p>
                 <div>
                     <ul className={styles.characteristicsList}>
-                        <li><p>Пивоварня: <a href="">Švyturys</a></p></li>
-                        <li><p>Стиль: <a href="">Altbier (Альтбир)</a></p></li>
-                        <li><p>Начало выпуска: <p style={{color: "var(--txt-active)"}}>09.07.2019</p></p></li>
-                        <li><p>Производство: <p style={{color: "var(--txt-active)"}}>постоянный выпуск</p></p></li>
+                        <li><p>Пивоварня: <a href="">{beerInfo?.brewery_name}</a></p></li>
+                        <li><p>Стиль: <a href="">{beerInfo?.style_name}</a></p></li>
+                        <li><p>Начало выпуска: <p style={{color: "var(--txt-active)"}}>{beerInfo?.start_date_sales}</p></p></li>
+                        <li><p>Производство: <p style={{color: "var(--txt-active)"}}>{beerInfo?.production}</p></p></li>
                     </ul>
                 </div>
             </div>

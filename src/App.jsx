@@ -35,7 +35,7 @@ function App() {
                 {title: "Дистрибьюторы", path: "/distributors"},
                 {title: "Карта баров", path: "/map"}
             ]},
-        {title: "Мероприятия", path: "events", element: <PersonalAccountPage/>}, // /events
+        {title: "Мероприятия", path: "events", element: <EventsPage/>}, // /events
         {title: "О проекте", path: "https://center.beer/about/", element: <AboutPage/>}, // /about-us
         {title: "Новости", path: "/news", element: <NewsPage/>},
         {title: "Контакты", path: "/contacts", element: <ContactsPage/>}, // /contacts
@@ -50,7 +50,9 @@ function App() {
         {path: "/news/:id", element: <NewsDetailPage/>},
         {path: "/map", element: <BeerMapPage/>},
         {path: "/distributor/:id", element: <DistributorDetailPage/>},
-        {path: "/event-map/", element: <EventMapPage/>, hideFooter: true}
+        {path: "/event-map/", element: <EventMapPage/>, hideFooter: true},
+        {path: "/login/", element: <AuthorizationPage/>},
+        {path: "/account/", element: <PersonalAccountPage/>}
     ]
     const [hideFooter, setHideFooter] = useState(false);
     return (

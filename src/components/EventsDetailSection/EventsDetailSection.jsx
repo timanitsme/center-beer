@@ -1,0 +1,72 @@
+import styles from "./EventsDetailSection.module.css"
+import {useState} from "react";
+import BlogImage1 from "../../assets/newsMocks/blog-image-1.svg";
+import BlogImage2 from "../../assets/newsMocks/blog-image-2.svg";
+import BlogImage3 from "../../assets/newsMocks/blog-image-3.svg";
+import Search from "../Inputs/Search/Search.jsx";
+import ArrowBackIcon from "../../assets/arrow-left-icon.svg?react";
+import LightNavChain from "../Navigation/LightNavChain/LightNavChain.jsx";
+import FavsIcon from "../../assets/fav-unfill-icon.svg?react";
+import BookMarkIcon from "../../assets/bookmark-unfill-icon.svg?react";
+import ComboBox from "../Inputs/ComboBox/ComboBox.jsx";
+import Ad1 from "../../assets/adsMocks/ad-1.svg";
+import RoundLinkButton from "../Buttons/RoundLinkButton/RoundLinkButton.jsx";
+
+export default function EventsDetailSection({style = "detail", children}){
+    const [isFavourite, setIsFavourite] = useState(false);
+    const [isBookmarked, setIsBookmarked] = useState(false);
+    const sectionMenuMainItems = ["Все", "Прошедшие", "Идущие", "Ближайшие"]
+    const sectionMenuSecondaryItems = ["Фестивали"]
+    const paths = [
+        {title: "Новости"},
+        {title: "Бары и магазины"}
+    ]
+
+    const cards = [
+        {title: "Крупнейшие российские производители пива предупреждают", description: "Крупнейшие производители пива и безалкогольных напитков предупредили розницу о предстоящем подорожании своей продукции с 1 апреля.", img: BlogImage1},
+        {title: "Производитель сигарет Altria Group продаст акции AB InBev", description: "Табачный гигант Altria Group сообщил о планах продать акции компании AB InBev более чем на 2,2 млрд долларов.", img: BlogImage2},
+        {title: "Глава Чувашии: включение других регионов в хмелеводство даст нам максимальный экономический эффект", description: "Глава Чувашии Олег Николаев провёл ежегодную пресс-конференцию, на которой ответил на вопросы представителей СМИ, в том числе и о развитии хмелеводства в республике.", img: BlogImage3},
+    ]
+
+    return(
+        <div className={styles.sectionContainer}>
+            <div className={styles.sectionMenu}>
+                <Search text="Поиск мероприятий"/>
+                <div className={styles.menuItemsContainer}>
+                    {sectionMenuMainItems.map((item, index) =>
+                        <a key={index}>{item}</a>
+                    )}
+                </div>
+                <div className={styles.menuItemsContainer}>
+                    {sectionMenuSecondaryItems.map((item, index) =>
+                        <a key={index}>{item}</a>
+                    )}
+                </div>
+            </div>
+            <div className={styles.section}>
+                { style === "detail" && <div className={styles.sectionHeader}>
+                    <div className={styles.sectionNav}>
+                        <a><ArrowBackIcon/></a>
+                        <LightNavChain paths={paths}/>
+                    </div>
+                    <div className={styles.sectionButtons}>
+                        <a className={`${styles.aIconButton} ${isFavourite ? styles.added : ''}`} onClick={() => setIsFavourite(!isFavourite)}><FavsIcon/><span>{isFavourite? "Убрать из любимых": "Добавить в любимые"}</span></a>
+                        <a className={`${styles.aIconButton} ${isBookmarked ? styles.added : ''}`} onClick={() => setIsBookmarked(!isBookmarked)}><BookMarkIcon/><span>{isBookmarked? "Убрать из кладовки": "Добавить в кладовку"}</span></a>
+                    </div>
+                </div>}
+                { style === "regular" && <div className={styles.sectionHeader}>
+                    <ComboBox options={["По умолчанию"]}></ComboBox>
+                    <div className={styles.sectionButtons}>
+                        <a className={`${styles.aIconButton} ${isFavourite ? styles.added : ''}`} onClick={() => setIsFavourite(!isFavourite)}><FavsIcon/><span>{isFavourite? "Убрать из любимых": "Добавить в любимые"}</span></a>
+                        <a className={`${styles.aIconButton} ${isBookmarked ? styles.added : ''}`} onClick={() => setIsBookmarked(!isBookmarked)}><BookMarkIcon/><span>{isBookmarked? "Убрать из кладовки": "Добавить в кладовку"}</span></a>
+                    </div>
+                </div>}
+                <div className={styles.sectionContent}>
+                    <div className={styles.contentMain}>
+                        {children}
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
+}

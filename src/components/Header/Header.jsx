@@ -1,6 +1,6 @@
 import styles from "./Header.module.css"
 
-import {useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import Toggle from "../Toggle/Toggle.jsx";
 import {isMobile} from "react-device-detect";
 import {TgIcon} from "../../assets/TgIcon.jsx";
@@ -12,6 +12,8 @@ import {BurgerIcon} from "../../assets/BurgerIcon.jsx";
 import {Link, useLocation, useNavigate} from "react-router-dom";
 import CloseIcon from "../../assets/close-icon.svg?react"
 import ArrowDownIcon from "../../assets/arrow-down-icon.svg?react"
+import AvatarMock from "../../assets/avatar-mock.svg";
+import SimpleButton from "../Buttons/SimpleButton/SimpleButton.jsx";
 
 
 export default function Header({paths}){
@@ -21,9 +23,26 @@ export default function Header({paths}){
     const [expandedPaths, setExpandedPaths] = useState([]);
     const currentPage = useLocation().pathname;
     const navigate = useNavigate();
+    const [isAuthorized, setIsAuthorized] = useState(true)
     const switchTheme = () => {
         setToggleState(!toggleState);
     };
+    const [isOpen, setIsOpen] = useState(false); // Состояние меню
+    const menuRef = useRef(null); // Ссылка на контейнер меню
+
+    // Закрытие меню при клике вне области
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (menuRef.current && !menuRef.current.contains(event.target)) {
+                setIsOpen(false);
+            }
+        };
+
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, []);
 
     const toggleMenu = () => {
         if (isMenuOpen) setExpandedPaths([])
@@ -53,7 +72,7 @@ export default function Header({paths}){
                         <div className={styles.menuItems}>
                             {paths.map((path) => {
                                 return(
-                                    <div className={styles.pathContainer} key={path.path} onMouseEnter={() => setHoveredPath(path.path)} onMouseLeave={() => setHoveredPath(null)}>
+                                    <div className={styles.pathContainer} key={path.path} onMouseEnter={() => {setHoveredPath(path.path)}} onMouseLeave={() => {setHoveredPath(null)}}>
                                         <Link className={(currentPage === path.path) || (path.children?.some(child => child.path === currentPage))? styles.active: ''} to={path.path}>{path.title}</Link>
                                         {hoveredPath === path.path && path.children && (
                                             <div className={styles.subMenu}>
@@ -121,6 +140,24 @@ export default function Header({paths}){
                         <a href="mailto:hello@center.beer"><MailIcon/></a>
                     </div>
                     }
+                </div>
+                <div className={styles.userContainer}>
+                    {isAuthorized &&
+                        <div className={styles.pathContainer}>
+                            <div className={styles.profile} onClick={(e) => {e.stopPropagation(); setIsOpen(!isOpen)}}>
+                                <img className={styles.avatar} src={AvatarMock} alt=''></img>
+                                <p className={styles.bold}>Вячеслав Крыжовников</p>
+                            </div>
+                            <div className={`${styles.userMenu} ${isOpen? "": styles.hidden}`} ref={menuRef}>
+                                <a onClick={() => {setIsOpen(false); navigate("/account/")}}>Профиль</a>
+                                <a href="">Избранное <div className="quantity"><p>2</p></div></a>
+                                <a href="">Кладовка</a>
+                                <a href="">Заказы</a>
+                                <a onClick={()=> {setIsOpen(false); setIsAuthorized(false)}}>Выход</a>
+                            </div>
+                        </div>
+                    }
+                    {!isAuthorized && <SimpleButton onClick={() => navigate("/login/")} text={"Войти в аккаунт"}></SimpleButton>}
                 </div>
             </div>
         </div>

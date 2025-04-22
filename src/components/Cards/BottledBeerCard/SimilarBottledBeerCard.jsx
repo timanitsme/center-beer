@@ -7,19 +7,23 @@ import FavIcon from "../../../assets/fav-unfill-icon.svg?react";
 import PropTypes from "prop-types";
 import BottleIcon from "../../../assets/bottle-icon.svg?react"
 import cardImagePlaceholder from "../../../assets/placeholders/card-image-placeholder.svg"
+import {useNavigate} from "react-router-dom";
 
 export default function SimilarBottledBeerCard({cardInfo}){
     const [cardBookmarked, setCardBookmarked] = useState(cardInfo?.is_favor || false);
     const [cardFav, setCardFav] = useState(cardInfo?.is_liked || false);
     const formatNumber = (num) => Number(num).toString()
     const [imageSrc, setImageSrc] = useState(cardInfo?.photo || cardImagePlaceholder)
+    const navigate = useNavigate()
+    const goToBeerPage = (alias) => navigate(`/beer/${alias}/`);
+
 
     return(
         <div className={styles.card}>
             <div className={styles.bottledBeerCard}>
                 <div className={styles.cardTop}>
                     <div className={styles.textContainer}>
-                        <p className={styles.cardTextPrimary}>{cardInfo?.name}</p>
+                        <p className={styles.cardTextPrimary} onClick={() => goToBeerPage(cardInfo?.alias || cardInfo?.beer_alias)}>{cardInfo?.name}</p>
                         <p className={styles.textActive}>{[cardInfo?.brewery_name, cardInfo?.city, cardInfo?.country].join(", ")}</p>
                     </div>
                     <div>
@@ -29,7 +33,7 @@ export default function SimilarBottledBeerCard({cardInfo}){
 
                 </div>
                 <div className={styles.imgContainer}>
-                    <img src={imageSrc} onError={() => setImageSrc(cardImagePlaceholder)} alt=""/>
+                    <img src={imageSrc} onClick={() => goToBeerPage(cardInfo?.alias || cardInfo?.beer_alias)} onError={() => setImageSrc(cardImagePlaceholder)} alt=""/>
                     <a onClick={() => setCardFav(!cardFav)} className={`${styles.favButton} ${cardFav? styles.added : ''}`}><FavIcon/></a>
                 </div>
                 {cardInfo.style && <p className={styles.textActive}><span style={{color: "var(--txt-secondary)"}}>Стиль:</span> {cardInfo.style}</p>}
@@ -51,7 +55,7 @@ export default function SimilarBottledBeerCard({cardInfo}){
             </div>
             <div className={styles.cardFooter}>
                 <p className={styles.textActive} style={{color: "var(--txt-secondary)"}}> Средняя цена:</p>
-                <p className={styles.cardTextPrimary}>{Number(cardInfo?.avg_price).toLocaleString("ru-Ru")}₽</p>
+                <p className={styles.cardTextPrimary}>{Number(cardInfo?.price).toLocaleString("ru-Ru")}₽</p>
             </div>
         </div>
     )

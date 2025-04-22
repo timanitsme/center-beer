@@ -24,7 +24,7 @@ export default function BottledBeerCard({cardInfo}){
                 <div className={styles.cardTop}>
                     <div className={styles.textContainer}>
                         <p className={styles.cardTextPrimary} onClick={() => goToBeerPage(cardInfo?.alias || cardInfo?.beer_alias)}>{cardInfo?.name}</p>
-                        <p className={styles.textActive}>{cardInfo?.brewery}</p>
+                        <p className={styles.textActive}>{cardInfo?.brewery}{cardInfo?.brewery && cardInfo?.country && ","} {cardInfo?.country}</p>
                     </div>
                     <div>
                         <a onClick={() => setCardBookmarked(!cardBookmarked)} className={`${styles.bookMarkButton} ${cardBookmarked && styles.added}`}><BookMarkIcon/></a>

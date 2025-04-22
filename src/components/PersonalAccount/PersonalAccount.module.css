@@ -67,16 +67,6 @@
     transition: 0.5s;
 }
 
-.quantity{
-    background: var(--primary);
-    padding: 2px 5px;
-    border-radius: 10px;
-}
-
-.quantity p{
-    font-size: 0.7vw;
-    color: var(--bg);
-}
 
 @media (max-width: 1000px) {
     .accountSection{
@@ -87,9 +77,6 @@
     }
     .accountSection .bold{
         font-size: 11px;
-    }
-    .quantity p{
-        font-size: 7px;
     }
     .avatar{
         max-width: 60px;

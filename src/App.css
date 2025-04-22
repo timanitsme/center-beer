@@ -193,6 +193,18 @@ p{
   -webkit-line-clamp: 5;
 }
 
+.quantity{
+  background: var(--primary);
+  padding: 2px 5px;
+  border-radius: 10px;
+}
+
+.quantity p{
+  font-size: 0.7vw !important;
+  color: var(--bg);
+}
+
+
 
 @media (max-width: 1000px) {
   a{
@@ -200,5 +212,8 @@ p{
   }
   h2{
     font-size: 15px;
+  }
+  .quantity p{
+    font-size: 7px !important;
   }
 }

@@ -15,7 +15,7 @@ export default function LightBarCard({cardInfo, title}){
     const [cardFav, setCardFav] = useState(cardInfo.is_liked || false);
     const navigate = useNavigate();
 
-    const goToBarPage = () => navigate("/bar/1");
+    const goToBarPage = (alias) => navigate(`/bar/${alias}`);
 
     const getExpensivenessIcons = (expensiveness) => {
         const icons = [];
@@ -41,11 +41,11 @@ export default function LightBarCard({cardInfo, title}){
                     {/*{cardInfo.rating && <p className={styles.ratingText}><BottleIcon/> ({cardInfo.rating.toFixed(1)})</p>}*/}
                 </div>
                 <div className={styles.imgContainer}>
-                    <img src={cardInfo?.preview} onClick={goToBarPage} alt=""/>
+                    <img src={cardInfo?.preview} onClick={() => goToBarPage(cardInfo?.alias)} alt=""/>
                     <a onClick={() => setCardFav(!cardFav)} className={`${styles.favButton} ${cardFav? styles.added : ''}`}><FavIcon/></a>
                 </div>
                 <div className={styles.characteristics}>
-                    <p className={styles.cardTextPrimary} onClick={goToBarPage}>{cardInfo?.name}</p>
+                    <p className={styles.cardTextPrimary} onClick={() => goToBarPage(cardInfo?.alias)}>{cardInfo?.name}</p>
                 </div>
                 <div className={`${styles.iconText} ${styles.loc}`}>
                     <p>{cardInfo?.address}</p>

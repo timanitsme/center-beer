@@ -31,6 +31,16 @@ import AppliedFilter from "../AppliedFilter/AppliedFilter.jsx";
 import {isMobile} from "react-device-detect";
 import FiltersModal from "../Modals/FiltersModal/FiltersModal.jsx";
 import Search from "../ApiInputs/Search/Search.jsx";
+import BurgerIcon from "../../assets/foodIcons/burger-icon.svg?react";
+import CheburekIcon from "../../assets/foodIcons/cheburek-icon.svg?react";
+import FriesIcon from "../../assets/foodIcons/fries-icon.svg?react";
+import HotDogIcon from "../../assets/foodIcons/hot-dog-icon.svg?react";
+import PastaIcon from "../../assets/foodIcons/pasta-icon.svg?react";
+import SaladIcon from "../../assets/foodIcons/salad-icon.svg?react"
+import ShawarmaIcon from "../../assets/foodIcons/shawarma-icon.svg?react"
+import SteakIcon from "../../assets/foodIcons/steak-icon.svg?react";
+
+
 
 export default function BarMenu({filters, filterButtons, sections, ref, barId = 1}){
     // Состояние для хранения имен применяемых фильтров
@@ -38,6 +48,17 @@ export default function BarMenu({filters, filterButtons, sections, ref, barId = 
     const [showFiltersModal, setShowFiltersModal] = useState(false)
 
     const [resetOneFilter, setResetOneFilter] = useState("")
+
+    const foodIcons = {
+        "Бургеры": <BurgerIcon/>,
+        "Салаты": <SaladIcon/>,
+        "Горячие закуски": <FriesIcon/>,
+        "Хот доги": <HotDogIcon/>,
+        "Гриль": <SteakIcon/>,
+        "Паста": <PastaIcon/>,
+        "Шаверма": <ShawarmaIcon/>,
+        "Чебуреки": <CheburekIcon/>
+    }
 
     // Получение всех вкладок
     const {data: tabs, isLoading: tabsIsLoading, error: tabsError} = useGetBarMenuTabsQuery(barId)
@@ -517,7 +538,7 @@ export default function BarMenu({filters, filterButtons, sections, ref, barId = 
                             <div className={styles.appliedFiltersRow} style={{marginBottom: "0px"}}>
                                 {tabSpec?.data && tab.alias === "food" && Object.keys(tabSpec?.data)?.map((tabNum, index) => {
                                     return(
-                                        <IconButton style={tabNum === foodSelectedTab? "primary": "default"} key={index} text={tabSpec?.data[tabNum]?.name} onClick={() => {if (tabNum !== foodSelectedTab) setFoodSelectedTab(tabNum); else setFoodSelectedTab("")}}></IconButton>
+                                        <IconButton style={tabNum === foodSelectedTab? "primary-third": "third-primary"} key={index} text={tabSpec?.data[tabNum]?.name} onClick={() => {if (tabNum !== foodSelectedTab) setFoodSelectedTab(tabNum); else setFoodSelectedTab("")}}>{foodIcons[tabSpec?.data[tabNum]?.name] || <FriesIcon/>}</IconButton>
                                     )
                                 })}
                             </div>

@@ -4,7 +4,7 @@ import CheckBox from "../Inputs/CheckBox/CheckBox.jsx";
 import CheckBoxChild from "../Inputs/CheckBox/CheckBoxChild.jsx";
 import Toggle from "../Toggle/Toggle.jsx";
 import TextInput from "../Inputs/TextInput/TextInput.jsx";
-import {useEffect, useState} from "react";
+import {Fragment, useEffect, useState} from "react";
 import MirIcon from "../../assets/payments/mir-pay-icon.svg?react"
 import SberIcon from "../../assets/payments/sber-pay-icon.svg?react"
 import SbpIcon from "../../assets/payments/sbp-icon.svg?react"
@@ -71,7 +71,7 @@ export default function CartSection(){
                         {cards.map((card, index) => {
                             if (cardMinStyle){
                                 return(
-                                    <>
+                                    <Fragment key={index}>
                                         <div className={styles.good}>
                                             <CheckBoxChild/>
                                             <div style={{display: "flex", gap: "15px", flexDirection: "column"}}>
@@ -110,12 +110,12 @@ export default function CartSection(){
                                             </div>
                                         </div>
                                         {index !== cards.length-1 && <div className="hrtLine"/>}
-                                    </>
+                                    </Fragment>
                                 )
                             }
                             else{
                                 return(
-                                    <>
+                                    <Fragment key={index}>
                                         <div key={index} className={styles.good}>
                                             <CheckBoxChild/>
                                             <div className={styles.imageWrapper}><img src={Bottle1} alt=""/></div>
@@ -150,7 +150,7 @@ export default function CartSection(){
                                             </div>
                                         </div>
                                         {index !== cards.length-1 && <div className="hrtLine"/>}
-                                    </>
+                                    </Fragment>
                                 )
                             }
                         })}

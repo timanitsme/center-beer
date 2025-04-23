@@ -4,7 +4,7 @@ import NavChain from "../../components/Navigation/NavChain/NavChain.jsx";
 export default function AuthorizationPage(){
     const paths = [
         {title: "beer.center", path: "/"},
-        {title: "Контакты", path: ""}
+        {title: "Авторизация", path: ""}
     ]
 
     return(

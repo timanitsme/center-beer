@@ -1,5 +1,6 @@
 import styles from "./PersonalAccount.module.css"
 import AvatarMock from "../../assets/avatar-mock.svg"
+import {MdPhotoCamera} from "react-icons/md";
 
 export default function PersonalAccount({isMobile = false}){
 
@@ -9,12 +10,24 @@ export default function PersonalAccount({isMobile = false}){
             <div className={`${styles.sideContent} ${isMobile? styles.mobile: ""}`}>
                 {!isMobile &&
                     <>
-                        <img className={styles.avatar} src={AvatarMock} alt=''></img>
+                        <div className={styles.avatarWrapper}>
+                            <img className={styles.avatar} src={AvatarMock} alt=''></img>
+                            <div className={styles.updateAvatar}>
+                                <MdPhotoCamera/>
+                            </div>
+                        </div>
                         <p className={styles.bold}>Вячеслав Крыжовников</p>
                     </>
                 }
                 {isMobile && <div style={{display: "flex", flexDirection: "column", maxWidth: "100px", gap: "5px"}}>
-                    <img className={styles.avatar} src={AvatarMock} alt=''></img>
+                    <div className={styles.avatarWrapper}>
+                        <img className={styles.avatar} src={AvatarMock} alt=''></img>
+                        <div className={styles.updateAvatarMobile}>
+                            <div className={styles.container}>
+                                <MdPhotoCamera/>
+                            </div>
+                        </div>
+                    </div>
                     <p className={`${styles.bold} ${styles.overflow}`}>Вячеслав Крыжовников</p>
                 </div>}
                 <div>

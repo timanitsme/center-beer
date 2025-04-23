@@ -10,7 +10,7 @@ import {useGetBarNewsQuery} from "../../store/services/centerBeer.js";
 export default function BarNews({barId = 1, ref, description = "Будьте с нами, чтобы не пропустить ни одного яркого момента и всегда быть в курсе всех новостей и предложений бара.", picture = NewsPhoto}){
     const navigate = useNavigate()
 
-    const {data: news, isLoading: newsIsLoading, error: newsError}  = useGetBarNewsQuery({bar_id: barId, limit: 5})
+    const {data: news, isLoading: newsIsLoading, error: newsError}  = useGetBarNewsQuery({bar_id: barId, lim: 5})
 
     const paths = [
         {title: "Новости", path: "/news"},

@@ -135,7 +135,6 @@ export default function Header({paths}){
                     {!isMobile &&
                     <div className={styles.socials}>
                         <a href="https://t.me/Alexomel81"><TgIcon/></a>
-                        {/*<WhatsAppIcon/>*/}
                         <a href="https://vk.com/center.beer"><VkIcon/></a>
                         <a href="mailto:hello@center.beer"><MailIcon/></a>
                     </div>

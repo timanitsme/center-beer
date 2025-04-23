@@ -25,6 +25,7 @@ import RestorePasswordPage from "./pages/RestorePasswordPage/RestorePasswordPage
 import ErrorBoundary from "./utils/ErrorBoundary/ErrorBoundary.jsx";
 import EventMapPage from "./pages/EventMapPage/EventMapPage.jsx";
 import {cloneElement, useState} from "react";
+import RegistrationPage from "./pages/RegistrationPage/RegistrationPage.jsx";
 
 function App() {
     const paths = [
@@ -52,7 +53,9 @@ function App() {
         {path: "/distributor/:id", element: <DistributorDetailPage/>},
         {path: "/event-map/", element: <EventMapPage/>, hideFooter: true},
         {path: "/login/", element: <AuthorizationPage/>},
-        {path: "/account/", element: <PersonalAccountPage/>}
+        {path: "/account/", element: <PersonalAccountPage/>},
+        {path: "/signup/", element: <RegistrationPage/>},
+        {path: "/cart/", element: <CartPage/>}
     ]
     const [hideFooter, setHideFooter] = useState(false);
     return (

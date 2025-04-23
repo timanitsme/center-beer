@@ -1,0 +1,107 @@
+.authSection{
+    display: flex;
+    flex-direction: column;
+    padding-top: 13vh;
+}
+
+.authSection p{
+    font-size: 0.9vw;
+    font-weight: 200;
+}
+
+.outlineTitle{
+    width: 100%;
+    text-align: center;
+    text-transform: uppercase;
+    color: transparent;
+    -webkit-text-stroke: 1px var(--third);
+    font-size: 5vw;
+}
+
+.title{
+    font-family: "Podkova", sans-serif;
+    font-size: 1.2vw !important;
+    color: var(--txt-active);
+    text-align: center;
+}
+
+.authContent{
+    background: var(--form-bg);
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    align-self: center;
+    padding: 25px 40px;
+    border-radius: 10px;
+    gap: 15px;
+}
+
+.formRow{
+    display: grid;
+    grid-template-columns: 200px 300px;
+    align-items: center;
+    gap: 30px;
+}
+
+.innerRow{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.dottedA{
+    font-weight: 200;
+    color: var(--txt-secondary);
+    text-decoration-line: underline;
+    text-decoration-style: dotted;
+    text-decoration-color: var(--txt-secondary);
+}
+
+.dottedA:hover{
+    color: var(--txt-active);
+    text-decoration-color: var(--txt-active);
+    transition: 0.5s;
+}
+
+.underline{
+    text-decoration-line: underline;
+}
+
+.formRow input{
+    width: 300px;
+}
+
+
+
+@media (max-width: 1000px) {
+    .outlineTitle{
+        font-size: 50px;
+    }
+    .title{
+        font-size: 12px !important;
+    }
+    .authSection p{
+        font-size: 10px;
+    }
+
+}
+
+@media (max-width: 700px) {
+    .formRow{
+        grid-template-columns: 50px 150px;
+    }
+    .formRow input{
+        width: 150px;
+    }
+    .authContent{
+        padding: 15px 30px;
+    }
+}
+
+@media (max-width: 600px) {
+    .outlineTitle{
+        font-size: 30px;
+    }
+
+}

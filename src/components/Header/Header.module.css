@@ -222,6 +222,7 @@
 }
 
 .bold{
+    text-align: left;
     font-size: 0.9vw;
     font-weight: 300;
     color: var(--txt-active)
@@ -277,9 +278,8 @@
 
 @media (max-width: 1000px) {
     .socialsTheme{
-        padding: 0 20%;
+        width: 0;
     }
-
 
     .logoMenu svg{
         max-height: 40px;
@@ -289,11 +289,25 @@
         display: none;
     }
 
+    .bold{
+        font-size: 10px;
+    }
+
     .headerGrid{
         width: 100%;
         height: 100%;
         display: grid;
-        grid-template-columns: 160px 1fr 200px;
+        grid-template-columns: 160px 1fr 0 auto;
     }
 }
 
+@media (max-width: 500px) {
+    .avatar{
+        max-width: 30px;
+        max-height: 30px;
+    }
+
+    .profile{
+        gap: 5px;
+    }
+}

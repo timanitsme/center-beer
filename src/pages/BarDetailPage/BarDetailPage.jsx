@@ -55,7 +55,7 @@ export default function BarDetailPage(){
                     <BarMenu filters={getBarPageFilters()} filterButtons={getBarPageFilterButtons()} sections={getBarPageSections()} ref={menuRef}/>
                     <CurrentPromos barId={data[0].id} ref={promosRef}/>
                     <BarNews barId={data[0].id} ref={newsRef}/>
-                    {/*<Reviews images={getBarReviewsImages()} header={getBarReviewsHeader()} resume={getBarReviewsResume()}/>*/}
+                    <Reviews images={getBarReviewsImages()} header={getBarReviewsHeader()} resume={getBarReviewsResume()}/>
                 </>
 
             }

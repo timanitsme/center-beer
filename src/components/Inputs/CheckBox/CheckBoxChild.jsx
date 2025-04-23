@@ -8,7 +8,7 @@ export default function CheckBoxChild({children}){
             <span className={styles.checkmark}>
                 <CheckMarkIcon/>
             </span>
-            <p>{children}</p>
+            <>{children}</>
         </label>
     );
 }

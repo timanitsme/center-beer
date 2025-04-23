@@ -10,6 +10,47 @@
     cursor: pointer;
 }
 
+.thirdPrimary{
+    background: var(--third);
+    border: none;
+}
+
+.thirdPrimary p{
+    font-family: "Podkova", sans-serif;
+    color: var(--primary) !important;
+}
+
+.primaryThird{
+    background: var(--primary);
+    border: none;
+}
+
+.primaryThird:hover{
+    background: var(--primary-semi-transparent) !important;
+    transition: 0.5s;
+}
+
+.primaryThird p{
+    font-family: "Podkova", sans-serif;
+    color: var(--bg) !important;
+}
+
+.primaryThird svg{
+    color: var(--bg);
+}
+
+.primaryThird svg :global(.iconSecondary){
+    fill: var(--bg)
+}
+
+.thirdPrimary svg{
+    color: var(--primary);
+}
+
+.thirdPrimary svg :global(.iconSecondary){
+    fill: var(--primary);
+}
+
 .secondary{
     background: var(--section-bg);
     border: none;

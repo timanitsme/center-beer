@@ -21,6 +21,7 @@ import BeerImage4 from "../../assets/bottlesMock/bottle-4.svg"
 import BeerImage5 from "../../assets/bottlesMock/bottle-5.svg"
 import MinimalBottledBeerCard from "../../components/Cards/BottledBeerCard/MinimalBottledBeerCard.jsx";
 import {isMobile} from "react-device-detect";
+import CheckInCard from "../../components/Cards/CheckInCard/CheckInCard.jsx";
 
 export default function PersonalAccountPage(){
     const [showModal, setShowModal] = useState(false)
@@ -49,8 +50,11 @@ export default function PersonalAccountPage(){
                     {isMobile && <PersonalAccount isMobile={true}/>}
                     <ActiveOrders></ActiveOrders>
                     <LatestReviews></LatestReviews>
+                    <ShortenedRowSection title="Чек-ины" cards={barCards} CardComponent={CheckInCard} maxCards={4}></ShortenedRowSection>
                     <ShortenedRowSection title="Избранные бары" cards={barCards} CardComponent={MinimalBarCard}></ShortenedRowSection>
                     <ShortenedRowSection title="Избранное пиво" cards={beerCards} CardComponent={MinimalBottledBeerCard}></ShortenedRowSection>
+                    <ShortenedRowSection title="Бары в кладовке" cards={barCards} CardComponent={MinimalBarCard}></ShortenedRowSection>
+                    <ShortenedRowSection title="Пиво в кладовке" cards={beerCards} CardComponent={MinimalBottledBeerCard}></ShortenedRowSection>
                 </div>
             </div>
             <SingleImageModal show={showModal} setShow={setShowModal} src={EventImage}></SingleImageModal>

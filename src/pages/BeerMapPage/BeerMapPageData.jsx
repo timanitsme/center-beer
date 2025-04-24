@@ -4,7 +4,7 @@ import BottlesPairIcon from "../../assets/bottles-pair-icon.svg?react"
 import BeerMugsIcon from "../../assets/beer-mugs-icon.svg?react"
 
 const paths = [
-    {title:"beer.center", path: "/"},
+    {title:"center.beer", path: "/"},
     {title:"Карта баров", path: "/"},
 ]
 

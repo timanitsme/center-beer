@@ -1,18 +1,16 @@
 import {useState} from "react";
-import styles from "./BarCard.module.css";
-import BookMarkIcon from "../../../assets/bookmark-unfill-icon.svg?react";
-import FavIcon from "../../../assets/fav-unfill-icon.svg?react";
-import PropTypes from "prop-types";
 import {useNavigate} from "react-router-dom";
-import LocationIcon from "../../../assets/location-filled-icon.svg?react";
+import styles from "../../BarCard/BarCard.module.css";
+import BookMarkIcon from "../../../../assets/bookmark-unfill-icon.svg";
+import FavIcon from "../../../../assets/fav-unfill-icon.svg";
+import LocationIcon from "../../../../assets/location-filled-icon.svg?react";
 
-
-export default function MinimalBarCard({cardInfo}){
+export default function MinimalBreweryCard({cardInfo}){
     const [cardBookmarked, setCardBookmarked] = useState(false);
     const [cardFav, setCardFav] = useState(false);
     const navigate = useNavigate();
 
-    const goToBeerPage = () => navigate("/bar/1");
+    const goToBeerPage = () => navigate("/brewery/1");
 
     return(
         <div className={styles.card}>
@@ -30,24 +28,11 @@ export default function MinimalBarCard({cardInfo}){
                     <p className={styles.cardTextPrimary} onClick={goToBeerPage}>{cardInfo.title}</p>
                 </div>
                 <div className={`${styles.iconText} ${styles.loc}`}>
+                    <LocationIcon/>
                     <p>{cardInfo.address}</p>
                 </div>
             </div>
+
         </div>
     )
-}
-
-MinimalBarCard.propTypes = {
-    cardInfo: PropTypes.arrayOf(
-        PropTypes.shape({
-            title: PropTypes.string.isRequired,
-            img: PropTypes.string.isRequired,
-            expensiveness: PropTypes.number.isRequired,
-            address: PropTypes.string.isRequired,
-            metro: PropTypes.string.isRequired,
-            rating: PropTypes.number.isRequired,
-            comments: PropTypes.number.isRequired,
-            closed: PropTypes.bool.isRequired
-        })
-    ).isRequired
 }

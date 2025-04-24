@@ -10,7 +10,7 @@ import Bar3 from "../../assets/barsMocks/bar-3.svg";
 import Bar4 from "../../assets/barsMocks/bar-4.svg";
 
 const paths = [
-    {title:"beer.center", path: "/"},
+    {title:"center.beer", path: "/"},
     {title:"Пивоварни", path: "/beer/"},
     {title: "Jaws Brewery", path: ""},
 ]

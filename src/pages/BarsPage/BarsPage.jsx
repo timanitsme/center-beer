@@ -5,7 +5,7 @@ import {getBarsPageFilterButtons, getBarsPageFilters} from "./BarsPageData.jsx";
 
 export default function BarsPage(){
     const paths = [
-        {title:"beer.center", path: "/"},
+        {title:"center.beer", path: "/"},
         {title:"Бары и магазины", path: "/"},
     ]
 

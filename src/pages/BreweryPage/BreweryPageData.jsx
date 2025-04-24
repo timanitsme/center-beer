@@ -5,7 +5,7 @@ import CoctailIcon from "../../assets/coctail-icon.svg";
 import SausageIcon from "../../assets/sausage-icon.svg";
 
 const paths = [
-    {title:"beer.center", path: "/"},
+    {title:"center.beer", path: "/"},
     {title:"Пивоварни", path: "/"},
 ]
 

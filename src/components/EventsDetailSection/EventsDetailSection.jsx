@@ -11,12 +11,20 @@ import BookMarkIcon from "../../assets/bookmark-unfill-icon.svg?react";
 import ComboBox from "../Inputs/ComboBox/ComboBox.jsx";
 import Ad1 from "../../assets/adsMocks/ad-1.svg";
 import RoundLinkButton from "../Buttons/RoundLinkButton/RoundLinkButton.jsx";
+import {Link} from "react-router-dom";
 
 export default function EventsDetailSection({style = "detail", children}){
     const [isFavourite, setIsFavourite] = useState(false);
     const [isBookmarked, setIsBookmarked] = useState(false);
-    const sectionMenuMainItems = ["Все", "Прошедшие", "Идущие", "Ближайшие"]
-    const sectionMenuSecondaryItems = ["Фестивали"]
+    const sectionMenuMainItems = [
+        {title: "Все мероприятия", path: "/events"},
+        {title: "Мероприятия заведений", path: "/events/restaurants"},
+        {title: "Мероприятия пивоварен", path: "/events/breweries"},
+    ]
+    //    ["","Мероприятия заведений", "Мероприятия пивоварен"]
+    const sectionMenuSecondaryItems = [
+        {title: "Фестивали", path: "/events/festivals"}
+    ]
     const paths = [
         {title: "Новости"},
         {title: "Бары и магазины"}
@@ -34,12 +42,12 @@ export default function EventsDetailSection({style = "detail", children}){
                 <Search text="Поиск мероприятий"/>
                 <div className={styles.menuItemsContainer}>
                     {sectionMenuMainItems.map((item, index) =>
-                        <a key={index}>{item}</a>
+                        <Link key={index} to={item.path}>{item.title}</Link>
                     )}
                 </div>
                 <div className={styles.menuItemsContainer}>
                     {sectionMenuSecondaryItems.map((item, index) =>
-                        <a key={index}>{item}</a>
+                        <Link to={item.path} key={index}>{item.title}</Link>
                     )}
                 </div>
             </div>

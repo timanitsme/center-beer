@@ -1,0 +1,100 @@
+.blogCard{
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    background: var(--section-bg);
+    gap: 10px;
+    justify-content: space-between;
+}
+
+.blogCard p{
+    font-size: 0.9vw;
+    font-weight: 200;
+}
+
+.date{
+    font-family: "Podkova", sans-serif;
+    text-transform: uppercase;
+}
+
+.cardTextPrimary{
+    font-family: Podkova, sans-serif;
+    font-weight: initial;
+    color: var(--primary);
+    text-transform: uppercase;
+}
+
+.cardTextPrimary, .cardDescription{
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.cardTextPrimary{
+    -webkit-line-clamp: 2;
+    cursor: pointer;
+}
+
+.cardDescription{
+    -webkit-line-clamp: 3;
+    color: var(--txt-active);
+}
+
+.imageContainer{
+    align-self: center;
+    display: flex;
+    overflow: hidden;
+}
+
+.cardImg{
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.tagsRow{
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+}
+
+.tag{
+    display: flex;
+    align-items: center;
+    padding: 5px 10px;
+    background: var(--third);
+    border-radius: 20px;
+}
+
+.tag p{
+    text-transform: uppercase;
+    font-size: clamp(8px, 0.8vw, 10px);
+    font-weight: 200;
+    color: var(--primary);
+}
+
+
+
+
+@media (max-width: 1000px) {
+    .blogCard p{
+        font-size: 10px;
+    }
+}
+
+
+
+@media (max-width: 1050px) {
+    .imageContainer{
+        max-width: 200px;
+    }
+}
+
+@media (max-width: 500px) {
+    .cardImg{
+        max-width: 35vw;
+
+    }
+}

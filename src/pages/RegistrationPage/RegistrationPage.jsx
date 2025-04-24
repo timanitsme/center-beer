@@ -4,7 +4,7 @@ import RegSection from "../../components/RegSection/RegSection.jsx";
 
 export default function RegistrationPage(){
     const paths = [
-        {title: "beer.center", path: "/"},
+        {title: "center.beer", path: "/"},
         {title: "Регистрация", path: ""}
     ]
 

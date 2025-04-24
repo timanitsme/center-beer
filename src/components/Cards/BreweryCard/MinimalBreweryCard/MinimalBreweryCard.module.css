@@ -1,0 +1,252 @@
+.card{
+    max-width: 270px;
+    display: flex;
+    flex-direction: column;
+}
+
+.card p{
+    font-size: clamp(10px,0.9vw, 14px);
+}
+
+
+.bottledBeerCard{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    background: var(--section-bg);
+    gap: 10px;
+    flex: 1;
+}
+
+.bottledBeerCard.regular{
+    border-radius: 10px 10px 0 0;
+}
+
+
+.characteristics{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+}
+
+.characteristics .cardTextPrimary{
+    cursor: pointer;
+}
+
+.characteristics div{
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.iconText{
+    font-weight: 200;
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.iconText svg{
+    max-height: 15px;
+}
+
+/*.iconText.metro svg{
+    color: var(--icon-added);
+}*/
+
+.iconText.loc svg{
+    color: var(--primary);
+}
+
+
+
+.cardFooter{
+    background: rgba(39, 39, 39, 0.6);
+    display: flex;
+    justify-content: space-around;
+    border-radius: 0 0 10px 10px;
+    padding: 10px;
+    align-items: center;
+}
+
+.textActive{
+    font-size: clamp(10px, 0.9vw, 15px);
+    font-weight: 200;
+    color: var(--txt-active);
+}
+
+.textActive.secondary{
+    color: var(--txt-secondary);
+}
+
+.textMedium{
+    font-size: clamp(12px, 1.2vw, 20px);
+    font-weight: 200;
+    color: var(--txt-active);
+}
+
+.cardTextPrimary{
+    font-family: Podkova, sans-serif;
+    color: var(--primary);
+    text-transform: uppercase;
+    text-align: left;
+}
+
+.cardTop{
+    display: flex;
+    justify-content: flex-end;
+    height: 5px;
+}
+
+.bookMarkButton svg{
+    position: relative;
+    right: 0;
+    top: -23px;
+    color: var(--primary);
+}
+
+.ratingText {
+    font-size: clamp(10px, 0.8vw, 12px);
+    font-weight: 200;
+    color: var(--txt-active);
+    text-align: center;
+}
+
+.characteristics p{
+    font-weight: 200;
+}
+
+.bigCircle{
+    height: 5px;
+    width: 5px;
+    border-radius: 100%;
+}
+
+.red{
+    background-color: var(--icon-added);
+}
+
+.green{
+    background-color: #2AC02A;
+}
+
+.characteristics svg{
+    max-height: 13px;
+}
+
+.bookMarkButton.added svg{
+    color: var(--icon-added);
+    fill: var(--icon-added);
+}
+
+.imgContainer{
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    width: 100%;
+    height: 150px;
+    overflow: hidden;
+    border-radius: 5px;
+}
+
+.imgContainer img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 5px;
+}
+
+.textContainer{
+    max-width: 80%;
+}
+
+.favButton{
+    background: var(--txt-active);
+    width: 30px;
+    height: 30px;
+    max-width: 50px;
+    max-height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100%;
+    position: absolute;
+    z-index: 10;
+    right: 10px;
+    bottom: 10px;
+}
+
+.favButton svg{
+    color: var(--third);
+}
+
+.favButton.added svg{
+    color: var(--icon-added);
+    fill: var(--icon-added);
+}
+
+.favButton:hover.added svg{
+    color: var(--icon-added);
+}
+
+.favButton:hover svg{
+    color: var(--primary);
+    transition: 0.5s;
+}
+
+.verticalFooter{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+@media (max-width: 1000px) {
+    .card p{
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 900px) {
+    .bottledBeerCard{
+        padding: 10px;
+    }
+    .card{
+        max-width: 200px;
+    }
+    .bookMarkButton svg{
+        top: -11px;
+    }
+}
+
+@media (max-width: 768px) {
+    .bottledBeerCard{
+        padding: 5px;
+    }
+
+    .favButton{
+        width: 20px;
+        height: 20px;
+    }
+
+    .favButton svg{
+        width: 10px;
+        height: 10px;
+    }
+
+    .bookMarkButton svg{
+        top: -6px;
+    }
+
+    .cardFooter{
+        padding: 5px;
+    }
+}
+
+@media (max-width: 400px) {
+    .imgContainer{
+        height: 100px;
+    }
+}

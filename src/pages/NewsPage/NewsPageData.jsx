@@ -1,6 +1,6 @@
 
 const paths = [
-    {title: "beer.center", path: "/"},
+    {title: "center.beer", path: "/"},
     {title: "Новости", path: "/"},
 ]
 

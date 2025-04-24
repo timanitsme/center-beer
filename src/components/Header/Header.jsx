@@ -1,10 +1,8 @@
 import styles from "./Header.module.css"
 
 import {useEffect, useRef, useState} from "react";
-import Toggle from "../Toggle/Toggle.jsx";
 import {isMobile} from "react-device-detect";
 import {TgIcon} from "../../assets/TgIcon.jsx";
-import {WhatsAppIcon} from "../../assets/WhatsAppIcon.jsx";
 import {VkIcon} from "../../assets/VkIcon.jsx";
 import {MailIcon} from "../../assets/MailIcon.jsx";
 import CenterBeerLogo from "../../assets/logo-new.svg?react"

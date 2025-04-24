@@ -3,7 +3,7 @@ import ContactsSection from "../../components/ContactsSection/ContactsSection.js
 
 export default function ContactsPage(){
     const paths = [
-        {title: "beer.center", path: "/"},
+        {title: "center.beer", path: "/"},
         {title: "Контакты", path: ""}
     ]
 

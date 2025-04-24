@@ -4,7 +4,7 @@ import CartSection from "../../components/CartSection/CartSection.jsx";
 
 export default function CartPage(){
     const paths = [
-        {title: "beer.center", path: "/"},
+        {title: "center.beer", path: "/"},
         {title: "Мой профиль", path: "/"},
         {title: "Корзина", path: ""}
     ]

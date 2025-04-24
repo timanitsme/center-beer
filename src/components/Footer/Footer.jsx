@@ -6,6 +6,7 @@ import DownloadGooglePlay from "../../assets/download-google-play.svg?react"
 import DownloadAppStore from "../../assets/download-app-store.svg?react"
 import RoundLink from "../../assets/round-link.svg?react"
 import RoundLinkButton from "../Buttons/RoundLinkButton/RoundLinkButton.jsx";
+import {Link} from "react-router-dom";
 
 export default function Footer(){
     return(
@@ -41,14 +42,14 @@ export default function Footer(){
                         </div>
                         <div className={styles.bottomMenu}>
                             <div className={styles.bottomMenuColumn}>
-                                <a>ПИВО</a>
-                                <a>БАРЫ И МАГАЗИНЫ</a>
-                                <a>МЕРОПРИЯТИЯ</a>
+                                <Link to={"/beer"}>ПИВО</Link>
+                                <Link to={"/bars"}>БАРЫ И МАГАЗИНЫ</Link>
+                                <Link to={"/events"}>МЕРОПРИЯТИЯ</Link>
                             </div>
                             <div className={styles.bottomMenuColumn}>
-                                <a>О ПРОЕКТЕ</a>
-                                <a>НОВОСТИ</a>
-                                <a>КОНТАКТЫ</a>
+                                <Link to={"https://center.beer/about/"}>О ПРОЕКТЕ</Link>
+                                <Link to={"/news"}>НОВОСТИ</Link>
+                                <Link to={"/contacts"}>КОНТАКТЫ</Link>
                             </div>
                         </div>
                         <div className={styles.bottomMenuColumn} style={{gap: "5px", textAlign: "end", marginLeft: "auto" }}>

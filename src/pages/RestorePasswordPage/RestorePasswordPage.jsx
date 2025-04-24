@@ -4,7 +4,7 @@ import RestorePassword from "../../components/RestorePassword/RestorePassword.js
 
 export default function RestorePasswordPage(){
     const paths = [
-        {title: "beer.center", path: "/"},
+        {title: "center.beer", path: "/"},
         {title: "Контакты", path: ""}
     ]
 

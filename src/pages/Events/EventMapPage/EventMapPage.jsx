@@ -1,7 +1,7 @@
-import EventMapWithBg from "../../assets/eventMapMocks/event-map-with-bg-bordered.svg"
-import EventMap from "../../components/EventMap/EventMap.jsx";
+import EventMapWithBg from "../../../assets/eventMapMocks/event-map-with-bg-bordered.svg"
+import EventMap from "../../../components/EventMap/EventMap.jsx";
 import {useEffect, useState} from "react";
-import EventMapSidebar from "../../components/EventMap/EventMapSidebar/EventMapSidebar.jsx";
+import EventMapSidebar from "../../../components/EventMap/EventMapSidebar/EventMapSidebar.jsx";
 
 export default function EventMapPage({setHideFooter}){
     const [isExpanded, setIsExpanded] = useState(false)

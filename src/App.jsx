@@ -5,7 +5,7 @@ import Footer from "./components/Footer/Footer.jsx";
 import bottlePath from "../src/assets/beer-bottle.svg"
 import BarDetailPage from "./pages/BarDetailPage/BarDetailPage.jsx";
 import BeerPage from "./pages/BeerPage/BeerPage.jsx";
-import EventsPage from "./pages/EventsPage/EventsPage.jsx";
+import EventsPage from "./pages/Events/EventsPage/EventsPage.jsx";
 import AboutPage from "./pages/AboutPage/AboutPage.jsx";
 import NewsPage from "./pages/NewsPage/NewsPage.jsx";
 import ContactsPage from "./pages/ContactsPage/ContactsPage.jsx";
@@ -23,9 +23,12 @@ import CartPage from "./pages/CartPage/CartPage.jsx";
 import AuthorizationPage from "./pages/AuthorizationPage/AuthorizationPage.jsx";
 import RestorePasswordPage from "./pages/RestorePasswordPage/RestorePasswordPage.jsx";
 import ErrorBoundary from "./utils/ErrorBoundary/ErrorBoundary.jsx";
-import EventMapPage from "./pages/EventMapPage/EventMapPage.jsx";
+import EventMapPage from "./pages/Events/EventMapPage/EventMapPage.jsx";
 import {cloneElement, useState} from "react";
 import RegistrationPage from "./pages/RegistrationPage/RegistrationPage.jsx";
+import RestaurantEventsPage from "./pages/Events/RestaurantEventsPage/RestaurantEventsPage.jsx";
+import BreweryEventsPage from "./pages/Events/BreweryEventsPage/BreweryEventsPage.jsx";
+import FestivalsPage from "./pages/Events/FestivalsPage/FestivalsPage.jsx";
 
 function App() {
     const paths = [
@@ -55,7 +58,10 @@ function App() {
         {path: "/login/", element: <AuthorizationPage/>},
         {path: "/account/", element: <PersonalAccountPage/>},
         {path: "/signup/", element: <RegistrationPage/>},
-        {path: "/cart/", element: <CartPage/>}
+        {path: "/cart/", element: <CartPage/>},
+        {path: "/events/restaurants", element: <RestaurantEventsPage/>},
+        {path: "/events/breweries", element: <BreweryEventsPage/>},
+        {path: "/events/festivals", element: <FestivalsPage/>},
     ]
     const [hideFooter, setHideFooter] = useState(false);
     return (

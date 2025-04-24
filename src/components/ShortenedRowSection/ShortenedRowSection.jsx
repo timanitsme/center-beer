@@ -7,18 +7,18 @@ import BarImage5 from "../../assets/barsMocks/bar-1.svg";
 import MinimalBarCard from "../Cards/BarCard/MinimalBarCard.jsx";
 import {useEffect, useState} from "react";
 
-export default function ShortenedRowSection({title, cards=[], CardComponent}){
+export default function ShortenedRowSection({title, cards=[], CardComponent, maxCards=5}){
     const [visibleCards, setVisibleCards] = useState([]);
 
     useEffect(() => {
         const handleResize = () => {
             if (window.innerWidth >= 1000) {
-                setVisibleCards(cards.slice(0, 5)); // Показать 5 карточек
+                setVisibleCards(cards.slice(0, maxCards)); // Показать 5 карточек
             } else if (window.innerWidth >= 768) {
-                setVisibleCards(cards.slice(0, 3)); // Показать 3 карточки
+                setVisibleCards(cards.slice(0, maxCards-2)); // Показать 3 карточки
             }
             else {
-                setVisibleCards(cards.slice(0, 2)); // Показать 2 карточки
+                setVisibleCards(cards.slice(0, maxCards-3)); // Показать 2 карточки
             }
         };
 

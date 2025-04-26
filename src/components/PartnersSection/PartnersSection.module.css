@@ -1,0 +1,104 @@
+.partnersSection{
+    margin: 0 50px 50px 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.partnersSection p{
+    font-size: 0.9vw;
+}
+
+.postsSection{
+    background: var(--bg);
+    display: flex;
+    flex-direction: column;
+}
+
+.postsSection h1{
+    width: 100%;
+    text-align: left;
+    text-transform: uppercase;
+    color: transparent;
+    -webkit-text-stroke: 1px var(--third);
+    font-size: 3vw;
+}
+
+.postsContainer{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+
+.active{
+    color: var(--txt-active);
+}
+
+.header{
+    text-transform: none;
+    font-size: 1.5vw;
+    text-align: left;
+    width: max-content;
+}
+
+.descriptionRow{
+    width: 100%;
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+}
+
+.advantage{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+}
+
+.advantage p{
+    min-width: 100px;
+    color: var(--txt-active);
+}
+
+.advantage svg{
+    color: var(--primary);
+    height: 30px;
+    width: fit-content;
+}
+
+.mainAdvantage{
+    width: min-content;
+}
+
+.advantagesRow{
+    margin-left: 15px;
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    justify-content: space-between;
+    
+}
+
+@media (max-width: 1000px) {
+    .header{
+        font-size: 15px;
+    }
+    .partnersSection{
+        margin: 0 25px 25px 25px;
+    }
+    .postsSection h1{
+        font-size: 20px;
+    }
+    .partnersSection p{
+        font-size: 10px;
+    }
+    .advantage svg{
+        height: 20px;
+    }
+}
+
+@media (max-width: 700px) {
+    .descriptionRow{
+        flex-direction: column;
+    }
+}

@@ -32,7 +32,7 @@ export default function BarNews({barId = 1, ref, description = "Будьте с 
                 </div>
             </div>
             <div className={styles.newsContainer}>
-                {news.map(((item, index) => {
+                {news.data.map(((item, index) => {
                     return(
                         <div key={index} className={styles.newsCard}>
                             <LightNavChain paths={paths}/>

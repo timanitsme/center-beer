@@ -8,31 +8,13 @@ import HalfBeerBottleIcon from "../../../assets/bottle-half-icon.svg?react";
 import EmptyBeerBottleIcon from "../../../assets/bottle-empty-icon.svg?react";
 import TrashIcon from "../../../assets/trash-icon.svg?react"
 import SimpleButton from "../../Buttons/SimpleButton/SimpleButton.jsx";
+import {getRatingIcons} from "../../../utils/getRatingIcons.jsx";
 
 export default function LatestReviewCard(){
     const cardInfo = {img: Bottle1, title: "Terra Firma", status: "published", rating: 5, comment: "Это классика, которая никогда не подводит! Легкий, освежающий вкус с мягкой горчинкой идеально подходит для жаркого летнего дня. Пью его много лет, и до сих пор это один из моих любимых вариантов. А еще отлично сочетается с соленой рыбкой или чипсами. Рекомендую всем, кто ценит простоту и качество!",
         photos: [Review1, Review2, Review3]}
 
-
-    const getRatingIcons = (rating) => {
-        const icons = [];
-        const fullBottles = Math.floor(rating); // Целая часть рейтинга
-        const hasHalfBottle = rating - fullBottles >= 0.1; // Есть ли половина бутылки
-
-        for (let i = 0; i < 5; i++) {
-            if (i < fullBottles) {
-                icons.push(<BeerBottleIcon key={i} className={styles.beerIcon} />);
-            } else if (i === fullBottles && hasHalfBottle) {
-                icons.push(<HalfBeerBottleIcon key={i} className={styles.beerIcon} />);
-            } else {
-                icons.push(<EmptyBeerBottleIcon key={i} className={styles.beerIcon} />);
-            }
-        }
-
-        return icons;
-    };
-
-    return(
+    return (
         <div className={styles.card}>
             <div className={styles.headerRow}>
                 <div className={styles.flexRow}>

@@ -7,7 +7,7 @@ import BarImage5 from "../../assets/barsMocks/bar-1.svg";
 import MinimalBarCard from "../Cards/BarCard/MinimalBarCard.jsx";
 import {useEffect, useState} from "react";
 
-export default function ShortenedRowSection({title, cards=[], CardComponent, maxCards=5}){
+export default function ShortenedRowSection({title=null, cards=[], CardComponent, maxCards=5}){
     const [visibleCards, setVisibleCards] = useState([]);
 
     useEffect(() => {
@@ -34,7 +34,7 @@ export default function ShortenedRowSection({title, cards=[], CardComponent, max
 
     return(
         <div className={styles.sectionContainer}>
-            <h3>{title}</h3>
+            {title && <h3>{title}</h3>}
             <div className={styles.cardsRow}>
                 {cards.length > 0 && visibleCards?.map((card, index) => {
                     return <CardComponent key={index} cardInfo={card}></CardComponent>

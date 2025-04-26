@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import cardImagePlaceholder from "../../../assets/placeholders/card-image-placeholder.svg";
 import styles from "./BottledBeerCard.module.css";
 import BookMarkIcon from "../../../assets/bookmark-unfill-icon.svg?react";
@@ -10,6 +10,10 @@ export default function MinimalBottledBeerCard({cardInfo}){
     const [cardFav, setCardFav] = useState(cardInfo?.is_liked || false);
     const formatNumber = (num) => Number(num).toString()
     const [imageSrc, setImageSrc] = useState(cardInfo?.photo || cardImagePlaceholder)
+
+    useEffect(() => {
+        setImageSrc(cardInfo?.photo || cardImagePlaceholder);
+    }, [cardInfo?.photo]);
 
     return(
         <div className={styles.card}>

@@ -21,6 +21,7 @@ import HalfBeerBottleIcon from "../../../assets/bottle-half-icon.svg?react"
 import EmptyBeerBottleIcon from "../../../assets/bottle-empty-icon.svg?react"
 import WorktimeModal from "../../Modals/WorktimeModal/WorktimeModal.jsx";
 import {useNavigate} from "react-router-dom";
+import {getRatingIcons} from "../../../utils/getRatingIcons.jsx";
 
 
 export default function BarInfo({barInfo={}, sections = []}){
@@ -40,23 +41,6 @@ export default function BarInfo({barInfo={}, sections = []}){
         }
     };
 
-    const getRatingIcons = (rating) => {
-        const icons = [];
-        const fullBottles = Math.floor(rating); // Целая часть рейтинга
-        const hasHalfBottle = rating - fullBottles >= 0.1; // Есть ли половина бутылки
-
-        for (let i = 0; i < 5; i++) {
-            if (i < fullBottles) {
-                icons.push(<BeerBottleIcon key={i} className={styles.beerIcon} />);
-            } else if (i === fullBottles && hasHalfBottle) {
-                icons.push(<HalfBeerBottleIcon key={i} className={styles.beerIcon} />);
-            } else {
-                icons.push(<EmptyBeerBottleIcon key={i} className={styles.beerIcon} />);
-            }
-        }
-
-        return icons;
-    };
 
     const today = new Date()
     const dayOfWeek = today.getDay()

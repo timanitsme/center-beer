@@ -29,6 +29,7 @@ import RegistrationPage from "./pages/RegistrationPage/RegistrationPage.jsx";
 import RestaurantEventsPage from "./pages/Events/RestaurantEventsPage/RestaurantEventsPage.jsx";
 import BreweryEventsPage from "./pages/Events/BreweryEventsPage/BreweryEventsPage.jsx";
 import FestivalsPage from "./pages/Events/FestivalsPage/FestivalsPage.jsx";
+import ScrollToTop from "./utils/ScrollToTop/ScrollToTop.jsx";
 
 function App() {
     const paths = [
@@ -40,7 +41,7 @@ function App() {
                 {title: "Карта баров", path: "/map"}
             ]},
         {title: "Мероприятия", path: "events", element: <EventsPage/>}, // /events
-        {title: "О проекте", path: "https://center.beer/about/", element: <AboutPage/>}, // /about-us
+        {title: "Партнерам", path: "/about-us", element: <AboutPage/>},
         {title: "Новости", path: "/news", element: <NewsPage/>},
         {title: "Контакты", path: "/contacts", element: <ContactsPage/>}, // /contacts
     ]
@@ -82,6 +83,7 @@ function App() {
                 {!hideFooter && <Footer />}
             </div>
         </div>
+        <ScrollToTop/>
     </BrowserRouter>
   )
 }

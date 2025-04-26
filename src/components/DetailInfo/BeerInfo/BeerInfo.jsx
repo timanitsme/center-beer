@@ -13,6 +13,7 @@ import HopIcon from "../../../assets/hop-icon.svg?react"
 import PlayButtonIcon from "../../../assets/play-button-icon.svg?react"
 import SingleImageModal from "../../Modals/SingleImageModal/SingleImageModal.jsx";
 import ImageVideoModal from "../../Modals/ImageVideoModal/ImageVideoModal.jsx";
+import {getRatingIcons} from "../../../utils/getRatingIcons.jsx";
 
 export default function BeerInfo({beerInfo={}}){
     const [isFavourite, setIsFavourite] = useState(beerInfo?.is_favor || false);
@@ -23,23 +24,6 @@ export default function BeerInfo({beerInfo={}}){
 
     const formatNumber = (num) => Number(num).toString()
 
-    const getRatingIcons = (rating) => {
-        const icons = [];
-        const fullBottles = Math.floor(rating); // Целая часть рейтинга
-        const hasHalfBottle = rating - fullBottles >= 0.1; // Есть ли половина бутылки
-
-        for (let i = 0; i < 5; i++) {
-            if (i < fullBottles) {
-                icons.push(<BeerBottleIcon key={i} className={styles.beerIcon} />);
-            } else if (i === fullBottles && hasHalfBottle) {
-                icons.push(<HalfBeerBottleIcon key={i} className={styles.beerIcon} />);
-            } else {
-                icons.push(<EmptyBeerBottleIcon key={i} className={styles.beerIcon} />);
-            }
-        }
-
-        return icons;
-    };
 
     return(
         <div>

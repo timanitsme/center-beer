@@ -45,16 +45,16 @@ export default function BarDetailPage(){
 
     return(
         <div className="content">
-            {!isLoading && !error && data && data.length > 0 &&
+            {!isLoading && !error && data && data.data.length > 0 &&
                 <>
-                    <NavChain paths={[...getBarPagePaths(), {title:data[0].name, path: ""}]}/>
-                    <BarInfo barInfo={data[0]} sections={sections}/>
-                    <AdvantagesList barInfo={data[0]}/>
-                    <BarEvents barId={data[0].id}/>
-                    {data[0]?.gallery?.length !== 0 && <Gallery pictures={data[0].gallery}/>}
+                    <NavChain paths={[...getBarPagePaths(), {title: data?.data[0].name, path: ""}]}/>
+                    <BarInfo barInfo={data?.data[0]} sections={sections}/>
+                    <AdvantagesList barInfo={data?.data[0]}/>
+                    <BarEvents barId={data?.data[0].id}/>
+                    {data?.data[0]?.gallery?.length !== 0 && <Gallery pictures={data?.data[0].gallery}/>}
                     <BarMenu filters={getBarPageFilters()} filterButtons={getBarPageFilterButtons()} sections={getBarPageSections()} ref={menuRef}/>
-                    <CurrentPromos barId={data[0].id} ref={promosRef}/>
-                    <BarNews barId={data[0].id} ref={newsRef}/>
+                    <CurrentPromos barId={data?.data[0].id} ref={promosRef}/>
+                    <BarNews barId={data?.data[0].id} ref={newsRef}/>
                     <Reviews images={getBarReviewsImages()} header={getBarReviewsHeader()} resume={getBarReviewsResume()}/>
                 </>
 

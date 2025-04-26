@@ -43,6 +43,19 @@
     color: var(--bg) !important;
 }
 
+.third{
+    background: var(--section-bg);
+}
+
+.third p{
+    color: var(--primary);
+}
+
+.third:hover{
+    background: var(--third);
+    transition: 0.5s;
+}
+
 @media (max-width: 1000px) {
     .simpleButton p, .simpleButton.secondary p {
         font-size: 10px;

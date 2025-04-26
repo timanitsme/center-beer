@@ -352,7 +352,7 @@ export default function BarsCatalog({filters = [], filterButtons = [], sections 
 
                     </div>
                     { !barsIsLoading && !barsError &&
-                        <SimpleCatalogSection cards={barsData} CardComponent={BarCard} wideColumns={false}/>
+                        <SimpleCatalogSection cards={barsData?.data || []} CardComponent={BarCard} wideColumns={false}/>
                     }
 
 

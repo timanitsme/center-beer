@@ -12,7 +12,7 @@ class ErrorBoundary extends Component {
 
     componentDidCatch(error, errorInfo) {
         console.error("Caught an error:", error, errorInfo);
-        setTimeout(() => window.location.reload(), 3000);
+        //setTimeout(() => window.location.reload(), 3000);
     }
 
     render() {

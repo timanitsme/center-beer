@@ -10,9 +10,7 @@ import {Link, useNavigate, useNavigation} from "react-router-dom";
 export default function BarEvents({title = "Скоро в баре", barId=1}){
     const {data: events, isLoading: eventsIsLoading, error: eventsError} = useGetBarEventsQuery({bar_id: barId})
     const [containerHeight, setContainerHeight] = useState(500);
-    const memoizedEvents = useMemo(() => events, [events]);
-
-
+    const memoizedEvents = useMemo(() => events?.data, [events]);
 
 
     const getImageSize = (url, containerWidth, callback) => {
@@ -39,17 +37,17 @@ export default function BarEvents({title = "Скоро в баре", barId=1}){
 
         const containerWidth = container.clientWidth;
 
-        if (events && events.length > 0) {
+        if (events?.data && events?.data.length > 0) {
             let processedImages = 0;
 
-            events.forEach((event) => {
+            events?.data.forEach((event) => {
                 getImageSize(event.preview, containerWidth, (scaledHeight) => {
                     if (scaledHeight > maxHeight) {
                         maxHeight = scaledHeight;
                     }
 
                     processedImages++;
-                    if (processedImages === events.length) {
+                    if (processedImages === events.data.length) {
                         setContainerHeight(maxHeight); // Обновляем высоту только после завершения всех вычислений
                     }
                 });
@@ -65,7 +63,7 @@ export default function BarEvents({title = "Скоро в баре", barId=1}){
 
     // Функция для переключения на следующее событие
     const handleNextEvent = () => {
-        if (events && currentEventIndex < events.length - 1) {
+        if (events?.data && currentEventIndex < events?.data.length - 1) {
             setCurrentEventIndex(currentEventIndex + 1);
         }
     };
@@ -95,9 +93,9 @@ export default function BarEvents({title = "Скоро в баре", barId=1}){
     }, [memoizedEvents, eventsIsLoading]);
 
 
-    if (eventsIsLoading || eventsError || !events || events.length === 0) return null;
+    if (eventsIsLoading || eventsError || !events || events?.data.length === 0) return null;
 
-    const currentEvent = events[currentEventIndex];
+    const currentEvent = events?.data[currentEventIndex];
 
     return(
         <div className={styles.barEventsContainer} style={{height: containerHeight}}>

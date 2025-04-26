@@ -538,7 +538,7 @@ export default function BarMenu({filters, filterButtons, sections, ref, barId = 
                             <div className={styles.appliedFiltersRow} style={{marginBottom: "0px"}}>
                                 {tabSpec?.data && tab.alias === "food" && Object.keys(tabSpec?.data)?.map((tabNum, index) => {
                                     return(
-                                        <IconButton style={tabNum === foodSelectedTab? "primary-third": "third-primary"} key={index} text={tabSpec?.data[tabNum]?.name} onClick={() => {if (tabNum !== foodSelectedTab) setFoodSelectedTab(tabNum); else setFoodSelectedTab("")}}>{foodIcons[tabSpec?.data[tabNum]?.name] || <FriesIcon/>}</IconButton>
+                                        <IconButton style={tabNum === foodSelectedTab? "primary-third": "third-primary"} key={index} text={tabSpec?.data?.[tabNum]?.name} onClick={() => {if (tabNum !== foodSelectedTab) setFoodSelectedTab(tabNum); else setFoodSelectedTab("")}}>{foodIcons[tabSpec?.data[tabNum]?.name] || <FriesIcon/>}</IconButton>
                                     )
                                 })}
                             </div>
@@ -625,7 +625,6 @@ export default function BarMenu({filters, filterButtons, sections, ref, barId = 
                                 }
                             })}
                             <div className={tabsSpecs[tab.alias]?.wideColumns ? styles.sectionContentWide : styles.sectionContent}>
-
                                 {tabSpec?.data && tabSpec?.data?.length > 0 && tabSpec?.data?.map((cardInfo, index) => <CardComponent key={index} cardInfo={cardInfo}/>)}
                             </div>
                         </div>

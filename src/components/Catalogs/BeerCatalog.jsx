@@ -22,6 +22,22 @@ import FiltersModal from "../Modals/FiltersModal/FiltersModal.jsx";
 export default function BeerCatalog({filters = [], filterButtons = [], sections = [], withHeader = true}){
     const [filterNameMap, setFilterNameMap] = useState({});
     const [showFiltersModal, setShowFiltersModal] = useState(false)
+    const [allCards, setAllCards] = useState([])
+    const [isLoadingMore, setIsLoadingMore] = useState(false);
+
+
+
+    const handleShowMore = async () => {
+        if (!isLoadingMore && beerData?.data && !beerIsFetching) {
+            setIsLoadingMore(true);
+            setAllCards((prevCards) => [...prevCards, ...beerData.data]);
+            setFilterValues((prevFilters) => ({
+                ...prevFilters,
+                offset: prevFilters.offset + prevFilters.lim
+            }));
+            setIsLoadingMore(false);
+        }
+    };
 
     // Спецификация фильтров
     const beerFilterSpecs = {
@@ -90,7 +106,7 @@ export default function BeerCatalog({filters = [], filterButtons = [], sections 
     const multiSelectParams = Object.keys(initialFilters).filter(isMultiSelectParam);
 
     // Получение данных с API
-    const {data: beerData, isLoading: beerIsLoading, error: beerError } = useGetBeersQuery(filterValues);
+    const {data: beerData, isLoading: beerIsLoading, isFetching: beerIsFetching, error: beerError } = useGetBeersQuery(filterValues);
     const {data: beerFilters, isLoading: beerFiltersIsLoading, error: beerFiltersError} = useGetBeersFiltersQuery(filterValues["city_id"] || 1)
     const {data: cities, isLoading: citiesIsLoading, error: citiesError} = useGetCitiesQuery()
     const sortFilters =[
@@ -98,6 +114,21 @@ export default function BeerCatalog({filters = [], filterButtons = [], sections 
         {id: "price", name: "По цене"},
         {id: "rating", name: "По отзывам"},
     ]
+
+    const resetPages = () => {
+        setFilterValues((prevFilters) => ({
+            ...prevFilters,
+            offset: 0
+        }));
+        setAllCards([]);
+        handleShowMore();
+    }
+
+    /*FIXME: useEffect(() => {
+        if (!beerIsLoading) {
+            handleShowMore();
+        }
+    }, [beerIsLoading]);*/
 
     useEffect(() => {
         if (beerFilters && !beerFiltersIsLoading && !beerFiltersError) {
@@ -170,16 +201,17 @@ export default function BeerCatalog({filters = [], filterButtons = [], sections 
             ...prevState,
             [filterKey]: value,
         }));
+        //resetPages()
     }
 
     // Применение фильтров
     const applyFilters = () => {
         setFilterValues(selectedFilters);
+        //resetPages()
     }
 
     // Сброс фильтров
     const resetFilters = () => {
-
         setFilterValues(initialFilters)
         setSelectedFilters(initialFilters)
         setTabResetFilters(() => {
@@ -189,7 +221,9 @@ export default function BeerCatalog({filters = [], filterButtons = [], sections 
             });
             return newState;
         });
+        //resetPages()
     }
+
 
     // Возвращение reset к изначальному состоянию
     useEffect(() => {
@@ -406,8 +440,9 @@ export default function BeerCatalog({filters = [], filterButtons = [], sections 
                         <Toggle reset={tabResetFilters["with_reviews"]} label={"Только с отзывами"} toggled={filterValues.with_reviews} onClick={() => handleSingleFilterApply("with_reviews", !filterValues.with_reviews)}/>
                     </div>
                     { !beerIsLoading && !beerError &&
-                        <SimpleCatalogSection cards={beerData} CardComponent={BottledBeerCard} wideColumns={false}/>
+                        <SimpleCatalogSection cards={beerData.data} CardComponent={BottledBeerCard} wideColumns={false}/>
                     }
+                    {/*<SimpleCatalogSection cards={allCards} CardComponent={BottledBeerCard} wideColumns={false} totalItems={beerData?.["total_items"]} onShowMore={handleShowMore}/>*/}
                 </div>
             </div>
             {isMobile &&

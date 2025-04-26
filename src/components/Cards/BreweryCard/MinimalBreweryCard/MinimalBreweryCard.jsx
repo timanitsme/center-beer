@@ -1,8 +1,8 @@
 import {useState} from "react";
 import {useNavigate} from "react-router-dom";
 import styles from "../../BarCard/BarCard.module.css";
-import BookMarkIcon from "../../../../assets/bookmark-unfill-icon.svg";
-import FavIcon from "../../../../assets/fav-unfill-icon.svg";
+import BookMarkIcon from "../../../../assets/bookmark-unfill-icon.svg?react";
+import FavIcon from "../../../../assets/fav-unfill-icon.svg?react";
 import LocationIcon from "../../../../assets/location-filled-icon.svg?react";
 
 export default function MinimalBreweryCard({cardInfo}){
@@ -28,7 +28,6 @@ export default function MinimalBreweryCard({cardInfo}){
                     <p className={styles.cardTextPrimary} onClick={goToBeerPage}>{cardInfo.title}</p>
                 </div>
                 <div className={`${styles.iconText} ${styles.loc}`}>
-                    <LocationIcon/>
                     <p>{cardInfo.address}</p>
                 </div>
             </div>

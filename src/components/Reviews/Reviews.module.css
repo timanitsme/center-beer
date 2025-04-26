@@ -12,6 +12,36 @@
 
 .commentsContainer{
     width: 70%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.commentPhotos{
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+}
+
+.imageWrapper{
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    width: 60px;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 5px;
+}
+
+.imageWrapper.photos{
+    width: 85px;
+}
+
+.imageWrapper img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 5px;
 }
 
 .assessmentContainer{

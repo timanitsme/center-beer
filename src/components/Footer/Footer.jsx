@@ -47,7 +47,7 @@ export default function Footer(){
                                 <Link to={"/events"}>МЕРОПРИЯТИЯ</Link>
                             </div>
                             <div className={styles.bottomMenuColumn}>
-                                <Link to={"https://center.beer/about/"}>О ПРОЕКТЕ</Link>
+                                <Link to={"/about-us"}>ПАРТНЕРАМ</Link>
                                 <Link to={"/news"}>НОВОСТИ</Link>
                                 <Link to={"/contacts"}>КОНТАКТЫ</Link>
                             </div>

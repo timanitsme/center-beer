@@ -19,6 +19,7 @@ import EmptyBeerBottleIcon from "../../../assets/bottle-empty-icon.svg?react"
 import BreweryLogo from "../../../assets/bar-info/brewery-logo.svg?react"
 import BottlesPairIcon from "../../../assets/bottles-pair-icon.svg?react"
 import BarrelIcon from "../../../assets/barrel-icon.svg?react"
+import {getRatingIcons} from "../../../utils/getRatingIcons.jsx";
 
 
 
@@ -26,24 +27,6 @@ export default function BreweryInfo(){
     const [isFavourite, setIsFavourite] = useState(false);
     const [isBookmarked, setIsBookmarked] = useState(false);
     const rating = 3.5
-
-    const getRatingIcons = (rating) => {
-        const icons = [];
-        const fullBottles = Math.floor(rating); // Целая часть рейтинга
-        const hasHalfBottle = rating - fullBottles >= 0.1; // Есть ли половина бутылки
-
-        for (let i = 0; i < 5; i++) {
-            if (i < fullBottles) {
-                icons.push(<BeerBottleIcon key={i} className={styles.beerIcon} />);
-            } else if (i === fullBottles && hasHalfBottle) {
-                icons.push(<HalfBeerBottleIcon key={i} className={styles.beerIcon} />);
-            } else {
-                icons.push(<EmptyBeerBottleIcon key={i} className={styles.beerIcon} />);
-            }
-        }
-
-        return icons;
-    };
 
     return(
         <div>

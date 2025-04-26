@@ -21,7 +21,15 @@ import BeerImage4 from "../../assets/bottlesMock/bottle-4.svg"
 import BeerImage5 from "../../assets/bottlesMock/bottle-5.svg"
 import MinimalBottledBeerCard from "../../components/Cards/BottledBeerCard/MinimalBottledBeerCard.jsx";
 import {isMobile} from "react-device-detect";
-import CheckInCard from "../../components/Cards/CheckInCard/CheckInCard.jsx";
+import BeerCheckInCard from "../../components/Cards/CheckIns/BeerCheckInCard/BeerCheckInCard.jsx";
+import SwitchRowSection from "../../components/SwitchRowSection/SwitchRowSection.jsx";
+import MinimalBreweryCard from "../../components/Cards/BreweryCard/MinimalBreweryCard/MinimalBreweryCard.jsx";
+import Brewery1 from "../../assets/breweryMocks/brewery-logo-1.svg"
+import Brewery2 from "../../assets/breweryMocks/brewery-logo-2.svg"
+import Brewery3 from "../../assets/breweryMocks/brewery-logo-3.svg"
+import Brewery4 from "../../assets/breweryMocks/brewery-logo-4.svg"
+import Brewery5 from "../../assets/breweryMocks/brewery-logo-5.svg"
+import BarCheckInCard from "../../components/Cards/CheckIns/BarCheckInCard/BarCheckInCard.jsx";
 
 export default function PersonalAccountPage(){
     const [showModal, setShowModal] = useState(false)
@@ -41,6 +49,42 @@ export default function PersonalAccountPage(){
         {is_favor: false, is_liked: false, photo: BeerImage5, name: "Небо над тагилом", rating: 5, brewery_name: "Чаща", city: "Москва", country: "Россия"},
     ]
 
+    const breweryCards = [
+        {is_favor: false, is_liked: false, img: Brewery1, title: "Бакунин", address: "Солигорск, Беларусь"},
+        {is_favor: true, is_liked: false, img: Brewery2, title: "Konix Brewery", address: "Заречный, Россия"},
+        {is_favor: true, is_liked: true, img: Brewery3, title: "Paradox", address: "Солигорск, Беларусь"},
+        {is_favor: true, is_liked: false, img: Brewery4, title: "Brauerei Puntigam", address: "Грац, Австрия"},
+        {is_favor: false, is_liked: false, img: Brewery5, title: "Wild Lab", address: "Москва, Россия"},
+    ]
+
+    const barsCards = [
+        {is_favor: false, is_liked: false, title: "13 RULES (Народный бар)", img: BarImage1, address: "г.Москва, Сущевский вал, 41"},
+        {is_favor: false, is_liked: false, title: "13 RULES (Народный бар)", img: BarImage1, address: "г.Москва, Сущевский вал, 41"},
+        {is_favor: false, is_liked: false, title: "13 RULES (Народный бар)", img: BarImage1, address: "г.Москва, Сущевский вал, 41"},
+        {is_favor: false, is_liked: false, title: "13 RULES (Народный бар)", img: BarImage1, address: "г.Москва, Сущевский вал, 41"},
+        {is_favor: false, is_liked: false, title: "13 RULES (Народный бар)", img: BarImage1, address: "г.Москва, Сущевский вал, 41"},
+
+    ]
+
+    const likedSwitch = [
+        {title: "Бары", cards: barCards, CardComponent: MinimalBarCard},
+        {title: "Пиво", cards: beerCards, CardComponent: MinimalBottledBeerCard},
+        {title: "Пивоварни", cards: breweryCards, CardComponent: MinimalBreweryCard},
+    ]
+
+    const favSwitch = [
+        {title: "Бары", cards: barCards, CardComponent: MinimalBarCard},
+        {title: "Пиво", cards: beerCards, CardComponent: MinimalBottledBeerCard},
+        {title: "Пивоварни", cards: breweryCards, CardComponent: MinimalBreweryCard},
+    ]
+
+    const checkInSwitch = [
+        {title: "Пиво", cards: barCards, CardComponent: BeerCheckInCard, maxCards: 4},
+        {title: "Бары", cards: barsCards, CardComponent: BarCheckInCard},
+
+    ]
+
+
     return(
         <div className="content">
             <NavChain paths={GetPersonalAccountPaths()}></NavChain>
@@ -48,13 +92,11 @@ export default function PersonalAccountPage(){
                 {!isMobile && <PersonalAccount/>}
                 <div style={{display: "flex", flexDirection: "column", width: "100%", gap: "25px"}}>
                     {isMobile && <PersonalAccount isMobile={true}/>}
+                    <SwitchRowSection title="Чек-ины" options={checkInSwitch}/>
                     <ActiveOrders></ActiveOrders>
                     <LatestReviews></LatestReviews>
-                    <ShortenedRowSection title="Чек-ины" cards={barCards} CardComponent={CheckInCard} maxCards={4}></ShortenedRowSection>
-                    <ShortenedRowSection title="Избранные бары" cards={barCards} CardComponent={MinimalBarCard}></ShortenedRowSection>
-                    <ShortenedRowSection title="Избранное пиво" cards={beerCards} CardComponent={MinimalBottledBeerCard}></ShortenedRowSection>
-                    <ShortenedRowSection title="Бары в кладовке" cards={barCards} CardComponent={MinimalBarCard}></ShortenedRowSection>
-                    <ShortenedRowSection title="Пиво в кладовке" cards={beerCards} CardComponent={MinimalBottledBeerCard}></ShortenedRowSection>
+                    <SwitchRowSection title="Избранное" options={likedSwitch}/>
+                    <SwitchRowSection title="Кладовка" options={favSwitch}/>
                 </div>
             </div>
             <SingleImageModal show={showModal} setShow={setShowModal} src={EventImage}></SingleImageModal>

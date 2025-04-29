@@ -32,11 +32,10 @@ export default function Reviews({header, images, resume}){
         }
     }, []);
 
-
     return(
         <div className={styles.reviews}>
             <ComponentHeader HeaderIcon={BeardIcon} title={header.title} description={header.description}/>
-            <PicturesList images={images}></PicturesList>
+            {images && images.length > 0 && <PicturesList images={images}></PicturesList>}
             <div className="hrtLine" style={{margin: "20px 0"}} />
             <div className={styles.commentsSection}>
                 <div className={styles.commentsContainer}>

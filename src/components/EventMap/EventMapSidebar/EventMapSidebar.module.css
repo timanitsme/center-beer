@@ -6,8 +6,139 @@
 }
 
 .sidebar.expanded {
-    width: 270px;
+    width: 500px;
     transition: width 0.3s;
 }
 
+.buttonsRow{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0 15px;
+}
 
+.buttonsRow svg{
+    max-width: 25px;
+    height: fit-content;
+
+}
+
+.closeButton{
+    all: unset;
+    background: none;
+    cursor: pointer;
+}
+
+.brewery{
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+    background: var(--section-bg);
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.5s;
+}
+
+
+@media (hover: hover) and (pointer: fine) {
+    .brewery:hover{
+        background: var(--primary);
+        transition: 0.5s;
+    }
+
+    .brewery:hover .toBrew svg, .brewery:hover .title{
+        color: var(--section-bg);
+        transition: 0.5s;
+    }
+}
+
+.sidebarContent{
+    padding: 0 15px;
+}
+
+.imgContainer{
+    position: relative;
+    min-width: 70px;
+    min-height: 70px;
+    width: 70px;
+    height: 70px;
+    background: var(--fg);
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.imgContainer img{
+    max-width: 100%;
+    max-height: 100%;
+    height: auto;
+    width: auto;
+    object-fit: contain;
+    display: block;
+}
+
+.description{
+    flex: 1;
+}
+
+.toBrew{
+    align-self: center;
+}
+
+.toBrew svg{
+    color: var(--txt-active);
+    transition: color 0.5s;
+}
+
+.title{
+    font-family: "Podkova", sans-serif;
+    font-size: 1.2vw;
+    font-weight: bold;
+    color: var(--txt-active);
+    transition: color 0.5s;
+}
+
+.beerCardsRow {
+    display: flex;
+    overflow-x: auto;
+    gap: 10px;
+    padding: 10px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    align-items: stretch; /* Растягиваем карточки по высоте */
+}
+
+.beerCardsRow::-webkit-scrollbar {
+    display: none;
+}
+
+
+
+@media (max-width: 600px) {
+    .sidebar {
+        position: absolute;
+        width: 0px;
+        height: 100%;
+        background-color: var(--bg);
+        z-index: 999;
+    }
+
+    .title{
+        font-size: 15px;
+    }
+
+    .sidebar.expanded {
+        width: 100%;
+    }
+
+    .beerCardsRow > * {
+        flex-shrink: 0; /* Предотвращаем сжатие карточек */
+        width: 170px; /* Фиксированная ширина карточек */
+        height: 100%; /* Автоматическая высота */
+    }
+
+}

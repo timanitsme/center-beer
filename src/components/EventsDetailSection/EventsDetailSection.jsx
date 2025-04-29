@@ -26,8 +26,8 @@ export default function EventsDetailSection({style = "detail", children}){
         {title: "Фестивали", path: "/events/festivals"}
     ]
     const paths = [
-        {title: "Новости"},
-        {title: "Бары и магазины"}
+        {title: "Мероприятия"},
+        {title: "Мероприятия заведений"}
     ]
 
     const cards = [

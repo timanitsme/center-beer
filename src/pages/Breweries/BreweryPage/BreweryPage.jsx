@@ -1,6 +1,6 @@
-import NavChain from "../../components/Navigation/NavChain/NavChain.jsx";
+import NavChain from "../../../components/Navigation/NavChain/NavChain.jsx";
 import {getBreweryPageFilters, getBreweryPagePaths} from "./BreweryPageData.jsx";
-import BreweryCatalog from "../../components/Catalogs/BreweryCatalog.jsx";
+import BreweryCatalog from "../../../components/Catalogs/BreweryCatalog.jsx";
 
 export default function BreweryPage(){
 

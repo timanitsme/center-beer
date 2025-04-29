@@ -1,18 +1,17 @@
-import Review1 from "../../assets/reviewsMocks/beer-review-1.svg"
-import Review2 from "../../assets/reviewsMocks/beer-review-2.svg"
-import Review3 from "../../assets/reviewsMocks/beer-review-3.svg"
-import Review4 from "../../assets/reviewsMocks/beer-review-4.svg"
-import Review5 from "../../assets/reviewsMocks/beer-review-5.svg"
-import Review6 from "../../assets/reviewsMocks/beer-review-6.svg"
-import Bar1 from "../../assets/barsMocks/bar-1.svg";
-import Bar2 from "../../assets/barsMocks/bar-2.svg";
-import Bar3 from "../../assets/barsMocks/bar-3.svg";
-import Bar4 from "../../assets/barsMocks/bar-4.svg";
+import Review1 from "../../../assets/reviewsMocks/beer-review-1.svg"
+import Review2 from "../../../assets/reviewsMocks/beer-review-2.svg"
+import Review3 from "../../../assets/reviewsMocks/beer-review-3.svg"
+import Review4 from "../../../assets/reviewsMocks/beer-review-4.svg"
+import Review5 from "../../../assets/reviewsMocks/beer-review-5.svg"
+import Review6 from "../../../assets/reviewsMocks/beer-review-6.svg"
+import Bar1 from "../../../assets/barsMocks/bar-1.svg";
+import Bar2 from "../../../assets/barsMocks/bar-2.svg";
+import Bar3 from "../../../assets/barsMocks/bar-3.svg";
+import Bar4 from "../../../assets/barsMocks/bar-4.svg";
 
 const paths = [
     {title:"center.beer", path: "/"},
-    {title:"Пивоварни", path: "/beer/"},
-    {title: "Jaws Brewery", path: ""},
+    {title:"Пивоварни", path: "/breweries/"},
 ]
 
 // Reviews

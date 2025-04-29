@@ -1,104 +1,446 @@
-import {useState} from "react";
+import {useEffect, useMemo, useState} from "react";
 import styles from "./BarsCatalog.module.css";
-import IconButton from "../Buttons/IconButton/IconButton.jsx";
-import FilterComboBox from "../Inputs/FilterComboBox/FilterComboBox.jsx";
-import Radio from "../Inputs/Radio/Radio.jsx";
-import CheckBox from "../Inputs/CheckBox/CheckBox.jsx";
 import Search from "../Inputs/Search/Search.jsx";
 import SimpleButton from "../Buttons/SimpleButton/SimpleButton.jsx";
 import AppliedFilter from "../AppliedFilter/AppliedFilter.jsx";
 import LocationIcon from "../../assets/location-filled-icon.svg?react";
-import ComboBox from "../Inputs/ComboBox/ComboBox.jsx";
 import Toggle from "../Toggle/Toggle.jsx";
 import SimpleCatalogSection from "../CatalogSections/SimpleCatalogSection/SimpleCatalogSection.jsx";
 import PropTypes from "prop-types";
-import Brewery1 from "../../assets/breweryMocks/brewery-logo-1.svg"
-import Brewery2 from "../../assets/breweryMocks/brewery-logo-2.svg"
-import Brewery3 from "../../assets/breweryMocks/brewery-logo-3.svg"
-import Brewery4 from "../../assets/breweryMocks/brewery-logo-4.svg"
-import Brewery5 from "../../assets/breweryMocks/brewery-logo-5.svg"
-import Brewery6 from "../../assets/breweryMocks/brewery-logo-6.svg"
-import BarCard from "../Cards/BarCard/BarCard.jsx";
 import BreweryCard from "../Cards/BreweryCard/BreweryCard.jsx";
+import {
+    useGetBreweriesFiltersQuery,
+    useGetBreweriesQuery,
+    useGetCitiesQuery
+} from "../../store/services/centerBeer.js";
+import {isMobile} from "react-device-detect";
+import FilterItem from "../ApiInputs/FilterItem/FilterItem.jsx";
+import FiltersModal from "../Modals/FiltersModal/FiltersModal.jsx";
 
 export default function BreweryCatalog({filters = [], filterButtons = [], sections = []}){
-    const cardsBars = [
-        {title: "Jaws Brewery", img: Brewery1, address: "г. Москва, Сущевский вал, 41", metro: "Лубянка, Сретенский бульвар", rating: 5, options: ["Пиво", "Крепкий алкоголь", "Вино"]},
-        {title: "Jaws Brewery", img: Brewery2, address: "г. Москва, Сущевский вал, 41", metro: "Новокузнецкая, Третьяковская", rating: 5, options: ["Пиво", "б/а напитки"]},
-        {title: "Jaws Brewery", img: Brewery3, address: "г. Москва, Сущевский вал, 41", metro: "Новокузнецкая, Третьяковская", rating: 5, options: ["Пиво", "крепкий алкоголь", "вино", "б/а напитки"]},
-        {title: "Jaws Brewery", img: Brewery4, address: "г. Москва, Сущевский вал, 41", metro: "Новокузнецкая, Третьяковская", rating: 5, options: ["Пиво", "крепкий алкоголь", "вино", "б/а напитки"]},
-        {title: "Jaws Brewery", img: Brewery5, address: "г. Москва, Сущевский вал, 41", metro: "Новокузнецкая, Третьяковская", rating: 5, options: ["Пиво", "крепкий алкоголь"]},
-        {title: "Jaws Brewery", img: Brewery6, address: "г. Москва, Сущевский вал, 41", metro: "Новокузнецкая, Третьяковская", rating: 5, options: ["Пиво", "вино", "б/а напитки"]},
+    const [filterNameMap, setFilterNameMap] = useState({});
+    const [showFiltersModal, setShowFiltersModal] = useState(false)
+    const [allCards, setAllCards] = useState([])
+    const [isLoadingMore, setIsLoadingMore] = useState(false);
 
+
+
+    const handleShowMore = async () => {
+        if (!isLoadingMore && breweriesData?.data && !breweriesIsFetching) {
+            setIsLoadingMore(true);
+            setAllCards((prevCards) => [...prevCards, ...breweriesData.data]);
+            setFilterValues((prevFilters) => ({
+                ...prevFilters,
+                offset: prevFilters.offset + prevFilters.lim
+            }));
+            setIsLoadingMore(false);
+        }
+    };
+
+    // TODO:
+    // Спецификация фильтров
+    const breweryFilterSpecs = {
+        is_open: {title: "Только открытые", id: "is_open"},
+        is_new: {title: "Только новые", id: "is_new"},
+        colors: {title: "Цвет", component: "checkboxSection", id: "color_ids"},
+        abv: {title: "Алкоголь", component: "rangeRadio", id: "abv"},
+        abv_from: {title: "Алкоголь от", id: "abv_from"},
+        abv_to: {title: "Алкоголь до", id: "abv_to"},
+        og: {title: "Плотность", component: "rangeRadio", id: "og"},
+        og_from: {title: "Плотность от", id: "og_from"},
+        og_to: {title: "Плотность до", id: "og_to"},
+        ibu: {title: "Горечь", component: "rangeRadio", id: "ibu"},
+        ibu_from: {title: "Горечь от", id: "ibu_from"},
+        ibu_to: {title: "Горечь до", id: "ibu_to"},
+    }
+
+    const initialFilters = {
+        is_open: false,
+        is_new: false,
+        country_id: [],
+        city_id: [],
+        type_id: [],
+        order_by: '',
+        order_asc_desc: '',
+    }
+
+    // Фильтры, от изменения которых изменяется запрос
+    const [filterValues, setFilterValues] = useState(initialFilters);
+
+    // Временные фильтры (хранят выбранные значения до применения)
+    const [selectedFilters, setSelectedFilters] = useState(initialFilters);
+
+    const [tabResetFilters, setTabResetFilters] = useState(() => {
+        const resetFiltersStates = {};
+        Object.values(breweryFilterSpecs).forEach((value) => {
+            resetFiltersStates[value.id] = {reset: false, id: 0};
+        });
+        return resetFiltersStates;
+    });
+
+    // Функция для определения, является ли параметр множественного выбора
+    function isMultiSelectParam(paramName) {
+        return /^og|^abv|^ibu/.test(paramName);
+    }
+
+    // Создание массива параметров множественного выбора для каждого tabAlias
+    const multiSelectParams = Object.keys(initialFilters).filter(isMultiSelectParam);
+
+    // Получение данных с API
+    const {data: breweriesData, isLoading: breweriesIsLoading, isFetching: breweriesIsFetching, error: breweriesError } = useGetBreweriesQuery(filterValues);
+    const {data: breweriesFilters, isLoading: breweriesFiltersIsLoading, error: breweriesFiltersError} = useGetBreweriesFiltersQuery()
+    const {data: cities, isLoading: citiesIsLoading, error: citiesError} = useGetCitiesQuery()
+
+    //TODO:
+    const sortFilters =[
+        {id: "popular", name: "Популярное"},
+        {id: "price", name: "По цене"},
+        {id: "rating", name: "По отзывам"},
     ]
 
-    const [onlyOpened, setOnlyOpened] = useState(false);
+    const resetPages = () => {
+        setFilterValues((prevFilters) => ({
+            ...prevFilters,
+            offset: 0
+        }));
+        setAllCards([]);
+        handleShowMore();
+    }
 
+    /*FIXME: useEffect(() => {
+        if (!beerIsLoading) {
+            handleShowMore();
+        }
+    }, [beerIsLoading]);*/
+
+    useEffect(() => {
+        if (breweriesFilters && !breweriesFiltersIsLoading && !breweriesFiltersError) {
+            const nameMap = {};
+            // Обработка beerFilters
+            Object.entries(breweriesFilters[0]).forEach(([key, options]) => {
+                nameMap[breweryFilterSpecs[key]?.id || key] = options.reduce((acc, option) => {
+                    acc[option.id] = `${breweryFilterSpecs[key]?.title}: ${option.name}`; // Предполагается, что у опций есть `id` и `name`
+                    return acc;
+                }, {});
+            });
+
+            //TODO: разобраться с теми фильтрами, которые я добавляю сам
+            // Обработка cities
+            if (cities && !citiesIsLoading && !citiesError) {
+                nameMap["city_id"] = cities.reduce((acc, city) => {
+                    acc[city.id.toString()] = `Город: ${city.name}`; // Предполагается, что у городов есть `id` и `name`
+                    return acc;
+                }, {});
+            }
+            // Обработка only_opened
+            nameMap["with_reviews"] = {}// value: "Только открытые"
+            setFilterNameMap(nameMap);
+        }
+    }, [breweriesFilters, breweriesFiltersIsLoading, breweriesFiltersError, cities, citiesIsLoading, citiesError]);
+
+    // Подготовка фильтров
+    const filtersConfig = useMemo(() => {
+        if (!breweriesFilters || breweriesFiltersIsLoading || breweriesFiltersError) return [];
+        return Object?.entries(breweriesFilters[0])?.map(([key, options]) => {
+            const spec = breweryFilterSpecs[key]
+            return  {
+                title: spec?.title || key, // Используем маппинг заголовков
+                key: spec?.id || key,
+                options: options || [],
+                componentType: spec?.component || "",
+            }
+        });
+    }, [breweriesFilters, breweriesFiltersIsLoading, breweriesFiltersError]);
+
+    const handleFilterChange = (filterKey, value) => {
+        if (multiSelectParams.includes(`${filterKey}_id`)){
+            setSelectedFilters((prevState) => ({
+                ...prevState,
+                [`${filterKey}_id`]: [value.options.id === 0? '': value.options.id],
+                [`${filterKey}_to`]: [value.options.to],
+                [`${filterKey}_from`]: [value.options.from],
+            }));
+        }
+        else{
+            setSelectedFilters((prevState) => ({
+                ...prevState,
+                [filterKey]: Array.isArray(value.options) ? value.options : [value.options === 0? '': value.options],
+            }));
+        }
+    };
+
+    const handleSingleFilterChange = (filterKey, value) => {
+        setSelectedFilters((prevState) => ({
+            ...prevState,
+            [filterKey]: value,
+        }));
+    }
+
+    const handleSingleFilterApply = (filterKey, value) => {
+        setSelectedFilters((prevState) => ({
+            ...prevState,
+            [filterKey]: value,
+        }));
+        setFilterValues((prevState) => ({
+            ...prevState,
+            [filterKey]: value,
+        }));
+        //resetPages()
+    }
+
+    // Применение фильтров
+    const applyFilters = () => {
+        setFilterValues(selectedFilters);
+        //resetPages()
+    }
+
+    // Сброс фильтров
+    const resetFilters = () => {
+        setFilterValues(initialFilters)
+        setSelectedFilters(initialFilters)
+        setTabResetFilters(() => {
+            const newState = {};
+            Object.values(breweryFilterSpecs).forEach((value) => {
+                newState[value.id] = {reset: true, id: 0}; // Устанавливаем значение `true` для всех фильтров
+            });
+            return newState;
+        });
+        //resetPages()
+    }
+
+
+    // Возвращение reset к изначальному состоянию
+    useEffect(() => {
+        if (tabResetFilters && Object?.values(tabResetFilters)?.some(value => value.reset === true)) {
+            const timeout = setTimeout(() => {
+                setTabResetFilters((prevState) => {
+                    const newTabResetFilters = { ...prevState };
+                    Object.values(breweryFilterSpecs).forEach((value) => {
+                        newTabResetFilters[value.id] = {reset: false, id: 0};
+                    });
+                    return newTabResetFilters;
+                });
+            }, 1);
+
+            return () => clearTimeout(timeout);
+        }
+
+    }, [tabResetFilters]);
+
+
+    const removeFilter = (filterKey, idToRemove) => {
+        setFilterValues((prev) => {
+            const currentValue = prev[filterKey];
+
+            if (Array.isArray(currentValue)) {
+                // Удаляем элемент из массива
+                return {
+                    ...prev,
+                    [filterKey]: currentValue.filter((id) => id !== idToRemove),
+                };
+            } else {
+                // Сбрасываем не массивное значение
+                return {
+                    ...prev,
+                    [filterKey]: "",
+                };
+            }
+
+        });
+        setSelectedFilters((prev) => {
+            const currentValue = prev[filterKey];
+            if (Array.isArray(currentValue)) {
+                return {
+                    ...prev,
+                    [filterKey]: currentValue.filter((id) => id !== idToRemove),
+                };
+            } else {
+                return {
+                    ...prev,
+                    [filterKey]: "",
+                };
+            }
+
+        });
+        setTabResetFilters((prev) => ({
+            ...prev,
+            [filterKey]: {reset: true, id: idToRemove},
+        }));
+    };
+
+    const removeRangeRadioFilter = (filterName) => {
+        setSelectedFilters((prev) => {
+            return {
+                ...prev,
+                [`${filterName}_from`]: "",
+                [`${filterName}_to`]: "",
+            };
+        });
+        setFilterValues((prev) => {
+            return {
+                ...prev,
+                [`${filterName}_from`]: "",
+                [`${filterName}_to`]: "",
+            }
+        });
+        setTabResetFilters((prev) => {
+            return {
+                ...prev, // Копируем текущие значения для tabAlias
+                [`${filterName}_from`]: { reset: true, id: 0 }, // Обновляем abv_from
+                [`${filterName}_to`]: { reset: true, id: 0 },   // Обновляем abv_to
+            };
+        });
+    };
+
+    const countAppliedFilters = () => {
+        let count = 0;
+
+        Object.entries(filterValues).forEach(([filterKey, value]) => {
+            // Если значение — массив, считаем его длину
+            if (Array.isArray(value) && value.length > 0 && JSON.stringify(value) !== '[""]') {
+                count += value.length;
+            }
+            // Если значение — строка или булево значение, учитываем его как один фильтр
+            else if (typeof value === "string" && value.trim() !== "") {
+                if (filterKey !== "sort_by")
+                    count += 1;
+            } else if (typeof value === "boolean" && value) {
+                if (filterKey !== "with_reviews")
+                    count += 1;
+            }
+        });
+        return count;
+    };
 
     return(
         <div className={styles.menuContainer}>
             <div className={styles.menuHeader}>
-                <div className={styles.catalogHeader}>
-                    <div>
-                        <h2>Каталог пивоварен</h2>
-                        <p>Собрали для вас список лучших пивоварен, где можно не только насладиться свежесваренным пивом, приготовленным на месте, но и узнать процесс его создания. Здесь вы найдете разнообразные закуски и уютную атмосферу. От традиционных пивоварен до современных крафтовых мастерских — каждый сможет найти место, которое придется по душе.</p>
-                    </div>
-                    {/*Филлер для переноса текста, мб прописать отдельные стили*/}
-                    <div style={{width: "20%"}}></div>
-                </div>
-                <div className={styles.filterButtons}>
-                    {filterButtons.map((button) => (
-                        <IconButton key={button.text} text={button.text}>{button.icon}</IconButton>
-                    ))}
+                <div>
+                    <h2>Каталог пивоварен</h2>
+                    <p>Собрали для вас список лучших пивоварен, где можно не только насладиться свежесваренным пивом, приготовленным на месте, но и узнать процесс его создания. Здесь вы найдете разнообразные закуски и уютную атмосферу. От традиционных пивоварен до современных крафтовых мастерских — каждый сможет найти место, которое придется по душе.</p>
                 </div>
             </div>
             <div className={styles.menuContent}>
-                <div className={styles.menuFilters}>
-                    {filters.map((filter) => {
-                        switch (filter.type) {
-                            case "combobox":
-                                return <FilterComboBox key={filter.title} title={filter.title} options={filter.options} />;
-                            case "radio":
-                                return <Radio key={filter.title} title={filter.title} options={filter.options} />;
-                            case "checkbox":
-                                return <CheckBox text={filter.title}/>
-                            case "search":
-                                return <Search text={filter.title} options={filter.options}/>
-                            default:
-                                return null;
-                        }
-                    })}
-                    <SimpleButton text="Применить фильтры"></SimpleButton>
-                </div>
+                {!isMobile && <div className={styles.menuFilters}>
+                    {filtersConfig.map((filter) => (
+                        <FilterItem
+                            key={filter.key}
+                            filter={filter}
+                            onChange={(value) => handleFilterChange(filter.key, value)}
+                            reset={tabResetFilters[filter.key]}
+                        />
+                    ))}
+                    <SimpleButton text="Применить фильтры" onClick={applyFilters}></SimpleButton>
+                </div>}
                 <div className={styles.menuItemsSections}>
                     <div className={styles.appliedFiltersRow}>
-                        <AppliedFilter>
-                            <LocationIcon/>
-                            <p>Нижний Новгород</p>
-                        </AppliedFilter>
-                        <AppliedFilter>
-                            <p>Абхазия</p>
-                        </AppliedFilter>
-                        <AppliedFilter>
-                            <p>Албания</p>
-                        </AppliedFilter>
-                        <AppliedFilter>
-                            <p>Пилэнер</p>
-                        </AppliedFilter>
-                        <AppliedFilter>
-                            <p>Пшеничный эль</p>
-                        </AppliedFilter>
-                        <AppliedFilter style="secondary">
+                        {Object.entries(filterValues).map(([filterKey, value]) => {
+                            // Пропускаем пустые значения
+                            if (!value || (Array.isArray(value) && value.length === 0)) return null;
+                            if (filterKey === "sort_by") return null
+                            // Если значение — массив, обрабатываем каждый элемент
+                            if (Array.isArray(value)) {
+                                return value.map((id) => {
+                                    if (multiSelectParams.includes(filterKey)){
+                                        const filterName = filterKey.split("_")[0]
+                                        const filterDirection = filterKey.split("_")[1]
+                                        if (!filterName) return null;
+                                        if (filterDirection === "id"){
+                                            const filterValue = filterNameMap[filterName]?.[id]
+                                            return <>
+                                                {filterValue && <AppliedFilter key={`${filterKey}`} onClick={() => removeFilter(filterKey, id)}>
+                                                    <p>{filterValue}</p>
+                                                </AppliedFilter>}
+                                            </>
+                                        }
+                                        else if ((filterDirection === "from")){
+                                            const filterValueFrom = filterValues[`${filterName}_from`]
+                                            const filterValueTo = filterValues[`${filterName}_to`]
+                                            if (JSON.stringify(filterValueFrom) === '[""]' && JSON.stringify(filterValueTo) === '[""]' || JSON.stringify(filterValueFrom) === '[null]' && JSON.stringify(filterValueTo) === '[null]') return null
+                                            return <>
+                                                <AppliedFilter key={`${filterKey}_from`} onClick={() => removeRangeRadioFilter(filterName)}>
+                                                    <p>{`${breweryFilterSpecs[filterName]?.title}: ${JSON.stringify(filterValueFrom) === '[""]'? "0": filterValueFrom} - ${JSON.stringify(filterValueTo) === '[""]' ? "∞" : filterValueTo}`}</p>
+                                                </AppliedFilter>
+                                            </>
+                                        }
+                                    }
+                                    else{
+                                        const filterName = filterNameMap[filterKey]?.[id];
+                                        if (!filterName) return null;
+                                        return (
+                                            <AppliedFilter key={`${filterKey}-${id}`} onClick={() => removeFilter(filterKey, id)}>
+                                                <p>{filterName}</p>
+                                            </AppliedFilter>
+                                        );
+                                    }
+
+
+                                });
+                            }
+
+                            // Если значение не массив (например, строка или булево значение)
+                            if (typeof value === "string") {
+                                if (filterKey === "city_id"){
+                                    return (
+                                        <AppliedFilter key={filterKey} onClick={() => removeFilter(filterKey, value)}>
+                                            <LocationIcon></LocationIcon>
+                                            <p>{filterNameMap[filterKey]?.[value] || value.toString()}</p>
+                                        </AppliedFilter>
+                                    );
+                                }
+                                else{
+                                    return (
+                                        <AppliedFilter key={filterKey} onClick={() => removeFilter(filterKey, value)}>
+                                            <p>{filterNameMap[filterKey]?.[value] || value.toString()}</p>
+                                        </AppliedFilter>
+                                    );
+                                }
+
+                            }
+
+                            if (typeof value === "boolean"){
+                                if (filterNameMap[filterKey].value){
+                                    return (
+                                        <AppliedFilter key={filterKey} onClick={() => removeFilter(filterKey, value)}>
+                                            <p>{filterNameMap[filterKey].value}</p>
+                                        </AppliedFilter>
+                                    )
+                                }
+
+                            }
+
+                            return null;
+                        })}
+
+                        {countAppliedFilters() > 0 && <AppliedFilter style="secondary" onClick={resetFilters}>
                             <p>Сбросить фильтры</p>
-                        </AppliedFilter>
+                        </AppliedFilter>}
                     </div>
                     <div className={styles.toggleAndOptions}>
-                        <ComboBox options={["Сначала популярные", "По умолчанию"]}></ComboBox>
+                        {isMobile && <SimpleButton textStyle={"black"} text="ФИЛЬТРЫ" onClick={() => setShowFiltersModal(true)} style="primary"></SimpleButton>}
+                        {/*sortFilters &&  <ComboBox options={sortFilters} onChange={(value) => handleSingleFilterApply("sort_by", value.id)}></ComboBox>*/}
+                        <Toggle reset={tabResetFilters["with_reviews"]} label={"Только с отзывами"} toggled={filterValues.with_reviews} onClick={() => handleSingleFilterApply("with_reviews", !filterValues.with_reviews)}/>
                     </div>
-                    <SimpleCatalogSection cards={cardsBars} CardComponent={BreweryCard} wideColumns={true}/>
-
+                    { !breweriesIsLoading && !breweriesError &&
+                        <SimpleCatalogSection cards={breweriesData?.data} CardComponent={BreweryCard} wideColumns={true}/>
+                    }
+                    {/*<SimpleCatalogSection cards={allCards} CardComponent={BottledBeerCard} wideColumns={false} totalItems={beerData?.["total_items"]} onShowMore={handleShowMore}/>*/}
                 </div>
             </div>
+            {isMobile &&
+                <FiltersModal setShow={setShowFiltersModal} show={showFiltersModal}>
+                    <Search title="Поиск" reset={tabResetFilters["city_id"]} onChange={(value) => handleSingleFilterChange("city_id", value)}></Search>
+                    {filtersConfig.map((filter) => (
+                        <FilterItem
+                            key={filter.key}
+                            filter={filter}
+                            onChange={(value) => handleFilterChange(filter.key, value)}
+                            reset={tabResetFilters[filter.key]}
+                        />
+                    ))}
+                    <SimpleButton text="Применить фильтры" onClick={() => {setShowFiltersModal(false); applyFilters()}}></SimpleButton>
+                </FiltersModal>
+            }
         </div>
     )
 }

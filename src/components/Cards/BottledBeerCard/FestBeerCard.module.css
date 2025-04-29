@@ -1,0 +1,196 @@
+/* Базовые стили для карточки */
+.card {
+    max-width: 270px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-radius: 10px;
+}
+
+.bottledBeerCard {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    background: var(--section-bg);
+    border-radius: 10px;
+    flex: 1;
+    gap: 10px;
+    justify-content: space-between;
+}
+
+/* Контейнер изображения */
+.imgContainer {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1; /* Соотношение сторон 1:1 */
+    overflow: hidden;
+    border-radius: 5px;
+    cursor: pointer;
+    background: var(--fg);
+}
+
+.imgContainer img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Изображение заполняет контейнер */
+    display: block;
+    background-color: var(--third);
+}
+
+/* Текстовый контейнер */
+.textContainer {
+    width: 100%;
+    justify-content: space-between;
+}
+
+/* Основной текст */
+.cardTextPrimary {
+    font-size: clamp(12px, 1.2vw, 20px);
+    font-family: Podkova, sans-serif;
+    color: var(--primary);
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.textActive {
+    font-size: clamp(10px, 0.9vw, 15px);
+    font-weight: 200;
+    color: var(--txt-active);
+}
+
+.textActive.secondary {
+    color: var(--txt-secondary);
+}
+
+.textMedium {
+    font-size: clamp(12px, 1.2vw, 20px);
+    font-weight: 200;
+    color: var(--txt-active);
+}
+
+/* Характеристики */
+.characteristics {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    gap: 5px;
+}
+
+/* Линия разделителя */
+.hrtLine {
+    width: 100%;
+    height: 1px;
+    border-radius: 10px;
+    background: var(--third);
+}
+
+/* Подвал карточки */
+.cardFooter {
+    background: rgba(39, 39, 39, 0.6);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 0 0 10px 10px;
+    padding: 10px;
+}
+
+/* Кнопка "Избранное" */
+.favButton {
+    background: var(--txt-active);
+    width: 30px;
+    height: 30px;
+    max-width: 50px;
+    max-height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100%;
+    position: absolute;
+    z-index: 10;
+    right: 10px;
+    bottom: 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease; /* Анимация при наведении */
+}
+
+.favButton svg {
+    color: var(--third);
+    width: 16px;
+    height: 16px;
+}
+
+.favButton.added svg {
+    color: var(--icon-added);
+    fill: var(--icon-added);
+}
+
+.favButton:hover svg {
+    color: var(--primary);
+    transform: scale(1.2); /* Увеличиваем иконку при наведении */
+}
+
+/* Кнопка закладки */
+.bookMarkButton svg {
+    position: absolute;
+    top: -15px;
+    right: 0;
+    color: var(--primary);
+    transition: transform 0.3s ease;
+}
+
+.bookMarkButton.added svg {
+    color: var(--icon-added);
+    fill: var(--icon-added);
+}
+
+.ratingText {
+    font-size: clamp(10px, 0.8vw, 12px);
+    font-weight: 200;
+    color: var(--txt-active);
+    margin-top: -15px;
+    text-align: center;
+}
+
+/* Медиазапросы */
+@media (max-width: 900px) {
+    .card {
+        max-width: 350px;
+    }
+
+    .bottledBeerCard {
+        padding: 10px;
+    }
+
+    .bookMarkButton svg {
+        top: -11px;
+    }
+
+    .ratingText {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .bottledBeerCard {
+        padding: 5px;
+    }
+
+    .favButton {
+        width: 20px;
+        height: 20px;
+    }
+
+    .favButton svg {
+        width: 10px;
+        height: 10px;
+    }
+
+    .bookMarkButton svg {
+        top: -6px;
+    }
+
+    .cardFooter {
+        padding: 5px;
+    }
+}

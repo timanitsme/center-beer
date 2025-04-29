@@ -14,20 +14,20 @@ export default function BreweryCard({cardInfo}){
     const [cardFav, setCardFav] = useState(false);
     const navigate = useNavigate();
 
-    const goToBreweryPage = () => navigate("/brewery/1");
+    const goToBreweryPage = () => navigate(`/brewery/${cardInfo?.alias}`);
 
     return(
         <div className={styles.card}>
             <div className={styles.productContainer}>
                 <div className={styles.productCard}>
                     <div className={styles.imgContainer} onClick={goToBreweryPage}>
-                        <img src={cardInfo.img} alt=""/>
+                        <img src={cardInfo?.logo} alt=""/>
                     </div>
                     <div className={styles.cardContent}>
                         <div className={styles.cardTop}>
                             <div className={styles.textContainer}>
-                                <p className={styles.cardTextPrimary} onClick={goToBreweryPage}>{cardInfo.title}</p>
-                                <p className={styles.textActive}>{cardInfo.address}</p>
+                                <p className={styles.cardTextPrimary} onClick={goToBreweryPage}>{cardInfo?.name}</p>
+                                <p className={styles.textActive}>{cardInfo?.country}</p>
                             </div>
                             <div>
                                 <a onClick={() => setCardBookmarked(!cardBookmarked)} className={`${styles.bookMarkButton} ${cardBookmarked && styles.added}`}><BookMarkIcon/></a>
@@ -35,7 +35,7 @@ export default function BreweryCard({cardInfo}){
                         </div>
                         <div className={`${styles.cardBottom} ${styles.pc}`}>
                             <div className={styles.productsRow}>
-                                {cardInfo.options.map((option, index) =>
+                                {cardInfo?.options?.length > 0 && cardInfo?.options.map((option, index) =>
                                     <div key={index} className={styles.product}><p>{option}</p></div>
                                 )}
                             </div>
@@ -45,7 +45,7 @@ export default function BreweryCard({cardInfo}){
                 </div>
                 <div className={`${styles.cardBottom} ${styles.mobile}`}>
                     <div className={styles.productsRow}>
-                        {cardInfo.options.map((option, index) =>
+                        {cardInfo?.options?.length > 0 && cardInfo?.options.map((option, index) =>
                             <div key={index} className={styles.product}><p>{option}</p></div>
                         )}
                     </div>

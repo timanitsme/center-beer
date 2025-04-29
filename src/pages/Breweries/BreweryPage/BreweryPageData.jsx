@@ -1,12 +1,12 @@
-import BeerTapIcon from "../../assets/beer-tap-icon.svg";
-import BeerCaseIcon from "../../assets/beer-case-icon.svg";
-import AlcoBottleIcon from "../../assets/alco-bottle-icon.svg";
-import CoctailIcon from "../../assets/coctail-icon.svg";
-import SausageIcon from "../../assets/sausage-icon.svg";
+import BeerTapIcon from "../../../assets/beer-tap-icon.svg";
+import BeerCaseIcon from "../../../assets/beer-case-icon.svg";
+import AlcoBottleIcon from "../../../assets/alco-bottle-icon.svg";
+import CoctailIcon from "../../../assets/coctail-icon.svg";
+import SausageIcon from "../../../assets/sausage-icon.svg";
 
 const paths = [
     {title:"center.beer", path: "/"},
-    {title:"Пивоварни", path: "/"},
+    {title:"Пивоварни", path: ""},
 ]
 
 const filterButtons = [

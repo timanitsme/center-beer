@@ -131,6 +131,22 @@ export const centerBeerApi = createApi({
                 return(`getBarMenuBeer?${params.toString()}`)
             }
         })),
+        getBreweries: (builder.query({
+            query: ({is_open, is_new, country_id, city_id, type_id, order_by, order_asc_desc}) => {
+                const params = new URLSearchParams()
+                if (is_open !== undefined) params.append("is_open", is_open)
+                if (is_new !== undefined) params.append("new", is_new)
+                if (country_id !== undefined) params.append("country_id", country_id)
+                if (city_id !== undefined) params.append("city_id", city_id)
+                if (type_id !== undefined) params.append("type_id", type_id)
+                if (order_by !== undefined) params.append("order_by", order_by)
+                if (order_asc_desc !== undefined) params.append("order_asc_desc", order_asc_desc)
+                return(`getBreweries?${params.toString()}`)
+            }
+        })),
+        getBreweriesFilters: (builder.query({
+            query: () => `getBreweriesFilters`
+        })),
         getBarMenuBeerFilters: (builder.query({
             query: (bar_id) => `getBarMenuBeerFilters?bar_id=${bar_id}`
         })),
@@ -193,6 +209,12 @@ export const centerBeerApi = createApi({
                 return(`getBarNews?${params.toString()}`)
             }
         })),
+        getBreweryInfo: (builder.query({
+            query: (alias) => `getBreweryInfo?alias=${alias}`
+        })),
+        getBreweryInfoById: (builder.query({
+            query: (id) => `getBreweryInfo?id=${id}`
+        })),
         //Справочники
         getStyles: (builder.query({
             query: () => `getStyles`
@@ -212,9 +234,12 @@ export const centerBeerApi = createApi({
                 if (name !== undefined) params.append("name", name)
                 return(`getCities?${params.toString()}`)
             }
-
         })),
-
+        getFest: (builder.query({
+            query: (fest_id) => {
+                return(`getFest?fest_id=${fest_id}`)
+            }
+        })),
 
 
 
@@ -231,4 +256,5 @@ export const { useGetBarsQuery, useGetBarInfoQuery, useGetBarsFiltersQuery,
     useGetBarMenuAlcQuery, useGetBarMenuCocktailsQuery, useGetBarMenuFoodFiltersQuery,
     useGetBarMenuBottleFiltersQuery, useGetBarMenuBeerFiltersQuery, useGetBarMenuAlcFiltersQuery,
     useGetBarMenuCocktailsFiltersQuery, useGetBarInfoByIdQuery, useGetBeersQuery,
-    useGetBeersFiltersQuery, useGetBeerInfoQuery} = centerBeerApi
+    useGetBeersFiltersQuery, useGetBeerInfoQuery, useGetBreweriesQuery, useGetBreweriesFiltersQuery,
+    useGetBreweryInfoQuery, useGetBreweryInfoByIdQuery, useGetFestQuery} = centerBeerApi

@@ -1,7 +1,7 @@
-import NavChain from "../../components/Navigation/NavChain/NavChain.jsx";
+import NavChain from "../../../components/Navigation/NavChain/NavChain.jsx";
 import {getNewsDetailPaths} from "./NewsDetailPageData.jsx";
-import NewsDetailSection from "../../components/NewsDetailSection/NewsDetailSection.jsx";
-import NewsItem from "../../components/NewsItem/NewsItem.jsx";
+import NewsDetailSection from "../../../components/NewsDetailSection/NewsDetailSection.jsx";
+import NewsItem from "../../../components/NewsItem/NewsItem.jsx";
 
 
 export default function NewsDetailPage(){

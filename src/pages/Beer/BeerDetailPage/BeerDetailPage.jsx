@@ -1,15 +1,15 @@
-import NavChain from "../../components/Navigation/NavChain/NavChain.jsx";
+import NavChain from "../../../components/Navigation/NavChain/NavChain.jsx";
 import {
     getBeerDetailPaths,
     getBeerDetailReviewsHeader,
 } from "./BeerDetailPageData.jsx";
-import Reviews from "../../components/Reviews/Reviews.jsx";
-import SimilarItems from "../../components/SimilarItems/SimilarItems.jsx";
-import BarsRow from "../../components/BarsRow/BarsRow.jsx";
-import BeerInfo from "../../components/DetailInfo/BeerInfo/BeerInfo.jsx";
-import LightBarCard from "../../components/Cards/BarCard/LightBarCard.jsx";
+import Reviews from "../../../components/Reviews/Reviews.jsx";
+import SimilarItems from "../../../components/SimilarItems/SimilarItems.jsx";
+import BarsRow from "../../../components/BarsRow/BarsRow.jsx";
+import BeerInfo from "../../../components/DetailInfo/BeerInfo/BeerInfo.jsx";
+import LightBarCard from "../../../components/Cards/BarCard/LightBarCard.jsx";
 import {useParams} from "react-router-dom";
-import {useGetBeerInfoQuery} from "../../store/services/centerBeer.js";
+import {useGetBeerInfoQuery} from "../../../store/services/centerBeer.js";
 
 
 export default function BeerDetailPage(){

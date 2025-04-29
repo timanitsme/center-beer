@@ -66,7 +66,8 @@ export default function IndexSection(){
                     <h1 style={{color: "var(--txt-secondary)"}}>Для тех, кто его</h1>
                     <h1>Варит, любит и продаёт</h1>
                 </div>
-                <SimpleButton text="Подробнее о проекте" onClick={() => window.location.href="https://center.beer/about/"}></SimpleButton>
+                {/*<SimpleButton text="Подробнее о проекте" onClick={() => window.location.href="https://center.beer/about/"}></SimpleButton>*/}
+                <SimpleButton text="Moscow Craft Event 2025" onClick={() => window.location.href="/event-map/"}></SimpleButton>
             </div>
             <div className={styles.bottle}><NoCapBottle/></div>
             <div className={`${styles.videoCardContainer} ${showTitle? styles.show: ""}`}>

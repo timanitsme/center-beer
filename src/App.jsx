@@ -3,18 +3,18 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Header from "./components/Header/Header.jsx";
 import Footer from "./components/Footer/Footer.jsx";
 import bottlePath from "../src/assets/beer-bottle.svg"
-import BarDetailPage from "./pages/BarDetailPage/BarDetailPage.jsx";
-import BeerPage from "./pages/BeerPage/BeerPage.jsx";
+import BarDetailPage from "./pages/Bars/BarDetailPage/BarDetailPage.jsx";
+import BeerPage from "./pages/Beer/BeerPage/BeerPage.jsx";
 import EventsPage from "./pages/Events/EventsPage/EventsPage.jsx";
 import AboutPage from "./pages/AboutPage/AboutPage.jsx";
-import NewsPage from "./pages/NewsPage/NewsPage.jsx";
+import NewsPage from "./pages/News/NewsPage/NewsPage.jsx";
 import ContactsPage from "./pages/ContactsPage/ContactsPage.jsx";
-import BarsPage from "./pages/BarsPage/BarsPage.jsx";
-import BeerDetailPage from "./pages/BeerDetailPage/BeerDetailPage.jsx";
-import BreweryDetailPage from "./pages/BreweryDetailPage/BreweryDetailPage.jsx";
-import BreweryPage from "./pages/BreweryPage/BreweryPage.jsx";
+import BarsPage from "./pages/Bars/BarsPage/BarsPage.jsx";
+import BeerDetailPage from "./pages/Beer/BeerDetailPage/BeerDetailPage.jsx";
+import BreweryDetailPage from "./pages/Breweries/BreweryDetailPage/BreweryDetailPage.jsx";
+import BreweryPage from "./pages/Breweries/BreweryPage/BreweryPage.jsx";
 import BeerMapPage from "./pages/BeerMapPage/BeerMapPage.jsx";
-import NewsDetailPage from "./pages/NewsDetailPage/NewsDetailPage.jsx";
+import NewsDetailPage from "./pages/News/NewsDetailPage/NewsDetailPage.jsx";
 import IndexPage from "./pages/IndexPage/IndexPage.jsx";
 import DistributorsPage from "./pages/DistributorsPage/DistributorsPage.jsx";
 import DistributorDetailPage from "./pages/DistributorDetailPage/DistributorDetailPage.jsx";
@@ -30,6 +30,7 @@ import RestaurantEventsPage from "./pages/Events/RestaurantEventsPage/Restaurant
 import BreweryEventsPage from "./pages/Events/BreweryEventsPage/BreweryEventsPage.jsx";
 import FestivalsPage from "./pages/Events/FestivalsPage/FestivalsPage.jsx";
 import ScrollToTop from "./utils/ScrollToTop/ScrollToTop.jsx";
+import EventDetailPage from "./pages/Events/EventDetailPage/EventDetailPage.jsx";
 
 function App() {
     const paths = [
@@ -51,7 +52,7 @@ function App() {
         {path: "/distributors", element: <DistributorsPage/>},
         {path: "/bar/:alias", element: <BarDetailPage/> },
         {path: "/beer/:alias", element: <BeerDetailPage/>},
-        {path: "/brewery/:id", element: <BreweryDetailPage/>},
+        {path: "/brewery/:alias", element: <BreweryDetailPage/>},
         {path: "/news/:id", element: <NewsDetailPage/>},
         {path: "/map", element: <BeerMapPage/>},
         {path: "/distributor/:id", element: <DistributorDetailPage/>},
@@ -63,6 +64,7 @@ function App() {
         {path: "/events/restaurants", element: <RestaurantEventsPage/>},
         {path: "/events/breweries", element: <BreweryEventsPage/>},
         {path: "/events/festivals", element: <FestivalsPage/>},
+        {path: "/events/:id", element: <EventDetailPage/>}
     ]
     const [hideFooter, setHideFooter] = useState(false);
     return (

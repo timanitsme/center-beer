@@ -103,13 +103,14 @@
     max-height: 0;
     overflow: hidden;
     opacity: 0;
-
+    visibility: hidden;
     transition: max-height 0.7s ease;
 }
 
 .mobileMenu.open {
     max-height: fit-content;
     opacity: 1;
+    visibility: visible;
 }
 
 .pathContainer{

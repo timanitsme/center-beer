@@ -1,7 +1,7 @@
-import NavChain from "../../components/Navigation/NavChain/NavChain.jsx";
+import NavChain from "../../../components/Navigation/NavChain/NavChain.jsx";
 import {isMobile} from "react-device-detect";
 import {getBeerPageFilterButtons, getBeerPageFilters, getBeerPagePaths} from "./BeerPageData.jsx";
-import BeerCatalog from "../../components/Catalogs/BeerCatalog.jsx";
+import BeerCatalog from "../../../components/Catalogs/BeerCatalog.jsx";
 
 export default function BeerPage(){
     return(

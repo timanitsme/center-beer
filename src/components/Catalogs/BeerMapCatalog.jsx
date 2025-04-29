@@ -350,7 +350,7 @@ export default function BeerMapCatalog({filters = [], filterButtons = []}){
                             <p>Сбросить фильтры</p>
                         </AppliedFilter>}
                     </div>
-                    {!barsIsLoading && !barsError && <BeerMap data={barsData}/>}
+                    {!barsIsLoading && !barsError && <BeerMap data={barsData.data}/>}
 
                 </div>
             </div>

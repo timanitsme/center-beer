@@ -39,7 +39,7 @@ export default function DistributorsCatalog({filters = [], filterButtons = [], s
                 <div className={styles.catalogHeader}>
                     <div>
                         <h2>Каталог Дистрибьюторов</h2>
-                        <p>Собрали для вас список лучших пивных баров, где можно насладиться свежесваренным пивом, закусками и уютной атмосферой. От классических пабов до оригинальных крафтовых баров — каждый найдет место по вкусу.</p>
+                        <p>Собрали для вас список лучших дистрибьюторов, у которых можно заказывать ассортимент пива, пивных закусок, еды, алкоголя и всего, что продается в заведениях и без чего их жизнедеятельность не возможна или крайне затруднительна. С помощью фильтров вы легко найдете нужную компанию и необходимый ассортимент в своем городе.</p>
                     </div>
                     {/*Филлер для переноса текста, мб прописать отдельные стили*/}
                     <div style={{width: "20%"}}></div>
@@ -72,19 +72,7 @@ export default function DistributorsCatalog({filters = [], filterButtons = [], s
                     <div className={styles.appliedFiltersRow}>
                         <AppliedFilter>
                             <LocationIcon/>
-                            <p>Нижний Новгород</p>
-                        </AppliedFilter>
-                        <AppliedFilter>
-                            <p>Абхазия</p>
-                        </AppliedFilter>
-                        <AppliedFilter>
-                            <p>Албания</p>
-                        </AppliedFilter>
-                        <AppliedFilter>
-                            <p>Пилэнер</p>
-                        </AppliedFilter>
-                        <AppliedFilter>
-                            <p>Пшеничный эль</p>
+                            <p>Москва</p>
                         </AppliedFilter>
                         <AppliedFilter style="secondary">
                             <p>Сбросить фильтры</p>

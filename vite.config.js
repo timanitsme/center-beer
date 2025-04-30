@@ -13,6 +13,11 @@ export default defineConfig({
         target: "https://api.center.beer/web/",
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, '')
+      },
+      '/apiAuth': {
+        target: "https://api.center.beer:8443/",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/apiAuth/, '')
       }
     }
   }

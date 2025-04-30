@@ -1,13 +1,13 @@
-import EventMapWithBg from "../../../assets/eventMapMocks/event-map-with-bg-bordered.svg?react"
-import EventMap from "../../../components/EventMap/EventMap.jsx";
 import {useEffect, useState} from "react";
-import EventMapSidebar from "../../../components/EventMap/EventMapSidebar/EventMapSidebar.jsx";
-import festMapString from "../../../assets/eventMapMocks/festMapString.js";
 import {useGetFestQuery} from "../../../store/services/centerBeer.js";
-import FestSchedule from "../../../assets/eventsMocks/fest-schedule.jpg";
+import EventMapSidebar from "../../../components/EventMap/EventMapSidebar/EventMapSidebar.jsx";
+import EventMapWithBg from "../../../assets/eventMapMocks/event-map-with-bg-bordered.svg";
+import EventMap from "../../../components/EventMap/EventMap.jsx";
+import festMapString from "../../../assets/eventMapMocks/festMapString.js";
 import SingleImageModal from "../../../components/Modals/SingleImageModal/SingleImageModal.jsx";
+import FestSchedule from "../../../assets/eventsMocks/fest-schedule.jpg";
 
-export default function EventMapPage({setHideFooter}){
+export default function EventMapPageMobile({setHideFooter, setHideHeader}){
     const [selectedMarker, setSelectedMarker] = useState(null)
     const {data, isLoading, error} = useGetFestQuery(1)
     const [showModal, setShowModal] = useState(false)
@@ -54,22 +54,29 @@ export default function EventMapPage({setHideFooter}){
             setHideFooter(true)
         }
 
+        if (setHideHeader){
+            setHideHeader(true)
+        }
+
         return () => {
             if (setHideFooter) {
                 setHideFooter(false);
             }
+            if (setHideHeader){
+                setHideHeader(false)
+            }
         };
-    }, [setHideFooter]);
+    }, [setHideFooter, setHideHeader]);
 
     return(
         <div className="content" style={{minHeight: "600px", display: "flex"}}>
             {data && !isLoading && !error &&
-              <>
-                  <EventMapSidebar selectedMarker={selectedMarker} setSelectedMarker={setSelectedMarker} breweries={data.data.breweries}/>
-                  <div className={"map-content"} style={{ width: '100%', height: 'calc(100vh - 95px)', overflow: "hidden", touchAction: "pinch-zoom" }}>
-                      {EventMapWithBg && <EventMap svg={festMapString()} markers={markers} selectedMarker={selectedMarker} setSelectedMarker={setSelectedMarker} breweries={data.data.breweries} setShowModal={setShowModal}/>}
-                  </div>
-              </>
+                <>
+                    <EventMapSidebar selectedMarker={selectedMarker} setSelectedMarker={setSelectedMarker} breweries={data.data.breweries} isMobile={true}/>
+                    <div className={"map-content"} style={{ width: '100%', height: '100vh', overflow: "hidden", touchAction: "pinch-zoom" }}>
+                        {EventMapWithBg && <EventMap svg={festMapString()} markers={markers} selectedMarker={selectedMarker} setSelectedMarker={setSelectedMarker} breweries={data.data.breweries} setShowModal={setShowModal}/>}
+                    </div>
+                </>
             }
             <SingleImageModal show={showModal} setShow={setShowModal} src={FestSchedule}></SingleImageModal>
         </div>

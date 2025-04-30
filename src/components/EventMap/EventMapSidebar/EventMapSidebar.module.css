@@ -1,8 +1,12 @@
 .sidebar{
-    height: 100%;
+    height: calc(100vh - 95px);
     width: 0px;
     transition: width 0.3s;
     z-index: 800;
+}
+
+.sidebar.mobile{
+    height: 100vh;
 }
 
 .sidebar.expanded {
@@ -54,8 +58,36 @@
 }
 
 .sidebarContent{
-    padding: 0 15px;
+    padding: 15px;
+    height: 100%;
+    overflow-y: auto;
 }
+
+
+.desc{
+    background: var(--section-bg);
+    margin: 15px 0;
+    padding: 7px;
+    border-radius: 5px;
+    font-size: 0.9vw;
+    font-weight: 200;
+    color: var(--txt-active);
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 10;
+    -webkit-box-orient: vertical;
+}
+
+.desc p{
+    font-size: 0.9vw;
+    font-weight: 200;
+    color: var(--txt-active);
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 10;
+    -webkit-box-orient: vertical;
+}
+
 
 .imgContainer{
     position: relative;
@@ -104,16 +136,35 @@
 
 .beerCardsRow {
     display: flex;
-    overflow-x: auto;
+    overflow-x: scroll;
     gap: 10px;
     padding: 10px;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    align-items: stretch; /* Растягиваем карточки по высоте */
+    align-items: stretch;
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary) transparent;
+    -ms-overflow-style: scrollbar;
+    scrollbar-gutter: stable;
 }
 
 .beerCardsRow::-webkit-scrollbar {
-    display: none;
+    width: 8px;
+    display: block;
+}
+
+.beerCardsRow::-webkit-scrollbar-thumb {
+    background-color: var(--primary);
+    border-radius: 4px;
+}
+
+.beerCardsRow::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+
+@media (max-width: 1000px) {
+    .desc p, .desc{
+        font-size: 10px;
+    }
 }
 
 
@@ -135,10 +186,6 @@
         width: 100%;
     }
 
-    .beerCardsRow > * {
-        flex-shrink: 0; /* Предотвращаем сжатие карточек */
-        width: 170px; /* Фиксированная ширина карточек */
-        height: 100%; /* Автоматическая высота */
-    }
+
 
 }

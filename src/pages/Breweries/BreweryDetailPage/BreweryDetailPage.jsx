@@ -1,5 +1,6 @@
 import NavChain from "../../../components/Navigation/NavChain/NavChain.jsx";
 import {
+    getBreweryDetailFilters,
     getBreweryDetailPagePaths,
     getBreweryDetailReviewsHeader,
     getBreweryDetailReviewsImages,
@@ -19,6 +20,8 @@ import BreweryHistory from "../../../components/BreweryHistory/BreweryHistory.js
 import Excursions from "../../../components/Excursions/Excursions.jsx";
 import {useGetBeerInfoQuery, useGetBreweryInfoQuery} from "../../../store/services/centerBeer.js";
 import {useParams} from "react-router-dom";
+import BeerCatalog from "../../../components/Catalogs/BeerCatalog.jsx";
+import BeerCatalogSection from "../../../components/BeerCatalogSection/BeerCatalogSection.jsx";
 
 export default function BreweryDetailPage(){
     const images = [NewProduct1, NewProduct2, NewProduct3, NewProduct4, NewProduct5, NewProduct2, NewProduct3, NewProduct4]
@@ -42,7 +45,7 @@ export default function BreweryDetailPage(){
                     {/*<BarEvents title="Новости"></BarEvents>*/}
                     <Gallery pictures={data[0].gallery}/>
                     {/*<BarsRow title="Где попробовать нашу продукцию" cards={getBreweryDetailBarsCards()} CardComponent={MinimalBarCard}/>*/}
-                    {/*<BeerCatalogSection filters={getBreweryDetailFilters()}/>*/}
+                    <BeerCatalogSection breweryId={data[0].id}/>
                     {/*<NewProducts images={images}/>*/}
                     <Reviews header={getBreweryDetailReviewsHeader(data[0]?.name)} resume={reviewsResume(data[0]?.name)}></Reviews>
                     {/*<Excursions/>*/}

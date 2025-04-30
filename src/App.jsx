@@ -31,6 +31,11 @@ import BreweryEventsPage from "./pages/Events/BreweryEventsPage/BreweryEventsPag
 import FestivalsPage from "./pages/Events/FestivalsPage/FestivalsPage.jsx";
 import ScrollToTop from "./utils/ScrollToTop/ScrollToTop.jsx";
 import EventDetailPage from "./pages/Events/EventDetailPage/EventDetailPage.jsx";
+import InDevelopmentPage from "./pages/InDevelopmentPage/InDevelopmentPage.jsx";
+import WillBeSoonPage from "./pages/WillBeSoonPage/WillBeSoonPage.jsx";
+import MyCheckinsPage from "./pages/PersonalAccountPage/MyCheckinsPage/MyCheckinsPage.jsx";
+import EventMapPageMobile from "./pages/Events/EventMapPage/EventMapPageMobile.jsx";
+import EarnCBPage from "./pages/PersonalAccountPage/EarnCBPage/EarnCBPage.jsx";
 
 function App() {
     const paths = [
@@ -57,28 +62,33 @@ function App() {
         {path: "/map", element: <BeerMapPage/>},
         {path: "/distributor/:id", element: <DistributorDetailPage/>},
         {path: "/event-map/", element: <EventMapPage/>, hideFooter: true},
+        {path: "/event-map-mobile/", element: <EventMapPageMobile/>, hideFooter: true, hideHeader: true},
         {path: "/login/", element: <AuthorizationPage/>},
         {path: "/account/", element: <PersonalAccountPage/>},
+        {path: "/account/earn-cb/", element: <EarnCBPage/>},
         {path: "/signup/", element: <RegistrationPage/>},
         {path: "/cart/", element: <CartPage/>},
         {path: "/events/restaurants", element: <RestaurantEventsPage/>},
         {path: "/events/breweries", element: <BreweryEventsPage/>},
         {path: "/events/festivals", element: <FestivalsPage/>},
-        {path: "/events/:id", element: <EventDetailPage/>}
+        {path: "/events/:id", element: <EventDetailPage/>},
+        {path: "/in-dev", element: <InDevelopmentPage/>},
+        {path: "/will-be-soon", element: <WillBeSoonPage/>},
+        {path: "/my-check-ins/:alias", element: <MyCheckinsPage/>},
     ]
     const [hideFooter, setHideFooter] = useState(false);
+    const [hideHeader, setHideHeader] = useState(false);
     return (
     <BrowserRouter>
         <div className="app">
-            <Header paths={paths}/>
-
+            {!hideHeader && <Header paths={paths}/>}
             <div className="contentContainer">
                 <Routes>
                     {paths.map((path) => {
-                        return(<Route key={path.path} path={path.path} element={<ErrorBoundary>{cloneElement(path.element, { setHideFooter })}</ErrorBoundary>}/>)
+                        return(<Route key={path.path} path={path.path} element={<ErrorBoundary>{cloneElement(path.element, { setHideFooter, setHideHeader })}</ErrorBoundary>}/>)
                     })}
                     {anonymousPaths.map((path) => {
-                        return(<Route key={path.path} path={path.path} element={<ErrorBoundary>{cloneElement(path.element, { setHideFooter })}</ErrorBoundary>}/>)
+                        return(<Route key={path.path} path={path.path} element={<ErrorBoundary>{cloneElement(path.element, { setHideFooter, setHideHeader })}</ErrorBoundary>}/>)
                     })}
                 </Routes>
                 {!hideFooter && <img className="bottle" src={bottlePath}></img>}

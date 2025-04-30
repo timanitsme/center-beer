@@ -11,14 +11,17 @@ import NewsCard9 from "../../assets/newsMocks/news-card-9.svg";
 import NewsCard10 from "../../assets/newsMocks/news-card-10.svg";
 import NewsCard11 from "../../assets/newsMocks/news-card-11.svg";
 import NewsCard12 from "../../assets/newsMocks/news-card-12.svg";
-import MainNewsCard from "../../assets/newsMocks/news-main-card.svg";
+import MainNewsCard from "../../assets/eventsMocks/MCE.webp";
 import SimpleCatalogSection from "../CatalogSections/SimpleCatalogSection/SimpleCatalogSection.jsx";
 import EventCard from "../Cards/EventCard/EventCard.jsx";
+import {useNavigate} from "react-router-dom";
 
 export default function EventsCatalog({mainCard, eventsCards}){
+    const navigate = useNavigate()
+
     return(
         <div>
-            <div className={styles.mainCard}>
+            <div className={styles.mainCard} onClick={() => navigate("/event-map/")}>
                 <img src={MainNewsCard} alt=""></img>
                 <div className={styles.mainCardDescription}>
                     <h2>{mainCard.title}</h2>

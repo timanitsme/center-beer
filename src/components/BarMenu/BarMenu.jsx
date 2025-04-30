@@ -625,7 +625,7 @@ export default function BarMenu({filters, filterButtons, sections, ref, barId = 
                                 }
                             })}
                             <div className={tabsSpecs[tab.alias]?.wideColumns ? styles.sectionContentWide : styles.sectionContent}>
-                                {tabSpec?.data && tabSpec?.data?.length > 0 && tabSpec?.data?.map((cardInfo, index) => <CardComponent key={index} cardInfo={cardInfo}/>)}
+                                {tabSpec?.data && tabSpec?.data?.data?.length > 0 && tabSpec?.data?.data?.map((cardInfo, index) => <CardComponent key={index} cardInfo={cardInfo}/>)}
                             </div>
                         </div>
                     </div>

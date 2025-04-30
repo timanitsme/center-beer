@@ -14,7 +14,7 @@ export default function DistributorCard({cardInfo}){
     const [cardFav, setCardFav] = useState(false);
     const navigate = useNavigate();
 
-    const goToDistributorPage = () => navigate("/distributor/1");
+    const goToDistributorPage = () => navigate("/will-be-soon"); // distributor/1
 
     return(
         <div className={styles.card}>

@@ -38,7 +38,7 @@ export default function BeerMapCatalog({filters = [], filterButtons = []}){
 
     // Фильтры, от изменения которых изменяется запрос
     const [filterValues, setFilterValues] = useState({
-        lim: 24,
+        lim: 200,
         offset: 0,
         city_id: '',
         subways_ids: [],
@@ -154,7 +154,7 @@ export default function BeerMapCatalog({filters = [], filterButtons = []}){
     const resetFilters = () => {
 
         const initialState = {
-            lim: 24,
+            lim: 200,
             offset: 0,
             city_id: '',
             subways_ids: [],

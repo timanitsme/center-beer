@@ -33,5 +33,9 @@
 @media (max-width: 1000px) {
     .sectionContainer h3 {
         font-size: 12px;
+        margin-left: 25px;
+    }
+    .buttonSwitch{
+        margin-left: 25px;
     }
 }

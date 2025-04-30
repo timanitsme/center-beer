@@ -1,0 +1,40 @@
+.outlineTitle{
+    text-align: center;
+    text-transform: uppercase;
+    color: transparent;
+    -webkit-text-stroke: 1px var(--primary);
+    font-size: 4vw;
+}
+
+.devSection{
+    margin: 200px 0;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    height: 100%;
+}
+
+.devSection svg{
+    width: 100px;
+    height: auto;
+    color: var(--primary)
+}
+
+@media (max-width: 1000px) {
+    .outlineTitle{
+        font-size: 50px;
+    }
+}
+
+@media (max-width: 600px) {
+    .outlineTitle{
+        font-size: 30px;
+    }
+
+    .devSection svg {
+        width: 50px;
+    }
+}

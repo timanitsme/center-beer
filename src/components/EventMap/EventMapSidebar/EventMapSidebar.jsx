@@ -7,7 +7,7 @@ import {useNavigate} from "react-router-dom";
 import BottledBeerCard from "../../Cards/BottledBeerCard/BottledBeerCard.jsx";
 import FestBeerCard from "../../Cards/BottledBeerCard/FestBeerCard.jsx";
 
-export default function EventMapSidebar({selectedMarker, setSelectedMarker, breweries}){
+export default function EventMapSidebar({selectedMarker, setSelectedMarker, breweries, isMobile=false}){
     const brewery = breweries[selectedMarker]
     const navigate = useNavigate()
 
@@ -29,7 +29,7 @@ export default function EventMapSidebar({selectedMarker, setSelectedMarker, brew
     };
 
     return(
-        <div className={`${styles.sidebar} ${selectedMarker? styles.expanded: ''}`}>
+        <div className={`${styles.sidebar} ${selectedMarker? styles.expanded: ''} ${isMobile? styles.mobile: ""}`}>
             {selectedMarker &&
                 <div className={styles.sidebarContent}>
                     <div className={styles.buttonsRow}>
@@ -42,16 +42,19 @@ export default function EventMapSidebar({selectedMarker, setSelectedMarker, brew
                             <img src={brewery?.brewery_logo} alt=""/>
                         </div>
                         <div className={styles.description}>
-                            <p className={styles.title}>{brewery.brewery_name}</p>
+                            <p className={styles.title} dangerouslySetInnerHTML={{__html: brewery.brewery_name}}></p>
                         </div>
                         <div className={styles.toBrew}>
                             <FaChevronRight/>
                         </div>
                     </div>
+                    <div className={styles.desc} dangerouslySetInnerHTML={{__html: brewery?.brewery_description}}></div>
                     <div className={styles.beerCardsRow} ref={containerRef} onWheel={handleWheel}>
-                        {Object.values(brewery.taps).map((tap) => (
-                            <FestBeerCard key={tap.beer_id} cardInfo={tap} />
-                        ))}
+                        {Object.values(brewery.taps).map((tap) => {
+                            if (tap.beer_id !== null){
+                                return <FestBeerCard key={tap.beer_id} cardInfo={tap} />
+                            }
+                        })}
                     </div>
                 </div>
             }

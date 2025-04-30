@@ -4,6 +4,7 @@
     height: 250px;
     overflow: hidden;
     border-radius: 10px;
+    cursor: pointer;
 }
 
 .mainCard img{

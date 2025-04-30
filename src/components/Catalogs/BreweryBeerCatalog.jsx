@@ -1,25 +1,19 @@
 import {useEffect, useMemo, useState} from "react";
+import {useGetBeersFiltersQuery, useGetBeersQuery, useGetCitiesQuery} from "../../store/services/centerBeer.js";
 import styles from "./BarsCatalog.module.css";
-import LocationIcon from "../../assets/location-filled-icon.svg?react";
+import {isMobile} from "react-device-detect";
 import Search from "../ApiInputs/Search/Search.jsx";
+import FilterItem from "../ApiInputs/FilterItem/FilterItem.jsx";
 import SimpleButton from "../Buttons/SimpleButton/SimpleButton.jsx";
 import AppliedFilter from "../AppliedFilter/AppliedFilter.jsx";
+import LocationIcon from "../../assets/location-filled-icon.svg";
 import ComboBox from "../ApiInputs/ComboBox/ComboBox.jsx";
 import Toggle from "../Toggle/Toggle.jsx";
 import SimpleCatalogSection from "../CatalogSections/SimpleCatalogSection/SimpleCatalogSection.jsx";
-import PropTypes from "prop-types";
-import {
-    useGetBeersFiltersQuery,
-    useGetBeersQuery,
-    useGetCitiesQuery
-} from "../../store/services/centerBeer.js";
-import FilterItem from "../ApiInputs/FilterItem/FilterItem.jsx";
 import BottledBeerCard from "../Cards/BottledBeerCard/BottledBeerCard.jsx";
-import {isMobile} from "react-device-detect";
 import FiltersModal from "../Modals/FiltersModal/FiltersModal.jsx";
 
-
-export default function BeerCatalog({filters = [], filterButtons = [], sections = [], withHeader = true, breweryId=null}){
+export default function BreweryBeerCatalog({filters = [], filterButtons = [], sections = [], withHeader = true}){
     const [filterNameMap, setFilterNameMap] = useState({});
     const [showFiltersModal, setShowFiltersModal] = useState(false)
     const [allCards, setAllCards] = useState([])
@@ -80,7 +74,7 @@ export default function BeerCatalog({filters = [], filterButtons = [], sections 
         ibu_to: '',
         vol_ids: [],
         pack_ids: [],
-
+        brew_ids: []
     }
 
     // Фильтры, от изменения которых изменяется запрос
@@ -106,7 +100,7 @@ export default function BeerCatalog({filters = [], filterButtons = [], sections 
     const multiSelectParams = Object.keys(initialFilters).filter(isMultiSelectParam);
 
     // Получение данных с API
-    const {data: beerData, isLoading: beerIsLoading, isFetching: beerIsFetching, error: beerError } = useGetBeersQuery({...filterValues, brew_ids: breweryId});
+    const {data: beerData, isLoading: beerIsLoading, isFetching: beerIsFetching, error: beerError } = useGetBeersQuery(filterValues);
     const {data: beerFilters, isLoading: beerFiltersIsLoading, error: beerFiltersError} = useGetBeersFiltersQuery(filterValues["city_id"] || 1)
     const {data: cities, isLoading: citiesIsLoading, error: citiesError} = useGetCitiesQuery()
     const sortFilters =[
@@ -330,15 +324,13 @@ export default function BeerCatalog({filters = [], filterButtons = [], sections 
 
     return(
         <div className={styles.menuContainer}>
-            {withHeader &&
-                <div className={styles.menuHeader}>
-                    <div>
-                        <h2>Каталог пива</h2>
-                        <p>В этом списке представлены лучшие сорта пива, выбранные на основе нашей формулы средневзвешенного рейтинга, которая позволяет объективно сравнить все напитки между собой. Чтобы попасть в этот перечень, пиво должно иметь не менее 150 отзывов. Подробнее о составлении рейтинга.</p>
-                        <a>Подробнее о составлении рейтинга.</a>
-                    </div>
+            <div className={styles.menuHeader}>
+                <div>
+                    <h2>Каталог пива</h2>
+                    <p>В этом списке представлены лучшие сорта пива, выбранные на основе нашей формулы средневзвешенного рейтинга, которая позволяет объективно сравнить все напитки между собой. Чтобы попасть в этот перечень, пиво должно иметь не менее 150 отзывов. Подробнее о составлении рейтинга.</p>
+                    <a>Подробнее о составлении рейтинга.</a>
                 </div>
-            }
+            </div>
             <div className={styles.menuContent}>
                 {!isMobile && <div className={styles.menuFilters}>
                     <Search title="Поиск" reset={tabResetFilters["city_id"]} onChange={(value) => handleSingleFilterChange("city_id", value)}></Search>
@@ -463,28 +455,4 @@ export default function BeerCatalog({filters = [], filterButtons = [], sections 
             }
         </div>
     )
-}
-
-BeerCatalog.propTypes = {
-    filters: PropTypes.arrayOf(
-        PropTypes.shape({
-            title: PropTypes.string.isRequired,
-            options: PropTypes.arrayOf(PropTypes.string).isRequired,
-            type: PropTypes.string.isRequired
-        })
-    ),
-    filterButtons: PropTypes.arrayOf(
-        PropTypes.shape({
-            text: PropTypes.string.isRequired,
-            icon: PropTypes.func.isRequired,
-        })
-    ),
-    sections: PropTypes.arrayOf(
-        PropTypes.shape({
-            specs: PropTypes.array,
-            CardComponent: PropTypes.func,
-            IconComponent: PropTypes.func,
-            wideColumns: PropTypes.bool,
-        })
-    ),
 }

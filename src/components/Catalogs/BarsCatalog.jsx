@@ -270,7 +270,7 @@ export default function BarsCatalog({filters = [], filterButtons = [], sections 
                         <h2>Каталог баров</h2>
                         <p>Собрали для вас список лучших пивных баров, где можно насладиться свежесваренным пивом, закусками и уютной атмосферой. От классических пабов до оригинальных крафтовых баров — каждый найдет место по вкусу.</p>
                     </div>
-                    <div>
+                    <div className={styles.forSvg}>
                         <IconButton text="Все бары на карте" onClick={() => navigate("/map")}><LocationIcon/></IconButton>
                     </div>
                 </div>

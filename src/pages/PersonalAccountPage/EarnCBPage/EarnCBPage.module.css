@@ -1,0 +1,36 @@
+.sectionHeader{
+    display: flex;
+    flex-direction: column;
+    margin: 0 50px 0 0;
+}
+
+.sectionHeader.mobile, .sectionHeader.mobile .tasksCol{
+    margin: 0 25px 0 25px;
+}
+
+.description{
+    font-size: 0.9vw;
+    font-weight: 200;
+}
+
+.title{
+    font-size: 1.5vw;
+    text-align: left;
+}
+
+.tasksCol{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin: 0 50px 0 0;
+}
+
+@media (max-width: 1000px) {
+    .title{
+        font-size: 15px;
+    }
+    .description{
+        font-size: 10px;
+    }
+}
+

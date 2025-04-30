@@ -1,12 +1,9 @@
 import styles from "./EventMap.module.css"
 import {TransformComponent, TransformWrapper} from "react-zoom-pan-pinch";
 import {useEffect, useState} from "react";
-import HopIcon from "../../assets/hop-icon.svg?react"
 import {FaMinus, FaPlus} from "react-icons/fa6";
 import {isMobile} from "react-device-detect";
 import ImagePlaceholder from "../../assets/placeholders/card-image-placeholder.svg"
-import SingleImageModal from "../Modals/SingleImageModal/SingleImageModal.jsx";
-import FestSchedule from "../../assets/eventsMocks/fest-schedule.jpg"
 
 export default function EventMap({svg, markers, selectedMarker, setSelectedMarker, breweries, setShowModal}){
     //const decodedSvg = decodeURIComponent(svg.replace('data:image/svg+xml,', ''));
@@ -48,7 +45,7 @@ export default function EventMap({svg, markers, selectedMarker, setSelectedMarke
             onZoom={(e) => setCurrentScale(e.state.scale)}
         >
             {({ zoomIn, zoomOut }) => (
-                <div style={{ position: 'relative', width: '100%', height: '100%', background: "white"}}>
+                <div style={{ position: 'relative', width: '100%', height: '100%', background: "url('https://center.beer/uploads/fest_map_bg.jpg')", backgroundSize: "cover"}}>
                     <div style={{
                         position: 'absolute',
                         top: 10,

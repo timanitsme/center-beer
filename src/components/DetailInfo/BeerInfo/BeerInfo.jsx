@@ -14,6 +14,7 @@ import PlayButtonIcon from "../../../assets/play-button-icon.svg?react"
 import SingleImageModal from "../../Modals/SingleImageModal/SingleImageModal.jsx";
 import ImageVideoModal from "../../Modals/ImageVideoModal/ImageVideoModal.jsx";
 import {getRatingIcons} from "../../../utils/getRatingIcons.jsx";
+import {Link} from "react-router-dom";
 
 export default function BeerInfo({beerInfo={}}){
     const [isFavourite, setIsFavourite] = useState(beerInfo?.is_favor || false);
@@ -61,7 +62,7 @@ export default function BeerInfo({beerInfo={}}){
                     <p className={styles.notMobile}>{beerInfo?.description}</p>
                     <div className={styles.notMobile}>
                         <ul className={styles.characteristicsList}>
-                            <li><p>Пивоварня: <a href="">{beerInfo?.brewery_name}</a></p></li>
+                            <li><p>Пивоварня: <Link to={`/brewery/${beerInfo?.brewery_alias}`}>{beerInfo?.brewery_name}</Link></p></li>
                             <li><p>Стиль: <a href="">{beerInfo?.style_name}</a></p></li>
                             <li><p>Начало выпуска: <p style={{color: "var(--txt-active)"}}>{beerInfo?.start_date_sales}</p></p></li>
                             <li><p>Производство: <p style={{color: "var(--txt-active)"}}>{beerInfo?.production}</p></p></li>

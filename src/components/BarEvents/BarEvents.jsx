@@ -93,7 +93,7 @@ export default function BarEvents({title = "Скоро в баре", barId=1}){
     }, [memoizedEvents, eventsIsLoading]);
 
 
-    if (eventsIsLoading || eventsError || !events || events?.data.length === 0) return null;
+    if (eventsIsLoading || eventsError || !events || events?.data?.length === 0) return null;
 
     const currentEvent = events?.data[currentEventIndex];
 

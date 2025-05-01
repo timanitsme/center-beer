@@ -1,9 +1,12 @@
 import styles from "./PartnerCard.module.css"
 import RightArrow from "../../../assets/arrow-right-icon.svg?react";
+import {useNavigate} from "react-router-dom";
 
 export default function PartnerCard({title, image, description}){
+    const navigate = useNavigate()
+
     return(
-        <div className={styles.postCard}>
+        <div className={styles.postCard} onClick={() => navigate("/in-dev/")}>
             <div className={styles.imgContainer}><img src={image}/></div>
             <div className={styles.postContent}>
                 <h3>{title}</h3>

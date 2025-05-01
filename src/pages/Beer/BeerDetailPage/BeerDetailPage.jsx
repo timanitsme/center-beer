@@ -30,7 +30,7 @@ export default function BeerDetailPage(){
                     <NavChain paths={[...getBeerDetailPaths(), {title:data[0]?.name, path: ""}]}/>
                     <BeerInfo beerInfo={data[0]}/>
                     <BarsRow title={data[0]?.name} barCards={data[0]?.sales_in_bars} marketCards={data[0]?.sales_in_markets} CardComponent={LightBarCard}/>
-                    <SimilarItems title={data[0]?.name} cards={data[0]?.related_items}/>
+                    {data[0]?.related_items && <SimilarItems title={data[0]?.name} cards={data[0]?.related_items}/>}
                     <Reviews header={getBeerDetailReviewsHeader(data[0]?.name)} images={data[0]?.reviews_gallery} resume={reviewsResume(data[0]?.name)}/>
                 </>
             }

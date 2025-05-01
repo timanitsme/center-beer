@@ -5,7 +5,8 @@ import {RiCopperCoinFill} from "react-icons/ri";
 import {Link} from "react-router-dom";
 
 export default function PersonalAccount({isMobile = false, profile}){
-    console.log(JSON.stringify(profile))
+
+
     return(
         <div className={`${styles.accountSection}`}>
             <div className={`${styles.sideContent} ${isMobile? styles.mobile: ""}`}>
@@ -37,17 +38,20 @@ export default function PersonalAccount({isMobile = false, profile}){
                     </div>
                     <p className={`${styles.bold} ${styles.overflow}`}>{profile?.nickname}</p>
                 </div>}
+                {!isMobile &&
                 <div>
                     <p className={styles.bold}>Чек-ины</p>
                     <ul className={styles.innerList}>
                         <li><Link to="/in-dev">Пиво <div className="quantity"><p>2</p></div></Link></li>
                         <li><Link to="/in-dev">Заведения <div className="quantity"><p>2</p></div></Link></li>
                     </ul>
-                </div>
-                <div>
-                    <Link to={"/in-dev"} className={`${styles.bold} ${styles.hoverPrimary}`}>Друзья</Link>
-                    <ul className={styles.innerList}></ul>
-                </div>
+                </div>}
+                {!isMobile &&
+                    <div>
+                        <Link to={"/in-dev"} className={`${styles.bold} ${styles.hoverPrimary}`}>Друзья</Link>
+                        <ul className={styles.innerList}></ul>
+                    </div>
+                }
                 <div>
                     <p className={styles.bold}>Любимое</p>
                     <ul className={styles.innerList}>

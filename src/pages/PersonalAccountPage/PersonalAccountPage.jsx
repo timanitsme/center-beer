@@ -31,11 +31,20 @@ import Brewery4 from "../../assets/breweryMocks/brewery-logo-4.svg"
 import Brewery5 from "../../assets/breweryMocks/brewery-logo-5.svg"
 import BarCheckInCard from "../../components/Cards/CheckIns/BarCheckInCard/BarCheckInCard.jsx";
 import {useSelector} from "react-redux";
+import {
+    useGetUsersCuddyBarsQuery, useGetUsersCuddyBeersQuery,
+    useGetUsersFavBarsQuery,
+    useGetUsersFavBeersQuery
+} from "../../store/services/centerBeer.js";
+import SwitchRowSectionApi from "../../components/SwitchRowSection/SwitchRowSectionApi.jsx";
+import MinimalBarCardApi from "../../components/Cards/BarCard/MinimalBarCardApi.jsx";
+import MinimalBottledBeerCardApi from "../../components/Cards/BottledBeerCard/MinimalBottledBeerCardApi.jsx";
 
 export default function PersonalAccountPage(){
     const { isAuthorized, userProfile, isLoading: profileIsLoading } = useSelector((state) => state.auth);
 
     const [showModal, setShowModal] = useState(false)
+
     const barCards = [
         {title: "13 RULES (Народный бар)", img: BarImage1, address: "г.Москва, Сущевский вал, 41"},
         {title: "13 Rules (Котельники)", img: BarImage2, address: "Котельники, ул. Сосновая 1к.3"},
@@ -43,6 +52,13 @@ export default function PersonalAccountPage(){
         {title: "13 Rules (Киров)", img: BarImage4, address: "г.Киров, Московская, 33"},
         {title: "13 Rules (Киров)", img: BarImage4, address: "г.Киров, Московская, 33"},
     ]
+
+    const {data: barFavs, isLoading: barFavsIsLoading, error: barFavsError} = useGetUsersFavBarsQuery(userProfile?.id, {skip: !userProfile?.id})
+    const {data: beerFavs, isLoading: beerFavsIsLoading, error: beerFavsError} = useGetUsersFavBeersQuery(userProfile?.id, {skip: !userProfile?.id})
+
+    const {data: barCuddy, isLoading: barCuddyIsLoading, error: barCuddyError} = useGetUsersCuddyBarsQuery(userProfile?.id, {skip: !userProfile?.id})
+    const {data: beerCuddy, isLoading: beerCuddyIsLoading, error: beerCuddyError} = useGetUsersCuddyBeersQuery(userProfile?.id, {skip: !userProfile?.id})
+
 
     const beerCards = [
         {is_favor: false, is_liked: false, photo: BeerImage1, name: "Небо над тагилом", rating: 5, brewery_name: "Чаща", city: "Москва", country: "Россия"},
@@ -68,7 +84,6 @@ export default function PersonalAccountPage(){
         {is_favor: false, is_liked: false, title: "13 RULES (Народный бар)", img: BarImage1, address: "г.Москва, Сущевский вал, 41"},
 
     ]
-
     const likedSwitch = [
         {title: "Бары", cards: barCards, CardComponent: MinimalBarCard},
         {title: "Пиво", cards: beerCards, CardComponent: MinimalBottledBeerCard},
@@ -96,12 +111,16 @@ export default function PersonalAccountPage(){
                     <div style={{display: "flex"}}>
                         {!isMobile && <PersonalAccount profile={userProfile}/>}
                         <div style={{display: "flex", flexDirection: "column", width: "100%", gap: "25px"}}>
-                            {isMobile && <PersonalAccount isMobile={true}/>}
+                            {isMobile && <PersonalAccount profile={userProfile} isMobile={true}/>}
                             <SwitchRowSection title="Чек-ины" options={checkInSwitch}/>
                             <ActiveOrders></ActiveOrders>
                             <LatestReviews></LatestReviews>
-                            <SwitchRowSection title="Избранное" options={likedSwitch}/>
-                            <SwitchRowSection title="Кладовка" options={favSwitch}/>
+                            {/*<SwitchRowSection title="Избранное" options={likedSwitch}/>*/}
+                            {/*<SwitchRowSection title="Кладовка" options={favSwitch}/>*/}
+                            {!barCuddyIsLoading && !barCuddyError && barCuddy?.data?.length > 0 && <SwitchRowSectionApi title="Бары в кладовке" option={{title: "Бары", cards: barCuddy, CardComponent: MinimalBarCardApi}}></SwitchRowSectionApi>}
+                            {!beerCuddyIsLoading && !beerCuddyError && beerCuddy?.data?.length > 0 && <SwitchRowSectionApi title="Пиво в кладовке" option={{title: "Бары", cards: beerCuddy, CardComponent: MinimalBottledBeerCardApi}}></SwitchRowSectionApi>}
+                            {!barFavsIsLoading && !barFavsError && barFavs?.data?.length > 0 && <SwitchRowSectionApi title="Избранные бары" option={{title: "Бары", cards: barFavs, CardComponent: MinimalBarCardApi}}></SwitchRowSectionApi>}
+                            {!beerFavsIsLoading && !beerFavsError && beerFavs?.data?.length > 0 && <SwitchRowSectionApi title="Избранное пиво" option={{title: "Бары", cards: beerFavs, CardComponent: MinimalBottledBeerCardApi}}></SwitchRowSectionApi>}
                         </div>
                     </div>
                     <SingleImageModal show={showModal} setShow={setShowModal} src={EventImage}></SingleImageModal>

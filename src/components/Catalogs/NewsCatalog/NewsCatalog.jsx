@@ -14,6 +14,7 @@ import NewsCard12 from "../../../assets/newsMocks/news-card-12.svg"
 import SimpleCatalogSection from "../../CatalogSections/SimpleCatalogSection/SimpleCatalogSection.jsx";
 import NewsCard from "../../Cards/NewsCard/NewsCard.jsx";
 import MainNewsCard from "../../../assets/newsMocks/news-main-card.svg"
+import {useGetNewsQuery} from "../../../store/services/centerBeer.js";
 
 export default function NewsCatalog(){
     const newsCards = [
@@ -30,6 +31,7 @@ export default function NewsCatalog(){
         {title: "Крупнейшие российские производители пива предупредили о повышении цен вплоть до 15%", description: "Эль, лагер, портер. Если для вас эти слова звучат, как заклинание, скорее всего, вы только начинаете пробовать крафт и узнавать его историю. Давайте разберемся с основными типами пива и классификацией. После прочтения вы будете непринужденно общаться с любителями крафта и не краснеть при заказе очередной кружки напитка, боясь произнести название.", img: NewsCard11, date: "21.01.2025", tags: ["Цены", "Импорт"]},
         {title: "Крупнейшие российские производители пива предупредили о повышении цен вплоть до 15%", description: "Эль, лагер, портер. Если для вас эти слова звучат, как заклинание, скорее всего, вы только начинаете пробовать крафт и узнавать его историю. Давайте разберемся с основными типами пива и классификацией. После прочтения вы будете непринужденно общаться с любителями крафта и не краснеть при заказе очередной кружки напитка, боясь произнести название.", img: NewsCard12, date: "21.01.2025", tags: ["Цены", "Импорт"]},
     ]
+    const {data: news, isLoading: newsIsLoading, error: newsError} = useGetNewsQuery()
     const mainCard = {title: "Найти бармена в 2024 году. К чему приведет дефицит кадров в общепите", date: "21.01.2025", tags: ["цены","импорт","кадры"]}
     return(
         <div>
@@ -45,7 +47,7 @@ export default function NewsCatalog(){
                     </div>
                 </div>
             </div>
-            <SimpleCatalogSection CardComponent={NewsCard} cards={newsCards}></SimpleCatalogSection>
+            {news && !newsIsLoading && !newsError && <SimpleCatalogSection CardComponent={NewsCard} cards={news.data}></SimpleCatalogSection>}
         </div>
     )
 }

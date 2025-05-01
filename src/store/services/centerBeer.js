@@ -243,16 +243,19 @@ export const centerBeerApi = createApi({
             query: (beer_id) => `addBarToFav?beer_id=${beer_id}`
         })),
         getUsersFavBars: (builder.query({
-            query: (user_guid) => `getUsersFavBars?user_guid=${user_guid}`
+            query: (user_guid) => `getUsersFavBars?user_id=${user_guid}`
         })),
         getUsersFavBeers: (builder.query({
-            query: (user_guid) => `getUsersFavBeers?user_guid=${user_guid}`
+            query: (user_guid) => `getUsersFavBeers?user_id=${user_guid}`
         })),
         getUsersCuddyBars: (builder.query({
-            query: (user_guid) => `getUsersCuddyBars?user_guid=${user_guid}`
+            query: (user_guid) => `getUsersCuddyBars?user_id=${user_guid}`
         })),
         getUsersCuddyBeers: (builder.query({
-            query: (user_guid) => `getUsersCuddyBeers?user_guid=${user_guid}`
+            query: (user_guid) => `getUsersCuddyBeers?user_id=${user_guid}`
+        })),
+        getNews: (builder.query({
+            query: () => `getNews?global_news=true`
         })),
 
 
@@ -288,4 +291,4 @@ export const { useGetBarsQuery, useGetBarInfoQuery, useGetBarsFiltersQuery,
     useGetBreweryInfoQuery, useGetBreweryInfoByIdQuery, useGetFestQuery,
     useAddBeerToCuddyQuery, useAddBeerToFavQuery, useAddBarToCuddyQuery,
     useAddBarToFavQuery, useGetUsersFavBarsQuery, useGetUsersCuddyBarsQuery,
-    useGetUsersCuddyBeersQuery} = centerBeerApi
+    useGetUsersFavBeersQuery, useGetUsersCuddyBeersQuery, useGetNewsQuery} = centerBeerApi

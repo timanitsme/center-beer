@@ -106,7 +106,7 @@ export default function BeerCatalog({filters = [], filterButtons = [], sections 
     const multiSelectParams = Object.keys(initialFilters).filter(isMultiSelectParam);
 
     // Получение данных с API
-    const {data: beerData, isLoading: beerIsLoading, isFetching: beerIsFetching, error: beerError } = useGetBeersQuery({...filterValues, brew_ids: breweryId});
+    const {data: beerData, isLoading: beerIsLoading, isFetching: beerIsFetching, error: beerError } = useGetBeersQuery(breweryId === null? filterValues: {...filterValues, brew_ids: breweryId});
     const {data: beerFilters, isLoading: beerFiltersIsLoading, error: beerFiltersError} = useGetBeersFiltersQuery(filterValues["city_id"] || 1)
     const {data: cities, isLoading: citiesIsLoading, error: citiesError} = useGetCitiesQuery()
     const sortFilters =[
@@ -442,7 +442,7 @@ export default function BeerCatalog({filters = [], filterButtons = [], sections 
                         <Toggle reset={tabResetFilters["with_reviews"]} label={"Только с отзывами"} toggled={filterValues.with_reviews} onClick={() => handleSingleFilterApply("with_reviews", !filterValues.with_reviews)}/>
                     </div>
                     { !beerIsLoading && !beerError &&
-                        <SimpleCatalogSection cards={beerData.data} CardComponent={BottledBeerCard} wideColumns={false}/>
+                        <SimpleCatalogSection cards={beerData?.data} CardComponent={BottledBeerCard} wideColumns={false}/>
                     }
                     {/*<SimpleCatalogSection cards={allCards} CardComponent={BottledBeerCard} wideColumns={false} totalItems={beerData?.["total_items"]} onShowMore={handleShowMore}/>*/}
                 </div>

@@ -4,13 +4,26 @@ import {useNavigate} from "react-router-dom";
 
 export default function NewsCard({cardInfo}){
     const navigate = useNavigate()
-    const goToNewsPage = () => navigate("/news/1")
+    const goToNewsPage = () => window.location.href = cardInfo?.url_view
+
+
+    const getFormattedDate = (create_date) => {
+        const date = new Date(create_date);
+
+        const day = String(date.getDate()).padStart(2, "0");
+        const month = String(date.getMonth() + 1).padStart(2, "0");
+        const year = date.getFullYear();
+
+        return `${day}.${month}.${year}`;
+    }
+
+
 
     return(
         <div className={styles.blogCard}>
             <p className={styles.cardTextPrimary} onClick={goToNewsPage}>{cardInfo.title}</p>
-            <div className={styles.imageContainer}><img className={styles.cardImg} onClick={goToNewsPage} src={cardInfo.img} alt=""/></div>
-            <p>{cardInfo.date}</p>
+            <div className={styles.imageContainer}><img className={styles.cardImg} onClick={goToNewsPage} src={cardInfo.preview} alt=""/></div>
+            <p>{cardInfo?.create_date && getFormattedDate(cardInfo.create_date)}</p>
             <p className={styles.cardDescription}>{cardInfo.description}</p>
             <div className={styles.tagsRow}>
                 {cardInfo.tags.map((tag, index) =>

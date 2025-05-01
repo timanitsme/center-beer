@@ -6,7 +6,9 @@ import SimilarBottledBeerCard from "../Cards/BottledBeerCard/SimilarBottledBeerC
 import SimpleCatalogSection from "../CatalogSections/SimpleCatalogSection/SimpleCatalogSection.jsx";
 
 export default function SimilarItems({title, cards}){
-
+    if (cards.length <= 0){
+        return null
+    }
     return(
         <div className={styles.itemsContainer}>
             <div className={styles.similarDescriptionContainer}>

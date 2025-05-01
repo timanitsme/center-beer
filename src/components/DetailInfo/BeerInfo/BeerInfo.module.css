@@ -118,6 +118,7 @@
     align-items: flex-end;
     width: 50%;
     gap: 10px;
+    margin-left: auto;
 }
 
 .barInfo div{

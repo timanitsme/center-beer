@@ -24,7 +24,7 @@ import AuthorizationPage from "./pages/AuthorizationPage/AuthorizationPage.jsx";
 import RestorePasswordPage from "./pages/RestorePasswordPage/RestorePasswordPage.jsx";
 import ErrorBoundary from "./utils/ErrorBoundary/ErrorBoundary.jsx";
 import EventMapPage from "./pages/Events/EventMapPage/EventMapPage.jsx";
-import {cloneElement, useState} from "react";
+import {cloneElement, useEffect, useState} from "react";
 import RegistrationPage from "./pages/RegistrationPage/RegistrationPage.jsx";
 import RestaurantEventsPage from "./pages/Events/RestaurantEventsPage/RestaurantEventsPage.jsx";
 import BreweryEventsPage from "./pages/Events/BreweryEventsPage/BreweryEventsPage.jsx";
@@ -36,8 +36,18 @@ import WillBeSoonPage from "./pages/WillBeSoonPage/WillBeSoonPage.jsx";
 import MyCheckinsPage from "./pages/PersonalAccountPage/MyCheckinsPage/MyCheckinsPage.jsx";
 import EventMapPageMobile from "./pages/Events/EventMapPage/EventMapPageMobile.jsx";
 import EarnCBPage from "./pages/PersonalAccountPage/EarnCBPage/EarnCBPage.jsx";
+import useAuth from "./store/utils/customHooks/useAuth.js";
+import {useDispatch} from "react-redux";
+import {initializeAuthState} from "./store/services/authSlice.js";
 
 function App() {
+    const dispatch = useDispatch();
+    const {isAuthorized, userProfile, isLoading, error} = useAuth()
+
+    useEffect(() => {
+        dispatch(initializeAuthState());
+    }, [dispatch]);
+
     const paths = [
         {title: "Пиво", path: "/beer", element: <BeerPage/>},
         {title: "Бары и магазины", path: "/bars", element: <BarsPage/>, children: [

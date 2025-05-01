@@ -77,7 +77,7 @@ export const initializeAuthState = () => async (dispatch, getState) => {
     try {
         // Загружаем профиль пользователя через API
         const response = await dispatch(centerBeerAuthApi.endpoints.getUserProfile.initiate());
-        if (response.data) {
+        if (response.data) { // Тут по хорошему нужно отдавать с апишки 401 код
             const { accessToken, refreshToken } = response.data;
             dispatch(setCredentials({ accessToken, refreshToken }));
             console.log("initializeAuthState: Пользователь авторизован");

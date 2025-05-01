@@ -10,18 +10,21 @@ import {BurgerIcon} from "../../assets/BurgerIcon.jsx";
 import {Link, useLocation, useNavigate} from "react-router-dom";
 import CloseIcon from "../../assets/close-icon.svg?react"
 import ArrowDownIcon from "../../assets/arrow-down-icon.svg?react"
-import AvatarMock from "../../assets/avatar-mock.svg";
+import AvatarDefault from "../../assets/avatar-default.svg";
 import SimpleButton from "../Buttons/SimpleButton/SimpleButton.jsx";
+import {useDispatch, useSelector} from "react-redux";
+import {logout} from "../../store/services/authSlice.js";
 
 
 export default function Header({paths}){
+    const dispatch = useDispatch()
+    const { isAuthorized, userProfile, isLoading: profileIsLoading } = useSelector((state) => state.auth);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [toggleState, setToggleState] = useState(false);
     const [hoveredPath, setHoveredPath] = useState(null);
     const [expandedPaths, setExpandedPaths] = useState([]);
     const currentPage = useLocation().pathname;
     const navigate = useNavigate();
-    const [isAuthorized, setIsAuthorized] = useState(true)
     const switchTheme = () => {
         setToggleState(!toggleState);
     };
@@ -55,6 +58,11 @@ export default function Header({paths}){
             setExpandedPaths([...expandedPaths, path]);
         }
     };
+
+    const handleExit = () => {
+        dispatch(logout())
+        navigate("/login/")
+    }
 
     return(
         <div className={styles.header}>
@@ -139,22 +147,22 @@ export default function Header({paths}){
                     }
                 </div>
                 <div className={styles.userContainer}>
-                    {isAuthorized &&
+                    {isAuthorized && !profileIsLoading &&
                         <div className={styles.pathContainer}>
                             <div className={styles.profile} onClick={(e) => {e.stopPropagation(); setIsOpen(!isOpen)}}>
-                                <img className={styles.avatar} src={AvatarMock} alt=''></img>
-                                <p className={styles.bold}>Вячеслав Крыжовников</p>
+                                <img className={styles.avatar} src={AvatarDefault} alt=''></img>
+                                <p className={styles.bold}>{userProfile?.nickname}</p>
                             </div>
                             <div className={`${styles.userMenu} ${isOpen? "": styles.hidden}`} ref={menuRef}>
                                 <a onClick={() => {setIsOpen(false); navigate("/account/")}}>Профиль</a>
                                 <a href="">Избранное <div className="quantity"><p>2</p></div></a>
                                 <a href="">Кладовка</a>
                                 <a href="">Заказы</a>
-                                <a onClick={()=> {setIsOpen(false); setIsAuthorized(false)}}>Выход</a>
+                                <a onClick={()=> {setIsOpen(false); handleExit()}}>Выход</a>
                             </div>
                         </div>
                     }
-                    {!isAuthorized && <SimpleButton onClick={() => navigate("/login/")} text={"Войти в аккаунт"}></SimpleButton>}
+                    {!isAuthorized && !profileIsLoading && <SimpleButton onClick={() => navigate("/login/")} text={"Войти в аккаунт"}></SimpleButton>}
                 </div>
             </div>
         </div>

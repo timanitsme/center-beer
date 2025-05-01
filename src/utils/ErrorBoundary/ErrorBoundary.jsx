@@ -12,12 +12,33 @@ class ErrorBoundary extends Component {
 
     componentDidCatch(error, errorInfo) {
         console.error("Caught an error:", error, errorInfo);
-        //setTimeout(() => window.location.reload(), 3000);
     }
+
+    handleGoBackWithReload = () => {
+        const previousUrl = document.referrer || "/";
+        if (previousUrl !== window.location.href) {
+            window.location.href = previousUrl;
+        } else {
+            window.location.href = "/";
+        }
+    };
 
     render() {
         if (this.state.hasError) {
-            return <h1 style={{padding: "200px 0 200px 0", background: "var(--bg)"}} >Произошла ошибка. Страница будет перезагружена...</h1>;
+            setTimeout(this.handleGoBackWithReload, 3000);
+
+            return (
+                <div
+                    style={{
+                        padding: "200px 0",
+                        background: "var(--bg)",
+                        textAlign: "center",
+                    }}
+                >
+                    <h1>Произошла ошибка.</h1>
+                    <p>Вы будете автоматически перенаправлены на предыдущую страницу через 3 секунды...</p>
+                </div>
+            );
         }
 
         return this.props.children;

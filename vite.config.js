@@ -14,10 +14,14 @@ export default defineConfig({
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, '')
       },
-      '/apiAuth': {
+      '/authApi': {
         target: "https://api.center.beer:8443/",
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/apiAuth/, '')
+        rewrite: (path) => path.replace(/^\/authApi/, ''),
+        secure: false,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+        },
       }
     }
   }

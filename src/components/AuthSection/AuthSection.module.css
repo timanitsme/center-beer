@@ -72,7 +72,10 @@
     width: 300px;
 }
 
-
+.error{
+    font-family: "Podkova", sans-serif;
+    color: var(--primary);
+}
 
 @media (max-width: 1000px) {
     .outlineTitle{

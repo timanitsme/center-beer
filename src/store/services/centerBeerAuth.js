@@ -2,7 +2,7 @@ import {createApi, fetchBaseQuery}  from "@reduxjs/toolkit/query/react";
 import {centerBeerApi} from "./centerBeer.js";
 
 const baseQuery = fetchBaseQuery({
-    baseUrl: "/apiAuth",
+    baseUrl: "/authApi",
     prepareHeaders: (headers) => {
         headers.set('Content-Type', 'application/json');
         return headers;
@@ -34,6 +34,14 @@ export const centerBeerAuthApi = createApi({
                     body: credentials
                 })}
         }),
+        register: builder.mutation({
+            query: (credentials) => {
+                return({
+                    url: 'authentication/register',
+                    method: 'POST',
+                    body: credentials
+                })}
+        }),
         refreshToken: builder.mutation({
             query: (refreshToken) => {
                 return({
@@ -57,9 +65,9 @@ export const centerBeerAuthApi = createApi({
                     method: "POST"
                 })
             }
-        }),
+        })
     })
 })
 
 export const {useGetUserProfileQuery, useLoginMutation, useRefreshTokenMutation,
-    useRefreshTokenCookieMutation, useLogoutMutation } = centerBeerAuthApi
+    useRefreshTokenCookieMutation, useLogoutMutation, useRegisterMutation } = centerBeerAuthApi

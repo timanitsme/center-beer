@@ -1,12 +1,11 @@
 import styles from "./PersonalAccount.module.css"
-import AvatarMock from "../../assets/avatar-mock.svg"
+import AvatarMock from "../../assets/avatar-default.svg"
 import {MdPhotoCamera} from "react-icons/md";
 import {RiCopperCoinFill} from "react-icons/ri";
 import {Link} from "react-router-dom";
 
-export default function PersonalAccount({isMobile = false}){
-
-
+export default function PersonalAccount({isMobile = false, profile}){
+    console.log(JSON.stringify(profile))
     return(
         <div className={`${styles.accountSection}`}>
             <div className={`${styles.sideContent} ${isMobile? styles.mobile: ""}`}>
@@ -19,8 +18,8 @@ export default function PersonalAccount({isMobile = false}){
                             </div>
                         </div>
                         <div>
-                            <p className={styles.bold}>Вячеслав Крыжовников</p>
-                            <p>example@gmail.com</p>
+                            <p className={styles.bold}>{profile?.nickname}</p>
+                            <p>{profile?.email}</p>
                             <p><span className={styles.active}>Присоединился:</span> 24.04.2025</p>
                             <Link to={"/in-dev"} href="" style={{padding: "15px 0"}}>Личные данные</Link>
                             <div style={{display: "flex", alignItems: "flex-end", gap: "5px"}} className={styles.balance}><p className={styles.active}>На счету</p> <p>150</p> <p className={styles.active}>CB Coin</p> <RiCopperCoinFill color="var(--primary)"/></div>
@@ -36,7 +35,7 @@ export default function PersonalAccount({isMobile = false}){
                             </div>
                         </div>
                     </div>
-                    <p className={`${styles.bold} ${styles.overflow}`}>Вячеслав Крыжовников</p>
+                    <p className={`${styles.bold} ${styles.overflow}`}>{profile?.nickname}</p>
                 </div>}
                 <div>
                     <p className={styles.bold}>Чек-ины</p>

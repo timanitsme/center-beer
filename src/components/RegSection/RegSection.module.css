@@ -4,6 +4,11 @@
     padding-top: 13vh;
 }
 
+.error{
+    font-family: "Podkova", sans-serif;
+    color: var(--primary);
+}
+
 .authSection p{
     font-size: 0.9vw;
     font-weight: 200;

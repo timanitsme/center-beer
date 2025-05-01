@@ -228,6 +228,34 @@ export const centerBeerApi = createApi({
         getCountries: (builder.query({
             query: () => `getCountries`
         })),
+
+
+        addBeerToCuddy: (builder.query({
+            query: (beer_id) => `addBeerToCuddy?beer_id=${beer_id}`
+        })),
+        addBeerToFav: (builder.query({
+            query: (beer_id) => `addBeerToFav?beer_id=${beer_id}`
+        })),
+        addBarToCuddy: (builder.query({
+            query: (beer_id) => `addBarToCuddy?beer_id=${beer_id}`
+        })),
+        addBarToFav: (builder.query({
+            query: (beer_id) => `addBarToFav?beer_id=${beer_id}`
+        })),
+        getUsersFavBars: (builder.query({
+            query: (user_guid) => `getUsersFavBars?user_guid=${user_guid}`
+        })),
+        getUsersFavBeers: (builder.query({
+            query: (user_guid) => `getUsersFavBeers?user_guid=${user_guid}`
+        })),
+        getUsersCuddyBars: (builder.query({
+            query: (user_guid) => `getUsersCuddyBars?user_guid=${user_guid}`
+        })),
+        getUsersCuddyBeers: (builder.query({
+            query: (user_guid) => `getUsersCuddyBeers?user_guid=${user_guid}`
+        })),
+
+
         getCities: (builder.query({
             query: (name) => {
                 const params = new URLSearchParams();
@@ -257,4 +285,7 @@ export const { useGetBarsQuery, useGetBarInfoQuery, useGetBarsFiltersQuery,
     useGetBarMenuBottleFiltersQuery, useGetBarMenuBeerFiltersQuery, useGetBarMenuAlcFiltersQuery,
     useGetBarMenuCocktailsFiltersQuery, useGetBarInfoByIdQuery, useGetBeersQuery,
     useGetBeersFiltersQuery, useGetBeerInfoQuery, useGetBreweriesQuery, useGetBreweriesFiltersQuery,
-    useGetBreweryInfoQuery, useGetBreweryInfoByIdQuery, useGetFestQuery} = centerBeerApi
+    useGetBreweryInfoQuery, useGetBreweryInfoByIdQuery, useGetFestQuery,
+    useAddBeerToCuddyQuery, useAddBeerToFavQuery, useAddBarToCuddyQuery,
+    useAddBarToFavQuery, useGetUsersFavBarsQuery, useGetUsersCuddyBarsQuery,
+    useGetUsersCuddyBeersQuery} = centerBeerApi

@@ -2,17 +2,24 @@ import styles from "./PasswordInput.module.css"
 import {useState} from "react";
 import {FiEye, FiEyeOff} from "react-icons/fi";
 
-export default function PasswordInput({inputValue, setInputValue, placeholder=""}){
+export default function PasswordInput({inputValue, setInputValue, placeholder="", maxLength = 30}){
     const [showPassword, setShowPassword] = useState(false);
     const togglePasswordVisibility = () => {
         setShowPassword((prev) => !prev);
     };
+
+    const handleInput = (e) => {
+        if (e.target.value.length < maxLength){
+            setInputValue(e.target.value)
+        }
+    };
+
     return(
         <div className={styles.passwordContainer}>
             <input
                 type={showPassword ? 'text' : 'password'} // Переключение типа
                 value={inputValue}
-                onChange={(e) => setInputValue(e.target.value)}
+                onChange={handleInput}
                 placeholder={placeholder}
                 className={styles.textInput}
             />

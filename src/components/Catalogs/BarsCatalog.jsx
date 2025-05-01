@@ -22,13 +22,13 @@ import Search from "../ApiInputs/Search/Search.jsx";
 import SimpleModal from "../Modals/SimpleModal/SimpleModal.jsx";
 import FiltersModal from "../Modals/FiltersModal/FiltersModal.jsx";
 import {isMobile} from "react-device-detect";
+import {useGetUserProfileQuery} from "../../store/services/centerBeerAuth.js";
 
 
 export default function BarsCatalog({filters = [], filterButtons = [], sections = []}){
     const navigate = useNavigate()
     const [filterNameMap, setFilterNameMap] = useState({});
     const [showFiltersModal, setShowFiltersModal] = useState(false)
-
     // Спецификация фильтров
     const barFilterSpecs = {
         kitchen: {title: "Кухня", component: "combobox", id: "kitchen_ids"},

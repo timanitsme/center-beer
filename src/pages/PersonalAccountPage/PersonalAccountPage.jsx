@@ -30,8 +30,11 @@ import Brewery3 from "../../assets/breweryMocks/brewery-logo-3.svg"
 import Brewery4 from "../../assets/breweryMocks/brewery-logo-4.svg"
 import Brewery5 from "../../assets/breweryMocks/brewery-logo-5.svg"
 import BarCheckInCard from "../../components/Cards/CheckIns/BarCheckInCard/BarCheckInCard.jsx";
+import {useSelector} from "react-redux";
 
 export default function PersonalAccountPage(){
+    const { isAuthorized, userProfile, isLoading: profileIsLoading } = useSelector((state) => state.auth);
+
     const [showModal, setShowModal] = useState(false)
     const barCards = [
         {title: "13 RULES (Народный бар)", img: BarImage1, address: "г.Москва, Сущевский вал, 41"},
@@ -88,19 +91,23 @@ export default function PersonalAccountPage(){
     return(
         <div className="content">
             <NavChain paths={GetPersonalAccountPaths()}></NavChain>
-            <div style={{display: "flex"}}>
-                {!isMobile && <PersonalAccount/>}
-                <div style={{display: "flex", flexDirection: "column", width: "100%", gap: "25px"}}>
-                    {isMobile && <PersonalAccount isMobile={true}/>}
-                    <SwitchRowSection title="Чек-ины" options={checkInSwitch}/>
-                    <ActiveOrders></ActiveOrders>
-                    <LatestReviews></LatestReviews>
-                    <SwitchRowSection title="Избранное" options={likedSwitch}/>
-                    <SwitchRowSection title="Кладовка" options={favSwitch}/>
-                </div>
-            </div>
-            <SingleImageModal show={showModal} setShow={setShowModal} src={EventImage}></SingleImageModal>
+            {isAuthorized && !profileIsLoading && userProfile &&
+                <>
+                    <div style={{display: "flex"}}>
+                        {!isMobile && <PersonalAccount profile={userProfile}/>}
+                        <div style={{display: "flex", flexDirection: "column", width: "100%", gap: "25px"}}>
+                            {isMobile && <PersonalAccount isMobile={true}/>}
+                            <SwitchRowSection title="Чек-ины" options={checkInSwitch}/>
+                            <ActiveOrders></ActiveOrders>
+                            <LatestReviews></LatestReviews>
+                            <SwitchRowSection title="Избранное" options={likedSwitch}/>
+                            <SwitchRowSection title="Кладовка" options={favSwitch}/>
+                        </div>
+                    </div>
+                    <SingleImageModal show={showModal} setShow={setShowModal} src={EventImage}></SingleImageModal>
 
+                </>
+            }
         </div>
     )
 }

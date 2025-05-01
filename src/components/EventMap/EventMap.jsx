@@ -41,7 +41,7 @@ export default function EventMap({svg, markers, selectedMarker, setSelectedMarke
             maxScale={3}
             panning={{ disabled: false }}
             wheel={{ disabled: false }}
-            pinch={{ disabled: true }}
+            pinch={{ disabled: false }}
             onZoom={(e) => setCurrentScale(e.state.scale)}
         >
             {({ zoomIn, zoomOut }) => (

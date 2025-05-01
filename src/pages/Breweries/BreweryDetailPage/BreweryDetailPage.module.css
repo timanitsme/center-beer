@@ -1,0 +1,17 @@
+.backButton {
+    position: fixed;
+    top: 50px;
+    right: 20px;
+    z-index: 100;
+    padding: 10px 20px;
+    background: var(--primary);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.backButton:hover {
+    background: var(--primary-semi-transparent);
+    transition: 0.5s;
+}

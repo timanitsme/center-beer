@@ -30,7 +30,7 @@ export default function BeerCatalog({filters = [], filterButtons = [], sections 
     const handleShowMore = async () => {
         if (!isLoadingMore && beerData?.data && !beerIsFetching) {
             setIsLoadingMore(true);
-            setAllCards((prevCards) => [...prevCards, ...beerData.data]);
+            setAllCards((prevCards) => [...prevCards, ...beerData?.data]);
             setFilterValues((prevFilters) => ({
                 ...prevFilters,
                 offset: prevFilters.offset + prevFilters.lim
@@ -441,7 +441,7 @@ export default function BeerCatalog({filters = [], filterButtons = [], sections 
                         {sortFilters &&  <ComboBox options={sortFilters} onChange={(value) => handleSingleFilterApply("sort_by", value.id)}></ComboBox>}
                         <Toggle reset={tabResetFilters["with_reviews"]} label={"Только с отзывами"} toggled={filterValues.with_reviews} onClick={() => handleSingleFilterApply("with_reviews", !filterValues.with_reviews)}/>
                     </div>
-                    { !beerIsLoading && !beerError &&
+                    { !beerIsLoading && !beerError && beerData?.data &&
                         <SimpleCatalogSection cards={beerData?.data} CardComponent={BottledBeerCard} wideColumns={false}/>
                     }
                     {/*<SimpleCatalogSection cards={allCards} CardComponent={BottledBeerCard} wideColumns={false} totalItems={beerData?.["total_items"]} onShowMore={handleShowMore}/>*/}

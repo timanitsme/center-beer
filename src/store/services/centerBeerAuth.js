@@ -2,7 +2,7 @@ import {createApi, fetchBaseQuery}  from "@reduxjs/toolkit/query/react";
 import {centerBeerApi} from "./centerBeer.js";
 
 const baseQuery = fetchBaseQuery({
-    baseUrl: "https://api.center.beer:8443/",
+    baseUrl: "/authApi",
     prepareHeaders: (headers) => {
         headers.set('Content-Type', 'application/json');
         return headers;

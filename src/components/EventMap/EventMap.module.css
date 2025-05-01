@@ -81,3 +81,17 @@
 .zoomButton svg{
     color: var(--txt-active);
 }
+
+.svgWrapper {
+    touch-action: none !important;
+    pointer-events: auto !important;
+}
+
+.svgWrapper svg {
+    touch-action: none;
+    pointer-events: none; /* Отключаем события на самом SVG */
+}
+
+.marker, .rectangle {
+    pointer-events: auto; /* Включаем события для интерактивных элементов */
+}

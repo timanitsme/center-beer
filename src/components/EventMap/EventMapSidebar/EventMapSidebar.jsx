@@ -6,6 +6,7 @@ import {FaChevronRight} from "react-icons/fa6";
 import {useNavigate} from "react-router-dom";
 import BottledBeerCard from "../../Cards/BottledBeerCard/BottledBeerCard.jsx";
 import FestBeerCard from "../../Cards/BottledBeerCard/FestBeerCard.jsx";
+import ArrowLeftIcon from "../../../assets/arrow-left-icon.svg?react"
 
 export default function EventMapSidebar({selectedMarker, setSelectedMarker, breweries, isMobile=false}){
     const brewery = breweries[selectedMarker]
@@ -28,16 +29,22 @@ export default function EventMapSidebar({selectedMarker, setSelectedMarker, brew
         });
     };
 
+    const goToBreweryPage = (breweryAlias) => {
+        navigate(`/brewery/${breweryAlias}`, {
+            state: { from: location.pathname }
+        });
+    };
+
     return(
         <div className={`${styles.sidebar} ${selectedMarker? styles.expanded: ''} ${isMobile? styles.mobile: ""}`}>
             {selectedMarker &&
                 <div className={styles.sidebarContent}>
                     <div className={styles.buttonsRow}>
                         <button className={styles.closeButton} onClick={() => setSelectedMarker(null)}>
-                            <CloseIcon/>
+                            <ArrowLeftIcon/>
                         </button>
                     </div>
-                    <div className={styles.brewery} onClick={() => navigate(`/brewery/${brewery?.brewery_alias}`)}>
+                    <div className={styles.brewery} onClick={() => goToBreweryPage(brewery?.brewery_alias)}>
                         <div className={styles.imgContainer}>
                             <img src={brewery?.brewery_logo} alt=""/>
                         </div>

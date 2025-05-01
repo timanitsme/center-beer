@@ -15,18 +15,25 @@ import NewProduct2 from "../../../assets/newProductsMocks/new-product-2.svg"
 import NewProduct3 from "../../../assets/newProductsMocks/new-product-3.svg"
 import NewProduct4 from "../../../assets/newProductsMocks/new-product-4.svg"
 import NewProduct5 from "../../../assets/newProductsMocks/new-product-5.svg"
-import NewProducts from "../../../components/NewProducts/NewProducts.jsx";
-import BreweryHistory from "../../../components/BreweryHistory/BreweryHistory.jsx";
-import Excursions from "../../../components/Excursions/Excursions.jsx";
 import {useGetBeerInfoQuery, useGetBreweryInfoQuery} from "../../../store/services/centerBeer.js";
-import {useParams} from "react-router-dom";
-import BeerCatalog from "../../../components/Catalogs/BeerCatalog.jsx";
+import {useLocation, useNavigate, useParams} from "react-router-dom";
 import BeerCatalogSection from "../../../components/BeerCatalogSection/BeerCatalogSection.jsx";
+import IconButton from "../../../components/Buttons/IconButton/IconButton.jsx";
+import ArrowLeftIcon from "../../../assets/arrow-left-icon.svg?react"
+import styles from "./BreweryDetailPage.module.css"
 
 export default function BreweryDetailPage(){
     const images = [NewProduct1, NewProduct2, NewProduct3, NewProduct4, NewProduct5, NewProduct2, NewProduct3, NewProduct4]
     const {alias} = useParams();
     const {data, isLoading, error} = useGetBreweryInfoQuery(alias)
+    const location = useLocation();
+    const prevPath = location.state?.from || null;
+    const navigate = useNavigate();
+    console.log(prevPath)
+
+    const handleBack = () => {
+        navigate(prevPath, { replace: true });
+    };
 
     const reviewsResume = (title) => {return {
         title: "Продукция нравится",
@@ -39,6 +46,14 @@ export default function BreweryDetailPage(){
         <div className="content">
             {!isLoading && !error && data && data.length > 0 &&
                 <>
+                    {prevPath && (
+                        <button
+                            className={styles.backButton}
+                            onClick={handleBack}
+                        >
+                            ← Назад
+                        </button>
+                    )}
                     <NavChain paths={[...getBreweryDetailPagePaths(), {title:data[0]?.name, path: ""}]}/>
                     <BreweryInfo breweryInfo={data[0]}/>
                     {/*<BreweryHistory/>*/}

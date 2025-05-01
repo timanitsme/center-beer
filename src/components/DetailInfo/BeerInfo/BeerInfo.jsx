@@ -1,5 +1,5 @@
 import styles from "./BeerInfo.module.css"
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import BeerBottleIcon from "../../../assets/bottle-icon.svg?react";
 import HalfBeerBottleIcon from "../../../assets/bottle-half-icon.svg?react";
 import EmptyBeerBottleIcon from "../../../assets/bottle-empty-icon.svg?react";
@@ -25,6 +25,14 @@ export default function BeerInfo({beerInfo={}}){
 
     const formatNumber = (num) => Number(num).toString()
 
+
+    useEffect(() => {
+        if (beerInfo?.gallery && beerInfo.gallery.length > 0) {
+            setSelectedPicture(beerInfo.gallery[0]);
+        } else {
+            setSelectedPicture(null);
+        }
+    }, [beerInfo]);
 
     return(
         <div>

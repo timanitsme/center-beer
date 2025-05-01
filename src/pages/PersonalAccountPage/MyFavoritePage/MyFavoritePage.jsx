@@ -5,8 +5,14 @@ import PersonalAccount from "../../../components/PersonalAccount/PersonalAccount
 import styles from "../MyCheckinsPage/MyCheckinsPage.module.css";
 import SimpleCatalogSection from "../../../components/CatalogSections/SimpleCatalogSection/SimpleCatalogSection.jsx";
 import MinimalBarCard from "../../../components/Cards/BarCard/MinimalBarCard.jsx";
+import {useGetUsersFavBarsQuery, useGetUsersFavBeersQuery} from "../../../store/services/centerBeer.js";
 
 export default function MyFavoritePage(){
+    const selectors = {
+        beer: {pathname: "Любимое пиво", hook: useGetUsersFavBeersQuery},
+        bar: {pathname: "Любимые бары", hook: useGetUsersFavBarsQuery}
+    }
+
     const paths = [
         {title: "center.beer", path: "/"},
         {title: "Личный кабинет", path: "/account/"},

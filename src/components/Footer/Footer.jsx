@@ -1,7 +1,7 @@
 import styles from "./Footer.module.css"
 import CenterBeerLogo from "../../assets/logo-new.svg?react";
 import AppPhone from "../../assets/app-phone.svg"
-import QrCode from "../../assets/qr-code.svg"
+import QrCode from "../../assets/new-qr-code.svg"
 import DownloadGooglePlay from "../../assets/download-google-play.svg?react"
 import DownloadAppStore from "../../assets/download-app-store.svg?react"
 import RoundLink from "../../assets/round-link.svg?react"
@@ -19,12 +19,12 @@ export default function Footer(){
                         <p className={styles.textContainerP}>Мы рады представить наше новое мобильное приложение, которое позволит вам пользоваться нашим сервисом еще удобнее. Теперь вы можете наслаждаться общением с друзьями, делиться впечатлениями о пиве, находить ближайшие пивные пабы и бары в несколько касаний. Будьте в курсе последних новостей, рецептов и уникальных пивных событий, где бы вы ни находились.</p>
                         <div className={styles.buttonsContainer}>
                             <button className={styles.downloadButton}>
-                                <DownloadGooglePlay/>
+                                <a href="https://center.beer/app/android"><DownloadGooglePlay/></a>
                             </button>
                             <button className={styles.downloadButton}>
-                                <DownloadAppStore/>
+                                <a href="https://center.beer/app/ios"><DownloadAppStore/></a>
                             </button>
-                            <RoundLinkButton text="Скачать .apk"/>
+                            <RoundLinkButton text="Скачать .apk" onClick={() => window.location.href="https://center.beer/app/apk"}/>
                         </div>
                     </div>
                     <div className={styles.qrCodeContainer}>

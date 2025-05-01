@@ -67,6 +67,8 @@
     font-family: Podkova, sans-serif;
     color: var(--primary);
     text-transform: uppercase;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .cardTop{

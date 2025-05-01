@@ -22,6 +22,7 @@ export default defineConfig({
         headers: {
           'Access-Control-Allow-Origin': '*',
         },
+
       }
     }
   }

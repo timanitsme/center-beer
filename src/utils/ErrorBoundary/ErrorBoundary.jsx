@@ -15,12 +15,12 @@ class ErrorBoundary extends Component {
     }
 
     handleGoBackWithReload = () => {
-        const previousUrl = document.referrer || "/";
+        /*const previousUrl = document.referrer || "/";
         if (previousUrl !== window.location.href) {
             window.location.href = previousUrl;
         } else {
             window.location.href = "/";
-        }
+        }*/
     };
 
     render() {

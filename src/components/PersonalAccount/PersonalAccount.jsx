@@ -55,26 +55,26 @@ export default function PersonalAccount({isMobile = false, profile}){
                 <div>
                     <p className={styles.bold}>Любимое</p>
                     <ul className={styles.innerList}>
-                        <li><a href="">Пиво</a></li>
-                        <li><a href="">Пивоварни <div className="quantity"><p>12</p></div></a></li>
-                        <li><a href="">Заведения <div className="quantity"><p>1</p></div></a></li>
+                        <li><Link to="/account/fav/beer">Пиво</Link></li>
+                        <li><Link to="/in-dev">Пивоварни <div className="quantity"><p>12</p></div></Link></li>
+                        <li><Link to="/account/fav/bar">Заведения <div className="quantity"><p>1</p></div></Link></li>
                     </ul>
                 </div>
                 <div>
                     <p className={styles.bold}>Кладовка</p>
                     <ul className={styles.innerList}>
-                        <li><a href="">Пиво</a></li>
-                        <li><a href="">Пивоварни <div className="quantity"><p>12</p></div></a></li>
-                        <li><a href="">Заведения <div className="quantity"><p>1</p></div></a></li>
-                        <li><a href="">Мероприятия <div className="quantity"><p>1</p></div></a></li>
+                        <li><Link to="/account/bookmarked/beer">Пиво</Link></li>
+                        <li><Link to="/in-dev">Пивоварни <div className="quantity"><p>12</p></div></Link></li>
+                        <li><Link to="/account/bookmarked/bar">Заведения <div className="quantity"><p>1</p></div></Link></li>
+                        <li><Link to="/in-dev">Мероприятия <div className="quantity"><p>1</p></div></Link></li>
                     </ul>
                 </div>
                 <div>
                     <p className={styles.bold}>Прочее</p>
                     <ul className={styles.innerList}>
-                        <li><a href="">Заработать CB Coin</a></li>
-                        <li><a href="">Мои заказы <div className="quantity"><p>64</p></div> </a></li>
-                        <li><a href="">Магазин</a></li>
+                        <li><Link to="/account/earn-cb">Заработать CB Coin</Link></li>
+                        <li><Link to="/in-dev">Мои заказы <div className="quantity"><p>64</p></div> </Link></li>
+                        <li><Link to="/in-dev">Магазин</Link></li>
                     </ul>
                 </div>
 

@@ -39,6 +39,8 @@ import EarnCBPage from "./pages/PersonalAccountPage/EarnCBPage/EarnCBPage.jsx";
 import useAuth from "./store/utils/customHooks/useAuth.js";
 import {useDispatch} from "react-redux";
 import {initializeAuthState} from "./store/services/authSlice.js";
+import MyFavoritePage from "./pages/PersonalAccountPage/MyFavoritePage/MyFavoritePage.jsx";
+import MyBookmarksPage from "./pages/PersonalAccountPage/MyBookmarksPage/MyBookmarksPage.jsx";
 
 function App() {
     const dispatch = useDispatch();
@@ -75,6 +77,8 @@ function App() {
         {path: "/event-map-mobile/", element: <EventMapPageMobile/>, hideFooter: true, hideHeader: true},
         {path: "/login/", element: <AuthorizationPage/>},
         {path: "/account/", element: <PersonalAccountPage/>},
+        {path: "/account/fav/:alias", element: <MyFavoritePage/>},
+        {path: "/account/bookmarked/:alias", element: <MyBookmarksPage/>},
         {path: "/account/earn-cb/", element: <EarnCBPage/>},
         {path: "/signup/", element: <RegistrationPage/>},
         {path: "/cart/", element: <CartPage/>},

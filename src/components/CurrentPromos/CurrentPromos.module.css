@@ -57,9 +57,11 @@
     cursor: pointer;
 }
 
-.descriptionButton:hover{
-    background: var(--section-bg);
-    transition: 0.5s;
+@media (hover: hover) and (pointer: fine) {
+    .descriptionButton:hover {
+        background: var(--section-bg);
+        transition: 0.5s;
+    }
 }
 
 .descriptionButton svg{

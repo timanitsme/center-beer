@@ -25,11 +25,6 @@
     border: none;
 }
 
-.primaryThird:hover{
-    background: var(--primary-semi-transparent) !important;
-    transition: 0.5s;
-}
-
 .primaryThird p{
     font-family: "Podkova", sans-serif;
     color: var(--bg) !important;
@@ -65,21 +60,6 @@
     color: var(--bg) !important;
 }
 
-.iconButton:hover{
-    background: var(--section-bg);
-    transition: 0.5s;
-}
-
-.secondary:hover{
-    background: var(--txt-secondary);
-    transition: 0.5s;
-}
-
-.primary:hover{
-    background: var(--primary-semi-transparent);
-    transition: 0.5s;
-}
-
 .iconButton svg{
     max-height: 26px;
     max-width: 26px;
@@ -112,11 +92,6 @@
     font-family: "Podkova", sans-serif;
 }
 
-.third svg:hover{
-    color: var(--txt-active);
-}
-
-
 .iconButton p{
     font-size: 0.8vw;
     text-wrap: nowrap;
@@ -126,6 +101,32 @@
 
 .secondary p{
     color: var(--primary);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .primaryThird:hover {
+        background: var(--primary-semi-transparent) !important;
+        transition: 0.5s;
+    }
+
+    .iconButton:hover{
+        background: var(--section-bg);
+        transition: 0.5s;
+    }
+
+    .secondary:hover{
+        background: var(--txt-secondary);
+        transition: 0.5s;
+    }
+
+    .primary:hover{
+        background: var(--primary-semi-transparent);
+        transition: 0.5s;
+    }
+
+    .third svg:hover{
+        color: var(--txt-active);
+    }
 }
 
 @media (max-width: 1000px) {

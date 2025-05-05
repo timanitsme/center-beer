@@ -12,15 +12,17 @@
     font-size: 0.9vw;
 }
 
-.buttonContainer:hover p{
-    color: var(--txt-active);
-    transition: 0.5s;
-}
-
 .buttonContainer svg{
     height: 100%;
     width: auto;
     min-height: 25px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .buttonContainer:hover p{
+        color: var(--txt-active);
+        transition: 0.5s;
+    }
 }
 
 @media (max-width: 1000px) {

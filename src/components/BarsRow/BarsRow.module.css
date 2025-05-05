@@ -36,8 +36,10 @@
     color: var(--primary);
 }
 
-.aIconButton:hover{
-    color: var(--primary);
+@media (hover: hover) and (pointer: fine) {
+    .aIconButton:hover {
+        color: var(--primary);
+    }
 }
 
 .headerDescription{

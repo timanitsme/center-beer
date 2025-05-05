@@ -54,9 +54,10 @@
     border-radius: 5px;
 }
 
-
-.suggestionItem:hover {
-    background-color: var(--third);
+@media (hover: hover) and (pointer: fine) {
+    .suggestionItem:hover {
+        background-color: var(--third);
+    }
 }
 
 @media (max-width: 1000px) {

@@ -11,7 +11,9 @@
     transition: background 0.3s;
 }
 
-.backButton:hover {
-    background: var(--primary-semi-transparent);
-    transition: 0.5s;
+@media (hover: hover) and (pointer: fine) {
+    .backButton:hover {
+        background: var(--primary-semi-transparent);
+        transition: 0.5s;
+    }
 }

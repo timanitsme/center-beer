@@ -58,10 +58,12 @@
     text-decoration-color: var(--txt-secondary);
 }
 
-.dottedA:hover{
-    color: var(--txt-active);
-    text-decoration-color: var(--txt-active);
-    transition: 0.5s;
+@media (hover: hover) and (pointer: fine) {
+    .dottedA:hover {
+        color: var(--txt-active);
+        text-decoration-color: var(--txt-active);
+        transition: 0.5s;
+    }
 }
 
 .underline{

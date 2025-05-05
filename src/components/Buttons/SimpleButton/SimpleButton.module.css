@@ -15,16 +15,6 @@
     border: 2px solid var(--primary);
 }
 
-.simpleButton.secondary:hover{
-    background: var(--third);
-    transition: 0.5s;
-}
-
-.simpleButton:hover{
-    background: var(--primary-semi-transparent);
-    transition: 0.5s;
-}
-
 .simpleButton p{
     font-size: 0.8vw;
     text-wrap: nowrap;
@@ -51,9 +41,20 @@
     color: var(--primary);
 }
 
-.third:hover{
-    background: var(--third);
-    transition: 0.5s;
+@media (hover: hover) and (pointer: fine) {
+    .simpleButton.secondary:hover{
+        background: var(--third);
+        transition: 0.5s;
+    }
+
+    .simpleButton:hover{
+        background: var(--primary-semi-transparent);
+        transition: 0.5s;
+    }
+    .third:hover {
+        background: var(--third);
+        transition: 0.5s;
+    }
 }
 
 @media (max-width: 1000px) {

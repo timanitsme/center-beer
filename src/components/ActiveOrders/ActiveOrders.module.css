@@ -25,10 +25,6 @@
     color: var(--txt-active);
 }
 
-.ordersSection a:hover p{
-    color: var(--primary);
-    transition: 0.5s;
-}
 
 .headerRow{
     display: flex;
@@ -40,6 +36,14 @@
     grid-template-columns: repeat(2, 1fr);
     column-gap: 15px;
 }
+
+@media (hover: hover) and (pointer: fine) {
+    .ordersSection a:hover p{
+        color: var(--primary);
+        transition: 0.5s;
+    }
+}
+
 
 @media (max-width: 1000px) {
     .ordersSection{

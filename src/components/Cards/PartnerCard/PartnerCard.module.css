@@ -11,24 +11,6 @@
     cursor: pointer;
 }
 
-.postCard:hover{
-    background: var(--primary);
-    border: 2px solid var(--primary);
-    transition: 0.5s;
-}
-
-.postCard:hover h3{
-    color: var(--section-bg);
-}
-
-.postCard:hover p{
-    color: var(--third);
-}
-
-.postCard:hover .flex a, .postCard:hover .flex svg{
-    color: var(--section-bg);
-}
-
 .postCard a{
     align-self: flex-end;
 }
@@ -70,10 +52,6 @@
     object-position: center;
 }
 
-.postCard a:hover svg{
-    color: var(--primary);
-    transition: 0.5s;
-}
 .flex{
     width: 100%;
     display: flex;
@@ -95,6 +73,31 @@
     flex-direction: column;
     gap: 5px;
     justify-content: space-between;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .postCard:hover {
+        background: var(--primary);
+        border: 2px solid var(--primary);
+        transition: 0.5s;
+    }
+
+    .postCard:hover h3 {
+        color: var(--section-bg);
+    }
+
+    .postCard:hover p {
+        color: var(--third);
+    }
+
+    .postCard:hover .flex a, .postCard:hover .flex svg {
+        color: var(--section-bg);
+    }
+
+    .postCard a:hover svg{
+        color: var(--primary);
+        transition: 0.5s;
+    }
 }
 
 @media (max-width: 1000px) {

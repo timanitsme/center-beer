@@ -113,8 +113,10 @@
     color: var(--primary);
 }
 
-.aComment:hover{
-    color: var(--primary-semi-transparent);
+@media (hover: hover) and (pointer: fine) {
+    .aComment:hover {
+        color: var(--primary-semi-transparent);
+    }
 }
 
 .comment p{

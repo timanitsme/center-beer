@@ -138,11 +138,6 @@
     border-radius: 10px;
 }
 
-.subMenuItem:hover{
-    background: var(--section-bg);
-    transition: 0.5s;
-}
-
 .subMenuMobile {
     padding-left: 20px;
 }
@@ -182,10 +177,6 @@
 .mobileMenu a.active, .subMenu a.active {
     background-color: var(--section-bg);
     color: var(--primary);
-}
-
-.mobileMenu a:hover {
-    background-color: var(--section-bg);
 }
 
 .mobileMenuItem a{
@@ -262,6 +253,16 @@
     opacity: 0;
     transform: scale(0.95);
     pointer-events: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .subMenuItem:hover {
+        background: var(--section-bg);
+        transition: 0.5s;
+    }
+    .mobileMenu a:hover {
+        background-color: var(--section-bg);
+    }
 }
 
 @media (max-width: 768px) {

@@ -6,7 +6,7 @@ import bottlePath from "../src/assets/beer-bottle.svg"
 import BarDetailPage from "./pages/Bars/BarDetailPage/BarDetailPage.jsx";
 import BeerPage from "./pages/Beer/BeerPage/BeerPage.jsx";
 import EventsPage from "./pages/Events/EventsPage/EventsPage.jsx";
-import AboutPage from "./pages/AboutPage/AboutPage.jsx";
+import AboutPage from "./pages/About/AboutPage/AboutPage.jsx";
 import NewsPage from "./pages/News/NewsPage/NewsPage.jsx";
 import ContactsPage from "./pages/ContactsPage/ContactsPage.jsx";
 import BarsPage from "./pages/Bars/BarsPage/BarsPage.jsx";
@@ -41,6 +41,7 @@ import {useDispatch} from "react-redux";
 import {initializeAuthState} from "./store/services/authSlice.js";
 import MyFavoritePage from "./pages/PersonalAccountPage/MyFavoritePage/MyFavoritePage.jsx";
 import MyBookmarksPage from "./pages/PersonalAccountPage/MyBookmarksPage/MyBookmarksPage.jsx";
+import AboutDetailPage from "./pages/About/AboutDetailPage/AboutDetailPage.jsx";
 
 function App() {
     const dispatch = useDispatch();
@@ -89,6 +90,7 @@ function App() {
         {path: "/in-dev", element: <InDevelopmentPage/>},
         {path: "/will-be-soon", element: <WillBeSoonPage/>},
         {path: "/my-check-ins/:alias", element: <MyCheckinsPage/>},
+        {path: "/about-us/:alias", element: <AboutDetailPage/>},
     ]
     const [hideFooter, setHideFooter] = useState(false);
     const [hideHeader, setHideHeader] = useState(false);

@@ -48,9 +48,11 @@
     object-position: center;
 }
 
-.postCard a:hover svg{
-    color: var(--primary);
-    transition: 0.5s;
+@media (hover: hover) and (pointer: fine) {
+    .postCard a:hover svg {
+        color: var(--primary);
+        transition: 0.5s;
+    }
 }
 
 @media (max-width: 1000px) {

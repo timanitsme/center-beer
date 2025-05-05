@@ -24,9 +24,11 @@
     color: var(--txt-active);
 }
 
-.ordersSection a:hover p{
-    color: var(--primary);
-    transition: 0.5s;
+@media (hover: hover) and (pointer: fine) {
+    .ordersSection a:hover p {
+        color: var(--primary);
+        transition: 0.5s;
+    }
 }
 
 .headerRow{

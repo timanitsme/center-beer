@@ -63,8 +63,10 @@
     border-radius: 5px;
 }
 
-.optionItem:hover {
-    background-color: var(--third);
+@media (hover: hover) and (pointer: fine) {
+    .optionItem:hover {
+        background-color: var(--third);
+    }
 }
 
 @media (max-width: 1000px) {

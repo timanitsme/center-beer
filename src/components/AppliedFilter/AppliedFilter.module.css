@@ -8,13 +8,15 @@
     cursor: pointer;
 }
 
-.filter:hover{
-    background: var(--primary-semi-transparent);
-    transition: 0.5s;
-}
+@media (hover: hover) and (pointer: fine) {
+    .filter:hover {
+        background: var(--primary-semi-transparent);
+        transition: 0.5s;
+    }
 
-.filter.secondary:hover{
-    background: var(--third);
+    .filter.secondary:hover {
+        background: var(--third);
+    }
 }
 
 .filter.secondary{

@@ -95,10 +95,6 @@
     color: var(--txt-secondary);
 }
 
-.mark div svg:hover{
-    color: var(--txt-active);
-}
-
 .mark div{
     display: flex;
     align-items: center;
@@ -109,10 +105,6 @@
     color: var(--primary);
 }
 
-.aComment:hover{
-    color: var(--primary-semi-transparent);
-}
-
 .comment p{
     font-weight: 200;
     font-size: 0.9vw;
@@ -121,6 +113,16 @@
 .contentRow{
     display: flex;
     gap: 15px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .mark div svg:hover{
+        color: var(--txt-active);
+    }
+
+    .aComment:hover{
+        color: var(--primary-semi-transparent);
+    }
 }
 
 @media (max-width: 1300px) {

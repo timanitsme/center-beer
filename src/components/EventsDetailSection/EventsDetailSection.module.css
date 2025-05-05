@@ -107,10 +107,6 @@
     color: var(--icon-added);
 }
 
-.aIconButton:hover{
-    color: var(--txt-primary);
-}
-
 .blogCard{
     padding: 10px;
     border-radius: 10px;
@@ -145,6 +141,12 @@
 .cardImg{
     border-radius: 5px;
     cursor: pointer;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .aIconButton:hover {
+        color: var(--txt-primary);
+    }
 }
 
 

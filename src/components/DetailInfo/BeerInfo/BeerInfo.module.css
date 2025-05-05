@@ -145,12 +145,6 @@
     text-decoration-color: var(--txt-primary);
 }
 
-.aUnderlinedIconButton:hover{
-    color: var(--primary);
-    text-decoration-color: var(--primary);
-    transition: 0.5s;
-}
-
 .circle{
     width: 4px;
     height: 4px;
@@ -188,10 +182,6 @@
 .aIconButton.added svg{
     fill: var(--icon-added);
     color: var(--icon-added);
-}
-
-.aIconButton:hover{
-    color: var(--txt-primary);
 }
 
 .barInfo h2{
@@ -255,6 +245,18 @@
     font-size: 0.9vw;
     font-weight: 200;
     display: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .aUnderlinedIconButton:hover {
+        color: var(--primary);
+        text-decoration-color: var(--primary);
+        transition: 0.5s;
+    }
+
+    .aIconButton:hover{
+        color: var(--txt-primary);
+    }
 }
 
 @media (max-width: 1000px) {

@@ -191,13 +191,15 @@
     fill: var(--icon-added);
 }
 
-.favButton:hover.added svg{
-    color: var(--icon-added);
-}
+@media (hover: hover) and (pointer: fine) {
+    .favButton:hover.added svg {
+        color: var(--icon-added);
+    }
 
-.favButton:hover svg{
-    color: var(--primary);
-    transition: 0.5s;
+    .favButton:hover svg {
+        color: var(--primary);
+        transition: 0.5s;
+    }
 }
 
 @media (max-width: 900px) {

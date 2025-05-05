@@ -8,8 +8,12 @@
     align-items: center;
 }
 
-.customCheckbox:hover{
-    cursor: pointer;
+
+
+@media (hover: hover) and (pointer: fine) {
+    .customCheckbox:hover{
+        cursor: pointer;
+    }
 }
 
 .customCheckbox p{

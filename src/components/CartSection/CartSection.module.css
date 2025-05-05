@@ -157,16 +157,6 @@
     color: var(--txt-secondary);
 }
 
-.method:hover{
-    background: var(--third);
-    transition: 0.5s;
-}
-
-.method:hover svg{
-    scale: 1.1;
-    transition: 0.5s;
-}
-
 .method.active{
     background: var(--third);
     border: 1px solid var(--primary);
@@ -256,12 +246,6 @@
     cursor: pointer;
 }
 
-.plusMinusButton:hover{
-    background: var(--txt-secondary);
-    transition: 0.5s;
-
-}
-
 .centerGood{
     align-self: center;
 }
@@ -282,11 +266,6 @@
 
 .trashButton{
     align-self: center;
-}
-
-.trashButton svg:hover{
-    color: var(--txt-active);
-    transition: 0.5s;
 }
 
 .goodDescription{
@@ -316,6 +295,28 @@
 .row span{
     min-height: 14px;
     min-width: 20px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .method:hover {
+        background: var(--third);
+        transition: 0.5s;
+    }
+
+    .method:hover svg {
+        scale: 1.1;
+        transition: 0.5s;
+    }
+
+    .plusMinusButton:hover{
+        background: var(--txt-secondary);
+        transition: 0.5s;
+    }
+
+    .trashButton svg:hover{
+        color: var(--txt-active);
+        transition: 0.5s;
+    }
 }
 
 @media (max-width: 1250px) {

@@ -1,5 +1,5 @@
-import NavChain from "../../components/Navigation/NavChain/NavChain.jsx";
-import PartnersSection from "../../components/PartnersSection/PartnersSection.jsx";
+import NavChain from "../../../components/Navigation/NavChain/NavChain.jsx";
+import PartnersSection from "../../../components/PartnersSection/PartnersSection.jsx";
 
 export default function AboutPage(){
     const paths = [

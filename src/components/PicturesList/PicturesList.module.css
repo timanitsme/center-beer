@@ -54,9 +54,11 @@
     position: absolute;
 }
 
-.imageWrapper:hover svg{
-    color: var(--primary-semi-transparent);
-    transition: 0.5s;
+@media (hover: hover) and (pointer: fine) {
+    .imageWrapper:hover svg {
+        color: var(--primary-semi-transparent);
+        transition: 0.5s;
+    }
 }
 
 .video{

@@ -70,9 +70,11 @@
     color: var(--fg);
 }
 
-.scrollButton:hover svg{
-    color: var(--primary);
-    transition: 0.5s;
+@media (hover: hover) and (pointer: fine) {
+    .scrollButton:hover svg {
+        color: var(--primary);
+        transition: 0.5s;
+    }
 }
 
 .datesContainer{

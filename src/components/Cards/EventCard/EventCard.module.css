@@ -75,16 +75,11 @@
     color: var(--primary);
 }
 
-
-
-
 @media (max-width: 1000px) {
     .blogCard p{
         font-size: 10px;
     }
 }
-
-
 
 @media (max-width: 1050px) {
     .imageContainer{

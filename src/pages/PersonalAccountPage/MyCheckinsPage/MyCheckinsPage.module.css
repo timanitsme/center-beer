@@ -20,9 +20,11 @@
     cursor: pointer;
 }
 
-.arrowButton:hover{
-    background: var(--primary-semi-transparent);
-    transition: 0.5s;
+@media (hover: hover) and (pointer: fine) {
+    .arrowButton:hover {
+        background: var(--primary-semi-transparent);
+        transition: 0.5s;
+    }
 }
 
 .arrowButton svg{

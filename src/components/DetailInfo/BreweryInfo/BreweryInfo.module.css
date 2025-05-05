@@ -102,11 +102,7 @@
     text-decoration-color: var(--txt-primary);
 }
 
-.aUnderlinedIconButton:hover{
-    color: var(--primary);
-    text-decoration-color: var(--primary);
-    transition: 0.5s;
-}
+
 
 .circle{
     width: 4px;
@@ -138,10 +134,6 @@
     color: var(--icon-added);
 }
 
-.aIconButton:hover{
-    color: var(--txt-primary);
-}
-
 .barInfo h2{
     text-align: right;
     align-self: flex-end;
@@ -156,6 +148,18 @@
     margin: 0 auto;
     display: none;
     align-self: center;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .aIconButton:hover{
+        color: var(--txt-primary);
+    }
+
+    .aUnderlinedIconButton:hover{
+        color: var(--primary);
+        text-decoration-color: var(--primary);
+        transition: 0.5s;
+    }
 }
 
 @media (max-width: 1000px) {

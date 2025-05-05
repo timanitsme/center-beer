@@ -78,12 +78,6 @@
     text-decoration-color: var(--txt-secondary);
 }
 
-.dottedA:hover{
-    color: var(--txt-active);
-    text-decoration-color: var(--txt-active);
-    transition: 0.5s;
-}
-
 .underline{
     text-decoration-line: underline;
 }
@@ -103,12 +97,6 @@
 .contactsRow h2{
     text-align: left;
     text-transform: none;
-}
-
-.contactsRow h2:hover{
-    color: var(--primary);
-    cursor: pointer;
-    transition: 0.5s;
 }
 
 .contactsCol{
@@ -133,6 +121,20 @@
 .row{
     display: flex;
     gap: 15px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .dottedA:hover{
+        color: var(--txt-active);
+        text-decoration-color: var(--txt-active);
+        transition: 0.5s;
+    }
+
+    .contactsRow h2:hover {
+        color: var(--primary);
+        cursor: pointer;
+        transition: 0.5s;
+    }
 }
 
 @media (max-width: 1000px) {

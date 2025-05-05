@@ -119,16 +119,8 @@
     color: var(--primary);
 }
 
-.aComment:hover{
-    color: var(--primary-semi-transparent);
-}
-
 .mark div svg{
     color: var(--txt-secondary);
-}
-
-.mark div svg:hover{
-    color: var(--txt-active);
 }
 
 .mark div{
@@ -152,7 +144,15 @@
     cursor: initial !important;
 }
 
+@media (hover: hover) and (pointer: fine) {
+    .aComment:hover {
+        color: var(--primary-semi-transparent);
+    }
 
+    .mark div svg:hover{
+        color: var(--txt-active);
+    }
+}
 
 @media (max-width: 1300px) {
     .minBottles svg{

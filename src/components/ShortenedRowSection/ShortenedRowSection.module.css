@@ -28,17 +28,19 @@
     cursor: pointer;
 }
 
-.showMore:hover{
-    background: var(--third);
-    transition: 0.5s;
-}
-
 .showMore p{
     width: max-content;
     text-align: center;
     color: var(--fg);
     font-weight: 200;
     font-size: 0.9vw;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .showMore:hover {
+        background: var(--third);
+        transition: 0.5s;
+    }
 }
 
 @media (max-width: 1000px) {

@@ -31,12 +31,6 @@
     align-self: center;
 }
 
-.avatarWrapper:hover .updateAvatar{
-    opacity: 1;
-    visibility: visible;
-    transition: 0.5s;
-}
-
 .updateAvatar svg{
     width: 35px;
     height: fit-content;
@@ -65,10 +59,6 @@
 .updateAvatarMobile svg{
     width: 15px;
     height: fit-content;
-}
-
-.updateAvatarMobile svg:hover, .updateAvatar svg:hover{
-    color: var(--txt-active);
 }
 
 .accountSection p{
@@ -131,16 +121,28 @@
     align-items: center;
 }
 
-.innerList a:hover{
-    color: var(--txt-active);
-    transition: 0.5s;
-}
 
-.hoverPrimary:hover{
-    color: var(--primary);
-    transition: 0.5s;
-}
+@media (hover: hover) and (pointer: fine) {
+    .avatarWrapper:hover .updateAvatar {
+        opacity: 1;
+        visibility: visible;
+        transition: 0.5s;
+    }
 
+    .updateAvatarMobile svg:hover, .updateAvatar svg:hover{
+        color: var(--txt-active);
+    }
+
+    .innerList a:hover{
+        color: var(--txt-active);
+        transition: 0.5s;
+    }
+
+    .hoverPrimary:hover{
+        color: var(--primary);
+        transition: 0.5s;
+    }
+}
 
 @media (max-width: 1000px) {
     .accountSection{

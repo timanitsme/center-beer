@@ -42,9 +42,11 @@
     height: 20px;
 }
 
-.modalHeader svg:hover{
-    color: var(--primary);
-    transition: 0.5s;
+@media (hover: hover) and (pointer: fine) {
+    .modalHeader svg:hover {
+        color: var(--primary);
+        transition: 0.5s;
+    }
 }
 
 .title{

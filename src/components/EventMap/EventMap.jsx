@@ -38,7 +38,7 @@ export default function EventMap({svg, markers, selectedMarker, setSelectedMarke
         <TransformWrapper
             initialScale={isMobile? 1.1: 1}
             minScale={0.25}
-            maxScale={3}
+            maxScale={7}
             panning={{ disabled: false }}
             wheel={{ disabled: false }}
             pinch={{ disabled: false }}

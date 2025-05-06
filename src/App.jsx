@@ -42,6 +42,7 @@ import {initializeAuthState} from "./store/services/authSlice.js";
 import MyFavoritePage from "./pages/PersonalAccountPage/MyFavoritePage/MyFavoritePage.jsx";
 import MyBookmarksPage from "./pages/PersonalAccountPage/MyBookmarksPage/MyBookmarksPage.jsx";
 import AboutDetailPage from "./pages/About/AboutDetailPage/AboutDetailPage.jsx";
+import DocumentDetailPage from "./pages/Documents/DocumentDetailPage/DocumentDetailPage.jsx";
 
 function App() {
     const dispatch = useDispatch();
@@ -91,6 +92,7 @@ function App() {
         {path: "/will-be-soon", element: <WillBeSoonPage/>},
         {path: "/my-check-ins/:alias", element: <MyCheckinsPage/>},
         {path: "/about-us/:alias", element: <AboutDetailPage/>},
+        {path: "/documents/:alias", element: <DocumentDetailPage/>, hideFooter: true},
     ]
     const [hideFooter, setHideFooter] = useState(false);
     const [hideHeader, setHideHeader] = useState(false);

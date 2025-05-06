@@ -15,8 +15,8 @@ import MusicianPartner from "../../assets/partners/musician-partner.webp"
 
 export default function PartnersSection(){
     const postCards = [
-        {title: "Заведениям", image: BarPartner, description: "Барам, ресторанам, кафе и магазинам"},
-        {title: "Производителям", image: BreweryPartner, description: "Пивоварням, импортерам, владельцам брендов"},
+        {title: "Заведениям", image: BarPartner, description: "Барам, ресторанам, кафе и магазинам", path: "/about-us/bars"},
+        {title: "Производителям", image: BreweryPartner, description: "Пивоварням, импортерам, владельцам брендов", path: "/about-us/breweries"},
         {title: "Дистрибьюторам", image: DistributorPartner, description: "Дистрибьюторам, мелким и крупным оптовикам"},
         {title: "Специалистам отрасли", image: MusicianPartner, description: "Музыкантам, ведущим, маркетологам, СММ специалистам, фуд фотографам и т.д."}
     ]
@@ -49,7 +49,7 @@ export default function PartnersSection(){
             <div className={styles.postsSection}>
                 <div className={styles.postsContainer}>
                     {postCards.map((card, index) => {
-                        return(<PartnerCard key={index} title={card.title} image={card.image} description={card.description}/>)
+                        return(<PartnerCard key={index} title={card.title} image={card.image} description={card.description} path={card.path}/>)
                     })}
 
                 </div>

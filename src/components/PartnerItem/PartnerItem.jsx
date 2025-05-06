@@ -1,44 +1,33 @@
 import {useNavigate} from "react-router-dom";
 import styles from "./PartnerItem.module.css";
-import IconButton from "../Buttons/IconButton/IconButton.jsx";
 import PlayButtonIcon from "../../assets/play-button-icon.svg?react"
-import MCE from "../../assets/partners/brewery-partner-preview.webp";
-import {FaBullhorn, FaChartLine, FaGlobe, FaVideo} from "react-icons/fa6";
-import {BsGear} from "react-icons/bs";
-import {FaAd, FaBeer, FaMapMarkerAlt, FaSearch, FaShoppingCart} from "react-icons/fa";
+import SingleVideoModal from "../Modals/SingleVideoModal/SingleVideoModal.jsx";
+import {useState} from "react";
 
-export default function PartnerItem(){
+export default function PartnerItem({items, mainImage, title, video}){
     const navigate = useNavigate()
-
-    const items = [
-        { Icon: FaGlobe, text: 'Стильный сайт с SEO оптимизацией' },
-        { Icon: BsGear, text: 'Интуитивно понятное управление' },
-        { Icon: FaSearch, text: 'Удобный поиск(фильтры) по пиву' },
-        { Icon: FaVideo, text: 'Видео-визитки вашего пива' },
-        { Icon: FaMapMarkerAlt, text: 'Все видят в онлайне где ваше пиво продаётся' },
-        { Icon: FaBullhorn, text: 'О ваших мероприятиях узнает вся аудитория' },
-        { Icon: FaChartLine, text: 'Увеличение продаж за счет доступности' },
-        { Icon: FaBeer, text: 'Заказы напрямую из бара' },
-        { Icon: FaShoppingCart, text: 'Дополнительные продажи через функцию предзаказа в заведениях' },
-        { Icon: FaAd, text: 'Увеличение узнаваемости за счет рекламы' },
-    ];
+    const [showVideo, setShowVideo] = useState(false)
+    const [src, setSrc] = useState(video)
 
 
     return(
-        <div className={styles.itemContainer}>
-            <h2>Современный сайт, с простым управлением, который приводит клиентов из всех регионов и позволяет в реальном времени видеть где продается ваше пиво – это еще не все что мы предлагаем пивоварням</h2>
-            <div className={styles.videoContainer}>
-                <PlayButtonIcon/>
-                <img src={MCE} className={styles.mainImage} alt=""></img>
+        <>
+            <div className={styles.itemContainer}>
+                <h2>{title}</h2>
+                <div className={styles.videoContainer} onClick={() => setShowVideo(true)}>
+                    <PlayButtonIcon/>
+                    <img src={mainImage} className={styles.mainImage} alt=""></img>
+                </div>
+                <div className={styles.iconRow}>
+                    {items.map((item, index) => (
+                        <div key={index} className={styles.iconItem}>
+                            <div className={styles.iconBox}><item.Icon/></div>
+                            <p className={styles.iconText}>{item.text}</p>
+                        </div>
+                    ))}
+                </div>
             </div>
-            <div className={styles.iconRow}>
-                {items.map((item, index) => (
-                    <div key={index} className={styles.iconItem}>
-                        <div className={styles.iconBox}><item.Icon/></div>
-                        <p className={styles.iconText}>{item.text}</p>
-                    </div>
-                ))}
-            </div>
-        </div>
+            <SingleVideoModal show={showVideo} setShow={setShowVideo} src={src} setSrc={setSrc} />
+        </>
     )
 }

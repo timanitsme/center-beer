@@ -10,7 +10,7 @@
 }
 
 .sidebar.expanded {
-    width: 500px;
+    width: 600px;
     transition: width 0.3s;
 }
 
@@ -44,8 +44,37 @@
     transition: background-color 0.5s;
 }
 
+.locButton{
+    background: var(--primary);
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 2px solid var(--primary);
+    transition: border-color 0.5s;
+}
+
+.locButton svg{
+    color: var(--section-bg)!important;
+    height: 20px;
+    width: fit-content;
+}
+
 
 @media (hover: hover) and (pointer: fine) {
+    .locButton:hover{
+        background: var(--section-bg);
+        transition: 0.5s;
+    }
+
+    .locButton:hover svg{
+        color: var(--primary)!important;
+        transition: 0.5s;
+    }
+
+    .brewery:hover .locButton{
+        border-color: var(--section-bg);
+        transition: border-color 0.5s;
+    }
+
     .brewery:hover{
         background: var(--primary);
         transition: 0.5s;
@@ -135,28 +164,25 @@
 }
 
 .beerCardsRow {
-    display: flex;
-    overflow-x: scroll;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     gap: 10px;
-    padding: 10px;
-    align-items: stretch;
+    overflow-y: auto;
     scrollbar-width: thin;
     scrollbar-color: var(--primary) transparent;
-    -ms-overflow-style: scrollbar;
-    scrollbar-gutter: stable;
 }
 
-.beerCardsRow::-webkit-scrollbar {
+.sidebarContent::-webkit-scrollbar {
     width: 8px;
     display: block;
 }
 
-.beerCardsRow::-webkit-scrollbar-thumb {
+.sidebarContent::-webkit-scrollbar-thumb {
     background-color: var(--primary);
     border-radius: 4px;
 }
 
-.beerCardsRow::-webkit-scrollbar-track {
+.sidebarContent::-webkit-scrollbar-track {
     background-color: transparent;
 }
 

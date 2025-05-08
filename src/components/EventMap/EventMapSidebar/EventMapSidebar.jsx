@@ -7,8 +7,11 @@ import {useNavigate} from "react-router-dom";
 import BottledBeerCard from "../../Cards/BottledBeerCard/BottledBeerCard.jsx";
 import FestBeerCard from "../../Cards/BottledBeerCard/FestBeerCard.jsx";
 import ArrowLeftIcon from "../../../assets/arrow-left-icon.svg?react"
+import Search from "../../Inputs/Search/Search.jsx";
+import LocationIcon from "../../../assets/location-filled-icon.svg?react"
+import IconButton from "../../Buttons/IconButton/IconButton.jsx";
 
-export default function EventMapSidebar({selectedMarker, setSelectedMarker, breweries, isMobile=false}){
+export default function EventMapSidebar({selectedMarker, setSelectedMarker, breweries, setLightMarker, isMobile=false}){
     const brewery = breweries[selectedMarker]
     const navigate = useNavigate()
 
@@ -34,10 +37,9 @@ export default function EventMapSidebar({selectedMarker, setSelectedMarker, brew
             state: { from: location.pathname }
         });
     };
-
     return(
         <div className={`${styles.sidebar} ${selectedMarker? styles.expanded: ''} ${isMobile? styles.mobile: ""}`}>
-            {selectedMarker &&
+            {selectedMarker && selectedMarker !==-1 &&
                 <div className={styles.sidebarContent}>
                     <div className={styles.buttonsRow}>
                         <button className={styles.closeButton} onClick={() => setSelectedMarker(null)}>
@@ -63,6 +65,34 @@ export default function EventMapSidebar({selectedMarker, setSelectedMarker, brew
                             }
                         })}
                     </div>
+                </div>
+            }
+            {selectedMarker && selectedMarker ===-1 &&
+                <div className={styles.sidebarContent}>
+                    <div className={styles.buttonsRow}>
+                        <button className={styles.closeButton} onClick={() => setSelectedMarker(null)}>
+                            <ArrowLeftIcon/>
+                        </button>
+                    </div>
+                    <div style={{height: "20px"}}></div>
+                    <Search text="Поиск пивоварни" suggestions={["Русбир", "Грузинская лавка"]}></Search>
+                    {Object.keys(breweries).map((brewIndex) => {
+                        return(
+                            <div key={brewIndex} className={styles.brewery} onClick={() => goToBreweryPage(breweries[brewIndex]?.brewery_alias)}>
+                                <div className={styles.imgContainer}>
+                                    <img src={breweries[brewIndex]?.brewery_logo} alt=""/>
+                                </div>
+                                <div className={styles.description}>
+                                    <p className={styles.title} dangerouslySetInnerHTML={{__html: breweries[brewIndex].brewery_name}}></p>
+                                </div>
+                                <div className={styles.toBrew}>
+                                    <div className={styles.locButton} onClick={(e) => {e.stopPropagation(); setSelectedMarker(null); setLightMarker(brewIndex);}}>
+                                        <LocationIcon/>
+                                    </div>
+                                </div>
+                            </div>
+                        )
+                    })}
                 </div>
             }
         </div>

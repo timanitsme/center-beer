@@ -13,7 +13,7 @@ export default function SimpleCatalogSection({cards, CardComponent, wideColumns=
         <div className={styles.menuSection}>
             <div className={wideColumns ? styles.sectionContentWide : styles.sectionContent}>
                 {cards.map((cardInfo) => {
-                    return (<CardComponent key={cardInfo.name} cardInfo={cardInfo} title={title}/>)
+                    return (<CardComponent key={cardInfo?.id    } cardInfo={cardInfo} title={title}/>)
                 })}
             </div>
             {totalItems && cards.length < totalItems && <div className={styles.loadMoreSection}><SimpleButton text="Загрузить еще" style="third" onClick={handleShowMore}></SimpleButton></div>}

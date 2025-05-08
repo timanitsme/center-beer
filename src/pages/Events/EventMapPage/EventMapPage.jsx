@@ -9,6 +9,7 @@ import SingleImageModal from "../../../components/Modals/SingleImageModal/Single
 
 export default function EventMapPage({setHideFooter}){
     const [selectedMarker, setSelectedMarker] = useState(null)
+    const [lightMarker, setLightMarker] = useState(null)
     const {data, isLoading, error} = useGetFestQuery(1)
     const [showModal, setShowModal] = useState(false)
     const markers = [
@@ -65,9 +66,10 @@ export default function EventMapPage({setHideFooter}){
         <div className="content" style={{minHeight: "600px", display: "flex"}}>
             {data && !isLoading && !error &&
               <>
-                  <EventMapSidebar selectedMarker={selectedMarker} setSelectedMarker={setSelectedMarker} breweries={data.data.breweries}/>
+                  <EventMapSidebar selectedMarker={selectedMarker} setSelectedMarker={setSelectedMarker} breweries={data.data.breweries} setLightMarker={setLightMarker}/>
                   <div className={"map-content"} style={{ width: '100%', height: 'calc(100vh - 95px)', overflow: "hidden", touchAction: "pinch-zoom" }}>
-                      {EventMapWithBg && <EventMap svg={festMapString()} markers={markers} selectedMarker={selectedMarker} setSelectedMarker={setSelectedMarker} breweries={data.data.breweries} setShowModal={setShowModal}/>}
+                      {EventMapWithBg && <EventMap svg={festMapString()} markers={markers} selectedMarker={selectedMarker} setSelectedMarker={setSelectedMarker} breweries={data.data.breweries} setShowModal={setShowModal}
+                      lightMarker={lightMarker} setLightMarker={setLightMarker}/>}
                   </div>
               </>
             }

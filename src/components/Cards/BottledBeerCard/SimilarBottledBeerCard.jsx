@@ -16,7 +16,28 @@ export default function SimilarBottledBeerCard({cardInfo}){
     const [imageSrc, setImageSrc] = useState(cardInfo?.photo || cardImagePlaceholder)
     const navigate = useNavigate()
     const goToBeerPage = (alias) => navigate(`/beer/${alias}/`);
+    const [triggerAddToCuddy, { isLoading: addToCuddyIsLoading }] = useLazyAddBeerToCuddyQuery();
+    const [triggerAddToFav, { isLoading: addToFavIsLoading }] = useLazyAddBeerToFavQuery();
 
+    const handleAddToCuddy = async (event, id) => {
+        event.preventDefault();
+        try {
+            await triggerAddToCuddy(id).unwrap();
+            setCardBookmarked(!cardBookmarked)
+        } catch (err) {
+            console.log(`add to cuddy error: ${err}`)
+        }
+    }
+
+    const handleAddToFav = async (event, id) => {
+        event.preventDefault();
+        try {
+            await triggerAddToFav(id).unwrap();
+            setCardFav(!cardFav)
+        } catch (err) {
+            console.log(`add to fav error: ${err}`)
+        }
+    }
 
     return(
         <div className={styles.card}>
@@ -27,14 +48,14 @@ export default function SimilarBottledBeerCard({cardInfo}){
                         <p className={styles.textActive}>{[cardInfo?.brewery_name, cardInfo?.city, cardInfo?.country].join(", ")}</p>
                     </div>
                     <div>
-                        <a onClick={() => setCardBookmarked(!cardBookmarked)} className={`${styles.bookMarkButton} ${cardBookmarked && styles.added}`}><BookMarkIcon/></a>
+                        <a onClick={(e) => handleAddToCuddy(e, cardInfo?.id)} className={`${styles.bookMarkButton} ${cardBookmarked && styles.added}`}><BookMarkIcon/></a>
                         {cardInfo.rating && <p className={styles.ratingText}><BottleIcon/> ({cardInfo.rating.toFixed(1)})</p>}
                     </div>
 
                 </div>
                 <div className={styles.imgContainer}>
                     <img src={imageSrc} onClick={() => goToBeerPage(cardInfo?.alias || cardInfo?.beer_alias)} onError={() => setImageSrc(cardImagePlaceholder)} alt=""/>
-                    <a onClick={() => setCardFav(!cardFav)} className={`${styles.favButton} ${cardFav? styles.added : ''}`}><FavIcon/></a>
+                    <a onClick={(e) => handleAddToFav(e, cardInfo?.id)} className={`${styles.favButton} ${cardFav? styles.added : ''}`}><FavIcon/></a>
                 </div>
                 {cardInfo.style && <p className={styles.textActive}><span style={{color: "var(--txt-secondary)"}}>Стиль:</span> {cardInfo.style}</p>}
                 <div className={styles.characteristics}>

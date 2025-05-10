@@ -11,7 +11,28 @@ export default function DraftBeerCard({cardInfo}){
     const [cardFav, setCardFav] = useState(cardInfo.is_liked || false);
 
     const formatNumber = (num) => Number(num).toString()
+    const [triggerAddToCuddy, { isLoading: addToCuddyIsLoading }] = useLazyAddBeerToCuddyQuery();
+    const [triggerAddToFav, { isLoading: addToFavIsLoading }] = useLazyAddBeerToFavQuery();
 
+    const handleAddToCuddy = async (event, id) => {
+        event.preventDefault();
+        try {
+            await triggerAddToCuddy(id).unwrap();
+            setCardBookmarked(!cardBookmarked)
+        } catch (err) {
+            console.log(`add to cuddy error: ${err}`)
+        }
+    }
+
+    const handleAddToFav = async (event, id) => {
+        event.preventDefault();
+        try {
+            await triggerAddToFav(id).unwrap();
+            setCardFav(!cardFav)
+        } catch (err) {
+            console.log(`add to fav error: ${err}`)
+        }
+    }
 
     return(
         <div className={styles.card}>
@@ -22,7 +43,7 @@ export default function DraftBeerCard({cardInfo}){
                         <p className={styles.textActive}>{cardInfo?.brewery}</p>
                         <p className={styles.textMedium}><span style={{color: "var(--txt-secondary)"}}>Стиль:</span> {cardInfo?.style}</p>
                     </div>
-                    <a onClick={() => setCardBookmarked(!cardBookmarked)} className={`${styles.bookMarkButton} ${cardBookmarked && styles.added}`}><BookMarkIcon/></a>
+                    <a onClick={(e) => handleAddToCuddy(e, cardInfo?.id)} className={`${styles.bookMarkButton} ${cardBookmarked && styles.added}`}><BookMarkIcon/></a>
                 </div>
                 <div className={styles.hrtLine}/>
                 <div className={styles.characteristics}>
@@ -44,7 +65,7 @@ export default function DraftBeerCard({cardInfo}){
             <div className={styles.cardFooter}>
                 <p className={styles.cardTextPrimary}>{Number(cardInfo.price).toLocaleString("ru-Ru")}₽</p>
                 <IconButton text="Купить"><BottlesPairIcon/></IconButton>
-                <a onClick={() => setCardFav(!cardFav)} className={`${styles.favButton} ${cardFav? styles.added : ''}`}><FavIcon/></a>
+                <a onClick={(e) => handleAddToFav(e, cardInfo?.id)} className={`${styles.favButton} ${cardFav? styles.added : ''}`}><FavIcon/></a>
             </div>
         </div>
     )

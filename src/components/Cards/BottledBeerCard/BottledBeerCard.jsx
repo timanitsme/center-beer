@@ -8,12 +8,39 @@ import PropTypes from "prop-types";
 import BottleIcon from "../../../assets/bottle-icon.svg?react"
 import {useNavigate} from "react-router-dom";
 import cardImagePlaceholder from "../../../assets/placeholders/card-image-placeholder.svg"
+import {
+    useLazyAddBeerToCuddyQuery, useLazyAddBeerToFavQuery
+} from "../../../store/services/centerBeer.js";
+import {logout} from "../../../store/services/authSlice.js";
+import {useDispatch} from "react-redux";
 
 export default function BottledBeerCard({cardInfo}){
     const [cardBookmarked, setCardBookmarked] = useState(cardInfo.is_favor || false);
     const [cardFav, setCardFav] = useState(cardInfo.is_liked || false);
     const navigate = useNavigate()
     const goToBeerPage = (alias) => navigate(`/beer/${alias}/`)
+    const [triggerAddToCuddy, { isLoading: addToCuddyIsLoading }] = useLazyAddBeerToCuddyQuery();
+    const [triggerAddToFav, { isLoading: addToFavIsLoading }] = useLazyAddBeerToFavQuery();
+
+    const handleAddToCuddy = async (event, id) => {
+        event.preventDefault();
+        try {
+            await triggerAddToCuddy(id).unwrap();
+            setCardBookmarked(!cardBookmarked)
+        } catch (err) {
+            console.log(`add to cuddy error: ${err}`)
+        }
+    }
+
+    const handleAddToFav = async (event, id) => {
+        event.preventDefault();
+        try {
+            await triggerAddToFav(id).unwrap();
+            setCardFav(!cardFav)
+        } catch (err) {
+            console.log(`add to fav error: ${err}`)
+        }
+    }
 
     const formatNumber = (num) => Number(num).toString()
     const [imageSrc, setImageSrc] = useState(cardInfo?.photo || cardImagePlaceholder)
@@ -27,14 +54,14 @@ export default function BottledBeerCard({cardInfo}){
                         <p className={styles.textActive}>{cardInfo?.brewery}{cardInfo?.brewery && cardInfo?.country && ","} {cardInfo?.country}</p>
                     </div>
                     <div>
-                        <a onClick={() => setCardBookmarked(!cardBookmarked)} className={`${styles.bookMarkButton} ${cardBookmarked && styles.added}`}><BookMarkIcon/></a>
+                        <a onClick={(e) => handleAddToCuddy(e, cardInfo?.id)} className={`${styles.bookMarkButton} ${cardBookmarked && styles.added}`}><BookMarkIcon/></a>
                         {cardInfo?.rating && <p className={styles.ratingText}><BottleIcon/> ({cardInfo?.rating.toFixed(1)})</p>}
                     </div>
 
                 </div>
                 <div className={`${styles.imgContainer} ${imageSrc === cardImagePlaceholder? styles.third : ''}`}>
                     <img src={imageSrc} onError={() => setImageSrc(cardImagePlaceholder)} onClick={() => goToBeerPage(cardInfo?.alias || cardInfo?.beer_alias)} alt=""/>
-                    <a onClick={() => setCardFav(!cardFav)} className={`${styles.favButton} ${cardFav? styles.added : ''}`}><FavIcon/></a>
+                    <a onClick={(e) => handleAddToFav(e, cardInfo?.id)} className={`${styles.favButton} ${cardFav? styles.added : ''}`}><FavIcon/></a>
                 </div>
                 {cardInfo?.style && <p className={styles.textActive}><span style={{color: "var(--txt-secondary)"}}>Стиль:</span> {cardInfo?.style}</p>}
                 <div className={styles.characteristics}>

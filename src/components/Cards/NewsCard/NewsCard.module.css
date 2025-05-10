@@ -36,15 +36,21 @@
 }
 
 .imageContainer{
-    align-self: center;
-    display: flex;
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    width: 100%;
+    height: 200px;
     overflow: hidden;
+    border-radius: 5px;
 }
 
 .cardImg{
-    border-radius: 5px;
-    cursor: pointer;
     width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 5px;
 }
 
 .tagsRow{
@@ -79,15 +85,8 @@
 
 
 
-@media (max-width: 1050px) {
+@media (max-width: 400px) {
     .imageContainer{
-        max-width: 200px;
-    }
-}
-
-@media (max-width: 500px) {
-    .cardImg{
-        max-width: 35vw;
-
+        height: 100px;
     }
 }

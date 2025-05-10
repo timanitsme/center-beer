@@ -10,6 +10,28 @@ export default function MinimalBottledBeerCardApi({cardInfo}){
     const [cardFav, setCardFav] = useState(cardInfo?.is_liked || false);
     const formatNumber = (num) => Number(num).toString()
     const [imageSrc, setImageSrc] = useState(cardInfo?.preview || cardImagePlaceholder)
+    const [triggerAddToCuddy, { isLoading: addToCuddyIsLoading }] = useLazyAddBeerToCuddyQuery();
+    const [triggerAddToFav, { isLoading: addToFavIsLoading }] = useLazyAddBeerToFavQuery();
+
+    const handleAddToCuddy = async (event, id) => {
+        event.preventDefault();
+        try {
+            await triggerAddToCuddy(id).unwrap();
+            setCardBookmarked(!cardBookmarked)
+        } catch (err) {
+            console.log(`add to cuddy error: ${err}`)
+        }
+    }
+
+    const handleAddToFav = async (event, id) => {
+        event.preventDefault();
+        try {
+            await triggerAddToFav(id).unwrap();
+            setCardFav(!cardFav)
+        } catch (err) {
+            console.log(`add to fav error: ${err}`)
+        }
+    }
 
     useEffect(() => {
         setImageSrc(cardInfo?.preview || cardImagePlaceholder);
@@ -21,13 +43,13 @@ export default function MinimalBottledBeerCardApi({cardInfo}){
                 <div className={styles.cardTop}>
                     <div></div>
                     <div>
-                        <a onClick={() => setCardBookmarked(!cardBookmarked)} className={`${styles.bookMarkButton} ${cardBookmarked && styles.added}`}><BookMarkIcon/></a>
+                        <a onClick={(e) => handleAddToCuddy(e, cardInfo?.id)} className={`${styles.bookMarkButton} ${cardBookmarked && styles.added}`}><BookMarkIcon/></a>
                     </div>
 
                 </div>
                 <div className={styles.imgContainer}>
                     <img src={imageSrc} onError={() => setImageSrc(cardImagePlaceholder)} alt=""/>
-                    <a onClick={() => setCardFav(!cardFav)} className={`${styles.favButton} ${cardFav? styles.added : ''}`}><FavIcon/></a>
+                    <a onClick={(e) => handleAddToFav(e, cardInfo?.id)} className={`${styles.favButton} ${cardFav? styles.added : ''}`}><FavIcon/></a>
                 </div>
                 <div className={styles.cardTop}>
                     <div className={styles.textContainer}>

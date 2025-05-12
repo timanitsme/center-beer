@@ -19,6 +19,7 @@ export const centerBeerApi = createApi({
                 if (feature_ids !== undefined) params.append('feature_ids', feature_ids);
                 if (only_opened !== undefined) params.append('only_opened', only_opened.toString())
                 if (sort_by !== undefined) params.append('sort_by', sort_by)
+                if (online_booking !== undefined) params.append('online_booking', online_booking)
                 return(`getBars?${params.toString()}`)
             }
         })),
@@ -66,7 +67,7 @@ export const centerBeerApi = createApi({
             }
         })),
         getBeerCountries: (builder.query({
-            query: (name) => {
+            query: ({name}) => {
                 const params = new URLSearchParams();
                 if (name !== undefined) params.append("name", name)
                 return(`getCountries?${params.toString()}`)
@@ -398,4 +399,5 @@ export const { useGetBarsQuery, useGetBarInfoQuery, useGetBarsFiltersQuery,
     useGetBreweryInfoQuery, useGetBreweryInfoByIdQuery, useGetFestQuery,
     useLazyAddBeerToCuddyQuery, useLazyAddBeerToFavQuery, useLazyAddBarToCuddyQuery,
     useLazyAddBarToFavQuery, useGetUsersFavBarsQuery, useGetUsersCuddyBarsQuery,
-    useGetUsersFavBeersQuery, useGetUsersCuddyBeersQuery, useGetNewsQuery} = centerBeerApi
+    useGetUsersFavBeersQuery, useGetUsersCuddyBeersQuery, useGetNewsQuery,
+    useGetBeerCountriesQuery, useGetBeerStylesQuery} = centerBeerApi

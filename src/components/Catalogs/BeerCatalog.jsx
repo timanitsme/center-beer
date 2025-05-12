@@ -9,14 +9,16 @@ import Toggle from "../Toggle/Toggle.jsx";
 import SimpleCatalogSection from "../CatalogSections/SimpleCatalogSection/SimpleCatalogSection.jsx";
 import PropTypes from "prop-types";
 import {
+    useGetBeerCountriesQuery,
     useGetBeersFiltersQuery,
-    useGetBeersQuery,
-    useGetCitiesQuery
+    useGetBeersQuery, useGetBeerStylesQuery,
+    useGetCitiesQuery, useGetStylesQuery
 } from "../../store/services/centerBeer.js";
 import FilterItem from "../ApiInputs/FilterItem/FilterItem.jsx";
 import BottledBeerCard from "../Cards/BottledBeerCard/BottledBeerCard.jsx";
 import {isMobile} from "react-device-detect";
 import FiltersModal from "../Modals/FiltersModal/FiltersModal.jsx";
+import HookedFilterComboBox from "../ApiInputs/FilterComboBox/HookedFilterComboBox.jsx";
 
 
 export default function BeerCatalog({filters = [], filterButtons = [], sections = [], withHeader = true, breweryId=null}){
@@ -57,7 +59,8 @@ export default function BeerCatalog({filters = [], filterButtons = [], sections 
         ibu_to: {title: "Горечь до", id: "ibu_to"},
         pack_vol: {title: "Объём", component: "checkboxSection", id: "vol_ids"},
         pack_type: {title: "Тара", component: "checkboxSection", id: "pack_ids"},
-
+        country_ids: {title: "Страна производства", id: "country_ids"},
+        style_ids: {title: "Стиль", id: "style_ids"}
     }
 
     const initialFilters = {
@@ -80,7 +83,7 @@ export default function BeerCatalog({filters = [], filterButtons = [], sections 
         ibu_to: '',
         vol_ids: [],
         pack_ids: [],
-
+        style_ids: []
     }
 
     // Фильтры, от изменения которых изменяется запрос
@@ -109,6 +112,10 @@ export default function BeerCatalog({filters = [], filterButtons = [], sections 
     const {data: beerData, isLoading: beerIsLoading, isFetching: beerIsFetching, error: beerError } = useGetBeersQuery(breweryId === null? filterValues: {...filterValues, brew_ids: breweryId});
     const {data: beerFilters, isLoading: beerFiltersIsLoading, error: beerFiltersError} = useGetBeersFiltersQuery(filterValues["city_id"] || 1)
     const {data: cities, isLoading: citiesIsLoading, error: citiesError} = useGetCitiesQuery()
+    const [debouncedCountryInput, setDebouncedCountryInput] = useState("")
+    const [debouncedStyleInput, setDebouncedStyleInput] = useState("")
+    const { data: countries, countriesIsLoading, countriesError } = useGetBeerCountriesQuery({name: debouncedCountryInput !== ""? debouncedCountryInput: undefined});
+    const { data: stylesFilter, stylesIsLoading, stylesError } = useGetBeerStylesQuery({name: debouncedStyleInput !== ""? debouncedStyleInput: undefined});
     const sortFilters =[
         {id: "popular", name: "Популярное"},
         {id: "price", name: "По цене"},
@@ -148,11 +155,29 @@ export default function BeerCatalog({filters = [], filterButtons = [], sections 
                     return acc;
                 }, {});
             }
+
+            if (countries && !countriesIsLoading && !countriesError){
+                nameMap["country_ids"] = countries.reduce((acc, country) => {
+                    acc[country.id.toString()] = `Страна: ${country.name}`;
+                    return acc;
+                }, {});
+            }
+
+            if (stylesFilter && !stylesIsLoading && !stylesError){
+                nameMap["style_ids"] = stylesFilter.reduce((acc, style) => {
+                    acc[style.id.toString()] = `Стиль: ${style.name}`;
+                    return acc;
+                }, {});
+            }
+
             // Обработка only_opened
             nameMap["with_reviews"] = {}// value: "Только открытые"
             setFilterNameMap(nameMap);
         }
-    }, [beerFilters, beerFiltersIsLoading, beerFiltersError, cities, citiesIsLoading, citiesError]);
+    }, [beerFilters, beerFiltersIsLoading, beerFiltersError,
+        cities, citiesIsLoading, citiesError,
+        countries, countriesIsLoading, countriesError,
+        stylesFilter, stylesIsLoading, stylesError]);
 
     // Подготовка фильтров
     const filtersConfig = useMemo(() => {
@@ -342,7 +367,10 @@ export default function BeerCatalog({filters = [], filterButtons = [], sections 
             <div className={styles.menuContent}>
                 {!isMobile && <div className={styles.menuFilters}>
                     <Search title="Поиск" reset={tabResetFilters["city_id"]} onChange={(value) => handleSingleFilterChange("city_id", value)}></Search>
-                    {filtersConfig.map((filter) => (
+                    <HookedFilterComboBox options={countries} isLoading={countriesIsLoading} error={countriesError} debouncedInput={debouncedCountryInput} setDebouncedInput={setDebouncedCountryInput} title={"Страна производства"}  fetchHook={useGetBeerCountriesQuery} onChange={(value) => handleFilterChange("country_ids", value)} reset={tabResetFilters["country_ids"]}/>
+                    <HookedFilterComboBox options={stylesFilter} isLoading={stylesIsLoading} error={stylesError} debouncedInput={debouncedStyleInput} setDebouncedInput={setDebouncedStyleInput} title={"Стиль"}  fetchHook={useGetStylesQuery} onChange={(value) => handleFilterChange("style_ids", value)} reset={tabResetFilters["style_ids"]}/>
+                    {
+                        filtersConfig.map((filter) => (
                         <FilterItem
                             key={filter.key}
                             filter={filter}

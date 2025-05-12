@@ -5,6 +5,7 @@ import BottlesPairIcon from "../../../assets/bottles-pair-icon.svg?react";
 import FavIcon from "../../../assets/fav-unfill-icon.svg?react";
 import {useState} from "react";
 import PropTypes from "prop-types"
+import {useLazyAddBeerToCuddyQuery, useLazyAddBeerToFavQuery} from "../../../store/services/centerBeer.js";
 
 export default function DraftBeerCard({cardInfo}){
     const [cardBookmarked, setCardBookmarked] = useState(cardInfo.is_favor || false);

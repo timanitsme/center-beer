@@ -17,6 +17,7 @@ import ComboBox from "../ApiInputs/ComboBox/ComboBox.jsx";
 import Toggle from "../Toggle/Toggle.jsx";
 import {isMobile} from "react-device-detect";
 import FiltersModal from "../Modals/FiltersModal/FiltersModal.jsx";
+import SingleCheckBox from "../ApiInputs/CheckBox/SingleCheckBox.jsx";
 
 export default function BeerMapCatalog({filters = [], filterButtons = []}){
     const navigate = useNavigate()
@@ -33,12 +34,13 @@ export default function BeerMapCatalog({filters = [], filterButtons = []}){
         feautures: {title: "Особенности", component: "combobox", id: "feature_ids"},
         cities: {title: "Города", id: "city_id"},
         open: {title: "Только открытые", id: "only_opened"},
-        sort_by: {title: "Сортировка", id: "sort_by"}
+        sort_by: {title: "Сортировка", id: "sort_by"},
+        online_booking: {title: "Онлайн бронирование", id: "online_booking"}
     }
 
     // Фильтры, от изменения которых изменяется запрос
     const [filterValues, setFilterValues] = useState({
-        lim: 200,
+        lim: 24,
         offset: 0,
         city_id: '',
         subways_ids: [],
@@ -48,6 +50,7 @@ export default function BeerMapCatalog({filters = [], filterButtons = []}){
         type_ids: [],
         feature_ids: [],
         only_opened: false,
+        online_booking: false,
         sort_by: "popular"
     });
 
@@ -61,6 +64,7 @@ export default function BeerMapCatalog({filters = [], filterButtons = []}){
         type_ids: [],
         feature_ids: [],
         only_opened: false,
+        online_booking: false,
         sort_by: "popular"
     });
 
@@ -101,7 +105,8 @@ export default function BeerMapCatalog({filters = [], filterButtons = []}){
                 }, {});
             }
             // Обработка only_opened
-            nameMap["only_opened"] = {}// value: "Только открытые"
+            nameMap["only_opened"] = "Открыто сейчас"
+            nameMap["online_booking"] = `Онлайн-бронь`
             setFilterNameMap(nameMap);
         }
     }, [barFilters, barFiltersIsLoading, barFiltersError, cities, citiesIsLoading, citiesError]);
@@ -164,6 +169,7 @@ export default function BeerMapCatalog({filters = [], filterButtons = []}){
             type_ids: [],
             feature_ids: [],
             only_opened: false,
+            online_booking: false,
             sort_by: "popular"
         };
         setFilterValues(initialState)
@@ -281,6 +287,8 @@ export default function BeerMapCatalog({filters = [], filterButtons = []}){
             <div className={styles.menuContent}>
                 {!isMobile && <div className={styles.menuFilters}>
                     <Search title="Поиск" reset={tabResetFilters["city_id"]} onChange={(value) => handleSingleFilterChange("city_id", value)}></Search>
+                    <SingleCheckBox text="Открыто сейчас" onChange={(value) => handleSingleFilterChange("only_opened", value)} reset={tabResetFilters["only_opened"]}/>
+                    <SingleCheckBox text="Онлайн-бронь" onChange={(value) => handleSingleFilterChange("online_booking", value)} reset={tabResetFilters["online_booking"]}/>
                     {filtersConfig.map((filter) => (
                         <FilterItem
                             key={filter.key}
@@ -334,14 +342,13 @@ export default function BeerMapCatalog({filters = [], filterButtons = []}){
                             }
 
                             if (typeof value === "boolean"){
-                                if (filterNameMap[filterKey].value){
+                                if (filterNameMap[filterKey]){
                                     return (
                                         <AppliedFilter key={filterKey} onClick={() => removeFilter(filterKey, value)}>
-                                            <p>{filterNameMap[filterKey].value}</p>
+                                            <p>{filterNameMap[filterKey]}</p>
                                         </AppliedFilter>
                                     )
                                 }
-
                             }
 
                             return null;

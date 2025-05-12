@@ -12,17 +12,17 @@ import {useEffect, useMemo, useState} from "react";
 import AppliedFilter from "../AppliedFilter/AppliedFilter.jsx";
 import {
     useGetBarsFiltersQuery,
-    useGetBarsQuery,
-    useGetBarTypesQuery,
+    useGetBarsQuery, useGetBeerCountriesQuery,
     useGetCitiesQuery
 } from "../../store/services/centerBeer";
 import {useNavigate} from "react-router-dom";
 import FilterItem from "../ApiInputs/FilterItem/FilterItem.jsx";
 import Search from "../ApiInputs/Search/Search.jsx";
-import SimpleModal from "../Modals/SimpleModal/SimpleModal.jsx";
 import FiltersModal from "../Modals/FiltersModal/FiltersModal.jsx";
 import {isMobile} from "react-device-detect";
-import {useGetUserProfileQuery} from "../../store/services/centerBeerAuth.js";
+import CheckBox from "../ApiInputs/CheckBox/CheckBox.jsx";
+import SingleCheckBox from "../ApiInputs/CheckBox/SingleCheckBox.jsx";
+import HookedFilterComboBox from "../ApiInputs/FilterComboBox/HookedFilterComboBox.jsx";
 
 
 export default function BarsCatalog({filters = [], filterButtons = [], sections = []}){
@@ -39,7 +39,8 @@ export default function BarsCatalog({filters = [], filterButtons = [], sections 
         feautures: {title: "Особенности", component: "combobox", id: "feature_ids"},
         cities: {title: "Города", id: "city_id"},
         open: {title: "Только открытые", id: "only_opened"},
-        sort_by: {title: "Сортировка", id: "sort_by"}
+        sort_by: {title: "Сортировка", id: "sort_by"},
+        online_booking: {title: "Онлайн бронирование", id: "online_booking"}
     }
 
     // Фильтры, от изменения которых изменяется запрос
@@ -54,6 +55,7 @@ export default function BarsCatalog({filters = [], filterButtons = [], sections 
         type_ids: [],
         feature_ids: [],
         only_opened: false,
+        online_booking: false,
         sort_by: "popular"
     });
 
@@ -67,6 +69,7 @@ export default function BarsCatalog({filters = [], filterButtons = [], sections 
         type_ids: [],
         feature_ids: [],
         only_opened: false,
+        online_booking: false,
         sort_by: "popular"
     });
 
@@ -108,6 +111,7 @@ export default function BarsCatalog({filters = [], filterButtons = [], sections 
             }
             // Обработка only_opened
             nameMap["only_opened"] = {}// value: "Только открытые"
+            nameMap["online_booking"] = `Онлайн-бронь`
             setFilterNameMap(nameMap);
         }
     }, [barFilters, barFiltersIsLoading, barFiltersError, cities, citiesIsLoading, citiesError]);
@@ -170,6 +174,7 @@ export default function BarsCatalog({filters = [], filterButtons = [], sections 
             type_ids: [],
             feature_ids: [],
             only_opened: false,
+            online_booking: false,
             sort_by: "popular"
         };
         setFilterValues(initialState)
@@ -278,6 +283,7 @@ export default function BarsCatalog({filters = [], filterButtons = [], sections 
             <div className={styles.menuContent}>
                 {!isMobile && <div className={styles.menuFilters}>
                     <Search title="Поиск" reset={tabResetFilters["city_id"]} onChange={(value) => handleSingleFilterChange("city_id", value)}></Search>
+                    <SingleCheckBox text="Онлайн-бронь" onChange={(value) => {console.log(`value ${value}`); handleSingleFilterChange("online_booking", value)}} reset={tabResetFilters["online_booking"]}></SingleCheckBox>
                     {filtersConfig.map((filter) => (
                         <FilterItem
                             key={filter.key}
@@ -328,10 +334,10 @@ export default function BarsCatalog({filters = [], filterButtons = [], sections 
                             }
 
                             if (typeof value === "boolean"){
-                                if (filterNameMap[filterKey].value){
+                                if (filterNameMap[filterKey]){
                                     return (
                                         <AppliedFilter key={filterKey} onClick={() => removeFilter(filterKey, value)}>
-                                            <p>{filterNameMap[filterKey].value}</p>
+                                            <p>{filterNameMap[filterKey]}</p>
                                         </AppliedFilter>
                                     )
                                 }

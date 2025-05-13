@@ -364,6 +364,8 @@ export default function BeerMapCatalog({filters = [], filterButtons = []}){
             {isMobile &&
                 <FiltersModal setShow={setShowFiltersModal} show={showFiltersModal}>
                     <Search title="Поиск" reset={tabResetFilters["city_id"]} onChange={(value) => handleSingleFilterChange("city_id", value)}></Search>
+                    <SingleCheckBox text="Открыто сейчас" onChange={(value) => handleSingleFilterChange("only_opened", value)} reset={tabResetFilters["only_opened"]}/>
+                    <SingleCheckBox text="Онлайн-бронь" onChange={(value) => handleSingleFilterChange("online_booking", value)} reset={tabResetFilters["online_booking"]}/>
                     {filtersConfig.map((filter) => (
                         <FilterItem
                             key={filter.key}

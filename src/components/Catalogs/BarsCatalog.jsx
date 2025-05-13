@@ -283,7 +283,7 @@ export default function BarsCatalog({filters = [], filterButtons = [], sections 
             <div className={styles.menuContent}>
                 {!isMobile && <div className={styles.menuFilters}>
                     <Search title="Поиск" reset={tabResetFilters["city_id"]} onChange={(value) => handleSingleFilterChange("city_id", value)}></Search>
-                    <SingleCheckBox text="Онлайн-бронь" onChange={(value) => {console.log(`value ${value}`); handleSingleFilterChange("online_booking", value)}} reset={tabResetFilters["online_booking"]}></SingleCheckBox>
+                    <SingleCheckBox text="Онлайн-бронь" onChange={(value) => {handleSingleFilterChange("online_booking", value)}} reset={tabResetFilters["online_booking"]}></SingleCheckBox>
                     {filtersConfig.map((filter) => (
                         <FilterItem
                             key={filter.key}
@@ -367,6 +367,7 @@ export default function BarsCatalog({filters = [], filterButtons = [], sections 
             {isMobile &&
                 <FiltersModal setShow={setShowFiltersModal} show={showFiltersModal}>
                     <Search title="Поиск" reset={tabResetFilters["city_id"]} onChange={(value) => handleSingleFilterChange("city_id", value)}></Search>
+                    <SingleCheckBox text="Онлайн-бронь" onChange={(value) => {handleSingleFilterChange("online_booking", value)}} reset={tabResetFilters["online_booking"]}/>
                     {filtersConfig.map((filter) => (
                         <FilterItem
                             key={filter.key}

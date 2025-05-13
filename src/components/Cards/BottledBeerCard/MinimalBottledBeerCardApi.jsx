@@ -4,6 +4,7 @@ import styles from "./BottledBeerCard.module.css";
 import BookMarkIcon from "../../../assets/bookmark-unfill-icon.svg?react";
 import FavIcon from "../../../assets/fav-unfill-icon.svg?react";
 import BottleIcon from "../../../assets/bottle-icon.svg?react";
+import {useLazyAddBeerToCuddyQuery, useLazyAddBeerToFavQuery} from "../../../store/services/centerBeer.js";
 
 export default function MinimalBottledBeerCardApi({cardInfo}){
     const [cardBookmarked, setCardBookmarked] = useState(cardInfo?.is_favor || false);

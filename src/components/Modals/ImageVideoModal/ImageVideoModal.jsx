@@ -14,7 +14,11 @@ export default function ImageVideoModal({src, setSrc, show, setShow}){
             </div>}
 
             {src.type === "video" && <div className={styles.imageWrapper}>
-                 <iframe style={{width: "50vw", aspectRatio: "16/9"}} src={src?.iframe || src?.url} frameBorder="0" allowFullScreen></iframe>
+                <iframe src={src?.iframe || src?.url} width="853"
+                        height="480"
+                        allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;"
+                        frameBorder="0"
+                        allowFullScreen></iframe>
             </div>}
 
         </SimpleModal>

@@ -9,13 +9,19 @@ import SimpleCatalogSection from "../CatalogSections/SimpleCatalogSection/Simple
 import PropTypes from "prop-types";
 import BreweryCard from "../Cards/BreweryCard/BreweryCard.jsx";
 import {
+    useGetBeerCountriesQuery,
     useGetBreweriesFiltersQuery,
-    useGetBreweriesQuery,
-    useGetCitiesQuery
+    useGetBreweriesQuery, useGetBreweryTypesQuery,
+    useGetCitiesQuery, useGetCountriesQuery
 } from "../../store/services/centerBeer.js";
 import {isMobile} from "react-device-detect";
 import FilterItem from "../ApiInputs/FilterItem/FilterItem.jsx";
 import FiltersModal from "../Modals/FiltersModal/FiltersModal.jsx";
+import HookedFilterComboBox from "../ApiInputs/FilterComboBox/HookedFilterComboBox.jsx";
+import SingleCheckBox from "../ApiInputs/CheckBox/SingleCheckBox.jsx";
+import ComboBox from "../ApiInputs/ComboBox/ComboBox.jsx";
+import {FaSortAmountDown, FaSortAmountUp} from "react-icons/fa";
+import SortDirection from "../ApiInputs/SortDirectionButton/SortDirection.jsx";
 
 export default function BreweryCatalog({filters = [], filterButtons = [], sections = []}){
     const [filterNameMap, setFilterNameMap] = useState({});
@@ -52,6 +58,10 @@ export default function BreweryCatalog({filters = [], filterButtons = [], sectio
         ibu: {title: "Горечь", component: "rangeRadio", id: "ibu"},
         ibu_from: {title: "Горечь от", id: "ibu_from"},
         ibu_to: {title: "Горечь до", id: "ibu_to"},
+        country_id: {title: "Страна", id: "country_id"},
+        type_id: {title: "Тип пивоварни", id: "type_id"},
+        order_by: {title: "Сортировка", id: "order_by"},
+        order_asc_desc: {title: "Направление сортировки", id: "order_asc_desc"}
     }
 
     const initialFilters = {
@@ -60,8 +70,8 @@ export default function BreweryCatalog({filters = [], filterButtons = [], sectio
         country_id: [],
         city_id: [],
         type_id: [],
-        order_by: '',
-        order_asc_desc: '',
+        order_by: 'name',
+        order_asc_desc: 'asc',
     }
 
     // Фильтры, от изменения которых изменяется запрос
@@ -87,15 +97,23 @@ export default function BreweryCatalog({filters = [], filterButtons = [], sectio
     const multiSelectParams = Object.keys(initialFilters).filter(isMultiSelectParam);
 
     // Получение данных с API
+    const [debouncedTypeInput, setDebouncedTypeInput] = useState("")
+    const { data: types, typesIsLoading, typesError } = useGetBreweryTypesQuery({name: debouncedTypeInput !== ""? debouncedTypeInput: undefined});
+    const [debouncedCountryInput, setDebouncedCountryInput] = useState("")
+    const { data: countries, countriesIsLoading, countriesError } = useGetCountriesQuery({name: debouncedCountryInput !== ""? debouncedCountryInput: undefined});
     const {data: breweriesData, isLoading: breweriesIsLoading, isFetching: breweriesIsFetching, error: breweriesError } = useGetBreweriesQuery(filterValues);
     const {data: breweriesFilters, isLoading: breweriesFiltersIsLoading, error: breweriesFiltersError} = useGetBreweriesFiltersQuery()
     const {data: cities, isLoading: citiesIsLoading, error: citiesError} = useGetCitiesQuery()
 
     //TODO:
     const sortFilters =[
-        {id: "popular", name: "Популярное"},
-        {id: "price", name: "По цене"},
-        {id: "rating", name: "По отзывам"},
+        {id: "name", name: "По названию"},
+        {id: "rating", name: "По рейтингу"},
+    ]
+
+    const sortDirectionFilters = [
+        {id: "asc", Icon: FaSortAmountUp, name: "По возрастанию"},
+        {id: "desc", Icon: FaSortAmountDown, name: "По убыванию"}
     ]
 
     const resetPages = () => {
@@ -132,8 +150,24 @@ export default function BreweryCatalog({filters = [], filterButtons = [], sectio
                     return acc;
                 }, {});
             }
+
+            if (types && !typesIsLoading && !typesError){
+                nameMap["type_id"] = types.reduce((acc, type) => {
+                    acc[type.id.toString()] = `Страна: ${type.name}`;
+                    return acc;
+                }, {});
+            }
+
+            if (countries && !countriesIsLoading && !countriesError){
+                nameMap["country_id"] = countries.reduce((acc, country) => {
+                    acc[country.id.toString()] = `Страна: ${country.name}`;
+                    return acc;
+                }, {});
+            }
+
             // Обработка only_opened
-            nameMap["with_reviews"] = {}// value: "Только открытые"
+            nameMap["is_open"] = {}// value: "Только открытые"
+            nameMap["is_new"] = `Новые заведения`// value: "Только открытые"
             setFilterNameMap(nameMap);
         }
     }, [breweriesFilters, breweriesFiltersIsLoading, breweriesFiltersError, cities, citiesIsLoading, citiesError]);
@@ -302,10 +336,10 @@ export default function BreweryCatalog({filters = [], filterButtons = [], sectio
             }
             // Если значение — строка или булево значение, учитываем его как один фильтр
             else if (typeof value === "string" && value.trim() !== "") {
-                if (filterKey !== "sort_by")
+                if (filterKey !== "order_by" && filterKey !== "order_asc_desc")
                     count += 1;
             } else if (typeof value === "boolean" && value) {
-                if (filterKey !== "with_reviews")
+                if (filterKey !== "is_open" ?? filterKey !== "is_new")
                     count += 1;
             }
         });
@@ -322,6 +356,9 @@ export default function BreweryCatalog({filters = [], filterButtons = [], sectio
             </div>
             <div className={styles.menuContent}>
                 {!isMobile && <div className={styles.menuFilters}>
+                    <HookedFilterComboBox options={types} isLoading={typesIsLoading} error={typesError} debouncedInput={debouncedTypeInput} setDebouncedInput={setDebouncedTypeInput} title={"Тип"}  fetchHook={useGetBeerCountriesQuery} onChange={(value) => handleFilterChange("type_id", value)} reset={tabResetFilters["type_id"]}/>
+                    <HookedFilterComboBox options={countries} isLoading={countriesIsLoading} error={countriesError} debouncedInput={debouncedCountryInput} setDebouncedInput={setDebouncedCountryInput} title={"Страна"}  fetchHook={useGetBeerCountriesQuery} onChange={(value) => handleFilterChange("country_id", value)} reset={tabResetFilters["country_id"]}/>
+                    <SingleCheckBox text="Только недавно открытые" onChange={(value) => {handleSingleFilterChange("is_new", value)}} reset={tabResetFilters["is_new"]}/>
                     {filtersConfig.map((filter) => (
                         <FilterItem
                             key={filter.key}
@@ -337,7 +374,7 @@ export default function BreweryCatalog({filters = [], filterButtons = [], sectio
                         {Object.entries(filterValues).map(([filterKey, value]) => {
                             // Пропускаем пустые значения
                             if (!value || (Array.isArray(value) && value.length === 0)) return null;
-                            if (filterKey === "sort_by") return null
+                            if (filterKey === "order_by" || filterKey === "order_asc_desc") return null
                             // Если значение — массив, обрабатываем каждый элемент
                             if (Array.isArray(value)) {
                                 return value.map((id) => {
@@ -399,10 +436,10 @@ export default function BreweryCatalog({filters = [], filterButtons = [], sectio
                             }
 
                             if (typeof value === "boolean"){
-                                if (filterNameMap[filterKey].value){
+                                if (filterNameMap[filterKey]){
                                     return (
                                         <AppliedFilter key={filterKey} onClick={() => removeFilter(filterKey, value)}>
-                                            <p>{filterNameMap[filterKey].value}</p>
+                                            <p>{filterNameMap[filterKey]}</p>
                                         </AppliedFilter>
                                     )
                                 }
@@ -418,8 +455,9 @@ export default function BreweryCatalog({filters = [], filterButtons = [], sectio
                     </div>
                     <div className={styles.toggleAndOptions}>
                         {isMobile && <SimpleButton textStyle={"black"} text="ФИЛЬТРЫ" onClick={() => setShowFiltersModal(true)} style="primary"></SimpleButton>}
-                        {/*sortFilters &&  <ComboBox options={sortFilters} onChange={(value) => handleSingleFilterApply("sort_by", value.id)}></ComboBox>*/}
-                        <Toggle reset={tabResetFilters["with_reviews"]} label={"Только с отзывами"} toggled={filterValues.with_reviews} onClick={() => handleSingleFilterApply("with_reviews", !filterValues.with_reviews)}/>
+                        {sortFilters &&  <ComboBox options={sortFilters} onChange={(value) => handleSingleFilterApply("order_by", value.id)}></ComboBox>}
+                        {sortDirectionFilters && <SortDirection options={sortDirectionFilters} onChange={(value) => handleSingleFilterApply("order_asc_desc", value.id)}/>}
+                        <Toggle reset={tabResetFilters["is_open"]} label={"Только открытые"} toggled={filterValues.is_open} onClick={() => handleSingleFilterApply("is_open", !filterValues.is_open)}/>
                     </div>
                     { !breweriesIsLoading && !breweriesError &&
                         <SimpleCatalogSection cards={breweriesData?.data} CardComponent={BreweryCard} wideColumns={true}/>

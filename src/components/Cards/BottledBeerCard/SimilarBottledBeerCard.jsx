@@ -8,6 +8,7 @@ import PropTypes from "prop-types";
 import BottleIcon from "../../../assets/bottle-icon.svg?react"
 import cardImagePlaceholder from "../../../assets/placeholders/card-image-placeholder.svg"
 import {useNavigate} from "react-router-dom";
+import {useLazyAddBeerToCuddyQuery, useLazyAddBeerToFavQuery} from "../../../store/services/centerBeer.js";
 
 export default function SimilarBottledBeerCard({cardInfo}){
     const [cardBookmarked, setCardBookmarked] = useState(cardInfo?.is_favor || false);

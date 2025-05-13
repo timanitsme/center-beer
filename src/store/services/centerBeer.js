@@ -364,7 +364,7 @@ export const centerBeerApi = createApi({
             query: () => `getBreweryTypes`
         })),
         getCountries: (builder.query({
-            query: (name) => {
+            query: ({name}) => {
                 const params = new URLSearchParams()
                 if (name !== undefined) params.append("name", name)
                 return(`getCountries?${params.toString()}`)
@@ -400,4 +400,4 @@ export const { useGetBarsQuery, useGetBarInfoQuery, useGetBarsFiltersQuery,
     useLazyAddBeerToCuddyQuery, useLazyAddBeerToFavQuery, useLazyAddBarToCuddyQuery,
     useLazyAddBarToFavQuery, useGetUsersFavBarsQuery, useGetUsersCuddyBarsQuery,
     useGetUsersFavBeersQuery, useGetUsersCuddyBeersQuery, useGetNewsQuery,
-    useGetBeerCountriesQuery, useGetBeerStylesQuery} = centerBeerApi
+    useGetBeerCountriesQuery, useGetBeerStylesQuery,} = centerBeerApi

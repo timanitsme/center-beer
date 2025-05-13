@@ -478,6 +478,8 @@ export default function BeerCatalog({filters = [], filterButtons = [], sections 
             {isMobile &&
                 <FiltersModal setShow={setShowFiltersModal} show={showFiltersModal}>
                     <Search title="Поиск" reset={tabResetFilters["city_id"]} onChange={(value) => handleSingleFilterChange("city_id", value)}></Search>
+                    <HookedFilterComboBox options={countries} isLoading={countriesIsLoading} error={countriesError} debouncedInput={debouncedCountryInput} setDebouncedInput={setDebouncedCountryInput} title={"Страна производства"}  fetchHook={useGetBeerCountriesQuery} onChange={(value) => handleFilterChange("country_ids", value)} reset={tabResetFilters["country_ids"]}/>
+                    <HookedFilterComboBox options={stylesFilter} isLoading={stylesIsLoading} error={stylesError} debouncedInput={debouncedStyleInput} setDebouncedInput={setDebouncedStyleInput} title={"Стиль"}  fetchHook={useGetStylesQuery} onChange={(value) => handleFilterChange("style_ids", value)} reset={tabResetFilters["style_ids"]}/>
                     {filtersConfig.map((filter) => (
                         <FilterItem
                             key={filter.key}

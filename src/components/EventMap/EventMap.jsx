@@ -19,7 +19,7 @@ export default function EventMap({svg, markers, selectedMarker, setSelectedMarke
         if (lightMarker !== null && transformRef.current) {
             const markerElement = document.querySelector(`.${styles.marker}[data-marker-id="${lightMarker}"]`);
             if (markerElement) {
-                transformRef.current.zoomToElement(markerElement, 3.5);
+                transformRef.current.zoomToElement(markerElement, 3);
             }
         }
     }, [lightMarker]);

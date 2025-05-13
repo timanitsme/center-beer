@@ -8,7 +8,7 @@ export default function SingleVideoModal({src, setSrc, show, setShow}){
     return(
         <SimpleModal show={show} setShow={setShow}>
             <div className={styles.imageWrapper}>
-                <iframe src={src} width="853"
+                <iframe src={`${src}&muted=0`} width="853"
                         height="480"
                         allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;"
                         frameBorder="0"

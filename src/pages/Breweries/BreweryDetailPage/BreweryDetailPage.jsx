@@ -21,15 +21,26 @@ import BeerCatalogSection from "../../../components/BeerCatalogSection/BeerCatal
 import IconButton from "../../../components/Buttons/IconButton/IconButton.jsx";
 import ArrowLeftIcon from "../../../assets/arrow-left-icon.svg?react"
 import styles from "./BreweryDetailPage.module.css"
+import BreweryHistory from "../../../components/BreweryHistory/BreweryHistory.jsx";
+import Excursions from "../../../components/Excursions/Excursions.jsx";
+import NewProducts from "../../../components/NewProducts/NewProducts.jsx";
+import LightBarCard from "../../../components/Cards/BarCard/LightBarCard.jsx";
+import BarsRow from "../../../components/BarsRow/BarsRow.jsx";
 
 export default function BreweryDetailPage(){
-    const images = [NewProduct1, NewProduct2, NewProduct3, NewProduct4, NewProduct5, NewProduct2, NewProduct3, NewProduct4]
+    const images = [
+        {type: "image", preview: NewProduct1},
+        {type: "image", preview: NewProduct2},
+        {type: "image", preview: NewProduct3},
+        {type: "image", preview: NewProduct4},
+        {type: "image", preview: NewProduct5},
+        ]
     const {alias} = useParams();
     const {data, isLoading, error} = useGetBreweryInfoQuery(alias)
     const location = useLocation();
     const prevPath = location.state?.from || null;
     const navigate = useNavigate();
-    console.log(prevPath)
+    const {data: beerMocks, isLoading: beerIsLoading, error: beerError} = useGetBeerInfoQuery("bumble-beer-yadernaya-utka-ipa")
 
     const handleBack = () => {
         navigate(prevPath, { replace: true });
@@ -56,14 +67,14 @@ export default function BreweryDetailPage(){
                     )}
                     <NavChain paths={[...getBreweryDetailPagePaths(), {title:data[0]?.name, path: ""}]}/>
                     <BreweryInfo breweryInfo={data[0]}/>
-                    {/*<BreweryHistory/>*/}
-                    {/*<BarEvents title="Новости"></BarEvents>*/}
+                    <BreweryHistory/>
+                    <BarEvents title="Новости"></BarEvents>
                     <Gallery pictures={data[0].gallery}/>
-                    {/*<BarsRow title="Где попробовать нашу продукцию" cards={getBreweryDetailBarsCards()} CardComponent={MinimalBarCard}/>*/}
-                    <BeerCatalogSection breweryId={data[0].id}/>
-                    {/*<NewProducts images={images}/>*/}
+                    {!beerIsLoading && !beerError && beerMocks[0]?.sales_in_bars && beerMocks[0]?.sales_in_markets && <BarsRow title="Где попробовать нашу продукцию" cards={beerMocks[0]?.sales_in_bars} marketCards={beerMocks[0]?.sales_in_markets} CardComponent={LightBarCard}/>}
+                    <BeerCatalogSection withoutPrice={true} breweryId={data[0].id}/>
+                    <NewProducts images={images}/>
                     <Reviews header={getBreweryDetailReviewsHeader(data[0]?.name)} resume={reviewsResume(data[0]?.name)}></Reviews>
-                    {/*<Excursions/>*/}
+                    <Excursions/>
                 </>
             }
         </div>

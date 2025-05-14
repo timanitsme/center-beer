@@ -22,6 +22,7 @@ import EmptyBeerBottleIcon from "../../../assets/bottle-empty-icon.svg?react"
 import WorktimeModal from "../../Modals/WorktimeModal/WorktimeModal.jsx";
 import {useNavigate} from "react-router-dom";
 import {getRatingIcons} from "../../../utils/getRatingIcons.jsx";
+import {useLazyAddBarToCuddyQuery, useLazyAddBarToFavQuery} from "../../../store/services/centerBeer.js";
 
 
 export default function BarInfo({barInfo={}, sections = []}){
@@ -30,6 +31,29 @@ export default function BarInfo({barInfo={}, sections = []}){
     const [isBookmarked, setIsBookmarked] = useState(barInfo.is_liked || false);
     const rating = 3.5
     const navigate = useNavigate()
+    const [triggerAddToCuddy, { isLoading: addToCuddyIsLoading }] = useLazyAddBarToCuddyQuery();
+    const [triggerAddToFav, { isLoading: addToFavIsLoading }] = useLazyAddBarToFavQuery();
+
+
+    const handleAddToCuddy = async (event, id) => {
+        event.preventDefault();
+        try {
+            await triggerAddToCuddy(id).unwrap();
+            setIsBookmarked(!isBookmarked)
+        } catch (err) {
+            console.log(`add to cuddy error: ${err}`)
+        }
+    }
+
+    const handleAddToFav = async (event, id) => {
+        event.preventDefault();
+        try {
+            await triggerAddToFav(id).unwrap();
+            setIsFavourite(!isFavourite)
+        } catch (err) {
+            console.log(`add to fav error: ${err}`)
+        }
+    }
 
     const handleScroll = (targetRef) => {
         if (targetRef.current) {
@@ -75,8 +99,8 @@ export default function BarInfo({barInfo={}, sections = []}){
                 </div>
                 <div className={`${styles.barInfo} ${styles.regular}`}>
                     <div>
-                        <a className={`${styles.aIconButton} ${isFavourite ? styles.added : ''}`} onClick={() => setIsFavourite(!isFavourite)}><FavsIcon/>{isFavourite? "Убрать из любимых": "Добавить в любимые"}</a>
-                        <a className={`${styles.aIconButton} ${isBookmarked ? styles.added : ''}`} onClick={() => setIsBookmarked(!isBookmarked)}><BookMarkIcon/>{isBookmarked? "Убрать из кладовки": "Добавить в кладовку"}</a>
+                        <a className={`${styles.aIconButton} ${isFavourite ? styles.added : ''}`} onClick={(e) => handleAddToFav(e, barInfo?.id)}><FavsIcon/>{isFavourite? "Убрать из любимых": "Добавить в любимые"}</a>
+                        <a className={`${styles.aIconButton} ${isBookmarked ? styles.added : ''}`} onClick={(e) => handleAddToCuddy(e, barInfo?.id)}><BookMarkIcon/>{isBookmarked? "Убрать из кладовки": "Добавить в кладовку"}</a>
                     </div>
                     <div className={styles.ratingAndComments}>
                         <div className={styles.beerBottles}>
@@ -98,8 +122,8 @@ export default function BarInfo({barInfo={}, sections = []}){
             </div>
             <div className={`${styles.barInfo} ${styles.mobile}`}>
                 <div>
-                    <a className={`${styles.aIconButton} ${isFavourite ? styles.added : ''}`} onClick={() => setIsFavourite(!isFavourite)}><FavsIcon/>{isFavourite? "Убрать из любимых": "Добавить в любимые"}</a>
-                    <a className={`${styles.aIconButton} ${isBookmarked ? styles.added : ''}`} onClick={() => setIsBookmarked(!isBookmarked)}><BookMarkIcon/>{isBookmarked? "Убрать из кладовки": "Добавить в кладовку"}</a>
+                    <a className={`${styles.aIconButton} ${isFavourite ? styles.added : ''}`} onClick={(e) => handleAddToFav(e, barInfo?.id)}><FavsIcon/>{isFavourite? "Убрать из любимых": "Добавить в любимые"}</a>
+                    <a className={`${styles.aIconButton} ${isBookmarked ? styles.added : ''}`} onClick={(e) => handleAddToCuddy(e, barInfo?.id)}><BookMarkIcon/>{isBookmarked? "Убрать из кладовки": "Добавить в кладовку"}</a>
                 </div>
                 <div className={styles.ratingAndComments}>
                     <div className={styles.beerBottles}>

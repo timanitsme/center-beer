@@ -19,9 +19,10 @@ import BottledBeerCard from "../Cards/BottledBeerCard/BottledBeerCard.jsx";
 import {isMobile} from "react-device-detect";
 import FiltersModal from "../Modals/FiltersModal/FiltersModal.jsx";
 import HookedFilterComboBox from "../ApiInputs/FilterComboBox/HookedFilterComboBox.jsx";
+import BottledBeerCardWithoutPrice from "../Cards/BottledBeerCard/BottledBeerCardWithoutPrice.jsx";
 
 
-export default function BeerCatalog({filters = [], filterButtons = [], sections = [], withHeader = true, breweryId=null}){
+export default function BeerCatalog({filters = [], filterButtons = [], sections = [], withoutPrice=false, withHeader = true, breweryId=null}){
     const [filterNameMap, setFilterNameMap] = useState({});
     const [showFiltersModal, setShowFiltersModal] = useState(false)
     const [allCards, setAllCards] = useState([])
@@ -470,7 +471,7 @@ export default function BeerCatalog({filters = [], filterButtons = [], sections 
                         <Toggle reset={tabResetFilters["with_reviews"]} label={"Только с отзывами"} toggled={filterValues.with_reviews} onClick={() => handleSingleFilterApply("with_reviews", !filterValues.with_reviews)}/>
                     </div>
                     { !beerIsLoading && !beerError && beerData?.data &&
-                        <SimpleCatalogSection cards={beerData?.data} CardComponent={BottledBeerCard} wideColumns={false}/>
+                        <SimpleCatalogSection cards={beerData?.data} CardComponent={withoutPrice? BottledBeerCardWithoutPrice: BottledBeerCard} wideColumns={false}/>
                     }
                     {/*<SimpleCatalogSection cards={allCards} CardComponent={BottledBeerCard} wideColumns={false} totalItems={beerData?.["total_items"]} onShowMore={handleShowMore}/>*/}
                 </div>

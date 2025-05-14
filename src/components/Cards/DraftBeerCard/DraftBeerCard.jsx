@@ -6,6 +6,7 @@ import FavIcon from "../../../assets/fav-unfill-icon.svg?react";
 import {useState} from "react";
 import PropTypes from "prop-types"
 import {useLazyAddBeerToCuddyQuery, useLazyAddBeerToFavQuery} from "../../../store/services/centerBeer.js";
+import {useNavigate} from "react-router-dom";
 
 export default function DraftBeerCard({cardInfo}){
     const [cardBookmarked, setCardBookmarked] = useState(cardInfo.is_favor || false);
@@ -14,6 +15,10 @@ export default function DraftBeerCard({cardInfo}){
     const formatNumber = (num) => Number(num).toString()
     const [triggerAddToCuddy, { isLoading: addToCuddyIsLoading }] = useLazyAddBeerToCuddyQuery();
     const [triggerAddToFav, { isLoading: addToFavIsLoading }] = useLazyAddBeerToFavQuery();
+    const navigate = useNavigate()
+    const goToBeerPage = (alias) => navigate(`/beer/${alias}/`, {
+        state: {from: location.pathname}
+    })
 
     const handleAddToCuddy = async (event, id) => {
         event.preventDefault();
@@ -39,7 +44,7 @@ export default function DraftBeerCard({cardInfo}){
         <div className={styles.card}>
             <div className={styles.draftBeerCard}>
                 <div className={styles.cardTop}>
-                    <div>
+                    <div onClick={() => goToBeerPage(cardInfo?.alias || cardInfo?.beer_alias)} style={{cursor: "pointer"}}>
                         <p className={styles.cardTextPrimary}>{cardInfo?.name}</p>
                         <p className={styles.textActive}>{cardInfo?.brewery}</p>
                         <p className={styles.textMedium}><span style={{color: "var(--txt-secondary)"}}>Стиль:</span> {cardInfo?.style}</p>

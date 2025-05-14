@@ -23,7 +23,9 @@ export default function BarCard({cardInfo}){
 
     const getDayOfWeek = () =>  dayOfWeek === 0? 6: dayOfWeek-1
 
-    const goToBeerPage = () => navigate(`/bar/${cardInfo.alias}`);
+    const goToBeerPage = () => navigate(`/bar/${cardInfo.alias}`, {
+        state: {from: location.pathname}
+    });
 
     const getExpensivenessIcons = (expensiveness) => {
         const icons = [];

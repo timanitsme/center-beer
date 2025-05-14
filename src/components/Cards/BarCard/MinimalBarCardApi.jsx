@@ -10,7 +10,9 @@ export default function MinimalBarCardApi({cardInfo}){
     const navigate = useNavigate();
     const [triggerAddToCuddy, { isLoading: addToCuddyIsLoading }] = useLazyAddBarToCuddyQuery();
     const [triggerAddToFav, { isLoading: addToFavIsLoading }] = useLazyAddBarToFavQuery();
-    const goToBeerPage = () => navigate(`/bar/${cardInfo?.bar_alias}`);
+    const goToBeerPage = () => navigate(`/bar/${cardInfo?.bar_alias}`, {
+        state: {from: location.pathname}
+    });
 
     const handleAddToCuddy = async (event, id) => {
         event.preventDefault();

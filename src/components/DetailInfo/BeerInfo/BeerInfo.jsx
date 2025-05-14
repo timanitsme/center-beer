@@ -15,16 +15,37 @@ import SingleImageModal from "../../Modals/SingleImageModal/SingleImageModal.jsx
 import ImageVideoModal from "../../Modals/ImageVideoModal/ImageVideoModal.jsx";
 import {getRatingIcons} from "../../../utils/getRatingIcons.jsx";
 import {Link} from "react-router-dom";
+import {useLazyAddBeerToCuddyQuery, useLazyAddBeerToFavQuery} from "../../../store/services/centerBeer.js";
 
-export default function BeerInfo({beerInfo={}}){
+export default function BeerInfo({showPrice=false,beerInfo={}}){
     const [isFavourite, setIsFavourite] = useState(beerInfo?.is_favor || false);
     const [isBookmarked, setIsBookmarked] = useState(beerInfo?.is_liked || false);
     const rating = 3.5
     const [selectedPicture, setSelectedPicture] = useState(beerInfo?.gallery[0])
     const [showModal ,setShowModal] = useState(false)
-
     const formatNumber = (num) => Number(num).toString()
+    const [triggerAddToCuddy, { isLoading: addToCuddyIsLoading }] = useLazyAddBeerToCuddyQuery();
+    const [triggerAddToFav, { isLoading: addToFavIsLoading }] = useLazyAddBeerToFavQuery();
 
+    const handleAddToCuddy = async (event, id) => {
+        event.preventDefault();
+        try {
+            await triggerAddToCuddy(id).unwrap();
+            setIsBookmarked(!isBookmarked)
+        } catch (err) {
+            console.log(`add to cuddy error: ${err}`)
+        }
+    }
+
+    const handleAddToFav = async (event, id) => {
+        event.preventDefault();
+        try {
+            await triggerAddToFav(id).unwrap();
+            setIsFavourite(!isFavourite)
+        } catch (err) {
+            console.log(`add to fav error: ${err}`)
+        }
+    }
 
     useEffect(() => {
         if (beerInfo?.gallery && beerInfo.gallery.length > 0) {
@@ -79,8 +100,8 @@ export default function BeerInfo({beerInfo={}}){
                 </div>
                 <div className={`${styles.barInfo} ${styles.regular}`}>
                     <div>
-                        <a className={`${styles.aIconButton} ${isFavourite ? styles.added : ''}`} onClick={() => setIsFavourite(!isFavourite)}><FavsIcon/>{isFavourite? "Убрать из любимых": "Добавить в любимые"}</a>
-                        <a className={`${styles.aIconButton} ${isBookmarked ? styles.added : ''}`} onClick={() => setIsBookmarked(!isBookmarked)}><BookMarkIcon/>{isBookmarked? "Убрать из кладовки": "Добавить в кладовку"}</a>
+                        <a className={`${styles.aIconButton} ${isFavourite ? styles.added : ''}`} onClick={(e) => handleAddToFav(e, beerInfo?.id)}><FavsIcon/>{isFavourite? "Убрать из любимых": "Добавить в любимые"}</a>
+                        <a className={`${styles.aIconButton} ${isBookmarked ? styles.added : ''}`} onClick={(e) => handleAddToCuddy(e, beerInfo?.id)}><BookMarkIcon/>{isBookmarked? "Убрать из кладовки": "Добавить в кладовку"}</a>
                     </div>
                     <div className={styles.ratingAndComments}>
                         <div className={styles.beerBottles}>
@@ -91,17 +112,19 @@ export default function BeerInfo({beerInfo={}}){
                         <a> <CommentIcon/> 116 комментариев</a>
                     </div>
                     <IconButton text="добавить check-in" style="secondary"><CheckInIcon/></IconButton>
-                    <div className={styles.cartAndPrice}>
-                        <h2 style={{color: "var(--primary)"}}>380₽</h2>
-                        <IconButton text="Добавить в корзину" style="primary"><BottlesPairIcon/></IconButton>
-                    </div>
+                    { showPrice &&
+                        <div className={styles.cartAndPrice}>
+                            <h2 style={{color: "var(--primary)"}}>380₽</h2>
+                            <IconButton text="Добавить в корзину" style="primary"><BottlesPairIcon/></IconButton>
+                        </div>
+                    }
                 </div>
 
             </div>
             <div className={`${styles.barInfo} ${styles.mobile}`}>
                 <div>
-                    <a className={`${styles.aIconButton} ${isFavourite ? styles.added : ''}`} onClick={() => setIsFavourite(!isFavourite)}><FavsIcon/>{isFavourite? "Убрать из любимых": "Добавить в любимые"}</a>
-                    <a className={`${styles.aIconButton} ${isBookmarked ? styles.added : ''}`} onClick={() => setIsBookmarked(!isBookmarked)}><BookMarkIcon/>{isBookmarked? "Убрать из кладовки": "Добавить в кладовку"}</a>
+                    <a className={`${styles.aIconButton} ${isFavourite ? styles.added : ''}`} onClick={(e) => handleAddToFav(e, beerInfo?.id)}><FavsIcon/>{isFavourite? "Убрать из любимых": "Добавить в любимые"}</a>
+                    <a className={`${styles.aIconButton} ${isBookmarked ? styles.added : ''}`} onClick={(e) => handleAddToCuddy(e, beerInfo?.id)}><BookMarkIcon/>{isBookmarked? "Убрать из кладовки": "Добавить в кладовку"}</a>
                 </div>
                 <div className={styles.ratingAndComments}>
                     <div className={styles.beerBottles}>
@@ -112,10 +135,12 @@ export default function BeerInfo({beerInfo={}}){
                     <a> <CommentIcon/> 116 комментариев</a>
                 </div>
                 <IconButton text="добавить check-in" style="secondary"><CheckInIcon/></IconButton>
-                <div className={styles.cartAndPrice}>
-                    <h2 style={{color: "var(--primary)"}}>380₽</h2>
-                    <IconButton text="Добавить в корзину" style="primary"><BottlesPairIcon/></IconButton>
-                </div>
+                { showPrice &&
+                    <div className={styles.cartAndPrice}>
+                        <h2 style={{color: "var(--primary)"}}>380₽</h2>
+                        <IconButton text="Добавить в корзину" style="primary"><BottlesPairIcon/></IconButton>
+                    </div>
+                }
             </div>
             <div className={styles.descriptionMobile}>
                 <p>Классический светлый пилснер в чешском стиле. Сваренный на светлом солоде типа пилс, с жатецким хмелем Saaz. Прозрачного золотистого цвета, с плотной пенной шапкой. Имеет насыщенный хмелевой аромат с цветочными нотами. Вкус яркий, искристый с отличным хмелево-солодовым балансом. Горечь уверенная, но не выпирающая. Послевкусие хмелевое.</p>

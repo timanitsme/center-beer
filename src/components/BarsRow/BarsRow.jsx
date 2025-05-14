@@ -13,7 +13,7 @@ import MarketBar2 from "../../../src/assets/marketBarRowMocks/market-bar-2.png"
 import MarketBar3 from "../../../src/assets/marketBarRowMocks/market-bar-3.png"
 import MarketBar4 from "../../../src/assets/marketBarRowMocks/market-bar-4.png"
 
-export default function BarsRow({title, barCards, marketCards, CardComponent}){
+export default function BarsRow({title, beerTitle, barCards, marketCards, CardComponent}){
     const [buttonSwitch, setButtonSwitch] = useState('market')
     const comboboxOptions = ["Сначала рядом со мной", "По умолчанию"]
     const [currentCards, setCurrentCards] = useState(marketCards)
@@ -23,7 +23,7 @@ export default function BarsRow({title, barCards, marketCards, CardComponent}){
             <div className={styles.headerContainer}>
                 <div className={styles.headerIcon}><BeerTapIcon/></div>
                 <div className={styles.headerDescription}>
-                    <h3>Где попробовать {title}</h3>
+                    <h3>{title}</h3>
                     <div className={styles.headerBottom}>
                         <div className={styles.bottomPart}>
                             <div className={styles.buttonSwitch}>
@@ -48,7 +48,7 @@ export default function BarsRow({title, barCards, marketCards, CardComponent}){
                     })}
                 </div>
             }
-            <SimpleCatalogSection CardComponent={CardComponent} cards={currentCards} wideColumns={false} title={title}></SimpleCatalogSection>
+            <SimpleCatalogSection CardComponent={CardComponent} cards={currentCards} wideColumns={false} title={beerTitle}></SimpleCatalogSection>
         </div>
     )
 }

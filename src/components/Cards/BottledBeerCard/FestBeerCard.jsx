@@ -12,7 +12,9 @@ export default function FestBeerCard({cardInfo}){
         setImageSrc(cardInfo?.beer_logo || cardImagePlaceholder);
     }, [cardInfo?.beer_logo]);
 
-    const goToBeerPage = () => navigate(`/beer/${cardInfo.beer_alias}`)
+    const goToBeerPage = () => navigate(`/beer/${cardInfo.beer_alias}`, {
+        state: {from: location.pathname}
+    })
 
     function decodeHtml(html) {
         const textarea = document.createElement("textarea");

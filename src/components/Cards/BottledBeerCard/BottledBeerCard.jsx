@@ -18,7 +18,9 @@ export default function BottledBeerCard({cardInfo}){
     const [cardBookmarked, setCardBookmarked] = useState(cardInfo.is_favor || false);
     const [cardFav, setCardFav] = useState(cardInfo.is_liked || false);
     const navigate = useNavigate()
-    const goToBeerPage = (alias) => navigate(`/beer/${alias}/`)
+    const goToBeerPage = (alias) => navigate(`/beer/${alias}/`, {
+        state: {from: location.pathname}
+    })
     const [triggerAddToCuddy, { isLoading: addToCuddyIsLoading }] = useLazyAddBeerToCuddyQuery();
     const [triggerAddToFav, { isLoading: addToFavIsLoading }] = useLazyAddBeerToFavQuery();
 

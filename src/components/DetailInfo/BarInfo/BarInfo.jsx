@@ -94,7 +94,7 @@ export default function BarInfo({barInfo={}, sections = []}){
                         {sections.map((section, index) =>
                             <IconButton key={index} onClick={() => handleScroll(section.ref)} text={section.title}>{section.IconComponent}</IconButton>
                         )}
-                        <SimpleButton text={"забронировать стол"}/>
+                        <SimpleButton onClick={() => navigate("/in-dev")} text={"забронировать стол"}/>
                     </div>
                 </div>
                 <div className={`${styles.barInfo} ${styles.regular}`}>
@@ -147,7 +147,7 @@ export default function BarInfo({barInfo={}, sections = []}){
                 <IconButton text="скидки и акции"><FlagsIcon/></IconButton>
                 <IconButton text="новости"><BeerMugsIcon/></IconButton>
                 <IconButton text="приложение"><PhoneIcon/></IconButton>
-                <SimpleButton text={"забронировать стол"}/>
+                <SimpleButton onClick={() => navigate("/in-dev")} text={"забронировать стол"}/>
             </div>
             <WorktimeModal setShow={setShowModal} show={showModal} workTimeList={barInfo["work_time_list"]}/>
         </div>

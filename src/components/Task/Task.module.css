@@ -2,6 +2,13 @@
     background: var(--section-bg);
     padding: 15px;
     border-radius: 10px;
+    cursor: pointer;
+    scale: 0.99;
+}
+
+.task:hover{
+    scale: 1;
+    transition: 0.5s;
 }
 
 .title{
@@ -59,6 +66,17 @@
 
     .col p{
         font-size: 10px;
+    }
+}
+
+@media (max-width: 600px){
+    .fit{
+        min-width: fit-content;
+    }
+    .row{
+        flex-direction: column;
+        gap: 5px;
+        align-items: flex-start;
     }
 }
 

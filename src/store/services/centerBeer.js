@@ -301,7 +301,7 @@ export const centerBeerApi = createApi({
                 if (user_id !== undefined) params.append("user_id", user_id)
                 if (user_guid !== undefined) params.append("user_guid", user_guid)
                 if (token !== undefined) params.append("token", token)
-                return(`getBarNews?${params.toString()}`)
+                return(`refreshUserToken?${params.toString()}`)
             }
         })),
         addBeerToCuddy: (builder.query({
@@ -378,11 +378,6 @@ export const centerBeerApi = createApi({
                 return(`getCities?${params.toString()}`)
             }
         })),
-
-
-
-
-
 
     })
 })

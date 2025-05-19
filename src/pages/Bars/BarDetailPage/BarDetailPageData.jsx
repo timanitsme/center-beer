@@ -170,7 +170,14 @@ const barReviewsHeader = {
     description: "Приглашаем вас ознакомиться с отзывами наших дорогих гостей, которые уже успели оценить атмосферу и вкусности нашего бара. Их слова и впечатления — лучшее доказательство того, что у нас вы проведете время незабываемо."
 }
 
-const barReviewsImages = [Review1, Review2, Review3, Review4, Review5, Review6, Review2, Review3, Review1, Review6, Review4, Review5]
+const barReviewsImages = [
+    {preview: Review1, type: "image"},
+    {preview: Review2, type: "image"},
+    {preview: Review3, type: "image"},
+    {preview: Review4, type: "image"},
+    {preview: Review5, type: "image"},
+    {preview: Review6, type: "image"},
+]
 
 const barReviewsResume = {
     title: "Гости довольны",

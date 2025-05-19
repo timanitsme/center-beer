@@ -8,7 +8,7 @@ export default function FilterComboBox({ options, title, onChange, reset }){
     const [isOpen, setIsOpen] = useState(false); // Состояние для открытия/закрытия контейнера
     const [inputValue, setInputValue] = useState(''); // Значение поля поиска
     const [selectedOptions, setSelectedOptions] = useState([]); // Выбранные опции
-    console.log(JSON.stringify(options))
+
     // Фильтруем опции на основе введенного текста
     const filteredOptions = options.filter(option =>
         option.name.toLowerCase().includes(inputValue.toLowerCase())

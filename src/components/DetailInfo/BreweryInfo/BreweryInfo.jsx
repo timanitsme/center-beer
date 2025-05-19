@@ -59,11 +59,13 @@ export default function BreweryInfo({breweryInfo={}}){
                     {/*<h2>+7 (916) 298-06-14</h2>*/}
                     <p>{breweryInfo?.country}</p>
                     {/*<a className={styles.aUnderlinedIconButton}><CommentIcon/>Связаться с нами</a>*/}
-                    <div className={styles.socials}>
-                        {breweryInfo["social_media"].tg && <a href={breweryInfo["social_media"].tg}><TgIcon/></a>}
-                        {breweryInfo["social_media"].vk && <a href={breweryInfo["social_media"].vk}><VkIcon/></a>}
-                        {breweryInfo.email && <a href={`mailto:${breweryInfo.email}`}><MailIcon/></a>}
-                    </div>
+                    {breweryInfo["social_media"]?.length > 0 &&
+                        <div className={styles.socials}>
+                            {breweryInfo["social_media"].tg && <a href={breweryInfo["social_media"].tg}><TgIcon/></a>}
+                            {breweryInfo["social_media"].vk && <a href={breweryInfo["social_media"].vk}><VkIcon/></a>}
+                            {breweryInfo.email && <a href={`mailto:${breweryInfo.email}`}><MailIcon/></a>}
+                        </div>
+                    }
                 </div>
             </div>
             <div className={`${styles.barInfo} ${styles.mobile}`}>

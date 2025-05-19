@@ -32,5 +32,8 @@
     .description{
         font-size: 10px;
     }
+    .tasksCol{
+        margin: 0 25px 0 25px;
+    }
 }
 

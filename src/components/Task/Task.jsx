@@ -14,7 +14,7 @@ export default function Task({taskInfo}){
                         <p>Задание выполняется в любое время</p>
                     </div>
                 </div>
-                <div className={styles.row}>
+                <div className={`${styles.row} ${styles.fit}`}>
                     <div className={styles.col} style={{minWidth: "fit-content"}}>
                         <p style={{minWidth: "fit-content"}}>Заработай <span style={{color: "var(--txt-active)"}}>100</span></p>
                         <RiCopperCoinFill color="var(--primary)"/>

@@ -7,6 +7,7 @@ import {useState} from "react";
 import {centerBeerAuthApi, useLoginMutation} from "../../store/services/centerBeerAuth.js";
 import {useDispatch} from "react-redux";
 import {logout, setUserProfile} from "../../store/services/authSlice.js";
+import {centerBeerApi} from "../../store/services/centerBeer.js";
 
 export default function AuthSection(){
     const [email, setEmail] = useState("")
@@ -34,10 +35,18 @@ export default function AuthSection(){
 
         try {
             const response = await login({email: email, password: password}).unwrap();
+            const { accessToken } = response;
             const profileResponse = await dispatch(centerBeerAuthApi.endpoints.getUserProfile.initiate());
             if (profileResponse.data && response) {
+                const { id: userId } = profileResponse.data;
                 await dispatch(setUserProfile(profileResponse.data));
-                window.location.href = "/account/";
+                await dispatch(
+                    centerBeerApi.endpoints.refreshUserToken.initiate({
+                        user_id: userId,
+                        token: accessToken,
+                    })
+                );
+                //window.location.href = "/account/";
             }
         } catch (err) {
             setError('Неверный email или пароль');

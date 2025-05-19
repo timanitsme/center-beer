@@ -67,14 +67,14 @@ export default function BreweryDetailPage(){
                     )}
                     <NavChain paths={[...getBreweryDetailPagePaths(), {title:data[0]?.name, path: ""}]}/>
                     <BreweryInfo breweryInfo={data[0]}/>
-                    <BreweryHistory/>
-                    <BarEvents title="Новости"></BarEvents>
-                    <Gallery pictures={data[0].gallery}/>
+                    {data[0].alias === "jaws" && <BreweryHistory/>}
+                    {data[0].alias === "jaws" && <BarEvents title="Новости"></BarEvents>}
+                    {data[0].alias === "jaws" && <Gallery pictures={data[0].gallery}/>}
                     {!beerIsLoading && !beerError && beerMocks[0]?.sales_in_bars && beerMocks[0]?.sales_in_markets && <BarsRow title="Где попробовать нашу продукцию" cards={beerMocks[0]?.sales_in_bars} marketCards={beerMocks[0]?.sales_in_markets} CardComponent={LightBarCard}/>}
                     <BeerCatalogSection withoutPrice={true} breweryId={data[0].id}/>
-                    <NewProducts images={images}/>
+                    {data[0].alias === "jaws" && <NewProducts images={images}/>}
                     <Reviews header={getBreweryDetailReviewsHeader(data[0]?.name)} resume={reviewsResume(data[0]?.name)}></Reviews>
-                    <Excursions/>
+                    {data[0].alias === "jaws" && <Excursions/>}
                 </>
             }
         </div>

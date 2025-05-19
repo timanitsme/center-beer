@@ -148,12 +148,21 @@
     color: var(--third);
 }
 
+.breweryAlias{
+    cursor: pointer;
+}
+
 .favButton.added svg{
     color: var(--icon-added);
     fill: var(--icon-added);
 }
 
 @media (hover: hover) and (pointer: fine) {
+    .breweryAlias:hover{
+        color: var(--primary);
+        transition: 0.5s;
+    }
+
     .favButton:hover.added svg {
         color: var(--icon-added);
     }

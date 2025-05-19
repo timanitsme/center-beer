@@ -21,6 +21,9 @@ export default function BottledBeerCard({cardInfo}){
     const goToBeerPage = (alias) => navigate(`/beer/${alias}/`, {
         state: {from: location.pathname}
     })
+
+    const goToBreweryPage = (alias) => navigate(`/brewery/${alias}/`)
+
     const [triggerAddToCuddy, { isLoading: addToCuddyIsLoading }] = useLazyAddBeerToCuddyQuery();
     const [triggerAddToFav, { isLoading: addToFavIsLoading }] = useLazyAddBeerToFavQuery();
 
@@ -53,7 +56,7 @@ export default function BottledBeerCard({cardInfo}){
                 <div className={styles.cardTop}>
                     <div className={styles.textContainer}>
                         <p className={styles.cardTextPrimary} onClick={() => goToBeerPage(cardInfo?.alias || cardInfo?.beer_alias)}>{cardInfo?.name}</p>
-                        <p className={styles.textActive}>{cardInfo?.brewery}{cardInfo?.brewery && cardInfo?.country && ","} {cardInfo?.country}</p>
+                        <p className={`${styles.textActive} ${styles.breweryAlias}`}  onClick={() => goToBreweryPage(cardInfo?.brewery_alias)}>{cardInfo?.brewery}{cardInfo?.brewery && cardInfo?.country && ","} {cardInfo?.country}</p>
                     </div>
                     <div>
                         <a onClick={(e) => handleAddToCuddy(e, cardInfo?.id)} className={`${styles.bookMarkButton} ${cardBookmarked && styles.added}`}><BookMarkIcon/></a>

@@ -16,12 +16,54 @@ import Bottle1 from "../../assets/bottlesMock/bottle-1.svg"
 import Comment from "../Comments/Comment/Comment.jsx";
 import CommentSecondary from "../Comments/CommentSecondary/CommentSecondary.jsx";
 import {getRatingIcons} from "../../utils/getRatingIcons.jsx";
+import {useSelector} from "react-redux";
 
 export default function Reviews({header, images, resume}){
-
+    const { isAuthorized, userProfile, isLoading: profileIsLoading } = useSelector((state) => state.auth);
     const textRef = useRef(null);
     const [isTextClamped, setIsTextClamped] = useState(false);
     const [unlimitedText, setUnlimitedText] = useState(false);
+    const reviews = {
+        "total_items": 1,
+        "data": [
+            {
+                "id": "1",
+                "create_date": "2025-04-30 23:09:53",
+                "user_guid": "b32d3968-0472-4560-a48e-bdaf60f6a8c8",
+                "user_id": "1",
+                "bar_id": "1",
+                "comment": "Посещение этого пивного бара всегда оставляет только положительные эмоции! Здесь царит уютная и дружелюбная атмосфера, которая сразу создает ощущение, что ты попал в гости к старым друзьям. Интерьер бара оформлен со вкусом, каждая деталь подобрана с любовью к своему делу. Ассортимент пива впечатляет – от классических сортов до эксклюзивных крафтовых вариантов, каждый из которых имеет свою изюминку. Персонал всегда готов помочь с выбором напитка и дать рекомендации по закускам. Особенно понравились их фирменные колбаски – сочные и ароматные, идеально сочетающиеся с пивом.",
+                "liked": "4",
+                "disliked": "0",
+                "parent_id": "0",
+                "media": []
+            },
+            {
+                "id": "1",
+                "create_date": "2025-04-30 23:09:53",
+                "user_guid": "b32d3968-0472-4560-a48e-bdaf60f6a8c8",
+                "user_id": "1",
+                "bar_id": "1",
+                "comment": "Посещение этого пивного бара всегда оставляет только положительные эмоции! Здесь царит уютная и дружелюбная атмосфера, которая сразу создает ощущение, что ты попал в гости к старым друзьям. Интерьер бара оформлен со вкусом, каждая деталь подобрана с любовью к своему делу. Ассортимент пива впечатляет – от классических сортов до эксклюзивных крафтовых вариантов, каждый из которых имеет свою изюминку. Персонал всегда готов помочь с выбором напитка и дать рекомендации по закускам. Особенно понравились их фирменные колбаски – сочные и ароматные, идеально сочетающиеся с пивом.",
+                "liked": "4",
+                "disliked": "0",
+                "parent_id": "0",
+                "media": []
+            },
+            {
+                "id": "1",
+                "create_date": "2025-04-30 23:09:53",
+                "user_guid": "b32d3968-0472-4560-a48e-bdaf60f6a8c8",
+                "user_id": "1",
+                "bar_id": "1",
+                "comment": "Посещение этого пивного бара всегда оставляет только положительные эмоции! Здесь царит уютная и дружелюбная атмосфера, которая сразу создает ощущение, что ты попал в гости к старым друзьям. Интерьер бара оформлен со вкусом, каждая деталь подобрана с любовью к своему делу. Ассортимент пива впечатляет – от классических сортов до эксклюзивных крафтовых вариантов, каждый из которых имеет свою изюминку. Персонал всегда готов помочь с выбором напитка и дать рекомендации по закускам. Особенно понравились их фирменные колбаски – сочные и ароматные, идеально сочетающиеся с пивом.",
+                "liked": "4",
+                "disliked": "0",
+                "parent_id": "0",
+                "media": []
+            },
+        ]
+    }
 
     // Проверка, обрезан ли текст
     useEffect(() => {
@@ -39,8 +81,18 @@ export default function Reviews({header, images, resume}){
             <div className="hrtLine" style={{margin: "20px 0"}} />
             <div className={styles.commentsSection}>
                 <div className={styles.commentsContainer}>
-                    <Comment/>
-                    {/*<CommentSecondary/>*/}
+                    {reviews.data.map((review, index) => {
+                       return <Comment key={index}/>
+                    })}
+                    <>
+                        <div className={styles.showAllContainer}>
+                            <div className={styles.gradient}></div>
+                        </div>
+                        <div className={styles.buttonRow}>
+                            <SimpleButton text={"Показать еще"} onClick={() => {}}></SimpleButton>
+                        </div>
+                    </>
+
                 </div>
                 <div className={styles.assessmentContainer}>
                     <div className={styles.assessment}>

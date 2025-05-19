@@ -3,32 +3,16 @@ import {GetPersonalAccountPaths} from "./PersonalAccountPageData.jsx";
 import PersonalAccount from "../../components/PersonalAccount/PersonalAccount.jsx";
 import ActiveOrders from "../../components/ActiveOrders/ActiveOrders.jsx";
 import LatestReviews from "../../components/LatestReviews/LatestReviews.jsx";
-import SimpleModal from "../../components/Modals/SimpleModal/SimpleModal.jsx";
-import SimpleButton from "../../components/Buttons/SimpleButton/SimpleButton.jsx";
 import {useEffect, useMemo, useState} from "react";
 import SingleImageModal from "../../components/Modals/SingleImageModal/SingleImageModal.jsx";
 import EventImage from "../../assets/eventsMocks/event-picture-1.svg"
-import ShortenedRowSection from "../../components/ShortenedRowSection/ShortenedRowSection.jsx";
 import BarImage1 from "../../assets/barsMocks/bar-3.svg";
 import BarImage2 from "../../assets/barsMocks/bar-2.svg";
 import BarImage3 from "../../assets/barsMocks/bar-5.svg";
 import BarImage4 from "../../assets/barsMocks/bar-4.svg";
-import MinimalBarCard from "../../components/Cards/BarCard/MinimalBarCard.jsx";
-import BeerImage1 from "../../assets/bottlesMock/bottle-1.svg"
-import BeerImage2 from "../../assets/bottlesMock/bottle-2.svg"
-import BeerImage3 from "../../assets/bottlesMock/bottle-3.svg"
-import BeerImage4 from "../../assets/bottlesMock/bottle-4.svg"
-import BeerImage5 from "../../assets/bottlesMock/bottle-5.svg"
-import MinimalBottledBeerCard from "../../components/Cards/BottledBeerCard/MinimalBottledBeerCard.jsx";
 import {isMobile} from "react-device-detect";
 import BeerCheckInCard from "../../components/Cards/CheckIns/BeerCheckInCard/BeerCheckInCard.jsx";
 import SwitchRowSection from "../../components/SwitchRowSection/SwitchRowSection.jsx";
-import MinimalBreweryCard from "../../components/Cards/BreweryCard/MinimalBreweryCard/MinimalBreweryCard.jsx";
-import Brewery1 from "../../assets/breweryMocks/brewery-logo-1.svg"
-import Brewery2 from "../../assets/breweryMocks/brewery-logo-2.svg"
-import Brewery3 from "../../assets/breweryMocks/brewery-logo-3.svg"
-import Brewery4 from "../../assets/breweryMocks/brewery-logo-4.svg"
-import Brewery5 from "../../assets/breweryMocks/brewery-logo-5.svg"
 import BarCheckInCard from "../../components/Cards/CheckIns/BarCheckInCard/BarCheckInCard.jsx";
 import {useSelector} from "react-redux";
 import {
@@ -48,8 +32,6 @@ export default function PersonalAccountPage(){
 
     const {data: barCuddy, isLoading: barCuddyIsLoading, error: barCuddyError} = useGetUsersCuddyBarsQuery(userProfile?.id, {skip: !userProfile})
     const {data: beerCuddy, isLoading: beerCuddyIsLoading, error: beerCuddyError} = useGetUsersCuddyBeersQuery(userProfile?.id, {skip: !userProfile})
-
-
 
 
     const barCards = [

@@ -46,7 +46,7 @@ export default function AuthSection(){
                         token: accessToken,
                     })
                 );
-                //window.location.href = "/account/";
+                window.location.href = "/account/";
             }
         } catch (err) {
             setError('Неверный email или пароль');

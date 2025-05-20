@@ -19,6 +19,7 @@ export default function RegSection(){
     const  dispatch = useDispatch()
     const navigate = useNavigate()
     const [checked, setChecked] = useState(false)
+    const [adultChecked, setAdultChecked] = useState(false)
 
     const handleSubmit = async (event) => {
         setError("");
@@ -45,6 +46,12 @@ export default function RegSection(){
             setError("Необходимо дать согласие на обработку персональных данных")
             return;
         }
+
+        if (!adultChecked){
+            setError("Функционал платформы доступен только лицам достигшим совершеннолетия")
+            return;
+        }
+
 
         try {
             const response = await register({nickname: nickname, email: email, password: password}).unwrap();
@@ -77,6 +84,10 @@ export default function RegSection(){
                 <div className={styles.formRow}>
                     <p>Повторите пароль</p>
                     <PasswordInput placeholder="Пароль" inputValue={passwordRepeat} setInputValue={setPasswordRepeat}></PasswordInput>
+                </div>
+                <div className={styles.formRow}>
+                    <div></div>
+                    <CheckBoxChild checked={adultChecked} setChecked={setAdultChecked}><p style={{color: "var(--txt-secondary)"}}>Я подтверждаю что мне исполнилось 18 лет</p></CheckBoxChild>
                 </div>
                 <div className={styles.formRow}>
                     <div></div>

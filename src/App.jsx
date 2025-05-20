@@ -43,6 +43,7 @@ import MyFavoritePage from "./pages/PersonalAccountPage/MyFavoritePage/MyFavorit
 import MyBookmarksPage from "./pages/PersonalAccountPage/MyBookmarksPage/MyBookmarksPage.jsx";
 import AboutDetailPage from "./pages/About/AboutDetailPage/AboutDetailPage.jsx";
 import DocumentDetailPage from "./pages/Documents/DocumentDetailPage/DocumentDetailPage.jsx";
+import CookieConsent from "./components/CookieConsent/CookieConsent.jsx";
 
 function App() {
     const dispatch = useDispatch();
@@ -60,7 +61,7 @@ function App() {
                 {title: "Дистрибьюторы", path: "/distributors"},
                 {title: "Карта баров", path: "/map"}
             ]},
-        {title: "Мероприятия", path: "events", element: <EventsPage/>}, // /events
+        {title: "Мероприятия", path: "/events", element: <EventsPage/>}, // /events
         {title: "Партнерам", path: "/about-us", element: <AboutPage/>},
         {title: "Новости", path: "/news", element: <NewsPage/>},
         {title: "Контакты", path: "/contacts", element: <ContactsPage/>}, // /contacts
@@ -113,6 +114,7 @@ function App() {
                 {!hideFooter && <Footer />}
             </div>
         </div>
+        <CookieConsent/>
         <ScrollToTop/>
     </BrowserRouter>
   )

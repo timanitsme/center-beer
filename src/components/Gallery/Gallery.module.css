@@ -20,6 +20,7 @@
 .galleryPictures img{
     max-height: 450px;
     cursor: zoom-in;
+    background-color: var(--bg);
 }
 
 @media (max-width: 500px) {

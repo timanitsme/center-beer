@@ -9,6 +9,7 @@
     border-radius: 5px;
     background: var(--section-bg);
     cursor: pointer;
+    aspect-ratio: 1.2/1;
 }
 
 .postCard a{
@@ -40,7 +41,6 @@
     overflow: hidden;
     border-radius: 5px;
     object-position: center;
-    max-height: 300px;
 }
 
 .imgContainer img{
@@ -50,6 +50,7 @@
     display: block;
     border-radius: 5px;
     object-position: center;
+    scale: 1;
 }
 
 .flex{
@@ -79,6 +80,11 @@
     .postCard:hover {
         background: var(--primary);
         border: 2px solid var(--primary);
+        transition: 0.5s;
+    }
+
+    .postCard:hover .imgContainer img{
+        scale: 1.1;
         transition: 0.5s;
     }
 

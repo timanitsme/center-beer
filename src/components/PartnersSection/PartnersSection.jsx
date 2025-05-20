@@ -24,7 +24,7 @@ export default function PartnersSection(){
 
     return(
         <div className={styles.partnersSection}>
-            <p className={styles.active}>БИЗНЕС-ПАРТНЕРАМ</p>
+            <p className={`${styles.active} ${styles.marga}`}>БИЗНЕС-ПАРТНЕРАМ</p>
             <div className={styles.descriptionRow}>
                 <div className={styles.mainAdvantage}>
                     <h3 className={styles.header}>Развивайте бизнес с нами</h3>

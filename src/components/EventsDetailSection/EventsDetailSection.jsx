@@ -64,10 +64,6 @@ export default function EventsDetailSection({style = "detail", children}){
                 </div>}
                 { style === "regular" && <div className={styles.sectionHeader}>
                     <ComboBox options={["По умолчанию"]}></ComboBox>
-                    <div className={styles.sectionButtons}>
-                        <a className={`${styles.aIconButton} ${isFavourite ? styles.added : ''}`} onClick={() => setIsFavourite(!isFavourite)}><FavsIcon/><span>{isFavourite? "Убрать из любимых": "Добавить в любимые"}</span></a>
-                        <a className={`${styles.aIconButton} ${isBookmarked ? styles.added : ''}`} onClick={() => setIsBookmarked(!isBookmarked)}><BookMarkIcon/><span>{isBookmarked? "Убрать из кладовки": "Добавить в кладовку"}</span></a>
-                    </div>
                 </div>}
                 <div className={styles.sectionContent}>
                     <div className={styles.contentMain}>

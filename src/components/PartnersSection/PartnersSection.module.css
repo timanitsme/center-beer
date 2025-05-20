@@ -25,10 +25,12 @@
 }
 
 .postsContainer{
-    margin-top: 50px;
     display: grid;
-    grid-template-columns: repeat(2, minmax(150px, 500px));
+    grid-template-columns: repeat(2, minmax(150px, 1fr));
     justify-content: center;
+    align-items: stretch;
+    gap: 10px;
+    margin: 50px 200px 50px 200px;
 }
 
 
@@ -43,7 +45,12 @@
     width: max-content;
 }
 
+.marga{
+    margin-left: 200px;
+}
+
 .descriptionRow{
+    padding: 0 200px 0 200px;
     width: 100%;
     display: flex;
     gap: 20px;

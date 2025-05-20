@@ -13,6 +13,8 @@
 
 .logoImg{
     max-width: 119px;
+    background-color: white;
+    border-radius: 5px;
 }
 
 .socials{

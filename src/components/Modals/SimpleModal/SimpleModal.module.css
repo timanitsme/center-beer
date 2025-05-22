@@ -42,6 +42,27 @@
     height: 20px;
 }
 
+.outlineTitle{
+    width: 100%;
+    text-align: center;
+    text-transform: uppercase;
+    color: transparent;
+    -webkit-text-stroke: 1px var(--primary);
+    font-size: 4vw;
+}
+
+.center{
+    text-align: center;
+}
+
+
+.adultContent{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+}
+
 @media (hover: hover) and (pointer: fine) {
     .modalHeader svg:hover {
         color: var(--primary);
@@ -65,7 +86,17 @@
     .title{
         font-size: 12px;
     }
+    .outlineTitle{
+        font-size: 50px;
+    }
 }
+
+@media (max-width: 600px) {
+    .outlineTitle{
+        font-size: 30px;
+    }
+}
+
 
 @media (max-width: 500px) {
     .modalContent{

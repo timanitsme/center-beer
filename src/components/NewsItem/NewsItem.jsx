@@ -2,13 +2,27 @@ import styles from "./NewsItem.module.css"
 import NewsContentImage1 from "../../assets/newsMocks/news-content-image-1.svg";
 import QuoteIcon from "../../assets/quote-icon.svg?react";
 
-export default function NewsItem({tags}){
+export default function NewsItem({newsInfo}){
+
+    const formatDate = (inputDate) => {
+        const date = new Date(inputDate);
+        const months = [
+            "января", "февраля", "марта", "апреля", "мая", "июня",
+            "июля", "августа", "сентября", "октября", "ноября", "декабря"
+        ];
+
+        const day = date.getDate();
+        const month = months[date.getMonth()];
+        const year = date.getFullYear();
+        return `${day} ${month} ${year}`;
+    }
+
 
     return(
         <div className={styles.itemContainer}>
-            <h2>AB InBev оценивает потери от неудачи маркетологов Bud Light в 1,4 млрд долларов</h2>
-            <p>27 декабря 2024</p>
-            <img src={NewsContentImage1} className={styles.mainImage} alt=""></img>
+            <h2>{newsInfo?.title}</h2>
+            <p>{formatDate(newsInfo?.create_date)}</p>
+            <img src={newsInfo?.preview} className={styles.mainImage} alt=""></img>
             <p>Пивоваренная компания AB InBev могла потерять вплоть до 1,4 млрд долларов продаж из-за бойкота потребителями после сотрудничества бренда Bud Light с инфлюенсером Дилан Малвейни.</p>
             <p>По итогам 2023 года компания получила рекордную выручку, однако заявила, что в США её «потенциал роста оказался ограничен», так как продажи снизились из-за бойкота. Выручка в органическом выражении в Северной Америке сократилась на 1,4 млрд долларов, в основном за счёт сокращения продаж Bud Light, который даёт компании львиную долю выручки.</p>
             <div className={styles.quote}>
@@ -22,7 +36,7 @@ export default function NewsItem({tags}){
             <p>Рыночная капитализация компании Anheuser-Busch на фоне недовольства части потребителей снизилась более чем на 6 млрд долларов. По сообщениям СМИ, никто из высшего руководства компании не был в курсе готовящего сотрудничества с транс-инфлюенсером, и решение было принято кем-то из младших менеджеров, занимающихся взаимодействием с инфлюенсерами. После скандала от работы отстранили вице-президента по маркетингу бренда Bud Light Алиссу Хейнершейд и её руководителя, вице-президента AB InBev по маркетингу Дэниела Блейка. Позднее компанию Anheuser-Busch покинул директор по маркетингу Бенуа Гарбе.</p>
             <p>Сама Дилан Малвейни в своём недавнем выступлении в ходе фестиваля SXSW заявила, что бренд Bud Light должен был действовать «как родитель», чтобы защитить её от буллинга, так именно компания приняла решение привлечь её к рекламе бренда. </p>
             <div className={styles.tagsContainer}>
-                {tags.map((tag, index) =>
+                {newsInfo?.tags.map((tag, index) =>
                     <div key={index} className={styles.tag}><p>{tag}</p></div>
                 )}
             </div>

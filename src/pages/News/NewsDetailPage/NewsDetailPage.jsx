@@ -2,16 +2,24 @@ import NavChain from "../../../components/Navigation/NavChain/NavChain.jsx";
 import {getNewsDetailPaths} from "./NewsDetailPageData.jsx";
 import NewsDetailSection from "../../../components/NewsDetailSection/NewsDetailSection.jsx";
 import NewsItem from "../../../components/NewsItem/NewsItem.jsx";
+import {useParams} from "react-router-dom";
+import {useGetNewsItemQuery} from "../../../store/services/centerBeer.js";
+
 
 
 export default function NewsDetailPage(){
-    const tags = ["Цены", "Импорт", "Кадры"]
+    const {id} = useParams();
+    const {data, isLoading, error} = useGetNewsItemQuery(id)
     return(
         <div className="content">
-            <NavChain paths={getNewsDetailPaths()}/>
-            <NewsDetailSection>
-                <NewsItem tags={tags}/>
-            </NewsDetailSection>
+            {!isLoading && !error && data &&
+                <>
+                    <NavChain paths={[...getNewsDetailPaths(), {title: data?.title, path: ""}]}/>
+                    <NewsDetailSection>
+                        <NewsItem newsInfo={data}/>
+                    </NewsDetailSection>
+                </>
+            }
         </div>
     )
 }

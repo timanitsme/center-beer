@@ -4,7 +4,7 @@ import {useNavigate} from "react-router-dom";
 
 export default function NewsCard({cardInfo}){
     const navigate = useNavigate()
-    const goToNewsPage = () => window.location.href = cardInfo?.url_view
+    const goToNewsPage = () => navigate(`/news/${cardInfo.id}`)
 
 
     const getFormattedDate = (create_date) => {

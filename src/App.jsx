@@ -44,6 +44,7 @@ import MyBookmarksPage from "./pages/PersonalAccountPage/MyBookmarksPage/MyBookm
 import AboutDetailPage from "./pages/About/AboutDetailPage/AboutDetailPage.jsx";
 import DocumentDetailPage from "./pages/Documents/DocumentDetailPage/DocumentDetailPage.jsx";
 import CookieConsent from "./components/CookieConsent/CookieConsent.jsx";
+import AdultsOnlyModal from "./components/Modals/SimpleModal/AdultsOnlyModal.jsx";
 
 function App() {
     const dispatch = useDispatch();
@@ -115,6 +116,7 @@ function App() {
             </div>
         </div>
         <CookieConsent/>
+        <AdultsOnlyModal/>
         <ScrollToTop/>
     </BrowserRouter>
   )

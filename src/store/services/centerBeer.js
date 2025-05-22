@@ -99,6 +99,7 @@ export const centerBeerApi = createApi({
         getBreweriesFilters: (builder.query({
             query: () => `getBreweriesFilters`
         })),
+
         // Каталог новостей
         getNews: (builder.query({
             query: ({global_news, bar_id, post_id, search_text}) => {
@@ -124,9 +125,10 @@ export const centerBeerApi = createApi({
             query: (post_id) => {
                 const params = new URLSearchParams();
                 if (post_id !== undefined) params.append("post_id", post_id)
-                return(`getNewsRelated?${params.toString()}`)
+                return(`getNewsItem?${params.toString()}`)
             }
         })),
+
         //Страница бара
         getBarComments: (builder.query({
             query: (bar_id) => `getBarComments?bar_id=${bar_id}`
@@ -395,4 +397,4 @@ export const { useGetBarsQuery, useGetBarInfoQuery, useGetBarsFiltersQuery,
     useLazyAddBeerToCuddyQuery, useLazyAddBeerToFavQuery, useLazyAddBarToCuddyQuery,
     useLazyAddBarToFavQuery, useGetUsersFavBarsQuery, useGetUsersCuddyBarsQuery,
     useGetUsersFavBeersQuery, useGetUsersCuddyBeersQuery, useGetNewsQuery,
-    useGetBeerCountriesQuery, useGetBeerStylesQuery,} = centerBeerApi
+    useGetBeerCountriesQuery, useGetBeerStylesQuery, useGetNewsItemQuery} = centerBeerApi

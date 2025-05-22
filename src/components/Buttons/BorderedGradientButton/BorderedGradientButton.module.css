@@ -1,0 +1,23 @@
+.gradientButton {
+    background: #141414; /* Matches the container's background */
+    color: white; /* Ensures text visibility */
+    border: none; /* Removes default border */
+    padding: 8px 16px; /* Compact padding for mobile */
+    font-size: 14px; /* Smaller font size for mobile */
+    cursor: pointer; /* Indicates it's clickable */
+    box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1); /* Light shadow for mobile */
+    border-radius: 6px; /* Slightly rounded corners for aesthetics */
+    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Smooth hover effect */
+}
+
+/* Hover state for mobile and desktop */
+.gradientButton:hover {
+    transform: translateY(-1px); /* Slight upward movement on hover */
+    box-shadow: 0 3px 6px rgba(255, 255, 255, 0.15); /* Enhanced light shadow */
+}
+
+/* Active state for mobile and desktop */
+.gradientButton:active {
+    transform: translateY(0); /* Resets position when clicked */
+    box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1); /* Resets shadow */
+}

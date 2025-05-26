@@ -81,10 +81,11 @@
     display: flex;
     align-items: center;
     gap: 5px !important;
+    cursor: pointer;
 }
 
 .beerBottles svg{
-    cursor: initial !important;
+    cursor: pointer;
 }
 
 .commentPhotos{
@@ -93,21 +94,22 @@
     gap: 10px;
 }
 
-.imageWrapper{
+.imageWrapper {
     position: relative;
     display: inline-block;
     cursor: pointer;
     width: 60px;
-    height: 100%;
+    height: 60px;
     overflow: hidden;
     border-radius: 5px;
+    background: var(--txt-active);
 }
 
 .imageWrapper.photos{
     width: 85px;
 }
 
-.imageWrapper img{
+.imageWrapper img {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -161,6 +163,82 @@
 
 .aComment{
     color: var(--primary);
+}
+
+
+.replyContentTextarea {
+    width: 100%;
+    resize: none;
+    border-radius: 5px;
+    padding: 5px;
+    outline: none;
+    border: none;
+    background: var(--third);
+    font-size: 0.9vw;
+    font-weight: 200;
+    color: var(--txt-active);
+    min-height: 70px;
+}
+
+.replyAndPhotos{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.photos{
+    margin-top: 5px;
+    display: flex;
+    gap: 10px;
+}
+
+.imageWrapper svg{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 70%;
+    height: fit-content;
+    color: var(--bg-semi-transparent);
+    transform: translate(-50%, -50%);
+    transition: color 0.5s;
+}
+
+.imageWrapper:hover svg{
+    color: var(--bg);
+    transition: 0.5s;
+}
+
+.replyButtons {
+    justify-self: flex-end;
+    margin-top: 5px;
+    margin-right: 5px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+
+.replyButtonsIcon {
+    height: 25px;
+    width: fit-content;
+    color: var(--primary);
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.replyButtonsIcon:hover {
+    color: var(--primary-semi-transparent);
+}
+
+.replyButtonsButton {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 @media (hover: hover) and (pointer: fine) {

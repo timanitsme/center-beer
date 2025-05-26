@@ -17,12 +17,19 @@ import Comment from "../Comments/Comment/Comment.jsx";
 import CommentSecondary from "../Comments/CommentSecondary/CommentSecondary.jsx";
 import {getRatingIcons} from "../../utils/getRatingIcons.jsx";
 import {useSelector} from "react-redux";
+import NewCommentForm from "../Comments/NewCommentForm/NewCommentForm.jsx";
+import {useNavigate} from "react-router-dom";
+import SimpleModal from "../Modals/SimpleModal/SimpleModal.jsx";
+import {FaLock} from "react-icons/fa6";
 
 export default function Reviews({header, images, resume}){
     const { isAuthorized, userProfile, isLoading: profileIsLoading } = useSelector((state) => state.auth);
     const textRef = useRef(null);
     const [isTextClamped, setIsTextClamped] = useState(false);
     const [unlimitedText, setUnlimitedText] = useState(false);
+    const commentRef = useRef(null)
+    const navigate = useNavigate()
+    const [showAuthModal, setShowAuthModal] = useState(false)
     const reviews = {
         "total_items": 1,
         "data": [
@@ -74,6 +81,20 @@ export default function Reviews({header, images, resume}){
         }
     }, []);
 
+    const handleScrollToCommentForm = () => {
+        if (!profileIsLoading && isAuthorized){
+            if (commentRef.current) {
+                commentRef.current.scrollIntoView({
+                    behavior: "smooth",
+                    block: "center",
+                });
+            }
+        }
+        else{
+            setShowAuthModal(true)
+        }
+    }
+
     return(
         <div className={styles.reviews}>
             <ComponentHeader HeaderIcon={BeardIcon} title={header.title} description={header.description}/>
@@ -82,7 +103,7 @@ export default function Reviews({header, images, resume}){
             <div className={styles.commentsSection}>
                 <div className={styles.commentsContainer}>
                     {reviews.data.map((review, index) => {
-                       return <Comment key={index}/>
+                       return <Comment key={index} data={review}/>
                     })}
                     <>
                         <div className={styles.showAllContainer}>
@@ -92,7 +113,9 @@ export default function Reviews({header, images, resume}){
                             <SimpleButton text={"Показать еще"} onClick={() => {}}></SimpleButton>
                         </div>
                     </>
-
+                    {!profileIsLoading && isAuthorized &&
+                        <NewCommentForm ref={commentRef} profile={userProfile}/>
+                    }
                 </div>
                 <div className={styles.assessmentContainer}>
                     <div className={styles.assessment}>
@@ -109,11 +132,18 @@ export default function Reviews({header, images, resume}){
 
 
                     </div>
-                    <SimpleButton text="Забронировать стол"/>
-                    <IconButton text="Оставить отзыв"><BeardIcon/></IconButton>
+                    <SimpleButton text="Забронировать стол" onClick={() => navigate("/in-dev")}/>
+                    <IconButton onClick={handleScrollToCommentForm} text="Оставить отзыв"><BeardIcon/></IconButton>
 
                 </div>
             </div>
+            <SimpleModal show={showAuthModal} setShow={setShowAuthModal}>
+                <div className={styles.accountModal}>
+                    <h2 className={styles.outlineTitle}>Войдите в аккаунт <br/> чтобы оставить отзыв</h2>
+                    <FaLock/>
+                    <SimpleButton text="Авторизация" onClick={() => navigate("/login")}></SimpleButton>
+                </div>
+            </SimpleModal>
         </div>
     )
 }

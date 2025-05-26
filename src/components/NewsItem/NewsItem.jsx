@@ -1,27 +1,14 @@
 import styles from "./NewsItem.module.css"
 import NewsContentImage1 from "../../assets/newsMocks/news-content-image-1.svg";
 import QuoteIcon from "../../assets/quote-icon.svg?react";
+import formatDateWithTextMonth from "../../utils/DateFunctions/formatDateWithTextMonth.js";
 
 export default function NewsItem({newsInfo}){
-
-    const formatDate = (inputDate) => {
-        const date = new Date(inputDate);
-        const months = [
-            "января", "февраля", "марта", "апреля", "мая", "июня",
-            "июля", "августа", "сентября", "октября", "ноября", "декабря"
-        ];
-
-        const day = date.getDate();
-        const month = months[date.getMonth()];
-        const year = date.getFullYear();
-        return `${day} ${month} ${year}`;
-    }
-
 
     return(
         <div className={styles.itemContainer}>
             <h2>{newsInfo?.title}</h2>
-            <p>{formatDate(newsInfo?.create_date)}</p>
+            <p>{formatDateWithTextMonth(newsInfo?.create_date)}</p>
             <img src={newsInfo?.preview} className={styles.mainImage} alt=""></img>
             <p>Пивоваренная компания AB InBev могла потерять вплоть до 1,4 млрд долларов продаж из-за бойкота потребителями после сотрудничества бренда Bud Light с инфлюенсером Дилан Малвейни.</p>
             <p>По итогам 2023 года компания получила рекордную выручку, однако заявила, что в США её «потенциал роста оказался ограничен», так как продажи снизились из-за бойкота. Выручка в органическом выражении в Северной Америке сократилась на 1,4 млрд долларов, в основном за счёт сокращения продаж Bud Light, который даёт компании львиную долю выручки.</p>

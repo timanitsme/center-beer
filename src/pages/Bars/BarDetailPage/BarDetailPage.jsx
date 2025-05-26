@@ -45,7 +45,7 @@ export default function BarDetailPage(){
 
     return(
         <div className="content">
-            {!isLoading && !error && data && data.data.length > 0 &&
+            {!isLoading && !error && data && data?.data?.length > 0 &&
                 <>
                     <NavChain paths={[...getBarPagePaths(), {title: data?.data[0].name, path: ""}]}/>
                     <BarInfo barInfo={data?.data[0]} sections={sections}/>

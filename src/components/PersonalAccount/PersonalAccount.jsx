@@ -42,8 +42,8 @@ export default function PersonalAccount({isMobile = false, profile}){
                 <div>
                     <p className={styles.bold}>Чек-ины</p>
                     <ul className={styles.innerList}>
-                        <li><Link to="/in-dev">Пиво <div className="quantity"><p>2</p></div></Link></li>
-                        <li><Link to="/in-dev">Заведения <div className="quantity"><p>2</p></div></Link></li>
+                        <li><Link to="/my-check-ins/beer">Пиво <div className="quantity"><p>2</p></div></Link></li>
+                        <li><Link to="/my-check-ins/bar">Заведения <div className="quantity"><p>2</p></div></Link></li>
                     </ul>
                 </div>}
                 {!isMobile &&
@@ -56,7 +56,7 @@ export default function PersonalAccount({isMobile = false, profile}){
                     <p className={styles.bold}>Любимое</p>
                     <ul className={styles.innerList}>
                         <li><Link to="/account/fav/beer">Пиво</Link></li>
-                        <li><Link to="/in-dev">Пивоварни <div className="quantity"><p>12</p></div></Link></li>
+                        <li><Link to="/account/fav/brewery">Пивоварни <div className="quantity"><p>12</p></div></Link></li>
                         <li><Link to="/account/fav/bar">Заведения <div className="quantity"><p>1</p></div></Link></li>
                     </ul>
                 </div>
@@ -64,9 +64,9 @@ export default function PersonalAccount({isMobile = false, profile}){
                     <p className={styles.bold}>Кладовка</p>
                     <ul className={styles.innerList}>
                         <li><Link to="/account/bookmarked/beer">Пиво</Link></li>
-                        <li><Link to="/in-dev">Пивоварни <div className="quantity"><p>12</p></div></Link></li>
+                        <li><Link to="/account/bookmarked/brewery">Пивоварни <div className="quantity"><p>12</p></div></Link></li>
                         <li><Link to="/account/bookmarked/bar">Заведения <div className="quantity"><p>1</p></div></Link></li>
-                        <li><Link to="/in-dev">Мероприятия <div className="quantity"><p>1</p></div></Link></li>
+                        <li><Link to="/account/bookmarked/event">Мероприятия <div className="quantity"><p>1</p></div></Link></li>
                     </ul>
                 </div>
                 <div>

@@ -75,6 +75,15 @@
 
 }
 
+.outlineTitle{
+    width: 100%;
+    text-align: center;
+    text-transform: uppercase;
+    color: transparent;
+    -webkit-text-stroke: 1px var(--primary);
+    font-size: 4vw;
+}
+
 .commentContent{
 
 }
@@ -166,6 +175,20 @@
     pointer-events: none;
 }
 
+.accountModal{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.accountModal svg{
+    height: 35px;
+    width: auto;
+    color: var(--primary);
+    margin-bottom: 10px;
+}
+
 @media (hover: hover) and (pointer: fine) {
     .aComment:hover {
         color: var(--primary-semi-transparent);
@@ -175,6 +198,7 @@
         color: var(--txt-active);
     }
 }
+
 
 @media (max-width: 1300px) {
     .minBottles svg{
@@ -193,7 +217,9 @@
         max-width: 35px;
         max-height: 35px;
     }
-
+    .outlineTitle{
+        font-size: 50px;
+    }
     .mark div svg{
         max-height: 15px;
         max-width: 15px;
@@ -210,6 +236,10 @@
     }
     .commentsContainer{
         width: 100%;
+    }
+
+    .outlineTitle{
+        font-size: 30px;
     }
 }
 

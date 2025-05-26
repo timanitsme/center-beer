@@ -10,6 +10,7 @@ import {useSelector} from "react-redux";
 import {useNavigate, useParams} from "react-router-dom";
 import MinimalBottledBeerCardApi from "../../../components/Cards/BottledBeerCard/MinimalBottledBeerCardApi.jsx";
 import ArrowLeftIcon from "../../../assets/arrow-left-icon.svg?react"
+import BreweryCard from "../../../components/Cards/BreweryCard/BreweryCard.jsx";
 
 export default function MyFavoritePage(){
     const {alias} = useParams();
@@ -21,7 +22,8 @@ export default function MyFavoritePage(){
 
     const selectors = {
         beer: {pathname: "Любимое пиво", data: beerData, isLoading: beerIsLoading, error: beerError, CardComponent: MinimalBottledBeerCardApi},
-        bar: {pathname: "Любимые заведения", data: barData, isLoading: barIsLoading, error: barError, CardComponent: MinimalBarCard}
+        bar: {pathname: "Любимые заведения", data: barData, isLoading: barIsLoading, error: barError, CardComponent: MinimalBarCard},
+        brewery: {pathname: "Любимые пивоварни", data: {data: []}, isLoading: false, error: false, CardComponent: BreweryCard}
     }
 
 
@@ -31,21 +33,6 @@ export default function MyFavoritePage(){
         {title: "Личный кабинет", path: "/account/"},
         {title: selectors[alias]?.pathname, path: ""}
     ]
-
-    const barsCards = [
-        {is_favor: false, is_liked: false, title: "13 RULES (Народный бар)", img: BarImage1, address: "г.Москва, Сущевский вал, 41"},
-        {is_favor: false, is_liked: false, title: "13 RULES (Народный бар)", img: BarImage1, address: "г.Москва, Сущевский вал, 41"},
-        {is_favor: false, is_liked: false, title: "13 RULES (Народный бар)", img: BarImage1, address: "г.Москва, Сущевский вал, 41"},
-        {is_favor: false, is_liked: false, title: "13 RULES (Народный бар)", img: BarImage1, address: "г.Москва, Сущевский вал, 41"},
-        {is_favor: false, is_liked: false, title: "13 RULES (Народный бар)", img: BarImage1, address: "г.Москва, Сущевский вал, 41"},
-        {is_favor: false, is_liked: false, title: "13 RULES (Народный бар)", img: BarImage1, address: "г.Москва, Сущевский вал, 41"},
-        {is_favor: false, is_liked: false, title: "13 RULES (Народный бар)", img: BarImage1, address: "г.Москва, Сущевский вал, 41"},
-        {is_favor: false, is_liked: false, title: "13 RULES (Народный бар)", img: BarImage1, address: "г.Москва, Сущевский вал, 41"},
-        {is_favor: false, is_liked: false, title: "13 RULES (Народный бар)", img: BarImage1, address: "г.Москва, Сущевский вал, 41"},
-        {is_favor: false, is_liked: false, title: "13 RULES (Народный бар)", img: BarImage1, address: "г.Москва, Сущевский вал, 41"},
-    ]
-
-
 
     if (!alias) navigate("/account/")
     if (!profileIsLoading && !isAuthorized) navigate("/login/")

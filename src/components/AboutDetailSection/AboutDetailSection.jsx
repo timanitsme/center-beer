@@ -8,6 +8,7 @@ import ArrowBackIcon from "../../assets/arrow-left-icon.svg?react";
 import LightNavChain from "../Navigation/LightNavChain/LightNavChain.jsx";
 import RoundLinkButton from "../Buttons/RoundLinkButton/RoundLinkButton.jsx";
 import SimpleVideoCard from "../Cards/SimpleVideoCard/SimpleVideoCard.jsx";
+import BorderedGradientButton from "../Buttons/BorderedGradientButton/BorderedGradientButton.jsx";
 
 
 export default function AboutDetailSection({children, paths, sectionMenuItems, cards}){
@@ -17,7 +18,7 @@ export default function AboutDetailSection({children, paths, sectionMenuItems, c
             <div className={styles.sectionMenu}>
                 <div className={styles.menuItemsContainer}>
                     {sectionMenuItems.map((item, index) =>
-                        <Link key={index} to={item.path}>{item.title}</Link>
+                        <BorderedGradientButton key={index} onClick={() => window.location.href = item.path} text={item.title}/>
                     )}
                 </div>
             </div>

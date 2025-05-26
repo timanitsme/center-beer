@@ -26,7 +26,9 @@ export default function MyBookmarksPage(){
 
     const selectors = {
         beer: {pathname: "Пиво в кладовке", data: beerData, isLoading: beerIsLoading, error: beerError, CardComponent: MinimalBottledBeerCardApi},
-        bar: {pathname: "Заведения в кладовке", data: barData, isLoading: barIsLoading, error: barError, CardComponent: MinimalBarCard}
+        bar: {pathname: "Заведения в кладовке", data: barData, isLoading: barIsLoading, error: barError, CardComponent: MinimalBarCard},
+        brewery: {pathname: "Пивоварни в кладовке", data: {data: []}, isLoading: false, error: false, CardComponent: MinimalBarCard},
+        event: {pathname: "Мероприятия в кладовке", data: {data: []}, isLoading: false, error: false, CardComponent: MinimalBarCard},
     }
 
     const paths = [

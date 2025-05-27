@@ -10,6 +10,7 @@ import BeerInfo from "../../../components/DetailInfo/BeerInfo/BeerInfo.jsx";
 import LightBarCard from "../../../components/Cards/BarCard/LightBarCard.jsx";
 import {useLocation, useParams} from "react-router-dom";
 import {useGetBeerInfoQuery} from "../../../store/services/centerBeer.js";
+import {useEffect} from "react";
 
 
 export default function BeerDetailPage(){
@@ -25,6 +26,10 @@ export default function BeerDetailPage(){
     }}
 
     const priceVisiblePaths = ["/bar/:alias"];
+
+    useEffect(() => {
+        document.title = `center.beer | Пиво: ${data?.[0]?.name}`
+    }, [data]);
 
     const isPriceVisible = () => {
         if (!prevPath) return false;

@@ -26,6 +26,7 @@ import Excursions from "../../../components/Excursions/Excursions.jsx";
 import NewProducts from "../../../components/NewProducts/NewProducts.jsx";
 import LightBarCard from "../../../components/Cards/BarCard/LightBarCard.jsx";
 import BarsRow from "../../../components/BarsRow/BarsRow.jsx";
+import {useEffect} from "react";
 
 export default function BreweryDetailPage(){
     const images = [
@@ -41,6 +42,10 @@ export default function BreweryDetailPage(){
     const prevPath = location.state?.from || null;
     const navigate = useNavigate();
     const {data: beerMocks, isLoading: beerIsLoading, error: beerError} = useGetBeerInfoQuery("bumble-beer-yadernaya-utka-ipa")
+
+    useEffect(() => {
+        document.title = `center.beer | Пивоварня: ${data?.[0]?.name}`
+    }, [data]);
 
     const handleBack = () => {
         navigate(prevPath, { replace: true });

@@ -27,8 +27,10 @@ import {getBeerDetailPaths} from "../../Beer/BeerDetailPage/BeerDetailPageData.j
 export default function BarDetailPage(){
     const {alias} = useParams();
     const {data, isLoading, error} = useGetBarInfoQuery(alias)
-    //const id = 1
-    //const {data, isLoading, error} = useGetBarInfoByIdQuery(id)
+
+    useEffect(() => {
+        document.title = `center.beer | Бары: ${data?.data[0]?.name}`
+    }, [data]);
 
     const menuRef = useRef(null)
     const promosRef = useRef(null)

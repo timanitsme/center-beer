@@ -11,6 +11,7 @@ import {useNavigate, useParams} from "react-router-dom";
 import MinimalBottledBeerCardApi from "../../../components/Cards/BottledBeerCard/MinimalBottledBeerCardApi.jsx";
 import ArrowLeftIcon from "../../../assets/arrow-left-icon.svg?react"
 import BreweryCard from "../../../components/Cards/BreweryCard/BreweryCard.jsx";
+import {useEffect} from "react";
 
 export default function MyFavoritePage(){
     const {alias} = useParams();
@@ -26,7 +27,9 @@ export default function MyFavoritePage(){
         brewery: {pathname: "Любимые пивоварни", data: {data: []}, isLoading: false, error: false, CardComponent: BreweryCard}
     }
 
-
+    useEffect(() => {
+        document.title = `center.beer | ${selectors[alias]?.pathname}`
+    }, []);
 
     const paths = [
         {title: "center.beer", path: "/"},

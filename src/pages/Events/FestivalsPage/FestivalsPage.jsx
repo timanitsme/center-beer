@@ -3,6 +3,7 @@ import SectionHeader from "../../../components/SectionHeader/SectionHeader.jsx";
 import EventsDetailSection from "../../../components/EventsDetailSection/EventsDetailSection.jsx";
 import EventsCatalog from "../../../components/EventsCatalog/EventsCatalog.jsx";
 import FestImage from "../../../assets/eventsMocks/MCE-square.webp"
+import {useEffect} from "react";
 
 export default function FestivalsPage(){
     const paths = [
@@ -10,6 +11,11 @@ export default function FestivalsPage(){
         {title: "Мероприятия", path: "/events"},
         {title: "Фестивали", path: ""},
     ]
+
+    useEffect(() => {
+        document.title = `center.beer | Фестивали`
+    }, []);
+
     const eventsCards = [
         {title: "Moscow Craft Event 2025", description: "Moscow Craft Event — это крафтовые напитки от лучших пивоварен России, а также гастрономия, авторские товары, конкурсы и, конечно же, музыка", img: FestImage, date: "чт. 1 Мая, 13:00", tags: ["Фестивали"]},
     ]

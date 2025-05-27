@@ -5,8 +5,11 @@ import IconButton from "../Buttons/IconButton/IconButton.jsx";
 import {VkIcon} from "../../assets/VkIcon.jsx";
 import {MailIcon} from "../../assets/MailIcon.jsx";
 import {TgIcon} from "../../assets/TgIcon.jsx";
+import {useNavigate} from "react-router-dom";
 
 export default function ContactsSection(){
+    const navigate = useNavigate()
+
     return(
         <div className={styles.contactsSection}>
             <h1 className={styles.outlineTitle}>Контакты</h1>
@@ -34,7 +37,7 @@ export default function ContactsSection(){
                         <TextInput placeholder="Ваше имя"></TextInput>
                         <TextInput placeholder="Ваш email"></TextInput>
                         <textarea placeholder={"Текст сообщения"} className={styles.area}></textarea>
-                        <SimpleButton text="Отправить сообщение"></SimpleButton>
+                        <SimpleButton onClick={() => navigate("/in-dev")} text="Отправить сообщение"></SimpleButton>
                     </div>
                 </div>
             </div>

@@ -87,7 +87,7 @@ export default function BottledBeerCard({cardInfo}){
             </div>
             <div className={styles.cardFooter}>
                 <p className={styles.cardTextPrimary}>{Number(cardInfo.price).toLocaleString("ru-Ru")}₽</p>
-                <IconButton text="Купить"><BottlesPairIcon/></IconButton>
+                <IconButton text="Купить" onClick={() => navigate("/in-dev")}><BottlesPairIcon/></IconButton>
             </div>
         </div>
     )

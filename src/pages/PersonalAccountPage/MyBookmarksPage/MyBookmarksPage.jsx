@@ -15,6 +15,7 @@ import {isMobile} from "react-device-detect";
 import PersonalAccount from "../../../components/PersonalAccount/PersonalAccount.jsx";
 import ArrowLeftIcon from "../../../assets/arrow-left-icon.svg?react";
 import SimpleCatalogSection from "../../../components/CatalogSections/SimpleCatalogSection/SimpleCatalogSection.jsx";
+import {useEffect} from "react";
 
 export default function MyBookmarksPage(){
     const {alias} = useParams();
@@ -36,6 +37,10 @@ export default function MyBookmarksPage(){
         {title: "Личный кабинет", path: "/account/"},
         {title: selectors[alias]?.pathname, path: ""}
     ]
+
+    useEffect(() => {
+        document.title = `center.beer | ${selectors[alias]?.pathname}`
+    }, []);
 
     if (!alias) navigate("/account/")
     if (!profileIsLoading && !isAuthorized) navigate("/login/")

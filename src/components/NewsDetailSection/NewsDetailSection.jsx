@@ -15,13 +15,28 @@ import BlogImage2 from "../../assets/newsMocks/blog-image-2.svg"
 import BlogImage3 from "../../assets/newsMocks/blog-image-3.svg"
 import NewsItem from "../NewsItem/NewsItem.jsx";
 import ComboBox from "../Inputs/ComboBox/ComboBox.jsx";
+import {Link, useNavigate} from "react-router-dom";
 
 
 export default function NewsDetailSection({style = "detail", children}){
     const [isFavourite, setIsFavourite] = useState(false);
     const [isBookmarked, setIsBookmarked] = useState(false);
-    const sectionMenuMainItems = ["Новости и комментарии", "Статьи и интервью", "Переводы", "Новинки недели"]
-    const sectionMenuSecondaryItems = ["Пиво Pro", "Пиво Life", "Сидр, пуаре, медовуха", "Законы", "Технологии", "Вино и крепкий алкоголь", "Трезвость", "Видеоканал"]
+    const sectionMenuMainItems = [
+        {title: "Новости и комментарии", path: "/in-dev"},
+        {title: "Статьи и интервью", path: "/in-dev"},
+        {title: "Переводы", path: "/in-dev"},
+        {title: "Новинки недели", path: "/in-dev"}
+    ]
+    const sectionMenuSecondaryItems = [
+        {title: "Пиво Pro", path: "/in-dev"},
+        {title: "Пиво Life", path: "/in-dev"},
+        {title: "Сидр, пуаре, медовуха", path: "/in-dev"},
+        {title: "Законы", path: "/in-dev"},
+        {title: "Технологии", path: "/in-dev"},
+        {title: "Вино и крепкий алкоголь", path: "/in-dev"},
+        {title: "Трезвость", path: "/in-dev"},
+        {title: "Видеоканал", path: "/in-dev"}]
+
     const paths = [
         {title: "Новости"},
         {title: "Бары и магазины"}
@@ -32,6 +47,7 @@ export default function NewsDetailSection({style = "detail", children}){
         {title: "Производитель сигарет Altria Group продаст акции AB InBev", description: "Табачный гигант Altria Group сообщил о планах продать акции компании AB InBev более чем на 2,2 млрд долларов.", img: BlogImage2},
         {title: "Глава Чувашии: включение других регионов в хмелеводство даст нам максимальный экономический эффект", description: "Глава Чувашии Олег Николаев провёл ежегодную пресс-конференцию, на которой ответил на вопросы представителей СМИ, в том числе и о развитии хмелеводства в республике.", img: BlogImage3},
     ]
+    const navigate = useNavigate()
 
     return(
         <div className={styles.sectionContainer}>
@@ -39,12 +55,12 @@ export default function NewsDetailSection({style = "detail", children}){
                 <Search text="Поиск по статьям"/>
                 <div className={styles.menuItemsContainer}>
                     {sectionMenuMainItems.map((item, index) =>
-                        <a key={index}>{item}</a>
+                        <Link key={index} to={item.path}>{item.title}</Link>
                     )}
                 </div>
                 <div className={styles.menuItemsContainer}>
                     {sectionMenuSecondaryItems.map((item, index) =>
-                        <a key={index}>{item}</a>
+                        <Link key={index} to={item.path}>{item.title}</Link>
                     )}
                 </div>
             </div>
@@ -84,7 +100,7 @@ export default function NewsDetailSection({style = "detail", children}){
                                 )}
                             </>
                         }
-                        <div className={styles.sideButtons}><RoundLinkButton text="Все статьи"/></div>
+                        <div className={styles.sideButtons}><RoundLinkButton onClick={() => navigate("/news")} text="Все статьи"/></div>
 
 
                     </div>

@@ -39,6 +39,7 @@ import PastaIcon from "../../assets/foodIcons/pasta-icon.svg?react";
 import SaladIcon from "../../assets/foodIcons/salad-icon.svg?react"
 import ShawarmaIcon from "../../assets/foodIcons/shawarma-icon.svg?react"
 import SteakIcon from "../../assets/foodIcons/steak-icon.svg?react";
+import {useNavigate} from "react-router-dom";
 
 
 
@@ -48,7 +49,7 @@ export default function BarMenu({filters, filterButtons, sections, ref, barId = 
     const [showFiltersModal, setShowFiltersModal] = useState(false)
 
     const [resetOneFilter, setResetOneFilter] = useState("")
-
+    const navigate = useNavigate()
     const foodIcons = {
         "Бургеры": <BurgerIcon/>,
         "Салаты": <SaladIcon/>,
@@ -529,10 +530,10 @@ export default function BarMenu({filters, filterButtons, sections, ref, barId = 
                                     <h2>{tab?.header}</h2>
                                     <p>{tab?.description}</p>
                                 </div>
-                                {!isMobile && <div className={`${styles.sectionButton} ${styles.mobileOff}` }><IconButton text="Забронировать стол"><IconComponent/></IconButton></div>}
+                                {!isMobile && <div className={`${styles.sectionButton} ${styles.mobileOff}` }><IconButton onClick={() => navigate("/in-dev")} text="Забронировать стол"><IconComponent/></IconButton></div>}
                                 {isMobile && <div className={styles.mobileButtons}>
                                     <SimpleButton textStyle={"black"} text="ФИЛЬТРЫ" onClick={() => setShowFiltersModal(true)} style="primary"></SimpleButton>
-                                    <div className={styles.sectionButton}><IconButton text="Забронировать стол"><IconComponent/></IconButton></div>
+                                    <div className={styles.sectionButton}><IconButton onClick={() => navigate("/in-dev")} text="Забронировать стол"><IconComponent/></IconButton></div>
                                 </div>}
                             </div>
                             <div className={styles.appliedFiltersRow} style={{marginBottom: "0px"}}>

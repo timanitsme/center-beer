@@ -2,6 +2,7 @@ import NavChain from "../../../components/Navigation/NavChain/NavChain.jsx";
 import {isMobile} from "react-device-detect";
 import BarsCatalog from "../../../components/Catalogs/BarsCatalog.jsx";
 import {getBarsPageFilterButtons, getBarsPageFilters} from "./BarsPageData.jsx";
+import {useEffect} from "react";
 
 export default function BarsPage(){
     const paths = [
@@ -9,6 +10,9 @@ export default function BarsPage(){
         {title:"Бары и магазины", path: "/"},
     ]
 
+    useEffect(() => {
+        document.title = `center.beer | Бары`
+    }, []);
 
     return(
         <div className="content">

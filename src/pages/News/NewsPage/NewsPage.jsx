@@ -5,9 +5,14 @@ import NewsDetailSection from "../../../components/NewsDetailSection/NewsDetailS
 import ComponentHeader from "../../../components/ComponentHeader/ComponentHeader.jsx";
 import SectionHeader from "../../../components/SectionHeader/SectionHeader.jsx";
 import NewsCatalog from "../../../components/Catalogs/NewsCatalog/NewsCatalog.jsx";
+import {useEffect} from "react";
 
 
 export default function NewsPage(){
+    useEffect(() => {
+        document.title = `center.beer | Новости`
+    }, []);
+
     return(
         <div className="content">
             <NavChain paths={GetNewsPagePaths()}/>

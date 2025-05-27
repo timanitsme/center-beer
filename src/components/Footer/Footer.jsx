@@ -61,7 +61,7 @@ export default function Footer(){
                     <div className={styles.hrtLine} />
                     <div className={styles.footerBottom}>
                         <p>©CENTER.BEER все права защищены.</p>
-                        <p style={{paddingLeft: "10px"}}>Условия использования и политика конфиденциальности</p>
+                        <Link to={"/in-dev"} style={{paddingLeft: "10px", fontWeight: 200}}>Условия использования и политика конфиденциальности</Link>
                     </div>
                 </div>
                 <div className={styles.footerRight}>

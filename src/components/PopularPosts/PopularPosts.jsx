@@ -20,7 +20,7 @@ export default function PopularPosts(){
         <div className={styles.postsSection}>
             <div className={styles.postsHeader}>
                 <h1>Популярные статьи</h1>
-                <div className={styles.buttonContainer}><RoundLinkButton text="Все статьи" onClick={() => navigate("news")}/></div>
+                <div className={styles.buttonContainer}><RoundLinkButton text="Все статьи" onClick={() => navigate("/news")}/></div>
             </div>
             <div className={styles.postsContainer}>
                 {postCards.map((card, index) => {

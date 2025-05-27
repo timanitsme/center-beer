@@ -6,8 +6,13 @@ import QuoteSection from "../../components/QuoteSection/QuoteSection.jsx";
 import PopularPosts from "../../components/PopularPosts/PopularPosts.jsx";
 import IndexVisitSection from "../../components/IndexVisitSection/IndexVisitSection.jsx";
 import IndexEvents from "../../components/IndexEvents/IndexEvents.jsx";
+import {useEffect} from "react";
 
 export default function IndexPage(){
+    useEffect(() => {
+        document.title = `center.beer | Главная`
+    }, []);
+
     return(
         <div className="content">
             <IndexSection></IndexSection>

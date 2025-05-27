@@ -66,9 +66,17 @@
     font-size: 1.2vw;
 }
 
-.itemContainer p{
+.itemContainer p, .itemContainer li{
     font-size: 0.9vw;
     font-weight: 200;
+    color: var(--txt-secondary);
+    list-style-position: inside;
+}
+
+.flex{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 @media (max-width: 1000px) {

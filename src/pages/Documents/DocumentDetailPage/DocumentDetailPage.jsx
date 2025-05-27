@@ -14,6 +14,10 @@ export default function DocumentDetailPage({setHideFooter}){
         "cb-konkurs": "https://center.beer/cb_konkurs.pdf"
     }
 
+    useEffect(() => {
+        document.title = `center.beer | Документы`
+    }, []);
+
     const paths = [
         {title: "center.beer", path: "/"},
         {title: "Документы", path: ""},

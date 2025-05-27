@@ -31,12 +31,12 @@ import BeerDuck from "../../../assets/partners/beer-duck.webp"
 import CenterAndBeer from "../../../assets/partners/center-and-beer.webp"
 import JawsIPA from "../../../assets/partners/jaws-ipa.webp"
 import {MdRestaurantMenu} from "react-icons/md";
+import {useEffect} from "react";
 
 
 export default function AboutDetailPage() {
     const navigate = useNavigate()
     const {alias} = useParams();
-
     const specs = {
         breweries: {
             sectionMenuItems: [
@@ -141,6 +141,10 @@ export default function AboutDetailPage() {
         {title: "center.beer", path: "/"},
         {title: "Партнерам", path: ""}
     ]
+
+    useEffect(() => {
+        document.title=`center.beer | Партнерам: ${specs[alias]?.paths[paths.length-1].title}`
+    }, []);
 
     if (!specs?.hasOwnProperty(alias)) {
         navigate("/about-us")

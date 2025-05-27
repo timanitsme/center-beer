@@ -1,0 +1,25 @@
+.buttonSwitch{
+    display: flex;
+    gap: 5px;
+    background: var(--section-bg);
+    padding: 5px;
+    border-radius: 10px;
+    max-height: 50px;
+    max-width: fit-content;
+}
+
+@media (max-width: 768px) {
+    .buttonSwitch{
+        max-height: min-content;
+    }
+    .buttonSwitch svg{
+        max-height: 35px;
+        max-width: 35px;
+    }
+}
+
+@media (max-width: 1000px) {
+    .buttonSwitch{
+        margin-left: 25px;
+    }
+}

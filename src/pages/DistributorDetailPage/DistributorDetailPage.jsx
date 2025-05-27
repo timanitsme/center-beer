@@ -8,9 +8,14 @@ import DistributorInfo from "../../components/DetailInfo/DistributorInfo/Distrib
 import DistributorAdvantagesList from "../../components/AdvantagesList/DistributorAdvantagesList/DistributorAdvantagesList.jsx";
 import DistributorPortfolio from "../../components/DistributorPortfolio/DistributorPortfolio.jsx";
 import BeerCatalogSection from "../../components/BeerCatalogSection/BeerCatalogSection.jsx";
+import {useEffect} from "react";
 
 
 export default function DistributorDetailPage(){
+    useEffect(() => {
+        document.title = `center.beer | Дистрибьютор`
+    }, []);
+
     return(
         <div className="content">
             <NavChain paths={getDistributorDetailPagePaths()}/>

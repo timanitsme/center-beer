@@ -4,12 +4,18 @@ import NewsDetailSection from "../../../components/NewsDetailSection/NewsDetailS
 import NewsItem from "../../../components/NewsItem/NewsItem.jsx";
 import {useParams} from "react-router-dom";
 import {useGetNewsItemQuery} from "../../../store/services/centerBeer.js";
+import {useEffect} from "react";
 
 
 
 export default function NewsDetailPage(){
     const {id} = useParams();
     const {data, isLoading, error} = useGetNewsItemQuery(id)
+
+    useEffect(() => {
+        document.title = `center.beer | Новости: ${data?.title}`
+    }, [data]);
+
     return(
         <div className="content">
             {!isLoading && !error && data &&

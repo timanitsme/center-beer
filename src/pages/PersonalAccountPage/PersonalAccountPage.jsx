@@ -33,6 +33,9 @@ export default function PersonalAccountPage(){
     const {data: barCuddy, isLoading: barCuddyIsLoading, error: barCuddyError} = useGetUsersCuddyBarsQuery(userProfile?.id, {skip: !userProfile})
     const {data: beerCuddy, isLoading: beerCuddyIsLoading, error: beerCuddyError} = useGetUsersCuddyBeersQuery(userProfile?.id, {skip: !userProfile})
 
+    useEffect(() => {
+        document.title = `center.beer | Профиль`
+    }, []);
 
     const barCards = [
         {title: "13 RULES (Народный бар)", img: BarImage1, address: "г.Москва, Сущевский вал, 41"},

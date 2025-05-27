@@ -12,6 +12,7 @@ import {useSelector} from "react-redux";
 import ArrowLeftIcon from "../../../assets/arrow-left-icon.svg?react";
 import BeerCheckInCard from "../../../components/Cards/CheckIns/BeerCheckInCard/BeerCheckInCard.jsx";
 import BarCheckInCard from "../../../components/Cards/CheckIns/BarCheckInCard/BarCheckInCard.jsx";
+import {useEffect} from "react";
 
 export default function MyCheckinsPage(){
     const {alias} = useParams();
@@ -47,6 +48,10 @@ export default function MyCheckinsPage(){
         {title: "Личный кабинет", path: "/account/"},
         {title: selectors[alias]?.pathname, path: ""}
     ]
+
+    useEffect(() => {
+        document.title = `center.beer | ${selectors[alias]?.pathname}`
+    }, []);
 
     if (!alias) navigate("/account/")
     if (!profileIsLoading && !isAuthorized) navigate("/login/")

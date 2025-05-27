@@ -62,6 +62,11 @@ export default function EventMapPage({setHideFooter}){
         };
     }, [setHideFooter]);
 
+    useEffect(() => {
+        document.title = `center.beer | Карта фестиваля`
+    }, []);
+
+
     return(
         <div className="content" style={{minHeight: "600px", display: "flex"}}>
             {data && !isLoading && !error &&

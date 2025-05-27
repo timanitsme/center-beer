@@ -45,6 +45,7 @@ import AboutDetailPage from "./pages/About/AboutDetailPage/AboutDetailPage.jsx";
 import DocumentDetailPage from "./pages/Documents/DocumentDetailPage/DocumentDetailPage.jsx";
 import CookieConsent from "./components/CookieConsent/CookieConsent.jsx";
 import AdultsOnlyModal from "./components/Modals/SimpleModal/AdultsOnlyModal.jsx";
+import BalanceHistory from "./pages/PersonalAccountPage/BalanceHistory/BalanceHistory.jsx";
 
 function App() {
     const dispatch = useDispatch();
@@ -84,6 +85,7 @@ function App() {
         {path: "/account/fav/:alias", element: <MyFavoritePage/>},
         {path: "/account/bookmarked/:alias", element: <MyBookmarksPage/>},
         {path: "/account/earn-cb/", element: <EarnCBPage/>},
+        {path: "/account/balance-history/", element: <BalanceHistory/>},
         {path: "/signup/", element: <RegistrationPage/>},
         {path: "/cart/", element: <CartPage/>},
         {path: "/events/restaurants", element: <RestaurantEventsPage/>},

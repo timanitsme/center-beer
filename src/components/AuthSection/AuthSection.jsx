@@ -57,34 +57,53 @@ export default function AuthSection(){
     return(
         <div className={styles.authSection}>
             <h1 className={styles.outlineTitle}>Личный кабинет</h1>
-            <div className={styles.authContent}>
-                <p className={styles.title}>Вход в личный кабинет</p>
-                <div className={styles.formRow}>
-                    <p>Email</p>
-                    <TextInput placeholder="Адрес электронной почты" inputValue={email} setInputValue={setEmail}></TextInput>
-                </div>
-                <div className={styles.formRow}>
-                    <p>Пароль</p>
-                    <PasswordInput placeholder="Пароль" inputValue={password} setInputValue={setPassword}></PasswordInput>
-                </div>
-                {error.length > 0 &&<div className={styles.formRow}>
-                    <p></p>
-                    <p className={styles.error}>{error}</p>
-                </div>}
-                <div className={styles.formRow}>
-                    <div></div>
-                    <div className={styles.innerRow}>
-                        <SimpleButton onClick={handleSubmit} text="Войти"></SimpleButton>
-                        {/*<a href="" className={styles.dottedA}>Напомнить пароль</a>*/}
+            <form onSubmit={handleSubmit}>
+                <div className={styles.authContent}>
+                    <p className={styles.title}>Вход в личный кабинет</p>
+                    <div className={styles.formRow}>
+                        <p>Email</p>
+                        <TextInput
+                            placeholder="Адрес электронной почты"
+                            inputValue={email}
+                            setInputValue={setEmail}
+                        ></TextInput>
+                    </div>
+                    <div className={styles.formRow}>
+                        <p>Пароль</p>
+                        <PasswordInput
+                            placeholder="Пароль"
+                            inputValue={password}
+                            setInputValue={setPassword}
+                        ></PasswordInput>
+                    </div>
+                    {error.length > 0 && (
+                        <div className={styles.formRow}>
+                            <p></p>
+                            <p className={styles.error}>{error}</p>
+                        </div>
+                    )}
+                    <div className={styles.formRow}>
+                        <div></div>
+                        <div className={styles.innerRow}>
+                            {/* Кнопка отправки формы */}
+                            <SimpleButton type="submit" text="Войти"></SimpleButton>
+                            {/*<a href="" className={styles.dottedA}>Напомнить пароль</a>*/}
+                        </div>
+                    </div>
+                    <div className={styles.formRow}>
+                        <div></div>
+                        <div>
+                            <p>
+                                Если вы еще не зарегистрированы в личном кабинете портала,{" "}
+                                <Link to={"/signup"} className={styles.underline}>
+                                    зарегистрируйтесь
+                                </Link>
+                            </p>
+                        </div>
                     </div>
                 </div>
-                <div className={styles.formRow}>
-                    <div></div>
-                    <div>
-                      <p>Если вы еще не зарегистрированы в личном кабинете портала, <Link to={"/signup"} className={styles.underline}>зарегистрируйтесь</Link>.</p>
-                    </div>
-                </div>
-            </div>
+            </form>
+
         </div>
     )
 }

@@ -11,6 +11,12 @@
     transition: 0.5s;
 }
 
+.wrap{
+    white-space: normal;
+    word-break: break-word;
+    overflow-wrap: break-word;
+}
+
 .title{
     font-size: 1.2vw;
     color: var(--txt-active);
@@ -50,13 +56,28 @@
     border-radius: 5px;
 }
 
+.status p{
+    font-weight: 400;
+    white-space: nowrap;
+    min-width: fit-content;
+}
+
+.fitA {
+    white-space: nowrap;
+    cursor: pointer;
+    min-width: fit-content;
+}
+
 .status.completed{
     background: #CCFFCC;
 }
 
+.status.notCompleted p{
+    color: var(--primary);
+}
+
 .status.completed p{
     color: #339966;
-    font-weight: 400;
 }
 
 @media (max-width: 1000px) {
@@ -67,6 +88,19 @@
     .col p{
         font-size: 10px;
     }
+}
+
+@keyframes highlight {
+    0% {
+        background-color: var(--third);
+    }
+    100% {
+        background-color: var(--section-bg);
+    }
+}
+
+.highlighted {
+    animation: highlight 2.5s ease-in-out;
 }
 
 @media (max-width: 600px){

@@ -67,53 +67,55 @@ export default function RegSection(){
     return(
         <div className={styles.authSection}>
             <h1 className={styles.outlineTitle}>Личный кабинет</h1>
-            <div className={styles.authContent}>
-                <p className={styles.title}>Регистрация</p>
-                <div className={styles.formRow}>
-                    <p>Никнейм</p>
-                    <TextInput placeholder="Придумайте себе никнейм" maxLength={15} inputValue={nickname} setInputValue={setNickname}></TextInput>
-                </div>
-                <div className={styles.formRow}>
-                    <p>Email</p>
-                    <TextInput placeholder="Адрес электронной почты" inputValue={email} setInputValue={setEmail}></TextInput>
-                </div>
-                <div className={styles.formRow}>
-                    <p>Пароль</p>
-                    <PasswordInput placeholder="Пароль" inputValue={password} setInputValue={setPassword}></PasswordInput>
-                </div>
-                <div className={styles.formRow}>
-                    <p>Повторите пароль</p>
-                    <PasswordInput placeholder="Пароль" inputValue={passwordRepeat} setInputValue={setPasswordRepeat}></PasswordInput>
-                </div>
-                <div className={styles.formRow}>
-                    <div></div>
-                    <CheckBoxChild checked={adultChecked} setChecked={setAdultChecked}><p style={{color: "var(--txt-secondary)"}}>Я подтверждаю что мне исполнилось 18 лет</p></CheckBoxChild>
-                </div>
-                <div className={styles.formRow}>
-                    <div></div>
-                    <CheckBoxChild checked={checked} setChecked={setChecked}><p style={{color: "var(--txt-secondary)"}}>Я даю согласие на обработку <a href="" className={styles.underline}>персональных данных</a></p></CheckBoxChild>
-                </div>
-                {error.length > 0 &&
-                    <>
-                        <div className={styles.formRow}>
-                            <div></div>
-                            <p className={styles.error}>{error}</p>
+            <form onSubmit={handleSubmit}>
+                <div className={styles.authContent}>
+                    <p className={styles.title}>Регистрация</p>
+                    <div className={styles.formRow}>
+                        <p>Никнейм</p>
+                        <TextInput placeholder="Придумайте себе никнейм" maxLength={15} inputValue={nickname} setInputValue={setNickname}></TextInput>
+                    </div>
+                    <div className={styles.formRow}>
+                        <p>Email</p>
+                        <TextInput placeholder="Адрес электронной почты" inputValue={email} setInputValue={setEmail}></TextInput>
+                    </div>
+                    <div className={styles.formRow}>
+                        <p>Пароль</p>
+                        <PasswordInput placeholder="Пароль" inputValue={password} setInputValue={setPassword}></PasswordInput>
+                    </div>
+                    <div className={styles.formRow}>
+                        <p>Повторите пароль</p>
+                        <PasswordInput placeholder="Пароль" inputValue={passwordRepeat} setInputValue={setPasswordRepeat}></PasswordInput>
+                    </div>
+                    <div className={styles.formRow}>
+                        <div></div>
+                        <CheckBoxChild checked={adultChecked} setChecked={setAdultChecked}><p style={{color: "var(--txt-secondary)"}}>Я подтверждаю что мне исполнилось 18 лет</p></CheckBoxChild>
+                    </div>
+                    <div className={styles.formRow}>
+                        <div></div>
+                        <CheckBoxChild checked={checked} setChecked={setChecked}><p style={{color: "var(--txt-secondary)"}}>Я даю согласие на обработку <a href="" className={styles.underline}>персональных данных</a></p></CheckBoxChild>
+                    </div>
+                    {error.length > 0 &&
+                        <>
+                            <div className={styles.formRow}>
+                                <div></div>
+                                <p className={styles.error}>{error}</p>
+                            </div>
+                        </>
+                    }
+                    <div className={styles.formRow}>
+                        <div></div>
+                        <div className={styles.innerRow}>
+                            <SimpleButton type="submit" text="Регистрация" ></SimpleButton>
                         </div>
-                    </>
-                }
-                <div className={styles.formRow}>
-                    <div></div>
-                    <div className={styles.innerRow}>
-                        <SimpleButton text="Регистрация" onClick={handleSubmit}></SimpleButton>
+                    </div>
+                    <div className={styles.formRow}>
+                        <div></div>
+                        <div>
+                            <p>Уже зарегистрированы в личном кабинете портала? <Link to={"/login"} className={styles.underline}>Вход</Link></p>
+                        </div>
                     </div>
                 </div>
-                <div className={styles.formRow}>
-                    <div></div>
-                    <div>
-                        <p>Уже зарегистрированы в личном кабинете портала? <Link to={"/login"} className={styles.underline}>Вход</Link>.</p>
-                    </div>
-                </div>
-            </div>
+            </form>
         </div>
     )
 }

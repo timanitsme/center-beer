@@ -23,6 +23,7 @@
 }
 
 .picturesColumn div {
+    width: fit-content;
     background: var(--fg);
     display: flex;
     justify-content: center;
@@ -247,6 +248,11 @@
     display: none;
 }
 
+.sidePictureContainer{
+    width: 50px !important;
+    aspect-ratio: 1/1;
+}
+
 @media (hover: hover) and (pointer: fine) {
     .aUnderlinedIconButton:hover {
         color: var(--primary);
@@ -315,6 +321,12 @@
     .notMobile{
         display: none;
     }
+}
+
+.selectedPictureContainer{
+    min-height: 100px;
+    max-height: 350px;
+    aspect-ratio: 1/1;
 }
 
 .selectedPictureContainer{

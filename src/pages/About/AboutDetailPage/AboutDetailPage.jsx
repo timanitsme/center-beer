@@ -29,6 +29,7 @@ import BreweryPartnerPreview from "../../../assets/partners/brewery-partner-prev
 import BeerPartnerPreview from "../../../assets/partners/beer-partner-preview.webp"
 import BeerDuck from "../../../assets/partners/beer-duck.webp"
 import CenterAndBeer from "../../../assets/partners/center-and-beer.webp"
+import BreweriesMeet from "../../../assets/partners/breweries-meet.webp"
 import JawsIPA from "../../../assets/partners/jaws-ipa.webp"
 import {MdRestaurantMenu} from "react-icons/md";
 import {useEffect} from "react";
@@ -63,6 +64,11 @@ export default function AboutDetailPage() {
             ],
             mainImage: BreweryPartnerPreview,
             videoCards: [
+                {
+                    title: "Встреча с пивоварнями",
+                    preview: BreweriesMeet,
+                    video: "https://vk.com/video_ext.php?oid=-210836529&id=456239047&hd=2&autoplay=1"
+                },
                 {
                     title: "Показываем инструменты",
                     preview: CenterAndBeer,

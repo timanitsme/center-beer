@@ -22,7 +22,6 @@ import {getRatingIcons} from "../../../utils/getRatingIcons.jsx";
 export default function BreweryInfo({breweryInfo={}}){
     const [isFavourite, setIsFavourite] = useState(false);
     const [isBookmarked, setIsBookmarked] = useState(false);
-    const rating = 4.9
 
     return(
         <div>
@@ -50,16 +49,18 @@ export default function BreweryInfo({breweryInfo={}}){
                     </div>
                     <div className={styles.ratingAndComments}>
                         <div className={styles.beerBottles}>
-                            {getRatingIcons(rating)}
+                            {getRatingIcons(breweryInfo?.rating)}
                         </div>
-                        <p>({rating})</p>
+                        <p>({breweryInfo?.rating?.toFixed(1)})</p>
                         <div className={styles.circle}/>
                         <a> <CommentIcon/> 116 комментариев</a>
                     </div>
-                    {/*<h2>+7 (916) 298-06-14</h2>*/}
-                    <p>{breweryInfo?.country}</p>
+                    <h2>{breweryInfo?.contacts}</h2>
+                    <p>{breweryInfo?.country && breweryInfo?.address
+                        ? `${breweryInfo.country}, ${breweryInfo.address}`
+                        : breweryInfo?.country || breweryInfo?.address || ''}</p>
                     {/*<a className={styles.aUnderlinedIconButton}><CommentIcon/>Связаться с нами</a>*/}
-                    {breweryInfo["social_media"]?.length > 0 &&
+                    {breweryInfo["social_media"] &&
                         <div className={styles.socials}>
                             {breweryInfo["social_media"].tg && <a href={breweryInfo["social_media"].tg}><TgIcon/></a>}
                             {breweryInfo["social_media"].vk && <a href={breweryInfo["social_media"].vk}><VkIcon/></a>}
@@ -75,14 +76,16 @@ export default function BreweryInfo({breweryInfo={}}){
                 </div>
                 <div className={styles.ratingAndComments}>
                     <div className={styles.beerBottles}>
-                        {getRatingIcons(rating)}
+                        {getRatingIcons(breweryInfo?.rating)}
                     </div>
-                    <p>({rating})</p>
+                    <p>({breweryInfo?.rating?.toFixed(1)})</p>
                     <div className={styles.circle}/>
                     <a> <CommentIcon/> 116 комментариев</a>
                 </div>
-                {/*<h2>+7 (916) 298-06-14</h2>*/}
-                <p>{breweryInfo?.country}</p>
+                <h2>{breweryInfo?.contacts}</h2>
+                <p>{breweryInfo?.country && breweryInfo?.address
+                    ? `${breweryInfo.country}, ${breweryInfo.address}`
+                    : breweryInfo?.country || breweryInfo?.address || ''}</p>
                 {/*<a className={styles.aUnderlinedIconButton}><CommentIcon/>Связаться с нами</a>*/}
                 <div className={styles.socials}>
                     <TgIcon/>

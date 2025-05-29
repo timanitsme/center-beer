@@ -20,6 +20,7 @@
     object-position: center;
     height: 300px;
     max-width: 35%;
+    background: var(--bg);
 }
 
 .image img{

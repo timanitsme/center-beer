@@ -27,6 +27,7 @@ import NewProducts from "../../../components/NewProducts/NewProducts.jsx";
 import LightBarCard from "../../../components/Cards/BarCard/LightBarCard.jsx";
 import BarsRow from "../../../components/BarsRow/BarsRow.jsx";
 import {useEffect} from "react";
+import BreweryHistoryApi from "../../../components/BreweryHistory/BreweryHistoryApi.jsx";
 
 export default function BreweryDetailPage(){
     const images = [
@@ -72,9 +73,9 @@ export default function BreweryDetailPage(){
                     )}
                     <NavChain paths={[...getBreweryDetailPagePaths(), {title:data[0]?.name, path: ""}]}/>
                     <BreweryInfo breweryInfo={data[0]}/>
-                    {data[0].alias === "jaws" && <BreweryHistory/>}
+                    {data[0]?.history_block && <BreweryHistoryApi stories={data[0]?.history_block}/>}
                     {data[0].alias === "jaws" && <BarEvents title="Новости"></BarEvents>}
-                    {data[0].alias === "jaws" && <Gallery pictures={data[0].gallery}/>}
+                    {data[0]?.gallery?.length !== 0 && <Gallery pictures={data[0].gallery}/>}
                     {!beerIsLoading && !beerError && beerMocks[0]?.sales_in_bars && beerMocks[0]?.sales_in_markets && <BarsRow title="Где попробовать нашу продукцию" cards={beerMocks[0]?.sales_in_bars} marketCards={beerMocks[0]?.sales_in_markets} CardComponent={LightBarCard}/>}
                     <BeerCatalogSection withoutPrice={true} breweryId={data[0].id}/>
                     {data[0].alias === "jaws" && <NewProducts images={images}/>}

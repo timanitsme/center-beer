@@ -1,5 +1,5 @@
 import styles from "./BeerInfo.module.css"
-import {useEffect, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import BeerBottleIcon from "../../../assets/bottle-icon.svg?react";
 import HalfBeerBottleIcon from "../../../assets/bottle-half-icon.svg?react";
 import EmptyBeerBottleIcon from "../../../assets/bottle-empty-icon.svg?react";
@@ -16,6 +16,8 @@ import ImageVideoModal from "../../Modals/ImageVideoModal/ImageVideoModal.jsx";
 import {getRatingIcons} from "../../../utils/getRatingIcons.jsx";
 import {Link} from "react-router-dom";
 import {useLazyAddBeerToCuddyQuery, useLazyAddBeerToFavQuery} from "../../../store/services/centerBeer.js";
+import ImageBackgroundDetector from "../../../utils/ImageBackgroundDetector/ImageBackgroundDetector.jsx";
+import addProxyToImageUrl from "../../../utils/addProxyToImageUrl/addProxyToImageUrl.js";
 
 export default function BeerInfo({showPrice=false,beerInfo={}}){
     const [isFavourite, setIsFavourite] = useState(beerInfo?.is_favor || false);
@@ -154,13 +156,6 @@ export default function BeerInfo({showPrice=false,beerInfo={}}){
                 </div>
             </div>
             <ImageVideoModal src={selectedPicture} setSrc={setSelectedPicture} show={showModal} setShow={setShowModal} />
-
-
-
-
-
-
-
 
         </div>
 

@@ -15,6 +15,7 @@
     max-width: 119px;
     background-color: white;
     border-radius: 5px;
+    margin-right: 24px;
 }
 
 .socials{
@@ -190,7 +191,7 @@
         max-height: 70px;
         vertical-align: top;
         background-color: var(--bg);
-
+        margin-right: 15px;
     }
     .barIcons svg{
         max-width: 50px;

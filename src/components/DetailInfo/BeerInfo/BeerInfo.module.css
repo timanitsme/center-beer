@@ -18,8 +18,8 @@
 .picturesColumn {
     display: flex;
     flex-direction: column;
-    gap: 5px;
-    width: 20%;
+    gap: 20px;
+    width: fit-content;
 }
 
 .picturesColumn div {
@@ -47,7 +47,6 @@
 }
 
 .beerPictures > div:last-child {
-    width: 80%;
     height: fit-content;
     display: flex;
     justify-content: center;
@@ -58,8 +57,8 @@
 }
 
 .beerPictures > div:last-child img {
-    max-width: 100%;
-    max-height: 100%;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
 }
 
@@ -249,8 +248,30 @@
 }
 
 .sidePictureContainer{
-    width: 50px !important;
-    aspect-ratio: 1/1;
+    height: 100px !important;
+    width: 87px !important;
+}
+
+.selectedPictureContainer{
+    height: 460px !important;
+    width: 405px !important;
+    cursor: pointer;
+    margin-right: 50px;
+}
+
+
+.selectedPictureContainer svg{
+    position: absolute;
+}
+
+.selectedPictureContainer:hover svg{
+    color: var(--primary-semi-transparent) !important;
+}
+
+.sidePictureContainer svg{
+    position: absolute;
+    width: 25px;
+    height: min-content;
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -263,6 +284,24 @@
     .aIconButton:hover{
         color: var(--txt-primary);
     }
+}
+
+@media (max-width: 1200px){
+    .selectedPictureContainer{
+        height: 322px !important;
+        width: 283px !important;
+        margin-right: 25px;
+    }
+
+    .sidePictureContainer{
+        height: 70px !important;
+        width: 60px !important;
+    }
+
+    .beerPictures{
+        gap: 15px;
+    }
+
 }
 
 @media (max-width: 1000px) {
@@ -323,33 +362,22 @@
     }
 }
 
-.selectedPictureContainer{
-    min-height: 100px;
-    max-height: 350px;
-    aspect-ratio: 1/1;
-}
-
-.selectedPictureContainer{
-    cursor: pointer;
-}
-
-.selectedPictureContainer svg{
-    position: absolute;
-}
-
-.selectedPictureContainer:hover svg{
-    color: var(--primary-semi-transparent) !important;
-}
-
-.sidePictureContainer svg{
-    position: absolute;
-    width: 25px;
-    height: min-content;
-}
-
-
 @media (max-width: 600px) {
     .barInfo.mobile{
         margin: 0 auto 10px auto;
+    }
+
+    .beerPictures{
+        gap: 5px;
+    }
+
+    .selectedPictureContainer{
+        height: 184px !important;
+        width: 162px !important;
+        margin-right: 10px;
+    }
+    .sidePictureContainer{
+        height: 40px !important;
+        width: 35px !important;
     }
 }

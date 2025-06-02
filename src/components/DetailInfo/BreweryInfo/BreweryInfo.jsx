@@ -93,14 +93,15 @@ export default function BreweryInfo({breweryInfo={}}){
                     <a href="mailto:hello@center.beer"><MailIcon/></a>
                 </div>
             </div>
+            {/*
             <div className={styles.barButtonsMobile}>
                 <IconButton text="наши новинки"><BottlesPairIcon/></IconButton>
                 <IconButton text="мероприятия"><FlagsIcon/></IconButton>
                 <IconButton text="ассортимент"><PhoneIcon/></IconButton>
                 <IconButton text="фото"><PhoneIcon/></IconButton>
                 <IconButton text="экскурсии"><BarrelIcon/></IconButton>
-
             </div>
+            */}
         </div>
 
     )

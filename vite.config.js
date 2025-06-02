@@ -22,6 +22,17 @@ export default defineConfig({
         headers: {
           'Access-Control-Allow-Origin': '*',
         },
+        '/image-proxy': {
+          target: '',
+          changeOrigin: true,
+          router: (req) => {
+            const url = new URL(req.url, `http://${req.headers.host}`);
+            return url.searchParams.get('url');
+          },
+          headers: {
+            'Access-Control-Allow-Origin': '*',
+          },
+        }
 
       }
     }

@@ -1,0 +1,121 @@
+.card{
+    max-width: 270px;
+    display: flex;
+    flex-direction: column;
+}
+
+.skeletonTextPrimary {
+    width: 75%;
+    height: 20px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    background: var(--primary);
+}
+
+.skeletonBill {
+    width: 20%;
+    height: 20px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    background: var(--txt-secondary);
+}
+
+.skeletonRating, .skeletonComment {
+    width: 35px;
+    height: 20px;
+    border-radius: 4px;
+}
+
+.skeletonRating{
+    background: var(--txt-active);
+}
+
+.skeletonComment{
+    background: var(--txt-secondary);
+}
+
+.skeletonTextSecondary {
+    width: 60%;
+    height: 16px;
+    border-radius: 4px;
+    background: var(--txt-secondary);
+}
+
+.bottledBeerCard{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    background: var(--section-bg);
+    gap: 10px;
+    flex: 1;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+    animation: pulse 1.5s infinite ease-in-out;
+}
+
+.skeletonImage {
+    width: 100%;
+    aspect-ratio: 1.5 / 1;
+    border-radius: 5px;
+    background: var(--third);
+}
+
+.characteristics{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+}
+
+.characteristics div{
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.bigCircle{
+    height: 10px;
+    width: 10px;
+    border-radius: 100%;
+    background: var(--primary);
+    align-self: center;
+
+}
+
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 0.6;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+@media (max-width: 1000px) {
+    .card p{
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 900px) {
+    .bottledBeerCard{
+        padding: 10px;
+    }
+    .card{
+        max-width: 200px;
+    }
+
+}
+
+@media (max-width: 768px) {
+    .bottledBeerCard {
+        padding: 5px;
+    }
+
+    .cardFooter {
+        padding: 5px;
+    }
+}

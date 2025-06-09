@@ -17,6 +17,7 @@
     background: var(--section-bg);
     gap: 10px;
     flex: 1;
+    justify-content: space-between;
 }
 
 .bottledBeerCard.regular{

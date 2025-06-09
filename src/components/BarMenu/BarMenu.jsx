@@ -1,6 +1,5 @@
 import styles from "./BarMenu.module.css"
 import IconButton from "../Buttons/IconButton/IconButton.jsx";
-import CatalogSection from "../CatalogSections/CatalogSection/CatalogSection.jsx";
 import PropTypes from "prop-types";
 import SimpleButton from "../Buttons/SimpleButton/SimpleButton.jsx";
 import {
@@ -40,6 +39,10 @@ import SaladIcon from "../../assets/foodIcons/salad-icon.svg?react"
 import ShawarmaIcon from "../../assets/foodIcons/shawarma-icon.svg?react"
 import SteakIcon from "../../assets/foodIcons/steak-icon.svg?react";
 import {useNavigate} from "react-router-dom";
+import SimpleCatalogSection from "../CatalogSections/SimpleCatalogSection/SimpleCatalogSection.jsx";
+import DraftBeerCardSkeleton from "../Skeletons/DraftBeerCardSkeleton/DraftBeerCardSkeleton.jsx";
+import BottledBeerCardSkeleton from "../Skeletons/BottledBeerCardSkeleton/BottledBeerCardSkeleton.jsx";
+import ProductCardSkeleton from "../Skeletons/ProductCardSkeleton/ProductCardSkeleton.jsx";
 
 
 
@@ -157,20 +160,20 @@ export default function BarMenu({filters, filterButtons, sections, ref, barId = 
     }
 
     // Получение данных товаров по заданным фильтрам
-    const {data: beerData, isLoading: beerIsLoading, error: beerError} = useGetBarMenuBeerQuery(tabFilterValues.beer, {skip: selectedTab !== "beer"})
-    const {data: bottleData, isLoading: bottleIsLoading, error: bottleError} = useGetBarMenuBottleQuery(tabFilterValues.beer_bottle, {skip: selectedTab !== "beer_bottle"})
-    const {data: alcData, isLoading: alcIsLoading, error: alcError} = useGetBarMenuAlcQuery(tabFilterValues.alc, {skip: selectedTab !== "alc"})
-    const {data: cocktailsData, isLoading: cocktailsIsLoading, error: cocktailsError} = useGetBarMenuCocktailsQuery(tabFilterValues.cocktails, {skip: selectedTab !== "cocktails"})
-    const {data: foodData, isLoading: foodIsLoading, error: foodError} = useGetBarMenuFoodQuery(tabFilterValues.food, {skip: selectedTab !== "food"})
+    const {data: beerData, isLoading: beerIsLoading, error: beerError, isFetching:beerIsFetching} = useGetBarMenuBeerQuery(tabFilterValues.beer, {skip: selectedTab !== "beer"})
+    const {data: bottleData, isLoading: bottleIsLoading, error: bottleError, isFetching: bottleIsFetching} = useGetBarMenuBottleQuery(tabFilterValues.beer_bottle, {skip: selectedTab !== "beer_bottle"})
+    const {data: alcData, isLoading: alcIsLoading, error: alcError, isFetching: alcIsFetching} = useGetBarMenuAlcQuery(tabFilterValues.alc, {skip: selectedTab !== "alc"})
+    const {data: cocktailsData, isLoading: cocktailsIsLoading, error: cocktailsError, isFetching: cocktailsIsFetching} = useGetBarMenuCocktailsQuery(tabFilterValues.cocktails, {skip: selectedTab !== "cocktails"})
+    const {data: foodData, isLoading: foodIsLoading, error: foodError, isFetching: foodIsFetching} = useGetBarMenuFoodQuery(tabFilterValues.food, {skip: selectedTab !== "food"})
 
     // Спецификация вкладок
     const tabsSpecs = useMemo(() => {
         const specs = {
-            beer: {icon: BeerTapIcon, hook: useGetBarMenuBeerQuery, wideColumns: false, filterTitle: "На кранах", CardComponent: DraftBeerCard, data: beerData, isLoading: beerIsLoading, error: beerError, filters: beerFilters, filterValues: tabFilterValues.beer, selectedFilters: tabSelectedFilters.beer },
-            beer_bottle: {icon: BottlesPairIcon, hook: useGetBarMenuBottleQuery, wideColumns: false, filterTitle: "Фасованное пиво", CardComponent: BottledBeerCard, data: bottleData, isLoading: bottleIsLoading, error: bottleError, filters: bottleFilters, filterValues: tabFilterValues.beer_bottle, selectedFilters: tabSelectedFilters.beer_bottle},
-            alc: {icon: AlcoBottleIcon, hook: useGetBarMenuAlcQuery, wideColumns: false, filterTitle: "Крепкий алкоголь", CardComponent: StrongAlcoholCard, data: alcData, isLoading: alcIsLoading, error: alcError, filters: alcFilters, filterValues: tabFilterValues.alc, selectedFilters: tabSelectedFilters.alc},
-            cocktails: {icon: CoctailIcon, hook: useGetBarMenuCocktailsQuery, wideColumns: true, filterTitle: "Безалкогольные напитки", CardComponent: ProductCard, data: cocktailsData, isLoading: cocktailsIsLoading, error: cocktailsError, filters: cocktailsFilters, filterValues: tabFilterValues.cocktails, selectedFilters: tabSelectedFilters.cocktails},
-            food: {icon: MeatIcon, hook: useGetBarMenuFoodQuery, wideColumns: true, filterTitle: "Еда", CardComponent: ProductCard, data: foodData, isLoading: foodIsLoading, error: foodError, filters: foodFilters,  },
+            beer: {icon: BeerTapIcon, hook: useGetBarMenuBeerQuery, wideColumns: false, filterTitle: "На кранах", CardComponent: DraftBeerCard, SkeletonCard: DraftBeerCardSkeleton, data: beerData, isLoading: beerIsLoading, error: beerError, isFetching: beerIsFetching, filters: beerFilters, filterValues: tabFilterValues.beer, selectedFilters: tabSelectedFilters.beer },
+            beer_bottle: {icon: BottlesPairIcon, hook: useGetBarMenuBottleQuery, wideColumns: false, filterTitle: "Фасованное пиво", CardComponent: BottledBeerCard, SkeletonCard: BottledBeerCardSkeleton, data: bottleData, isLoading: bottleIsLoading, error: bottleError, isFetching: bottleIsFetching, filters: bottleFilters, filterValues: tabFilterValues.beer_bottle, selectedFilters: tabSelectedFilters.beer_bottle},
+            alc: {icon: AlcoBottleIcon, hook: useGetBarMenuAlcQuery, wideColumns: false, filterTitle: "Крепкий алкоголь", CardComponent: StrongAlcoholCard, SkeletonCard: BottledBeerCardSkeleton, data: alcData, isLoading: alcIsLoading, error: alcError, isFetching: alcIsFetching, filters: alcFilters, filterValues: tabFilterValues.alc, selectedFilters: tabSelectedFilters.alc},
+            cocktails: {icon: CoctailIcon, hook: useGetBarMenuCocktailsQuery, wideColumns: true, filterTitle: "Безалкогольные напитки", CardComponent: ProductCard, SkeletonCard: ProductCardSkeleton, data: cocktailsData, isLoading: cocktailsIsLoading, error: cocktailsError, isFetching: cocktailsIsFetching, filters: cocktailsFilters, filterValues: tabFilterValues.cocktails, selectedFilters: tabSelectedFilters.cocktails},
+            food: {icon: MeatIcon, hook: useGetBarMenuFoodQuery, wideColumns: true, filterTitle: "Еда", CardComponent: ProductCard, SkeletonCard: ProductCardSkeleton, data: foodData, isLoading: foodIsLoading, error: foodError, isFetching: foodIsFetching, filters: foodFilters},
             //tincture: {icon: AlcoBottleIcon, wideColumns: false, filterTitle: "Настойки", CardComponent: ProductCard}
         }
         Object.keys(specs).forEach((key)=>{
@@ -178,9 +181,9 @@ export default function BarMenu({filters, filterButtons, sections, ref, barId = 
             specs[key].initialState = initialStates[key] && initialStates[key]
         })
         return specs
-    }, [beerData, beerIsLoading, beerError, beerFilters, bottleData, bottleIsLoading, bottleError,
-        bottleFilters, alcData, alcIsLoading, alcError, alcFilters, cocktailsData, cocktailsIsLoading,
-        cocktailsError, cocktailsFilters, foodData, foodIsLoading, foodError, foodFilters, filterSpecs,
+    }, [beerData, beerIsLoading, beerError, beerIsFetching, beerFilters, bottleData, bottleIsLoading, bottleError,
+        bottleIsFetching, bottleFilters, alcData, alcIsLoading, alcError, alcIsFetching, alcFilters, cocktailsData, cocktailsIsLoading,
+        cocktailsError, cocktailsIsFetching, cocktailsFilters, foodData, foodIsLoading, foodError, foodIsFetching, foodFilters, filterSpecs,
         initialStates
     ])
 
@@ -626,8 +629,18 @@ export default function BarMenu({filters, filterButtons, sections, ref, barId = 
                                 }
                             })}
                             <div className={tabsSpecs[tab.alias]?.wideColumns ? styles.sectionContentWide : styles.sectionContent}>
-                                {tabSpec?.data && tabSpec?.data?.data?.length > 0 && tabSpec?.data?.data?.map((cardInfo, index) => <CardComponent key={index} cardInfo={cardInfo}/>)}
+                                {tabSpec?.isFetching && tabSpec?.SkeletonCardComponent ? (
+
+                                    Array.from({ length: tabFilterValues[tab.alias][`lim`] }).map((_, index) => (
+                                        <tabSpec.SkeletonCardComponent key={`skeleton-${index}`} />
+                                    ))
+                                ) : (
+                                    tabSpec?.data?.data?.map((cardInfo) => (
+                                        <CardComponent key={cardInfo?.id} cardInfo={cardInfo} title={""} />
+                                    ))
+                                )}
                             </div>
+                            {tabSpec?.data?.["total_items"] && tabSpec?.data?.data?.length < tabSpec?.data?.["total_items"] && <div className={styles.loadMoreSection}><SimpleButton text="Загрузить еще" style="third" onClick={{/*handleShowMore*/}} disabled={tabSpec?.isFetching}></SimpleButton></div>}
                         </div>
                     </div>
                 </div>)}

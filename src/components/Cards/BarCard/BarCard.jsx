@@ -9,7 +9,6 @@ import LocationIcon from "../../../assets/location-filled-icon.svg?react"
 import CommentIcon from "../../../assets/comment-icon.svg?react"
 import {useNavigate} from "react-router-dom";
 import {useLazyAddBarToCuddyQuery, useLazyAddBarToFavQuery} from "../../../store/services/centerBeer.js";
-import {logout} from "../../../store/services/authSlice.js";
 
 export default function BarCard({cardInfo}){
     const [cardBookmarked, setCardBookmarked] = useState(cardInfo.is_favor || false);

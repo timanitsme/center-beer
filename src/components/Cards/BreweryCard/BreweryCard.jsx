@@ -1,11 +1,8 @@
 import {useState} from "react";
 import styles from "./BreweryCard.module.css";
 import BookMarkIcon from "../../../assets/bookmark-unfill-icon.svg?react";
-import IconButton from "../../Buttons/IconButton/IconButton.jsx";
-import BottlesPairIcon from "../../../assets/bottles-pair-icon.svg?react";
 import FavIcon from "../../../assets/fav-unfill-icon.svg?react";
 import PropTypes from "prop-types";
-import SimpleButton from "../../Buttons/SimpleButton/SimpleButton.jsx";
 import {useNavigate} from "react-router-dom";
 
 

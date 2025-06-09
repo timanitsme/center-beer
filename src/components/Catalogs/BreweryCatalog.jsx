@@ -22,6 +22,7 @@ import SingleCheckBox from "../ApiInputs/CheckBox/SingleCheckBox.jsx";
 import ComboBox from "../ApiInputs/ComboBox/ComboBox.jsx";
 import {FaSortAmountDown, FaSortAmountUp} from "react-icons/fa";
 import SortDirection from "../ApiInputs/SortDirectionButton/SortDirection.jsx";
+import BreweryCardSkeleton from "../Skeletons/BreweryCardSkeleton/BreweryCardSkeleton.jsx";
 
 export default function BreweryCatalog({filters = [], filterButtons = [], sections = []}){
     const [filterNameMap, setFilterNameMap] = useState({});
@@ -30,18 +31,6 @@ export default function BreweryCatalog({filters = [], filterButtons = [], sectio
     const [isLoadingMore, setIsLoadingMore] = useState(false);
 
 
-
-    const handleShowMore = async () => {
-        if (!isLoadingMore && breweriesData?.data && !breweriesIsFetching) {
-            setIsLoadingMore(true);
-            setAllCards((prevCards) => [...prevCards, ...breweriesData.data]);
-            setFilterValues((prevFilters) => ({
-                ...prevFilters,
-                offset: prevFilters.offset + prevFilters.lim
-            }));
-            setIsLoadingMore(false);
-        }
-    };
 
     // TODO:
     // Спецификация фильтров
@@ -116,20 +105,6 @@ export default function BreweryCatalog({filters = [], filterButtons = [], sectio
         {id: "desc", Icon: FaSortAmountDown, name: "По убыванию"}
     ]
 
-    const resetPages = () => {
-        setFilterValues((prevFilters) => ({
-            ...prevFilters,
-            offset: 0
-        }));
-        setAllCards([]);
-        handleShowMore();
-    }
-
-    /*FIXME: useEffect(() => {
-        if (!beerIsLoading) {
-            handleShowMore();
-        }
-    }, [beerIsLoading]);*/
 
     useEffect(() => {
         if (breweriesFilters && !breweriesFiltersIsLoading && !breweriesFiltersError) {
@@ -219,13 +194,11 @@ export default function BreweryCatalog({filters = [], filterButtons = [], sectio
             ...prevState,
             [filterKey]: value,
         }));
-        //resetPages()
     }
 
     // Применение фильтров
     const applyFilters = () => {
         setFilterValues(selectedFilters);
-        //resetPages()
     }
 
     // Сброс фильтров
@@ -239,7 +212,6 @@ export default function BreweryCatalog({filters = [], filterButtons = [], sectio
             });
             return newState;
         });
-        //resetPages()
     }
 
 
@@ -339,7 +311,7 @@ export default function BreweryCatalog({filters = [], filterButtons = [], sectio
                 if (filterKey !== "order_by" && filterKey !== "order_asc_desc")
                     count += 1;
             } else if (typeof value === "boolean" && value) {
-                if (filterKey !== "is_open" ?? filterKey !== "is_new")
+                if (filterKey !== "is_open" && filterKey !== "is_new")
                     count += 1;
             }
         });
@@ -459,10 +431,7 @@ export default function BreweryCatalog({filters = [], filterButtons = [], sectio
                         {sortDirectionFilters && <SortDirection options={sortDirectionFilters} onChange={(value) => handleSingleFilterApply("order_asc_desc", value.id)}/>}
                         <Toggle reset={tabResetFilters["is_open"]} label={"Только открытые"} toggled={filterValues.is_open} onClick={() => handleSingleFilterApply("is_open", !filterValues.is_open)}/>
                     </div>
-                    { !breweriesIsLoading && !breweriesError &&
-                        <SimpleCatalogSection cards={breweriesData?.data} CardComponent={BreweryCard} wideColumns={true}/>
-                    }
-                    {/*<SimpleCatalogSection cards={allCards} CardComponent={BottledBeerCard} wideColumns={false} totalItems={beerData?.["total_items"]} onShowMore={handleShowMore}/>*/}
+                    <SimpleCatalogSection cards={breweriesData?.data} CardComponent={BreweryCard} wideColumns={true} isFetching={breweriesIsFetching} SkeletonCardComponent={BreweryCardSkeleton} lim={25} totalItems={breweriesData?.["total_items"]}/>
                 </div>
             </div>
             {isMobile &&

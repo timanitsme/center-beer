@@ -51,6 +51,22 @@
 }
 
 
+.simpleButton:disabled{
+    background: var(--primary-semi-transparent);
+    transition: 0.5s;
+}
+
+.simpleButton.secondary:disabled{
+    background: var(--third);
+    transition: 0.5s;
+}
+
+.third:disabled {
+    background: var(--third);
+    transition: 0.5s;
+}
+
+
 @media (hover: hover) and (pointer: fine) {
     .simpleButton.secondary:hover{
         background: var(--third);

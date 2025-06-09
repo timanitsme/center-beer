@@ -1,6 +1,5 @@
 import styles from "./BarsCatalog.module.css";
 import IconButton from "../Buttons/IconButton/IconButton.jsx";
-import FilterComboBox from "../ApiInputs/FilterComboBox/FilterComboBox.jsx";
 import SimpleButton from "../Buttons/SimpleButton/SimpleButton.jsx";
 import PropTypes from "prop-types";
 import LocationIcon from "../../assets/location-filled-icon.svg?react"
@@ -12,7 +11,7 @@ import {useEffect, useMemo, useState} from "react";
 import AppliedFilter from "../AppliedFilter/AppliedFilter.jsx";
 import {
     useGetBarsFiltersQuery,
-    useGetBarsQuery, useGetBeerCountriesQuery,
+    useGetBarsQuery,
     useGetCitiesQuery
 } from "../../store/services/centerBeer";
 import {useNavigate} from "react-router-dom";
@@ -20,15 +19,15 @@ import FilterItem from "../ApiInputs/FilterItem/FilterItem.jsx";
 import Search from "../ApiInputs/Search/Search.jsx";
 import FiltersModal from "../Modals/FiltersModal/FiltersModal.jsx";
 import {isMobile} from "react-device-detect";
-import CheckBox from "../ApiInputs/CheckBox/CheckBox.jsx";
 import SingleCheckBox from "../ApiInputs/CheckBox/SingleCheckBox.jsx";
-import HookedFilterComboBox from "../ApiInputs/FilterComboBox/HookedFilterComboBox.jsx";
+import BarCardSkeleton from "../Skeletons/BarCardSkeleton/BarCardSkeleton.jsx";
 
 
-export default function BarsCatalog({filters = [], filterButtons = [], sections = []}){
+export default function BarsCatalog(){
     const navigate = useNavigate()
     const [filterNameMap, setFilterNameMap] = useState({});
     const [showFiltersModal, setShowFiltersModal] = useState(false)
+    const [allCards, setAllCards] = useState([])
     // Спецификация фильтров
     const barFilterSpecs = {
         kitchen: {title: "Кухня", component: "combobox", id: "kitchen_ids"},
@@ -82,7 +81,7 @@ export default function BarsCatalog({filters = [], filterButtons = [], sections 
     });
 
     // Получение данных с API
-    const {data: barsData, isLoading: barsIsLoading, error: barsError } = useGetBarsQuery(filterValues);
+    const {data: barsData, isLoading: barsIsLoading, error: barsError, isFetching: barsIsFetching } = useGetBarsQuery(filterValues);
     const {data: barFilters, isLoading: barFiltersIsLoading, error: barFiltersError} = useGetBarsFiltersQuery(filterValues["city_id"] || 1)
     const {data: cities, isLoading: citiesIsLoading, error: citiesError} = useGetCitiesQuery()
     const sortFilters =[
@@ -90,6 +89,36 @@ export default function BarsCatalog({filters = [], filterButtons = [], sections 
         {id: "price", name: "По цене"},
         {id: "rating", name: "По отзывам"},
     ]
+
+    // Эффект, собирающий все карточки, полученные при выполнении соответствующего запроса
+    useEffect(() => {
+        if (!barsIsFetching && barsData?.data){
+            if (filterValues["offset"] !== 0){
+                setAllCards(prev => [
+                    ...prev,
+                    ...barsData.data.filter(newCard =>
+                        !prev.some(existingCard => existingCard.id === newCard.id)
+                    )
+                ]);
+            }
+            else{
+                setAllCards([...barsData.data])
+            }
+        }
+
+    }, [barsIsFetching]);
+
+    const handleShowMore = () => {
+        const newOffset = filterValues["offset"] + filterValues["lim"];
+        setSelectedFilters((prevState) => ({
+            ...prevState,
+            [`offset`]: newOffset,
+        }));
+        setFilterValues((prevState) => ({
+            ...prevState,
+            [`offset`]: newOffset,
+        }));
+    }
 
     useEffect(() => {
         if (barFilters && !barFiltersIsLoading && !barFiltersError) {
@@ -148,16 +177,25 @@ export default function BarsCatalog({filters = [], filterButtons = [], sections 
         setSelectedFilters((prevState) => ({
             ...prevState,
             [filterKey]: value,
+            ["offset"]: 0
         }));
         setFilterValues((prevState) => ({
             ...prevState,
             [filterKey]: value,
+            ["offset"]: 0
         }));
     }
 
     // Применение фильтров
     const applyFilters = () => {
-        setFilterValues(selectedFilters);
+        setSelectedFilters((prevState) => ({
+            ...prevState,
+            ["offset"]: 0,
+        }));
+        setFilterValues(() => ({
+            ...selectedFilters,
+            ["offset"]: 0,
+        }));
     }
 
     // Сброс фильтров
@@ -216,12 +254,14 @@ export default function BarsCatalog({filters = [], filterButtons = [], sections 
                 return {
                     ...prev,
                     [filterKey]: currentValue.filter((id) => id !== idToRemove),
+                    ["offset"]: 0
                 };
             } else {
                 // Сбрасываем не массивное значение
                 return {
                     ...prev,
                     [filterKey]: "",
+                    ["offset"]: 0
                 };
             }
 
@@ -232,11 +272,13 @@ export default function BarsCatalog({filters = [], filterButtons = [], sections 
                 return {
                     ...prev,
                     [filterKey]: currentValue.filter((id) => id !== idToRemove),
+                    ["offset"]: 0
                 };
             } else {
                 return {
                     ...prev,
                     [filterKey]: "",
+                    ["offset"]: 0
                 };
             }
 
@@ -357,11 +399,7 @@ export default function BarsCatalog({filters = [], filterButtons = [], sections 
                         <Toggle reset={tabResetFilters["only_opened"]} label={"Только открытые"} toggled={filterValues.only_opened} onClick={() => handleSingleFilterApply("only_opened", !filterValues.only_opened)}/>
 
                     </div>
-                    { !barsIsLoading && !barsError &&
-                        <SimpleCatalogSection cards={barsData?.data || []} CardComponent={BarCard} wideColumns={false}/>
-                    }
-
-
+                    <SimpleCatalogSection isFetching={barsIsFetching} lim={filterValues["lim"]} totalItems={barsData?.["total_items"]} onShowMore={handleShowMore} cards={allCards} CardComponent={BarCard} SkeletonCardComponent={BarCardSkeleton} wideColumns={false}/>
                 </div>
             </div>
             {isMobile &&

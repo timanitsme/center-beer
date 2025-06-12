@@ -67,7 +67,7 @@ export default function NewsDetailSection({style = "detail", children}){
             <div className={styles.section}>
                 { style === "detail" && <div className={styles.sectionHeader}>
                     <div className={styles.sectionNav}>
-                        <a><ArrowBackIcon/></a>
+                        <Link to={"/news"}><ArrowBackIcon/></Link>
                         <LightNavChain paths={paths}/>
                     </div>
                     <div className={styles.sectionButtons}>
@@ -100,7 +100,7 @@ export default function NewsDetailSection({style = "detail", children}){
                                 )}
                             </>
                         }
-                        <div className={styles.sideButtons}><RoundLinkButton onClick={() => navigate("/news")} text="Все статьи"/></div>
+                        {style === "detail" && <div className={styles.sideButtons}><RoundLinkButton onClick={() => navigate("/news")} text="Все статьи"/></div>}
 
 
                     </div>

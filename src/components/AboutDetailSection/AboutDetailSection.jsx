@@ -25,7 +25,7 @@ export default function AboutDetailSection({children, paths, sectionMenuItems, c
             <div className={styles.section}>
                 <div className={styles.sectionHeader}>
                     <div className={styles.sectionNav}>
-                        <a><ArrowBackIcon/></a>
+                        <Link to={"/about-us"}><ArrowBackIcon/></Link>
                         <LightNavChain paths={paths}/>
                     </div>
                 </div>

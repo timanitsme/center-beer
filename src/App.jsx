@@ -46,6 +46,7 @@ import DocumentDetailPage from "./pages/Documents/DocumentDetailPage/DocumentDet
 import CookieConsent from "./components/CookieConsent/CookieConsent.jsx";
 import AdultsOnlyModal from "./components/Modals/SimpleModal/AdultsOnlyModal.jsx";
 import BalanceHistory from "./pages/PersonalAccountPage/BalanceHistory/BalanceHistory.jsx";
+import BugReportPage from "./pages/BugReportPage/BugReportPage.jsx";
 
 function App() {
     const dispatch = useDispatch();
@@ -96,6 +97,7 @@ function App() {
         {path: "/will-be-soon", element: <WillBeSoonPage/>},
         {path: "/my-check-ins/:alias", element: <MyCheckinsPage/>},
         {path: "/about-us/:alias", element: <AboutDetailPage/>},
+        {path: "/bug-report", element: <BugReportPage/>},
         {path: "/documents/:alias", element: <DocumentDetailPage/>, hideFooter: true},
     ]
     const [hideFooter, setHideFooter] = useState(false);

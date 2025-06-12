@@ -57,7 +57,7 @@ export default function EventsDetailSection({style = "detail", children}){
             <div className={styles.section}>
                 { style === "detail" && <div className={styles.sectionHeader}>
                     <div className={styles.sectionNav}>
-                        <a><ArrowBackIcon/></a>
+                        <Link to={"/events"}><ArrowBackIcon/></Link>
                         <LightNavChain paths={paths}/>
                     </div>
                     <div className={styles.sectionButtons}>

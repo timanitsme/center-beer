@@ -20,6 +20,8 @@ export default function DraftBeerCard({cardInfo}){
         state: {from: location.pathname}
     })
 
+    const goToBreweryPage = (alias) => navigate(`/brewery/${alias}/`)
+
     const handleAddToCuddy = async (event, id) => {
         event.preventDefault();
         try {
@@ -46,7 +48,7 @@ export default function DraftBeerCard({cardInfo}){
                 <div className={styles.cardTop}>
                     <div onClick={() => goToBeerPage(cardInfo?.alias || cardInfo?.beer_alias)} style={{cursor: "pointer"}}>
                         <p className={styles.cardTextPrimary}>{cardInfo?.name}</p>
-                        <p className={styles.textActive}>{cardInfo?.brewery}</p>
+                        <p className={`${styles.textActive} ${styles.breweryAlias}`}  onClick={() => goToBreweryPage(cardInfo?.brewery_alias)}>{cardInfo?.brewery}{cardInfo?.brewery && cardInfo?.country && ","} {cardInfo?.country}</p>
                         <p className={styles.textMedium}><span style={{color: "var(--txt-secondary)"}}>Стиль:</span> {cardInfo?.style}</p>
                     </div>
                     <a onClick={(e) => handleAddToCuddy(e, cardInfo?.id)} className={`${styles.bookMarkButton} ${cardBookmarked && styles.added}`}><BookMarkIcon/></a>

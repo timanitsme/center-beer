@@ -17,6 +17,8 @@ import VideoImage5 from "../../assets/videoMocks/video-image-5.svg"
 import VideoImage6 from "../../assets/videoMocks/video-image-6.svg"
 import VideoCard from "../Cards/VideoCard/VideoCard.jsx";
 import {useNavigate} from "react-router-dom";
+import VideoCardsRow from "../../assets/videos-index-row.svg?react"
+import BarCardsRow from "../../assets/bars-index-row.svg?react"
 
 export default function IndexSection(){
     const [showTitle, setShowTitle] = useState(false);
@@ -71,17 +73,11 @@ export default function IndexSection(){
             </div>
             <div className={styles.bottle}><NoCapBottle/></div>
             <div className={`${styles.videoCardContainer} ${showTitle? styles.show: ""}`}>
-                {videoCards.map((card, index) => (
-                    <div className={styles.cardWrapper} key={index}><VideoCard cardInfo={card}/></div>
-                ))
-                }
+                <VideoCardsRow/>
             </div>
 
             <div className={`${styles.cardContainer} ${showTitle? styles.show: ""}`}>
-                {barCards.map((card, index) => (
-                    <div className={styles.cardWrapper} key={index}><MinimalBarCard cardInfo={card}></MinimalBarCard></div>
-                ))
-                }
+                <BarCardsRow/>
             </div>
         </div>
     )

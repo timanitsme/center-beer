@@ -2,7 +2,7 @@ import styles from "../CatalogSection/CatalogSection.module.css";
 import PropTypes from "prop-types";
 import SimpleButton from "../../Buttons/SimpleButton/SimpleButton.jsx";
 
-export default function SimpleCatalogSection({cards, CardComponent, SkeletonCardComponent, wideColumns=false, title="", totalItems=null, onShowMore=null, isFetching=false, isLoading=false, lim=6}){
+export default function SimpleCatalogSection({cards, CardComponent, SkeletonCardComponent, wideColumns=false, title="", totalItems=null, onShowMore=null, isFetching=false, isLoading=false, lim=6, prefix=""}){
     const handleShowMore = () => {
         if (onShowMore){
             onShowMore();
@@ -20,7 +20,7 @@ export default function SimpleCatalogSection({cards, CardComponent, SkeletonCard
                     ))
                 ) : (
                     cards?.map((cardInfo) => (
-                        <CardComponent key={cardInfo?.id} cardInfo={cardInfo} title={title} />
+                        <CardComponent key={`${prefix}-${cardInfo?.id}`} cardInfo={cardInfo} title={title} />
                     ))
                 )}
             </div>

@@ -65,7 +65,6 @@ export default function Footer(){
                     </div>
                 </div>
                 <div className={styles.footerRight}>
-
                 </div>
             </div>
 

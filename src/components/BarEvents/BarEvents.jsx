@@ -7,7 +7,7 @@ import {useEffect, useMemo, useState} from "react";
 import {Link, useNavigate, useNavigation} from "react-router-dom";
 
 
-export default function BarEvents({title = "Скоро в баре", barId=1}){
+export default function BarEvents({title = "Скоро в баре", barId=1, ref=null}){
     const {data: events, isLoading: eventsIsLoading, error: eventsError} = useGetBarEventsQuery({bar_id: barId})
     const [containerHeight, setContainerHeight] = useState(500);
     const memoizedEvents = useMemo(() => events?.data, [events]);
@@ -97,7 +97,7 @@ export default function BarEvents({title = "Скоро в баре", barId=1}){
     const currentEvent = events?.data?.[currentEventIndex];
 
     return(
-        <div className={styles.barEventsContainer} style={{height: containerHeight}}>
+        <div className={styles.barEventsContainer} style={{height: containerHeight}} ref={ref}>
             <div className={styles.barEvent}>
                 <div className={styles.soonAtBar}><h1>{title}</h1></div>
                 <div className={styles.eventPictureMobile}>

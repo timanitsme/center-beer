@@ -148,12 +148,12 @@ export default function Header({paths}){
                 </div>
                 <div className={styles.userContainer}>
                     {isAuthorized && !profileIsLoading &&
-                        <div className={styles.pathContainer}>
+                        <div className={styles.pathContainer} ref={menuRef}>
                             <div className={styles.profile} onClick={(e) => {e.stopPropagation(); setIsOpen(!isOpen)}}>
                                 <img className={styles.avatar} src={AvatarDefault} alt=''></img>
                                 <p className={styles.bold}>{userProfile?.nickname}</p>
                             </div>
-                            <div className={`${styles.userMenu} ${isOpen? "": styles.hidden}`} ref={menuRef}>
+                            <div className={`${styles.userMenu} ${isOpen? "": styles.hidden}`}>
                                 <a onClick={() => {setIsOpen(false); navigate("/account/")}}>Профиль</a>
                                 <a href="">Избранное <div className="quantity"><p>2</p></div></a>
                                 <a href="">Кладовка</a>

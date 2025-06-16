@@ -1,9 +1,9 @@
 import styles from "./Excursions.module.css"
 import ExcursionPicture from "../../assets/excursion-picture.svg"
 
-export default function Excursions(){
+export default function Excursions({ref = null}){
     return(
-        <div className={styles.excursionsContainer}>
+        <div className={styles.excursionsContainer} ref={ref}>
             <div className={styles.imageContainer}>
                 <img src={ExcursionPicture} alt=""/>
             </div>

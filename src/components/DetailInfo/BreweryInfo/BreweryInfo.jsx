@@ -19,9 +19,19 @@ import {getRatingIcons} from "../../../utils/getRatingIcons.jsx";
 
 
 
-export default function BreweryInfo({breweryInfo={}}){
+export default function BreweryInfo({breweryInfo={}, sections=[]}){
     const [isFavourite, setIsFavourite] = useState(false);
     const [isBookmarked, setIsBookmarked] = useState(false);
+
+    const handleScroll = (targetRef) => {
+        if (targetRef.current) {
+            const elementPosition = targetRef.current.getBoundingClientRect().top + window.scrollY;
+            window.scrollTo({
+                top: elementPosition,
+                behavior: "smooth",
+            });
+        }
+    };
 
     return(
         <div>
@@ -32,15 +42,13 @@ export default function BreweryInfo({breweryInfo={}}){
                 <div className={styles.barDescription}>
                     <h2>{breweryInfo?.name}</h2>
                     <p>{breweryInfo?.description}</p>
-                    {/*
                     <div className={styles.barButtons}>
-                        <IconButton text="наши новинки"><BottlesPairIcon/></IconButton>
-                        <IconButton text="мероприятия"><FlagsIcon/></IconButton>
-                        <IconButton text="ассортимент"><PhoneIcon/></IconButton>
-                        <IconButton text="фото"><PhoneIcon/></IconButton>
-                        <IconButton text="экскурсии"><BarrelIcon/></IconButton>
+                        {sections.map((section, index) =>{
+                            if (section.ref.current !== null){
+                                return <IconButton key={index} onClick={() => handleScroll(section.ref)} text={section.title}>{section.IconComponent}</IconButton>
+                            }
+                        })}
                     </div>
-                    */}
                 </div>
                 <div className={`${styles.barInfo} ${styles.regular}`}>
                     <div>
@@ -93,15 +101,11 @@ export default function BreweryInfo({breweryInfo={}}){
                     <a href="mailto:hello@center.beer"><MailIcon/></a>
                 </div>
             </div>
-            {/*
             <div className={styles.barButtonsMobile}>
-                <IconButton text="наши новинки"><BottlesPairIcon/></IconButton>
-                <IconButton text="мероприятия"><FlagsIcon/></IconButton>
-                <IconButton text="ассортимент"><PhoneIcon/></IconButton>
-                <IconButton text="фото"><PhoneIcon/></IconButton>
-                <IconButton text="экскурсии"><BarrelIcon/></IconButton>
+                {sections.map((section, index) =>
+                    <IconButton key={index} onClick={() => handleScroll(section.ref)} text={section.title}>{section.IconComponent}</IconButton>
+                )}
             </div>
-            */}
         </div>
 
     )

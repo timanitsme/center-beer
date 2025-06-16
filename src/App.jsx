@@ -47,6 +47,7 @@ import CookieConsent from "./components/CookieConsent/CookieConsent.jsx";
 import AdultsOnlyModal from "./components/Modals/SimpleModal/AdultsOnlyModal.jsx";
 import BalanceHistory from "./pages/PersonalAccountPage/BalanceHistory/BalanceHistory.jsx";
 import BugReportPage from "./pages/BugReportPage/BugReportPage.jsx";
+import AllSimilarBeerPage from "./pages/Beer/AllSimilarBeerPage/AllSimilarBeerPage.jsx";
 
 function App() {
     const dispatch = useDispatch();
@@ -75,6 +76,7 @@ function App() {
         {path: "/distributors", element: <DistributorsPage/>},
         {path: "/bar/:alias", element: <BarDetailPage/> },
         {path: "/beer/:alias", element: <BeerDetailPage/>},
+        {path: "/beer/:alias/similar", element: <AllSimilarBeerPage/>},
         {path: "/brewery/:alias", element: <BreweryDetailPage/>},
         {path: "/news/:id", element: <NewsDetailPage/>},
         {path: "/map", element: <BeerMapPage/>},

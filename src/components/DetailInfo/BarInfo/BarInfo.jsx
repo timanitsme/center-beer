@@ -143,10 +143,9 @@ export default function BarInfo({barInfo={}, sections = []}){
                 </div>
             </div>
             <div className={styles.barButtonsMobile}>
-                <IconButton text="меню"><SausageIcon/></IconButton>
-                <IconButton text="скидки и акции"><FlagsIcon/></IconButton>
-                <IconButton text="новости"><BeerMugsIcon/></IconButton>
-                <IconButton text="приложение"><PhoneIcon/></IconButton>
+                {sections.map((section, index) =>
+                    <IconButton key={index} onClick={() => handleScroll(section.ref)} text={section.title}>{section.IconComponent}</IconButton>
+                )}
                 <SimpleButton onClick={() => navigate("/in-dev")} text={"забронировать стол"}/>
             </div>
             <WorktimeModal setShow={setShowModal} show={showModal} workTimeList={barInfo["work_time_list"]}/>

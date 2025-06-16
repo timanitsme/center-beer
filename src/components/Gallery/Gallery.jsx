@@ -5,7 +5,7 @@ import EventImage from "../../assets/eventsMocks/event-picture-1.svg";
 import SingleImageModal from "../Modals/SingleImageModal/SingleImageModal.jsx";
 import placeholder from "../../assets/placeholders/card-image-placeholder.svg"
 
-export default function Gallery({pictures= []}){
+export default function Gallery({pictures= [], ref = null}){
     const galleryRef = useRef(null);
     const [showModal, setShowModal] = useState(false)
     const [currentImage, setCurrentImage] = useState(placeholder)
@@ -35,7 +35,7 @@ export default function Gallery({pictures= []}){
     };
 
     return(
-        <div className={styles.galleryContainer}>
+        <div className={styles.galleryContainer} ref={ref}>
             <div className={styles.galleryPictures} ref={galleryRef}>
                 {pictures.map((picture, index) =>
                     <img onClick={() => {setCurrentImage(picture); setShowModal(true)}} key={index} src={picture} alt=""/>

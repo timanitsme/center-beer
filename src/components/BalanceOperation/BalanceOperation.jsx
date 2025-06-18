@@ -2,19 +2,24 @@ import styles from "./BalanceOperation.module.css"
 import {RiCopperCoinFill} from "react-icons/ri";
 import ArrowDownIcon from "../../assets/arrow-down-icon.svg?react";
 import {useState} from "react";
+import formatDateWithTextMonth from "../../utils/DateFunctions/formatDateWithTextMonth.js";
+import formatDateTimeWithTextMonth from "../../utils/DateFunctions/formatDateTimeWithTextMonth.js";
 
 export default function BalanceOperation({operation}){
     const [expanded, setExpanded] = useState(false)
 
+    const costNum = Number(operation.cost)
+    const isProfit = (costNum >= 0)
+
     return(
         <>
             <div className={`${styles.operation} ${expanded? styles.expanded: ""}`} onClick={() =>setExpanded(!expanded)}>
-                <p className={styles.active}>{operation.date}</p>
+                <p className={styles.active}>{formatDateTimeWithTextMonth(operation.create_date)}</p>
                 <div className={styles.row}>
-                    <p className={styles.active} style={{color: `${operation.is_profit? "#70CF98": "var(--txt-active)"}`}}>{operation.is_profit? "+": "-"} {operation.amount}</p>
+                    <p className={styles.active} style={{color: `${isProfit? "#70CF98": "var(--txt-active)"}`}}>{isProfit? "+": "-"} {Math.abs(costNum)}</p>
                     <RiCopperCoinFill color="var(--primary)"/>
                 </div>
-                <p className={styles.activeOnHover}>{operation.event}</p>
+                <p className={styles.activeOnHover}>{operation.action}</p>
                 {operation.description &&
                     <div className={styles.arrowContainer}>
                         <ArrowDownIcon/>

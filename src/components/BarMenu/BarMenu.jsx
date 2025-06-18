@@ -43,6 +43,7 @@ import SimpleCatalogSection from "../CatalogSections/SimpleCatalogSection/Simple
 import DraftBeerCardSkeleton from "../Skeletons/DraftBeerCardSkeleton/DraftBeerCardSkeleton.jsx";
 import BottledBeerCardSkeleton from "../Skeletons/BottledBeerCardSkeleton/BottledBeerCardSkeleton.jsx";
 import ProductCardSkeleton from "../Skeletons/ProductCardSkeleton/ProductCardSkeleton.jsx";
+import SingleImageModal from "../Modals/SingleImageModal/SingleImageModal.jsx";
 
 
 
@@ -50,7 +51,6 @@ export default function BarMenu({filters, filterButtons, sections, ref, barId = 
     // Состояние для хранения имен применяемых фильтров
     const [filterNameMap, setFilterNameMap] = useState({});
     const [showFiltersModal, setShowFiltersModal] = useState(false)
-
     const [resetOneFilter, setResetOneFilter] = useState("")
     const navigate = useNavigate()
     const foodIcons = {
@@ -63,7 +63,8 @@ export default function BarMenu({filters, filterButtons, sections, ref, barId = 
         "Шаверма": <ShawarmaIcon/>,
         "Чебуреки": <CheburekIcon/>
     }
-
+    const [selectedFood, setSelectedFood] = useState(null)
+    const [showModal, setShowModal] = useState(false)
     // Получение всех вкладок
     const {data: tabs, isLoading: tabsIsLoading, error: tabsError} = useGetBarMenuTabsQuery(barId)
     const [foodSelectedTab, setFoodSelectedTab] = useState("")
@@ -692,7 +693,7 @@ export default function BarMenu({filters, filterButtons, sections, ref, barId = 
                                                 <h2>{tabSpec?.data[tabNum]?.name}</h2>
                                             </div>
                                             <div className={tabsSpecs[tab.alias]?.wideColumns ? styles.sectionContentWide : styles.sectionContent}>
-                                                {tabSpec?.data[tabNum]?.menu && tabSpec?.data[tabNum]?.menu?.length > 0 && tabSpec?.data[tabNum]?.menu?.map((cardInfo, index) => <CardComponent key={index} cardInfo={cardInfo}/>)}
+                                                {tabSpec?.data[tabNum]?.menu && tabSpec?.data[tabNum]?.menu?.length > 0 && tabSpec?.data[tabNum]?.menu?.map((cardInfo, index) => <CardComponent key={index} cardInfo={cardInfo} onShowModal={(image) => {setSelectedFood(image); setShowModal(true)}}/>)}
                                             </div>
                                         </Fragment>
                                     )
@@ -720,6 +721,7 @@ export default function BarMenu({filters, filterButtons, sections, ref, barId = 
                     <SimpleButton onClick={() => {setShowFiltersModal(false); applyFilters(selectedTab)}} text="Применить фильтры"></SimpleButton>
                 </FiltersModal>
             }
+            <SingleImageModal src={selectedFood} setSrc={setSelectedFood} setShow={setShowModal} show={showModal}/>
         </div>
     )
 }

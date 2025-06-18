@@ -47,14 +47,14 @@ export default function BarDetailPage(){
 
     return(
         <div className="content">
-            {!isLoading && !error && data && data?.data?.length > 0 &&
+            {!isLoading && !error && data && data?.data?.length > 0 && data?.data?.[0]?.id &&
                 <>
                     <NavChain paths={[...getBarPagePaths(), {title: data?.data[0].name, path: ""}]}/>
                     <BarInfo barInfo={data?.data[0]} sections={sections}/>
                     <AdvantagesList barInfo={data?.data[0]}/>
                     <BarEvents barId={data?.data[0].id}/>
                     {data?.data[0]?.gallery?.length !== 0 && <Gallery pictures={data?.data[0].gallery}/>}
-                    <BarMenu filters={getBarPageFilters()} filterButtons={getBarPageFilterButtons()} sections={getBarPageSections()} ref={menuRef}/>
+                    <BarMenu filters={getBarPageFilters()} filterButtons={getBarPageFilterButtons()} sections={getBarPageSections()} ref={menuRef} barId={Number(data?.data?.[0]?.id)}/>
                     <CurrentPromos barId={data?.data[0].id} ref={promosRef}/>
                     <BarNews barId={data?.data[0].id} ref={newsRef}/>
                     <Reviews images={getBarReviewsImages()} header={getBarReviewsHeader()} resume={getBarReviewsResume()}/>

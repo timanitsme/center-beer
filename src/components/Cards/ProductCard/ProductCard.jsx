@@ -1,22 +1,22 @@
 import {useState} from "react";
 import styles from "./ProductCard.module.css";
 import BookMarkIcon from "../../../assets/bookmark-unfill-icon.svg?react";
-import BottleIcon from "../../../assets/bottle-icon.svg?react";
 import FavIcon from "../../../assets/fav-unfill-icon.svg?react";
 import IconButton from "../../Buttons/IconButton/IconButton.jsx";
 import BottlesPairIcon from "../../../assets/bottles-pair-icon.svg?react";
 import PropTypes from "prop-types";
 import cardImagePlaceholder from "../../../assets/placeholders/card-image-placeholder.svg"
 
-export default function ProductCard({cardInfo}){
+export default function ProductCard({cardInfo, onShowModal}){
     const [cardBookmarked, setCardBookmarked] = useState(cardInfo.is_favor || false);
     const [cardFav, setCardFav] = useState(cardInfo.is_liked || false);
     const [imageSrc, setImageSrc] = useState(cardInfo?.photo || cardImagePlaceholder)
+
     return(
         <div className={styles.card}>
             <div className={styles.productCard}>
                 <div className={`${styles.imgContainer} ${imageSrc === cardImagePlaceholder? styles.third : ''}`}>
-                    <img src={imageSrc} onError={() => setImageSrc(cardImagePlaceholder)} alt=""/>
+                    <img src={imageSrc} onError={() => setImageSrc(cardImagePlaceholder)} className={onShowModal? styles.zoom: ""} onClick={() => {if (onShowModal) onShowModal(imageSrc)}} alt=""/>
                 </div>
                 <div className={styles.cardTop}>
                     <div className={styles.textContainer}>
@@ -41,6 +41,7 @@ export default function ProductCard({cardInfo}){
             </div>
         </div>
     )
+
 }
 
 ProductCard.propTypes = {

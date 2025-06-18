@@ -1,17 +1,17 @@
 import styles from "./BalanceHistory.module.css"
 import {useEffect, useState} from "react";
-import BarImage1 from "../../../assets/barsMocks/bar-3.svg";
 import NavChain from "../../../components/Navigation/NavChain/NavChain.jsx";
 import {isMobile} from "react-device-detect";
 import PersonalAccount from "../../../components/PersonalAccount/PersonalAccount.jsx";
 import ButtonSwitch from "../../../components/ButtonSwitch/ButtonSwitch.jsx";
-import Task from "../../../components/Task/Task.jsx";
 import {useNavigate} from "react-router-dom";
-import {RiCopperCoinFill} from "react-icons/ri";
-import ArrowDownIcon from "../../../assets/arrow-down-icon.svg?react"
 import BalanceOperation from "../../../components/BalanceOperation/BalanceOperation.jsx";
+import {useSelector} from "react-redux";
+import {useGetUsersBalanceHistoryQuery} from "../../../store/services/centerBeer.js";
 
 export default function BalanceHistory(){
+    const { isAuthorized, userProfile, isLoading: profileIsLoading } = useSelector((state) => state.auth);
+    const {data: balanceHistory, isLoading: balanceHistoryIsLoading, error: balanceError} = useGetUsersBalanceHistoryQuery({user_id: userProfile?.id}, {skip: !userProfile})
     const navigate = useNavigate()
     const paths = [
         {title: "center.beer", path: "/"},
@@ -70,11 +70,18 @@ export default function BalanceHistory(){
                             <p>Сумма</p>
                             <p>Событие</p>
                         </div>
-                        <div className={styles.tasksCol} style={{margin: 0, overflowY: "auto"}}>
-                            {operations?.map((operation, index) =>
-                                <BalanceOperation key={index} operation={operation}/>
-                            )}
-                        </div>
+                        {isAuthorized && !profileIsLoading && balanceHistory?.data?.length > 0 &&
+                            <div className={styles.tasksCol} style={{margin: 0, overflowY: "auto"}}>
+                                {balanceHistory?.data?.map((operation, index) =>
+                                    <BalanceOperation key={index} operation={operation}/>
+                                )}
+                            </div>
+                        }
+                        {isAuthorized && !profileIsLoading && balanceHistory.length === 0 &&
+                            <div className={styles.noData}>
+                                <p>Нет данных</p>
+                            </div>
+                        }
                     </div>
                 </div>
             </div>

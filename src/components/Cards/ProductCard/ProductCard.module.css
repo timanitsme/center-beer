@@ -136,6 +136,10 @@
     border-radius: 5px;
 }
 
+.zoom{
+    cursor: zoom-in;
+}
+
 
 .favButton{
     background: var(--third);

@@ -9,6 +9,12 @@ import LocationIcon from "../../../assets/location-filled-icon.svg?react"
 import CommentIcon from "../../../assets/comment-icon.svg?react"
 import {useNavigate} from "react-router-dom";
 import {useLazyAddBarToCuddyQuery, useLazyAddBarToFavQuery} from "../../../store/services/centerBeer.js";
+import BarMock1 from "../../../assets/barsMocks/bar-1.svg"
+import BarMock2 from "../../../assets/barsMocks/bar-2.svg"
+import BarMock3 from "../../../assets/barsMocks/bar-3.svg"
+import BarMock4 from "../../../assets/barsMocks/bar-4.svg"
+import BarMock5 from "../../../assets/barsMocks/bar-5.svg"
+
 
 export default function BarCard({cardInfo}){
     const [cardBookmarked, setCardBookmarked] = useState(cardInfo.is_favor || false);
@@ -60,6 +66,14 @@ export default function BarCard({cardInfo}){
         }
     }
 
+    const imageMapping = {
+        "13rules_nabereznie_chelny": BarMock1,
+        "13rules_krasnodar_1_may_196": BarMock2,
+        "13rules_zvezdniy_bulvar": BarMock3,
+        "13rules_tula": BarMock4,
+        "13rules_naberezhnie_chelny": BarMock5,
+    }
+
     return(
         <div className={styles.card}>
             <div className={styles.bottledBeerCard}>
@@ -70,7 +84,7 @@ export default function BarCard({cardInfo}){
                     {/*{cardInfo.rating && <p className={styles.ratingText}><BottleIcon/> ({cardInfo.rating.toFixed(1)})</p>}*/}
                 </div>
                 <div className={styles.imgContainer}>
-                    <img src={cardInfo.preview} onClick={goToBeerPage} alt=""/>
+                    <img src={imageMapping[cardInfo.alias] || cardInfo.preview} onClick={goToBeerPage} alt=""/>
                     <a onClick={(e) => handleAddToFav(e, cardInfo?.id)} className={`${styles.favButton} ${cardFav? styles.added : ''}`}><FavIcon/></a>
                 </div>
                 <div className={styles.characteristics}>

@@ -23,6 +23,7 @@ import SingleCheckBox from "../ApiInputs/CheckBox/SingleCheckBox.jsx";
 import BarCardSkeleton from "../Skeletons/BarCardSkeleton/BarCardSkeleton.jsx";
 
 
+
 export default function BarsCatalog(){
     const navigate = useNavigate()
     const [filterNameMap, setFilterNameMap] = useState({});
@@ -71,6 +72,10 @@ export default function BarsCatalog(){
         online_booking: false,
         sort_by: "popular"
     });
+
+    const imageMapping = {
+
+    }
 
     const [tabResetFilters, setTabResetFilters] = useState(() => {
         const resetFiltersStates = {};

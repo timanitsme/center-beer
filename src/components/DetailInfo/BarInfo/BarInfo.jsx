@@ -25,11 +25,12 @@ import {getRatingIcons} from "../../../utils/getRatingIcons.jsx";
 import {useLazyAddBarToCuddyQuery, useLazyAddBarToFavQuery} from "../../../store/services/centerBeer.js";
 
 
+
 export default function BarInfo({barInfo={}, sections = []}){
     const [showModal, setShowModal] = useState(false)
     const [isFavourite, setIsFavourite] = useState(barInfo.is_favor || false);
     const [isBookmarked, setIsBookmarked] = useState(barInfo.is_liked || false);
-    const rating = 3.5
+    const rating = 4.8
     const navigate = useNavigate()
     const [triggerAddToCuddy, { isLoading: addToCuddyIsLoading }] = useLazyAddBarToCuddyQuery();
     const [triggerAddToFav, { isLoading: addToFavIsLoading }] = useLazyAddBarToFavQuery();
@@ -64,6 +65,8 @@ export default function BarInfo({barInfo={}, sections = []}){
             });
         }
     };
+
+
 
 
     const today = new Date()

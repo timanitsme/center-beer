@@ -30,6 +30,7 @@ export default function Reviews({header, images, resume}){
     const commentRef = useRef(null)
     const navigate = useNavigate()
     const [showAuthModal, setShowAuthModal] = useState(false)
+    const [showAllReviews, setShowAllReviews] = useState(false);
     const reviews = {
         "total_items": 1,
         "data": [
@@ -69,8 +70,14 @@ export default function Reviews({header, images, resume}){
                 "parent_id": "0",
                 "media": []
             },
+
         ]
     }
+
+    const visibleReviews = {
+        ...reviews,
+        data: showAllReviews ? reviews.data : reviews.data.slice(0, 3),
+    };
 
     // Проверка, обрезан ли текст
     useEffect(() => {
@@ -102,17 +109,26 @@ export default function Reviews({header, images, resume}){
             <div className="hrtLine" style={{margin: "20px 0"}} />
             <div className={styles.commentsSection}>
                 <div className={styles.commentsContainer}>
-                    {reviews.data.map((review, index) => {
+                    {visibleReviews.data.map((review, index) => {
                        return <Comment key={index} data={review}/>
                     })}
-                    <>
-                        <div className={styles.showAllContainer}>
-                            <div className={styles.gradient}></div>
-                        </div>
+
+                    {reviews.data.length > 3 && !showAllReviews && (
+                        <>
+                            <div className={styles.showAllContainer}>
+                                <div className={styles.gradient}></div>
+                            </div>
+                            <div className={styles.buttonRow}>
+                                <SimpleButton text={"Показать еще"} onClick={() => {setShowAllReviews(true)}}></SimpleButton>
+                            </div>
+                        </>
+
+                    )}
+                    {reviews.data.length > 3 && showAllReviews && (
                         <div className={styles.buttonRow}>
-                            <SimpleButton text={"Показать еще"} onClick={() => {}}></SimpleButton>
+                            <SimpleButton text={"Скрыть отзывы"} onClick={() => setShowAllReviews(false)}></SimpleButton>
                         </div>
-                    </>
+                    )}
                     {!profileIsLoading && isAuthorized &&
                         <NewCommentForm ref={commentRef} profile={userProfile}/>
                     }

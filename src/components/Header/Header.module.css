@@ -210,13 +210,20 @@
     border-radius: 50%;
     max-height: 45px;
     max-width: 45px;
+    width: 45px;
+    height: 45px;
+    object-fit: cover;
 }
 
 .bold{
     text-align: left;
     font-size: 0.9vw;
     font-weight: 300;
-    color: var(--txt-active)
+    color: var(--txt-active);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: calc(100% - 60px);
 }
 
 
@@ -275,6 +282,7 @@
     gap: 15px;
     align-items: center;
     cursor: pointer;
+    max-width: 250px;
 }
 
 @media (max-width: 1000px) {
@@ -292,6 +300,7 @@
 
     .bold{
         font-size: 10px;
+        max-width: calc(100% - 40px);
     }
 
     .headerGrid{
@@ -306,9 +315,12 @@
     .avatar{
         max-width: 30px;
         max-height: 30px;
+        width: 30px;
+        height: 30px;
     }
 
     .profile{
         gap: 5px;
     }
+
 }

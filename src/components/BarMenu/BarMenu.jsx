@@ -535,10 +535,6 @@ export default function BarMenu({filters, filterButtons, sections, ref, barId = 
         }
     }, [tabs, selectedTab, tabsIsLoading, tabsError]);
 
-    useEffect(() => {
-        console.log(JSON.stringify(tabsSpecs[selectedTab]?.allCards.map((card) => card.id)))
-    }, [tabsSpecs[selectedTab]?.allCards]);
-
 
 
     // FIXME: Reset

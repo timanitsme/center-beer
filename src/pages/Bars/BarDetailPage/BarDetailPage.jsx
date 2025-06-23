@@ -22,6 +22,7 @@ import BeerMugsIcon from "../../../assets/beer-mugs-icon.svg?react"
 import SausageIcon from "../../../assets/sausage-icon.svg?react"
 import FlagsIcon from "../../../assets/flags-icon.svg?react"
 import {getBeerDetailPaths} from "../../Beer/BeerDetailPage/BeerDetailPageData.jsx";
+import BarMenuContainer from "../../../components/BarMenu/BarMenuContainer/BarMenuContainer.jsx";
 
 
 export default function BarDetailPage(){
@@ -54,7 +55,8 @@ export default function BarDetailPage(){
                     <AdvantagesList barInfo={data?.data[0]}/>
                     <BarEvents barId={data?.data[0].id}/>
                     {data?.data[0]?.gallery?.length !== 0 && <Gallery pictures={data?.data[0].gallery}/>}
-                    <BarMenu filters={getBarPageFilters()} filterButtons={getBarPageFilterButtons()} sections={getBarPageSections()} ref={menuRef} barId={Number(data?.data?.[0]?.id)}/>
+                    {/*<BarMenu filters={getBarPageFilters()} filterButtons={getBarPageFilterButtons()} sections={getBarPageSections()} ref={menuRef} barId={Number(data?.data?.[0]?.id)}/>*/}
+                    <BarMenuContainer ref={menuRef} barId={Number(data?.data?.[0]?.id)}/>
                     <CurrentPromos barId={data?.data[0].id} ref={promosRef}/>
                     <BarNews barId={data?.data[0].id} ref={newsRef}/>
                     <Reviews images={getBarReviewsImages()} header={getBarReviewsHeader()} resume={getBarReviewsResume()}/>

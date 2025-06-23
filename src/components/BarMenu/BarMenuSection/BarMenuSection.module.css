@@ -1,0 +1,244 @@
+.menuContainer{
+    margin: 0 50px 50px 50px;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+}
+
+.menuContainer h2{
+    align-self: flex-start;
+    text-align: left;
+}
+
+.filterButtons{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.menuContent{
+    display: flex;
+    width: 100%;
+    min-height: 100px;
+    gap: 10px;
+}
+
+.menuFilters{
+    flex: 0 0 20%;
+    padding: 0 25px 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.menuFilters button{
+    width: 100%;
+    justify-content: center;
+}
+
+
+.menuItemsSections{
+    flex: 1;
+}
+
+
+@media (max-width: 1000px) {
+    .menuContainer{
+        margin: 0 25px 25px 25px;
+    }
+    .menuFilters{
+        padding: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .menuFilters{
+        display: none;
+    }
+
+}
+
+/* Catalog section*/
+.menuSection{
+    display: flex;
+    flex-direction: column;
+}
+
+.sectionHeader{
+    display: flex;
+    gap:10px;
+}
+
+.sectionDescriptionIcon {
+    width: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sectionDescriptionIcon svg{
+    height: 80%;
+    width: auto;
+    max-height: 80px;
+}
+
+.sectionDescription{
+    max-width: 70%;
+    margin-right: 10px;
+}
+
+.sectionButton{
+    max-width: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+}
+
+.appliedFiltersRow{
+    display: flex;
+    gap: 10px;
+    margin: 15px;
+    flex-wrap: wrap;
+}
+
+.sectionHeader p{
+    font-size: 0.9vw;
+    font-weight: 200;
+}
+
+.sectionContentWide{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 400px);
+    gap: 20px;
+    padding: 15px;
+    justify-content: center;
+    align-items: stretch;
+}
+
+.mobileButtons{
+    display: flex;
+    flex-direction: row;
+}
+
+.loadMoreSection{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sectionContent{
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(auto-fill, 270px);
+    gap: 20px;
+    padding: 15px;
+    align-items: stretch;
+}
+
+.row{
+    margin-left: 70px;
+}
+
+@media (max-width: 1000px) {
+    .sectionHeader{
+        width: 100%;
+    }
+    .row{
+        margin-left: 0;
+    }
+    .row.sectionDescription{
+        align-items: center;
+        justify-content: flex-start;
+        display: flex;
+        flex: 1;
+    }
+    .sectionDescription{
+        align-items: center;
+        justify-content: center;
+        display: flex;
+        flex: 1;
+    }
+
+    .sectionButton{
+        margin-right: 40px;
+    }
+
+    .sectionDescription h2{
+        text-align: center;
+        align-self: center;
+    }
+    .sectionDescription p{
+        display: none;
+    }
+    .sectionHeader p{
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 900px) {
+    .sectionContentWide{
+        display: grid;
+
+        gap: 15px;
+        padding: 15px;
+        align-items: stretch;
+    }
+
+    .sectionContent{
+        grid-template-columns: 200px 200px;
+    }
+}
+
+@media (max-width: 768px) {
+    .sectionDescriptionIcon{
+        display: none;
+    }
+
+    .mobileOff{
+        display: none;
+    }
+
+    .sectionContent{
+        padding: 10px 0;
+    }
+
+    .sectionHeader{
+        flex-direction: column;
+        align-items: flex-start;
+        overflow: auto;
+    }
+
+    .sectionDescription{
+        margin-right: 0;
+        margin-left: 20px;
+    }
+
+    .sectionDescription h2{
+        text-align: left;
+    }
+
+    .sectionButton{
+        margin-left: 60px;
+    }
+
+}
+
+@media (max-width: 600px) {
+    .sectionContentWide{
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 15px;
+        padding: 15px;
+        align-items: stretch;
+        align-content: center;
+        justify-items: center;
+    }
+}
+
+@media (max-width: 468px) {
+    .sectionContent{
+        grid-template-columns: 1fr 1fr;
+    }
+}

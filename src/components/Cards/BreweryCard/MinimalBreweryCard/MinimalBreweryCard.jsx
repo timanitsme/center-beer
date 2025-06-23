@@ -4,11 +4,13 @@ import styles from "../../BarCard/BarCard.module.css";
 import BookMarkIcon from "../../../../assets/bookmark-unfill-icon.svg?react";
 import FavIcon from "../../../../assets/fav-unfill-icon.svg?react";
 import LocationIcon from "../../../../assets/location-filled-icon.svg?react";
+import cardImagePlaceholder from "../../../../assets/placeholders/card-image-placeholder.svg";
 
 export default function MinimalBreweryCard({cardInfo}){
     const [cardBookmarked, setCardBookmarked] = useState(false);
     const [cardFav, setCardFav] = useState(false);
     const navigate = useNavigate();
+    const [imageSrc, setImageSrc] = useState(cardInfo?.img || cardImagePlaceholder)
 
     const goToBeerPage = () => navigate("/brewery/1");
 
@@ -21,7 +23,7 @@ export default function MinimalBreweryCard({cardInfo}){
                     </div>
                 </div>
                 <div className={styles.imgContainer}>
-                    <img src={cardInfo.img} onClick={goToBeerPage} alt=""/>
+                    <img src={imageSrc} onClick={goToBeerPage} onError={() => setImageSrc(cardImagePlaceholder)} alt=""/>
                     <a onClick={() => setCardFav(!cardFav)} className={`${styles.favButton} ${cardFav? styles.added : ''}`}><FavIcon/></a>
                 </div>
                 <div className={styles.characteristics}>

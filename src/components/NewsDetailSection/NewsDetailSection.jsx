@@ -16,11 +16,17 @@ import BlogImage3 from "../../assets/newsMocks/blog-image-3.svg"
 import NewsItem from "../NewsItem/NewsItem.jsx";
 import ComboBox from "../Inputs/ComboBox/ComboBox.jsx";
 import {Link, useNavigate} from "react-router-dom";
+import {useGetNewsRelatedQuery} from "../../store/services/centerBeer.js";
+import RelatedNewsCard from "../Cards/RelatedNewsCard/RelatedNewsCard.jsx";
+import RelatedNewsCardSkeleton from "../Skeletons/RelatedNewsCardSkeleton/RelatedNewsCardSkeleton.jsx";
 
 
-export default function NewsDetailSection({style = "detail", children}){
+export default function NewsDetailSection({style = "detail", children, postId=null}){
     const [isFavourite, setIsFavourite] = useState(false);
     const [isBookmarked, setIsBookmarked] = useState(false);
+
+    const {data: relatedNews, isFetching: relatedNewsIsFetching} = useGetNewsRelatedQuery(postId, {skip: postId === null})
+
     const sectionMenuMainItems = [
         {title: "Новости и комментарии", path: "/in-dev"},
         {title: "Статьи и интервью", path: "/in-dev"},
@@ -91,13 +97,18 @@ export default function NewsDetailSection({style = "detail", children}){
                         {style === "detail" &&
                             <>
                                 <h3>Похожие статьи</h3>
-                                {cards.map((card, index) =>
-                                    <div key={index} className={styles.blogCard}>
-                                        <p className={styles.cardTextPrimary}>{card.title}</p>
-                                        <img className={styles.cardImg} src={card.img} alt=""/>
-                                        <p className={styles.cardDescription}>{card.description}</p>
-                                    </div>
-                                )}
+                                {relatedNewsIsFetching? (
+                                    Array.from({ length: 3 }).map((_, index) => (
+                                       <RelatedNewsCardSkeleton key={index}/>
+                                    ))
+                                ):
+                                (
+                                    relatedNews?.data?.map((card, index) =>
+                                        <RelatedNewsCard cardInfo={card} key={index}/>
+                                    )
+                                )
+                                }
+
                             </>
                         }
                         {style === "detail" && <div className={styles.sideButtons}><RoundLinkButton onClick={() => navigate("/news")} text="Все статьи"/></div>}

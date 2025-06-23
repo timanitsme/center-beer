@@ -10,7 +10,7 @@ import CommentIcon from "../../../../assets/comment-icon.svg?react";
 import PropTypes from "prop-types";
 import Bar1 from "../../../../assets/barsMocks/bar-1.svg"
 import CalendarIcon from "../../../../assets/calendar-icon.svg?react"
-import BottlesPairIcon from "../../../../assets/bottles-pair-icon.svg?react"
+import cardImagePlaceholder from "../../../../assets/placeholders/card-image-placeholder.svg"
 
 export default function BarCheckInCard({cardInfo}){
     const [cardBookmarked, setCardBookmarked] = useState(cardInfo.is_favor || false);
@@ -21,7 +21,7 @@ export default function BarCheckInCard({cardInfo}){
     const rating = 4.9
 
     const getDayOfWeek = () =>  dayOfWeek === 0? 6: dayOfWeek-1
-
+    const [imageSrc, setImageSrc] = useState(Bar1 || cardImagePlaceholder)
     /*const goToBeerPage = () => navigate(`/bar/${cardInfo.alias}`);*/
 
     const getExpensivenessIcons = (expensiveness) => {
@@ -48,7 +48,7 @@ export default function BarCheckInCard({cardInfo}){
                     {/*{cardInfo.rating && <p className={styles.ratingText}><BottleIcon/> ({cardInfo.rating.toFixed(1)})</p>}*/}
                 </div>
                 <div className={styles.imgContainer}>
-                    <img src={Bar1} alt=""/>
+                    <img src={imageSrc} onError={() => setImageSrc(cardImagePlaceholder)} alt=""/>
                     <a onClick={() => setCardFav(!cardFav)} className={`${styles.favButton} ${cardFav? styles.added : ''}`}><FavIcon/></a>
                 </div>
                 <div className={styles.characteristics}>

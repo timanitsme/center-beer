@@ -21,7 +21,7 @@ export default function NewsDetailPage(){
             {!isLoading && !error && data &&
                 <>
                     <NavChain paths={[...getNewsDetailPaths(), {title: data?.title, path: ""}]}/>
-                    <NewsDetailSection>
+                    <NewsDetailSection postId={data?.id}>
                         <NewsItem newsInfo={data}/>
                     </NewsDetailSection>
                 </>

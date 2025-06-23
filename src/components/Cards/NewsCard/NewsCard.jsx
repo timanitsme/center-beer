@@ -1,6 +1,8 @@
 import styles from "./NewsCard.module.css"
 import PropTypes from "prop-types";
 import {useNavigate} from "react-router-dom";
+import {useState} from "react";
+import cardImagePlaceholder from "../../../assets/placeholders/card-image-placeholder.svg";
 
 export default function NewsCard({cardInfo}){
     const navigate = useNavigate()
@@ -17,12 +19,13 @@ export default function NewsCard({cardInfo}){
         return `${day}.${month}.${year}`;
     }
 
+    const [imageSrc, setImageSrc] = useState(cardInfo?.preview || cardImagePlaceholder)
 
 
     return(
         <div className={styles.blogCard}>
             <p className={styles.cardTextPrimary} onClick={goToNewsPage}>{cardInfo.title}</p>
-            <div className={styles.imageContainer}><img className={styles.cardImg} onClick={goToNewsPage} src={cardInfo.preview} alt=""/></div>
+            <div className={styles.imageContainer}><img className={styles.cardImg} onClick={goToNewsPage} src={imageSrc} onError={() => setImageSrc(cardImagePlaceholder)} alt=""/></div>
             <p>{cardInfo?.create_date && getFormattedDate(cardInfo.create_date)}</p>
             <p className={styles.cardDescription}>{cardInfo.description}</p>
             <div className={styles.tagsRow}>

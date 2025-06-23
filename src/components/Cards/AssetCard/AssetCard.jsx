@@ -5,12 +5,13 @@ import BookMarkIcon from "../../../assets/bookmark-unfill-icon.svg?react";
 import FavIcon from "../../../assets/fav-unfill-icon.svg?react";
 import PropTypes from "prop-types";
 import SimpleButton from "../../Buttons/SimpleButton/SimpleButton.jsx";
+import cardImagePlaceholder from "../../../assets/placeholders/card-image-placeholder.svg"
 
 export default function AssetCard({cardInfo}){
     const [cardBookmarked, setCardBookmarked] = useState(false);
     const [cardFav, setCardFav] = useState(false);
     const navigate = useNavigate();
-
+    const [imageSrc, setImageSrc] = useState(cardInfo?.img || cardImagePlaceholder)
     const goToBreweryPage = () => navigate("/brewery/1");
 
     return(
@@ -18,7 +19,7 @@ export default function AssetCard({cardInfo}){
             <div className={styles.productContainer}>
                 <div className={styles.productCard}>
                     <div className={styles.imgContainer} onClick={goToBreweryPage}>
-                        <img src={cardInfo.img} alt=""/>
+                        <img src={imageSrc} onError={() => setImageSrc(cardImagePlaceholder)} alt=""/>
                     </div>
                     <div className={styles.cardContent}>
                         <div className={styles.cardTop}>

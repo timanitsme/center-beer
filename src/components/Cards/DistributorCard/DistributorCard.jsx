@@ -7,12 +7,14 @@ import FavIcon from "../../../assets/fav-unfill-icon.svg?react";
 import PropTypes from "prop-types";
 import SimpleButton from "../../Buttons/SimpleButton/SimpleButton.jsx";
 import {useNavigate} from "react-router-dom";
+import cardImagePlaceholder from "../../../assets/placeholders/card-image-placeholder.svg";
 
 
 export default function DistributorCard({cardInfo}){
     const [cardBookmarked, setCardBookmarked] = useState(false);
     const [cardFav, setCardFav] = useState(false);
     const navigate = useNavigate();
+    const [imageSrc, setImageSrc] = useState(cardInfo?.img || cardImagePlaceholder)
 
     const goToDistributorPage = () => navigate("/will-be-soon"); // distributor/1
 
@@ -21,7 +23,7 @@ export default function DistributorCard({cardInfo}){
             <div className={styles.productContainer}>
                 <div className={styles.productCard}>
                     <div className={styles.imgContainer} onClick={goToDistributorPage}>
-                        <img src={cardInfo.img} alt=""/>
+                        <img src={imageSrc} onError={() => setImageSrc(cardImagePlaceholder)} alt=""/>
                     </div>
                     <div className={styles.cardContent}>
                         <div className={styles.cardTop}>

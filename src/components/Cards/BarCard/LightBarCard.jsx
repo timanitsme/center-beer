@@ -1,15 +1,11 @@
 import {useState} from "react";
 import styles from "./BarCard.module.css";
 import BookMarkIcon from "../../../assets/bookmark-unfill-icon.svg?react";
-import BottleIcon from "../../../assets/bottle-icon.svg?react";
 import FavIcon from "../../../assets/fav-unfill-icon.svg?react";
 import PropTypes from "prop-types";
-import MetroIcon from "../../../assets/metro-icon.svg?react"
-import LocationIcon from "../../../assets/location-filled-icon.svg?react"
-import CommentIcon from "../../../assets/comment-icon.svg?react"
 import {useNavigate} from "react-router-dom";
 import {useLazyAddBarToCuddyQuery, useLazyAddBarToFavQuery} from "../../../store/services/centerBeer.js";
-
+import cardImagePlaceholder from "../../../assets/placeholders/card-image-placeholder.svg"
 
 export default function LightBarCard({cardInfo, title}){
     const [cardBookmarked, setCardBookmarked] = useState(cardInfo.is_favor || false);
@@ -18,6 +14,7 @@ export default function LightBarCard({cardInfo, title}){
     const [triggerAddToCuddy, { isLoading: addToCuddyIsLoading }] = useLazyAddBarToCuddyQuery();
     const [triggerAddToFav, { isLoading: addToFavIsLoading }] = useLazyAddBarToFavQuery();
     const goToBarPage = (alias) => navigate(`/bar/${alias}`);
+    const [imageSrc, setImageSrc] = useState(cardInfo?.preview || cardImagePlaceholder)
 
     const handleAddToCuddy = async (event, id) => {
         event.preventDefault();
@@ -49,7 +46,7 @@ export default function LightBarCard({cardInfo, title}){
                     {/*{cardInfo.rating && <p className={styles.ratingText}><BottleIcon/> ({cardInfo.rating.toFixed(1)})</p>}*/}
                 </div>
                 <div className={styles.imgContainer}>
-                    <img src={cardInfo?.preview} onClick={() => goToBarPage(cardInfo?.alias)} alt=""/>
+                    <img src={imageSrc} onClick={() => goToBarPage(cardInfo?.alias)} onError={() => setImageSrc(cardImagePlaceholder)} alt=""/>
                     <a onClick={(e) => handleAddToFav(e, cardInfo?.id)} className={`${styles.favButton} ${cardFav? styles.added : ''}`}><FavIcon/></a>
                 </div>
                 <div className={styles.characteristics}>

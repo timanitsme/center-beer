@@ -4,6 +4,7 @@ import styles from "./BarCard.module.css";
 import BookMarkIcon from "../../../assets/bookmark-unfill-icon.svg?react";
 import FavIcon from "../../../assets/fav-unfill-icon.svg?react";
 import {useLazyAddBarToCuddyQuery, useLazyAddBarToFavQuery} from "../../../store/services/centerBeer.js";
+import cardImagePlaceholder from "../../../assets/placeholders/card-image-placeholder.svg"
 
 export default function MinimalBarCardApi({cardInfo}){
     const [cardBookmarked, setCardBookmarked] = useState(false);
@@ -11,6 +12,7 @@ export default function MinimalBarCardApi({cardInfo}){
     const navigate = useNavigate();
     const [triggerAddToCuddy, { isLoading: addToCuddyIsLoading }] = useLazyAddBarToCuddyQuery();
     const [triggerAddToFav, { isLoading: addToFavIsLoading }] = useLazyAddBarToFavQuery();
+    const [imageSrc, setImageSrc] = useState(cardInfo?.preview || cardImagePlaceholder)
     const goToBeerPage = () => navigate(`/bar/${cardInfo?.bar_alias}`, {
         state: {from: location.pathname}
     });
@@ -44,7 +46,7 @@ export default function MinimalBarCardApi({cardInfo}){
                     </div>
                 </div>
                 <div className={styles.imgContainer}>
-                    <img src={cardInfo?.preview} onClick={goToBeerPage} alt=""/>
+                    <img src={imageSrc} onClick={goToBeerPage} onError={() => setImageSrc(cardImagePlaceholder)} alt=""/>
                     <a onClick={(e) => handleAddToFav(e, cardInfo?.id)} className={`${styles.favButton} ${cardFav? styles.added : ''}`}><FavIcon/></a>
                 </div>
                 <div className={styles.characteristics}>

@@ -4,12 +4,13 @@ import BookMarkIcon from "../../../assets/bookmark-unfill-icon.svg?react";
 import FavIcon from "../../../assets/fav-unfill-icon.svg?react";
 import PropTypes from "prop-types";
 import {useNavigate} from "react-router-dom";
-
+import cardImagePlaceholder from "../../../assets/placeholders/card-image-placeholder.svg"
 
 export default function BreweryCard({cardInfo}){
     const [cardBookmarked, setCardBookmarked] = useState(false);
     const [cardFav, setCardFav] = useState(false);
     const navigate = useNavigate();
+    const [imageSrc, setImageSrc] = useState(cardInfo?.logo || cardImagePlaceholder)
 
     const goToBreweryPage = () => navigate(`/brewery/${cardInfo?.alias}`);
 
@@ -18,7 +19,7 @@ export default function BreweryCard({cardInfo}){
             <div className={styles.productContainer}>
                 <div className={styles.productCard}>
                     <div className={styles.imgContainer} onClick={goToBreweryPage}>
-                        <img src={cardInfo?.logo} alt=""/>
+                        <img src={imageSrc} onError={() => setImageSrc(cardImagePlaceholder)} alt=""/>
                     </div>
                     <div className={styles.cardContent}>
                         <div className={styles.cardTop}>

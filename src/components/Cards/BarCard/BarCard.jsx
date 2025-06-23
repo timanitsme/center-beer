@@ -14,6 +14,7 @@ import BarMock2 from "../../../assets/barsMocks/bar-2.svg"
 import BarMock3 from "../../../assets/barsMocks/bar-3.svg"
 import BarMock4 from "../../../assets/barsMocks/bar-4.svg"
 import BarMock5 from "../../../assets/barsMocks/bar-5.svg"
+import cardImagePlaceholder from "../../../assets/placeholders/card-image-placeholder.svg"
 
 
 export default function BarCard({cardInfo}){
@@ -25,6 +26,7 @@ export default function BarCard({cardInfo}){
     const rating = 4.9
     const [triggerAddToCuddy, { isLoading: addToCuddyIsLoading }] = useLazyAddBarToCuddyQuery();
     const [triggerAddToFav, { isLoading: addToFavIsLoading }] = useLazyAddBarToFavQuery();
+    const [imageSrc, setImageSrc] = useState(cardInfo?.preview || cardImagePlaceholder)
 
     const getDayOfWeek = () =>  dayOfWeek === 0? 6: dayOfWeek-1
 
@@ -84,7 +86,7 @@ export default function BarCard({cardInfo}){
                     {/*{cardInfo.rating && <p className={styles.ratingText}><BottleIcon/> ({cardInfo.rating.toFixed(1)})</p>}*/}
                 </div>
                 <div className={styles.imgContainer}>
-                    <img src={imageMapping[cardInfo.alias] || cardInfo.preview} onClick={goToBeerPage} alt=""/>
+                    <img src={imageMapping[cardInfo.alias] || imageSrc} onError={() => setImageSrc(cardImagePlaceholder)} onClick={goToBeerPage} alt=""/>
                     <a onClick={(e) => handleAddToFav(e, cardInfo?.id)} className={`${styles.favButton} ${cardFav? styles.added : ''}`}><FavIcon/></a>
                 </div>
                 <div className={styles.characteristics}>

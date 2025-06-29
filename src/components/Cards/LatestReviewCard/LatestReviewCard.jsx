@@ -1,4 +1,4 @@
-import styles from "./LatestReviewCard.module.css"
+import styles from "./LatestReviewCard.module.scss"
 import Bottle1 from "../../../assets/bottlesMock/bottle-1.svg"
 import Review1 from "../../../assets/reviewsMocks/beer-review-1.svg"
 import Review2 from "../../../assets/reviewsMocks/beer-review-2.svg"

@@ -1,4 +1,4 @@
-import styles from "./AdvantagesList.module.css"
+import styles from "./AdvantagesList.module.scss"
 import WalletIcon from "../../assets/advantages/WalletIcon.jsx";
 import DeskIcon from "../../assets/advantages/DeskIcon.jsx";
 import GlassesIcon from "../../assets/advantages/GlassesIcon.jsx";
@@ -21,7 +21,7 @@ export default function AdvantagesList({barInfo}){
                     <div key={advantage.title} className={styles.advantagesListItem}>
                         {advantage.icon}
                         <div>
-                            <h3>{advantage.title}</h3>
+                            <h5>{advantage.title}</h5>
                             {advantage.description.map((item) => {
                                 return(
                                     <p key={item}>{item}</p>

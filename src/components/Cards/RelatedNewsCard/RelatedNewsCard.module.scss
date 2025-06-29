@@ -1,0 +1,45 @@
+@use "../../../utils/partialStyles/_pxToRem.scss" as *;
+
+.blogCard{
+    padding: rem(10);
+    border-radius: rem(10);
+    display: flex;
+    flex-direction: column;
+    background: var(--section-bg);
+    gap: rem(10);
+}
+
+.cardTextPrimary{
+    font-family: Podkova, sans-serif;
+    font-weight: initial;
+    color: var(--primary);
+}
+
+.cardTextPrimary, .cardDescription{
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.cardTextPrimary{
+    -webkit-line-clamp: 2;
+    cursor: pointer;
+}
+
+.cardDescription{
+    -webkit-line-clamp: 3;
+}
+
+.cardDescription{
+    -webkit-line-clamp: 3;
+}
+
+.cardImg{
+    border-radius: rem(5);
+    cursor: pointer;
+}
+
+.blogCard p{
+    font-weight: 200;
+}

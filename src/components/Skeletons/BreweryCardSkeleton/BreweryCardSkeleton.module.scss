@@ -1,0 +1,128 @@
+@use "../../../utils/partialStyles/_pxToRem.scss" as *;
+
+.card{
+    max-width: rem(600);
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.productContainer{
+    padding: rem(20);
+    display: flex;
+    flex-direction: column;
+    border-radius: rem(10) rem(10) rem(10) rem(10);
+    background: var(--section-bg);
+    gap: rem(10);
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    animation: pulse 1.5s infinite ease-in-out;
+}
+
+
+.cardBottom{
+    display: flex;
+    justify-content: flex-end;
+    gap: rem(10);
+    align-items: center;
+}
+
+.cardBottom.mobile{
+    display: none;
+}
+
+.productCard{
+    display: flex;
+    flex-direction: row;
+    gap: rem(10);
+}
+
+.cardContent{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: rem(10);
+    justify-content: space-between;
+}
+
+.bigCircle{
+    height: rem(30);
+    width: rem(30);
+    border-radius: 100%;
+    background: var(--third);
+    align-self: center;
+}
+
+.skeletonTextPrimary {
+    width: 75%;
+    height: rem(20);
+    margin-bottom: rem(10);
+    border-radius: rem(4);
+    background: var(--primary);
+}
+
+.skeletonTextActive {
+    width: 60%;
+    height: rem(16);
+    border-radius: rem(4);
+    background: var(--txt-active);
+}
+
+.imgContainer{
+    position: relative;
+    min-width: rem(100);
+    min-height: rem(100);
+    width: rem(100);
+    height: rem(100);
+    background: var(--third);
+    border-radius: rem(10);
+    padding: rem(10);
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 0.6;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+@media (max-width: rem(900)) {
+    .cardBottom.pc{
+        display: none;
+    }
+
+    .cardBottom.mobile{
+        display: flex;
+    }
+
+    .productContainer{
+        padding: rem(10);
+    }
+
+    .card{
+        max-width: rem(250);
+    }
+
+    .imgContainer{
+        min-width: rem(70);
+        min-height: rem(70);
+        width: rem(70);
+        height: rem(70);
+        padding: rem(5);
+    }
+}
+
+@media (max-width: rem(768)) {
+    .productContainer {
+        padding: rem(5);
+    }
+}
+
+@media (max-width: rem(600)) {
+    .card{
+        max-width: 100%;
+    }
+}

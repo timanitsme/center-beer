@@ -1,0 +1,27 @@
+@use "../../../utils/partialStyles/_pxToRem.scss" as *;
+
+.menuContainer{
+    margin: 0 rem(50) rem(50) rem(50);
+    display: flex;
+    gap: rem(10);
+    flex-direction: column;
+}
+
+.menuContainer h2{
+    align-self: flex-start;
+    text-align: left;
+}
+
+.filterButtons{
+    display: flex;
+    flex-wrap: wrap;
+    gap: rem(10);
+    margin-bottom: rem(10);
+}
+
+@media (max-width: rem(1000)) {
+    .menuContainer{
+        margin: 0 rem(25) rem(25) rem(25);
+    }
+
+}

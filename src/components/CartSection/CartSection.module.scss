@@ -1,0 +1,400 @@
+@use "../../utils/partialStyles/_pxToRem.scss" as *;
+
+.cartSection{
+    margin: 0 rem(50) 0 rem(50);
+}
+
+.cartSection h2{
+    text-align: left;
+}
+
+.cartSection p{
+    font-weight: 200;
+}
+
+.cartContainer{
+    display: flex;
+    gap: rem(15);
+}
+
+.leftSide{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: rem(20);
+}
+
+.rightSide{
+    max-width: 25%;
+    display: flex;
+    flex-direction: column;
+    gap: rem(20);
+}
+
+.cartSummary{
+    padding: rem(20);
+    display: flex;
+    flex-direction: column;
+    border-radius: rem(10);
+    background: var(--section-bg);
+    gap: rem(20);
+}
+
+.cartSummary button{
+    width: 100%;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+
+.col{
+    display: flex;
+    flex-direction: column;
+}
+
+.row{
+    display: flex;
+    align-items: center;
+    gap: rem(10);
+}
+
+.title{
+    font-family: "Podkova", sans-serif;
+    color: var(--txt-active);
+    font-weight: 500 !important;
+}
+
+.summaryRow{
+    display: flex;
+    justify-content: space-between;
+}
+
+.active{
+    color: var(--txt-active);
+}
+
+.primary {
+    color: var(--primary);
+}
+
+.pointsSection{
+    background: var(--section-bg);
+    padding: rem(20);
+    border-radius: rem(10);
+}
+
+.promoSection{
+    background: var(--section-bg);
+    padding: rem(20);
+    border-radius: rem(10);
+    display: flex;
+    flex-direction: column;
+    gap: rem(10);
+}
+
+.paymentSection{
+    padding: rem(20);
+    display: flex;
+    flex-direction: column;
+    gap: rem(20);
+    background: var(--section-bg);
+    border-radius: rem(10);
+}
+
+.deliverySection{
+    padding: rem(20);
+    display: flex;
+    flex-direction: column;
+    gap: rem(20);
+    background: var(--section-bg);
+    border-radius: rem(10);
+}
+
+.paymentMethods{
+    display: flex;
+    flex-direction: row;
+    gap: rem(10);
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.method svg{
+    max-width: rem(100);
+    height: fit-content;
+}
+
+.deliveryMethods{
+    display: flex;
+    flex-direction: row;
+    gap: rem(10);
+    flex-wrap: wrap;
+}
+
+.delMethod{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: rem(20);
+    border-radius: rem(10);
+    border: rem(1) solid var(--third);
+    gap: rem(10);
+    height: fit-content;
+}
+
+.method{
+    padding: rem(20);
+    border-radius: rem(10);
+    border: rem(1) solid var(--third);
+    display: flex;
+    flex-direction: column;
+    gap: rem(10);
+    align-items: center;
+    cursor: pointer;
+}
+
+.method svg{
+    color: var(--txt-secondary);
+}
+
+.method.active{
+    background: var(--third);
+    border: rem(1) solid var(--primary);
+}
+
+.delBar{
+    display: flex;
+    gap: rem(10);
+    margin-left: rem(25);
+}
+
+.barContent svg{
+    color: var(--txt-secondary);
+    height: rem(12);
+    width: min-content;
+}
+
+.circle{
+    width: rem(10);
+    height: rem(10);
+    border-radius: rem(10);
+}
+
+.opened{
+    background: #2AC02A;
+}
+
+.imagesRow{
+    display: flex;
+    gap: rem(5);
+    margin-bottom: rem(5);
+}
+
+.imagesRow .imageWrapper{
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    height: 100%;
+    overflow: hidden;
+    border-radius: rem(5);
+}
+
+.imagesRow .imageWrapper{
+    width: rem(50);
+}
+
+.good .imageWrapper{
+    width: rem(130);
+}
+
+.imageWrapper img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: rem(5);
+}
+
+.tableHeader{
+    background: var(--section-bg);
+    padding: rem(15);
+    border-radius: rem(10);
+    display: flex;
+    justify-content: space-between;
+}
+
+.goodsListSection{
+    background: var(--section-bg);
+    border-radius: rem(10);
+    padding: rem(20);
+    display: flex;
+    flex-direction: column;
+    gap: rem(20);
+}
+
+.good{
+    display: flex;
+    gap: rem(15);
+}
+
+.plusMinusButton{
+    border-radius: rem(10);
+    background: var(--third);
+    padding: rem(15);
+    width: rem(50);
+    height: rem(50);
+    cursor: pointer;
+}
+
+.centerGood{
+    align-self: center;
+}
+
+.buttonsRow{
+    display: flex;
+    height: rem(50);
+    gap: rem(5);
+    align-self: center;
+}
+
+.buttonsRow input{
+    width: rem(70);
+    border-radius: rem(10);
+    text-align: center;
+    padding: rem(8);
+}
+
+.trashButton{
+    align-self: center;
+}
+
+.goodDescription{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: rem(7);
+}
+
+.characteristicsRow{
+    display: flex;
+    gap: rem(15);
+}
+
+.characteristic{
+    display: flex;
+    flex-direction: column;
+    gap: rem(3);
+}
+
+.mobileCol{
+    display: flex;
+    flex-direction: column;
+    gap: rem(20);
+}
+
+.row span{
+    min-height: rem(14);
+    min-width: rem(20);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .method:hover {
+        background: var(--third);
+        transition: 0.5s;
+    }
+
+    .method:hover svg {
+        scale: 1.1;
+        transition: 0.5s;
+    }
+
+    .plusMinusButton:hover{
+        background: var(--txt-secondary);
+        transition: 0.5s;
+    }
+
+    .trashButton svg:hover{
+        color: var(--txt-active);
+        transition: 0.5s;
+    }
+}
+
+@media (max-width: rem(1250)) {
+    .cartContainer{
+        flex-direction: column-reverse;
+    }
+    .rightSide{
+        flex-direction: row;
+        max-width: 100%;
+        max-height: 25%;
+        gap: rem(10);
+        justify-content: space-between;
+    }
+    .mobileCol{
+        gap: rem(10);
+    }
+
+}
+
+@media (max-width: rem(1000)) {
+    .imagesRow .imageWrapper{
+        width: rem(40);
+    }
+    .cartSection{
+        margin: 0 rem(25) 0 rem(25);
+    }
+}
+
+@media (max-width: rem(900)) {
+    .paymentMethods{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .method svg{
+        max-width: rem(70);
+    }
+}
+
+@media (max-width: rem(750)) {
+    .promoSection .row{
+        flex-direction: column;
+    }
+    .plusMinusButton{
+        padding: rem(5);
+        width: rem(35);
+        height: rem(35);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        align-self: center;
+    }
+    .buttonsRow input{
+        height: rem(35);
+        align-self: center;
+    }
+
+    .trashButton svg{
+        max-width: rem(13);
+    }
+
+    .plusMinusButton svg{
+        max-width: rem(20);
+        max-height: rem(20);
+    }
+}
+
+@media (max-width: rem(650)) {
+    .buttonsRow{
+        display: flex;
+        flex-direction: column;
+        height: fit-content;
+    }
+
+    .buttonsRow input{
+        width: rem(40);
+    }
+
+    .good .imageWrapper{
+        width: rem(90);
+    }
+
+}

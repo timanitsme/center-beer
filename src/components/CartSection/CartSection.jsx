@@ -1,4 +1,4 @@
-import styles from "./CartSection.module.css"
+import styles from "./CartSection.module.scss"
 import SimpleButton from "../Buttons/SimpleButton/SimpleButton.jsx";
 import CheckBox from "../Inputs/CheckBox/CheckBox.jsx";
 import CheckBoxChild from "../Inputs/CheckBox/CheckBoxChild.jsx";

@@ -1,4 +1,4 @@
-import styles from "./NewsItem.module.css"
+import styles from "./NewsItem.module.scss"
 import NewsContentImage1 from "../../assets/newsMocks/news-content-image-1.svg";
 import QuoteIcon from "../../assets/quote-icon.svg?react";
 import formatDateWithTextMonth from "../../utils/DateFunctions/formatDateWithTextMonth.js";

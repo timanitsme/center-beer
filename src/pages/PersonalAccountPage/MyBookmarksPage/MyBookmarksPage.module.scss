@@ -1,0 +1,41 @@
+@use "../../../utils/partialStyles/_pxToRem.scss" as *;
+
+.title{
+    text-align: left;
+}
+
+.row{
+    display: flex;
+    gap: rem(15);
+    align-items: center;
+}
+
+.arrowButton{
+    background: var(--primary);
+    padding: rem(5);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 1/1;
+    cursor: pointer;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .arrowButton:hover {
+        background: var(--primary-semi-transparent);
+        transition: 0.5s;
+    }
+}
+
+.arrowButton svg{
+    color: var(--section-bg);
+    max-width: rem(15);
+    height: fit-content;
+}
+
+@media (max-width: rem(700)) {
+    .block{
+        margin: 0 rem(25) rem(25) rem(25);
+    }
+}

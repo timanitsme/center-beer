@@ -1,0 +1,11 @@
+@use "../../utils/partialStyles/_pxToRem.scss" as *;
+
+.newProductsContainer{
+    margin: 0 rem(50) rem(50) rem(50);
+}
+
+@media (max-width: rem(1000)) {
+    .newProductsContainer{
+        margin: 0 rem(25) rem(25) rem(25);
+    }
+}

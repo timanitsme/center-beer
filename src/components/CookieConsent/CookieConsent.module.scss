@@ -1,0 +1,56 @@
+@use "../../utils/partialStyles/_pxToRem.scss" as *;
+
+.cookieConsent {
+    position: fixed;
+    bottom: rem(10);
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--bg);
+    padding: rem(15);
+    box-shadow: 0 rem(-2) rem(5) rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: rem(10);
+    z-index: 1000;
+    border-radius: rem(8);
+    max-width: rem(500);
+    width: 90%;
+    border: rem(2) solid var(--primary);
+}
+
+.cookieConsent p {
+    margin: 0;
+    font-weight: 200;
+    color: var(--txt-active);
+}
+
+.cookieConsent button p{
+    color: initial;
+}
+
+.cookieConsent a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+
+.cookieConsentActions {
+    display: flex;
+    gap: rem(15);
+    align-items: center;
+}
+
+.acceptBtn,
+.declineBtn {
+    padding: rem(8) rem(15);
+    border: none;
+    border-radius: rem(5);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+
+.acceptBtn:hover {
+    background-color: #0056b3;
+}

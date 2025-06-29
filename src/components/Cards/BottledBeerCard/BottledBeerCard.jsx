@@ -1,5 +1,5 @@
 import {useState} from "react";
-import styles from "./BottledBeerCard.module.css";
+import styles from "./BottledBeerCard.module.scss";
 import BookMarkIcon from "../../../assets/bookmark-unfill-icon.svg?react";
 import IconButton from "../../Buttons/IconButton/IconButton.jsx";
 import BottlesPairIcon from "../../../assets/bottles-pair-icon.svg?react";
@@ -55,8 +55,8 @@ export default function BottledBeerCard({cardInfo}){
             <div className={styles.bottledBeerCard}>
                 <div className={styles.cardTop}>
                     <div className={styles.textContainer}>
-                        <p className={styles.cardTextPrimary} onClick={() => goToBeerPage(cardInfo?.alias || cardInfo?.beer_alias)}>{cardInfo?.name}</p>
-                        <p className={`${styles.textActive} ${styles.breweryAlias}`}  onClick={() => goToBreweryPage(cardInfo?.brewery_alias)}>{cardInfo?.brewery}{cardInfo?.brewery && cardInfo?.country && ","} {cardInfo?.country}</p>
+                        <h6 className={`${styles.cardTextPrimary} ma-h6`} onClick={() => goToBeerPage(cardInfo?.alias || cardInfo?.beer_alias)}>{cardInfo?.name}</h6>
+                        <p className={`${styles.textActive} ma-p ${styles.breweryAlias}`}  onClick={() => goToBreweryPage(cardInfo?.brewery_alias)}>{cardInfo?.brewery}{cardInfo?.brewery && cardInfo?.country && ","} {cardInfo?.country}</p>
                     </div>
                     <div>
                         <a onClick={(e) => handleAddToCuddy(e, cardInfo?.id)} className={`${styles.bookMarkButton} ${cardBookmarked && styles.added}`}><BookMarkIcon/></a>
@@ -71,16 +71,16 @@ export default function BottledBeerCard({cardInfo}){
                 {cardInfo?.style && <p className={styles.textActive}><span style={{color: "var(--txt-secondary)"}}>Стиль:</span> {cardInfo?.style}</p>}
                 <div className={styles.characteristics}>
                     <div>
-                        <p className={`${styles.textActive} ${styles.secondary}`}>Крепость:</p>
-                        <p className={styles.textActive}>{formatNumber(cardInfo?.abv)}%</p>
+                        <p className={`${styles.textActive} ma-p2 ${styles.secondary}`}>Крепость:</p>
+                        <p className={`${styles.textActive} ma-p`}>{formatNumber(cardInfo?.abv)}%</p>
                     </div>
                     <div>
-                        <p className={`${styles.textActive} ${styles.secondary}`}>Плотность:</p>
-                        <p className={styles.textActive}>{formatNumber(cardInfo?.og)}%</p>
+                        <p className={`${styles.textActive} ma-p2 ${styles.secondary}`}>Плотность:</p>
+                        <p className={`${styles.textActive} ma-p`}>{formatNumber(cardInfo?.og)}%</p>
                     </div>
                     <div>
-                        <p className={`${styles.textActive} ${styles.secondary}`}>Горечь</p>
-                        <p className={styles.textActive}>{formatNumber(cardInfo?.ibu)}</p>
+                        <p className={`${styles.textActive} ma-p2 ${styles.secondary}`}>Горечь</p>
+                        <p className={`${styles.textActive} ma-p`}>{formatNumber(cardInfo?.ibu)}</p>
                     </div>
                 </div>
 

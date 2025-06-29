@@ -1,5 +1,5 @@
 import {useState} from "react";
-import styles from "./ProductCard.module.css";
+import styles from "./ProductCard.module.scss";
 import BookMarkIcon from "../../../assets/bookmark-unfill-icon.svg?react";
 import FavIcon from "../../../assets/fav-unfill-icon.svg?react";
 import IconButton from "../../Buttons/IconButton/IconButton.jsx";

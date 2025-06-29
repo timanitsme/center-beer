@@ -1,4 +1,4 @@
-import styles from "./RelatedNewsCard.module.css"
+import styles from "./RelatedNewsCard.module.scss"
 import {useState} from "react";
 import cardImagePlaceholder from "../../../assets/placeholders/card-image-placeholder.svg";
 import {useNavigate} from "react-router-dom";

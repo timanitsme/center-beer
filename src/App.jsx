@@ -1,4 +1,4 @@
-import './App.css'
+import './App.scss'
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Header from "./components/Header/Header.jsx";
 import Footer from "./components/Footer/Footer.jsx";
@@ -84,6 +84,8 @@ function App() {
         {path: "/event-map/", element: <EventMapPage/>, hideFooter: true},
         {path: "/event-map-mobile/", element: <EventMapPageMobile/>, hideFooter: true, hideHeader: true},
         {path: "/login/", element: <AuthorizationPage/>},
+        {path: "/restore/", element: <RestorePasswordPage/>},
+
         {path: "/account/", element: <PersonalAccountPage/>},
         {path: "/account/fav/:alias", element: <MyFavoritePage/>},
         {path: "/account/bookmarked/:alias", element: <MyBookmarksPage/>},
@@ -94,6 +96,7 @@ function App() {
         {path: "/events/restaurants", element: <RestaurantEventsPage/>},
         {path: "/events/breweries", element: <BreweryEventsPage/>},
         {path: "/events/festivals", element: <FestivalsPage/>},
+        {path: "/events/:id", element: <EventDetailPage/>},
         {path: "/events/:id", element: <EventDetailPage/>},
         {path: "/in-dev", element: <InDevelopmentPage/>},
         {path: "/will-be-soon", element: <WillBeSoonPage/>},

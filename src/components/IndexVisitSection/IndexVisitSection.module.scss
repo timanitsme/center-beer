@@ -1,0 +1,90 @@
+@use "../../utils/partialStyles/_pxToRem.scss" as *;
+
+.visitSection{
+    margin: 0 rem(50) rem(50) rem(50);
+    display: flex;
+    flex-direction: column;
+    background: var(--section-bg);
+    padding: rem(20);
+    border-radius: rem(10);
+    gap: rem(15);
+    position: relative;
+    background-image: url('../../assets/visit-background.svg');
+    background-size: clamp(rem(200), 20%, rem(400));
+    background-repeat: no-repeat;
+    background-position: right bottom;
+    transition: background-image 0.3s ease-in-out;
+}
+
+
+
+.visitSection h3{
+    text-align: left;
+}
+
+.visitSection p{
+    font-weight: 200;
+}
+
+.bottlesContainer{
+    display: flex;
+    gap: rem(5);
+}
+
+.advantagesRow{
+    display: flex;
+    gap: rem(15);
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.advantage{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.advantage p{
+    text-align: center;
+}
+
+.advantage svg{
+    width: rem(50);
+    height: fit-content;
+}
+
+.visitSection img{
+    position: absolute;
+    max-height: rem(300);
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+}
+
+.widthLimit{
+    max-width: 80%;
+}
+
+@media (max-width: rem(1000)) {
+    .visitSection{
+        margin: 0 rem(25) rem(25) rem(25);
+
+    }
+}
+
+
+@media (max-width: rem(500)) {
+    .visitSection{
+        background-image: none;
+    }
+    .advantage svg{
+        width: rem(25);
+        height: fit-content;
+    }
+    .advantagesRow{
+        justify-content: center;
+    }
+    .widthLimit{
+        max-width: 100%;
+    }
+}

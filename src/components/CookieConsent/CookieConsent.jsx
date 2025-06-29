@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import styles from "./CookieConsent.module.css"
+import styles from "./CookieConsent.module.scss"
 import SimpleButton from "../Buttons/SimpleButton/SimpleButton.jsx";
 import {useNavigate} from "react-router-dom";
 

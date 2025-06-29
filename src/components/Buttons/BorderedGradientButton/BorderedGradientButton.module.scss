@@ -1,0 +1,23 @@
+@use "../../../utils/partialStyles/_pxToRem.scss" as *;
+
+.gradientButton {
+    background: #141414;
+    color: white;
+    border: none;
+    padding: rem(8) rem(16);
+    cursor: pointer;
+    box-shadow: 0 rem(2) rem(4) rgba(255, 255, 255, 0.1);
+    border-radius: rem(6);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+
+.gradientButton:hover {
+    transform: translateY(rem(-1));
+    box-shadow: 0 rem(3) rem(6) rgba(255, 255, 255, 0.15);
+}
+
+.gradientButton:active {
+    transform: translateY(0);
+    box-shadow: 0 rem(2) rem(4) rgba(255, 255, 255, 0.1);
+}

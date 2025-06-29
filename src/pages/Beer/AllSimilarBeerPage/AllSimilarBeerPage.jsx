@@ -1,4 +1,4 @@
-import styles from "./AllSimilarBeerPage.module.css"
+import styles from "./AllSimilarBeerPage.module.scss"
 import {useNavigate, useParams} from "react-router-dom";
 import {useEffect} from "react";
 import NavChain from "../../../components/Navigation/NavChain/NavChain.jsx";
@@ -33,7 +33,7 @@ export default function AllSimilarBeerPage(){
                 <div style={{display: "flex", flexDirection: "column", width: "100%", gap: "25px"}}>
                     <div className={styles.row}>
                         <div className={styles.arrowButton} onClick={() => navigate(`/beer/${alias}`)}><ArrowLeftIcon/></div>
-                        <h2 className={styles.title}>{`Все пиво, похожее на ${data?.[0]?.name}`}</h2>
+                        <h2 className={`${styles.title} ma-h2-small`}>{`Все пиво, похожее на ${data?.[0]?.name}`}</h2>
                     </div>
                     {data && !isLoading && !error && <SimpleCatalogSection cards={data[0]?.related_items} CardComponent={BottledBeerCard}></SimpleCatalogSection>}
                 </div>

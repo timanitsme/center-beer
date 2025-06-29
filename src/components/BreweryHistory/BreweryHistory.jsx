@@ -1,4 +1,4 @@
-import styles from "./BreweryHistory.module.css"
+import styles from "./BreweryHistory.module.scss"
 import History1 from "../../assets/historyMocks/history-1.svg"
 import History2 from "../../assets/historyMocks/history-2.svg"
 import History3 from "../../assets/historyMocks/history-3.svg"

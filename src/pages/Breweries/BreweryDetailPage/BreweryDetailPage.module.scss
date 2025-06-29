@@ -1,0 +1,21 @@
+@use "../../../utils/partialStyles/_pxToRem.scss" as *;
+
+.backButton {
+    position: fixed;
+    top: rem(50);
+    right: rem(20);
+    z-index: 100;
+    padding: rem(10) rem(20);
+    background: var(--primary);
+    border: none;
+    border-radius: rem(5);
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .backButton:hover {
+        background: var(--primary-semi-transparent);
+        transition: 0.5s;
+    }
+}

@@ -1,4 +1,4 @@
-import styles from "./BarMenu.module.css"
+import styles from "./BarMenu.module.scss"
 import IconButton from "../Buttons/IconButton/IconButton.jsx";
 import PropTypes from "prop-types";
 import SimpleButton from "../Buttons/SimpleButton/SimpleButton.jsx";

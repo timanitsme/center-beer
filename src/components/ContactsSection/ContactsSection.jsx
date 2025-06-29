@@ -1,4 +1,4 @@
-import styles from "./ContactsSection.module.css"
+import styles from "./ContactsSection.module.scss"
 import TextInput from "../Inputs/TextInput/TextInput.jsx";
 import SimpleButton from "../Buttons/SimpleButton/SimpleButton.jsx";
 import IconButton from "../Buttons/IconButton/IconButton.jsx";
@@ -12,31 +12,31 @@ export default function ContactsSection(){
 
     return(
         <div className={styles.contactsSection}>
-            <h1 className={styles.outlineTitle}>Контакты</h1>
+            <h1 className={`${styles.outlineTitle} text-large`}>Контакты</h1>
             <div className={styles.contactsRow}>
                 <div className={styles.contactsCol}>
-                    <h2>+7 (499) 938-46-71</h2>
-                    <p>Отвечаем на звонки с 8 до 22 без выходных</p>
+                    <h4 className="ma-h4-small">+7 (499) 938-46-71</h4>
+                    <p className="ma-p">Отвечаем на звонки с 8 до 22 без выходных</p>
                 </div>
                 <div className={styles.contactsCol}>
-                    <h2>hello@center.beer</h2>
-                    <p>Для вопросов и предложений</p>
+                    <h4 className="ma-h4-small">hello@center.beer</h4>
+                    <p className="ma-p">Для вопросов и предложений</p>
                 </div>
                 <div className={styles.contactsCol}>
-                    <h2>@Alexomel81</h2>
-                    <p>Для сообщений в Telegram</p>
+                    <h4 className="ma-h4-small">@Alexomel81</h4>
+                    <p className="ma-p">Для сообщений в Telegram</p>
                 </div>
             </div>
             <div className={styles.section}>
                 <div className={styles.formRow}>
                     <div className={styles.col}>
-                        <h2>Напишите нам</h2>
-                        <p>Воспользуйтесь формой обратной связи либо с помощью электронной почты, написав письмо на адрес hello@center.beer</p>
+                        <h2 className="ma-h2-small">Напишите нам</h2>
+                        <p className="ma-p1">Воспользуйтесь формой обратной связи либо с помощью электронной почты, написав письмо на адрес hello@center.beer</p>
                     </div>
                     <div className={styles.col}>
                         <TextInput placeholder="Ваше имя"></TextInput>
                         <TextInput placeholder="Ваш email"></TextInput>
-                        <textarea placeholder={"Текст сообщения"} className={styles.area}></textarea>
+                        <textarea placeholder={"Текст сообщения"} className={`${styles.area} ma-p`}></textarea>
                         <SimpleButton onClick={() => navigate("/in-dev")} text="Отправить сообщение"></SimpleButton>
                     </div>
                 </div>
@@ -44,7 +44,7 @@ export default function ContactsSection(){
             <div className={styles.section}>
                 <div className={`${styles.formRow} ${styles.socials}`}>
                     <div className={`${styles.col} ${styles.center}`}>
-                        <h2>Мы в социальных сетях</h2>
+                        <h2 className="ma-h2">Мы в социальных сетях</h2>
                     </div>
                     <div className={styles.row}>
                         <IconButton style="third" onClick={() => window.location.href="https://t.me/Alexomel81"} text={"Telegram"}><TgIcon/></IconButton>

@@ -1,6 +1,6 @@
 import NavChain from "../../../components/Navigation/NavChain/NavChain.jsx";
 import {useNavigate, useParams} from "react-router-dom";
-import styles from "./DocumentDetailPage.module.css"
+import styles from "./DocumentDetailPage.module.scss"
 import {useEffect} from "react";
 import AboutDetailSection from "../../../components/AboutDetailSection/AboutDetailSection.jsx";
 import PartnerItem from "../../../components/PartnerItem/PartnerItem.jsx";

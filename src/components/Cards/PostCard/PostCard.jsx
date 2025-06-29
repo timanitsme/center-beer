@@ -1,4 +1,4 @@
-import styles from "./PostCard.module.css"
+import styles from "./PostCard.module.scss"
 import PostImage1 from "../../../assets/postsMocks/post-image-1.svg";
 import DiagonalArrow from "../../../assets/arrow-diagonal-icon.svg?react"
 import {useState} from "react";

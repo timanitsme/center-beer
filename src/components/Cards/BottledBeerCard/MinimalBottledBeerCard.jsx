@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 import cardImagePlaceholder from "../../../assets/placeholders/card-image-placeholder.svg";
-import styles from "./BottledBeerCard.module.css";
+import styles from "./BottledBeerCard.module.scss";
 import BookMarkIcon from "../../../assets/bookmark-unfill-icon.svg?react";
 import BottleIcon from "../../../assets/bottle-icon.svg?react";
 import FavIcon from "../../../assets/fav-unfill-icon.svg?react";
@@ -31,7 +31,7 @@ export default function MinimalBottledBeerCard({cardInfo}){
                 </div>
                 <div className={styles.cardTop}>
                     <div className={styles.textContainer}>
-                        <p className={styles.cardTextPrimary}>{cardInfo?.name}</p>
+                        <h6 className={styles.cardTextPrimary}>{cardInfo?.name}</h6>
                         <p className={styles.textActive}>{[cardInfo?.brewery_name, cardInfo?.city, cardInfo?.country].join(", ")}</p>
                     </div>
                     <div>

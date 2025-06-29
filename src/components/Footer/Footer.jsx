@@ -1,10 +1,9 @@
-import styles from "./Footer.module.css"
+import styles from "./Footer.module.scss"
 import CenterBeerLogo from "../../assets/logo-new.svg?react";
 import AppPhone from "../../assets/app-phone.svg"
 import QrCode from "../../assets/new-qr-code.svg"
 import DownloadGooglePlay from "../../assets/download-google-play.svg?react"
 import DownloadAppStore from "../../assets/download-app-store.svg?react"
-import RoundLink from "../../assets/round-link.svg?react"
 import RoundLinkButton from "../Buttons/RoundLinkButton/RoundLinkButton.jsx";
 import {Link} from "react-router-dom";
 
@@ -29,7 +28,7 @@ export default function Footer(){
                     </div>
                     <div className={styles.qrCodeContainer}>
                         <img className={styles.qrCode} src={QrCode} alt=''></img>
-                        <p>Для быстрого скачивания приложения, наведите камеру телефона на этот QR-код и нажмите на появившуюся ссылку.</p>
+                        <p className="text-min">Для быстрого скачивания приложения, наведите камеру телефона на этот QR-код и нажмите на появившуюся ссылку.</p>
                     </div>
                 </div>
             </div>
@@ -38,7 +37,7 @@ export default function Footer(){
                     <div className={styles.footerTop}>
                         <div className={styles.bottomMenuColumn}>
                             <CenterBeerLogo/>
-                            <p style={{maxWidth: "250px"}}>Информационный портал для всех любителей пива</p>
+                            <p className="ma-p" style={{maxWidth: "250px"}}>Информационный портал для всех любителей пива</p>
                         </div>
                         <div className={styles.bottomMenu}>
                             <div className={styles.bottomMenuColumn}>
@@ -53,15 +52,15 @@ export default function Footer(){
                             </div>
                         </div>
                         <div className={styles.bottomMenuColumn} style={{gap: "5px", textAlign: "end", marginLeft: "auto" }}>
-                            <h1>+7 (499) 938-46-81</h1>
-                            <a href="mailto:hello@center.beer">hello@center.beer</a>
+                            <h1 className="ma-p2">+7 (499) 938-46-81</h1>
+                            <a className="ma-p2" href="mailto:hello@center.beer">hello@center.beer</a>
                         </div>
 
                     </div>
                     <div className={styles.hrtLine} />
                     <div className={styles.footerBottom}>
-                        <p>©CENTER.BEER все права защищены.</p>
-                        <Link to={"/in-dev"} style={{paddingLeft: "10px", fontWeight: 200}}>Условия использования и политика конфиденциальности</Link>
+                        <p className="ma-p">©CENTER.BEER все права защищены.</p>
+                        <Link to={"/in-dev"} style={{paddingLeft: "10px", fontWeight: 200}} className="ma-p">Условия использования и политика конфиденциальности</Link>
                     </div>
                 </div>
                 <div className={styles.footerRight}>

@@ -1,7 +1,7 @@
 import NavChain from "../../../components/Navigation/NavChain/NavChain.jsx";
 import {isMobile} from "react-device-detect";
 import PersonalAccount from "../../../components/PersonalAccount/PersonalAccount.jsx";
-import styles from "./MyCheckinsPage.module.css"
+import styles from "./MyCheckinsPage.module.scss"
 import SimpleCatalogSection from "../../../components/CatalogSections/SimpleCatalogSection/SimpleCatalogSection.jsx";
 import BarImage1 from "../../../assets/barsMocks/bar-3.svg";
 import BarImage2 from "../../../assets/barsMocks/bar-3.svg";
@@ -60,13 +60,15 @@ export default function MyCheckinsPage(){
             <NavChain paths={paths}></NavChain>
             <div style={{display: "flex"}}>
                 {!isMobile && <PersonalAccount/>}
-                <div style={{display: "flex", flexDirection: "column", width: "100%", gap: "25px"}}>
+                <div style={{display: "flex", flexDirection: "column", width: "100%"}}>
                     {isMobile && <PersonalAccount isMobile={true}/>}
-                    <div className={styles.row}>
-                        <div className={styles.arrowButton} onClick={() => navigate("/account/")}><ArrowLeftIcon/></div>
-                        <h2 className={styles.title}>{selectors[alias]?.pathname}</h2>
+                    <div className={styles.block}>
+                        <div className={styles.row}>
+                            <div className={styles.arrowButton} onClick={() => navigate("/account/")}><ArrowLeftIcon/></div>
+                            <h2 className={`${styles.title} ma-h2-small`}>{selectors[alias]?.pathname}</h2>
+                        </div>
+                        {selectors[alias].data && !selectors[alias].isLoading && !selectors[alias].error && <SimpleCatalogSection cards={selectors[alias]?.data} CardComponent={selectors[alias].CardComponent}></SimpleCatalogSection>}
                     </div>
-                    {selectors[alias].data && !selectors[alias].isLoading && !selectors[alias].error && <SimpleCatalogSection cards={selectors[alias]?.data} CardComponent={selectors[alias].CardComponent}></SimpleCatalogSection>}
                 </div>
             </div>
         </div>

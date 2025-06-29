@@ -1,4 +1,4 @@
-import styles from "./Radio.module.css"
+import styles from "./Radio.module.scss"
 import {useState} from "react";
 
 export default function RangeRadio({title, options}){

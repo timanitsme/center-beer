@@ -1,4 +1,4 @@
-import styles from "./BarsRow.module.css"
+import styles from "./BarsRow.module.scss"
 import BeerTapIcon from "../../assets/beer-tap-icon.svg?react"
 import IconButton from "../Buttons/IconButton/IconButton.jsx";
 import BeerCaseIcon from "../../assets/beer-case-icon.svg?react"
@@ -23,7 +23,7 @@ export default function BarsRow({title, beerTitle, barCards, marketCards, CardCo
             <div className={styles.headerContainer}>
                 <div className={styles.headerIcon}><BeerTapIcon/></div>
                 <div className={styles.headerDescription}>
-                    <h3>{title}</h3>
+                    <h3 className="ma-h3">{title}</h3>
                     <div className={styles.headerBottom}>
                         <div className={styles.bottomPart}>
                             <div className={styles.buttonSwitch}>

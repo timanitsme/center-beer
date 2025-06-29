@@ -1,4 +1,4 @@
-import styles from "./ShortenedRowSection.module.css"
+import styles from "./ShortenedRowSection.module.scss"
 import BarImage1 from "../../assets/barsMocks/bar-3.svg";
 import BarImage2 from "../../assets/barsMocks/bar-2.svg";
 import BarImage3 from "../../assets/barsMocks/bar-5.svg";

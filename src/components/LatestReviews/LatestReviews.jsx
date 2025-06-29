@@ -1,5 +1,5 @@
 import Bottle1 from "../../assets/bottlesMock/bottle-1.svg";
-import styles from "./LatestReviews.module.css";
+import styles from "./LatestReviews.module.scss";
 import LatestReviewCard from "../Cards/LatestReviewCard/LatestReviewCard.jsx";
 
 

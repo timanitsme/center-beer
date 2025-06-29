@@ -1,0 +1,34 @@
+@use "../../utils/partialStyles/_pxToRem.scss" as *;
+
+.catalogHeader.margin{
+    margin: 0 rem(50) rem(10) rem(50);
+}
+
+.catalogHeader h2{
+    align-self: flex-start;
+    text-align: left;
+}
+
+.catalogHeader{
+    display: flex;
+    gap: rem(10);
+}
+
+
+.catalogHeader p{
+    font-weight: 200;
+}
+
+.catalogHeader svg{
+    color: var(--primary)
+}
+
+@media (max-width: rem(1000)) {
+    .catalogHeader.margin{
+        margin: 0 rem(25) rem(25) rem(25);
+    }
+
+    .filler{
+        display: none;
+    }
+}

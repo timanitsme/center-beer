@@ -1,0 +1,44 @@
+@use "../../../utils/partialStyles/_pxToRem.scss" as *;
+
+.blogCard{
+    padding: rem(10);
+    border-radius: rem(10);
+    display: flex;
+    flex-direction: column;
+    background: var(--section-bg);
+    gap: rem(10);
+    position: relative;
+    overflow: hidden;
+    animation: pulse 1.5s infinite ease-in-out;
+}
+
+.skeletonTextPrimary {
+    width: 100%;
+    height: rem(20);
+    margin-bottom: rem(10);
+    border-radius: rem(4);
+    background: var(--primary);
+}
+
+.skeletonTextSecondary {
+    width: 100%;
+    height: rem(16);
+    border-radius: rem(4);
+    background: var(--txt-secondary);
+}
+
+.skeletonImage {
+    width: 100%;
+    aspect-ratio: 1.5 / 1;
+    border-radius: rem(5);
+    background: var(--third);
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 0.6;
+    }
+    50% {
+        opacity: 1;
+    }
+}

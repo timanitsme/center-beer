@@ -1,4 +1,4 @@
-import styles from "./NewsCardSkeleton.module.css"
+import styles from "./NewsCardSkeleton.module.scss"
 
 export default function NewsCardSkeleton(){
     return(

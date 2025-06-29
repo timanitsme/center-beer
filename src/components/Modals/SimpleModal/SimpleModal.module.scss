@@ -1,0 +1,89 @@
+@use "../../../utils/partialStyles/_pxToRem.scss" as *;
+
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modalContent {
+    background: var(--section-bg);
+    padding: rem(10);
+    border-radius: rem(10);
+    box-shadow: 0 rem(2) rem(10) rgba(0, 0, 0, 0.1);
+    width: fit-content;
+    margin: rem(25);
+    min-height: rem(100);
+    min-width: rem(100);
+    max-width: 95vw;
+    max-height: 95vh;
+}
+
+.modalContent p{
+    font-weight: 200;
+}
+
+.modalHeader{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-bottom: rem(10);
+}
+
+.modalHeader svg{
+    color: var(--txt-active);
+    width: rem(20);
+    height: rem(20);
+}
+
+.outlineTitle{
+    width: 100%;
+    text-align: center;
+    text-transform: uppercase;
+    color: transparent;
+    -webkit-text-stroke: rem(1) var(--primary);
+}
+
+.center{
+    text-align: center;
+}
+
+
+.adultContent{
+    display: flex;
+    flex-direction: column;
+    gap: rem(15);
+    align-items: center;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .modalHeader svg:hover {
+        color: var(--primary);
+        transition: 0.5s;
+    }
+}
+
+.title{
+    font-family: Podkova, sans-serif;
+    color: var(--txt-active);
+}
+
+.titleWrapper{
+    flex-grow: 1;
+    text-align: center;
+}
+
+
+
+@media (max-width: rem(500)) {
+    .modalContent{
+        padding: rem(7);
+    }
+}

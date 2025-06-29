@@ -9,7 +9,7 @@ export default function EventDetailPage(){
     const tags = ["Фестивали"]
     const paths = [
         {title: "center.beer", path: "/"},
-        {title: "Мероприятия", path: ""},
+        {title: "Мероприятия", path: "/events"},
     ]
 
     useEffect(() => {

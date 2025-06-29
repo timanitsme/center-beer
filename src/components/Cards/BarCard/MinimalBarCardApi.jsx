@@ -1,6 +1,6 @@
 import {useState} from "react";
 import {useNavigate} from "react-router-dom";
-import styles from "./BarCard.module.css";
+import styles from "./BarCard.module.scss";
 import BookMarkIcon from "../../../assets/bookmark-unfill-icon.svg?react";
 import FavIcon from "../../../assets/fav-unfill-icon.svg?react";
 import {useLazyAddBarToCuddyQuery, useLazyAddBarToFavQuery} from "../../../store/services/centerBeer.js";

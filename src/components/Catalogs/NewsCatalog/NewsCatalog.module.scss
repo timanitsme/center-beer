@@ -1,0 +1,50 @@
+@use "../../../utils/partialStyles/_pxToRem.scss" as *;
+
+.mainCard{
+    position: relative;
+    width: 100%;
+    height: rem(250);
+    overflow: hidden;
+    border-radius: rem(10);
+}
+
+.mainCard img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    opacity: 0.4;
+}
+
+
+.mainCardDescription{
+    display: flex;
+    flex-direction: column;
+    gap: rem(10);
+    position: absolute;
+    bottom: rem(10);
+    padding: rem(20);
+}
+
+.tagsRow{
+    display: flex;
+    gap: rem(5);
+    flex-wrap: wrap;
+}
+
+.tag{
+    display: flex;
+    align-items: center;
+    padding: rem(5) rem(10);
+    background: var(--third);
+    border-radius: rem(20);
+}
+
+.tag p{
+    text-transform: uppercase;
+    font-weight: 200;
+    color: var(--primary);
+}

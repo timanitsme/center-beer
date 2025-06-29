@@ -1,4 +1,4 @@
-import styles from "./NewsCatalog.module.css"
+import styles from "./NewsCatalog.module.scss"
 import SimpleCatalogSection from "../../CatalogSections/SimpleCatalogSection/SimpleCatalogSection.jsx";
 import NewsCard from "../../Cards/NewsCard/NewsCard.jsx";
 import MainNewsCard from "../../../assets/newsMocks/news-main-card.svg"
@@ -13,11 +13,11 @@ export default function NewsCatalog(){
             <div className={styles.mainCard}>
                 <img src={MainNewsCard} alt=""></img>
                 <div className={styles.mainCardDescription}>
-                    <p>{mainCard.date}</p>
-                    <h2>{mainCard.title}</h2>
+                    <p className="ma-p1">{mainCard.date}</p>
+                    <h2 className="ma-h2">{mainCard.title}</h2>
                     <div className={styles.tagsRow}>
                         {mainCard.tags.map((tag, index) =>
-                            <div key={index} className={styles.tag}><p>{tag}</p></div>
+                            <div key={index} className={styles.tag}><p className="text-small">{tag}</p></div>
                         )}
                     </div>
                 </div>

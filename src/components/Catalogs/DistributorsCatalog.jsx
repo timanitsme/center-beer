@@ -5,7 +5,7 @@ import Brewery4 from "../../assets/breweryMocks/brewery-logo-4.svg";
 import Brewery5 from "../../assets/breweryMocks/brewery-logo-5.svg";
 import Brewery6 from "../../assets/breweryMocks/brewery-logo-6.svg";
 import {useState} from "react";
-import styles from "./BarsCatalog.module.css";
+import styles from "./BarsCatalog.module.scss";
 import IconButton from "../Buttons/IconButton/IconButton.jsx";
 import FilterComboBox from "../Inputs/FilterComboBox/FilterComboBox.jsx";
 import Radio from "../Inputs/Radio/Radio.jsx";
@@ -38,8 +38,8 @@ export default function DistributorsCatalog({filters = [], filterButtons = [], s
             <div className={styles.menuHeader}>
                 <div className={styles.catalogHeader}>
                     <div>
-                        <h2>Каталог Дистрибьюторов</h2>
-                        <p>Собрали для вас список лучших дистрибьюторов, у которых можно заказывать ассортимент пива, пивных закусок, еды, алкоголя и всего, что продается в заведениях и без чего их жизнедеятельность не возможна или крайне затруднительна. С помощью фильтров вы легко найдете нужную компанию и необходимый ассортимент в своем городе.</p>
+                        <h2 className="ma-h2">Каталог Дистрибьюторов</h2>
+                        <p className="ma-p1">Собрали для вас список лучших дистрибьюторов, у которых можно заказывать ассортимент пива, пивных закусок, еды, алкоголя и всего, что продается в заведениях и без чего их жизнедеятельность не возможна или крайне затруднительна. С помощью фильтров вы легко найдете нужную компанию и необходимый ассортимент в своем городе.</p>
                     </div>
                     {/*Филлер для переноса текста, мб прописать отдельные стили*/}
                     <div style={{width: "20%"}}></div>
@@ -72,10 +72,10 @@ export default function DistributorsCatalog({filters = [], filterButtons = [], s
                     <div className={styles.appliedFiltersRow}>
                         <AppliedFilter>
                             <LocationIcon/>
-                            <p>Москва</p>
+                            <p className="ma-p1">Москва</p>
                         </AppliedFilter>
                         <AppliedFilter style="secondary">
-                            <p>Сбросить фильтры</p>
+                            <p className="ma-p1">Сбросить фильтры</p>
                         </AppliedFilter>
                     </div>
                     <div className={styles.toggleAndOptions}>

@@ -1,0 +1,343 @@
+@use "../../utils/partialStyles/_pxToRem.scss" as *;
+
+.header{
+    text-align: center;
+    height: rem(95);
+    padding: rem(15) 3%;
+    background: var(--bg);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 999;
+    transition: transform 0.3s ease-in-out;
+}
+
+.header.hidden {
+    transform: translateY(-100%);
+}
+
+.headerSpace{
+    height: rem(95);
+    padding: rem(15) 3%;
+}
+
+.headerGrid{
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: rem(160) 1fr auto auto;
+}
+
+.logoMenu{
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: space-between;
+    gap: rem(15);
+}
+
+.logoMenu svg{
+    max-width: rem(160);
+    height: auto;
+    width: auto;
+}
+
+.logoWrapper {
+    display: inline-block;
+    width: fit-content;
+    height: fit-content;
+    margin: 0;
+    padding: 0;
+}
+
+.menu{
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    align-content: center;
+    justify-content: center;
+    flex: 1;
+}
+
+.menuItems{
+    width: 90%;
+    max-width: rem(915);
+    height: rem(35);
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    gap: 3%;
+
+}
+
+.menuItems a{
+    font-weight: 300;
+    text-transform: uppercase;
+}
+
+.active{
+    color: var(--primary);
+}
+
+.socialsTheme{
+    display: flex;
+    /*justify-content: space-between;*/
+    width: fit-content;
+    justify-content: flex-end;
+    align-items: center;
+
+}
+
+.socials{
+    width: rem(200);
+    background: rgba(39, 39, 39, 0.5);
+    height: rem(45);
+    border-radius: rem(50);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 rem(25);
+}
+
+.mobileMenu {
+    position: absolute;
+    top: rem(95);
+    left: 0;
+    width: fit-content;
+    background-color: var(--bg);
+    box-shadow: 0 rem(4) rem(6) rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    border-bottom: rem(3) solid var(--section-bg);
+    border-right: rem(3) solid var(--section-bg);
+    padding: rem(10) rem(10);
+    border-radius: 0 0 rem(10) 0;
+
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    transition: max-height 0.7s ease;
+}
+
+.mobileMenu.open {
+    max-height: fit-content;
+    opacity: 1;
+    visibility: visible;
+}
+
+.pathContainer{
+    position: relative;
+}
+
+.subMenu {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--bg);
+    display: flex;
+    flex-direction: column;
+    gap: rem(10);
+    padding: rem(10);
+    z-index: 1000;
+    border-radius: rem(10);
+    box-shadow: 0 rem(4) rem(6) rgba(0, 0, 0, 0.1);
+    min-width: max-content;
+}
+
+.subMenuItem{
+    padding: rem(10) rem(20);
+    border-radius: rem(10);
+}
+
+.subMenuMobile {
+    padding-left: rem(20);
+}
+
+.subMenuItemMobile {
+    padding: rem(10) rem(20);
+    text-align: right!important;
+    text-decoration: none;
+    color: var(--txt-active);
+    font-weight: 300;
+    text-transform: uppercase;
+    transition: background 0.5s;
+    display: block;
+}
+
+.subMenuItemMobile:hover {
+    background-color: var(--section-bg);
+}
+
+.subMenuItemMobile.active {
+    background-color: var(--section-bg);
+    color: var(--primary);
+}
+
+.mobileMenu a {
+    padding: rem(10) rem(20);
+    text-align: left;
+    text-decoration: none;
+    color: var(--txt-active);
+    font-weight: 300;
+    text-transform: uppercase;
+
+    margin: rem(5);
+    border-radius: rem(10);
+}
+
+.mobileMenu a.active, .subMenu a.active {
+    background-color: var(--section-bg);
+    color: var(--primary);
+}
+
+.mobileMenuItem a{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: rem(5)
+}
+
+.mobileMenu a.active svg{
+    color: var(--primary);
+}
+
+.mobileMenu a svg {
+    transition: transform 0.3s ease;
+}
+
+.mobileMenu a.open svg {
+    transform: rotate(180deg);
+}
+
+.userContainer{
+    align-self: center;
+    display: flex;
+    align-items: center;
+    margin-left: rem(15);
+    gap: rem(10);
+    max-height: rem(45);
+}
+
+.avatar{
+    border-radius: 50%;
+    max-height: rem(45);
+    max-width: rem(45);
+    width: rem(45);
+    height: rem(45);
+    object-fit: cover;
+}
+
+.bold{
+    text-align: left;
+    font-weight: 300;
+    color: var(--txt-active);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: calc(100% - 60px);
+}
+
+
+.mobileMenuItem svg{
+    align-self: center;
+}
+
+.userMenu {
+    width: 100%;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: var(--bg);
+    display: flex;
+    flex-direction: column;
+    gap: rem(10);
+    padding: rem(10);
+    z-index: 1000;
+    border-radius: rem(10);
+    box-shadow: 0 rem(4) rem(6) rgba(0, 0, 0, 0.1);
+    min-width: max-content;
+    transform-origin: top right;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.userMenu a{
+    display: flex;
+    gap: rem(5);
+    justify-content: flex-end;
+}
+
+.userMenu.hidden {
+    opacity: 0;
+    transform: scale(0.95);
+    pointer-events: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .subMenuItem:hover {
+        background: var(--section-bg);
+        transition: 0.5s;
+    }
+    .mobileMenu a:hover {
+        background-color: var(--section-bg);
+    }
+}
+
+@media (max-width: rem(768)) {
+    .menuItems{
+        display: none;
+    }
+}
+
+.profile{
+    display: flex;
+    gap: rem(15);
+    align-items: center;
+    cursor: pointer;
+    max-width: rem(250);
+}
+
+@media (max-width: rem(1000)) {
+    .socialsTheme{
+        width: 0;
+    }
+
+    .logoMenu svg{
+        max-width: rem(110);
+    }
+
+    .socials{
+        display: none;
+    }
+
+    .bold{
+        max-width: calc(100% - 40px);
+    }
+
+    .headerGrid{
+        width: 100%;
+        height: 100%;
+        display: grid;
+        grid-template-columns: rem(160) 1fr 0 auto;
+    }
+}
+
+@media (max-width: rem(500)) {
+    .avatar{
+        max-width: rem(30);
+        max-height: rem(30);
+        width: rem(30);
+        height: rem(30);
+    }
+
+    .profile{
+        gap: rem(5);
+    }
+
+}

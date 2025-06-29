@@ -1,0 +1,39 @@
+@use "../../../utils/partialStyles/_pxToRem.scss" as *;
+
+.navChainContainer{
+    margin: 0 rem(50) rem(50) rem(50);
+    background: var(--section-bg);
+    padding: rem(15);
+    border-radius: rem(10);
+    display: flex;
+    align-items: center;
+    gap: rem(10);
+    font-weight: 200;
+}
+
+.disabled{
+    color: var(--txt-secondary);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .disabled:hover {
+        cursor: initial;
+        color: var(--txt-secondary);
+    }
+}
+
+@media (max-width: rem(1000)) {
+    .navChainContainer{
+        margin: 0 rem(25) rem(25) rem(25);
+        gap: rem(5);
+    }
+}
+
+@media (max-width: rem(600)) {
+    .navChainContainer{
+        padding: rem(10);
+        border-radius: rem(5);
+    }
+}
+
+

@@ -1,4 +1,4 @@
-import styles from "./BreweryInfo.module.css"
+import styles from "./BreweryInfo.module.scss"
 import {TgIcon} from "../../../assets/TgIcon.jsx";
 import {VkIcon} from "../../../assets/VkIcon.jsx";
 import {MailIcon} from "../../../assets/MailIcon.jsx";
@@ -40,8 +40,8 @@ export default function BreweryInfo({breweryInfo={}, sections=[]}){
                     {breweryInfo.logo !== undefined && breweryInfo.logo !== "" ? <img className={styles.logoImg} src={breweryInfo.logo} alt=""></img> :<BreweryLogo/>}
                 </div>
                 <div className={styles.barDescription}>
-                    <h2>{breweryInfo?.name}</h2>
-                    <p>{breweryInfo?.description}</p>
+                    <h2 className="ma-h2">{breweryInfo?.name}</h2>
+                    <p className="ma-p">{breweryInfo?.description}</p>
                     <div className={styles.barButtons}>
                         {sections.map((section, index) =>{
                             if (section.ref.current !== null){
@@ -79,19 +79,19 @@ export default function BreweryInfo({breweryInfo={}, sections=[]}){
             </div>
             <div className={`${styles.barInfo} ${styles.mobile}`}>
                 <div>
-                    <a className={`${styles.aIconButton} ${isFavourite ? styles.added : ''}`} onClick={() => setIsFavourite(!isFavourite)}><FavsIcon/>{isFavourite? "Убрать из любимых": "Добавить в любимые"}</a>
-                    <a className={`${styles.aIconButton} ${isBookmarked ? styles.added : ''}`} onClick={() => setIsBookmarked(!isBookmarked)}><BookMarkIcon/>{isBookmarked? "Убрать из кладовки": "Добавить в кладовку"}</a>
+                    <a className={`${styles.aIconButton} ma-p ${isFavourite ? styles.added : ''}`} onClick={() => setIsFavourite(!isFavourite)}><FavsIcon/>{isFavourite? "Убрать из любимых": "Добавить в любимые"}</a>
+                    <a className={`${styles.aIconButton} ma-p ${isBookmarked ? styles.added : ''}`} onClick={() => setIsBookmarked(!isBookmarked)}><BookMarkIcon/>{isBookmarked? "Убрать из кладовки": "Добавить в кладовку"}</a>
                 </div>
                 <div className={styles.ratingAndComments}>
                     <div className={styles.beerBottles}>
                         {getRatingIcons(breweryInfo?.rating)}
                     </div>
-                    <p>({breweryInfo?.rating?.toFixed(1)})</p>
+                    <p className="ma-p">({breweryInfo?.rating?.toFixed(1)})</p>
                     <div className={styles.circle}/>
-                    <a> <CommentIcon/> 116 комментариев</a>
+                    <a className="ma-p"> <CommentIcon/> 116 комментариев</a>
                 </div>
-                <h2>{breweryInfo?.contacts}</h2>
-                <p>{breweryInfo?.country && breweryInfo?.address
+                <h2 className="ma-h2">{breweryInfo?.contacts}</h2>
+                <p className='ma-p'>{breweryInfo?.country && breweryInfo?.address
                     ? `${breweryInfo.country}, ${breweryInfo.address}`
                     : breweryInfo?.country || breweryInfo?.address || ''}</p>
                 {/*<a className={styles.aUnderlinedIconButton}><CommentIcon/>Связаться с нами</a>*/}

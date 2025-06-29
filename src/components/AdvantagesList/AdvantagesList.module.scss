@@ -1,0 +1,70 @@
+@use "../../utils/partialStyles/_pxToRem.scss" as *;
+
+.advantagesListContainer{
+    margin: 0 rem(50) rem(50) rem(50);
+    background: var(--section-bg);
+    padding: rem(15);
+    border-radius: rem(10);
+    display: flex;
+    align-items: flex-start;
+    gap: rem(50);
+    font-weight: 200;
+    flex-wrap: wrap;
+
+}
+
+.advantagesListItem svg, .mainAdvantage svg{
+    min-width: rem(50);
+    min-height: rem(50);
+    height: rem(50);
+    width: rem(50);
+}
+
+.advantagesListItem{
+    display: flex;
+    gap: rem(15);
+    max-width: rem(300);
+}
+
+.advantagesListItem p, .mainAdvantage p{
+    color: var(--txt-active);
+    font-weight: 200;
+}
+
+.advantagesListItem h5, .mainAdvantage h5{
+    font-family: "Podkova", sans-serif;
+    text-align: left;
+    color: var(--primary);
+}
+
+.mainAdvantage{
+    width: 100%;
+    display: flex;
+    gap: rem(15);
+}
+
+@media (max-width: rem(1000)) {
+    .advantagesListItem, .mainAdvantage{
+        gap: rem(10)
+    }
+    .advantagesListItem svg, .mainAdvantage svg{
+        min-height: rem(30);
+        min-width: rem(30);
+        height: rem(30);
+        width: rem(30);
+    }
+    .advantagesListContainer{
+        gap: rem(15);
+        margin: 0 rem(25) rem(25) rem(25);
+        justify-content: flex-start;
+    }
+    .advantagesListItem {
+        flex-basis: calc(50% - 7.5px); /* 50% минус половина gap */
+        box-sizing: border-box;
+    }
+
+    .mainAdvantage {
+        flex-basis: 100% !important;
+        max-width: 100%;
+    }
+}

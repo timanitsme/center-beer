@@ -1,4 +1,4 @@
-import styles from "./EventMap.module.css"
+import styles from "./EventMap.module.scss"
 import {TransformComponent, TransformWrapper} from "react-zoom-pan-pinch";
 import {useEffect, useRef, useState} from "react";
 import {FaMinus, FaPlus} from "react-icons/fa6";

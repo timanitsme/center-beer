@@ -1,10 +1,9 @@
-import styles from "./ActiveOrders.module.css"
+import styles from "./ActiveOrders.module.scss"
 import OrderCard from "../Cards/OrderCard/OrderCard.jsx";
 import Bottle1 from "../../assets/bottlesMock/bottle-1.svg"
 import Bottle2 from "../../assets/bottlesMock/bottle-2.svg"
 import Bottle3 from "../../assets/bottlesMock/bottle-3.svg"
-import Bottle4 from "../../assets/bottlesMock/bottle-4.svg"
-import Bottle5 from "../../assets/bottlesMock/bottle-5.svg"
+
 
 export default function ActiveOrders(){
     const cards = [{ date: "20 ноября", status: 1, cost: 1700, receiving: 1, address: "Московская область, Люберцы, Октябрьский проспект, 141",

@@ -1,0 +1,78 @@
+@use "../../../utils/partialStyles/_pxToRem.scss" as *;
+
+.sectionHeader{
+    display: flex;
+    flex-direction: column;
+    margin: 0 rem(50) 0 0;
+}
+
+.noData{
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+}
+
+.sectionHeader.mobile, .sectionHeader.mobile .tasksCol{
+    margin: 0 rem(25) 0 rem(25);
+}
+
+.description{
+    font-weight: 200;
+}
+
+.title{
+    text-align: left;
+}
+
+.tasksCol{
+    display: flex;
+    flex-direction: column;
+    margin: 0 rem(50) rem(50) 0;
+    background: var(--section-bg);
+    border-radius: rem(5);
+    height: 70vh;
+}
+
+.operation{
+    display: grid;
+    grid-template-columns: 3fr 2fr 4fr 1fr;
+    border-bottom: rem(3) solid var(--third);
+    padding: rem(5) rem(7);
+    cursor: pointer;
+}
+
+.tasksCol p{
+    font-weight: 200;
+}
+
+.tasksCol{
+    scrollbar-width: thin;
+    scrollbar-color: var(--section-bg) var(--third);
+}
+
+.tasksCol::-webkit-scrollbar {
+    width: rem(10);
+}
+
+.tasksCol::-webkit-scrollbar-track {
+    background: var(--third);
+    border-radius: rem(5);
+}
+
+.tasksCol::-webkit-scrollbar-thumb {
+    background: var(--section-bg);
+    border-radius: rem(10);
+    border: rem(2) solid var(--third);
+}
+
+.tasksCol::-webkit-scrollbar-thumb:hover {
+    background: var(--fg);
+}
+
+@media (max-width: rem(1000)) {
+    .tasksCol{
+        margin: 0 rem(25) rem(50) rem(25);
+    }
+}
+

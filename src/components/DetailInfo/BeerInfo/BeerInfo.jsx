@@ -1,4 +1,4 @@
-import styles from "./BeerInfo.module.css"
+import styles from "./BeerInfo.module.scss"
 import {useEffect, useRef, useState} from "react";
 import BeerBottleIcon from "../../../assets/bottle-icon.svg?react";
 import HalfBeerBottleIcon from "../../../assets/bottle-half-icon.svg?react";

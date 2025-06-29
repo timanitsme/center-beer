@@ -1,4 +1,4 @@
-import styles from "./IndexEvents.module.css"
+import styles from "./IndexEvents.module.scss"
 import {useEffect, useRef, useState} from "react";
 import ArrowButton from "../Buttons/ArrowButton/ArrowButton.jsx";
 import EventPicture1 from "../../assets/eventsMocks/event-picture-1.svg"

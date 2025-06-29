@@ -1,5 +1,5 @@
 import {useEffect, useMemo, useState} from "react";
-import styles from "./BarsCatalog.module.css";
+import styles from "./BarsCatalog.module.scss";
 import IconButton from "../Buttons/IconButton/IconButton.jsx";
 import SimpleButton from "../Buttons/SimpleButton/SimpleButton.jsx";
 import AppliedFilter from "../AppliedFilter/AppliedFilter.jsx";
@@ -269,9 +269,9 @@ export default function BeerMapCatalog({filters = [], filterButtons = []}){
             <div className={styles.menuHeader}>
                 <div className={styles.catalogHeader}>
                     <div>
-                        <h2>Карта баров</h2>
+                        <h2 className="ma-h2">Карта баров</h2>
                         <div className={styles.filterButtons} style={{alignItems: "center"}}>
-                            <p>Выберите тип карты:</p>
+                            <p className="ma-p1">Выберите тип карты:</p>
                             <IconButton style={"primary"} text={"Бары"}><LabelBottleIcon/></IconButton>
                             {/*tabs?.map((tab, index) => {
                                 const IconComponent = tabsSpecs[tab?.alias]?.icon || AlcoBottleIcon

@@ -1,0 +1,50 @@
+@use "../../utils/partialStyles/_pxToRem.scss" as *;
+
+.galleryContainer{
+    margin: 0 0 rem(50) rem(50);
+    display: flex;
+    flex-direction: column;
+    gap: rem(10);
+}
+
+.galleryButtons{
+    display: flex;
+    flex-direction: row;
+    gap: rem(10);
+}
+
+.galleryPictures{
+    display: flex;
+    gap: rem(10);
+    overflow: hidden;
+}
+
+.galleryPictures img{
+    max-height: rem(450);
+    cursor: zoom-in;
+    background-color: var(--bg);
+}
+
+@media (max-width: rem(500)) {
+
+    .galleryPictures img{
+        max-height: initial;
+        max-width: rem(300);
+    }
+}
+
+@media (max-width: rem(768)) {
+
+    .galleryPictures img{
+        max-height: initial;
+        max-width: rem(300);
+    }
+}
+
+@media (max-width: rem(1000)) {
+
+    .galleryContainer{
+        margin: 0 rem(25) rem(25) rem(25);
+    }
+}
+

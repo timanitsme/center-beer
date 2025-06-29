@@ -1,4 +1,4 @@
-import styles from "./SwitchRowSection.module.css"
+import styles from "./SwitchRowSection.module.scss"
 import {useState} from "react";
 import IconButton from "../Buttons/IconButton/IconButton.jsx";
 import ShortenedRowSection from "../ShortenedRowSection/ShortenedRowSection.jsx";

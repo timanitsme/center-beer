@@ -1,4 +1,4 @@
-import styles from "./ArrowButton.module.css"
+import styles from "./ArrowButton.module.scss"
 import ArrowLeftIcon from "../../../assets/arrow-left-icon.svg?react";
 import ArrowRightIcon from "../../../assets/arrow-right-icon.svg?react"
 

@@ -1,5 +1,5 @@
 import {useNavigate} from "react-router-dom";
-import styles from "./SimpleVideoCard.module.css";
+import styles from "./SimpleVideoCard.module.scss";
 import PlayButtonIcon from "../../../assets/play-button-icon.svg?react"
 import SingleVideoModal from "../../Modals/SingleVideoModal/SingleVideoModal.jsx";
 import {useEffect, useState} from "react";

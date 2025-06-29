@@ -1,4 +1,4 @@
-import styles from "./BeerCatalogSection.module.css"
+import styles from "./BeerCatalogSection.module.scss"
 import ComponentHeader from "../ComponentHeader/ComponentHeader.jsx";
 import BottlesPairIcon from "../../assets/bottles-pair-icon.svg?react"
 import BeerCatalog from "../Catalogs/BeerCatalog.jsx";

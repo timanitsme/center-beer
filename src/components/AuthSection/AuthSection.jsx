@@ -1,4 +1,4 @@
-import styles from "./AuthSection.module.css"
+import styles from "./AuthSection.module.scss"
 import TextInput from "../Inputs/TextInput/TextInput.jsx";
 import SimpleButton from "../Buttons/SimpleButton/SimpleButton.jsx";
 import PasswordInput from "../Inputs/PasswordInput/PasswordInput.jsx";
@@ -56,12 +56,12 @@ export default function AuthSection(){
 
     return(
         <div className={styles.authSection}>
-            <h1 className={styles.outlineTitle}>Личный кабинет</h1>
+            <h1 className={`${styles.outlineTitle} text-large`}>Личный кабинет</h1>
             <form onSubmit={handleSubmit}>
                 <div className={styles.authContent}>
-                    <p className={styles.title}>Вход в личный кабинет</p>
+                    <h5 className={styles.title}>Вход в личный кабинет</h5>
                     <div className={styles.formRow}>
-                        <p>Email</p>
+                        <p className="ma-p1">Email</p>
                         <TextInput
                             placeholder="Адрес электронной почты"
                             inputValue={email}
@@ -69,7 +69,7 @@ export default function AuthSection(){
                         ></TextInput>
                     </div>
                     <div className={styles.formRow}>
-                        <p>Пароль</p>
+                        <p className="ma-p1">Пароль</p>
                         <PasswordInput
                             placeholder="Пароль"
                             inputValue={password}
@@ -79,7 +79,7 @@ export default function AuthSection(){
                     {error.length > 0 && (
                         <div className={styles.formRow}>
                             <p></p>
-                            <p className={styles.error}>{error}</p>
+                            <p className={`${styles.error} ma-p1`}>{error}</p>
                         </div>
                     )}
                     <div className={styles.formRow}>
@@ -93,7 +93,7 @@ export default function AuthSection(){
                     <div className={styles.formRow}>
                         <div></div>
                         <div>
-                            <p>
+                            <p className="ma-p">
                                 Если вы еще не зарегистрированы в личном кабинете портала,{" "}
                                 <Link to={"/signup"} className={styles.underline}>
                                     зарегистрируйтесь

@@ -1,5 +1,5 @@
 import SectionHeader from "../SectionHeader/SectionHeader.jsx";
-import styles from "./BeerMapSection.module.css"
+import styles from "./BeerMapSection.module.scss"
 import {MapContainer, Marker, Popup, TileLayer} from "react-leaflet";
 import IconButton from "../Buttons/IconButton/IconButton.jsx";
 import HopIcon from "../../assets/hop-icon.svg?react";
@@ -46,17 +46,22 @@ export default function BeerMapSection(){
                     <TileLayer
                         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                     />
-                    {barsData.data?.length !== 0 && barsData.data?.map((marker, index) =>
-                        <Marker key={index} position={[marker?.lon, marker?.lat]} icon={myIcon}>
-                            <Popup>
-                                <div className={styles.markerPopUp}>
-                                    <h3>{marker?.name}</h3>
-                                    <p><span className={styles.active}>Адрес:</span> {marker?.address}</p>
-                                    <p><span className={styles.active}>Телефон:</span> {marker?.contacts}</p>
-                                    <IconButton text={"Подробнее"} onClick={() => goToBarPage(marker?.alias)}><HopIcon/></IconButton>
-                                </div>
-                            </Popup>
-                        </Marker>)}
+                    {barsData.data?.length !== 0 && barsData.data?.map((marker, index) => {
+                        if (marker.lat !== null && marker.lon !== null){
+                            return(
+                                <Marker key={index} position={[marker?.lon, marker?.lat]} icon={myIcon}>
+                                    <Popup>
+                                        <div className={styles.markerPopUp}>
+                                            <h5>{marker?.name}</h5>
+                                            <p><span className={styles.active}>Адрес:</span> {marker?.address}</p>
+                                            <p><span className={styles.active}>Телефон:</span> {marker?.contacts}</p>
+                                            <IconButton text={"Подробнее"} onClick={() => goToBarPage(marker?.alias)}><HopIcon/></IconButton>
+                                        </div>
+                                    </Popup>
+                                </Marker>
+                            )
+                        }
+                    })}
                 </MapContainer>
             </div>
         </>

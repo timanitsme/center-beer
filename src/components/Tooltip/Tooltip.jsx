@@ -1,4 +1,4 @@
-import styles from "./Tooltip.module.css"
+import styles from "./Tooltip.module.scss"
 
 export default function Tooltip({text, children}){
     return (

@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 import cardImagePlaceholder from "../../../assets/placeholders/card-image-placeholder.svg";
-import styles from "./FestBeerCard.module.css";
+import styles from "./FestBeerCard.module.scss";
 import {useNavigate} from "react-router-dom";
 
 export default function FestBeerCard({cardInfo}){

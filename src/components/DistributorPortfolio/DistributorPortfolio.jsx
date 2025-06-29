@@ -1,4 +1,4 @@
-import styles from "./DistributorPortfolio.module.css"
+import styles from "./DistributorPortfolio.module.scss"
 import ComponentHeader from "../ComponentHeader/ComponentHeader.jsx";
 import BeerCaseIcon from "../../assets/beer-case-icon.svg?react"
 import AssetImage1 from "../../assets/breweryMocks/brewery-logo-1.svg"

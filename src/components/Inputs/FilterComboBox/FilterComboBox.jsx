@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import  styles from "./FilterComboBox.module.css"
+import  styles from "./FilterComboBox.module.scss"
 import ArrowDownIcon from "../../../assets/arrow-down-icon.svg?react"
 import SearchIcon from "../../../assets/search-icon.svg?react"
 import CheckBox from "../CheckBox/CheckBox.jsx";

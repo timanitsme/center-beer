@@ -1,5 +1,5 @@
 import {useState} from "react";
-import styles from "./DistributorInfo.module.css";
+import styles from "./DistributorInfo.module.scss";
 import BreweryLogo from "../../../assets/bar-info/brewery-logo.svg?react";
 import FavsIcon from "../../../assets/fav-unfill-icon.svg?react";
 import BookMarkIcon from "../../../assets/bookmark-unfill-icon.svg?react";

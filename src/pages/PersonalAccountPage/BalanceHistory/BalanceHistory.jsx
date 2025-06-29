@@ -1,4 +1,4 @@
-import styles from "./BalanceHistory.module.css"
+import styles from "./BalanceHistory.module.scss"
 import {useEffect, useState} from "react";
 import NavChain from "../../../components/Navigation/NavChain/NavChain.jsx";
 import {isMobile} from "react-device-detect";
@@ -61,25 +61,25 @@ export default function BalanceHistory(){
                     {isMobile && <PersonalAccount isMobile={true}/>}
                     <ButtonSwitch options={options} selectedOption={options[1]} onClick={(option) => option.title !== options[1].title? navigate("/account/earn-cb"): navigate("")}/>
                     <div className={`${styles.sectionHeader} ${isMobile? styles.mobile: ""}`}>
-                        <h2 className={styles.title}>История операций</h2>
-                        <p className={styles.description}> Отслеживайте все ваши транзакции и операции с CBcoin в одном месте. Здесь вы найдете детальную информацию о каждом начислении, списании и обмене ваших монет. Контролируйте свои финансы и планируйте будущие траты, имея полный доступ к истории вашего счета.</p>
+                        <h2 className={`${styles.title} ma-h2`}>История операций</h2>
+                        <p className={`${styles.description} ma-p`}> Отслеживайте все ваши транзакции и операции с CBcoin в одном месте. Здесь вы найдете детальную информацию о каждом начислении, списании и обмене ваших монет. Контролируйте свои финансы и планируйте будущие траты, имея полный доступ к истории вашего счета.</p>
                     </div>
                     <div className={styles.tasksCol}>
                         <div className={styles.operation}>
-                            <p>Дата</p>
-                            <p>Сумма</p>
-                            <p>Событие</p>
+                            <p className="ma-p">Дата</p>
+                            <p className="ma-p">Сумма</p>
+                            <p className="ma-p">Событие</p>
                         </div>
-                        {isAuthorized && !profileIsLoading && balanceHistory?.data?.length > 0 &&
+                        {isAuthorized && !profileIsLoading && !balanceHistoryIsLoading && balanceHistory?.data?.length > 0 &&
                             <div className={styles.tasksCol} style={{margin: 0, overflowY: "auto"}}>
                                 {balanceHistory?.data?.map((operation, index) =>
                                     <BalanceOperation key={index} operation={operation}/>
                                 )}
                             </div>
                         }
-                        {isAuthorized && !profileIsLoading && balanceHistory.length === 0 &&
+                        {isAuthorized && !profileIsLoading && !balanceHistoryIsLoading && balanceHistory?.data?.length === 0 &&
                             <div className={styles.noData}>
-                                <p>Нет данных</p>
+                                <p className="ma-p">Нет данных</p>
                             </div>
                         }
                     </div>

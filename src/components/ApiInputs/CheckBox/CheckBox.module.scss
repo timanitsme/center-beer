@@ -1,0 +1,49 @@
+@use "../../../utils/partialStyles/_pxToRem.scss" as *;
+
+.customCheckbox input[type="checkbox"] {
+    display: none;
+}
+
+.customCheckbox{
+    display: flex;
+    gap: rem(5);
+    align-items: center;
+}
+
+
+
+@media (hover: hover) and (pointer: fine) {
+    .customCheckbox:hover{
+        cursor: pointer;
+    }
+}
+
+.customCheckbox p{
+    font-weight: 200;
+    color: var(--txt-active);
+}
+
+.customCheckbox .checkmark {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: rem(18);
+    height: rem(18);
+    border-radius: rem(4);
+    background: var(--selectable);
+    text-align: center;
+    line-height: rem(20);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.customCheckbox svg {
+    display: none;
+    width: rem(14);
+    height: rem(14);
+}
+
+.customCheckbox input[type="checkbox"]:checked + .checkmark svg {
+    display: flex;
+    align-self: center;
+}

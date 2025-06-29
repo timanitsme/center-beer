@@ -1,0 +1,79 @@
+@use "../../../utils/partialStyles/_pxToRem.scss" as *;
+
+.radio {
+    position: relative;
+    min-width: rem(200);
+    display: flex;
+    flex-direction: column;
+    gap: rem(5);
+}
+
+.rangeContainer {
+    display: flex;
+    align-items: center;
+    gap: rem(10);
+    max-width: rem(300);
+}
+
+.rangeInput {
+    background: var(--third);
+    color: var(--txt-active);
+    width: 100%;
+    padding: rem(8);
+    border: none;
+    font-weight: 200;
+    border-radius: rem(5);
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.radio p, .radio label{
+    text-transform: capitalize;
+}
+
+.radioHeader{
+    color: var(--primary) !important;
+    font-family: Podkova, sans-serif !important;
+    margin-bottom: rem(5);
+}
+
+.option{
+    display: flex;
+    align-items: center;
+    gap: rem(10);
+    cursor: pointer;
+}
+
+.option p{
+    font-weight: 200;
+    color: var(--txt-active);
+}
+
+.radio input[type="radio"] {
+    display: none;
+}
+
+
+.radioButton {
+    display: inline-block;
+    width: rem(16);
+    height: rem(16);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--third);
+
+}
+
+
+.radio input[type="radio"]:checked + .radioButton::after {
+    content: "";
+    display: block;
+    width: rem(8);
+    height: rem(8);
+    background-color: var(--primary);
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

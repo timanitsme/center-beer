@@ -6,7 +6,7 @@ import DiscountIcon from "../../../assets/advantages/discount-icon.svg?react";
 import BankCardsIcon from "../../../assets/advantages/bank-cards-icon.svg?react";
 import BeerTapIcon from "../../../assets/advantages/beer-tap-outlined-icon.svg?react";
 import SpeakerIcon from "../../../assets/advantages/speaker-icon.svg?react";
-import styles from "../AdvantagesList.module.css";
+import styles from "../AdvantagesList.module.scss";
 
 export default function DistributorAdvantagesList(){
     const mainAdvantage = {icon: <MapIcon/>, title: "ПОКРЫТИЕ", description: ["Москва, Санкт-Петербург, Новосибирск, Екатеринбург, Казань, Нижний Новгород, Челябинск, Самара, Омск, Ростов-на-Дону, Уфа, Красноярск, Воронеж, Пермь, Волгоград"]}

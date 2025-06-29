@@ -1,4 +1,4 @@
-import styles from "./BarInfo.module.css"
+import styles from "./BarInfo.module.scss"
 import BarLogo from "../../../assets/bar-info/bar-logo.svg?react"
 import {TgIcon} from "../../../assets/TgIcon.jsx";
 import {VkIcon} from "../../../assets/VkIcon.jsx";

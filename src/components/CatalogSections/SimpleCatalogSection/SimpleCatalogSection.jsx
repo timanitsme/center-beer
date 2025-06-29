@@ -1,4 +1,4 @@
-import styles from "../CatalogSection/CatalogSection.module.css";
+import styles from "../CatalogSection/CatalogSection.module.scss";
 import PropTypes from "prop-types";
 import SimpleButton from "../../Buttons/SimpleButton/SimpleButton.jsx";
 

@@ -1,4 +1,4 @@
-import styles from "./PartnersSection.module.css"
+import styles from "./PartnersSection.module.scss"
 import PostImage1 from "../../assets/postsMocks/post-image-1.svg";
 import PostImage2 from "../../assets/postsMocks/post-image-2.svg";
 import PostImage3 from "../../assets/postsMocks/post-image-3.svg";
@@ -24,27 +24,28 @@ export default function PartnersSection(){
 
     return(
         <div className={styles.partnersSection}>
-            <p className={`${styles.active} ${styles.marga}`}>БИЗНЕС-ПАРТНЕРАМ</p>
-            <div className={styles.descriptionRow}>
-                <div className={styles.mainAdvantage}>
-                    <h3 className={styles.header}>Развивайте бизнес с нами</h3>
-                    <p>Мы понимаем тонкости отрасли, соединяем потребности одних, с возможностями других</p>
+            <div className={styles.textSection}>
+                <p className={styles.active}>БИЗНЕС-ПАРТНЕРАМ</p>
+                <div className={styles.descriptionRow}>
+                    <div className={styles.mainAdvantage}>
+                        <h3 className={styles.header}>Развивайте бизнес с нами</h3>
+                        <p>Мы понимаем тонкости отрасли, соединяем потребности одних, с возможностями других</p>
+                    </div>
+                    <div className={styles.advantagesRow}>
+                        <div className={styles.advantage}>
+                            <FaPeopleGroup/>
+                            <p className="ma-p2">Все ваши клиенты собраны на одном портале</p>
+                        </div>
+                        <div className={styles.advantage}>
+                            <PiMonitorFill/>
+                            <p className="ma-p2">Стильный сайт с продуманным интерфейсом</p>
+                        </div>
+                        <div className={styles.advantage}>
+                            <FaTools/>
+                            <p className="ma-p2">Элементарное управление страницей сайта</p>
+                        </div>
+                    </div>
                 </div>
-                <div className={styles.advantagesRow}>
-                    <div className={styles.advantage}>
-                        <FaPeopleGroup/>
-                        <p>Все ваши клиенты собраны на одном портале</p>
-                    </div>
-                    <div className={styles.advantage}>
-                        <PiMonitorFill/>
-                        <p>Стильный сайт с продуманным интерфейсом</p>
-                    </div>
-                    <div className={styles.advantage}>
-                        <FaTools/>
-                        <p>Элементарное управление страницей сайта</p>
-                    </div>
-                </div>
-
             </div>
             <div className={styles.postsSection}>
                 <div className={styles.postsContainer}>

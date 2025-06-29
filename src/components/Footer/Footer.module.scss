@@ -1,0 +1,188 @@
+@use "../../utils/partialStyles/_pxToRem.scss" as *;
+
+.preFooter {
+    background: linear-gradient(to bottom, var(--bg), var(--section-bg));
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding: rem(20) 5%;
+    box-sizing: border-box;
+}
+
+
+.phoneImg {
+    min-height: rem(350);
+    max-width: rem(440);
+    width: 30%;
+    height: auto;
+    align-self: flex-end;
+    margin-bottom: -30%;
+}
+
+.buttonsContainer{
+    display: flex;
+    margin-top: rem(20);
+    gap: rem(10);
+}
+
+.buttonsContainer svg{
+    width: rem(130);
+    height: min-content;
+}
+
+.downloadButton{
+    border: none;
+    background: #2E2C2F;
+    border-radius: rem(5);
+    padding: rem(2) rem(5);
+}
+
+
+.textContainer{
+    display: flex;
+    flex-direction: column;
+}
+
+.qrCodeContainer img{
+    max-width: 10vw;
+    height: auto;
+}
+
+.preFooterItems {
+    max-width: 60%;
+    text-align: left;
+    color: white;
+    align-self: flex-end;
+    margin-bottom: rem(50);
+    justify-content: center;
+    display: flex;
+    gap: rem(20);
+}
+
+
+.footer{
+    width: 100%;
+    min-height: rem(100);
+    display: flex;
+    flex-direction: row;
+    padding-left: rem(20);
+}
+
+.footerLeft{
+    width: 100%;
+}
+
+.footerRight{
+    width: 40%;
+    max-width: rem(220);
+}
+
+.footerTop{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: rem(50);
+    padding: rem(30) rem(10) rem(10) rem(10);
+}
+
+.bottomMenu{
+    display: flex;
+    flex-direction: row;
+    gap: rem(50);
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+    align-self: center;
+}
+
+.bottomMenu a{
+    font-weight: 300;
+}
+
+
+.bottomMenuColumn{
+    display: flex;
+    gap: rem(17);
+    flex-direction: column;
+}
+
+.footerBottom{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 0 rem(10) rem(10) rem(10);
+    height: rem(70);
+}
+
+.hrtLine{
+    background: #3C3B3B;
+    height: rem(1);
+    width: 100%;
+    margin: rem(30) 0;
+}
+.preFooter p{
+    font-weight: 200;
+    color: var(--txt-secondary);
+}
+
+.footer p{
+    font-weight: 200;
+    color: var(--txt-active);
+}
+
+.preFooter h3{
+    text-align: left;
+    text-transform: uppercase;
+}
+
+.footerTop .bottomMenuColumn svg{
+    max-height: rem(45);
+    max-width: fit-content;
+}
+
+@media (max-width: rem(1000)) {
+    .footerTop .bottomMenuColumn svg{
+        max-height: rem(40);
+        max-width: fit-content;
+    }
+
+    .bottomMenu{
+        display: none;
+    }
+    .qrCodeContainer{
+        display: none;
+    }
+    .buttonsContainer svg{
+        width: rem(100);
+        height: min-content;
+    }
+
+}
+
+@media(max-width: rem(650)){
+    .textContainerP, .textContainer h3{
+        display: none;
+    }
+    .phoneImg{
+        margin-bottom: -20%;
+    }
+
+    .textContainer{
+        flex-direction: row;
+    }
+    .buttonsContainer{
+        flex-direction: column;
+    }
+}
+
+
+@media (max-width: rem(500)) {
+    .footerTop .bottomMenuColumn svg{
+        max-height: rem(20);
+        max-width: fit-content;
+    }
+}

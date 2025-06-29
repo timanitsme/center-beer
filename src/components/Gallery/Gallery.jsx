@@ -1,4 +1,4 @@
-import styles from "./Gallery.module.css"
+import styles from "./Gallery.module.scss"
 import {useEffect, useRef, useState} from "react";
 import ArrowButton from "../Buttons/ArrowButton/ArrowButton.jsx";
 import EventImage from "../../assets/eventsMocks/event-picture-1.svg";

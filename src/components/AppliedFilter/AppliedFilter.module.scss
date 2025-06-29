@@ -1,0 +1,55 @@
+@use "../../utils/partialStyles/_pxToRem.scss" as *;
+
+.filter{
+    display: flex;
+    align-items: center;
+    gap: rem(5);
+    background: var(--primary);
+    padding: rem(4) rem(12);
+    border-radius: rem(25);
+    cursor: pointer;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .filter:hover {
+        background: var(--primary-semi-transparent);
+        transition: 0.5s;
+    }
+
+    .filter.secondary:hover {
+        background: var(--third);
+    }
+}
+
+.filter.secondary{
+    background: var(--section-bg);
+}
+
+.filter p{
+    color: var(--bg);
+    font-weight: 200;
+}
+
+.filter.secondary p{
+    color: var(--txt-secondary);
+}
+
+.filter svg{
+    color: var(--bg);
+    max-width: rem(22);
+    max-height: rem(22);
+}
+
+.filter.secondary svg{
+    color: var(--txt-secondary);
+}
+
+@media (max-width: rem(1000)) {
+    .filter svg{
+        max-width: rem(15);
+        max-height: rem(15);
+    }
+    .filter{
+        padding: rem(5) rem(8);
+    }
+}

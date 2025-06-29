@@ -1,4 +1,4 @@
-import styles from "./BarCardSkeleton.module.css"
+import styles from "./BarCardSkeleton.module.scss"
 
 export default function BarCardSkeleton(){
     return(

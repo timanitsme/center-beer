@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 import cardImagePlaceholder from "../../../assets/placeholders/card-image-placeholder.svg";
-import styles from "./BottledBeerCard.module.css";
+import styles from "./BottledBeerCard.module.scss";
 import BookMarkIcon from "../../../assets/bookmark-unfill-icon.svg?react";
 import FavIcon from "../../../assets/fav-unfill-icon.svg?react";
 import BottleIcon from "../../../assets/bottle-icon.svg?react";
@@ -54,12 +54,12 @@ export default function MinimalBottledBeerCardApi({cardInfo}){
                 </div>
                 <div className={styles.cardTop}>
                     <div className={styles.textContainer}>
-                        <p className={styles.cardTextPrimary}>{cardInfo?.beer_name}</p>
-                        <p className={styles.textActive}>{[cardInfo?.brewery_name].join(", ")}</p>
+                        <h6 className={`${styles.cardTextPrimary} ma-h6`}>{cardInfo?.beer_name}</h6>
+                        <p className={`${styles.textActive} ma-p`}>{[cardInfo?.brewery_name].join(", ")}</p>
                     </div>
                     <div>
                         <div style={{height: "25px"}}></div>
-                        {cardInfo.rating && <p className={styles.ratingText}><BottleIcon/> ({cardInfo.rating.toFixed(1)})</p>}
+                        {cardInfo.rating && <p className={`${styles.ratingText} ma-p`}><BottleIcon/> ({cardInfo.rating.toFixed(1)})</p>}
                     </div>
                 </div>
             </div>

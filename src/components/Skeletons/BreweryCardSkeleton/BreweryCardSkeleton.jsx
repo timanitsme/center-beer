@@ -1,4 +1,4 @@
-import styles from "./BreweryCardSkeleton.module.css"
+import styles from "./BreweryCardSkeleton.module.scss"
 import BookMarkIcon from "../../../assets/bookmark-unfill-icon.svg";
 import FavIcon from "../../../assets/fav-unfill-icon.svg";
 

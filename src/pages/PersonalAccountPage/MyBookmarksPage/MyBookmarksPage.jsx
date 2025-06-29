@@ -1,4 +1,4 @@
-import styles from "./MyBookmarksPage.module.css"
+import styles from "./MyBookmarksPage.module.scss"
 import {useNavigate, useParams} from "react-router-dom";
 import {useSelector} from "react-redux";
 import {
@@ -49,13 +49,15 @@ export default function MyBookmarksPage(){
             <NavChain paths={paths}></NavChain>
             <div style={{display: "flex"}}>
                 {!isMobile && <PersonalAccount/>}
-                <div style={{display: "flex", flexDirection: "column", width: "100%", gap: "25px"}}>
+                <div style={{display: "flex", flexDirection: "column", width: "100%"}}>
                     {isMobile && <PersonalAccount isMobile={true}/>}
-                    <div className={styles.row}>
-                        <div className={styles.arrowButton} onClick={() => navigate("/account/")}><ArrowLeftIcon/></div>
-                        <h2 className={styles.title}>{selectors[alias]?.pathname}</h2>
+                    <div className={styles.block}>
+                        <div className={styles.row}>
+                            <div className={styles.arrowButton} onClick={() => navigate("/account/")}><ArrowLeftIcon/></div>
+                            <h2 className={`${styles.title} ma-h2-small`}>{selectors[alias]?.pathname}</h2>
+                        </div>
+                        {selectors[alias].data && !selectors[alias].isLoading && !selectors[alias].error && <SimpleCatalogSection cards={selectors[alias]?.data?.data} CardComponent={selectors[alias].CardComponent}></SimpleCatalogSection>}
                     </div>
-                    {selectors[alias].data && !selectors[alias].isLoading && !selectors[alias].error && <SimpleCatalogSection cards={selectors[alias]?.data?.data} CardComponent={selectors[alias].CardComponent}></SimpleCatalogSection>}
                 </div>
             </div>
         </div>

@@ -1,4 +1,4 @@
-import styles from "./IndexVisitSection.module.css"
+import styles from "./IndexVisitSection.module.scss"
 import BottleIcon from "../../assets/bottle-icon.svg?react"
 import BottleHalfIcon from "../../assets/bottle-half-icon.svg?react"
 import BottleEmptyIcon from "../../assets/bottle-empty-icon.svg?react"

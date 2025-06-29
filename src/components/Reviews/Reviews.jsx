@@ -1,4 +1,4 @@
-import styles from "./Reviews.module.css"
+import styles from "./Reviews.module.scss"
 import ComponentHeader from "../ComponentHeader/ComponentHeader.jsx";
 import BeardIcon from "../../assets/beard-icon.svg?react"
 import AvatarDefault from "../../assets/avatar-default.svg"
@@ -155,7 +155,7 @@ export default function Reviews({header, images, resume}){
             </div>
             <SimpleModal show={showAuthModal} setShow={setShowAuthModal}>
                 <div className={styles.accountModal}>
-                    <h2 className={styles.outlineTitle}>Войдите в аккаунт <br/> чтобы оставить отзыв</h2>
+                    <h1 className={`${styles.outlineTitle} text-large`}>Войдите в аккаунт <br/> чтобы оставить отзыв</h1>
                     <FaLock/>
                     <SimpleButton text="Авторизация" onClick={() => navigate("/login")}></SimpleButton>
                 </div>

@@ -1,4 +1,4 @@
-import styles from "./BarEvents.module.css"
+import styles from "./BarEvents.module.scss"
 import ArrowButton from "../Buttons/ArrowButton/ArrowButton.jsx";
 import eventPicture from "../../assets/event-picture.svg"
 import ArrowDiagonalIcon from "../../assets/arrow-diagonal-icon.svg?react"
@@ -99,17 +99,17 @@ export default function BarEvents({title = "Скоро в баре", barId=1, re
     return(
         <div className={styles.barEventsContainer} style={{height: containerHeight}} ref={ref}>
             <div className={styles.barEvent}>
-                <div className={styles.soonAtBar}><h1>{title}</h1></div>
+                <div className={styles.soonAtBar}><h1 className="text-big">{title}</h1></div>
                 <div className={styles.eventPictureMobile}>
                     <img src={currentEvent?.preview} alt=''></img>
                 </div>
                 <div className={styles.eventDescriptionContainer}>
                     <ArrowButton direction="left" className={styles.leftArrow} onClick={handlePreviousEvent} withBg={true}></ArrowButton>
                     <div className={styles.eventDescription}>
-                        <h2>{currentEvent?.title}</h2>
-                        <p className={styles.eventDate}>{currentEvent?.date_formated}</p>
-                        <div dangerouslySetInnerHTML={{ __html: currentEvent?.text }} />
-                        <Link to={currentEvent?.url} className={styles.orderTable}>
+                        <h4 className="ma-h4">{currentEvent?.title}</h4>
+                        <p className={`${styles.eventDate} ma-p`}>{currentEvent?.date_formated}</p>
+                        <div className="ma-p" dangerouslySetInnerHTML={{ __html: currentEvent?.text }} />
+                        <Link to={currentEvent?.url} className={`${styles.orderTable} ma-p`}>
                             Подробнее
                             <ArrowDiagonalIcon/>
                         </Link>

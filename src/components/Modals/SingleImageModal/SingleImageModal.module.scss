@@ -1,0 +1,22 @@
+@use "../../../utils/partialStyles/_pxToRem.scss" as *;
+
+.imageWrapper {
+    position: relative;
+    max-width: 90vw;
+    max-height: 90vh;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: rem(5);
+}
+
+.imageWrapper img {
+    max-width: 80vw;
+    max-height: 80vh;
+    width: auto;
+    height: auto;
+    border-radius: rem(5);
+    object-fit: contain;
+    cursor: zoom-out;
+}

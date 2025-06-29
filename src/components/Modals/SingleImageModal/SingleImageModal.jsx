@@ -1,4 +1,4 @@
-import styles from "./SingleImageModal.module.css"
+import styles from "./SingleImageModal.module.scss"
 import SimpleModal from "../SimpleModal/SimpleModal.jsx";
 import ImagePlaceholder from "../../../assets/placeholders/card-image-placeholder.svg"
 import {useState} from "react";

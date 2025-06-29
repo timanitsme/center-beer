@@ -1,0 +1,91 @@
+@use "../../../utils/partialStyles/_pxToRem.scss" as *;
+
+.simpleButton{
+    background: var(--primary);
+    border: none;
+    border-radius: rem(5);
+    display: flex;
+    gap: rem(10);
+    padding: rem(10);
+    width: fit-content;
+    align-items: center;
+    cursor: pointer;
+}
+
+.simpleButton.secondary{
+    background: var(--section-bg);
+    border: rem(2) solid var(--primary);
+}
+
+.simpleButton p{
+    text-wrap: nowrap;
+    text-transform: uppercase;
+    color: var(--bg)
+}
+
+.simpleButton.secondary p{
+    text-wrap: nowrap;
+    text-transform: uppercase;
+    color: var(--txt-active);
+}
+
+.black{
+    color: var(--bg) !important;
+}
+
+.third{
+    background: var(--section-bg);
+}
+
+.third p{
+    color: var(--primary);
+}
+
+.wthBg {
+    background: transparent !important;
+}
+
+.wthBg:hover {
+    background: var(--third) !important;
+    transition: 0.5s;
+}
+
+
+.simpleButton:disabled{
+    background: var(--primary-semi-transparent);
+    transition: 0.5s;
+}
+
+.simpleButton.secondary:disabled{
+    background: var(--third);
+    transition: 0.5s;
+}
+
+.third:disabled {
+    background: var(--third);
+    transition: 0.5s;
+}
+
+
+@media (hover: hover) and (pointer: fine) {
+    .simpleButton.secondary:hover{
+        background: var(--third);
+        transition: 0.5s;
+    }
+
+    .simpleButton:hover{
+        background: var(--primary-semi-transparent);
+        transition: 0.5s;
+    }
+    .third:hover {
+        background: var(--third);
+        transition: 0.5s;
+    }
+}
+
+
+@media (max-width: rem(768)) {
+    .iconButton{
+        padding: rem(5);
+    }
+}

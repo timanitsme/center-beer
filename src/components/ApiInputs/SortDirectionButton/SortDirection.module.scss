@@ -1,0 +1,35 @@
+@use "../../../utils/partialStyles/_pxToRem.scss" as *;
+
+.box {
+    align-self: center;
+    justify-self: center;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    background: var(--third);
+    padding: rem(7);
+    border-radius: rem(5);
+    cursor: pointer;
+}
+
+.box:hover{
+    background: var(--primary);
+    transition: 0.5s;
+}
+
+.box:hover svg{
+    color: var(--section-bg);
+    transition: 0.5s;
+}
+
+.box svg{
+    color: var(--txt-active);
+    max-width: rem(30);
+    height: fit-content;
+}
+
+@media (max-width: rem(1000)) {
+    .box svg{
+        max-width: rem(20);
+    }
+}

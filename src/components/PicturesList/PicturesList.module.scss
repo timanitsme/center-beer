@@ -1,0 +1,91 @@
+@use "../../utils/partialStyles/_pxToRem.scss" as *;
+
+.picturesListContainer {
+    position: relative; /* Делаем контейнер относительным для позиционирования кнопок */
+    display: flex;
+    justify-content: center; /* Центрируем контейнер с картинками */
+    margin-top: rem(20);
+}
+
+.leftArrow,
+.rightArrow {
+    position: absolute; /* Абсолютное позиционирование кнопок */
+    top: 50%; /* Размещаем кнопки по вертикали в центре контейнера */
+    transform: translateY(-50%); /* Корректируем положение по центру */
+    z-index: 2; /* Кнопки должны быть выше картинок */
+    border: none;
+    color: white;
+    padding: rem(10);
+    border-radius: 50%; /* Круглые кнопки */
+    cursor: pointer;
+}
+
+.image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: rem(8);
+}
+
+.leftArrow {
+    left: rem(-20); /* Смещаем кнопку влево */
+}
+
+.rightArrow {
+    right: rem(-20); /* Смещаем кнопку вправо */
+}
+
+.picturesContainer {
+    display: flex;
+    justify-content: space-between;
+    gap: rem(10); /* Расстояние между картинками */
+    width: 100%;
+}
+
+.imageWrapper {
+    width: auto; /* Каждый элемент занимает ~16.66% ширины контейнера */
+    max-height: rem(250); /* Фиксированная высота */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: rem(8);
+    cursor: zoom-in;
+}
+
+.imageWrapper svg{
+    position: absolute;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .imageWrapper:hover svg {
+        color: var(--primary-semi-transparent);
+        transition: 0.5s;
+    }
+}
+
+.video{
+    cursor: pointer;
+}
+
+.imageWrapper.secondary{
+    width: calc(20% - 8px); /* Каждый элемент занимает ~20% ширины контейнера */
+    max-height: max-content;
+}
+
+
+
+@media (max-width: rem(1000)) {
+    .leftArrow{
+        left: rem(-20);
+    }
+    .rightArrow{
+        right: rem(-20);
+    }
+}
+
+@media (max-width: rem(600)) {
+    .imageWrapper, .imageWrapper.secondary {
+        width: calc(33.33% - 8px);
+    }
+
+}

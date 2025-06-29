@@ -1,4 +1,4 @@
-import styles from "./CatalogSection.module.css";
+import styles from "./CatalogSection.module.scss";
 import IconButton from "../../Buttons/IconButton/IconButton.jsx";
 import PropTypes from "prop-types";
 import AppliedFilter from "../../AppliedFilter/AppliedFilter.jsx";

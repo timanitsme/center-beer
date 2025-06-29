@@ -1,6 +1,6 @@
 import {useState} from "react";
 import {useNavigate} from "react-router-dom";
-import styles from "./VideoCard.module.css";
+import styles from "./VideoCard.module.scss";
 import BookMarkIcon from "../../../assets/bookmark-unfill-icon.svg?react";
 import FavIcon from "../../../assets/fav-unfill-icon.svg?react";
 import cardImagePlaceholder from "../../../assets/placeholders/card-image-placeholder.svg";

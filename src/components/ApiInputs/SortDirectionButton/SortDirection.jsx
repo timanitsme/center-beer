@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import styles from "./SortDirection.module.css";
+import styles from "./SortDirection.module.scss";
 import Tooltip from "../../Tooltip/Tooltip.jsx";
 
 export default function SortDirection({options, onChange}){

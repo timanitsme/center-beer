@@ -1,5 +1,5 @@
 import SimpleModal from "../SimpleModal/SimpleModal.jsx";
-import styles from "./SingleVideoModal.module.css";
+import styles from "./SingleVideoModal.module.scss";
 
 export default function SingleVideoModal({src, setSrc, show, setShow}){
     const handleError = () => {

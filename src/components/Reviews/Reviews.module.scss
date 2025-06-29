@@ -1,0 +1,241 @@
+@use "../../utils/partialStyles/_pxToRem.scss" as *;
+
+.reviews{
+    margin: 0 rem(50) rem(50) rem(50);
+    display: flex;
+    flex-direction: column;
+    background: var(--bg);
+}
+
+.commentsSection{
+    display: flex;
+    gap: rem(20);
+}
+
+.commentsContainer{
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    gap: rem(15);
+}
+.commentPhotos{
+    margin-top: rem(10);
+    display: flex;
+    gap: rem(10);
+}
+
+.imageWrapper{
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    width: rem(60);
+    height: 100%;
+    overflow: hidden;
+    border-radius: rem(5);
+}
+
+.imageWrapper.photos{
+    width: rem(85);
+}
+
+.imageWrapper img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: rem(5);
+}
+
+.assessmentContainer{
+    max-width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: rem(15);
+}
+
+.pHeader{
+    font-family: Podkova, sans-serif;
+    color: var(--txt-active);
+}
+
+.commentsSection p{
+    font-weight: 200;
+}
+
+.assessment{
+    background: var(--section-bg);
+    padding: rem(15);
+    border-radius: rem(10);
+    height: min-content;
+}
+
+.comment{
+    display: flex;
+    gap: rem(10);
+
+}
+
+.outlineTitle{
+    width: 100%;
+    text-align: center;
+    text-transform: uppercase;
+    color: transparent;
+    -webkit-text-stroke: rem(1) var(--primary);
+}
+
+.commentContent{
+
+}
+
+.commentHeader{
+    display: flex;
+    justify-content: space-between;
+}
+
+.commentHeader p{
+    color: var(--txt-active);
+}
+
+.avatar{
+    max-width: rem(100);
+    max-height: rem(100);
+}
+
+.mark{
+    background: var(--section-bg);
+    display: flex;
+    width: min-content;
+    padding: rem(7) rem(10);
+    border-radius: rem(25);
+    gap: rem(10);
+    justify-content: center;
+}
+
+.markRight{
+    display: flex;
+    gap:rem(10);
+}
+
+.commentButtons{
+    margin-top: rem(10);
+    display: flex;
+    align-items: center;
+    gap: rem(10);
+}
+
+.aComment{
+    color: var(--primary);
+}
+
+.mark div svg{
+    color: var(--txt-secondary);
+}
+
+.mark div{
+    display: flex;
+    align-items: center;
+    gap: rem(5);
+}
+
+.dateAndBottles{
+    display: flex;
+    gap: rem(10);
+}
+
+.beerBottles{
+    display: flex;
+    align-items: center;
+    gap: rem(5) !important;
+}
+
+.beerBottles svg{
+    cursor: initial !important;
+}
+
+.buttonRow{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg);
+}
+
+.showAllContainer{
+    position: relative;
+}
+
+.gradient{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: rem(100);
+    background: linear-gradient(to bottom, var(--bg-full-opacity) 0%, var(--bg) 50%);
+    pointer-events: none;
+}
+
+.accountModal{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: rem(10);
+}
+
+.accountModal svg{
+    height: rem(35);
+    width: auto;
+    color: var(--primary);
+    margin-bottom: rem(10);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .aComment:hover {
+        color: var(--primary-semi-transparent);
+    }
+
+    .mark div svg:hover{
+        color: var(--txt-active);
+    }
+}
+
+
+@media (max-width: rem(1300)) {
+    .minBottles svg{
+        max-height: rem(10);
+    }
+    .minBottles{
+        gap: rem(2) !important;
+    }
+}
+
+@media (max-width: rem(1000)) {
+    .reviews{
+        margin: 0 rem(25) rem(25) rem(25);
+    }
+    .avatar{
+        max-width: rem(35);
+        max-height: rem(35);
+    }
+    .mark div svg{
+        max-height: rem(15);
+        max-width: rem(15);
+    }
+}
+
+@media (max-width: rem(600)) {
+    .assessmentContainer{
+        display: none;
+    }
+    .commentsContainer{
+        width: 100%;
+    }
+
+}
+
+@media (max-width: rem(368)) {
+    .markRight{
+        flex-direction: column;
+        gap: initial;
+    }
+}

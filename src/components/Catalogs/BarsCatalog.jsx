@@ -1,4 +1,4 @@
-import styles from "./BarsCatalog.module.css";
+import styles from "./BarsCatalog.module.scss";
 import IconButton from "../Buttons/IconButton/IconButton.jsx";
 import SimpleButton from "../Buttons/SimpleButton/SimpleButton.jsx";
 import PropTypes from "prop-types";
@@ -318,13 +318,13 @@ export default function BarsCatalog(){
         <div className={styles.menuContainer}>
             <div className={styles.menuHeader}>
                 <div className={styles.catalogHeader}>
-                    <div>
-                        <h2>Каталог баров</h2>
-                        <p>Собрали для вас список лучших пивных баров, где можно насладиться свежесваренным пивом, закусками и уютной атмосферой. От классических пабов до оригинальных крафтовых баров — каждый найдет место по вкусу.</p>
+                    <div className={styles.justy}>
+                        <h2 className="ma-h2">Каталог баров</h2>
+                        <div className={styles.forSvg}>
+                            <IconButton text="Все бары на карте" onClick={() => navigate("/map")}><LocationIcon/></IconButton>
+                        </div>
                     </div>
-                    <div className={styles.forSvg}>
-                        <IconButton text="Все бары на карте" onClick={() => navigate("/map")}><LocationIcon/></IconButton>
-                    </div>
+                    <p className="ma-p">Собрали для вас список лучших пивных баров, где можно насладиться свежесваренным пивом, закусками и уютной атмосферой. От классических пабов до оригинальных крафтовых баров — каждый найдет место по вкусу.</p>
                 </div>
             </div>
             <div className={styles.menuContent}>

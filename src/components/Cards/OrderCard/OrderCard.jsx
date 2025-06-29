@@ -1,4 +1,4 @@
-import styles from "./OrderCard.module.css"
+import styles from "./OrderCard.module.scss"
 
 
 export default function OrderCard({cardInfo}){

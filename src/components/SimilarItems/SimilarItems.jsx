@@ -1,4 +1,4 @@
-import styles from "./SimilarItems.module.css"
+import styles from "./SimilarItems.module.scss"
 import ComponentHeader from "../ComponentHeader/ComponentHeader.jsx";
 import BeerBottleIcon from "../../assets/label-bottle-icon.svg?react"
 import RoundLinkButton from "../Buttons/RoundLinkButton/RoundLinkButton.jsx";

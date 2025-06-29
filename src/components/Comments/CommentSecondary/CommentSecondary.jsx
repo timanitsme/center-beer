@@ -1,4 +1,4 @@
-import styles from "./CommentSecondary.module.css"
+import styles from "./CommentSecondary.module.scss"
 import {useEffect, useRef, useState} from "react";
 import AvatarDefault from "../../../assets/avatar-default.svg";
 import {getRatingIcons} from "../../../utils/getRatingIcons.jsx";

@@ -1,5 +1,5 @@
 import {useState} from "react";
-import styles from "./BreweryCard.module.css";
+import styles from "./BreweryCard.module.scss";
 import BookMarkIcon from "../../../assets/bookmark-unfill-icon.svg?react";
 import FavIcon from "../../../assets/fav-unfill-icon.svg?react";
 import PropTypes from "prop-types";

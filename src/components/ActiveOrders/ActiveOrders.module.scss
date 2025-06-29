@@ -1,0 +1,62 @@
+@use "../../utils/partialStyles/_pxToRem.scss" as *;
+
+.ordersSection{
+    background: var(--section-bg);
+    width: calc(100% - 50px);
+    display: flex;
+    flex-direction: column;
+    margin-right: rem(50);
+    padding: rem(15);
+    border-radius: rem(10);
+    gap: rem(10);
+}
+
+.ordersSection p{
+    font-weight: 300;
+}
+
+.ordersSection h3{
+    text-transform: none;
+}
+
+.ordersSection a p{
+    text-decoration-line: underline;
+    color: var(--txt-active);
+}
+
+
+.headerRow{
+    display: flex;
+    justify-content: space-between;
+}
+
+.orderCardsContainer{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: rem(15);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .ordersSection a:hover p{
+        color: var(--primary);
+        transition: 0.5s;
+    }
+}
+
+
+@media (max-width: rem(1000)) {
+    .ordersSection{
+        width: calc(100% - 50px);
+        margin: 0 rem(25) 0 rem(25);
+        padding: rem(10);
+    }
+
+}
+
+
+@media (max-width: rem(850)) {
+    .orderCardsContainer{
+        grid-template-columns: repeat(1, 1fr);
+        row-gap: rem(15);
+    }
+}

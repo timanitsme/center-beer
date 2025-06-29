@@ -1,0 +1,19 @@
+@use "../../../utils/partialStyles/_pxToRem.scss" as *;
+
+.checkbox {
+    position: relative;
+    min-width: rem(200);
+    display: flex;
+    flex-direction: column;
+    gap: rem(5);
+}
+
+.checkbox p{
+    text-transform: capitalize;
+}
+
+.checkboxHeader{
+    color: var(--primary) !important;
+    font-family: Podkova, sans-serif !important;
+    margin-bottom: rem(5);
+}

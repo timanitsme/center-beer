@@ -1,4 +1,4 @@
-import styles from "./Excursions.module.css"
+import styles from "./Excursions.module.scss"
 import ExcursionPicture from "../../assets/excursion-picture.svg"
 
 export default function Excursions({ref = null}){

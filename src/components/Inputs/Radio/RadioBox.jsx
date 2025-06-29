@@ -1,5 +1,5 @@
 import {useState} from "react";
-import styles from "./Radio.module.css";
+import styles from "./Radio.module.scss";
 
 export default function RadioBox({title, selected, children}){
     const [selectedOption, setSelectedOption] = useState(selected);

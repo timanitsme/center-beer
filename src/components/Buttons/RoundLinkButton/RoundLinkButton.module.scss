@@ -1,0 +1,28 @@
+@use "../../../utils/partialStyles/_pxToRem.scss" as *;
+
+.buttonContainer{
+    display: flex;
+    align-items: center;
+    max-height: rem(50);
+    min-height: rem(20);
+    height: 5vw;
+}
+
+.buttonContainer p{
+    font-weight: 200;
+    margin-right: -5%;
+}
+
+.buttonContainer svg{
+    height: 100%;
+    width: auto;
+    min-height: rem(25);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .buttonContainer:hover p{
+        color: var(--txt-active);
+        transition: 0.5s;
+    }
+}
+

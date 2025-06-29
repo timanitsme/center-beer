@@ -1,0 +1,374 @@
+@use "../../../utils/partialStyles/_pxToRem.scss" as *;
+
+.barInfoContainer{
+    margin: 0 rem(50) rem(50) rem(50);
+    display: flex;
+    gap: rem(10);
+}
+
+.barIcons{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: rem(10)
+}
+.beerPictures {
+    display: flex;
+    gap: rem(20);
+}
+
+.picturesColumn {
+    display: flex;
+    flex-direction: column;
+    gap: rem(20);
+    width: fit-content;
+}
+
+.picturesColumn div {
+    width: fit-content;
+    background: var(--fg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    border-radius: rem(5);
+}
+
+.picturesColumn div.selected{
+    border: rem(2) solid var(--primary);
+}
+
+.picturesColumn img {
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+.beerPictures > div:last-child {
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border-radius: rem(5);
+    background: var(--fg);
+}
+
+.beerPictures > div:last-child img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.socials{
+    background: rgba(39, 39, 39, 0.5);
+    width: rem(45);
+    border-radius: rem(50);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: rem(10);
+    padding: rem(20) rem(10);
+}
+
+.barDescription{
+    display: flex;
+    flex-direction: column;
+    gap: rem(10);
+    max-width: 60%;
+}
+
+.barDescription h2, .barInfo h2{
+    width: 100%;
+    text-align: left;
+    text-transform: uppercase;
+}
+
+.barDescription p, .ratingAndComments p, .barInfo p{
+    font-weight: 300;
+}
+
+.advantagesListItem h3{
+    text-align: left;
+    color: var(--primary);
+}
+
+.barButtons{
+    display: flex;
+    flex-wrap: wrap;
+    gap: rem(10);
+}
+
+.barButtonsMobile{
+    display: none;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: rem(10);
+    justify-content: center;
+}
+
+.barInfo{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    width: 50%;
+    gap: rem(10);
+    margin-left: auto;
+}
+
+.barInfo div{
+    display: flex;
+    gap: rem(10);
+}
+
+.aIconButton{
+    display: flex;
+    gap: rem(5);
+    align-items: center;
+    color: var(--txt-secondary);
+    font-family: Podkova, sans-serif;
+}
+
+.aUnderlinedIconButton{
+    display: flex;
+    gap: rem(5);
+    align-items: center;
+    color: var(--txt-primary);
+    font-family: Podkova, sans-serif;
+    text-decoration-line: underline;
+    text-decoration-style: dotted;
+    text-decoration-color: var(--txt-primary);
+}
+
+.circle{
+    width: rem(4);
+    height: rem(4);
+    background: var(--primary);
+    border-radius: 100%;
+}
+
+.ratingAndComments{
+    display: flex;
+    align-items: center;
+}
+
+.beerBottles{
+    display: flex;
+    gap: rem(5) !important;
+}
+
+.cartAndPrice{
+    display: flex;
+    align-items: center;
+}
+
+.cartAndPrice h2{
+    align-self: center !important;
+}
+
+.beerBottles svg{
+    cursor: initial !important;
+}
+
+.aIconButton svg{
+    color: var(--primary);
+}
+
+.aIconButton.added svg{
+    fill: var(--icon-added);
+    color: var(--icon-added);
+}
+
+.barInfo h2{
+    text-align: right;
+    align-self: flex-end;
+}
+
+
+.barInfo.mobile{
+    background: var(--section-bg);
+    box-sizing: border-box;
+    width: max-content;
+    padding: rem(10);
+    border-radius: rem(10);
+    margin: 0 auto;
+    display: none;
+    align-items: center;
+    align-self: center;
+}
+
+.characteristicsList{
+    color: var(--primary);
+    box-sizing: border-box;
+}
+
+.characteristicsList li{
+    display: flex;
+    align-items: center;
+}
+
+.characteristicsList li p{
+    display: inline-block;
+    max-width: 100%;
+
+}
+
+.characteristicsList li::before {
+    content: "•";
+    color: var(--primary);
+    margin-right: rem(5);
+}
+
+.characteristics{
+    display: flex;
+    gap: rem(15);
+    background: var(--section-bg);
+    width: fit-content;
+    padding: rem(5) rem(10);
+    border-radius: rem(50);
+}
+
+.characteristic{
+    display: flex;
+    align-items: center;
+    gap: rem(5);
+}
+
+.descriptionMobile{
+    margin: 0 rem(25) rem(25) rem(25);
+    font-weight: 200;
+    display: none;
+}
+
+.sidePictureContainer{
+    height: rem(100) !important;
+    width: rem(87) !important;
+}
+
+.selectedPictureContainer{
+    height: rem(460) !important;
+    width: rem(405) !important;
+    cursor: pointer;
+    margin-right: rem(50);
+}
+
+
+.selectedPictureContainer svg{
+    position: absolute;
+}
+
+.selectedPictureContainer:hover svg{
+    color: var(--primary-semi-transparent) !important;
+}
+
+.sidePictureContainer svg{
+    position: absolute;
+    width: rem(25);
+    height: min-content;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .aUnderlinedIconButton:hover {
+        color: var(--primary);
+        text-decoration-color: var(--primary);
+        transition: 0.5s;
+    }
+
+    .aIconButton:hover{
+        color: var(--txt-primary);
+    }
+}
+
+@media (max-width: rem(1200)){
+    .selectedPictureContainer{
+        height: rem(322) !important;
+        width: rem(283) !important;
+        margin-right: rem(25);
+    }
+
+    .sidePictureContainer{
+        height: rem(70) !important;
+        width: rem(60) !important;
+    }
+
+    .beerPictures{
+        gap: rem(15);
+    }
+
+}
+
+@media (max-width: rem(1000)) {
+    .barInfo.regular{
+        display: none;
+    }
+    .barInfoContainer{
+        margin: 0 rem(25) rem(5) rem(25);
+    }
+    .barInfo.mobile{
+        display: flex;
+        margin-left: rem(25);
+        margin-bottom: rem(10);
+    }
+}
+
+@media (max-width: rem(768)) {
+    .barButtonsMobile{
+        display: flex;
+        margin-bottom: rem(25);
+    }
+    .barButtons{
+        display: none;
+    }
+    .barInfoContainer{
+        margin-bottom: rem(10);
+    }
+
+    .descriptionMobile{
+        display: block;
+    }
+
+    .beerTitle{
+        text-align: center !important;
+
+    }
+
+    .characteristic p{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .characteristics{
+        gap: rem(5);
+        flex-direction: column;
+        border-radius: rem(10);
+    }
+    .notMobile{
+        display: none;
+    }
+}
+
+@media (max-width: rem(600)) {
+    .barInfo.mobile{
+        margin: 0 auto rem(10) auto;
+    }
+
+    .beerPictures{
+        gap: rem(5);
+    }
+
+    .selectedPictureContainer{
+        height: rem(184) !important;
+        width: rem(162) !important;
+        margin-right: rem(10);
+    }
+    .sidePictureContainer{
+        height: rem(40) !important;
+        width: rem(35) !important;
+    }
+}

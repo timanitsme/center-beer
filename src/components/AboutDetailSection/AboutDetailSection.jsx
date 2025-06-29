@@ -2,7 +2,7 @@ import {useState} from "react";
 import BlogImage1 from "../../assets/newsMocks/blog-image-1.svg";
 import BlogImage2 from "../../assets/newsMocks/blog-image-2.svg";
 import BlogImage3 from "../../assets/newsMocks/blog-image-3.svg";
-import styles from "./AboutDetailSection.module.css";
+import styles from "./AboutDetailSection.module.scss";
 import {Link} from "react-router-dom";
 import ArrowBackIcon from "../../assets/arrow-left-icon.svg?react";
 import LightNavChain from "../Navigation/LightNavChain/LightNavChain.jsx";

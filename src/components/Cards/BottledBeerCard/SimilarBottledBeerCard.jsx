@@ -1,5 +1,5 @@
 import {useState} from "react";
-import styles from "./BottledBeerCard.module.css";
+import styles from "./BottledBeerCard.module.scss";
 import BookMarkIcon from "../../../assets/bookmark-unfill-icon.svg?react";
 import IconButton from "../../Buttons/IconButton/IconButton.jsx";
 import BottlesPairIcon from "../../../assets/bottles-pair-icon.svg?react";
@@ -47,7 +47,7 @@ export default function SimilarBottledBeerCard({cardInfo}){
             <div className={styles.bottledBeerCard}>
                 <div className={styles.cardTop}>
                     <div className={styles.textContainer}>
-                        <p className={styles.cardTextPrimary} onClick={() => goToBeerPage(cardInfo?.alias || cardInfo?.beer_alias)}>{cardInfo?.name}</p>
+                        <h6 className={styles.cardTextPrimary} onClick={() => goToBeerPage(cardInfo?.alias || cardInfo?.beer_alias)}>{cardInfo?.name}</h6>
                         <p className={styles.textActive}>{[cardInfo?.brewery_name, cardInfo?.city, cardInfo?.country].join(", ")}</p>
                     </div>
                     <div>

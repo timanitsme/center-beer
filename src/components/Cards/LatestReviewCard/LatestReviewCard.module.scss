@@ -1,0 +1,139 @@
+@use "../../../utils/partialStyles/_pxToRem.scss" as *;
+
+.card{
+    display: flex;
+    flex-direction: column;
+    border: rem(2) solid var(--third);
+    padding: rem(15);
+    border-radius: rem(10);
+    gap: rem(10);
+}
+
+.card h3{
+    text-transform: none;
+    text-align: left;
+    color: var(--primary);
+    font-weight: 300;
+}
+
+.headerRow{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.beerBottles{
+    display: flex;
+    gap: rem(5) !important;
+}
+
+.beerBottles svg{
+    cursor: initial !important;
+}
+
+.status{
+    background: var(--third);
+    padding: rem(3) rem(7);
+    border-radius: rem(15);
+}
+
+.status.delivered{
+    background: var(--primary);
+}
+
+.status.preparing{
+    background: var(--third);
+}
+
+.status.delivered p{
+    color: var(--bg);
+}
+
+.status.preparing p{
+    color: var(--primary);
+}
+
+
+.description{
+    width: 100%;
+    display: grid;
+    grid-template-columns: minmax(min-content, 10%) auto;
+}
+
+.p{
+    font-weight: 200;
+}
+
+.flexRow{
+    display: flex;
+    gap: rem(10);
+    align-items: center;
+}
+
+.flexCol{
+    display: flex;
+    flex-direction: column;
+    gap: rem(5);
+
+}
+
+.active{
+    color: var(--txt-active);
+}
+
+.itemsRow{
+    display: flex;
+    align-items: center;
+    gap: rem(10);
+}
+
+.imageWrapper{
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    width: rem(60);
+    height: 100%;
+    overflow: hidden;
+    border-radius: rem(5);
+}
+
+.imageWrapper.photos{
+    width: rem(85);
+}
+
+.imageWrapper img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: rem(5);
+}
+
+@media (max-width: rem(1000)) {
+    .description{
+        width: 100%;
+        grid-template-columns: minmax(min-content, 20%) auto;
+    }
+    .imageWrapper{
+        max-width: rem(40);
+        max-height: rem(40);
+        min-width: rem(40);
+        min-height: rem(40);
+    }
+    .flexRow button{
+        padding: rem(5);
+    }
+    .flexRow svg{
+        width: rem(10);
+        height: min-content;
+    }
+    .flexRow{
+        gap: rem(5);
+    }
+}
+
+@media (max-width: rem(600)) {
+    .description{
+        grid-template-columns: minmax(min-content, 35%) auto;
+    }
+}

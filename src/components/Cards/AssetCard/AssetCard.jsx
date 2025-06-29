@@ -1,4 +1,4 @@
-import styles from "./AssetCard.module.css"
+import styles from "./AssetCard.module.scss"
 import {useState} from "react";
 import {useNavigate} from "react-router-dom";
 import BookMarkIcon from "../../../assets/bookmark-unfill-icon.svg?react";

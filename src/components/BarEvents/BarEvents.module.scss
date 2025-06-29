@@ -1,0 +1,147 @@
+@use "../../utils/partialStyles/_pxToRem.scss" as *;
+
+.barEventsContainer{
+    margin: 0 rem(50) rem(50) rem(50);
+    display: flex;
+    gap:rem(15);
+    /*height: rem(600);*/
+    min-height: rem(400);
+    align-items: center;
+}
+
+.barEvent{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+}
+
+.barEvent h1{
+    width: 100%;
+    text-align: left;
+    text-transform: uppercase;
+    color: transparent;
+    -webkit-text-stroke: rem(1) var(--primary);
+}
+
+.soonAtBar, .eventDescriptionContainer{
+    margin: 0 calc(50px/4);
+}
+
+.eventDescription{
+    display: flex;
+    flex-direction: column;
+    padding: rem(20);
+    width:100%;
+    align-self: flex-start;
+    gap: rem(5);
+}
+
+
+.eventDescription h4{
+    text-transform: uppercase;
+    text-align: left;
+    align-self: flex-start;
+    font-family: Podkova, sans-serif;
+    color: var(--txt-active);
+}
+
+.eventDescription p, .orderTable{
+    font-weight: 200;
+}
+
+.eventDate{
+    text-transform: uppercase;
+    font-family: "Podkova", sans-serif;
+    color: var(--primary)
+}
+
+.eventDescription text{
+
+}
+
+.orderTable:hover svg{
+    color: var(--primary);
+    transition: 0.5s;
+}
+
+.eventDescriptionContainer{
+    display: flex;
+    /*min-height: 80%;*/
+    height: fit-content;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--section-bg);
+    border-radius: rem(10);
+}
+
+.leftArrow{
+    margin-left: calc(50px/-4);
+}
+
+.rightArrow{
+    margin-right: calc(50px/-4);
+}
+
+.eventPicture{
+    max-width: 25%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    object-fit: cover;
+    object-position: center;
+    border-radius: rem(5);
+    max-height: 100%;
+    justify-content: center;
+    cursor: pointer;
+    position: relative;
+
+}
+
+.eventPictureMobile{
+    margin: rem(10) 0;
+    width: calc(100% - 50px/2);
+    overflow: hidden;
+    display: none;
+    align-items: center;
+    object-fit: cover;
+    object-position: center;
+    border-radius: rem(5);
+    align-self: center;
+    justify-self: center;
+    max-height: rem(350);
+}
+
+.eventPicture img, .eventPictureMobile img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: rem(5);
+}
+
+@media (max-width: rem(1000)) {
+    .eventDescription{
+        padding: rem(10);
+    }
+
+    .barEventsContainer{
+        margin: 0 rem(25) rem(25) rem(25);
+        gap:rem(10)
+    }
+}
+
+@media (max-width: rem(768)) {
+    .eventDescriptionContainer{
+        min-height: initial;
+    }
+    .eventPicture{
+        display: none;
+    }
+    .barEvent{
+        width: 100%;
+    }
+    .eventPictureMobile {
+        display: flex;
+    }
+}

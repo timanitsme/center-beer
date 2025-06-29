@@ -1,4 +1,4 @@
-import styles from "./NewCommentForm.module.css"
+import styles from "./NewCommentForm.module.scss"
 import {useRef, useState} from "react";
 import {FaPaperclip, FaPaperPlane} from "react-icons/fa6";
 import AvatarDefault from "../../../assets/avatar-default.svg";

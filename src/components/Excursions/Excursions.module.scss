@@ -1,0 +1,86 @@
+@use "../../utils/partialStyles/_pxToRem.scss" as *;
+
+.excursionsContainer{
+    display: flex;
+    gap: rem(15);
+    margin: 0 rem(50) rem(50) rem(50);
+}
+
+.imageContainer{
+    height: rem(200);
+    flex: 0.3;
+}
+
+.imageContainer img{
+    object-fit: cover;
+    width: 100%;
+    border-radius: rem(5);
+}
+
+.settings{
+    display: flex;
+    gap: rem(30);
+}
+
+.settings h3{
+    color: var(--primary);
+}
+
+.settings div{
+    display: flex;
+    flex-direction: column;
+    gap: rem(5);
+}
+
+.description{
+    flex: 0.7;
+}
+
+.description h1{
+    width: 100%;
+    text-align: left;
+    text-transform: uppercase;
+    color: transparent;
+    -webkit-text-stroke: rem(1) var(--primary);
+}
+
+.descriptionContainer{
+    background: var(--section-bg);
+    padding: rem(20);
+    border-radius: rem(10);
+    display: flex;
+    flex-direction: column;
+    gap: rem(10);
+}
+
+.descriptionContainer p{
+    font-weight: 200;
+}
+
+.descriptionContainer h3{
+    text-align: left;
+}
+
+@media (max-width: rem(1000)) {
+    .excursionsContainer{
+        margin: 0 rem(25) rem(25) rem(25);
+    }
+}
+
+@media (max-width: rem(768)) {
+    .settings{
+        gap: rem(15);
+    }
+}
+
+@media (max-width: rem(500)) {
+    .imageContainer{
+        display: none;
+    }
+    .excursionsContainer{
+        justify-content: center;
+    }
+    .settings{
+        gap: rem(10);
+    }
+}

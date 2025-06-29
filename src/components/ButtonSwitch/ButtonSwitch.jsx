@@ -1,4 +1,4 @@
-import styles from "./ButtonSwitch.module.css"
+import styles from "./ButtonSwitch.module.scss"
 import IconButton from "../Buttons/IconButton/IconButton.jsx";
 
 export default function ButtonSwitch({options, selectedOption, onClick}){

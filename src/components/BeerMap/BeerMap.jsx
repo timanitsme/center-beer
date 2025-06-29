@@ -1,4 +1,4 @@
-import styles from "./BeerMap.module.css"
+import styles from "./BeerMap.module.scss"
 import {MapContainer, Marker, Popup, TileLayer} from "react-leaflet";
 import {useEffect, useState} from "react";
 import L from "leaflet"
@@ -42,17 +42,23 @@ export default function BeerMap({data = []}){
                 <TileLayer
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />
-                {data?.length !== 0 && data?.map((marker, index) =>
-                    <Marker key={index} position={[marker?.lon, marker?.lat]} icon={myIcon}>
-                        <Popup>
-                            <div className={styles.markerPopUp}>
-                                <h3>{marker?.name}</h3>
-                                <p><span className={styles.active}>Адрес:</span> {marker?.address}</p>
-                                <p><span className={styles.active}>Телефон:</span> {marker?.contacts}</p>
-                                <IconButton text={"Подробнее"} onClick={() => goToBarPage(marker?.alias)}><HopIcon/></IconButton>
-                            </div>
-                        </Popup>
-                    </Marker>)}
+                {data?.length !== 0 && data?.map((marker, index) => {
+                    if (marker.lat !== null && marker.lon !== null){
+                        return(
+                            <Marker key={index} position={[marker?.lon, marker?.lat]} icon={myIcon}>
+                                <Popup>
+                                    <div className={styles.markerPopUp}>
+                                        <h5>{marker?.name}</h5>
+                                        <p><span className={styles.active}>Адрес:</span> {marker?.address}</p>
+                                        <p><span className={styles.active}>Телефон:</span> {marker?.contacts}</p>
+                                        <IconButton text={"Подробнее"} onClick={() => goToBarPage(marker?.alias)}><HopIcon/></IconButton>
+                                    </div>
+                                </Popup>
+                            </Marker>
+                        )
+                    }
+
+                })}
             </MapContainer>
         </div>
     )

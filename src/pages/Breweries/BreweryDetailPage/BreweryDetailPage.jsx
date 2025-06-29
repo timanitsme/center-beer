@@ -18,7 +18,7 @@ import NewProduct5 from "../../../assets/newProductsMocks/new-product-5.svg"
 import {useGetBeerInfoQuery, useGetBreweryInfoQuery} from "../../../store/services/centerBeer.js";
 import {useLocation, useNavigate, useParams} from "react-router-dom";
 import BeerCatalogSection from "../../../components/BeerCatalogSection/BeerCatalogSection.jsx";
-import styles from "./BreweryDetailPage.module.css"
+import styles from "./BreweryDetailPage.module.scss"
 import Excursions from "../../../components/Excursions/Excursions.jsx";
 import NewProducts from "../../../components/NewProducts/NewProducts.jsx";
 import LightBarCard from "../../../components/Cards/BarCard/LightBarCard.jsx";

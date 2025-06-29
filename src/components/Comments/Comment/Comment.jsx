@@ -1,4 +1,4 @@
-import styles from "./Comment.module.css"
+import styles from "./Comment.module.scss"
 import AvatarDefault from "../../../assets/avatar-default.svg";
 import Bottle1 from "../../../assets/bottlesMock/bottle-1.svg";
 import LikeIcon from "../../../assets/like-icon.svg?react";
@@ -15,6 +15,7 @@ export default function Comment({profile, data}){
     const [isLiked, setIsLiked] = useState(data?.is_liked || false)
     const [isDisliked, setIsDisliked] = useState(data?.is_disliked || false)
     const [replyMode, setReplyMode] = useState(null)
+    const [showComments, setShowComments] = useState(false)
 
     // Проверка, обрезан ли текст
     useEffect(() => {
@@ -73,12 +74,37 @@ export default function Comment({profile, data}){
                             <div onClick={handleDislike} className={`${isDisliked && styles.active}`}><a><DislikeIcon/></a><p>{isDisliked && !data?.is_disliked ? Number(data?.disliked) + 1: data?.disliked}</p></div>
                         </div>
                         <div className={styles.markRight}>
-                            <a className={styles.aComment}>15 Комментариев</a>
+                            <a className={`${styles.aComment} ${showComments ? styles.secondary: ''}`} onClick={() => setShowComments(!showComments)}>{showComments? "Скрыть комментарии":"15 Комментариев"}</a>
                             <a className={`${styles.aComment} ${replyMode === data?.id ? styles.secondary: ''}`} onClick={() => replyMode === data?.id? setReplyMode(null): setReplyMode(data?.id)}>Ответить</a>
                         </div>
                     </div>
                 </div>
             </div>
+            {showComments &&
+                <div className={styles.reply}>
+                    <img className={styles.avatar} src={AvatarDefault} alt=""></img>
+                    <div className={styles.replyContent}>
+
+                        <div className={styles.commentHeader}>
+                            <p className={styles.pHeader}>Администратор</p>
+                            <div className={styles.dateAndBottles}>
+                                <p>{formatDateWithTextMonth(data?.create_date)}</p>
+
+                            </div>
+                        </div>
+                        <p className={unlimitedText ? "" : "limited-text"} ref={textRef}>Николай, большое спасибо за данный отзыв!</p>
+                        {isTextClamped && <a onClick={() => setUnlimitedText(!unlimitedText)}>{unlimitedText? "Свернуть" : "Читать полностью"}</a>}
+                        <div className={styles.commentButtons}>
+                            <div className={styles.mark}>
+                                <div onClick={handleLike} className={`${isLiked && styles.active}`}><a><LikeIcon/></a><p>{isLiked && !data.is_liked? Number(data?.liked) + 1: data?.liked}</p></div>
+                                <div onClick={handleDislike} className={`${isDisliked && styles.active}`}><a><DislikeIcon/></a><p>{isDisliked && !data?.is_disliked ? Number(data?.disliked) + 1: data?.disliked}</p></div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            }
             {replyMode === data?.id &&
                 <div className={styles.reply}>
                     <img className={styles.avatar} src={AvatarDefault} alt=""></img>

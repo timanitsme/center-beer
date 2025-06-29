@@ -1,4 +1,4 @@
-import styles from "./Radio.module.css"
+import styles from "./Radio.module.scss"
 import {useEffect, useState} from "react";
 
 export default function Radio({title, options, onChange, reset, defaultOption, filterKey=""}){

@@ -1,5 +1,5 @@
 import {useRef} from "react";
-import styles from "./CardGallery.module.css";
+import styles from "./CardGallery.module.scss";
 import ArrowButton from "../Buttons/ArrowButton/ArrowButton.jsx";
 
 

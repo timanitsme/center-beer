@@ -1,0 +1,159 @@
+@use "../../../utils/partialStyles/_pxToRem.scss" as *;
+
+.menuSection{
+    display: flex;
+    flex-direction: column;
+}
+
+.loadMoreSection{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sectionHeader{
+    display: flex;
+    gap:rem(10);
+}
+
+.sectionDescriptionIcon {
+    width: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sectionDescriptionIcon svg{
+    height: 80%;
+    width: auto;
+    max-height: rem(80);
+}
+
+.sectionDescription{
+    max-width: 70%;
+    margin-right: rem(10);
+}
+
+.sectionButton{
+    max-width: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+}
+
+.appliedFiltersRow{
+    display: flex;
+    gap: rem(10);
+    margin: rem(15);
+    flex-wrap: wrap;
+}
+
+.sectionHeader p{
+    font-weight: 200;
+}
+
+.sectionContentWide{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, rem(400));
+    gap: rem(20);
+    padding: rem(15);
+    justify-content: center;
+    align-items: stretch;
+}
+
+.sectionContent{
+    display: grid;
+    justify-content: flex-start;
+    grid-template-columns: repeat(auto-fill, rem(270));
+    gap: rem(20);
+    padding: rem(15);
+    align-items: stretch;
+}
+
+
+@media (max-width: rem(1000)) {
+    .sectionHeader{
+        width: 100%;
+    }
+    .sectionDescription{
+        align-items: center;
+        justify-content: center;
+        display: flex;
+        flex: 1;
+    }
+
+    .sectionButton{
+        margin-right: rem(40);
+    }
+
+    .sectionDescription h2{
+        text-align: center;
+        align-self: center;
+    }
+    .sectionDescription p{
+        display: none;
+    }
+}
+
+@media (max-width: rem(900)) {
+    .sectionContentWide{
+        display: grid;
+        gap: rem(15);
+        padding: rem(15);
+        align-items: stretch;
+    }
+
+    .sectionContent{
+        grid-template-columns: rem(200) rem(200);
+    }
+}
+
+@media (max-width: rem(768)) {
+    .sectionDescriptionIcon{
+        display: none;
+    }
+
+    .sectionContent{
+        padding: rem(10) 0;
+    }
+
+    .sectionHeader{
+        flex-direction: column;
+        align-items: flex-start;
+        overflow: auto;
+    }
+
+    .sectionDescription{
+        margin-right: 0;
+        margin-left: rem(20);
+    }
+
+    .sectionDescription h2{
+        text-align: left;
+    }
+
+    .sectionButton{
+        margin-left: rem(60);
+    }
+
+}
+
+@media (max-width: rem(600)) {
+    .sectionContentWide{
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: rem(15);
+        padding: rem(15);
+        align-items: stretch;
+        align-content: center;
+        justify-items: center;
+    }
+}
+
+@media (max-width: rem(468)) {
+    .sectionContent{
+        grid-template-columns: 1fr 1fr;
+    }
+}

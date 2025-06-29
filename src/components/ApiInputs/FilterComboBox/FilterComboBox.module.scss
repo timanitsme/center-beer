@@ -1,0 +1,135 @@
+@use "../../../utils/partialStyles/_pxToRem.scss" as *;
+
+.comboBox {
+    position: relative;
+    min-width: rem(200);
+}
+
+.comboBox p{
+    text-transform: capitalize;
+}
+
+.comboBoxHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: rem(8) rem(12);
+    border-radius: rem(5) rem(5) 0 0;
+    cursor: pointer;
+    background-color: var(--third);
+}
+
+.comboBoxHeader.closed{
+    border-radius: rem(5) rem(5) rem(5) rem(5);
+}
+
+.comboBoxHeader p{
+    color: var(--primary);
+    font-family: Podkova, sans-serif;
+}
+
+.comboBoxHeader .arrow svg {
+    color: var(--primary);
+    transition: transform 0.3s ease;
+}
+
+.comboBoxHeader .arrow.open svg {
+    transform: rotate(180deg);
+}
+
+.comboBoxContainer {
+    display: flex;
+    flex-direction: column;
+    background: var(--section-bg);
+    border-radius: 0 0 rem(5) rem(5);
+}
+
+.searchField {
+    position: relative;
+    padding: rem(8);
+}
+
+.searchInput {
+    width: 100%;
+    padding: rem(8);
+    border-radius: rem(5);
+    color: var(--txt-active);
+    font-weight: 200;
+    border: none;
+    outline: none;
+    background: var(--selectable);
+}
+
+.searchIcon {
+    position: absolute;
+    right: rem(12);
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.searchIcon svg{
+    color: var(--txt-secondary);
+}
+
+.optionsList {
+    max-height: rem(150);
+    overflow-y: auto;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+}
+
+
+.optionsList{
+    scrollbar-width: thin;
+    scrollbar-color: var(--section-bg) var(--third);
+}
+
+.optionsList::-webkit-scrollbar {
+    width: rem(10);
+}
+
+.optionsList::-webkit-scrollbar-track {
+    background: var(--third);
+    border-radius: rem(5);
+}
+
+.optionsList::-webkit-scrollbar-thumb {
+    background: var(--section-bg);
+    border-radius: rem(10);
+    border: rem(2) solid var(--third);
+}
+
+.optionsList::-webkit-scrollbar-thumb:hover {
+    background: var(--fg);
+}
+
+
+.optionItem {
+    display: flex;
+    align-items: center;
+    padding: rem(8) rem(12);
+    cursor: pointer;
+}
+
+.optionItem p{
+    color: var(--txt-active);
+}
+
+
+.checkbox {
+    margin-right: rem(8);
+    color: transparent;
+}
+
+.checkbox.checked {
+    font-weight: 200;
+    color: #007bff;
+}
+
+@media (max-width: rem(1000)) {
+    .comboBox{
+        min-width: rem(150);
+    }
+}

@@ -1,4 +1,4 @@
-import styles from "./CurrentPromos.module.css"
+import styles from "./CurrentPromos.module.scss"
 import BeerMugsIcon from "../../assets/beer-mugs-icon.svg?react"
 import promo1 from "../../assets/promos/promo-1.svg"
 import promo2 from "../../assets/promos/promo-2.svg"

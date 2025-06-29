@@ -1,0 +1,100 @@
+@use "../../../utils/partialStyles/_pxToRem.scss" as *;
+
+.card{
+    display: flex;
+    flex-direction: column;
+    border: rem(2) solid var(--third);
+    padding: rem(15);
+    border-radius: rem(10);
+    gap: rem(10);
+}
+
+.card h3{
+    text-transform: none;
+    text-align: left;
+    color: var(--primary);
+    font-weight: 300;
+}
+
+.headerRow{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dateAndStatus{
+    display: flex;
+    align-items: center;
+    gap: rem(10);
+}
+
+.status{
+    background: var(--third);
+    padding: rem(3) rem(7);
+    border-radius: rem(15);
+}
+
+
+.status.delivered{
+    background: var(--primary);
+}
+
+.status.preparing{
+    background: var(--third);
+}
+
+.status.delivered p{
+    color: var(--bg);
+}
+
+.status.preparing p{
+    color: var(--primary);
+}
+
+
+.description{
+    width: 80%;
+    display: grid;
+    grid-template-columns: minmax(min-content, 25%) auto;
+}
+
+.p{
+    font-weight: 200;
+}
+
+.active{
+    color: var(--txt-active);
+}
+
+.itemsRow{
+    display: flex;
+    align-items: center;
+    gap: rem(10);
+}
+
+.imageWrapper{
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    width: rem(60);
+    height: 100%;
+    overflow: hidden;
+    border-radius: rem(5);
+}
+
+.imageWrapper img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: rem(5);
+}
+
+@media (max-width: rem(1000)) {
+    .description{
+        width: 100%;
+    }
+    .imageWrapper{
+        width: rem(40);
+    }
+}

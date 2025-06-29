@@ -1,0 +1,106 @@
+@use "../../utils/partialStyles/_pxToRem.scss" as *;
+
+.task{
+    background: var(--section-bg);
+    padding: rem(15);
+    border-radius: rem(10);
+    cursor: pointer;
+    scale: 0.99;
+}
+
+.task:hover{
+    scale: 1;
+    transition: 0.5s;
+}
+
+.wrap{
+    white-space: normal;
+    word-break: break-word;
+    overflow-wrap: break-word;
+}
+
+.title{
+    color: var(--txt-active);
+}
+
+.bottom{
+    display: flex;
+    gap: rem(35);
+    justify-content: space-between;
+}
+
+.row{
+    display: flex;
+    gap: rem(15);
+    align-items: center;
+}
+
+.col{
+    display: flex;
+    gap: rem(5);
+    align-items: center;
+}
+
+.col svg{
+    align-self: center;
+}
+
+.col p{
+    font-weight: 200;
+}
+
+
+.status{
+    background: var(--third);
+    padding: rem(5) rem(10);
+    border-radius: rem(5);
+}
+
+.status p{
+    font-weight: 400;
+    white-space: nowrap;
+    min-width: fit-content;
+}
+
+.fitA {
+    white-space: nowrap;
+    cursor: pointer;
+    min-width: fit-content;
+}
+
+.status.completed{
+    background: #CCFFCC;
+}
+
+.status.notCompleted p{
+    color: var(--primary);
+}
+
+.status.completed p{
+    color: #339966;
+}
+
+@keyframes highlight {
+    0% {
+        background-color: var(--third);
+    }
+    100% {
+        background-color: var(--section-bg);
+    }
+}
+
+.highlighted {
+    animation: highlight 2.5s ease-in-out;
+}
+
+@media (max-width: rem(600)){
+    .fit{
+        min-width: fit-content;
+    }
+    .row{
+        flex-direction: column;
+        gap: rem(5);
+        align-items: flex-start;
+    }
+}
+

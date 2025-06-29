@@ -1,6 +1,6 @@
 import {useEffect, useMemo, useState} from "react";
 import {useGetBeersFiltersQuery, useGetBeersQuery, useGetCitiesQuery} from "../../store/services/centerBeer.js";
-import styles from "./BarsCatalog.module.css";
+import styles from "./BarsCatalog.module.scss";
 import {isMobile} from "react-device-detect";
 import Search from "../ApiInputs/Search/Search.jsx";
 import FilterItem from "../ApiInputs/FilterItem/FilterItem.jsx";

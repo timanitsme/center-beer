@@ -397,4 +397,5 @@ export const { useGetBarsQuery, useGetBarInfoQuery, useGetBarsFiltersQuery,
     useLazyAddBeerToCuddyQuery, useLazyAddBeerToFavQuery, useLazyAddBarToCuddyQuery,
     useLazyAddBarToFavQuery, useGetUsersFavBarsQuery, useGetUsersCuddyBarsQuery,
     useGetUsersFavBeersQuery, useGetUsersCuddyBeersQuery, useGetUsersBalanceHistoryQuery, useGetNewsQuery,
-    useGetBeerCountriesQuery, useGetBeerStylesQuery, useGetNewsItemQuery, useGetNewsRelatedQuery} = centerBeerApi
+    useGetBeerCountriesQuery, useGetBeerStylesQuery, useGetNewsItemQuery, useGetNewsRelatedQuery,
+    useGetNewsCategoriesQuery} = centerBeerApi

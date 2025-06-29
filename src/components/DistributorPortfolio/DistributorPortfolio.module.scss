@@ -1,0 +1,24 @@
+@use "../../utils/partialStyles/_pxToRem.scss" as *;
+
+.portfolioSection{
+    margin: 0 rem(50) rem(50) rem(50);
+}
+
+.cardsContainer{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(rem(350), 1fr));
+    gap: rem(20);
+    padding: rem(20);
+}
+
+@media (max-width: rem(1000)) {
+    .portfolioSection{
+        margin: 0 rem(25) rem(25) rem(25);
+    }
+}
+
+@media (max-width: rem(900)) {
+    .cardsContainer{
+        grid-template-columns: repeat(auto-fit, minmax(rem(200), 1fr));
+    }
+}

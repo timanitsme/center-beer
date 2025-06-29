@@ -1,0 +1,51 @@
+@use "../../../utils/partialStyles/_pxToRem.scss" as *;
+
+.arrowButton{
+    background: var(--primary-semi-transparent);
+    border: none;
+    width: 5vw;
+    height: 5vw;
+    max-width: rem(50);
+    max-height: rem(50);
+    min-height: rem(20);
+    min-width: rem(20);
+    padding: 0.5vw;
+    border-radius: rem(9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: relative;
+}
+
+.buttonBackground {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--section-bg);
+    border-radius: rem(9);
+    z-index: -1;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .arrowButton:hover {
+        background: var(--primary);
+        transition: 0.5s;
+    }
+}
+
+.arrowButton svg{
+    width: 60%;
+    height: auto;
+    color: var(--bg);
+}
+
+@media (max-width: rem(500)) {
+    .arrowButton {
+        width: 7vw;
+        height: 7vw;
+        border-radius: rem(3);
+    }
+}

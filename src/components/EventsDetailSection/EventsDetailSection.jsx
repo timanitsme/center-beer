@@ -1,4 +1,4 @@
-import styles from "./EventsDetailSection.module.css"
+import styles from "./EventsDetailSection.module.scss"
 import {useState} from "react";
 import BlogImage1 from "../../assets/newsMocks/blog-image-1.svg";
 import BlogImage2 from "../../assets/newsMocks/blog-image-2.svg";

@@ -1,0 +1,25 @@
+@use "../../../utils/partialStyles/_pxToRem.scss" as *;
+
+.listContainer{
+    padding: rem(5);
+}
+
+.day{
+    display: grid;
+    grid-template-columns: rem(150) auto;
+    gap: rem(15);
+}
+
+.active{
+    color: var(--fg);
+}
+
+.current{
+    color: var(--primary);
+}
+
+.title{
+    font-family: "Podkova", sans-serif;
+    text-align: center;
+    padding-bottom: rem(5);
+}

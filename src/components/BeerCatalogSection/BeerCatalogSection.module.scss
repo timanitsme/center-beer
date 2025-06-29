@@ -1,0 +1,17 @@
+@use "../../utils/partialStyles/_pxToRem.scss" as *;
+
+.sectionContainer{
+    display: flex;
+    flex-direction: column;
+    gap: rem(10);
+}
+
+.header{
+    margin: 0 rem(50) 0 rem(50);
+}
+
+@media (max-width: rem(1000)) {
+    .header{
+        margin: 0 rem(25) 0 rem(25);
+    }
+}

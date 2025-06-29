@@ -1,0 +1,93 @@
+@use "../../utils/partialStyles/_pxToRem.scss" as *;
+
+.itemContainer{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: rem(10);
+}
+
+.mainImage{
+    align-self: center;
+    max-width: 80%;
+    border-radius: rem(5);
+}
+
+.quote{
+    display: flex;
+    gap: rem(15);
+    align-items: flex-start;
+    background: var(--section-bg);
+    padding: rem(15);
+    border-radius: rem(10);
+}
+
+.quote svg{
+    max-width: rem(45);
+    max-height: rem(45);
+}
+
+.quoteContent{
+    display: flex;
+    flex-direction: column;
+    gap: rem(10);
+}
+
+.source{
+    display: flex;
+    gap: rem(10);
+    background: var(--section-bg);
+    padding: rem(15);
+    border-radius: rem(10);
+}
+
+.tagsContainer{
+    display: flex;
+    gap: rem(10);
+}
+
+.tag{
+    background: var(--primary);
+    padding: rem(5) rem(15);
+    text-align: center;
+    text-transform: uppercase;
+    border-radius: rem(15);
+}
+
+.tag p{
+    color: var(--bg);
+}
+
+.itemContainer h2{
+    text-align: left;
+}
+
+.itemContainer h3{
+    text-align: left;
+}
+
+.itemContainer p, .itemContainer li{
+    font-weight: 200;
+    color: var(--txt-secondary);
+    list-style-position: inside;
+}
+
+.flex{
+    display: flex;
+    flex-direction: column;
+    gap: rem(10);
+}
+
+
+@media (max-width: rem(500)) {
+    .tagsContainer{
+        gap: rem(5);
+    }
+    .source{
+        padding: rem(10);
+    }
+
+    .tag{
+        padding: rem(5) rem(10);
+    }
+}

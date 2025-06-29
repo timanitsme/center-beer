@@ -1,4 +1,4 @@
-import styles from "./SimpleModal.module.css"
+import styles from "./SimpleModal.module.scss"
 import {useEffect, useState} from "react";
 import CloseIcon from "../../../assets/close-icon.svg?react"
 import EventImage from "../../../assets/eventsMocks/event-picture-3.svg"
@@ -23,7 +23,7 @@ export default function SimpleModal({show, setShow, children, title="", style={}
                     <div className={styles.modalHeader}>
                         {title && title.trim().length!==0 &&
                             <div className={styles.titleWrapper}>
-                                <h3 className={styles.title}>{title}</h3>
+                                <h5 className={styles.title}>{title}</h5>
                             </div>
                         }
                         <div onClick={() => setShow(false)}><CloseIcon/></div>

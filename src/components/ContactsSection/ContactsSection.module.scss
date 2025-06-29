@@ -1,0 +1,177 @@
+@use "../../utils/partialStyles/_pxToRem.scss" as *;
+
+.contactsSection{
+    display: flex;
+    flex-direction: column;
+    margin: 0 rem(50) 0 rem(50);
+}
+
+.contactsSection p{
+    font-weight: 200;
+}
+
+
+.section{
+    margin-top: rem(25);
+}
+
+.outlineTitle{
+    width: 100%;
+    text-align: left;
+    text-transform: uppercase;
+    color: transparent;
+    -webkit-text-stroke: rem(1) var(--third);
+}
+
+.title{
+    font-family: "Podkova", sans-serif;
+    color: var(--txt-active);
+    text-align: center;
+}
+
+.authContent{
+    background: var(--form-bg);
+    backdrop-filter: blur(rem(10));
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    align-self: center;
+    padding: rem(25) rem(40);
+    border-radius: rem(10);
+    gap: rem(15);
+}
+
+.formRow{
+    display: grid;
+    grid-template-columns: 30% 70%;
+    align-items: flex-start;
+    gap: rem(30);
+}
+
+.formRow h2{
+    text-align: left;
+    text-transform: none;
+}
+
+.col{
+    display: flex;
+    flex-direction: column;
+    gap: rem(15);
+}
+
+.center{
+    justify-content: center;
+    align-self: center;
+}
+
+.innerRow{
+    display: flex;
+    gap: rem(10);
+    align-items: center;
+}
+
+.dottedA{
+    font-weight: 200;
+    color: var(--txt-secondary);
+    text-decoration-line: underline;
+    text-decoration-style: dotted;
+    text-decoration-color: var(--txt-secondary);
+}
+
+.underline{
+    text-decoration-line: underline;
+}
+
+.formRow input{
+    width: rem(300);
+}
+
+.contactsRow{
+    display: flex;
+    flex-direction: row;
+    gap: rem(15);
+    justify-content: space-between;
+
+}
+
+.contactsRow h4{
+    text-align: left;
+    text-transform: none;
+    font-family: "Podkova", sans-serif;
+    color: var(--txt-active);
+}
+
+.contactsCol{
+    display: flex;
+    flex-direction: column;
+}
+
+.area{
+    background: var(--third);
+    font-weight: 200;
+    padding: rem(8) rem(15) rem(8) rem(8);
+    border-radius: rem(5);
+    border: none;
+    outline: none;
+    color: var(--txt-active);
+    resize: none;
+    height: rem(150) !important;
+    max-width: rem(700);
+}
+
+.row{
+    display: flex;
+    gap: rem(15);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .dottedA:hover{
+        color: var(--txt-active);
+        text-decoration-color: var(--txt-active);
+        transition: 0.5s;
+    }
+
+    .contactsRow h2:hover {
+        color: var(--primary);
+        cursor: pointer;
+        transition: 0.5s;
+    }
+}
+
+@media (max-width: rem(1000)) {
+    .contactsSection{
+        margin: 0 rem(25) 0 rem(25);
+    }
+}
+
+@media (max-width: rem(700)) {
+    .formRow{
+        grid-template-columns: 1fr 1fr;
+    }
+    .formRow input{
+        width: 100%;
+    }
+    .authContent{
+        padding: rem(15) rem(30);
+    }
+    .formRow{
+        gap: rem(10);
+    }
+}
+
+@media (max-width: rem(450)) {
+    .socials{
+        display: flex;
+        flex-direction: column;
+        gap: rem(5);
+        justify-content: center;
+    }
+
+    .socials h2{
+        text-align: center;
+    }
+    .row{
+        gap: rem(5);
+        align-self: center;
+    }
+}

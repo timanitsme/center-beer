@@ -1,0 +1,56 @@
+@use "../../utils/partialStyles/_pxToRem.scss" as *;
+
+.sectionContainer{
+    width: calc(100% - 50px);
+    display: flex;
+    flex-direction: column;
+    margin-right: rem(50);
+    gap: rem(10);
+}
+
+.sectionContainer h3{
+    text-align: left;
+    text-transform: none;
+}
+
+.cardsRow{
+    display: flex;
+    gap: rem(15);
+}
+
+.showMore{
+    border-radius: rem(10);
+    height: 100%;
+    background: var(--section-bg);
+    padding: rem(10);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.showMore p{
+    width: max-content;
+    text-align: center;
+    color: var(--fg);
+    font-weight: 200;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .showMore:hover {
+        background: var(--third);
+        transition: 0.5s;
+    }
+}
+
+@media (max-width: rem(1000)) {
+    .sectionContainer{
+        width: calc(100% - 50px);
+        display: flex;
+        flex-direction: column;
+        margin-right: rem(25);
+        margin-left: rem(25);
+        gap: rem(10);
+    }
+
+}

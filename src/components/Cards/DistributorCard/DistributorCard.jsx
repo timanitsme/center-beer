@@ -1,5 +1,5 @@
 import {useState} from "react";
-import styles from "./DistributorCard.module.css";
+import styles from "./DistributorCard.module.scss";
 import BookMarkIcon from "../../../assets/bookmark-unfill-icon.svg?react";
 import IconButton from "../../Buttons/IconButton/IconButton.jsx";
 import BottlesPairIcon from "../../../assets/bottles-pair-icon.svg?react";
@@ -28,8 +28,8 @@ export default function DistributorCard({cardInfo}){
                     <div className={styles.cardContent}>
                         <div className={styles.cardTop}>
                             <div className={styles.textContainer}>
-                                <p className={styles.cardTextPrimary} onClick={goToDistributorPage}>{cardInfo.title}</p>
-                                <p className={styles.textActive}>{cardInfo.address}</p>
+                                <h6 className={styles.cardTextPrimary} onClick={goToDistributorPage}>{cardInfo.title}</h6>
+                                <p className={`${styles.textActive} text-min`}>{cardInfo.address}</p>
                             </div>
                             <div>
                                 <a onClick={() => setCardBookmarked(!cardBookmarked)} className={`${styles.bookMarkButton} ${cardBookmarked && styles.added}`}><BookMarkIcon/></a>
@@ -38,7 +38,7 @@ export default function DistributorCard({cardInfo}){
                         <div className={`${styles.cardBottom} ${styles.pc}`}>
                             <div className={styles.productsRow}>
                                 {cardInfo.options.map((option, index) =>
-                                    <div key={index} className={styles.product}><p>{option}</p></div>
+                                    <div key={index} className={styles.product}><p className="text-small">{option}</p></div>
                                 )}
                             </div>
                             <a onClick={() => setCardFav(!cardFav)} className={`${styles.favButton} ${cardFav? styles.added : ''}`}><FavIcon/></a>
@@ -48,7 +48,7 @@ export default function DistributorCard({cardInfo}){
                 <div className={`${styles.cardBottom} ${styles.mobile}`}>
                     <div className={styles.productsRow}>
                         {cardInfo.options.map((option, index) =>
-                            <div key={index} className={styles.product}><p>{option}</p></div>
+                            <div key={index} className={styles.product}><p className="text-small">{option}</p></div>
                         )}
                     </div>
                     <a onClick={() => setCardFav(!cardFav)} className={`${styles.favButton} ${cardFav? styles.added : ''}`}><FavIcon/></a>

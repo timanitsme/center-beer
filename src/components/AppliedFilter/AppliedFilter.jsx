@@ -1,4 +1,4 @@
-import styles from "./AppliedFilter.module.css"
+import styles from "./AppliedFilter.module.scss"
 import CloseIcon from "../../assets/close-icon.svg?react"
 import LocationFilledIcon from "../../assets/location-filled-icon.svg?react"
 

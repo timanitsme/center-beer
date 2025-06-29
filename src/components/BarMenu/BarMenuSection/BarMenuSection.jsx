@@ -1,5 +1,5 @@
 import {Fragment, useEffect, useMemo, useState} from "react";
-import styles from "./BarMenuSection.module.css";
+import styles from "./BarMenuSection.module.scss";
 import {isMobile} from "react-device-detect";
 import FilterItem from "../../ApiInputs/FilterItem/FilterItem.jsx";
 import SimpleButton from "../../Buttons/SimpleButton/SimpleButton.jsx";

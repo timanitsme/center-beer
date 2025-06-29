@@ -1,0 +1,135 @@
+@use "../../../utils/partialStyles/_pxToRem.scss" as *;
+
+.card{
+    max-width: rem(500);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    animation: pulse 1.5s infinite ease-in-out;
+}
+
+.productCard{
+    padding: rem(20);
+    display: flex;
+    flex-direction: row;
+    border-radius: rem(10) rem(10) 0 0;
+    background: var(--section-bg);
+    gap: rem(10);
+    flex: 1;
+}
+
+.cardTop{
+    display: flex;
+    flex-direction: column;
+    gap: rem(5);
+    width: 100%;
+}
+
+.cardFooter{
+    background: rgba(39, 39, 39, 0.6);
+    display: flex;
+    justify-content: space-between;
+    border-radius: 0 0 rem(10) rem(10);
+    padding: rem(10);
+    align-items: center;
+}
+
+.cardFooterLeft{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: rem(10);
+    width: 50%;
+}
+
+.imgContainer{
+    position: relative;
+    display: inline-block;
+    width: rem(150);
+    aspect-ratio: 1 / 1;
+    border-radius: rem(5);
+    background: var(--third);
+    min-width: rem(150);
+}
+
+.bigCircle{
+    height: rem(30);
+    width: rem(30);
+    border-radius: 100%;
+    background: var(--third);
+    align-self: center;
+}
+
+.skeletonPrice {
+    width: 20%;
+    height: rem(20);
+    border-radius: rem(4);
+    background: var(--primary);
+}
+
+.skeletonBuyButton {
+    width: 30%;
+    height: rem(30);
+    border-radius: rem(5);
+    background: var(--primary);
+}
+
+.skeletonTextPrimary {
+    width: 75%;
+    height: rem(20);
+    margin-bottom: rem(10);
+    border-radius: rem(4);
+    background: var(--primary);
+}
+
+.skeletonTextSecondary {
+    width: 20%;
+    height: rem(16);
+    border-radius: rem(4);
+    background: var(--txt-secondary);
+}
+
+.skeletonTextActive {
+    width: 90%;
+    height: rem(16);
+    border-radius: rem(4);
+    background: var(--txt-active);
+    margin-bottom: rem(7);
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 0.6;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+@media (max-width: rem(900)) {
+    .productCard {
+        padding: rem(10);
+    }
+    .imgContainer{
+        width: rem(100);
+    }
+    .card{
+        max-width: rem(250);
+    }
+}
+
+@media (max-width: rem(768)) {
+    .productCard {
+        padding: rem(5);
+    }
+
+    .cardFooter{
+        padding: rem(5);
+    }
+}
+
+@media (max-width: rem(600)) {
+    .card{
+        max-width: 100%;
+    }
+}

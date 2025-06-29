@@ -1,0 +1,131 @@
+@use "../../utils/partialStyles/_pxToRem.scss" as *;
+
+.sectionContainer{
+    margin: 0 rem(50) rem(50) rem(50);
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+    gap: rem(10);
+}
+
+.titleContainer {
+    display: flex;
+    flex-direction: column;
+    gap: rem(5);
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    height: 0;
+}
+
+.titleContainer.show{
+    height: rem(200);
+    transition: height 1s linear;
+}
+
+.cardWrapper{
+    min-width: rem(200);
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+}
+
+
+.sectionContainer p{
+    font-weight: 200;
+}
+
+.cap svg{
+    max-width: rem(100);
+    height: fit-content;
+}
+
+.cap.show{
+    position: relative;
+}
+
+.cap{
+    position: absolute;
+}
+
+.bottle svg{
+    max-width: rem(220);
+    height: fit-content;
+}
+
+.cardContainer{
+    width: 80%;
+    display: flex;
+    gap: rem(20);
+    position: absolute;
+    bottom: 10%;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.cardContainer {
+    transform: translateX(-100%);
+    transition: transform 1s ease-in-out;
+}
+
+.cardContainer.show {
+    transform: translateX(0);
+}
+
+.videoCardContainer{
+    width: 100%;
+    display: flex;
+    gap: rem(20);
+    position: absolute;
+    bottom: 55%;
+    justify-content: center;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.videoCardContainer{
+    bottom: 50%;
+}
+
+.videoCardContainer {
+    transform: translateX(100%);
+    transition: transform 1s ease-in-out;
+}
+
+.videoCardContainer.show {
+    transform: translateX(0);
+}
+
+.textPrimary{
+    color: var(--primary);
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: 300;
+}
+
+@media (max-width: rem(1200)) {
+    .videoCardContainer{
+        width: 150%;
+    }
+    .cardContainer{
+        width: 120%;
+    }
+}
+
+
+@media (max-width: rem(1000)) {
+    .sectionContainer{
+        margin: 0 rem(25) rem(25) rem(25);
+    }
+}
+
+@media (max-width: rem(600)) {
+    .videoCardContainer{
+        width: 390%;
+    }
+    .cardContainer{
+        width: 320%;
+        bottom: 20%;
+    }
+}

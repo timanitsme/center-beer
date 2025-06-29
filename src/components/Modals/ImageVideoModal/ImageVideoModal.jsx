@@ -1,4 +1,4 @@
-import styles from "./ImageVideoModal.module.css"
+import styles from "./ImageVideoModal.module.scss"
 import SimpleModal from "../SimpleModal/SimpleModal.jsx";
 import ImagePlaceholder from "../../../assets/placeholders/card-image-placeholder.svg";
 import {useEffect, useRef} from "react";

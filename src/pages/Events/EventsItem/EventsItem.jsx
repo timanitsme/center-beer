@@ -1,4 +1,4 @@
-import styles from "./EventsItem.module.css"
+import styles from "./EventsItem.module.scss"
 import MCE from "../../../assets/eventsMocks/MCE.webp";
 import IconButton from "../../../components/Buttons/IconButton/IconButton.jsx";
 import LocationIcon from "../../../assets/location-filled-icon.svg?react"
@@ -9,8 +9,8 @@ export default function EventsItem({tags}){
 
     return(
         <div className={styles.itemContainer}>
-            <h2>Крафт, еда и музыка: фестиваль Moscow Craft Event — снова в столице 1 мая на площадке VK Stadium!</h2>
-            <p>28 апреля 2025</p>
+            <h2 className="ma-h2">Крафт, еда и музыка: фестиваль Moscow Craft Event — снова в столице 1 мая на площадке VK Stadium!</h2>
+            <p className="ma-p1">28 апреля 2025</p>
             <div className={styles.mapButtonContainer}>
                 <IconButton text="Карта фестиваля" onClick={() => navigate("/event-map/")}><LocationIcon/></IconButton>
             </div>
@@ -23,7 +23,7 @@ export default function EventsItem({tags}){
                     <div key={index} className={styles.tag}><p>{tag}</p></div>
                 )}
             </div>
-            <div className={styles.source}><p>Источник: </p><a href="https://mskcraftevent.ru/">Moscow Craft Event</a></div>
+            <div className={`${styles.source} ma-p1`}><p>Источник: </p><a href="https://mskcraftevent.ru/">Moscow Craft Event</a></div>
         </div>
     )
 }

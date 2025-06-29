@@ -1,5 +1,5 @@
 import {useState} from "react";
-import styles from "./StrongAlcoCard.module.css";
+import styles from "./StrongAlcoCard.module.scss";
 import BookMarkIcon from "../../../assets/bookmark-unfill-icon.svg?react";
 import BottleIcon from "../../../assets/bottle-icon.svg?react";
 import FavIcon from "../../../assets/fav-unfill-icon.svg?react";

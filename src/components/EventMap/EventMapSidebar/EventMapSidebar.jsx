@@ -1,4 +1,4 @@
-import styles from "./EventMapSidebar.module.css"
+import styles from "./EventMapSidebar.module.scss"
 import {useRef, useState} from "react";
 import CloseIcon from "../../../assets/close-icon.svg?react"
 import BreweryCard from "../../Cards/BreweryCard/BreweryCard.jsx";
@@ -51,7 +51,7 @@ export default function EventMapSidebar({selectedMarker, setSelectedMarker, brew
                             <img src={brewery?.brewery_logo} alt=""/>
                         </div>
                         <div className={styles.description}>
-                            <p className={styles.title} dangerouslySetInnerHTML={{__html: brewery.brewery_name}}></p>
+                            <h6 className={styles.title} dangerouslySetInnerHTML={{__html: brewery.brewery_name}}></h6>
                         </div>
                         <div className={styles.toBrew}>
                             <FaChevronRight/>

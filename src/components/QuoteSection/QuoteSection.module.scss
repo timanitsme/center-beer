@@ -1,0 +1,53 @@
+@use "../../utils/partialStyles/_pxToRem.scss" as *;
+
+.quoteSection{
+    margin: 0 rem(50) rem(50) rem(50);
+    background: var(--bg);
+    display: flex;
+    flex-direction: column;
+}
+
+.quoteSection h3{
+    text-align: left;
+}
+
+.quoteSection h1{
+    width: 100%;
+    text-align: right;
+    text-transform: uppercase;
+    color: transparent;
+    -webkit-text-stroke: rem(1) var(--third);
+}
+
+.quoteSection p{
+    font-weight: 200;
+}
+
+.quoteContainer{
+    display: flex;
+    gap: rem(15);
+    background: var(--section-bg);
+    border-radius: rem(10);
+    padding: rem(20);
+    align-items: center;
+}
+
+.quoteContainer svg{
+    max-width: rem(80);
+    max-height: fit-content;
+    margin-top: rem(-100);
+}
+
+.quoteDescription{
+    display: flex;
+    flex-direction: column;
+    gap: rem(15);
+}
+
+
+@media (max-width: rem(1000)) {
+    .quoteSection{
+        margin: 0 rem(25) rem(25) rem(25);
+    }
+}
+

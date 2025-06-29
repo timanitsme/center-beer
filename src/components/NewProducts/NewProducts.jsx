@@ -1,4 +1,4 @@
-import styles from "./NewProducts.module.css"
+import styles from "./NewProducts.module.scss"
 import ComponentHeader from "../ComponentHeader/ComponentHeader.jsx";
 import FlagsIcon from "../../assets/flags-icon.svg?react"
 import PicturesList from "../PicturesList/PicturesList.jsx";

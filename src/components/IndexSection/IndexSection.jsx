@@ -1,4 +1,4 @@
-import styles from "./IndexSection.module.css"
+import styles from "./IndexSection.module.scss"
 import SimpleButton from "../Buttons/SimpleButton/SimpleButton.jsx";
 import Cap from "../../assets/cap.svg?react"
 import NoCapBottle from "../../assets/bottle-no-cap.svg?react"

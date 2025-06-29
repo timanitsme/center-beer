@@ -1,4 +1,4 @@
-import styles from "./BugReportSection.module.css"
+import styles from "./BugReportSection.module.scss"
 import TextInput from "../Inputs/TextInput/TextInput.jsx";
 import PasswordInput from "../Inputs/PasswordInput/PasswordInput.jsx";
 import SimpleButton from "../Buttons/SimpleButton/SimpleButton.jsx";
@@ -14,11 +14,11 @@ export default function BugReportSection(){
     return(
         <>
             <div className={styles.formSection}>
-                <h1 className={styles.outlineTitle}>Сообщите об ошибке</h1>
+                <h1 className={`${styles.outlineTitle} text-large`}>Сообщите об ошибке</h1>
                 <form onSubmit={() => {}}>
                     <div className={styles.authContent}>
                         <div className={styles.formRow}>
-                            <p>Email</p>
+                            <p className="ma-p1">Email</p>
                             <TextInput
                                 placeholder="Адрес электронной почты"
                                 inputValue={email}
@@ -26,7 +26,7 @@ export default function BugReportSection(){
                             ></TextInput>
                         </div>
                         <div className={styles.formRow}>
-                            <p>Опишите найденную ошибку</p>
+                            <p className="ma-p1">Опишите найденную ошибку</p>
                             <TextInput
                                 placeholder="Краткое описание проблемы"
                                 inputValue={brief}
@@ -34,13 +34,12 @@ export default function BugReportSection(){
                             ></TextInput>
                         </div>
                         <div className={styles.formRow}>
-                            <p>Шаги</p>
-                            <textarea type="text" placeholder="Опишите шаги для воспроизведения проблемы">
-
+                            <p className="ma-p1">Шаги</p>
+                            <textarea type="text" className="ma-p" placeholder="Опишите шаги для воспроизведения проблемы">
                             </textarea>
                         </div>
                         <div className={styles.formRow}>
-                            <p>Скриншоты</p>
+                            <p className="ma-p1">Скриншоты</p>
                             <div></div>
                         </div>
 

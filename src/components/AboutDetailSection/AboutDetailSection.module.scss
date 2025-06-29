@@ -1,0 +1,180 @@
+@use "../../utils/partialStyles/_pxToRem.scss" as *;
+
+.sectionContainer{
+    margin: 0 rem(50) rem(50) rem(50);
+    display: flex;
+    background: var(--bg);
+}
+
+.sectionContainer h2{
+    text-align: left;
+}
+
+.sectionContainer h3{
+    text-align: left;
+}
+
+.sectionContainer p{
+    font-weight: 200;
+}
+
+.sectionMenu{
+    display: flex;
+    flex-direction: column;
+    gap: rem(20);
+    padding: 0 rem(20) 0 0;
+    min-width: fit-content;
+}
+
+.menuItemsContainer{
+    display: flex;
+    flex-direction: column;
+    gap: rem(5);
+}
+
+.menuItemsContainer a{
+    font-weight: 200;
+}
+
+.section{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.sectionHeader{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.sectionNav, .sectionButtons{
+    display: flex;
+    gap: rem(10);
+    padding: 0 rem(10);
+    align-items: center;
+}
+
+.sectionNav svg{
+    fill: var(--primary)
+}
+
+.sectionContent{
+    display: flex;
+    gap: rem(15);
+}
+
+.contentMain{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: rem(10);
+}
+
+.contentSide{
+    padding: rem(20) rem(10);
+    display: flex;
+    flex-direction: column;
+    max-width: 20%;
+    gap: rem(10);
+}
+
+.sideButtons{
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+
+
+.aIconButton{
+    display: flex;
+    gap: rem(5);
+    align-items: center;
+    color: var(--txt-secondary);
+}
+
+.aIconButton span{
+    font-family: Podkova, sans-serif;
+}
+
+.aIconButton svg{
+    color: var(--primary);
+}
+
+.aIconButton.added svg{
+    fill: var(--icon-added);
+    color: var(--icon-added);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .aIconButton:hover {
+        color: var(--txt-primary);
+    }
+}
+
+.blogCard{
+    padding: rem(10);
+    border-radius: rem(10);
+    display: flex;
+    flex-direction: column;
+    background: var(--section-bg);
+    gap: rem(10);
+}
+
+.cardTextPrimary{
+    font-family: Podkova, sans-serif;
+    font-weight: initial;
+    color: var(--primary);
+}
+
+.cardTextPrimary, .cardDescription{
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.cardTextPrimary{
+    -webkit-line-clamp: 2;
+    cursor: pointer;
+}
+
+.cardDescription{
+    -webkit-line-clamp: 3;
+}
+
+.cardImg{
+    border-radius: rem(5);
+    cursor: pointer;
+}
+
+
+@media (max-width: rem(1000)) {
+    .sectionContainer{
+        margin: 0 rem(25) rem(25) rem(25);
+    }
+
+    .sectionNav a svg{
+        max-width: rem(16);
+        max-height: rem(16);
+    }
+
+}
+
+@media (max-width: rem(900)) {
+    .contentSide{
+        display: none;
+    }
+}
+
+@media (max-width: rem(700)) {
+    .aIconButton span{
+        display: none;
+    }
+}
+
+@media (max-width: rem(500)) {
+    .sectionMenu{
+        display: none;
+    }
+}

@@ -1,0 +1,103 @@
+@use "../../utils/partialStyles/_pxToRem.scss" as *;
+
+.partnersSection{
+    margin: 0 rem(50) rem(50) rem(50);
+    display: flex;
+    flex-direction: column;
+    gap: rem(15);
+}
+
+.postsSection{
+    background: var(--bg);
+    display: flex;
+    flex-direction: column;
+}
+
+.postsSection h1{
+    width: 100%;
+    text-align: left;
+    text-transform: uppercase;
+    color: transparent;
+    -webkit-text-stroke: rem(1) var(--third);
+}
+
+.postsContainer{
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    justify-content: center;
+    align-items: stretch;
+}
+
+
+.active{
+    color: var(--txt-active);
+}
+
+.header{
+    text-transform: none;
+    text-align: left;
+    width: max-content;
+}
+
+.textSection{
+    display: flex;
+    flex-direction: column;
+    gap: rem(10);
+    width: calc(80vw + 30px);
+    align-self: center;
+}
+
+.descriptionRow{
+    display: flex;
+    gap: rem(20);
+    justify-content: space-between;
+}
+
+.advantage{
+    display: flex;
+    flex-direction: column;
+    gap: rem(5);
+
+}
+
+.advantage p{
+    min-width: rem(100);
+    color: var(--txt-active);
+}
+
+.advantage svg{
+    color: var(--primary);
+    height: rem(30);
+    width: fit-content;
+}
+
+.mainAdvantage{
+    width: min-content;
+}
+
+.advantagesRow{
+    margin-left: rem(15);
+    display: flex;
+    gap: rem(10);
+    width: 100%;
+    justify-content: space-between;
+    
+}
+
+@media (max-width: rem(1000)) {
+    .partnersSection{
+        margin: 0 rem(25) rem(25) rem(25);
+    }
+    .advantage svg{
+        height: rem(20);
+    }
+}
+
+@media (max-width: rem(700)) {
+    .descriptionRow{
+        flex-direction: column;
+    }
+    .advantagesRow{
+        margin-left: 0;
+    }
+}

@@ -1,4 +1,4 @@
-import styles from "./QuoteSection.module.css"
+import styles from "./QuoteSection.module.scss"
 import QuoteIcon from "../../assets/quote-icon.svg?react"
 
 export default function QuoteSection(){

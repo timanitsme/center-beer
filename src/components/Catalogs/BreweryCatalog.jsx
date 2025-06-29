@@ -1,5 +1,5 @@
 import {useEffect, useMemo, useState} from "react";
-import styles from "./BarsCatalog.module.css";
+import styles from "./BarsCatalog.module.scss";
 import Search from "../Inputs/Search/Search.jsx";
 import SimpleButton from "../Buttons/SimpleButton/SimpleButton.jsx";
 import AppliedFilter from "../AppliedFilter/AppliedFilter.jsx";
@@ -322,8 +322,8 @@ export default function BreweryCatalog({filters = [], filterButtons = [], sectio
         <div className={styles.menuContainer}>
             <div className={styles.menuHeader}>
                 <div>
-                    <h2>Каталог пивоварен</h2>
-                    <p>Собрали для вас список лучших пивоварен, где можно не только насладиться свежесваренным пивом, приготовленным на месте, но и узнать процесс его создания. Здесь вы найдете разнообразные закуски и уютную атмосферу. От традиционных пивоварен до современных крафтовых мастерских — каждый сможет найти место, которое придется по душе.</p>
+                    <h2 className="ma-h2">Каталог пивоварен</h2>
+                    <p className="ma-p">Собрали для вас список лучших пивоварен, где можно не только насладиться свежесваренным пивом, приготовленным на месте, но и узнать процесс его создания. Здесь вы найдете разнообразные закуски и уютную атмосферу. От традиционных пивоварен до современных крафтовых мастерских — каждый сможет найти место, которое придется по душе.</p>
                 </div>
             </div>
             <div className={styles.menuContent}>

@@ -1,4 +1,4 @@
-import styles from "./CheckBoxSection.module.css";
+import styles from "./CheckBoxSection.module.scss";
 import CheckBox from "../CheckBox/CheckBox.jsx";
 import {useEffect, useState} from "react";
 

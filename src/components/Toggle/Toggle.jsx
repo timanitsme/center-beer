@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react'
-import styles from "./Toggle.module.css"
+import styles from "./Toggle.module.scss"
 
 export default function Toggle( {label, toggled, onClick, reset}) {
     const [isToggled, toggle] = useState(toggled)

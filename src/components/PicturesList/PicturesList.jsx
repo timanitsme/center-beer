@@ -1,4 +1,4 @@
-import styles from "./PicturesList.module.css"
+import styles from "./PicturesList.module.scss"
 import ArrowButton from "../Buttons/ArrowButton/ArrowButton.jsx";
 import {useState} from "react";
 import ReviewSection from "../../assets/reviewsMocks/review-section.svg";

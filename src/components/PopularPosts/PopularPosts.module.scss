@@ -1,0 +1,40 @@
+@use "../../utils/partialStyles/_pxToRem.scss" as *;
+
+.postsSection{
+    margin: 0 rem(50) rem(50) rem(50);
+    background: var(--bg);
+    display: flex;
+    flex-direction: column;
+}
+
+.postsHeader{
+    display: flex;
+    gap: rem(15);
+    justify-content: space-between;
+}
+
+.postsSection h1{
+    width: 100%;
+    text-align: left;
+    text-transform: uppercase;
+    color: transparent;
+    -webkit-text-stroke: rem(1) var(--third);
+}
+
+.buttonContainer{
+    width: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.postsContainer{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+@media (max-width: rem(1000)) {
+    .postsSection{
+        margin: 0 rem(25) rem(25) rem(25);
+    }
+}

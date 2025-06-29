@@ -1,4 +1,4 @@
-import styles from "./BottledBeerCardSkeleton.module.css"
+import styles from "./BottledBeerCardSkeleton.module.scss"
 
 export default function BottledBeerCardSkeleton() {
     return (

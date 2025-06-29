@@ -1,0 +1,234 @@
+@use "../../../utils/partialStyles/_pxToRem.scss" as *;
+
+.barInfoContainer{
+    margin: 0 rem(50) rem(50) rem(50);
+    display: flex;
+    gap: rem(10);
+}
+
+.barIcons{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: rem(10)
+}
+
+.socials{
+    background: rgba(39, 39, 39, 0.5);
+    width: rem(45);
+    border-radius: rem(50);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: rem(10);
+    padding: rem(20) rem(10);
+}
+
+.barDescription{
+    display: flex;
+    flex-direction: column;
+    gap: rem(10);
+    max-width: 60%;
+}
+
+.barInfo h2{
+    width: 100%;
+    text-align: left;
+    text-transform: uppercase;
+}
+
+.barDescription h2{
+    text-align: left;
+    text-transform: uppercase;
+}
+
+.barDescription p, .ratingAndComments p, .barInfo p{
+    font-weight: 300;
+}
+
+.barButtons{
+    display: flex;
+    flex-wrap: wrap;
+    gap: rem(10);
+}
+
+.barButtonsMobile{
+    display: none;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: rem(10);
+    justify-content: center;
+    margin: 0 rem(25) rem(25) rem(25);
+}
+
+.bigCircle{
+    height: rem(5);
+    width: rem(5);
+    border-radius: 100%;
+}
+
+.red{
+    background-color: var(--icon-added);
+}
+
+.green{
+    background-color: #2AC02A;
+}
+
+.descriptionRow{
+    width: 100%;
+    display: flex;
+    gap: rem(5);
+}
+
+.openedSection{
+    align-self: flex-start;
+    display: flex;
+    align-items: center;
+    gap: rem(5);
+}
+
+.barInfo{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    width: 40%;
+    gap: rem(10);
+    margin-left: auto;
+}
+
+.barInfo div{
+    display: flex;
+    gap: rem(10);
+}
+
+.aIconButton{
+    display: flex;
+    gap: rem(5);
+    align-items: center;
+    color: var(--txt-secondary);
+    font-family: Podkova, sans-serif;
+}
+
+.aUnderlinedIconButton{
+    display: flex;
+    gap: rem(5);
+    align-items: center;
+    color: var(--txt-primary);
+    font-family: Podkova, sans-serif;
+    text-decoration-line: underline;
+    text-decoration-style: dotted;
+    text-decoration-color: var(--txt-primary);
+}
+
+.logoImg{
+    max-width: rem(119);
+}
+
+.circle{
+    width: rem(4);
+    height: rem(4);
+    background: var(--primary);
+    border-radius: 100%;
+}
+
+.ratingAndComments{
+    display: flex;
+    align-items: center;
+}
+
+.beerBottles{
+    display: flex;
+    gap: rem(5) !important;
+}
+
+.beerBottles svg{
+    cursor: initial !important;
+}
+
+.aIconButton svg{
+    color: var(--primary);
+}
+
+.aIconButton.added svg{
+    fill: var(--icon-added);
+    color: var(--icon-added);
+}
+
+.barInfo h2{
+    text-align: right;
+    align-self: flex-end;
+}
+
+.barInfo.mobile{
+    background: var(--bg);
+    box-sizing: border-box;
+    width: max-content;
+    padding: rem(10);
+    border-radius: rem(10);
+    margin: 0 auto;
+    display: none;
+    align-self: center;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .aIconButton:hover{
+        color: var(--txt-primary);
+    }
+
+    .aUnderlinedIconButton:hover {
+        color: var(--primary);
+        text-decoration-color: var(--primary);
+        transition: 0.5s;
+    }
+}
+
+@media (max-width: rem(1000)) {
+    .socials{
+        display: none;
+    }
+
+    .barInfo.regular{
+        display: none;
+    }
+    .barInfoContainer{
+        margin: 0 rem(25) rem(25) rem(25);
+    }
+    .barIcons svg{
+        max-width: rem(50);
+        max-height: rem(50);
+        vertical-align: top;
+    }
+    .logoImg{
+        max-width: rem(70);
+        max-height: rem(70);
+        vertical-align: top;
+    }
+
+    .barDescription{
+        max-width: 100%;
+    }
+    .barInfo.mobile{
+        display: flex;
+        margin-right: rem(25);
+        margin-bottom: rem(10);
+    }
+}
+
+@media (max-width: rem(768)) {
+    .barButtonsMobile{
+        display: flex;
+        margin-bottom: rem(25);
+    }
+    .barButtons{
+        display: none;
+    }
+    .barInfoContainer{
+        margin-bottom: rem(10);
+    }
+}
+
+@media (max-width: rem(600)) {
+    .barInfo.mobile{
+    }
+}

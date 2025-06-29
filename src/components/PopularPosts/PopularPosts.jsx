@@ -1,4 +1,4 @@
-import styles from "./PopularPosts.module.css"
+import styles from "./PopularPosts.module.scss"
 import RoundLinkButton from "../Buttons/RoundLinkButton/RoundLinkButton.jsx";
 import PostImage1 from "../../assets/postsMocks/post-image-1.svg"
 import PostImage2 from "../../assets/postsMocks/post-image-2.svg"
@@ -19,7 +19,7 @@ export default function PopularPosts(){
     return(
         <div className={styles.postsSection}>
             <div className={styles.postsHeader}>
-                <h1>Популярные статьи</h1>
+                <h1 className="text-big">Популярные статьи</h1>
                 <div className={styles.buttonContainer}><RoundLinkButton text="Все статьи" onClick={() => navigate("/news")}/></div>
             </div>
             <div className={styles.postsContainer}>

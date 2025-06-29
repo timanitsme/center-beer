@@ -1,4 +1,4 @@
-import styles from "./BarMenuContainer.module.css";
+import styles from "./BarMenuContainer.module.scss";
 import AlcoBottleIcon from "../../../assets/alco-bottle-icon.svg?react";
 import IconButton from "../../Buttons/IconButton/IconButton.jsx";
 import BarMenuSection from "../BarMenuSection/BarMenuSection.jsx";

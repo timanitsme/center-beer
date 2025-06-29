@@ -1,4 +1,4 @@
-import styles from "./DraftBeerCard.module.css"
+import styles from "./DraftBeerCard.module.scss"
 import BookMarkIcon from "../../../assets/bookmark-unfill-icon.svg?react";
 import IconButton from "../../Buttons/IconButton/IconButton.jsx";
 import BottlesPairIcon from "../../../assets/bottles-pair-icon.svg?react";

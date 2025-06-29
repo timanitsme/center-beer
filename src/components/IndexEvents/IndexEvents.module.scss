@@ -1,0 +1,156 @@
+@use "../../utils/partialStyles/_pxToRem.scss" as *;
+
+.eventsSection{
+    margin: 0 0 rem(50) rem(50);
+    display: flex;
+    flex-direction: column;
+    gap: rem(10);
+}
+
+.eventsSection h1{
+    text-align: left;
+}
+
+.eventsContainer{
+    display: flex;
+    flex-direction: column;
+    gap: rem(10);
+}
+
+.eventsButtons{
+    display: flex;
+    flex-direction: row;
+    gap: rem(10);
+}
+
+.eventsPictures{
+    display: flex;
+    gap: rem(10);
+    overflow: hidden;
+}
+
+.eventsPictures img{
+    max-height: rem(450);
+}
+
+.eventCard{
+    background: var(--section-bg);
+    padding: rem(20);
+    border-radius: rem(10);
+}
+
+.eventCard p{
+    font-weight: 200;
+}
+
+.eventCard h3{
+    text-align: left;
+    color: var(--primary)
+}
+
+.buttonsRow{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-right: rem(50);
+}
+
+.datesSection{
+    background: var(--section-bg);
+    padding: rem(15);
+    border-radius: rem(10);
+    display: flex;
+    justify-content: space-between;
+    margin-right: rem(50);
+    align-items: center;
+}
+
+.scrollButton svg{
+    color: var(--fg);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .scrollButton:hover svg {
+        color: var(--primary);
+        transition: 0.5s;
+    }
+}
+
+.datesContainer{
+    display: flex;
+    gap: rem(30);
+    flex: 1;
+    margin: 0 rem(20);
+    overflow-x: auto; /* Включаем горизонтальную прокрутку */
+    scroll-behavior: smooth; /* Плавная прокрутка */
+    scrollbar-width: none; /* Скрываем полосу прокрутки в Firefox */
+}
+
+.month{
+    display: flex;
+    flex-direction: column;
+    gap: rem(10);
+}
+
+.days{
+    display: flex;
+    gap: rem(10);
+}
+
+.day{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+}
+
+.day.active p{
+    color: var(--fg);
+}
+
+.day .circle{
+    background: var(--section-bg);
+    width: rem(5);
+    height: rem(5);
+    border-radius: rem(25);
+    align-self: flex-end;
+}
+
+.day.active .circle{
+    background: var(--primary);
+}
+
+
+
+@media (max-width: rem(500)) {
+
+    .eventsPictures img{
+        max-height: initial;
+        max-width: rem(300);
+    }
+}
+
+@media (max-width: rem(768)) {
+
+    .eventsPictures img{
+        max-height: initial;
+        max-width: rem(300);
+    }
+}
+
+@media (max-width: rem(1000)) {
+    .datesContainer {
+        gap: rem(20);
+        margin: 0 rem(10);
+    }
+    .datesSection{
+        margin-right: 0;
+    }
+    .eventsSection{
+        margin: 0 rem(25) rem(25) rem(25);
+    }
+    .buttonsRow{
+        margin-right: rem(25);
+    }
+}
+

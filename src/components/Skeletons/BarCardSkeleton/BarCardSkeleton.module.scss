@@ -1,0 +1,117 @@
+@use "../../../utils/partialStyles/_pxToRem.scss" as *;
+
+.card{
+    max-width: rem(270);
+    display: flex;
+    flex-direction: column;
+}
+
+.skeletonTextPrimary {
+    width: 75%;
+    height: rem(20);
+    margin-bottom: rem(10);
+    border-radius: rem(4);
+    background: var(--primary);
+}
+
+.skeletonBill {
+    width: 20%;
+    height: rem(20);
+    margin-bottom: rem(10);
+    border-radius: rem(4);
+    background: var(--txt-secondary);
+}
+
+.skeletonRating, .skeletonComment {
+    width: rem(35);
+    height: rem(20);
+    border-radius: rem(4);
+}
+
+.skeletonRating{
+    background: var(--txt-active);
+}
+
+.skeletonComment{
+    background: var(--txt-secondary);
+}
+
+.skeletonTextSecondary {
+    width: 60%;
+    height: rem(16);
+    border-radius: rem(4);
+    background: var(--txt-secondary);
+}
+
+.bottledBeerCard{
+    padding: rem(20);
+    display: flex;
+    flex-direction: column;
+    border-radius: rem(10);
+    background: var(--section-bg);
+    gap: rem(10);
+    flex: 1;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+    animation: pulse 1.5s infinite ease-in-out;
+}
+
+.skeletonImage {
+    width: 100%;
+    aspect-ratio: 1.5 / 1;
+    border-radius: rem(5);
+    background: var(--third);
+}
+
+.characteristics{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+}
+
+.characteristics div{
+    display: flex;
+    gap: rem(5);
+    align-items: center;
+}
+
+.bigCircle{
+    height: rem(10);
+    width: rem(10);
+    border-radius: 100%;
+    background: var(--primary);
+    align-self: center;
+
+}
+
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 0.6;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+@media (max-width: rem(900)) {
+    .bottledBeerCard{
+        padding: rem(10);
+    }
+    .card{
+        max-width: rem(200);
+    }
+
+}
+
+@media (max-width: rem(768)) {
+    .bottledBeerCard {
+        padding: rem(5);
+    }
+
+    .cardFooter {
+        padding: rem(5);
+    }
+}

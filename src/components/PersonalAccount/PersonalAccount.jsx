@@ -1,4 +1,4 @@
-import styles from "./PersonalAccount.module.css"
+import styles from "./PersonalAccount.module.scss"
 import AvatarMock from "../../assets/avatar-default.svg"
 import {MdPhotoCamera} from "react-icons/md";
 import {RiCopperCoinFill} from "react-icons/ri";

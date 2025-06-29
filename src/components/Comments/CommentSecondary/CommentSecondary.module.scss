@@ -1,0 +1,156 @@
+@use "../../../utils/partialStyles/_pxToRem.scss" as *;
+
+.comment{
+    display: flex;
+    gap: rem(10);
+}
+
+.avatar{
+    max-width: rem(100);
+    max-height: rem(100);
+}
+
+.commentHeader{
+    display: flex;
+    justify-content: space-between;
+}
+
+.commentHeader p{
+    color: var(--txt-active);
+}
+
+.pHeader{
+    font-family: Podkova, sans-serif;
+    color: var(--txt-active);
+}
+
+.dateAndBottles{
+    display: flex;
+    gap: rem(10);
+}
+
+.beerBottles{
+    display: flex;
+    align-items: center;
+    gap: rem(5) !important;
+}
+
+.beerBottles svg{
+    cursor: initial !important;
+}
+
+.commentPhotos{
+    margin-top: rem(10);
+    display: flex;
+    gap: rem(10);
+}
+
+.imageWrapper{
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    min-width: 30%;
+    aspect-ratio: 1/1;
+    overflow: hidden;
+    border-radius: rem(5);
+}
+
+.imageWrapper.photos{
+    width: rem(85);
+}
+
+.imageWrapper img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: rem(5);
+}
+
+.commentButtons{
+    margin-top: rem(10);
+    display: flex;
+    align-items: center;
+    gap: rem(10);
+}
+
+.mark{
+    background: var(--section-bg);
+    display: flex;
+    width: min-content;
+    padding: rem(7) rem(10);
+    border-radius: rem(25);
+    gap: rem(10);
+    justify-content: center;
+}
+
+.mark .active svg{
+    color: var(--txt-active);
+}
+
+.markRight{
+    display: flex;
+    gap:rem(10);
+}
+
+.mark div svg{
+    color: var(--txt-secondary);
+}
+
+.mark div{
+    display: flex;
+    align-items: center;
+    gap: rem(5);
+}
+
+.aComment{
+    color: var(--primary);
+}
+
+.comment p{
+    font-weight: 200;
+}
+
+.contentRow{
+    display: flex;
+    gap: rem(15);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .mark div svg:hover{
+        color: var(--txt-active);
+    }
+
+    .aComment:hover{
+        color: var(--primary-semi-transparent);
+    }
+}
+
+@media (max-width: rem(1300)) {
+    .minBottles svg{
+        max-height: rem(10);
+    }
+    .minBottles{
+        gap: rem(2) !important;
+    }
+}
+
+@media (max-width: rem(1000)) {
+    .avatar{
+        max-width: rem(35);
+        max-height: rem(35);
+    }
+    .mark div svg{
+        max-height: rem(15);
+        max-width: rem(15);
+    }
+
+}
+
+
+@media (max-width: rem(368)) {
+    .markRight{
+        flex-direction: column;
+        gap: initial;
+    }
+}

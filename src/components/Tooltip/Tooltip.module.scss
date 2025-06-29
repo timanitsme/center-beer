@@ -1,0 +1,35 @@
+@use "../../utils/partialStyles/_pxToRem.scss" as *;
+
+.tooltipContainer {
+    position: relative;
+    display: flex;
+    width: fit-content;
+    height: fit-content;
+}
+
+.tooltipText {
+    visibility: hidden;
+    background-color: var(--third);
+    color: var(--txt-active);
+    text-align: center;
+    border-radius: rem(5);
+    padding: rem(5);
+    position: absolute;
+    z-index: 500;
+    top: 50%;
+    left: 150%;
+    transform: translatey(-50%);
+    white-space: nowrap;
+    opacity: 0;
+    font-weight: 200;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.tooltipContainer:hover .tooltipText {
+    visibility: visible;
+    opacity: 1;
+}

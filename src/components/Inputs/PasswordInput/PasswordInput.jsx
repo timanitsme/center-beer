@@ -1,4 +1,4 @@
-import styles from "./PasswordInput.module.css"
+import styles from "./PasswordInput.module.scss"
 import {useState} from "react";
 import {FiEye, FiEyeOff} from "react-icons/fi";
 
@@ -21,7 +21,7 @@ export default function PasswordInput({inputValue, setInputValue, placeholder=""
                 value={inputValue}
                 onChange={handleInput}
                 placeholder={placeholder}
-                className={styles.textInput}
+                className={`${styles.textInput} ma-p`}
             />
 
 

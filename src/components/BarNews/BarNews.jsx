@@ -1,4 +1,4 @@
-import styles from "./BarNews.module.css"
+import styles from "./BarNews.module.scss"
 import BeerCalendarIcon from "../../assets/beer-calendar-icon.svg?react";
 import NewsPhoto from "../../assets/news-photo.svg";
 import LightNavChain from "../Navigation/LightNavChain/LightNavChain.jsx";

@@ -1,4 +1,4 @@
-import styles from "./BeerCheckInCard.module.css"
+import styles from "./BeerCheckInCard.module.scss"
 import Bottle1 from "../../../../assets/bottlesMock/bottle-1.svg";
 import Review1 from "../../../../assets/reviewsMocks/beer-review-1.svg";
 import Review2 from "../../../../assets/reviewsMocks/beer-review-2.svg";
@@ -21,9 +21,9 @@ export default function BeerCheckInCard(){
                         <img src={imageSrc} onError={() => setImageSrc(cardImagePlaceholder)} alt=""/>
                     </div>
                     <div className={styles.flexCol}>
-                        <h3>{cardInfo.title}</h3>
-                        <p><span className={styles.active}>Производитель:</span> Konix Brewery</p>
-                        <p><span className={styles.active}>Стиль:</span> APA - American</p>
+                        <h3 className="ma-h4">{cardInfo.title}</h3>
+                        <p className="ma-p"><span className={`${styles.active} ma-p`}>Производитель:</span> Konix Brewery</p>
+                        <p className="ma-p"><span className={`${styles.active} ma-p`}>Стиль:</span> APA - American</p>
                     </div>
                 </div>
                 <div className={styles.flexRow}>
@@ -32,34 +32,34 @@ export default function BeerCheckInCard(){
             </div>
             <div className={styles.characteristics}>
                 <div>
-                    <p>Крепость:</p>
-                    <p className={styles.active}>10%</p>
+                    <p className="ma-p2">Крепость:</p>
+                    <p className={`${styles.active} ma-p`}>10%</p>
                 </div>
                 <div>
-                    <p>Плотность:</p>
-                    <p className={styles.active}>12%</p>
+                    <p className="ma-p2">Плотность:</p>
+                    <p className={`${styles.active} ma-p`}>12%</p>
                 </div>
                 <div>
-                    <p>Горечь</p>
-                    <p className={styles.active}>40</p>
+                    <p className="ma-p2">Горечь</p>
+                    <p className={`${styles.active} ma-p`}>40</p>
                 </div>
             </div>
             <div className={styles.description}>
-                <p>Оценка:</p>
+                <p className="ma-p">Оценка:</p>
                 <div style={{display: "flex", alignItems: "center", gap: "5px"}}>
                     <div className={styles.beerBottles}>
                         {getRatingIcons(cardInfo.rating)}
                     </div>
-                    <p className={styles.active}>({cardInfo.rating})</p>
+                    <p className={`${styles.active} ma-p`}>({cardInfo.rating})</p>
                 </div>
             </div>
             <div className={styles.description}>
-                <p>Число дегустаций:</p>
-                <p className={styles.active}>1</p>
+                <p className="ma-p">Число дегустаций:</p>
+                <p className={`${styles.active} ma-p`}>1</p>
             </div>
             <div className={styles.description}>
-                <p>Первая проба:</p>
-                <p className={styles.active}>1 апр. 2021</p>
+                <p className="ma-p">Первая проба:</p>
+                <p className={`${styles.active} ma-p`}>1 апр. 2021</p>
             </div>
         </div>
     )

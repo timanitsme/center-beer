@@ -1,0 +1,54 @@
+@use "../../../utils/partialStyles/_pxToRem.scss" as *;
+
+.advantagesListContainer{
+    margin: 0 rem(50) rem(50) rem(50);
+    background: var(--section-bg);
+    padding: rem(15);
+    border-radius: rem(10);
+    display: flex;
+    align-items: flex-start;
+    gap: rem(50);
+    font-weight: 200;
+    flex-wrap: wrap;
+
+}
+
+.advantagesListItem svg{
+    height: rem(50);
+    width: rem(50);
+}
+
+.advantagesListItem{
+    display: flex;
+    gap: rem(15);
+}
+
+.advantagesListItem p{
+    color: var(--txt-active);
+    font-weight: 200;
+}
+
+.advantagesListItem h3{
+    text-align: left;
+    color: var(--primary);
+}
+
+@media (max-width: rem(1000)) {
+    .advantagesListItem{
+        gap: rem(10)
+    }
+
+    .advantagesListItem svg{
+        height: rem(30);
+        width: rem(30);
+    }
+    .advantagesListContainer{
+        gap: rem(15);
+        margin: 0 rem(25) rem(25) rem(25);
+        justify-content: center;
+    }
+    .advantagesListContainer > div {
+        flex-basis: calc(50% - 20px);
+        box-sizing: border-box;
+    }
+}

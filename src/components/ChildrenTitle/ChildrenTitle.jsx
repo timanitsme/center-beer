@@ -1,4 +1,4 @@
-import styles from "./ChildrenTitle.module.css"
+import styles from "./ChildrenTitle.module.scss"
 import NavChain from "../Navigation/NavChain/NavChain.jsx";
 import {FaTools} from "react-icons/fa";
 
@@ -8,7 +8,7 @@ export default function ChildrenTitle({paths, children, title}){
             <NavChain paths={paths}/>
             <div className={styles.devSection}>
                 {children}
-                <h1 className={styles.outlineTitle}>{title}</h1>
+                <h1 className={`${styles.outlineTitle} text-large`}>{title}</h1>
             </div>
         </div>
     )

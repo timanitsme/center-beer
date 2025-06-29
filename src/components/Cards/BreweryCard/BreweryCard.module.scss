@@ -1,0 +1,272 @@
+@use "../../../utils/partialStyles/_pxToRem.scss" as *;
+
+.card{
+    max-width: rem(600);
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.productContainer{
+    padding: rem(20);
+    display: flex;
+    flex-direction: column;
+    border-radius: rem(10) rem(10) rem(10) rem(10);
+    background: var(--section-bg);
+    gap: rem(10);
+    flex: 1;
+}
+
+.productCard{
+    display: flex;
+    flex-direction: row;
+    gap: rem(10);
+}
+
+.hrtLine{
+    width: 100%;
+    height: rem(1);
+    border-radius: rem(10);
+    background: var(--third);
+}
+
+
+.characteristics{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+}
+
+.cardFooter{
+    background: rgba(39, 39, 39, 0.6);
+    display: flex;
+    justify-content: space-between;
+    border-radius: 0 0 rem(10) rem(10);
+    padding: rem(10);
+    align-items: center;
+}
+
+.cardFooterLeft{
+    display: flex;
+    align-items: center;
+    gap: rem(10);
+}
+
+.textActive{
+    font-weight: 200;
+    color: var(--txt-active);
+}
+
+.textActive.secondary{
+    color: var(--txt-secondary);
+}
+
+.textMedium{
+    font-weight: 200;
+    color: var(--txt-active);
+}
+
+.cardTextPrimary{
+    font-family: Podkova, sans-serif;
+    color: var(--primary);
+    text-transform: uppercase;
+}
+
+.textContainer .cardTextPrimary{
+    cursor: pointer;
+}
+
+.cardContent{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: rem(10);
+    justify-content: space-between;
+}
+
+.cardTop{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: fit-content;
+}
+
+.cardBottom{
+    display: flex;
+    justify-content: space-between;
+    gap: rem(10);
+    align-items: center;
+}
+
+.cardBottom.mobile{
+    display: none;
+}
+
+
+.productsRow{
+    display: flex;
+    gap: rem(5);
+    flex-wrap: wrap;
+}
+
+.product{
+    display: flex;
+    align-items: center;
+    padding: rem(5) rem(10);
+    background: var(--third);
+    border-radius: rem(20);
+}
+
+.product p{
+    text-transform: uppercase;
+    font-weight: 200;
+    color: var(--fg);
+}
+
+.bookMarkButton svg{
+    position: relative;
+    right: 0;
+    top: rem(-23);
+    color: var(--primary);
+}
+
+.ratingText {
+    font-weight: 200;
+    color: var(--txt-active);
+    margin-top: rem(-15);
+    position: relative;
+    right: 0;
+    text-align: center;
+}
+
+.bookMarkButton.added svg{
+    color: var(--icon-added);
+    fill: var(--icon-added);
+}
+
+.imgContainer{
+    position: relative;
+    min-width: rem(100);
+    min-height: rem(100);
+    width: rem(100);
+    height: rem(100);
+    background: var(--fg);
+    border-radius: rem(10);
+    padding: rem(10);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.imgContainer img{
+    max-width: 100%;
+    max-height: 100%;
+    height: auto;
+    width: auto;
+    object-fit: contain;
+    display: block;
+}
+
+
+.favButton{
+    background: var(--third);
+    width: rem(30);
+    height: rem(30);
+    max-width: rem(50);
+    max-height: rem(50);
+    min-width: rem(30);
+    min-height: rem(30);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100%;
+}
+
+
+.favButton svg{
+    color: var(--txt-active);
+}
+
+.favButton.added svg{
+    color: var(--icon-added);
+    fill: var(--icon-added);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .favButton:hover.added svg {
+        color: var(--icon-added);
+    }
+
+    .favButton:hover svg {
+        color: var(--primary);
+        transition: 0.5s;
+    }
+}
+
+@media (max-width: rem(900)) {
+    .productContainer{
+        padding: rem(10);
+    }
+    .card{
+        max-width: rem(250);
+    }
+    .bookMarkButton svg{
+        top: rem(-11);
+    }
+    .ratingText {
+        display: none;
+    }
+    .imgContainer img{
+        width: rem(60);
+    }
+    .imgContainer{
+        min-width: rem(70);
+        min-height: rem(70);
+        width: rem(70);
+        height: rem(70);
+        padding: rem(5);
+    }
+    .cardBottom.pc{
+        display: none;
+    }
+
+    .cardBottom.mobile{
+        display: flex;
+    }
+}
+
+@media (max-width: rem(768)) {
+
+
+    .productContainer{
+        padding: rem(5);
+    }
+
+    .favButton{
+        width: rem(20);
+        height: rem(20);
+        min-width: rem(20);
+        min-height: rem(20);
+    }
+
+    .favButton svg{
+        width: rem(10);
+        height: rem(10);
+    }
+
+    .bookMarkButton svg{
+        top: rem(-6);
+    }
+
+    .cardFooter{
+        padding: rem(5);
+    }
+}
+
+@media (max-width: rem(600)) {
+    .card{
+        max-width: 100%;
+    }
+}

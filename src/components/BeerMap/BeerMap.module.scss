@@ -1,0 +1,46 @@
+@use "../../utils/partialStyles/_pxToRem.scss" as *;
+
+.mapContainer {
+    width: 100%;
+    height: calc(256px * 4);
+    border: rem(1) solid #ccc;
+    border-radius: rem(8);
+    overflow: hidden;
+}
+
+.markerPopUp{
+
+}
+
+.markerPopUp button{
+    margin-top: rem(5);
+    padding: rem(5);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .markerPopUp button:hover {
+        background: var(--third);
+        transition: 0.5s;
+    }
+}
+
+.markerPopUp h5{
+    text-align: left !important;
+    font-family: Podkova, sans-serif;
+    color: var(--txt-active);
+}
+
+.markerPopUp p{
+    margin: 0;
+}
+
+.active{
+    color: var(--fg);
+}
+
+@media (max-width: rem(1000)){
+    .mapContainer{
+        height: rem(500);
+    }
+}
+

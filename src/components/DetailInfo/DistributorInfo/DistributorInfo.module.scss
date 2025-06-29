@@ -1,0 +1,191 @@
+@use "../../../utils/partialStyles/_pxToRem.scss" as *;
+
+.barInfoContainer{
+    margin: 0 rem(50) rem(50) rem(50);
+    display: flex;
+    gap: rem(10);
+}
+
+.barIcons{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: rem(10)
+}
+
+.socials{
+    background: rgba(39, 39, 39, 0.5);
+    height: rem(45);
+    border-radius: rem(50);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: rem(10);
+    padding: rem(20) rem(10);
+}
+
+.barDescription{
+    display: flex;
+    flex-direction: column;
+    gap: rem(10);
+    max-width: 60%;
+}
+
+.barDescription h2, .barInfo h2{
+    width: 100%;
+    text-align: left;
+    text-transform: uppercase;
+}
+
+.barDescription p, .ratingAndComments p, .barInfo p{
+    font-weight: 300;
+}
+
+.advantagesListItem h3{
+    text-align: left;
+    color: var(--primary);
+}
+
+.barButtons{
+    display: flex;
+    flex-wrap: wrap;
+    gap: rem(10);
+}
+
+.barButtonsMobile{
+    display: none;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: rem(10);
+    justify-content: center;
+    margin: 0 rem(25) rem(25) rem(25);
+}
+
+.barInfo{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    width: 40%;
+    gap: rem(10);
+}
+
+.barInfo div{
+    display: flex;
+    gap: rem(10);
+}
+
+.aIconButton{
+    display: flex;
+    gap: rem(5);
+    align-items: center;
+    color: var(--txt-secondary);
+    font-family: Podkova, sans-serif;
+}
+
+.aUnderlinedIconButton{
+    display: flex;
+    gap: rem(5);
+    align-items: center;
+    color: var(--txt-primary);
+    font-family: Podkova, sans-serif;
+    text-decoration-line: underline;
+    text-decoration-style: dotted;
+    text-decoration-color: var(--txt-primary);
+}
+
+.circle{
+    width: rem(4);
+    height: rem(4);
+    background: var(--primary);
+    border-radius: 100%;
+}
+
+.ratingAndComments{
+    display: flex;
+    align-items: center;
+}
+
+.beerBottles{
+    display: flex;
+    gap: rem(5) !important;
+}
+
+.beerBottles svg{
+    cursor: initial !important;
+}
+
+.aIconButton svg{
+    color: var(--primary);
+}
+
+.aIconButton.added svg{
+    fill: var(--icon-added);
+    color: var(--icon-added);
+}
+
+.barInfo h2{
+    text-align: right;
+    align-self: flex-end;
+}
+
+.barInfo.mobile{
+    background: var(--bg);
+    box-sizing: border-box;
+    width: max-content;
+    padding: rem(10);
+    border-radius: rem(10);
+    margin: 0 auto;
+    display: none;
+    align-self: center;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .aUnderlinedIconButton:hover {
+        color: var(--primary);
+        text-decoration-color: var(--primary);
+        transition: 0.5s;
+    }
+
+    .aIconButton:hover{
+        color: var(--txt-primary);
+    }
+}
+
+@media (max-width: rem(1000)) {
+    .barInfo.regular{
+        display: none;
+    }
+    .barInfoContainer{
+        margin: 0 rem(25) rem(25) rem(25);
+    }
+    .barInfo.mobile{
+        display: flex;
+        margin-right: rem(25);
+        margin-bottom: rem(10);
+    }
+    .barIcons{
+
+    }
+    .barIcons svg{
+        max-width: rem(50);
+        max-height: rem(50);
+        vertical-align: top;
+    }
+    .barDescription{
+        max-width: 100%;
+    }
+}
+
+@media (max-width: rem(768)) {
+    .barButtonsMobile{
+        display: flex;
+        margin-bottom: rem(25);
+    }
+    .barButtons{
+        display: none;
+    }
+    .barInfoContainer{
+        margin-bottom: rem(10);
+    }
+}
+

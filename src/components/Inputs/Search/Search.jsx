@@ -1,4 +1,4 @@
-import styles from "./Search.module.css"
+import styles from "./Search.module.scss"
 import SearchIcon from "../../../assets/search-icon.svg?react";
 import CloseIcon from "../../../assets/close-icon.svg?react"
 import {useState} from "react";

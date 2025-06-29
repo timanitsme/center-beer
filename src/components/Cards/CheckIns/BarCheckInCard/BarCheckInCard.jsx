@@ -1,6 +1,6 @@
 import {useState} from "react";
 import {useNavigate} from "react-router-dom";
-import styles from "../../BarCard/BarCard.module.css";
+import styles from "../../BarCard/BarCard.module.scss";
 import BookMarkIcon from "../../../../assets/bookmark-unfill-icon.svg?react";
 import FavIcon from "../../../../assets/fav-unfill-icon.svg?react";
 import LocationIcon from "../../../../assets/location-filled-icon.svg?react";
@@ -29,10 +29,10 @@ export default function BarCheckInCard({cardInfo}){
 
         for (let i = 0; i < 4; i++) {
             if (i < expensiveness) {
-                icons.push(<span key={i} style={{color: "var(--primary)"}}>₽</span>);
+                icons.push(<span key={i} className="ma-p" style={{color: "var(--primary)"}}>₽</span>);
             }
             else {
-                icons.push(<span key={i}>₽</span>);
+                icons.push(<span key={i} className="ma-p">₽</span>);
             }
         }
         return icons;
@@ -52,8 +52,8 @@ export default function BarCheckInCard({cardInfo}){
                     <a onClick={() => setCardFav(!cardFav)} className={`${styles.favButton} ${cardFav? styles.added : ''}`}><FavIcon/></a>
                 </div>
                 <div className={styles.characteristics}>
-                    <p className={styles.cardTextPrimary}>13 RULES (Народный бар)</p>
-                    <p style={{whiteSpace: "nowrap"}}>{getExpensivenessIcons(4)}</p>
+                    <p className={`${styles.cardTextPrimary} ma-p`}>13 RULES (Народный бар)</p>
+                    <p style={{whiteSpace: "nowrap"}} className="ma-p">{getExpensivenessIcons(4)}</p>
                 </div>
                 <div className={`${styles.iconText} ${styles.loc}`}>
                     <LocationIcon/>

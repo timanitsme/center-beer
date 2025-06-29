@@ -1,5 +1,5 @@
 import {useEffect, useMemo, useState} from "react";
-import styles from "./BarsCatalog.module.css";
+import styles from "./BarsCatalog.module.scss";
 import LocationIcon from "../../assets/location-filled-icon.svg?react";
 import Search from "../ApiInputs/Search/Search.jsx";
 import SimpleButton from "../Buttons/SimpleButton/SimpleButton.jsx";
@@ -373,9 +373,9 @@ export default function BeerCatalog({withoutPrice=false, withHeader = true, brew
             {withHeader &&
                 <div className={styles.menuHeader}>
                     <div>
-                        <h2>Каталог пива</h2>
-                        <p>В этом списке представлены лучшие сорта пива, выбранные на основе нашей формулы средневзвешенного рейтинга, которая позволяет объективно сравнить все напитки между собой. Чтобы попасть в этот перечень, пиво должно иметь не менее 150 отзывов. Подробнее о составлении рейтинга.</p>
-                        <a>Подробнее о составлении рейтинга.</a>
+                        <h2 className="ma-h2">Каталог пива</h2>
+                        <p className="ma-p">В этом списке представлены лучшие сорта пива, выбранные на основе нашей формулы средневзвешенного рейтинга, которая позволяет объективно сравнить все напитки между собой. Чтобы попасть в этот перечень, пиво должно иметь не менее 150 отзывов. Подробнее о составлении рейтинга.</p>
+                        <a className="ma-p">Подробнее о составлении рейтинга.</a>
                     </div>
                 </div>
             }

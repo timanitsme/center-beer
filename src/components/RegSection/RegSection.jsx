@@ -1,4 +1,4 @@
-import styles from "./RegSection.module.css"
+import styles from "./RegSection.module.scss"
 import TextInput from "../Inputs/TextInput/TextInput.jsx";
 import PasswordInput from "../Inputs/PasswordInput/PasswordInput.jsx";
 import SimpleButton from "../Buttons/SimpleButton/SimpleButton.jsx";
@@ -66,39 +66,39 @@ export default function RegSection(){
 
     return(
         <div className={styles.authSection}>
-            <h1 className={styles.outlineTitle}>Личный кабинет</h1>
+            <h1 className={`${styles.outlineTitle} text-large`}>Личный кабинет</h1>
             <form onSubmit={handleSubmit}>
                 <div className={styles.authContent}>
-                    <p className={styles.title}>Регистрация</p>
+                    <h5 className={styles.title}>Регистрация</h5>
                     <div className={styles.formRow}>
-                        <p>Никнейм</p>
+                        <p className="ma-p1">Никнейм</p>
                         <TextInput placeholder="Придумайте себе никнейм" maxLength={15} inputValue={nickname} setInputValue={setNickname}></TextInput>
                     </div>
                     <div className={styles.formRow}>
-                        <p>Email</p>
+                        <p className="ma-p1">Email</p>
                         <TextInput placeholder="Адрес электронной почты" inputValue={email} setInputValue={setEmail}></TextInput>
                     </div>
                     <div className={styles.formRow}>
-                        <p>Пароль</p>
+                        <p className="ma-p1">Пароль</p>
                         <PasswordInput placeholder="Пароль" inputValue={password} setInputValue={setPassword}></PasswordInput>
                     </div>
                     <div className={styles.formRow}>
-                        <p>Повторите пароль</p>
+                        <p className="ma-p1">Повторите пароль</p>
                         <PasswordInput placeholder="Пароль" inputValue={passwordRepeat} setInputValue={setPasswordRepeat}></PasswordInput>
                     </div>
                     <div className={styles.formRow}>
                         <div></div>
-                        <CheckBoxChild checked={adultChecked} setChecked={setAdultChecked}><p style={{color: "var(--txt-secondary)"}}>Я подтверждаю что мне исполнилось 18 лет</p></CheckBoxChild>
+                        <CheckBoxChild checked={adultChecked} setChecked={setAdultChecked}><p style={{color: "var(--txt-secondary)"}} className="ma-p">Я подтверждаю что мне исполнилось 18 лет</p></CheckBoxChild>
                     </div>
                     <div className={styles.formRow}>
                         <div></div>
-                        <CheckBoxChild checked={checked} setChecked={setChecked}><p style={{color: "var(--txt-secondary)"}}>Я даю согласие на обработку <a href="" className={styles.underline}>персональных данных</a></p></CheckBoxChild>
+                        <CheckBoxChild checked={checked} setChecked={setChecked}><p style={{color: "var(--txt-secondary)"}} className="ma-p">Я даю согласие на обработку <a href="" className={styles.underline}>персональных данных</a></p></CheckBoxChild>
                     </div>
                     {error.length > 0 &&
                         <>
                             <div className={styles.formRow}>
                                 <div></div>
-                                <p className={styles.error}>{error}</p>
+                                <p className={`${styles.error} ma-p1`}>{error}</p>
                             </div>
                         </>
                     }
@@ -111,7 +111,7 @@ export default function RegSection(){
                     <div className={styles.formRow}>
                         <div></div>
                         <div>
-                            <p>Уже зарегистрированы в личном кабинете портала? <Link to={"/login"} className={styles.underline}>Вход</Link></p>
+                            <p className="ma-p">Уже зарегистрированы в личном кабинете портала? <Link to={"/login"} className={styles.underline}>Вход</Link></p>
                         </div>
                     </div>
                 </div>

@@ -1,5 +1,5 @@
 import SimpleModal from "../SimpleModal/SimpleModal.jsx";
-import styles from "./FiltersModal.module.css";
+import styles from "./FiltersModal.module.scss";
 
 export default function FiltersModal({show, setShow, children}){
 

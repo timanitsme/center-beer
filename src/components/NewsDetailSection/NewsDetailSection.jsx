@@ -1,4 +1,4 @@
-import styles from "./NewsDetailSection.module.css"
+import styles from "./NewsDetailSection.module.scss"
 import Search from "../Inputs/Search/Search.jsx";
 import ArrowBackIcon from "../../assets/arrow-left-icon.svg?react"
 import LightNavChain from "../Navigation/LightNavChain/LightNavChain.jsx";
@@ -16,7 +16,7 @@ import BlogImage3 from "../../assets/newsMocks/blog-image-3.svg"
 import NewsItem from "../NewsItem/NewsItem.jsx";
 import ComboBox from "../Inputs/ComboBox/ComboBox.jsx";
 import {Link, useNavigate} from "react-router-dom";
-import {useGetNewsRelatedQuery} from "../../store/services/centerBeer.js";
+import {useGetNewsCategoriesQuery, useGetNewsRelatedQuery} from "../../store/services/centerBeer.js";
 import RelatedNewsCard from "../Cards/RelatedNewsCard/RelatedNewsCard.jsx";
 import RelatedNewsCardSkeleton from "../Skeletons/RelatedNewsCardSkeleton/RelatedNewsCardSkeleton.jsx";
 
@@ -26,6 +26,7 @@ export default function NewsDetailSection({style = "detail", children, postId=nu
     const [isBookmarked, setIsBookmarked] = useState(false);
 
     const {data: relatedNews, isFetching: relatedNewsIsFetching} = useGetNewsRelatedQuery(postId, {skip: postId === null})
+    const {data: categories, isFetching: categoriesIsFetching} =  useGetNewsCategoriesQuery()
 
     const sectionMenuMainItems = [
         {title: "Новости и комментарии", path: "/in-dev"},
@@ -59,16 +60,14 @@ export default function NewsDetailSection({style = "detail", children, postId=nu
         <div className={styles.sectionContainer}>
             <div className={styles.sectionMenu}>
                 <Search text="Поиск по статьям"/>
-                <div className={styles.menuItemsContainer}>
-                    {sectionMenuMainItems.map((item, index) =>
-                        <Link key={index} to={item.path}>{item.title}</Link>
-                    )}
-                </div>
-                <div className={styles.menuItemsContainer}>
-                    {sectionMenuSecondaryItems.map((item, index) =>
-                        <Link key={index} to={item.path}>{item.title}</Link>
-                    )}
-                </div>
+                { !categoriesIsFetching &&
+                    <div className={styles.menuItemsContainer}>
+                        {categories?.map((item, index) =>
+                            <a href="" key={index}>{item.name}</a>
+
+                        )}
+                    </div>
+                }
             </div>
             <div className={styles.section}>
                 { style === "detail" && <div className={styles.sectionHeader}>

@@ -18,7 +18,7 @@ export default function SimpleVideoCard({cardInfo}){
     return(
         <>
             <div className={styles.blogCard}>
-                <p className={styles.cardTextPrimary}>{cardInfo.title}</p>
+                <p className={`${styles.cardTextPrimary} ma-p`}>{cardInfo.title}</p>
                 <div className={styles.imageContainer} onClick={() => setShow(true)}>
                     <img className={styles.cardImg} src={imageSrc} onError={() => setImageSrc(cardImagePlaceholder)} alt=""/>
                     <PlayButtonIcon/>

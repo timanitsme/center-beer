@@ -82,6 +82,10 @@
     color: var(--txt-active);
 }
 
+.card p{
+    font-weight: 200;
+}
+
 .itemsRow{
     display: flex;
     align-items: center;
@@ -158,6 +162,10 @@
         display: flex;
         gap: rem(5);
         align-items: center;
+    }
+
+    .card{
+        padding: rem(5);
     }
 
     .characteristics{

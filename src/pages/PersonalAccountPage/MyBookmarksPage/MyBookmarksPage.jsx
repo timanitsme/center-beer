@@ -4,18 +4,17 @@ import {useSelector} from "react-redux";
 import {
     useGetUsersCuddyBarsQuery,
     useGetUsersCuddyBeersQuery,
-    useGetUsersFavBarsQuery,
-    useGetUsersFavBeersQuery
 } from "../../../store/services/centerBeer.js";
 import MinimalBottledBeerCardApi from "../../../components/Cards/BottledBeerCard/MinimalBottledBeerCardApi.jsx";
 import MinimalBarCard from "../../../components/Cards/BarCard/MinimalBarCard.jsx";
-import BarImage1 from "../../../assets/barsMocks/bar-3.svg";
 import NavChain from "../../../components/Navigation/NavChain/NavChain.jsx";
 import {isMobile} from "react-device-detect";
 import PersonalAccount from "../../../components/PersonalAccount/PersonalAccount.jsx";
 import ArrowLeftIcon from "../../../assets/arrow-left-icon.svg?react";
 import SimpleCatalogSection from "../../../components/CatalogSections/SimpleCatalogSection/SimpleCatalogSection.jsx";
 import {useEffect} from "react";
+import MinimalBarCardApi from "../../../components/Cards/BarCard/MinimalBarCardApi.jsx";
+import BreweryCard from "../../../components/Cards/BreweryCard/BreweryCard.jsx";
 
 export default function MyBookmarksPage(){
     const {alias} = useParams();
@@ -27,8 +26,8 @@ export default function MyBookmarksPage(){
 
     const selectors = {
         beer: {pathname: "Пиво в кладовке", data: beerData, isLoading: beerIsLoading, error: beerError, CardComponent: MinimalBottledBeerCardApi},
-        bar: {pathname: "Заведения в кладовке", data: barData, isLoading: barIsLoading, error: barError, CardComponent: MinimalBarCard},
-        brewery: {pathname: "Пивоварни в кладовке", data: {data: []}, isLoading: false, error: false, CardComponent: MinimalBarCard},
+        bar: {pathname: "Заведения в кладовке", data: barData, isLoading: barIsLoading, error: barError, CardComponent: MinimalBarCardApi},
+        brewery: {pathname: "Пивоварни в кладовке", data: {data: []}, isLoading: false, error: false, CardComponent: BreweryCard},
         event: {pathname: "Мероприятия в кладовке", data: {data: []}, isLoading: false, error: false, CardComponent: MinimalBarCard},
     }
 

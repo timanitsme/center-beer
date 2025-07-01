@@ -36,7 +36,7 @@ export default function BarNews({barId = 1, ref, description = "Будьте с 
                     return(
                         <div key={index} className={styles.newsCard}>
                             <LightNavChain paths={paths}/>
-                            <h3>{item?.title}</h3>
+                            <h3 className="ma-h3-small">{item?.title}</h3>
                             <div className="limited-text" dangerouslySetInnerHTML={{ __html: item?.text }} />
                             <div className="hrtLine" style={{margin: "10px 0"}}/>
                         </div>

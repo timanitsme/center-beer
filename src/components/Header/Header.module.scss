@@ -328,6 +328,12 @@
     }
 }
 
+@media (max-width: rem(600)) {
+    .mw600{
+        display: none;
+    }
+}
+
 @media (max-width: rem(500)) {
     .avatar{
         max-width: rem(30);
@@ -341,3 +347,4 @@
     }
 
 }
+

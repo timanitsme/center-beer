@@ -22,7 +22,7 @@ export default function ComboBox({ options, onChange }){
                 className={`${styles.comboBoxHeader} ${!isOpen? styles.closed: ''}`}
                 onClick={() => setIsOpen(!isOpen)} // Переключаем состояние isOpen
             >
-                <p className="noSelect">{selectedOption?.name}</p>
+                <p className="noSelect ma-p">{selectedOption?.name}</p>
                 <span className={`${styles.arrow} ${isOpen ? styles.open : ''}`}><ArrowDownIcon/></span>
             </div>
             {isOpen && (
@@ -31,7 +31,7 @@ export default function ComboBox({ options, onChange }){
                         <li
                             key={index}
                             onClick={() => handleOptionSelect(option)}
-                            className={`${styles.optionItem} noSelect`}
+                            className={`${styles.optionItem} noSelect ma-p`}
                         >
                             {option.name}
                         </li>

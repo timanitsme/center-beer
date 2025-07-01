@@ -3,11 +3,8 @@ import NavChain from "../../../components/Navigation/NavChain/NavChain.jsx";
 import {isMobile} from "react-device-detect";
 import PersonalAccount from "../../../components/PersonalAccount/PersonalAccount.jsx";
 import styles from "./EarnCBPage.module.scss";
-import SimpleCatalogSection from "../../../components/CatalogSections/SimpleCatalogSection/SimpleCatalogSection.jsx";
-import MinimalBarCard from "../../../components/Cards/BarCard/MinimalBarCard.jsx";
 import Task from "../../../components/Task/Task.jsx";
 import {useEffect} from "react";
-import SimpleButton from "../../../components/Buttons/SimpleButton/SimpleButton.jsx";
 import ButtonSwitch from "../../../components/ButtonSwitch/ButtonSwitch.jsx";
 import {useNavigate} from "react-router-dom";
 

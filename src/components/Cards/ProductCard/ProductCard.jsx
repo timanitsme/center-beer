@@ -20,8 +20,8 @@ export default function ProductCard({cardInfo, onShowModal}){
                 </div>
                 <div className={styles.cardTop}>
                     <div className={styles.textContainer}>
-                        <p className={`${styles.cardTextPrimary} ${styles.cardTitle}`}>{cardInfo?.name}</p>
-                        <p className={`${styles.textActive} ${styles.description}`}>{cardInfo.description}</p>
+                        <p className={`${styles.cardTextPrimary} ${styles.cardTitle} ma-h6`}>{cardInfo?.name}</p>
+                        <p className={`${styles.textActive} ma-p ${styles.description}`}>{cardInfo.description}</p>
                     </div>
                     <div className={styles.bookMarkContainer}>
                         <a onClick={() => setCardBookmarked(!cardBookmarked)} className={`${styles.bookMarkButton} ${cardBookmarked && styles.added}`}><BookMarkIcon/></a>
@@ -32,9 +32,9 @@ export default function ProductCard({cardInfo, onShowModal}){
 
             </div>
             <div className={styles.cardFooter}>
-                <p className={styles.textActive}><span style={{color: "var(--txt-secondary)"}}>Вес:</span> {cardInfo?.vol || `${cardInfo?.weight} гр.`}</p>
+                <p className={`${styles.textActive} ma-p`}><span style={{color: "var(--txt-secondary)"}} className="ma-p">Вес:</span> {cardInfo?.vol || `${cardInfo?.weight} гр.`}</p>
                 <div className={styles.cardFooterLeft}>
-                    <p className={styles.cardTextPrimary}>{Number(cardInfo.price).toLocaleString("ru-Ru")}₽</p>
+                    <p className={`${styles.cardTextPrimary} ma-h6`}>{Number(cardInfo.price).toLocaleString("ru-Ru")}₽</p>
                     <IconButton text="Купить"><BottlesPairIcon/></IconButton>
                     <a onClick={() => setCardFav(!cardFav)} className={`${styles.favButton} ${cardFav? styles.added : ''}`}><FavIcon/></a>
                 </div>

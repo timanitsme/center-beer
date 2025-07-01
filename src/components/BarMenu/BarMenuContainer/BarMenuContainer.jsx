@@ -23,7 +23,7 @@ export default function BarMenuContainer({ref, barId=1}){
     return(
         <div className={styles.menuContainer} ref={ref}>
             <div className={styles.menuHeader}>
-                <h2>Наше меню</h2>
+                <h2 className="ma-h2">Наше меню</h2>
                 <div className={styles.filterButtons}>
                     {tabs?.map((tab, index) => {
                             const IconComponent = getBarMenuTabSpec(tab?.alias)?.Icon || AlcoBottleIcon

@@ -29,10 +29,10 @@ export default function BarCheckInCard({cardInfo}){
 
         for (let i = 0; i < 4; i++) {
             if (i < expensiveness) {
-                icons.push(<span key={i} className="ma-p" style={{color: "var(--primary)"}}>₽</span>);
+                icons.push(<span key={i} className="aa-p2" style={{color: "var(--primary)"}}>₽</span>);
             }
             else {
-                icons.push(<span key={i} className="ma-p">₽</span>);
+                icons.push(<span key={i} className="aa-p2">₽</span>);
             }
         }
         return icons;
@@ -52,34 +52,35 @@ export default function BarCheckInCard({cardInfo}){
                     <a onClick={() => setCardFav(!cardFav)} className={`${styles.favButton} ${cardFav? styles.added : ''}`}><FavIcon/></a>
                 </div>
                 <div className={styles.characteristics}>
-                    <p className={`${styles.cardTextPrimary} ma-p`}>13 RULES (Народный бар)</p>
-                    <p style={{whiteSpace: "nowrap"}} className="ma-p">{getExpensivenessIcons(4)}</p>
+                    <p className={`${styles.cardTextPrimary} aa-p2`}>13 RULES (Народный бар)</p>
+                    <p style={{whiteSpace: "nowrap"}} className="aa-p2">{getExpensivenessIcons(4)}</p>
                 </div>
                 <div className={`${styles.iconText} ${styles.loc}`}>
                     <LocationIcon/>
-                    <p>г.Москва, Сущевский вал, 41</p>
+                    <p className="aa-p2">г.Москва, Сущевский вал, 41</p>
                 </div>
                 <div className={`${styles.iconText} ${styles.metro}`}>
                     <MetroIcon color="var(--txt-active)"/>
-                    <p>Лубянка, Сретенский бульвар</p>
+                    <p className="aa-p2">Лубянка, Сретенский бульвар</p>
                 </div>
                 <div className={`${styles.iconText} ${styles.loc}`}>
                     <CalendarIcon/>
-                    <p>Первое посещение: <span style={{color: "var(--txt-active)"}}>24.04.2025</span></p>
+                    <p className="aa-p2">Первое посещение: <span className="aa-p2" style={{color: "var(--txt-active)"}}>24.04.2025</span></p>
                 </div>
                 <div className={`${styles.iconText} ${styles.loc}`}>
-                    <p>Количество посещений: <span style={{color: "var(--txt-active)"}}>21</span></p>
+                    <p className="aa-p2">Количество посещений: <span className="aa-p2" style={{color: "var(--txt-active)"}}>21</span></p>
                 </div>
 
                 <div className={styles.characteristics}>
                     <div>
-                        {rating && <><BottleIcon/> <p className={styles.ratingText}> ({rating.toFixed(1)})</p></>}
+                        {rating && <><BottleIcon/> <p className={`${styles.ratingText} aa-p2`}> ({rating.toFixed(1)})</p></>}
                         <div className="circle"/>
-                        <CommentIcon/><p>{0}</p>
+                        <CommentIcon/><p className="aa-p2">{0}</p>
                     </div>
+                    <div style={{width: "5px"}}></div>
                     <div>
                         <div className={`${styles.bigCircle} ${styles.green}`}/>
-                        <p>открыт</p>
+                        <p className="aa-p2">открыт</p>
                     </div>
                 </div>
 

@@ -7,6 +7,7 @@
     flex-direction: column;
     align-items: center;
     gap: rem(10);
+    overflow-x: hidden;
 }
 
 .titleContainer {
@@ -97,6 +98,13 @@
     transform: translateX(0);
 }
 
+.videoCardContainer img,
+.cardContainer img {
+    max-width: 100%; // Ограничиваем ширину изображения размерами контейнера
+    height: auto;    // Сохраняем пропорции
+    object-fit: cover; // Обеспечиваем корректное заполнение контейнера
+}
+
 .textPrimary{
     color: var(--primary);
     text-transform: uppercase;
@@ -121,11 +129,21 @@
 }
 
 @media (max-width: rem(600)) {
+    .sectionContainer{
+        margin: 0;
+    }
+
+    .videoCardContainer{
+        overflow: hidden;
+    }
     .videoCardContainer{
         width: 390%;
     }
-    .cardContainer{
+    .cardContainer {
         width: 320%;
+    }
+
+    .cardContainer{
         bottom: 20%;
     }
 }

@@ -54,3 +54,9 @@
         transition: 0.5s;
     }
 }
+
+@media (max-width: 700px) {
+    .postCard{
+        padding: rem(6);
+    }
+}

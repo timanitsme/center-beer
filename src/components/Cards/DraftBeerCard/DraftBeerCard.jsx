@@ -47,31 +47,31 @@ export default function DraftBeerCard({cardInfo}){
             <div className={styles.draftBeerCard}>
                 <div className={styles.cardTop}>
                     <div onClick={() => goToBeerPage(cardInfo?.alias || cardInfo?.beer_alias)} style={{cursor: "pointer"}}>
-                        <p className={styles.cardTextPrimary}>{cardInfo?.name}</p>
-                        <p className={`${styles.textActive} ${styles.breweryAlias}`}  onClick={() => goToBreweryPage(cardInfo?.brewery_alias)}>{cardInfo?.brewery}{cardInfo?.brewery && cardInfo?.country && ","} {cardInfo?.country}</p>
-                        <p className={styles.textMedium}><span style={{color: "var(--txt-secondary)"}}>Стиль:</span> {cardInfo?.style}</p>
+                        <p className={`${styles.cardTextPrimary} ma-h6`}>{cardInfo?.name}</p>
+                        <p className={`${styles.textActive} ma-p ${styles.breweryAlias}`}  onClick={() => goToBreweryPage(cardInfo?.brewery_alias)}>{cardInfo?.brewery}{cardInfo?.brewery && cardInfo?.country && ","} {cardInfo?.country}</p>
+                        <p className={`${styles.textMedium} ma-p`}><span style={{color: "var(--txt-secondary)"}} className="ma-p">Стиль:</span> {cardInfo?.style}</p>
                     </div>
                     <a onClick={(e) => handleAddToCuddy(e, cardInfo?.id)} className={`${styles.bookMarkButton} ${cardBookmarked && styles.added}`}><BookMarkIcon/></a>
                 </div>
                 <div className={styles.hrtLine}/>
                 <div className={styles.characteristics}>
                     <div>
-                        <p className={`${styles.textActive} ${styles.secondary}`}>Крепость:</p>
-                        <p className={styles.textActive}>{formatNumber(cardInfo?.abv)}%</p>
+                        <p className={`${styles.textActive} aa-p2 ${styles.secondary}`}>Крепость:</p>
+                        <p className={`${styles.textActive} ma-p`}>{formatNumber(cardInfo?.abv)}%</p>
                     </div>
                     <div>
-                        <p className={`${styles.textActive} ${styles.secondary}`}>Плотность:</p>
-                        <p className={styles.textActive}>{formatNumber(cardInfo?.og)}%</p>
+                        <p className={`${styles.textActive} aa-p2 ${styles.secondary}`}>Плотность:</p>
+                        <p className={`${styles.textActive} ma-p`}>{formatNumber(cardInfo?.og)}%</p>
                     </div>
                     <div>
-                        <p className={`${styles.textActive} ${styles.secondary}`}>Горечь</p>
-                        <p className={styles.textActive}>{formatNumber(cardInfo?.ibu)}</p>
+                        <p className={`${styles.textActive} aa-p2 ${styles.secondary}`}>Горечь</p>
+                        <p className={`${styles.textActive} ma-p`}>{formatNumber(cardInfo?.ibu)}</p>
                     </div>
                 </div>
 
             </div>
             <div className={styles.cardFooter}>
-                <p className={styles.cardTextPrimary}>{Number(cardInfo.price).toLocaleString("ru-Ru")}₽</p>
+                <p className={`${styles.cardTextPrimary} ma-p`}>{Number(cardInfo.price).toLocaleString("ru-Ru")}₽</p>
                 <IconButton text="Купить"><BottlesPairIcon/></IconButton>
                 <a onClick={(e) => handleAddToFav(e, cardInfo?.id)} className={`${styles.favButton} ${cardFav? styles.added : ''}`}><FavIcon/></a>
             </div>

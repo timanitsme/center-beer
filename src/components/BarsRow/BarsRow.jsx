@@ -30,7 +30,7 @@ export default function BarsRow({title, beerTitle, barCards, marketCards, CardCo
                                 <IconButton text="В магазине" style={buttonSwitch !== 'market'? "secondary": "primary"} onClick={() => {setButtonSwitch('market'); setCurrentCards(marketCards)}}><BeerCaseIcon/></IconButton>
                                 <IconButton text="В баре" style={buttonSwitch === 'bar' ? "primary": "secondary"} onClick={() => {setButtonSwitch('bar'); setCurrentCards(barCards)}}><BeerTapIcon/></IconButton>
                             </div>
-                            <Link to={"/map"} className={styles.aIconButton}><LocationIcon/>Посмотреть на карте</Link>
+                            <Link to={"/map"} className={`${styles.aIconButton} ma-p`}><LocationIcon/>Посмотреть на карте</Link>
                         </div>
                         <div className={styles.bottomPart}>
                             <CheckBox text="Можно купить с собой"/>

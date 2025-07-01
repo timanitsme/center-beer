@@ -9,10 +9,10 @@ export default function PostCard({title, image, description}){
 
     return(
         <div className={styles.postCard}>
-            <h3>{title}</h3>
+            <h3 className="ma-h3-small">{title}</h3>
             <div className={styles.imgContainer}><img src={imageSrc} onError={() => setImageSrc(cardImagePlaceholder)}/></div>
-            <p>{description}</p>
-            <a href="">Открыть статью<DiagonalArrow/></a>
+            <p className="ma-p">{description}</p>
+            <a href="" className="ma-p">Открыть статью<DiagonalArrow/></a>
         </div>
     )
 }

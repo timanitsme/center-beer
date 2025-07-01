@@ -59,7 +59,7 @@ export default function BarDetailPage(){
                     <BarMenuContainer ref={menuRef} barId={Number(data?.data?.[0]?.id)}/>
                     <CurrentPromos barId={data?.data[0].id} ref={promosRef}/>
                     <BarNews barId={data?.data[0].id} ref={newsRef}/>
-                    <Reviews images={getBarReviewsImages()} header={getBarReviewsHeader()} resume={getBarReviewsResume()}/>
+                    <Reviews images={getBarReviewsImages()} header={getBarReviewsHeader()} resume={getBarReviewsResume()} id={data?.data[0].id} alias="bar"/>
                 </>
 
             }

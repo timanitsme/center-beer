@@ -21,8 +21,13 @@ import NewCommentForm from "../Comments/NewCommentForm/NewCommentForm.jsx";
 import {useNavigate} from "react-router-dom";
 import SimpleModal from "../Modals/SimpleModal/SimpleModal.jsx";
 import {FaLock} from "react-icons/fa6";
+import {
+    useGetBarCommentsQuery,
+    useGetBeerCommentsQuery,
+    useGetBreweryCommentsQuery
+} from "../../store/services/centerBeer.js";
 
-export default function Reviews({header, images, resume}){
+export default function Reviews({header, images, resume, alias, id}){
     const { isAuthorized, userProfile, isLoading: profileIsLoading } = useSelector((state) => state.auth);
     const textRef = useRef(null);
     const [isTextClamped, setIsTextClamped] = useState(false);
@@ -31,7 +36,31 @@ export default function Reviews({header, images, resume}){
     const navigate = useNavigate()
     const [showAuthModal, setShowAuthModal] = useState(false)
     const [showAllReviews, setShowAllReviews] = useState(false);
-    const reviews = {
+    const [visibleReviews, setVisibleReviews] = useState({
+        total_items: 0,
+        data: [],
+    });
+
+    const {data: barReviews, isLoading: barReviewsIsLoading, error: barReviewsError} = useGetBarCommentsQuery(id, {skip: alias !== "bar"})
+    const {data: beerReviews, isLoading: beerReviewsIsLoading, error: beerReviewsError} = useGetBeerCommentsQuery(id, {skip: alias !== "beer"})
+    const {data: breweryReviews, isLoading: breweryReviewsIsLoading, error: breweryReviewsError} = useGetBreweryCommentsQuery(id, {skip: alias !== "brewery"})
+
+    const reviewsData = {
+        bar: {data: barReviews, isLoading: barReviewsIsLoading, error: barReviewsError},
+        beer: {data: beerReviews, isLoading: beerReviewsIsLoading, error: beerReviewsError},
+        brewery: {data: breweryReviews, isLoading: breweryReviewsIsLoading, error: breweryReviewsError}
+    }
+
+
+    useEffect(() => {
+        if (!reviewsData[alias].isLoading && reviewsData[alias].data && reviewsData[alias].data.data) {
+            setVisibleReviews({
+                ...reviewsData[alias].data,
+                data: showAllReviews ? reviewsData[alias].data.data : reviewsData[alias].data.data.slice(0, 3),
+            });
+        }
+    }, [reviewsData[alias].isLoading, alias, showAllReviews]);
+    /*const reviews = {
         "total_items": 1,
         "data": [
             {
@@ -72,12 +101,7 @@ export default function Reviews({header, images, resume}){
             },
 
         ]
-    }
-
-    const visibleReviews = {
-        ...reviews,
-        data: showAllReviews ? reviews.data : reviews.data.slice(0, 3),
-    };
+    }*/
 
     // Проверка, обрезан ли текст
     useEffect(() => {
@@ -113,7 +137,7 @@ export default function Reviews({header, images, resume}){
                        return <Comment key={index} data={review}/>
                     })}
 
-                    {reviews.data.length > 3 && !showAllReviews && (
+                    {reviewsData[alias].data?.data?.length > 3 && !showAllReviews && (
                         <>
                             <div className={styles.showAllContainer}>
                                 <div className={styles.gradient}></div>
@@ -124,7 +148,7 @@ export default function Reviews({header, images, resume}){
                         </>
 
                     )}
-                    {reviews.data.length > 3 && showAllReviews && (
+                    {reviewsData[alias].data?.data?.length > 3 && showAllReviews && (
                         <div className={styles.buttonRow}>
                             <SimpleButton text={"Скрыть отзывы"} onClick={() => setShowAllReviews(false)}></SimpleButton>
                         </div>

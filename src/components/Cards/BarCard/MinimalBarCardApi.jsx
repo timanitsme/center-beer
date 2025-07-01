@@ -50,10 +50,10 @@ export default function MinimalBarCardApi({cardInfo}){
                     <a onClick={(e) => handleAddToFav(e, cardInfo?.id)} className={`${styles.favButton} ${cardFav? styles.added : ''}`}><FavIcon/></a>
                 </div>
                 <div className={styles.characteristics}>
-                    <p className={styles.cardTextPrimary} onClick={goToBeerPage}>{cardInfo.bar_name}</p>
+                    <p className={`${styles.cardTextPrimary} aa-p2`} onClick={goToBeerPage}>{cardInfo.bar_name}</p>
                 </div>
                 <div className={`${styles.iconText} ${styles.loc}`}>
-                    <p>{cardInfo.address}</p>
+                    <p className={`aa-p2`}>{cardInfo.address}</p>
                 </div>
             </div>
         </div>

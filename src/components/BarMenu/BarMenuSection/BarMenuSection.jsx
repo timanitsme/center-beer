@@ -350,8 +350,8 @@ export default function BarMenuSection({alias, barId, tab}){
                         <div className={styles.sectionHeader}>
                             <div className={styles.sectionDescriptionIcon}><tabSpec.Icon/></div>
                             <div className={styles.sectionDescription}>
-                                <h2>{tab?.header}</h2>
-                                <p>{tab?.description}</p>
+                                <h2 className="ma-h2">{tab?.header}</h2>
+                                <p className="ma-p">{tab?.description}</p>
                             </div>
 
                             {!isMobile && <div className={`${styles.sectionButton} ${styles.mobileOff}` }><IconButton onClick={() => navigate("/in-dev")} text="Забронировать стол"><tabSpec.Icon/></IconButton></div>}

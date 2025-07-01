@@ -20,8 +20,8 @@ export default function StrongAlcoholCard ({cardInfo}){
             <div className={styles.strongAlcoholCard}>
                 <div className={styles.cardTop}>
                     <div className={styles.textContainer}>
-                        <p className={styles.cardTextPrimary}>{cardInfo?.name}</p>
-                        <p className={styles.textActive}>{[cardInfo?.alc_type, cardInfo?.country].join(", ")}</p>
+                        <p className={`${styles.cardTextPrimary} ma-h6`}>{cardInfo?.name}</p>
+                        <p className={`${styles.textActive} ma-p`}>{[cardInfo?.alc_type, cardInfo?.country].join(", ")}</p>
                     </div>
                     <div>
                         <a onClick={() => setCardBookmarked(!cardBookmarked)} className={`${styles.bookMarkButton} ${cardBookmarked && styles.added}`}><BookMarkIcon/></a>
@@ -35,16 +35,16 @@ export default function StrongAlcoholCard ({cardInfo}){
                 </div>
                 <div className={styles.characteristics}>
                     <div>
-                        <p className={`${styles.textActive} ${styles.secondary}`}>Крепость:</p>
-                        <p className={styles.textActive}>{formatNumber(cardInfo?.abv)}%</p>
+                        <p className={`${styles.textActive} aa-p2 ${styles.secondary}`}>Крепость:</p>
+                        <p className={`${styles.textActive} ma-p`}>{formatNumber(cardInfo?.abv)}%</p>
                     </div>
                     {cardInfo.age && <div>
-                        <p className={`${styles.textActive} ${styles.secondary}`}>Выдержка:</p>
-                        <p className={styles.textActive}>{cardInfo?.age}</p>
+                        <p className={`${styles.textActive} aa-p2 ${styles.secondary}`}>Выдержка:</p>
+                        <p className={`${styles.textActive} ma-p`}>{cardInfo?.age}</p>
                     </div>}
                     <div>
-                        <p className={`${styles.textActive} ${styles.secondary}`}>Объем:</p>
-                        <p className={styles.textActive}>{cardInfo?.vol}</p>
+                        <p className={`${styles.textActive} aa-p2 ${styles.secondary}`}>Объем:</p>
+                        <p className={`${styles.textActive} ma-p`}>{cardInfo?.vol}</p>
                     </div>
                 </div>
 

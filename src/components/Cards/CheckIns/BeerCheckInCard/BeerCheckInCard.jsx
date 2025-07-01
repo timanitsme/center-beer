@@ -32,15 +32,15 @@ export default function BeerCheckInCard(){
             </div>
             <div className={styles.characteristics}>
                 <div>
-                    <p className="ma-p2">Крепость:</p>
+                    <p className="aa-p2">Крепость:</p>
                     <p className={`${styles.active} ma-p`}>10%</p>
                 </div>
                 <div>
-                    <p className="ma-p2">Плотность:</p>
+                    <p className="aa-p2">Плотность:</p>
                     <p className={`${styles.active} ma-p`}>12%</p>
                 </div>
                 <div>
-                    <p className="ma-p2">Горечь</p>
+                    <p className="aa-p2">Горечь</p>
                     <p className={`${styles.active} ma-p`}>40</p>
                 </div>
             </div>

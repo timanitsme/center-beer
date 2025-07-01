@@ -8,7 +8,7 @@ export default function CheckBox({text = "Пиво"}){
             <span className={styles.checkmark}>
                 <CheckMarkIcon/>
             </span>
-            <p>{text}</p>
+            <p className="ma-p">{text}</p>
         </label>
     );
 }

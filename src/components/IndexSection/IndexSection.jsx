@@ -8,17 +8,15 @@ import BarImage2 from "../../assets/barsMocks/bar-2.svg"
 import BarImage3 from "../../assets/barsMocks/bar-5.svg"
 import BarImage4 from "../../assets/barsMocks/bar-4.svg"
 import BarImage5 from "../../assets/barsMocks/bar-1.svg"
-import MinimalBarCard from "../Cards/BarCard/MinimalBarCard.jsx";
 import VideoImage1 from "../../assets/videoMocks/video-image-1.svg"
 import VideoImage2 from "../../assets/videoMocks/video-image-2.svg"
 import VideoImage3 from "../../assets/videoMocks/video-image-3.svg"
 import VideoImage4 from "../../assets/videoMocks/video-image-4.svg"
 import VideoImage5 from "../../assets/videoMocks/video-image-5.svg"
 import VideoImage6 from "../../assets/videoMocks/video-image-6.svg"
-import VideoCard from "../Cards/VideoCard/VideoCard.jsx";
 import {useNavigate} from "react-router-dom";
-import VideoCardsRow from "../../assets/videos-index-row.svg?react"
-import BarCardsRow from "../../assets/bars-index-row.svg?react"
+import VideoCardsRow from "../../assets/videos-index-row.webp"
+import BarCardsRow from "../../assets/bars-index-row.webp"
 
 export default function IndexSection(){
     const [showTitle, setShowTitle] = useState(false);
@@ -73,11 +71,11 @@ export default function IndexSection(){
             </div>
             <div className={styles.bottle}><NoCapBottle/></div>
             <div className={`${styles.videoCardContainer} ${showTitle? styles.show: ""}`}>
-                <VideoCardsRow/>
+                <img src={VideoCardsRow} alt=""/>
             </div>
 
             <div className={`${styles.cardContainer} ${showTitle? styles.show: ""}`}>
-                <BarCardsRow/>
+                <img src={BarCardsRow} alt=""/>
             </div>
         </div>
     )

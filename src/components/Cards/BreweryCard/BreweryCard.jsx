@@ -24,8 +24,8 @@ export default function BreweryCard({cardInfo}){
                     <div className={styles.cardContent}>
                         <div className={styles.cardTop}>
                             <div className={styles.textContainer}>
-                                <p className={styles.cardTextPrimary} onClick={goToBreweryPage}>{cardInfo?.name}</p>
-                                <p className={styles.textActive}>{cardInfo?.country}</p>
+                                <p className={`${styles.cardTextPrimary} ma-h6`} onClick={goToBreweryPage}>{cardInfo?.name}</p>
+                                <p className={`${styles.textActive} ma-p`}>{cardInfo?.country}</p>
                             </div>
                             <div>
                                 <a onClick={() => setCardBookmarked(!cardBookmarked)} className={`${styles.bookMarkButton} ${cardBookmarked && styles.added}`}><BookMarkIcon/></a>
@@ -34,7 +34,7 @@ export default function BreweryCard({cardInfo}){
                         <div className={`${styles.cardBottom} ${styles.pc}`}>
                             <div className={styles.productsRow}>
                                 {cardInfo?.options?.length > 0 && cardInfo?.options.map((option, index) =>
-                                    <div key={index} className={styles.product}><p>{option}</p></div>
+                                    <div key={index} className={styles.product}><p className="text-small">{option}</p></div>
                                 )}
                             </div>
                             <a onClick={() => setCardFav(!cardFav)} className={`${styles.favButton} ${cardFav? styles.added : ''}`}><FavIcon/></a>
@@ -44,7 +44,7 @@ export default function BreweryCard({cardInfo}){
                 <div className={`${styles.cardBottom} ${styles.mobile}`}>
                     <div className={styles.productsRow}>
                         {cardInfo?.options?.length > 0 && cardInfo?.options.map((option, index) =>
-                            <div key={index} className={styles.product}><p>{option}</p></div>
+                            <div key={index} className={styles.product}><p className="text-small">{option}</p></div>
                         )}
                     </div>
                     <a onClick={() => setCardFav(!cardFav)} className={`${styles.favButton} ${cardFav? styles.added : ''}`}><FavIcon/></a>

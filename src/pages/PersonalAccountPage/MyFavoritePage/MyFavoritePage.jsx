@@ -3,7 +3,6 @@ import {isMobile} from "react-device-detect";
 import PersonalAccount from "../../../components/PersonalAccount/PersonalAccount.jsx";
 import styles from "../MyCheckinsPage/MyCheckinsPage.module.scss";
 import SimpleCatalogSection from "../../../components/CatalogSections/SimpleCatalogSection/SimpleCatalogSection.jsx";
-import MinimalBarCard from "../../../components/Cards/BarCard/MinimalBarCard.jsx";
 import {useGetUsersFavBarsQuery, useGetUsersFavBeersQuery} from "../../../store/services/centerBeer.js";
 import {useSelector} from "react-redux";
 import {useNavigate, useParams} from "react-router-dom";
@@ -11,6 +10,7 @@ import MinimalBottledBeerCardApi from "../../../components/Cards/BottledBeerCard
 import ArrowLeftIcon from "../../../assets/arrow-left-icon.svg?react"
 import BreweryCard from "../../../components/Cards/BreweryCard/BreweryCard.jsx";
 import {useEffect} from "react";
+import MinimalBarCardApi from "../../../components/Cards/BarCard/MinimalBarCardApi.jsx";
 
 export default function MyFavoritePage(){
     const {alias} = useParams();
@@ -22,7 +22,7 @@ export default function MyFavoritePage(){
 
     const selectors = {
         beer: {pathname: "Любимое пиво", data: beerData, isLoading: beerIsLoading, error: beerError, CardComponent: MinimalBottledBeerCardApi},
-        bar: {pathname: "Любимые заведения", data: barData, isLoading: barIsLoading, error: barError, CardComponent: MinimalBarCard},
+        bar: {pathname: "Любимые заведения", data: barData, isLoading: barIsLoading, error: barError, CardComponent: MinimalBarCardApi},
         brewery: {pathname: "Любимые пивоварни", data: {data: []}, isLoading: false, error: false, CardComponent: BreweryCard}
     }
 

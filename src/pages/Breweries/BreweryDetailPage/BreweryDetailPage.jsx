@@ -95,7 +95,7 @@ export default function BreweryDetailPage(){
                     {!beerIsLoading && !beerError && beerMocks[0]?.sales_in_bars && beerMocks[0]?.sales_in_markets && <BarsRow title="Где попробовать нашу продукцию" cards={beerMocks[0]?.sales_in_bars} marketCards={beerMocks[0]?.sales_in_markets} CardComponent={LightBarCard}/>}
                     <BeerCatalogSection withoutPrice={true} breweryId={data[0].id} ref={menuRef}/>
                     {data[0].alias === "jaws" && <NewProducts images={images} ref={newProductsRef}/>}
-                    <Reviews header={getBreweryDetailReviewsHeader(data[0]?.name)} resume={reviewsResume(data[0]?.name)}></Reviews>
+                    <Reviews header={getBreweryDetailReviewsHeader(data[0]?.name)} resume={reviewsResume(data[0]?.name)} id={data[0].id} alias="brewery"></Reviews>
                     {data[0].alias === "jaws" && <Excursions ref={excursionsRef}/>}
                 </>
             }

@@ -46,17 +46,17 @@ export default function Comment({profile, data}){
                 <img className={styles.avatar} src={AvatarDefault} alt=""></img>
                 <div>
                     <div className={styles.commentHeader}>
-                        <p className={styles.pHeader}>Николай Б.</p>
+                        <p className={`${styles.pHeader} ma-p`}>Анонимный пользователь</p>
                         <div className={styles.dateAndBottles}>
-                            <p>{formatDateWithTextMonth(data?.create_date)}</p>
+                            <p className="ma-p">{formatDateWithTextMonth(data?.create_date)}</p>
                             <div className={`${styles.beerBottles} ${styles.minBottles}`}>
                                 {getRatingIcons(4.2)}
                             </div>
                         </div>
                     </div>
-                    <p className={unlimitedText ? "" : "limited-text"} ref={textRef}>Посещение этого пивного бара всегда оставляет только положительные эмоции! Здесь царит уютная и дружелюбная атмосфера, которая сразу создает ощущение, что ты попал в гости к старым друзьям. Интерьер бара оформлен со вкусом, каждая деталь подобрана с любовью к своему делу.
-                        Ассортимент пива впечатляет – от классических сортов до эксклюзивных крафтовых вариантов, каждый из которых имеет свою изюминку. Персонал всегда готов помочь с выбором напитка и дать рекомендации по закускам. Особенно понравились их фирменные колбаски – сочные и ароматные, идеально сочетающиеся с пивом.</p>
-                    {isTextClamped && <a onClick={() => setUnlimitedText(!unlimitedText)}>{unlimitedText? "Свернуть" : "Читать полностью"}</a>}
+                    <p className={`${unlimitedText ? "" : "limited-text"} ma-p`} ref={textRef}>{data?.comment}</p>
+                    {isTextClamped && <a onClick={() => setUnlimitedText(!unlimitedText)} className="ma-p">{unlimitedText? "Свернуть" : "Читать полностью"}</a>}
+                    {/* FIXME: Потом media сюда всунуть
                     <div className={styles.commentPhotos}>
                         <div className={styles.imageWrapper}>
                             <img src={Bottle1} alt=""/>
@@ -68,14 +68,15 @@ export default function Comment({profile, data}){
                             <img src={Bottle1} alt=""/>
                         </div>
                     </div>
+                    */}
                     <div className={styles.commentButtons}>
                         <div className={styles.mark}>
-                            <div onClick={handleLike} className={`${isLiked && styles.active}`}><a><LikeIcon/></a><p>{isLiked && !data.is_liked? Number(data?.liked) + 1: data?.liked}</p></div>
-                            <div onClick={handleDislike} className={`${isDisliked && styles.active}`}><a><DislikeIcon/></a><p>{isDisliked && !data?.is_disliked ? Number(data?.disliked) + 1: data?.disliked}</p></div>
+                            <div onClick={handleLike} className={`${isLiked && styles.active}`}><a><LikeIcon/></a><p className="ma-p">{isLiked && !data.is_liked? Number(data?.liked) + 1: data?.liked}</p></div>
+                            <div onClick={handleDislike} className={`${isDisliked && styles.active}`}><a><DislikeIcon/></a><p className="ma-p">{isDisliked && !data?.is_disliked ? Number(data?.disliked) + 1: data?.disliked}</p></div>
                         </div>
                         <div className={styles.markRight}>
-                            <a className={`${styles.aComment} ${showComments ? styles.secondary: ''}`} onClick={() => setShowComments(!showComments)}>{showComments? "Скрыть комментарии":"15 Комментариев"}</a>
-                            <a className={`${styles.aComment} ${replyMode === data?.id ? styles.secondary: ''}`} onClick={() => replyMode === data?.id? setReplyMode(null): setReplyMode(data?.id)}>Ответить</a>
+                            <a className={`${styles.aComment} ma-p ${showComments ? styles.secondary: ''}`} onClick={() => setShowComments(!showComments)}>{showComments? "Скрыть комментарии":"1 Комментариев"}</a>
+                            <a className={`${styles.aComment} ma-p ${replyMode === data?.id ? styles.secondary: ''}`} onClick={() => replyMode === data?.id? setReplyMode(null): setReplyMode(data?.id)}>Ответить</a>
                         </div>
                     </div>
                 </div>
@@ -86,14 +87,14 @@ export default function Comment({profile, data}){
                     <div className={styles.replyContent}>
 
                         <div className={styles.commentHeader}>
-                            <p className={styles.pHeader}>Администратор</p>
+                            <p className={`${styles.pHeader} ma-p`}>Администратор</p>
                             <div className={styles.dateAndBottles}>
-                                <p>{formatDateWithTextMonth(data?.create_date)}</p>
+                                <p className="ma-p">{formatDateWithTextMonth(data?.create_date)}</p>
 
                             </div>
                         </div>
-                        <p className={unlimitedText ? "" : "limited-text"} ref={textRef}>Николай, большое спасибо за данный отзыв!</p>
-                        {isTextClamped && <a onClick={() => setUnlimitedText(!unlimitedText)}>{unlimitedText? "Свернуть" : "Читать полностью"}</a>}
+                        <p className={`${unlimitedText ? "" : "limited-text"} ma-p`} ref={textRef}>Анонимный пользователь, большое спасибо за данный отзыв!</p>
+                        {isTextClamped && <a onClick={() => setUnlimitedText(!unlimitedText)} className="ma-p">{unlimitedText? "Свернуть" : "Читать полностью"}</a>}
                         <div className={styles.commentButtons}>
                             <div className={styles.mark}>
                                 <div onClick={handleLike} className={`${isLiked && styles.active}`}><a><LikeIcon/></a><p>{isLiked && !data.is_liked? Number(data?.liked) + 1: data?.liked}</p></div>
@@ -109,7 +110,7 @@ export default function Comment({profile, data}){
                 <div className={styles.reply}>
                     <img className={styles.avatar} src={AvatarDefault} alt=""></img>
                     <div className={styles.replyContent}>
-                    <textarea type="text" placeholder="Напишите сообщение...">
+                    <textarea className="ma-p" type="text" placeholder="Напишите сообщение...">
 
                     </textarea>
                         <div className={styles.replyButtons}>

@@ -21,10 +21,10 @@ export default function AdvantagesList({barInfo}){
                     <div key={advantage.title} className={styles.advantagesListItem}>
                         {advantage.icon}
                         <div>
-                            <h5>{advantage.title}</h5>
+                            <h5 className="ma-h6">{advantage.title}</h5>
                             {advantage.description.map((item) => {
                                 return(
-                                    <p key={item}>{item}</p>
+                                    <p key={item} className="ma-p">{item}</p>
                                 )
                             })}
                         </div>

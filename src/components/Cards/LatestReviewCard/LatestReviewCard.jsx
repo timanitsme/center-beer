@@ -26,8 +26,8 @@ export default function LatestReviewCard(){
                         <img src={imageSrc} onError={() => setImageSrc(cardImagePlaceholder)} alt=""/>
                     </div>
                     <div className={styles.flexCol}>
-                        <h3>{cardInfo.title}</h3>
-                        {cardInfo.status === "published" && <div className={`${styles.status} ${styles.preparing}`}><p>Опубликован</p></div>}
+                        <h3 className="aa-h6">{cardInfo.title}</h3>
+                        {cardInfo.status === "published" && <div className={`${styles.status} text-min-small ${styles.preparing}`}><p>Опубликован</p></div>}
                     </div>
                 </div>
                 <div className={styles.flexRow}>
@@ -36,20 +36,20 @@ export default function LatestReviewCard(){
                 </div>
             </div>
             <div className={styles.description}>
-                <p>Оценка:</p>
+                <p className="ma-p2">Оценка:</p>
                 <div style={{display: "flex", alignItems: "center", gap: "5px"}}>
                     <div className={styles.beerBottles}>
                         {getRatingIcons(cardInfo.rating)}
                     </div>
-                    <p className={styles.active}>({cardInfo.rating})</p>
+                    <p className={`${styles.active} ma-p2`}>({cardInfo.rating})</p>
                 </div>
             </div>
             <div className={styles.description}>
-                <p>Комментарий:</p>
-                <p className={styles.active}>{cardInfo.comment}</p>
+                <p className="ma-p2">Комментарий:</p>
+                <p className={`${styles.active} ma-p2`}>{cardInfo.comment}</p>
             </div>
             <div className={styles.description}>
-                <p>Фото:</p>
+                <p className="ma-p2">Фото:</p>
                 <div className={styles.itemsRow}>
                     {cardInfo.photos.map((item, index) =>
                         <div key={index} className={`${styles.imageWrapper} ${styles.photos}`}>

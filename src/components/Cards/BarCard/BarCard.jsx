@@ -39,10 +39,10 @@ export default function BarCard({cardInfo}){
 
         for (let i = 0; i < 4; i++) {
             if (i < expensiveness) {
-                icons.push(<span key={i} style={{color: "var(--primary)"}}>₽</span>);
+                icons.push(<span className="aa-p2" key={i} style={{color: "var(--primary)"}}>₽</span>);
             }
             else {
-                icons.push(<span key={i}>₽</span>);
+                icons.push(<span className="aa-p2" key={i}>₽</span>);
             }
         }
         return icons;
@@ -90,27 +90,27 @@ export default function BarCard({cardInfo}){
                     <a onClick={(e) => handleAddToFav(e, cardInfo?.id)} className={`${styles.favButton} ${cardFav? styles.added : ''}`}><FavIcon/></a>
                 </div>
                 <div className={styles.characteristics}>
-                    <p className={styles.cardTextPrimary} onClick={goToBeerPage}>{cardInfo.name}</p>
-                    <p style={{whiteSpace: "nowrap"}}>{getExpensivenessIcons(cardInfo["average_bill_icon"])}</p>
+                    <p className={`${styles.cardTextPrimary} aa-p2`} onClick={goToBeerPage}>{cardInfo.name}</p>
+                    <p className="aa-p2" style={{whiteSpace: "nowrap"}}>{getExpensivenessIcons(cardInfo["average_bill_icon"])}</p>
                 </div>
                 <div className={`${styles.iconText} ${styles.loc}`}>
                     <LocationIcon/>
-                    <p>{cardInfo.address}</p>
+                    <p className="aa-p2">{cardInfo.address}</p>
                 </div>
                 <div className={`${styles.iconText} ${styles.metro}`}>
                     <MetroIcon color={cardInfo.subway.color}/>
-                    <p>{cardInfo.subway.name}</p>
+                    <p className="aa-p2">{cardInfo.subway.name}</p>
                 </div>
 
                 <div className={styles.characteristics}>
                     <div>
-                        {rating && <><BottleIcon/> <p className={styles.ratingText}> ({rating.toFixed(1)})</p></>}
+                        {rating && <><BottleIcon/> <p className={`${styles.ratingText} aa-p2`} > ({rating.toFixed(1)})</p></>}
                         <div className="circle"/>
-                        <CommentIcon/><p>{0}</p>
+                        <CommentIcon/><p className="aa-p2">{0}</p>
                     </div>
                     <div>
                         <div className={`${styles.bigCircle} ${cardInfo?.work_time_list[getDayOfWeek()]?.active? styles.green : styles.red}`}/>
-                        <p>{cardInfo?.work_time_list[getDayOfWeek()]?.active? "открыт":"закрыт"}</p>
+                        <p className="aa-p2">{cardInfo?.work_time_list[getDayOfWeek()]?.active? "открыт":"закрыт"}</p>
                     </div>
                 </div>
 

@@ -61,6 +61,8 @@ export default function AboutDetailPage() {
                 {Icon: FaBeer, text: 'Заказы напрямую из бара'},
                 {Icon: FaShoppingCart, text: 'Дополнительные продажи через функцию предзаказа в заведениях'},
                 {Icon: FaAd, text: 'Увеличение узнаваемости за счет рекламы'},
+                {Icon: FaGamepad, text: 'Увеличение продаж за счет геймификации'},
+                {Icon: FaShareAlt, text: 'Посты в соц. сетях из одного окна'},
             ],
             mainImage: BreweryPartnerPreview,
             videoCards: [

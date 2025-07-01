@@ -4,7 +4,7 @@ import styles from "./RoundLinkButton.module.scss"
 export default function RoundLinkButton({text="Кнопка", onClick = () => {}}){
     return(
         <a className={styles.buttonContainer} onClick={onClick}>
-            <p>{text}</p>
+            <p className="ma-p">{text}</p>
             <RoundLinkIcon/>
         </a>
     )

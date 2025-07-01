@@ -86,13 +86,13 @@ export default function BarInfo({barInfo={}, sections = []}){
                 </div>
                 <div className={styles.barDescription}>
                     <div className={styles.descriptionRow}>
-                        <h2>{barInfo.name}</h2>
+                        <h2 className="ma-h2">{barInfo.name}</h2>
                         <div className={styles.openedSection}>
                             <div className={`${styles.bigCircle} ${barInfo?.work_time_list[getDayOfWeek()]?.active? styles.green : styles.red}`}/>
-                            <p>{barInfo?.work_time_list[getDayOfWeek()]?.active? `открыт до ${intervals?.[1]}`:`закрыт до ${intervals?.[0]}`}</p>
+                            <p className="ma-p">{barInfo?.work_time_list[getDayOfWeek()]?.active? `открыт до ${intervals?.[1]}`:`закрыт до ${intervals?.[0]}`}</p>
                         </div>
                     </div>
-                    <p>{barInfo.description}</p>
+                    <p className="ma-p">{barInfo.description}</p>
                     <div className={styles.barButtons}>
                         {sections.map((section, index) =>
                             <IconButton key={index} onClick={() => handleScroll(section.ref)} text={section.title}>{section.IconComponent}</IconButton>
@@ -125,21 +125,21 @@ export default function BarInfo({barInfo={}, sections = []}){
             </div>
             <div className={`${styles.barInfo} ${styles.mobile}`}>
                 <div>
-                    <a className={`${styles.aIconButton} ${isFavourite ? styles.added : ''}`} onClick={(e) => handleAddToFav(e, barInfo?.id)}><FavsIcon/>{isFavourite? "Убрать из любимых": "Добавить в любимые"}</a>
-                    <a className={`${styles.aIconButton} ${isBookmarked ? styles.added : ''}`} onClick={(e) => handleAddToCuddy(e, barInfo?.id)}><BookMarkIcon/>{isBookmarked? "Убрать из кладовки": "Добавить в кладовку"}</a>
+                    <a className={`${styles.aIconButton} ma-p ${isFavourite ? styles.added : ''}`} onClick={(e) => handleAddToFav(e, barInfo?.id)}><FavsIcon/>{isFavourite? "Убрать из любимых": "Добавить в любимые"}</a>
+                    <a className={`${styles.aIconButton} ma-p ${isBookmarked ? styles.added : ''}`} onClick={(e) => handleAddToCuddy(e, barInfo?.id)}><BookMarkIcon/>{isBookmarked? "Убрать из кладовки": "Добавить в кладовку"}</a>
                 </div>
                 <div className={styles.ratingAndComments}>
                     <div className={styles.beerBottles}>
                         {getRatingIcons(rating)}
                     </div>
-                    <p>({rating})</p>
+                    <p className="ma-p">({rating})</p>
                     <div className={styles.circle}/>
-                    <a> <CommentIcon/> 116 комментариев</a>
+                    <a className="ma-p"> <CommentIcon/> 116 комментариев</a>
                 </div>
-                <h2>+7 (916) 298-06-14</h2>
-                <p>г. Москва, Сущевский вал, 41</p>
-                <a className={styles.aUnderlinedIconButton}><CommentIcon/>Связаться с нами</a>
-                <a className={styles.aUnderlinedIconButton}><CalendarIcon/>График работы</a>
+                <h2 className="ma-h2">+7 (916) 298-06-14</h2>
+                <p className="ma-p">г. Москва, Сущевский вал, 41</p>
+                <a className={`${styles.aUnderlinedIconButton} ma-p`}><CommentIcon/>Связаться с нами</a>
+                <a className={`${styles.aUnderlinedIconButton} ma-p`}><CalendarIcon/>График работы</a>
                 <div>
                     <IconButton text="Найти на карте" onClick={() => navigate("/map")} style="secondary"><LocationIcon/></IconButton>
                     <IconButton text="Заказать такси" style="secondary"><TaxiIcon/></IconButton>

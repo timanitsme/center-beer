@@ -602,8 +602,8 @@ export default function BarMenu({filters, filterButtons, sections, ref, barId = 
                             <div className={styles.sectionHeader}>
                                 <div className={styles.sectionDescriptionIcon}><IconComponent/></div>
                                 <div className={styles.sectionDescription}>
-                                    <h2>{tab?.header}</h2>
-                                    <p>{tab?.description}</p>
+                                    <h2 className="ma-h3-small">{tab?.header}</h2>
+                                    <p className="ma-p">{tab?.description}</p>
                                 </div>
                                 {!isMobile && <div className={`${styles.sectionButton} ${styles.mobileOff}` }><IconButton onClick={() => navigate("/in-dev")} text="Забронировать стол"><IconComponent/></IconButton></div>}
                                 {isMobile && <div className={styles.mobileButtons}>

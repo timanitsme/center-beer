@@ -28,7 +28,7 @@ export default function DistributorCard({cardInfo}){
                     <div className={styles.cardContent}>
                         <div className={styles.cardTop}>
                             <div className={styles.textContainer}>
-                                <h6 className={styles.cardTextPrimary} onClick={goToDistributorPage}>{cardInfo.title}</h6>
+                                <h6 className={`${styles.cardTextPrimary} ma-h6`} onClick={goToDistributorPage}>{cardInfo.title}</h6>
                                 <p className={`${styles.textActive} text-min`}>{cardInfo.address}</p>
                             </div>
                             <div>

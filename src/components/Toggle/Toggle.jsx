@@ -13,7 +13,7 @@ export default function Toggle( {label, toggled, onClick, reset}) {
         <label className={styles.toggle}>
             <input type="checkbox" defaultChecked={isToggled} onClick={callback} />
             <span />
-            <p className="noSelect">{label}</p>
+            <p className="noSelect ma-p">{label}</p>
         </label>
     )
 }

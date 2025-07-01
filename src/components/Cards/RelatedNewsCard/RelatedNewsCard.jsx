@@ -10,9 +10,9 @@ export default function RelatedNewsCard({cardInfo}){
 
     return(
         <div className={styles.blogCard}>
-            <p className={styles.cardTextPrimary} onClick={goToNewsPage}>{cardInfo.title}</p>
+            <p className={`${styles.cardTextPrimary} ma-p1`} onClick={goToNewsPage}>{cardInfo.title}</p>
             <img className={styles.cardImg} src={imageSrc} onClick={goToNewsPage} onError={() => setImageSrc(cardImagePlaceholder)} alt=""/>
-            <p className={styles.cardDescription}>{cardInfo.description}</p>
+            <p className={`${styles.cardDescription} ma-p`}>{cardInfo.description}</p>
         </div>
     )
 }

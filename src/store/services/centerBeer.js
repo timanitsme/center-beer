@@ -398,4 +398,4 @@ export const { useGetBarsQuery, useGetBarInfoQuery, useGetBarsFiltersQuery,
     useLazyAddBarToFavQuery, useGetUsersFavBarsQuery, useGetUsersCuddyBarsQuery,
     useGetUsersFavBeersQuery, useGetUsersCuddyBeersQuery, useGetUsersBalanceHistoryQuery, useGetNewsQuery,
     useGetBeerCountriesQuery, useGetBeerStylesQuery, useGetNewsItemQuery, useGetNewsRelatedQuery,
-    useGetNewsCategoriesQuery} = centerBeerApi
+    useGetNewsCategoriesQuery, useGetBarCommentsQuery, useGetBeerCommentsQuery, useGetBreweryCommentsQuery} = centerBeerApi

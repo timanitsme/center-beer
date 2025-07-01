@@ -50,16 +50,16 @@ export default function LightBarCard({cardInfo, title}){
                     <a onClick={(e) => handleAddToFav(e, cardInfo?.id)} className={`${styles.favButton} ${cardFav? styles.added : ''}`}><FavIcon/></a>
                 </div>
                 <div className={styles.characteristics}>
-                    <p className={styles.cardTextPrimary} onClick={() => goToBarPage(cardInfo?.alias)}>{cardInfo?.name}</p>
+                    <p className={`${styles.cardTextPrimary} aa-p2`} onClick={() => goToBarPage(cardInfo?.alias)}>{cardInfo?.name}</p>
                 </div>
                 <div className={`${styles.iconText} ${styles.loc}`}>
-                    <p>{cardInfo?.address}</p>
+                    <p className="aa-p2">{cardInfo?.address}</p>
                 </div>
             </div>
             <div className={styles.cardFooter}>
                 <div className={styles.verticalFooter}>
-                    <p className={styles.textActive}>Стоимость {title} здесь:</p>
-                    <p className={styles.cardTextPrimary}>{Number(cardInfo?.price).toLocaleString("ru-Ru")}₽</p>
+                    <p className={`${styles.textActive} aa-p2`}>Стоимость {title} здесь:</p>
+                    <p className={`${styles.cardTextPrimary} aa-p2`}>{Number(cardInfo?.price).toLocaleString("ru-Ru")}₽</p>
                 </div>
             </div>
         </div>

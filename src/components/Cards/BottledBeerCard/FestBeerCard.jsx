@@ -30,19 +30,19 @@ export default function FestBeerCard({cardInfo}){
                 </div>
                 <div className={styles.cardTop}>
                     <div className={styles.textContainer}>
-                        <p className={styles.cardTextPrimary} onClick={goToBeerPage}>{decodeHtml(cardInfo?.beer_name)}</p>
+                        <p className={`${styles.cardTextPrimary} ma-h6`} onClick={goToBeerPage}>{decodeHtml(cardInfo?.beer_name)}</p>
                         <div className={styles.characteristics}>
                             <div>
-                                <p className={`${styles.textActive} ${styles.secondary}`}>Крепость:</p>
-                                <p className={styles.textActive}>{formatNumber(cardInfo?.abv)}%</p>
+                                <p className={`${styles.textActive} aa-p2 ${styles.secondary}`}>Крепость:</p>
+                                <p className={`${styles.textActive} ma-p`}>{formatNumber(cardInfo?.abv)}%</p>
                             </div>
                             <div>
-                                <p className={`${styles.textActive} ${styles.secondary}`}>Плотность:</p>
-                                <p className={styles.textActive}>{formatNumber(cardInfo?.og)}%</p>
+                                <p className={`${styles.textActive} aa-p2 ${styles.secondary}`}>Плотность:</p>
+                                <p className={`${styles.textActive} ma-p`}>{formatNumber(cardInfo?.og)}%</p>
                             </div>
                             <div>
-                                <p className={`${styles.textActive} ${styles.secondary}`}>Горечь</p>
-                                <p className={styles.textActive}>{formatNumber(cardInfo?.ibu)}</p>
+                                <p className={`${styles.textActive} aa-p2 ${styles.secondary}`}>Горечь</p>
+                                <p className={`${styles.textActive} ma-p`}>{formatNumber(cardInfo?.ibu)}</p>
                             </div>
                         </div>
                         {/*<p className={styles.textActive}>{[cardInfo?.brewery_name, cardInfo?.city, cardInfo?.country].join(", ")}</p>*/}

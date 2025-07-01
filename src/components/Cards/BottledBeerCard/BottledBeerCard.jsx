@@ -71,15 +71,15 @@ export default function BottledBeerCard({cardInfo}){
                 {cardInfo?.style && <p className={styles.textActive}><span style={{color: "var(--txt-secondary)"}}>Стиль:</span> {cardInfo?.style}</p>}
                 <div className={styles.characteristics}>
                     <div>
-                        <p className={`${styles.textActive} ma-p2 ${styles.secondary}`}>Крепость:</p>
+                        <p className={`${styles.textActive} aa-p2 ${styles.secondary}`}>Крепость:</p>
                         <p className={`${styles.textActive} ma-p`}>{formatNumber(cardInfo?.abv)}%</p>
                     </div>
                     <div>
-                        <p className={`${styles.textActive} ma-p2 ${styles.secondary}`}>Плотность:</p>
+                        <p className={`${styles.textActive} aa-p2 ${styles.secondary}`}>Плотность:</p>
                         <p className={`${styles.textActive} ma-p`}>{formatNumber(cardInfo?.og)}%</p>
                     </div>
                     <div>
-                        <p className={`${styles.textActive} ma-p2 ${styles.secondary}`}>Горечь</p>
+                        <p className={`${styles.textActive} aa-p2 ${styles.secondary}`}>Горечь</p>
                         <p className={`${styles.textActive} ma-p`}>{formatNumber(cardInfo?.ibu)}</p>
                     </div>
                 </div>

@@ -47,8 +47,8 @@ export default function SimilarBottledBeerCard({cardInfo}){
             <div className={styles.bottledBeerCard}>
                 <div className={styles.cardTop}>
                     <div className={styles.textContainer}>
-                        <h6 className={styles.cardTextPrimary} onClick={() => goToBeerPage(cardInfo?.alias || cardInfo?.beer_alias)}>{cardInfo?.name}</h6>
-                        <p className={styles.textActive}>{[cardInfo?.brewery_name, cardInfo?.city, cardInfo?.country].join(", ")}</p>
+                        <h6 className={`${styles.cardTextPrimary} ma-h6`} onClick={() => goToBeerPage(cardInfo?.alias || cardInfo?.beer_alias)}>{cardInfo?.name}</h6>
+                        <p className={`${styles.textActive} ma-p`}>{[cardInfo?.brewery_name, cardInfo?.city, cardInfo?.country].join(", ")}</p>
                     </div>
                     <div>
                         <a onClick={(e) => handleAddToCuddy(e, cardInfo?.id)} className={`${styles.bookMarkButton} ${cardBookmarked && styles.added}`}><BookMarkIcon/></a>
@@ -63,22 +63,22 @@ export default function SimilarBottledBeerCard({cardInfo}){
                 {cardInfo.style && <p className={styles.textActive}><span style={{color: "var(--txt-secondary)"}}>Стиль:</span> {cardInfo.style}</p>}
                 <div className={styles.characteristics}>
                     <div>
-                        <p className={`${styles.textActive} ${styles.secondary}`}>Крепость:</p>
-                        <p className={styles.textMedium}>{formatNumber(cardInfo?.abv)}%</p>
+                        <p className={`${styles.textActive} aa-p2 ${styles.secondary}`}>Крепость:</p>
+                        <p className={`${styles.textMedium} ma-p`}>{formatNumber(cardInfo?.abv)}%</p>
                     </div>
                     <div>
-                        <p className={`${styles.textActive} ${styles.secondary}`}>Плотность:</p>
-                        <p className={styles.textMedium}>{formatNumber(cardInfo?.og)}%</p>
+                        <p className={`${styles.textActive} aa-p2 ${styles.secondary}`}>Плотность:</p>
+                        <p className={`${styles.textMedium} ma-p`}>{formatNumber(cardInfo?.og)}%</p>
                     </div>
                     <div>
-                        <p className={`${styles.textActive} ${styles.secondary}`}>Горечь</p>
-                        <p className={styles.textMedium}>{formatNumber(cardInfo?.ibu)}</p>
+                        <p className={`${styles.textActive} aa-p2 ${styles.secondary}`}>Горечь</p>
+                        <p className={`${styles.textMedium} ma-p`}>{formatNumber(cardInfo?.ibu)}</p>
                     </div>
                 </div>
 
             </div>
             <div className={styles.cardFooter}>
-                <p className={styles.textActive} style={{color: "var(--txt-secondary)"}}> Средняя цена:</p>
+                <p className={`${styles.textActive} ma-p`} style={{color: "var(--txt-secondary)"}}> Средняя цена:</p>
                 <p className={styles.cardTextPrimary}>{Number(cardInfo?.price).toLocaleString("ru-Ru")}₽</p>
             </div>
         </div>

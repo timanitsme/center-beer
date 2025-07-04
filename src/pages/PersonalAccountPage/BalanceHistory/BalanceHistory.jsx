@@ -8,6 +8,7 @@ import {useNavigate} from "react-router-dom";
 import BalanceOperation from "../../../components/BalanceOperation/BalanceOperation.jsx";
 import {useSelector} from "react-redux";
 import {useGetUsersBalanceHistoryQuery} from "../../../store/services/centerBeer.js";
+import PersonalAccountMobile from "../../../components/PersonalAccount/PersonalAccountMobile.jsx";
 
 export default function BalanceHistory(){
     const { isAuthorized, userProfile, isLoading: profileIsLoading } = useSelector((state) => state.auth);
@@ -56,9 +57,9 @@ export default function BalanceHistory(){
         <div className="content">
             <NavChain paths={paths}></NavChain>
             <div style={{display: "flex"}}>
-                {!isMobile && <PersonalAccount/>}
+                {!isMobile && <PersonalAccount profile={userProfile}/>}
                 <div style={{display: "flex", flexDirection: "column", width: "100%", gap: "25px"}}>
-                    {isMobile && <PersonalAccount isMobile={true}/>}
+                    {isMobile && <PersonalAccountMobile alias="other" profile={userProfile}/>}
                     <ButtonSwitch options={options} selectedOption={options[1]} onClick={(option) => option.title !== options[1].title? navigate("/account/earn-cb"): navigate("")}/>
                     <div className={`${styles.sectionHeader} ${isMobile? styles.mobile: ""}`}>
                         <h2 className={`${styles.title} ma-h2`}>История операций</h2>

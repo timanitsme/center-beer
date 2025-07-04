@@ -13,8 +13,8 @@ export default function ActiveOrders(){
     return(
         <div className={styles.ordersSection}>
             <div className={styles.headerRow}>
-                <h3>Активные заказы</h3>
-                <a href=""><p>Все заказы (16)</p></a>
+                <h3 className="ma-h3">Активные заказы</h3>
+                <a href="" className="ma-p"><p>Все заказы (16)</p></a>
             </div>
             <div className={styles.orderCardsContainer}>
                 {cards.map((card, index) =>

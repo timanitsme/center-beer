@@ -6,7 +6,7 @@ import ShortenedRowSection from "../ShortenedRowSection/ShortenedRowSection.jsx"
 export default function SwitchRowSectionApi({ title, options, selectedOption, setSelectedOption }) {
     return (
         <div className={styles.sectionContainer}>
-            {title && <h3>{title}</h3>}
+            {title && <h3 className="ma-h3">{title}</h3>}
             <div className={styles.buttonSwitch}>
                 {options.map((option, index) => (
                     <IconButton
@@ -18,8 +18,8 @@ export default function SwitchRowSectionApi({ title, options, selectedOption, se
                 ))}
             </div>
 
-            {selectedOption.isLoading && <p>Загрузка...</p>}
-            {selectedOption.error && <p style={{ color: 'red' }}>Ошибка загрузки</p>}
+            {selectedOption.isLoading && <p className="ma-p">Загрузка...</p>}
+            {selectedOption.error && <p style={{ color: 'red' }} className="ma-p">Ошибка загрузки</p>}
             {!selectedOption.isLoading && !selectedOption.error && (
                 selectedOption?.cards?.data?.length > 0 ? (
                     <ShortenedRowSection
@@ -28,7 +28,7 @@ export default function SwitchRowSectionApi({ title, options, selectedOption, se
                         CardComponent={selectedOption.CardComponent}
                     />
                 ) : (
-                    <p>Нет данных</p>
+                    <p className="ma-p">Нет данных</p>
                 )
             )}
         </div>

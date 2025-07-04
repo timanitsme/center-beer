@@ -16,11 +16,12 @@ import {
 } from "../../store/services/centerBeer";
 import {useNavigate} from "react-router-dom";
 import FilterItem from "../ApiInputs/FilterItem/FilterItem.jsx";
-import Search from "../ApiInputs/Search/Search.jsx";
+import SearchCities from "../ApiInputs/Search/SearchCities.jsx";
 import FiltersModal from "../Modals/FiltersModal/FiltersModal.jsx";
 import {isMobile} from "react-device-detect";
 import SingleCheckBox from "../ApiInputs/CheckBox/SingleCheckBox.jsx";
 import BarCardSkeleton from "../Skeletons/BarCardSkeleton/BarCardSkeleton.jsx";
+import SearchInput from "../ApiInputs/Search/SearchInput.jsx";
 
 
 
@@ -329,7 +330,8 @@ export default function BarsCatalog(){
             </div>
             <div className={styles.menuContent}>
                 {!isMobile && <div className={styles.menuFilters}>
-                    <Search title="Поиск" reset={tabResetFilters["city_id"]} onChange={(value) => handleSingleFilterChange("city_id", value)}></Search>
+                    <SearchInput title="Поиск по названию" onChange={() => {}}></SearchInput>
+                    <SearchCities title="Город" reset={tabResetFilters["city_id"]} onChange={(value) => handleSingleFilterChange("city_id", value)}></SearchCities>
                     <SingleCheckBox text="Онлайн-бронь" onChange={(value) => {handleSingleFilterChange("online_booking", value)}} reset={tabResetFilters["online_booking"]}></SingleCheckBox>
                     {filtersConfig.map((filter) => (
                         <FilterItem
@@ -409,7 +411,8 @@ export default function BarsCatalog(){
             </div>
             {isMobile &&
                 <FiltersModal setShow={setShowFiltersModal} show={showFiltersModal}>
-                    <Search title="Поиск" reset={tabResetFilters["city_id"]} onChange={(value) => handleSingleFilterChange("city_id", value)}></Search>
+                    <SearchInput title="Поиск по названию" onChange={() => {}}></SearchInput>
+                    <SearchCities title="Город" reset={tabResetFilters["city_id"]} onChange={(value) => handleSingleFilterChange("city_id", value)}></SearchCities>
                     <SingleCheckBox text="Онлайн-бронь" onChange={(value) => {handleSingleFilterChange("online_booking", value)}} reset={tabResetFilters["online_booking"]}/>
                     {filtersConfig.map((filter) => (
                         <FilterItem

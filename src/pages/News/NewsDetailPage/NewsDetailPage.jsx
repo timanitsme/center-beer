@@ -5,6 +5,7 @@ import NewsItem from "../../../components/NewsItem/NewsItem.jsx";
 import {useParams} from "react-router-dom";
 import {useGetNewsItemQuery} from "../../../store/services/centerBeer.js";
 import {useEffect} from "react";
+import NewsMobileSection from "../../../components/NewsMobileSection/NewsMobileSection.jsx";
 
 
 
@@ -21,6 +22,7 @@ export default function NewsDetailPage(){
             {!isLoading && !error && data &&
                 <>
                     <NavChain paths={[...getNewsDetailPaths(), {title: data?.title, path: ""}]}/>
+                    <NewsMobileSection withInput={false}/>
                     <NewsDetailSection postId={data?.id}>
                         <NewsItem newsInfo={data}/>
                     </NewsDetailSection>

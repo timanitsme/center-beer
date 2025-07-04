@@ -10,6 +10,7 @@ import ArrowLeftIcon from "../../../assets/arrow-left-icon.svg?react"
 import Search from "../../Inputs/Search/Search.jsx";
 import LocationIcon from "../../../assets/location-filled-icon.svg?react"
 import IconButton from "../../Buttons/IconButton/IconButton.jsx";
+import SearchInput from "../../ApiInputs/Search/SearchInput.jsx";
 
 export default function EventMapSidebar({selectedMarker, setSelectedMarker, breweries, setLightMarker, isMobile=false}){
     const brewery = breweries[selectedMarker]
@@ -75,7 +76,7 @@ export default function EventMapSidebar({selectedMarker, setSelectedMarker, brew
                         </button>
                     </div>
                     <div style={{height: "20px"}}></div>
-                    <Search text="Поиск пивоварни" suggestions={["Русбир", "Грузинская лавка"]}></Search>
+                    <SearchInput title="Поиск пивоварни" onChange={() => {}}></SearchInput>
                     {Object.keys(breweries).map((brewIndex) => {
                         return(
                             <div key={brewIndex} className={styles.brewery} onClick={() => goToBreweryPage(breweries[brewIndex]?.brewery_alias)}>

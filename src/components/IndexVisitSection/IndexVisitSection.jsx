@@ -25,8 +25,8 @@ export default function IndexVisitSection(){
                 <BottleEmptyIcon/>
             </div>
             <div className={styles.widthLimit}>
-                <h3>Мы собрали вместе любителей пива, владельцев баров и мастеров-пивоваров.</h3>
-                <h3 style={{color: "var(--txt-secondary)"}}>У вас будет возможность лично поблагодарить производителя отличного пива или предложить новую рецептуру.</h3>
+                <h3 className="ma-h3">Мы собрали вместе любителей пива, владельцев баров и мастеров-пивоваров.</h3>
+                <h3 className="ma-h3" style={{color: "var(--txt-secondary)"}}>У вас будет возможность лично поблагодарить производителя отличного пива или предложить новую рецептуру.</h3>
             </div>
             <p className={styles.widthLimit}>Общение на одной волне, обмен интересами – всё это в огромном сообществе ценителей и производителей пива. От такого формата выигрывают все: пивовары понимают, что нравится покупателю, а потребители знают, что будут всегда услышаны. Начинающие пивных бизнесов найдут здесь надежных поставщиков и поддержку опытных коллег. Нетворкинг и партнерство в действии.</p>
             <div className={styles.advantagesRow}>
@@ -34,7 +34,7 @@ export default function IndexVisitSection(){
                     return(
                         <div key={index} className={styles.advantage}>
                             {advantage.icon}
-                            <h3>{advantage.title}</h3>
+                            <h3 className="ma-h3">{advantage.title}</h3>
                             <p>{advantage.description}</p>
                         </div>
                     )

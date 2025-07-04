@@ -2,8 +2,6 @@ import styles from "./AllSimilarBeerPage.module.scss"
 import {useNavigate, useParams} from "react-router-dom";
 import {useEffect} from "react";
 import NavChain from "../../../components/Navigation/NavChain/NavChain.jsx";
-import {isMobile} from "react-device-detect";
-import PersonalAccount from "../../../components/PersonalAccount/PersonalAccount.jsx";
 import ArrowLeftIcon from "../../../assets/arrow-left-icon.svg?react";
 import SimpleCatalogSection from "../../../components/CatalogSections/SimpleCatalogSection/SimpleCatalogSection.jsx";
 import {useGetBeerInfoQuery} from "../../../store/services/centerBeer.js";

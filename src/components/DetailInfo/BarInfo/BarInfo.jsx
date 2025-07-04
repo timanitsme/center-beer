@@ -136,13 +136,13 @@ export default function BarInfo({barInfo={}, sections = []}){
                     <div className={styles.circle}/>
                     <a className="ma-p"> <CommentIcon/> 116 комментариев</a>
                 </div>
-                <h2 className="ma-h2">+7 (916) 298-06-14</h2>
-                <p className="ma-p">г. Москва, Сущевский вал, 41</p>
-                <a className={`${styles.aUnderlinedIconButton} ma-p`}><CommentIcon/>Связаться с нами</a>
-                <a className={`${styles.aUnderlinedIconButton} ma-p`}><CalendarIcon/>График работы</a>
+                <h2 className="ma-h2">{barInfo.contacts}</h2>
+                <p className="ma-p">{barInfo.address}</p>
+                <a className={`${styles.aUnderlinedIconButton} ma-p`} href="https://center.beer/about-us/contact/"><CommentIcon/>Связаться с нами</a>
+                <a className={`${styles.aUnderlinedIconButton} ma-p`} onClick={() => setShowModal(true)}><CalendarIcon/>График работы</a>
                 <div>
                     <IconButton text="Найти на карте" onClick={() => navigate("/map")} style="secondary"><LocationIcon/></IconButton>
-                    <IconButton text="Заказать такси" style="secondary"><TaxiIcon/></IconButton>
+                    <IconButton text="Заказать такси" onClick={() => window.location.href = `https://3.redirect.appmetrica.yandex.com/route?end-lat=${barInfo?.lon}&end-lon=${barInfo?.lat}&ref=centerbeer&appmetrica_tracking_id=25395763362139037`} style="secondary"><TaxiIcon/></IconButton>
                 </div>
             </div>
             <div className={styles.barButtonsMobile}>

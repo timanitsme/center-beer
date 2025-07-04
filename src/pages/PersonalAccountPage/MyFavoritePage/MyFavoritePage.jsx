@@ -11,6 +11,7 @@ import ArrowLeftIcon from "../../../assets/arrow-left-icon.svg?react"
 import BreweryCard from "../../../components/Cards/BreweryCard/BreweryCard.jsx";
 import {useEffect} from "react";
 import MinimalBarCardApi from "../../../components/Cards/BarCard/MinimalBarCardApi.jsx";
+import PersonalAccountMobile from "../../../components/PersonalAccount/PersonalAccountMobile.jsx";
 
 export default function MyFavoritePage(){
     const {alias} = useParams();
@@ -42,9 +43,9 @@ export default function MyFavoritePage(){
         <div className="content">
             <NavChain paths={paths}></NavChain>
             <div style={{display: "flex"}}>
-                {!isMobile && <PersonalAccount/>}
+                {!isMobile && <PersonalAccount profile={userProfile}/>}
                 <div style={{display: "flex", flexDirection: "column", width: "100%"}}>
-                    {isMobile && <PersonalAccount isMobile={true}/>}
+                    {isMobile && <PersonalAccountMobile profile={userProfile} alias="favorite"/>}
                     <div className={styles.block}>
                         <div className={styles.row}>
                             <div className={styles.arrowButton} onClick={() => navigate("/account/")}><ArrowLeftIcon/></div>

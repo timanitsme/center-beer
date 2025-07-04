@@ -103,7 +103,7 @@ export default function Header({paths}){
                                 {paths.map((path) => {
                                     return(
                                         <div className={styles.pathContainer} key={path.path} onMouseEnter={() => {setHoveredPath(path.path)}} onMouseLeave={() => {setHoveredPath(null)}}>
-                                            <Link className={(currentPage === path.path) || (path.children?.some(child => child.path === currentPage))? styles.active: ''} to={path.path}>{path.title}</Link>
+                                            <Link className={`${(currentPage === path.path) || (path.children?.some(child => child.path === currentPage))? styles.active: ''} aa-p1`} to={path.path}>{path.title}</Link>
                                             {hoveredPath === path.path && path.children && (
                                                 <div className={styles.subMenu}>
                                                     {path.children.map((child) => (

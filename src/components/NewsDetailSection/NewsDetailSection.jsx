@@ -19,9 +19,10 @@ import {Link, useNavigate} from "react-router-dom";
 import {useGetNewsCategoriesQuery, useGetNewsRelatedQuery} from "../../store/services/centerBeer.js";
 import RelatedNewsCard from "../Cards/RelatedNewsCard/RelatedNewsCard.jsx";
 import RelatedNewsCardSkeleton from "../Skeletons/RelatedNewsCardSkeleton/RelatedNewsCardSkeleton.jsx";
+import SearchInput from "../ApiInputs/Search/SearchInput.jsx";
 
 
-export default function NewsDetailSection({style = "detail", children, postId=null}){
+export default function NewsDetailSection({style = "detail", children, postId=null, onChange}){
     const [isFavourite, setIsFavourite] = useState(false);
     const [isBookmarked, setIsBookmarked] = useState(false);
 
@@ -59,9 +60,10 @@ export default function NewsDetailSection({style = "detail", children, postId=nu
     return(
         <div className={styles.sectionContainer}>
             <div className={styles.sectionMenu}>
-                <Search text="Поиск по статьям"/>
+                {style !== "detail" && <SearchInput title="Поиск по статьям" onChange={(newSearch) => onChange(newSearch)}/>}
                 { !categoriesIsFetching &&
                     <div className={styles.menuItemsContainer}>
+                        <Link to="/news" className={style === "detail"? styles.primary: ""}>Все новости</Link>
                         {categories?.map((item, index) =>
                             <a href="" key={index}>{item.name}</a>
 

@@ -1,7 +1,7 @@
 import FilterComboBox from "../FilterComboBox/FilterComboBox.jsx";
 import CheckBoxSection from "../CheckBoxSection/CheckBoxSection.jsx";
 import Radio from "../Radio/Radio.jsx";
-import Search from "../Search/Search.jsx";
+import SearchCities from "../Search/SearchCities.jsx";
 import RangeRadio from "../Radio/RangeRadio.jsx";
 
 
@@ -51,7 +51,7 @@ export default function FilterItem({ filter, onChange, reset, filterKey = "" }) 
                 )
             case "search":
                 return (
-                    <Search title={filter.title} onChange={onChange}/>
+                    <SearchCities title={filter.title} onChange={onChange}/>
                 )
             default:
                 return null;

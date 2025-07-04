@@ -9,7 +9,7 @@
 
 .mainImage{
     align-self: center;
-    max-width: 80%;
+    max-width: 80vw;
     border-radius: rem(5);
 }
 
@@ -55,7 +55,7 @@
 }
 
 .tag p{
-    color: var(--bg);
+    color: var(--bg) !important;
 }
 
 .itemContainer h2{
@@ -85,6 +85,10 @@
     }
     .source{
         padding: rem(10);
+    }
+
+    .itemContainer{
+        max-width: calc(95vw - 50px);
     }
 
     .tag{

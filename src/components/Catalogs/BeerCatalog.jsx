@@ -1,7 +1,7 @@
 import {useEffect, useMemo, useState} from "react";
 import styles from "./BarsCatalog.module.scss";
 import LocationIcon from "../../assets/location-filled-icon.svg?react";
-import Search from "../ApiInputs/Search/Search.jsx";
+import SearchCities from "../ApiInputs/Search/SearchCities.jsx";
 import SimpleButton from "../Buttons/SimpleButton/SimpleButton.jsx";
 import AppliedFilter from "../AppliedFilter/AppliedFilter.jsx";
 import ComboBox from "../ApiInputs/ComboBox/ComboBox.jsx";
@@ -21,6 +21,7 @@ import FiltersModal from "../Modals/FiltersModal/FiltersModal.jsx";
 import HookedFilterComboBox from "../ApiInputs/FilterComboBox/HookedFilterComboBox.jsx";
 import BottledBeerCardWithoutPrice from "../Cards/BottledBeerCard/BottledBeerCardWithoutPrice.jsx";
 import BottledBeerCardSkeleton from "../Skeletons/BottledBeerCardSkeleton/BottledBeerCardSkeleton.jsx";
+import SearchInput from "../ApiInputs/Search/SearchInput.jsx";
 
 
 export default function BeerCatalog({withoutPrice=false, withHeader = true, breweryId=null}){
@@ -381,7 +382,7 @@ export default function BeerCatalog({withoutPrice=false, withHeader = true, brew
             }
             <div className={styles.menuContent}>
                 {!isMobile && <div className={styles.menuFilters}>
-                    <Search title="Поиск" reset={tabResetFilters["city_id"]} onChange={(value) => handleSingleFilterChange("city_id", value)}></Search>
+                    <SearchInput title="Поиск по названию" onChange={() => {}}></SearchInput>
                     <HookedFilterComboBox options={countries} isLoading={countriesIsLoading} error={countriesError} debouncedInput={debouncedCountryInput} setDebouncedInput={setDebouncedCountryInput} title={"Страна производства"}  fetchHook={useGetBeerCountriesQuery} onChange={(value) => handleFilterChange("country_ids", value)} reset={tabResetFilters["country_ids"]}/>
                     <HookedFilterComboBox options={stylesFilter} isLoading={stylesIsLoading} error={stylesError} debouncedInput={debouncedStyleInput} setDebouncedInput={setDebouncedStyleInput} title={"Стиль"}  fetchHook={useGetStylesQuery} onChange={(value) => handleFilterChange("style_ids", value)} reset={tabResetFilters["style_ids"]}/>
                     {
@@ -489,7 +490,7 @@ export default function BeerCatalog({withoutPrice=false, withHeader = true, brew
             </div>
             {isMobile &&
                 <FiltersModal setShow={setShowFiltersModal} show={showFiltersModal}>
-                    <Search title="Поиск" reset={tabResetFilters["city_id"]} onChange={(value) => handleSingleFilterChange("city_id", value)}></Search>
+                    <SearchInput title="Поиск по названию" onChange={() => {}}/>
                     <HookedFilterComboBox options={countries} isLoading={countriesIsLoading} error={countriesError} debouncedInput={debouncedCountryInput} setDebouncedInput={setDebouncedCountryInput} title={"Страна производства"}  fetchHook={useGetBeerCountriesQuery} onChange={(value) => handleFilterChange("country_ids", value)} reset={tabResetFilters["country_ids"]}/>
                     <HookedFilterComboBox options={stylesFilter} isLoading={stylesIsLoading} error={stylesError} debouncedInput={debouncedStyleInput} setDebouncedInput={setDebouncedStyleInput} title={"Стиль"}  fetchHook={useGetStylesQuery} onChange={(value) => handleFilterChange("style_ids", value)} reset={tabResetFilters["style_ids"]}/>
                     {filtersConfig.map((filter) => (

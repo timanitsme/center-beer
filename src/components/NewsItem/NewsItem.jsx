@@ -7,8 +7,8 @@ export default function NewsItem({newsInfo}){
 
     return(
         <div className={styles.itemContainer}>
-            <h2>{newsInfo?.title}</h2>
-            <p>{formatDateWithTextMonth(newsInfo?.create_date)}</p>
+            <h2 className="ma-h2">{newsInfo?.title}</h2>
+            <p className="ma-p">{formatDateWithTextMonth(newsInfo?.create_date)}</p>
             <img src={newsInfo?.preview} className={styles.mainImage} alt=""></img>
             <p>Пивоваренная компания AB InBev могла потерять вплоть до 1,4 млрд долларов продаж из-за бойкота потребителями после сотрудничества бренда Bud Light с инфлюенсером Дилан Малвейни.</p>
             <p>По итогам 2023 года компания получила рекордную выручку, однако заявила, что в США её «потенциал роста оказался ограничен», так как продажи снизились из-за бойкота. Выручка в органическом выражении в Северной Америке сократилась на 1,4 млрд долларов, в основном за счёт сокращения продаж Bud Light, который даёт компании львиную долю выручки.</p>
@@ -25,7 +25,7 @@ export default function NewsItem({newsInfo}){
             <div className={styles.flex} dangerouslySetInnerHTML={{__html: newsInfo?.content}}></div>
             <div className={styles.tagsContainer}>
                 {newsInfo?.tags.map((tag, index) =>
-                    <div key={index} className={styles.tag}><p>{tag}</p></div>
+                    <div key={index} className={styles.tag}><p className="text-min">{tag}</p></div>
                 )}
             </div>
             <div className={styles.source}><p>Источник: </p><a>Profibeer</a></div>

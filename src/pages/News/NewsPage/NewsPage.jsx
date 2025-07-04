@@ -5,10 +5,13 @@ import NewsDetailSection from "../../../components/NewsDetailSection/NewsDetailS
 import ComponentHeader from "../../../components/ComponentHeader/ComponentHeader.jsx";
 import SectionHeader from "../../../components/SectionHeader/SectionHeader.jsx";
 import NewsCatalog from "../../../components/Catalogs/NewsCatalog/NewsCatalog.jsx";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
+import NewsMobileSection from "../../../components/NewsMobileSection/NewsMobileSection.jsx";
 
 
 export default function NewsPage(){
+    const [searchText, setSearchText] = useState("")
+
     useEffect(() => {
         document.title = `center.beer | Новости`
     }, []);
@@ -17,7 +20,8 @@ export default function NewsPage(){
         <div className="content">
             <NavChain paths={GetNewsPagePaths()}/>
             <SectionHeader title="Новости" description={"Свежие и интересные события из мира пивоварения и пивной культуры. Мы следим за новинками, тенденциями и правовыми изменениями, чтобы держать вас в курсе всего, что происходит в этой увлекательной и разнообразной отрасли."}></SectionHeader>
-            <NewsDetailSection style="regular"><NewsCatalog/></NewsDetailSection>
+            <NewsMobileSection onChange={(newSearch) => setSearchText(newSearch)} withInput={true}/>
+            <NewsDetailSection style="regular" onChange={(newSearch) => setSearchText(newSearch)}><NewsCatalog searchText={searchText}/></NewsDetailSection>
         </div>
     )
 }

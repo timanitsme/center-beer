@@ -8,8 +8,8 @@ export default function LatestReviews(){
     return(
         <div className={styles.ordersSection}>
             <div className={styles.headerRow}>
-                <h3>Последние отзывы</h3>
-                <a href=""><p>Все отзывы (16)</p></a>
+                <h3 className="ma-h3">Последние отзывы</h3>
+                <a href="" className="ma-p"><p>Все отзывы (16)</p></a>
             </div>
             <LatestReviewCard></LatestReviewCard>
         </div>

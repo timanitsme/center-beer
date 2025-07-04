@@ -30,6 +30,7 @@ import {
     useGetBarMenuBeerQuery,
     useGetBarMenuBottleQuery, useGetBarMenuCocktailsQuery, useGetBarMenuFoodQuery
 } from "../../../store/services/centerBeer.js";
+import SearchInput from "../../ApiInputs/Search/SearchInput.jsx";
 
 export default function BarMenuSection({alias, barId, tab}){
     const [filterNameMap, setFilterNameMap] = useState({});
@@ -334,6 +335,7 @@ export default function BarMenuSection({alias, barId, tab}){
         <>
             <div className={styles.menuContent}>
                 {!isMobile && <div className={styles.menuFilters}>
+                    <SearchInput title="Поиск по названию" onChange={() => {}}/>
                     {
                         filtersConfig.map((filter) => (
                             <FilterItem

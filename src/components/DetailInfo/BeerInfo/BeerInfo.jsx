@@ -75,19 +75,19 @@ export default function BeerInfo({showPrice=false,beerInfo={}}){
                     </div>
                 </div>
                 <div className={styles.barDescription}>
-                    <h2 className={styles.beerTitle}>{beerInfo?.name}</h2>
+                    <h2 className={`${styles.beerTitle} ma-h2`}>{beerInfo?.name}</h2>
                     <div className={styles.characteristics}>
                         <div className={styles.characteristic}>
                             <HopIcon/>
-                            <p>Крепость: <span style={{color: "var(--txt-primary)"}}>{formatNumber(beerInfo?.abv || "0")}%</span></p>
+                            <p className="ma-p">Крепость: <span style={{color: "var(--txt-primary)"}} className="ma-p">{formatNumber(beerInfo?.abv || "0")}%</span></p>
                         </div>
                         <div className={styles.characteristic}>
                             <HopIcon/>
-                            <p>Плотность: <span style={{color: "var(--txt-primary)"}}>{formatNumber(beerInfo?.og || '0')}%</span></p>
+                            <p className="ma-p">Плотность: <span style={{color: "var(--txt-primary)"}} className="ma-p">{formatNumber(beerInfo?.og || '0')}%</span></p>
                         </div>
                         <div className={styles.characteristic}>
                             <HopIcon/>
-                            <p>Горечь: <span style={{color: "var(--txt-primary)"}}>{formatNumber(beerInfo?.ibu || '0')}</span></p>
+                            <p className="ma-p">Горечь: <span className="ma-p" style={{color: "var(--txt-primary)"}}>{formatNumber(beerInfo?.ibu || '0')}</span></p>
                         </div>
                     </div>
                     <p className={styles.notMobile}>{beerInfo?.description}</p>
@@ -125,16 +125,16 @@ export default function BeerInfo({showPrice=false,beerInfo={}}){
             </div>
             <div className={`${styles.barInfo} ${styles.mobile}`}>
                 <div>
-                    <a className={`${styles.aIconButton} ${isFavourite ? styles.added : ''}`} onClick={(e) => handleAddToFav(e, beerInfo?.id)}><FavsIcon/>{isFavourite? "Убрать из любимых": "Добавить в любимые"}</a>
-                    <a className={`${styles.aIconButton} ${isBookmarked ? styles.added : ''}`} onClick={(e) => handleAddToCuddy(e, beerInfo?.id)}><BookMarkIcon/>{isBookmarked? "Убрать из кладовки": "Добавить в кладовку"}</a>
+                    <a className={`${styles.aIconButton} ma-p ${isFavourite ? styles.added : ''}`} onClick={(e) => handleAddToFav(e, beerInfo?.id)}><FavsIcon/>{isFavourite? "Убрать из любимых": "Добавить в любимые"}</a>
+                    <a className={`${styles.aIconButton} ma-p ${isBookmarked ? styles.added : ''}`} onClick={(e) => handleAddToCuddy(e, beerInfo?.id)}><BookMarkIcon/>{isBookmarked? "Убрать из кладовки": "Добавить в кладовку"}</a>
                 </div>
                 <div className={styles.ratingAndComments}>
                     <div className={styles.beerBottles}>
                         {getRatingIcons(beerInfo?.rating)}
                     </div>
-                    <p>({beerInfo?.rating})</p>
+                    <p className="ma-p">({beerInfo?.rating})</p>
                     <div className={styles.circle}/>
-                    <a> <CommentIcon/> 116 комментариев</a>
+                    <a className="ma-p"> <CommentIcon/> 116 комментариев</a>
                 </div>
                 <IconButton text="добавить check-in" style="secondary"><CheckInIcon/></IconButton>
                 { showPrice &&
@@ -145,13 +145,13 @@ export default function BeerInfo({showPrice=false,beerInfo={}}){
                 }
             </div>
             <div className={styles.descriptionMobile}>
-                <p>Классический светлый пилснер в чешском стиле. Сваренный на светлом солоде типа пилс, с жатецким хмелем Saaz. Прозрачного золотистого цвета, с плотной пенной шапкой. Имеет насыщенный хмелевой аромат с цветочными нотами. Вкус яркий, искристый с отличным хмелево-солодовым балансом. Горечь уверенная, но не выпирающая. Послевкусие хмелевое.</p>
+                <p className="ma-p">Классический светлый пилснер в чешском стиле. Сваренный на светлом солоде типа пилс, с жатецким хмелем Saaz. Прозрачного золотистого цвета, с плотной пенной шапкой. Имеет насыщенный хмелевой аромат с цветочными нотами. Вкус яркий, искристый с отличным хмелево-солодовым балансом. Горечь уверенная, но не выпирающая. Послевкусие хмелевое.</p>
                 <div>
                     <ul className={styles.characteristicsList}>
-                        <li><p>Пивоварня: <a href="">{beerInfo?.brewery_name}</a></p></li>
-                        <li><p>Стиль: <a href="">{beerInfo?.style_name}</a></p></li>
-                        <li><p>Начало выпуска: <p style={{color: "var(--txt-active)"}}>{beerInfo?.start_date_sales}</p></p></li>
-                        <li><p>Производство: <p style={{color: "var(--txt-active)"}}>{beerInfo?.production}</p></p></li>
+                        <li><p className="ma-p">Пивоварня: <a href="">{beerInfo?.brewery_name}</a></p></li>
+                        <li><p className="ma-p">Стиль: <a href="">{beerInfo?.style_name}</a></p></li>
+                        <li><p className="ma-p">Начало выпуска: <p style={{color: "var(--txt-active)"}}>{beerInfo?.start_date_sales}</p></p></li>
+                        <li><p className="ma-p">Производство: <p style={{color: "var(--txt-active)"}}>{beerInfo?.production}</p></p></li>
                     </ul>
                 </div>
             </div>

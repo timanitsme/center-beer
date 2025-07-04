@@ -13,6 +13,7 @@ import ArrowLeftIcon from "../../../assets/arrow-left-icon.svg?react";
 import BeerCheckInCard from "../../../components/Cards/CheckIns/BeerCheckInCard/BeerCheckInCard.jsx";
 import BarCheckInCard from "../../../components/Cards/CheckIns/BarCheckInCard/BarCheckInCard.jsx";
 import {useEffect} from "react";
+import PersonalAccountMobile from "../../../components/PersonalAccount/PersonalAccountMobile.jsx";
 
 export default function MyCheckinsPage(){
     const {alias} = useParams();
@@ -59,9 +60,9 @@ export default function MyCheckinsPage(){
         <div className="content">
             <NavChain paths={paths}></NavChain>
             <div style={{display: "flex"}}>
-                {!isMobile && <PersonalAccount/>}
+                {!isMobile && <PersonalAccount profile={userProfile}/>}
                 <div style={{display: "flex", flexDirection: "column", width: "100%"}}>
-                    {isMobile && <PersonalAccount isMobile={true}/>}
+                    {isMobile && <PersonalAccountMobile profile={userProfile} alias="checkIns"/>}
                     <div className={styles.block}>
                         <div className={styles.row}>
                             <div className={styles.arrowButton} onClick={() => navigate("/account/")}><ArrowLeftIcon/></div>

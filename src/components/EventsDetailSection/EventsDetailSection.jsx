@@ -13,6 +13,7 @@ import Ad1 from "../../assets/adsMocks/ad-1.svg";
 import RoundLinkButton from "../Buttons/RoundLinkButton/RoundLinkButton.jsx";
 import {Link, useNavigate} from "react-router-dom";
 import BorderedGradientButton from "../Buttons/BorderedGradientButton/BorderedGradientButton.jsx";
+import SearchInput from "../ApiInputs/Search/SearchInput.jsx";
 
 export default function EventsDetailSection({style = "detail", children}){
     const [isFavourite, setIsFavourite] = useState(false);
@@ -41,7 +42,7 @@ export default function EventsDetailSection({style = "detail", children}){
     return(
         <div className={styles.sectionContainer}>
             <div className={styles.sectionMenu}>
-                <Search text="Поиск мероприятий"/>
+                <SearchInput onChange={() => {}} title="Поиск мероприятий"/>
                 <div className={styles.menuItemsContainer}>
                     {sectionMenuMainItems.map((item, index) =>
                         <BorderedGradientButton key={index} onClick={() => navigate(item.path)} text={item.title}/>

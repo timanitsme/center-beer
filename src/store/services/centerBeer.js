@@ -107,7 +107,7 @@ export const centerBeerApi = createApi({
                 if (global_news !== undefined) params.append("global_news", global_news)
                 if (bar_id !== undefined) params.append("bar_id", bar_id)
                 if (post_id !== undefined) params.append("post_id", post_id)
-                if (search_text !== undefined) params.append("search_text", search_text)
+                if (search_text !== undefined && search_text !== "") params.append("search_text", search_text)
                 return(`getNews?${params.toString()}`)
             }
         })),

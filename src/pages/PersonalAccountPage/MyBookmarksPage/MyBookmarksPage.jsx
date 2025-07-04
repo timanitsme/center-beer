@@ -15,6 +15,7 @@ import SimpleCatalogSection from "../../../components/CatalogSections/SimpleCata
 import {useEffect} from "react";
 import MinimalBarCardApi from "../../../components/Cards/BarCard/MinimalBarCardApi.jsx";
 import BreweryCard from "../../../components/Cards/BreweryCard/BreweryCard.jsx";
+import PersonalAccountMobile from "../../../components/PersonalAccount/PersonalAccountMobile.jsx";
 
 export default function MyBookmarksPage(){
     const {alias} = useParams();
@@ -47,9 +48,9 @@ export default function MyBookmarksPage(){
         <div className="content">
             <NavChain paths={paths}></NavChain>
             <div style={{display: "flex"}}>
-                {!isMobile && <PersonalAccount/>}
+                {!isMobile && <PersonalAccount profile={userProfile}/>}
                 <div style={{display: "flex", flexDirection: "column", width: "100%"}}>
-                    {isMobile && <PersonalAccount isMobile={true}/>}
+                    {isMobile && <PersonalAccountMobile alias="bookmarks" profile={userProfile}/>}
                     <div className={styles.block}>
                         <div className={styles.row}>
                             <div className={styles.arrowButton} onClick={() => navigate("/account/")}><ArrowLeftIcon/></div>

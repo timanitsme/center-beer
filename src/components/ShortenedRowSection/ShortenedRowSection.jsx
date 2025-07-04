@@ -41,7 +41,7 @@ export default function ShortenedRowSection({title=null, cards=[], CardComponent
                 })}
                 {visibleCards.length < totalItems &&
                     <div className={styles.showMore}>
-                        <p>Все ({totalItems})</p>
+                        <p className="ma-p">Все ({totalItems})</p>
                     </div>
                 }
             </div>

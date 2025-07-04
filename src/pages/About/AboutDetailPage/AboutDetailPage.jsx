@@ -88,7 +88,7 @@ export default function AboutDetailPage() {
                 },
             ],
             title: "Современный сайт, с простым управлением, который приводит клиентов из всех регионов и позволяет в реальном времени видеть где продается ваше пиво – это еще не все что мы предлагаем пивоварням",
-            video: "https://vkvideo.ru/video_ext.php?oid=-210836529&id=456239029&hd=2&autoplay=1"
+            video: "https://vkvideo.ru/video_ext.php?oid=-210836529&id=456239049&hd=2&autoplay=1"
         },
         bars: {
             sectionMenuItems: [
@@ -142,7 +142,7 @@ export default function AboutDetailPage() {
                 },
             ],
             title: "Современный сайт, с автоматическим обновлением ассортимента, возможностью формирования заказа и бронирования столиков, который приводит клиентов и позволяет зарабатывать больше, делая меньше",
-            video: "https://vkvideo.ru/video_ext.php?oid=-210836529&id=456239038&hd=2&autoplay=1"
+            video: "https://vkvideo.ru/video_ext.php?oid=-210836529&id=456239048&hd=2&autoplay=1"
         },
     }
     const paths = [

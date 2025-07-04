@@ -150,7 +150,7 @@ export default function IndexEvents(){
 
     return(
         <div className={styles.eventsSection}>
-            <h1>Мероприятия</h1>
+            <h1 className="ma-h2">Мероприятия</h1>
             <div className={styles.datesSection}>
                 <div className={styles.scrollButton} onClick={() => scrollDates("left")}><ArrowLeftIcon/></div>
                 <div className={styles.datesContainer} onWheel={handleWheelScroll} ref={datesRef}>
@@ -164,7 +164,7 @@ export default function IndexEvents(){
                         }, {})
                     ).map(([month, monthDates]) => (
                         <div key={month} className={styles.month}>
-                            <p>{month}</p>
+                            <p className="ma-p">{month}</p>
                             <div className={styles.days}>
                                 {monthDates.map((date, index) => (
                                     <div
@@ -178,8 +178,8 @@ export default function IndexEvents(){
                                         onClick={() => handleDateClick(date.fullDate)}
                                     >
                                         <div className={styles.circle} />
-                                        <p>{date.day}</p>
-                                        <p>{date.weekday}</p>
+                                        <p className="ma-p">{date.day}</p>
+                                        <p className="ma-p">{date.weekday}</p>
                                     </div>
                                 ))}
                             </div>

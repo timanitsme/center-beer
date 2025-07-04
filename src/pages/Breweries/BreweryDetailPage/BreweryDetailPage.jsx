@@ -61,7 +61,7 @@ export default function BreweryDetailPage(){
     ]
 
     useEffect(() => {
-        document.title = `center.beer | Пивоварня: ${data?.[0]?.name}`
+        document.title = `center.beer | Пивоварни: ${data?.[0]?.name}`
     }, [data]);
 
     const handleBack = () => {

@@ -8,7 +8,7 @@ export default function SwitchRowSection({title, options}){
 
     return(
         <div className={styles.sectionContainer}>
-            {title && <h3>{title}</h3>}
+            {title && <h3 className="ma-h3">{title}</h3>}
             <div className={styles.buttonSwitch}>
                 {options?.map((option, index) =>{
                     return <IconButton key={index} text={option?.title} style={selectedOption.title !== option.title? "secondary": "primary"} onClick={() => {setSelectedOption(option);}}></IconButton>

@@ -7,8 +7,11 @@ import Task from "../../../components/Task/Task.jsx";
 import {useEffect} from "react";
 import ButtonSwitch from "../../../components/ButtonSwitch/ButtonSwitch.jsx";
 import {useNavigate} from "react-router-dom";
+import PersonalAccountMobile from "../../../components/PersonalAccount/PersonalAccountMobile.jsx";
+import {useSelector} from "react-redux";
 
 export default function EarnCBPage(){
+    const { isAuthorized, userProfile, isLoading: profileIsLoading } = useSelector((state) => state.auth);
     const paths = [
         {title: "center.beer", path: "/"},
         {title: "Личный кабинет", path: "/account/"},
@@ -70,9 +73,9 @@ export default function EarnCBPage(){
         <div className="content">
             <NavChain paths={paths}></NavChain>
             <div style={{display: "flex"}}>
-                {!isMobile && <PersonalAccount/>}
+                {!isMobile && <PersonalAccount profile={userProfile}/>}
                 <div style={{display: "flex", flexDirection: "column", width: "100%", gap: "25px"}}>
-                    {isMobile && <PersonalAccount isMobile={true}/>}
+                    {isMobile && <PersonalAccountMobile alias="other" profile={userProfile}/>}
                     <ButtonSwitch options={options} selectedOption={options[0]} onClick={(option) => option.title !== options[0].title? navigate("/account/balance-history"): navigate("")}/>
                     <div className={`${styles.sectionHeader} ${isMobile? styles.mobile: ""}`}>
                         <h2 className={`${styles.title} ma-h2`}>Заработать CB Coin</h2>

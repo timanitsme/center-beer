@@ -24,6 +24,7 @@ import SwitchRowSectionApi from "../../components/SwitchRowSection/SwitchRowSect
 import MinimalBarCardApi from "../../components/Cards/BarCard/MinimalBarCardApi.jsx";
 import MinimalBottledBeerCardApi from "../../components/Cards/BottledBeerCard/MinimalBottledBeerCardApi.jsx";
 import {useNavigate} from "react-router-dom";
+import PersonalAccountMobile from "../../components/PersonalAccount/PersonalAccountMobile.jsx";
 
 export default function PersonalAccountPage(){
     const { isAuthorized, userProfile, isLoading: profileIsLoading } = useSelector((state) => state.auth);
@@ -132,7 +133,7 @@ export default function PersonalAccountPage(){
                     <div style={{display: "flex"}}>
                         {!isMobile && <PersonalAccount profile={userProfile}/>}
                         <div style={{display: "flex", flexDirection: "column", width: "100%", gap: "25px"}}>
-                            {isMobile && <PersonalAccount profile={userProfile} isMobile={true}/>}
+                            {isMobile && <PersonalAccountMobile profile={userProfile}/>}
                             <SwitchRowSection title="Чек-ины" options={checkInSwitch}/>
                             <ActiveOrders></ActiveOrders>
                             <LatestReviews></LatestReviews>

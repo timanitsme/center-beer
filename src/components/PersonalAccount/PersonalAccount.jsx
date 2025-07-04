@@ -3,9 +3,10 @@ import AvatarMock from "../../assets/avatar-default.svg"
 import {MdPhotoCamera} from "react-icons/md";
 import {RiCopperCoinFill} from "react-icons/ri";
 import {Link} from "react-router-dom";
+import {useState} from "react";
 
 export default function PersonalAccount({isMobile = false, profile}){
-
+    const [isFavoriteExpanded, setIsFavoriteExpanded] = useState(false);
 
     return(
         <div className={`${styles.accountSection}`}>

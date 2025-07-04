@@ -5,9 +5,10 @@ import MainNewsCard from "../../../assets/newsMocks/news-main-card.svg"
 import {useGetNewsQuery} from "../../../store/services/centerBeer.js";
 import NewsCardSkeleton from "../../Skeletons/NewsCardSkeleton/NewsCardSkeleton.jsx";
 
-export default function NewsCatalog(){
-    const {data: news, isLoading: newsIsLoading, error: newsError, isFetching: newsIsFetching} = useGetNewsQuery({global_news: true})
+export default function NewsCatalog({searchText = ""}){
+    const {data: news, isLoading: newsIsLoading, error: newsError, isFetching: newsIsFetching} = useGetNewsQuery({global_news: true, search_text: searchText})
     const mainCard = {title: "Найти бармена в 2024 году. К чему приведет дефицит кадров в общепите", date: "21.01.2025", tags: ["цены","импорт","кадры"]}
+    console.log(JSON.stringify(searchText))
     return(
         <div>
             <div className={styles.mainCard}>

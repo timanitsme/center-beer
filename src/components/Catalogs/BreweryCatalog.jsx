@@ -23,6 +23,7 @@ import ComboBox from "../ApiInputs/ComboBox/ComboBox.jsx";
 import {FaSortAmountDown, FaSortAmountUp} from "react-icons/fa";
 import SortDirection from "../ApiInputs/SortDirectionButton/SortDirection.jsx";
 import BreweryCardSkeleton from "../Skeletons/BreweryCardSkeleton/BreweryCardSkeleton.jsx";
+import SearchInput from "../ApiInputs/Search/SearchInput.jsx";
 
 export default function BreweryCatalog({filters = [], filterButtons = [], sections = []}){
     const [filterNameMap, setFilterNameMap] = useState({});
@@ -328,6 +329,7 @@ export default function BreweryCatalog({filters = [], filterButtons = [], sectio
             </div>
             <div className={styles.menuContent}>
                 {!isMobile && <div className={styles.menuFilters}>
+                    <SearchInput title="Поиск по названию" onChange={() => {}}></SearchInput>
                     <HookedFilterComboBox options={types} isLoading={typesIsLoading} error={typesError} debouncedInput={debouncedTypeInput} setDebouncedInput={setDebouncedTypeInput} title={"Тип"}  fetchHook={useGetBeerCountriesQuery} onChange={(value) => handleFilterChange("type_id", value)} reset={tabResetFilters["type_id"]}/>
                     <HookedFilterComboBox options={countries} isLoading={countriesIsLoading} error={countriesError} debouncedInput={debouncedCountryInput} setDebouncedInput={setDebouncedCountryInput} title={"Страна"}  fetchHook={useGetBeerCountriesQuery} onChange={(value) => handleFilterChange("country_id", value)} reset={tabResetFilters["country_id"]}/>
                     <SingleCheckBox text="Только недавно открытые" onChange={(value) => {handleSingleFilterChange("is_new", value)}} reset={tabResetFilters["is_new"]}/>
@@ -436,7 +438,10 @@ export default function BreweryCatalog({filters = [], filterButtons = [], sectio
             </div>
             {isMobile &&
                 <FiltersModal setShow={setShowFiltersModal} show={showFiltersModal}>
-                    <Search title="Поиск" reset={tabResetFilters["city_id"]} onChange={(value) => handleSingleFilterChange("city_id", value)}></Search>
+                    <SearchInput title="Поиск по названию" onChange={() => {}}></SearchInput>
+                    <HookedFilterComboBox options={types} isLoading={typesIsLoading} error={typesError} debouncedInput={debouncedTypeInput} setDebouncedInput={setDebouncedTypeInput} title={"Тип"}  fetchHook={useGetBeerCountriesQuery} onChange={(value) => handleFilterChange("type_id", value)} reset={tabResetFilters["type_id"]}/>
+                    <HookedFilterComboBox options={countries} isLoading={countriesIsLoading} error={countriesError} debouncedInput={debouncedCountryInput} setDebouncedInput={setDebouncedCountryInput} title={"Страна"}  fetchHook={useGetBeerCountriesQuery} onChange={(value) => handleFilterChange("country_id", value)} reset={tabResetFilters["country_id"]}/>
+                    <SingleCheckBox text="Только недавно открытые" onChange={(value) => {handleSingleFilterChange("is_new", value)}} reset={tabResetFilters["is_new"]}/>
                     {filtersConfig.map((filter) => (
                         <FilterItem
                             key={filter.key}
@@ -445,7 +450,7 @@ export default function BreweryCatalog({filters = [], filterButtons = [], sectio
                             reset={tabResetFilters[filter.key]}
                         />
                     ))}
-                    <SimpleButton text="Применить фильтры" onClick={() => {setShowFiltersModal(false); applyFilters()}}></SimpleButton>
+                    <SimpleButton text="Применить фильтры" onClick={applyFilters}></SimpleButton>
                 </FiltersModal>
             }
         </div>

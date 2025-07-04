@@ -18,6 +18,7 @@ import ComboBox from "../Inputs/ComboBox/ComboBox.jsx";
 import SimpleCatalogSection from "../CatalogSections/SimpleCatalogSection/SimpleCatalogSection.jsx";
 import PropTypes from "prop-types";
 import DistributorCard from "../Cards/DistributorCard/DistributorCard.jsx";
+import SearchInput from "../ApiInputs/Search/SearchInput.jsx";
 
 export default function DistributorsCatalog({filters = [], filterButtons = [], sections = []}){
     const cardsBars = [
@@ -61,7 +62,7 @@ export default function DistributorsCatalog({filters = [], filterButtons = [], s
                             case "checkbox":
                                 return <CheckBox text={filter.title}/>
                             case "search":
-                                return <Search text={filter.title} options={filter.options}/>
+                                return <SearchInput title={filter.title} onChange={() => {}}/>
                             default:
                                 return null;
                         }

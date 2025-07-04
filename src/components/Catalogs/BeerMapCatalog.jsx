@@ -10,7 +10,7 @@ import AlcoBottleIcon from "../../assets/alco-bottle-icon.svg";
 import FilterItem from "../ApiInputs/FilterItem/FilterItem.jsx";
 import {useNavigate} from "react-router-dom";
 import {useGetBarsFiltersQuery, useGetBarsQuery, useGetCitiesQuery} from "../../store/services/centerBeer.js";
-import Search from "../ApiInputs/Search/Search.jsx";
+import SearchCities from "../ApiInputs/Search/SearchCities.jsx";
 import SimpleCatalogSection from "../CatalogSections/SimpleCatalogSection/SimpleCatalogSection.jsx";
 import BarCard from "../Cards/BarCard/BarCard.jsx";
 import ComboBox from "../ApiInputs/ComboBox/ComboBox.jsx";
@@ -18,6 +18,7 @@ import Toggle from "../Toggle/Toggle.jsx";
 import {isMobile} from "react-device-detect";
 import FiltersModal from "../Modals/FiltersModal/FiltersModal.jsx";
 import SingleCheckBox from "../ApiInputs/CheckBox/SingleCheckBox.jsx";
+import SearchInput from "../ApiInputs/Search/SearchInput.jsx";
 
 export default function BeerMapCatalog({filters = [], filterButtons = []}){
     const navigate = useNavigate()
@@ -286,7 +287,8 @@ export default function BeerMapCatalog({filters = [], filterButtons = []}){
             </div>
             <div className={styles.menuContent}>
                 {!isMobile && <div className={styles.menuFilters}>
-                    <Search title="Поиск" reset={tabResetFilters["city_id"]} onChange={(value) => handleSingleFilterChange("city_id", value)}></Search>
+                    <SearchInput title="Поиск по названию" onChange={() => {}}/>
+                    <SearchCities title="Город" reset={tabResetFilters["city_id"]} onChange={(value) => handleSingleFilterChange("city_id", value)}></SearchCities>
                     <SingleCheckBox text="Открыто сейчас" onChange={(value) => handleSingleFilterChange("only_opened", value)} reset={tabResetFilters["only_opened"]}/>
                     <SingleCheckBox text="Онлайн-бронь" onChange={(value) => handleSingleFilterChange("online_booking", value)} reset={tabResetFilters["online_booking"]}/>
                     {filtersConfig.map((filter) => (
@@ -363,7 +365,8 @@ export default function BeerMapCatalog({filters = [], filterButtons = []}){
             </div>
             {isMobile &&
                 <FiltersModal setShow={setShowFiltersModal} show={showFiltersModal}>
-                    <Search title="Поиск" reset={tabResetFilters["city_id"]} onChange={(value) => handleSingleFilterChange("city_id", value)}></Search>
+                    <SearchInput title="Поиск по названию" onChange={() => {}}/>
+                    <SearchCities title="Город" reset={tabResetFilters["city_id"]} onChange={(value) => handleSingleFilterChange("city_id", value)}></SearchCities>
                     <SingleCheckBox text="Открыто сейчас" onChange={(value) => handleSingleFilterChange("only_opened", value)} reset={tabResetFilters["only_opened"]}/>
                     <SingleCheckBox text="Онлайн-бронь" onChange={(value) => handleSingleFilterChange("online_booking", value)} reset={tabResetFilters["online_booking"]}/>
                     {filtersConfig.map((filter) => (

@@ -2,7 +2,7 @@ import {useEffect, useMemo, useState} from "react";
 import {useGetBeersFiltersQuery, useGetBeersQuery, useGetCitiesQuery} from "../../store/services/centerBeer.js";
 import styles from "./BarsCatalog.module.scss";
 import {isMobile} from "react-device-detect";
-import Search from "../ApiInputs/Search/Search.jsx";
+import SearchCities from "../ApiInputs/Search/SearchCities.jsx";
 import FilterItem from "../ApiInputs/FilterItem/FilterItem.jsx";
 import SimpleButton from "../Buttons/SimpleButton/SimpleButton.jsx";
 import AppliedFilter from "../AppliedFilter/AppliedFilter.jsx";
@@ -333,7 +333,7 @@ export default function BreweryBeerCatalog({filters = [], filterButtons = [], se
             </div>
             <div className={styles.menuContent}>
                 {!isMobile && <div className={styles.menuFilters}>
-                    <Search title="Поиск" reset={tabResetFilters["city_id"]} onChange={(value) => handleSingleFilterChange("city_id", value)}></Search>
+                    <SearchCities title="Поиск" reset={tabResetFilters["city_id"]} onChange={(value) => handleSingleFilterChange("city_id", value)}></SearchCities>
                     {filtersConfig.map((filter) => (
                         <FilterItem
                             key={filter.key}
@@ -441,7 +441,7 @@ export default function BreweryBeerCatalog({filters = [], filterButtons = [], se
             </div>
             {isMobile &&
                 <FiltersModal setShow={setShowFiltersModal} show={showFiltersModal}>
-                    <Search title="Поиск" reset={tabResetFilters["city_id"]} onChange={(value) => handleSingleFilterChange("city_id", value)}></Search>
+                    <SearchCities title="Поиск" reset={tabResetFilters["city_id"]} onChange={(value) => handleSingleFilterChange("city_id", value)}></SearchCities>
                     {filtersConfig.map((filter) => (
                         <FilterItem
                             key={filter.key}

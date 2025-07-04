@@ -1,0 +1,52 @@
+@use "../../utils/partialStyles/_pxToRem.scss" as *;
+
+.tagsContainer{
+  display: flex;
+  gap: rem(10);
+  overflow-x: auto;
+  padding-bottom: rem(10);
+}
+
+.tagsContainer, .searchContainer{
+  margin: 0 rem(25) rem(5) rem(25);
+}
+
+.tag{
+  background: var(--section-bg);
+  padding: rem(5) rem(7);
+  border-radius: rem(5);
+  white-space: nowrap;
+
+}
+
+.primary{
+  background: var(--primary);
+}
+
+.tag p{
+  color: var(--txt-secondary);
+}
+
+.tag.primary p{
+  color: var(--bg);
+}
+
+.tagsContainer.outer{
+  margin-top: rem(5);
+
+
+  .tag{
+    background: var(--bg);
+    border: rem(2) solid var(--primary);
+
+    p{
+      color: var(--fg);
+    }
+  }
+}
+
+@media (min-width: 500px) {
+  .mobileSection{
+    display: none;
+  }
+}

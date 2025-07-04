@@ -110,7 +110,7 @@ export function useGetBarMenuFilters(alias, barId, options = {}) {
 
 export function getBarMenuTabSpec(alias){
     const specs = {
-        beer: {Icon: BeerTapIcon, wideColumns: false, filterTitle: "На кранах", CardComponent: DraftBeerCard, SkeletonCard: DraftBeerCardSkeleton },
+        beer: {Icon: BeerTapIcon, wideColumns: false, filterTitle: "На кранах", CardComponent: BottledBeerCard, SkeletonCard: BottledBeerCardSkeleton },
         beer_bottle: {Icon: BottlesPairIcon, wideColumns: false, filterTitle: "Фасованное пиво", CardComponent: BottledBeerCard, SkeletonCard: BottledBeerCardSkeleton},
         alc: {Icon: AlcoBottleIcon, wideColumns: false, filterTitle: "Крепкий алкоголь", CardComponent: StrongAlcoholCard, SkeletonCard: BottledBeerCardSkeleton},
         cocktails: {Icon: CoctailIcon, wideColumns: true, filterTitle: "Безалкогольные напитки", CardComponent: ProductCard, SkeletonCard: ProductCardSkeleton},

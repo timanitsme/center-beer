@@ -3,25 +3,25 @@ import SimpleButton from "../Buttons/SimpleButton/SimpleButton.jsx";
 import Cap from "../../assets/cap.svg?react"
 import NoCapBottle from "../../assets/bottle-no-cap.svg?react"
 import {useEffect, useState} from "react";
-import BarImage1 from "../../assets/barsMocks/bar-3.svg"
-import BarImage2 from "../../assets/barsMocks/bar-2.svg"
-import BarImage3 from "../../assets/barsMocks/bar-5.svg"
-import BarImage4 from "../../assets/barsMocks/bar-4.svg"
-import BarImage5 from "../../assets/barsMocks/bar-1.svg"
-import VideoImage1 from "../../assets/videoMocks/video-image-1.svg"
-import VideoImage2 from "../../assets/videoMocks/video-image-2.svg"
-import VideoImage3 from "../../assets/videoMocks/video-image-3.svg"
-import VideoImage4 from "../../assets/videoMocks/video-image-4.svg"
-import VideoImage5 from "../../assets/videoMocks/video-image-5.svg"
-import VideoImage6 from "../../assets/videoMocks/video-image-6.svg"
 import {useNavigate} from "react-router-dom";
-import VideoCardsRow from "../../assets/videos-index-row.webp"
-import BarCardsRow from "../../assets/bars-index-row.webp"
+import VideoCard from "../Cards/VideoCard/VideoCard.jsx";
+import MinimalBarCard from "../Cards/BarCard/MinimalBarCard.jsx";
+import {useGetBarsQuery} from "../../store/services/centerBeer.js";
+import BarCardSkeleton from "../Skeletons/BarCardSkeleton/BarCardSkeleton.jsx";
+import BeerPartnerPreview from "../../assets/partners/beer-partner-preview.webp";
+import BreweryPartnerPreview from "../../assets/partners/brewery-partner-preview.webp";
+import BeerDuck from "../../assets/partners/beer-duck.webp";
+import JawsIPA from "../../assets/partners/jaws-ipa.webp";
+import CenterAndBeer from "../../assets/partners/center-and-beer.webp";
+import BreweriesMeet from "../../assets/partners/breweries-meet.webp";
+import SingleVideoModal from "../Modals/SingleVideoModal/SingleVideoModal.jsx";
 
 export default function IndexSection(){
     const [showTitle, setShowTitle] = useState(false);
     const [showCards, setShowCards] = useState(false)
     const navigate = useNavigate()
+    const [show, setShow] = useState(false)
+    const [src, setSrc] = useState(null)
 
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -36,25 +36,32 @@ export default function IndexSection(){
         };
     }, []);
 
-    const barCards = [
-        {title: "13 RULES (Народный бар)", img: BarImage1, address: "г.Москва, Сущевский вал, 41"},
-        {title: "13 Rules (Котельники)", img: BarImage2, address: "Котельники, ул. Сосновая 1к.3"},
-        {title: "13 Rules (Воронеж)", img: BarImage3, address: "ул. Ворошилова, 1Г"},
-        {title: "13 Rules (Киров)", img: BarImage4, address: "г.Киров, Московская, 33"},
-        {title: "13 Rules (Ковров)", img: BarImage5, address: "г.Ковров, проезд Брюсова д. 4/1"},
-    ]
-
     const videoCards = [
-        {title: "Пиво с другой планеты. Пробуем впервые.", img: VideoImage1, author: "Артем Иванов", date: "12 минут назад"},
-        {title: "ПРОБУЕМ НОВОЕ ПИВО ИЗ  ПЯТЕРОЧКИ", img: VideoImage2, author: "Артем Иванов", date: "12 минут назад"},
-        {title: "ПРОБУЕМ НЕ ДОРОГОЕ ПИВО ИЗ \"ЧИЖИК\"", img: VideoImage3, author: "Артем Иванов", date: "12 минут назад"},
-        {title: "Как на самом деле немцы пьют пиво. Факты, о которых вы не знали - Meet The Germans на русском", img: VideoImage4, author: "Артем Иванов", date: "12 минут назад"},
-        {title: "Как пили ПИВО в СССР? Легендарное ЖИГУЛЕВСКОЕ", img: VideoImage5, author: "Артем Иванов", date: "12 минут назад"},
-        {title: "ПОСЛАЛИ ЗА ПИВОМ | АРОМАТНЫЙ МИР | АНЯ, ТЫ ЧТО КУПИЛА?!", img: VideoImage6, author: "Артем Иванов", date: "12 минут назад"},
+        {title: "CENTER.BEER — портал нового пивного поколения", img: BeerPartnerPreview, video: "https://vkvideo.ru/video_ext.php?oid=-210836529&id=456239048&hd=2&autoplay=1"},
+        {title: "CENTER.BEER для пивоварен", img: BreweryPartnerPreview, video: "https://vkvideo.ru/video_ext.php?oid=-210836529&id=456239049&hd=2&autoplay=1"},
+        {title: "BUMBLE.BEER Ядерная утка", img: BeerDuck, video: "https://vkvideo.ru/video_ext.php?oid=-210836529&id=456239046&hd=2&autoplay=1"},
+        {title: "Jaws Атомная прачечная", img: JawsIPA, video: "https://vkvideo.ru/video_ext.php?oid=-210836529&id=456239027&hd=2&autoplay=1"},
+        {title: "Показываем инструменты", img: CenterAndBeer, video: "https://vkvideo.ru/video_ext.php?oid=-210836529&id=456239031&hd=2&autoplay=1"},
+        {title: "Встреча с пивоварнями", img: BreweriesMeet, video: "https://vk.com/video_ext.php?oid=-210836529&id=456239047&hd=2&autoplay=1"},
 
     ]
 
+    const filterValues = {
+        lim: 5,
+        offset: 0,
+        city_id: '',
+        subways_ids: [],
+        kitchen_ids: [],
+        visit_type_ids: [],
+        price_ids: [],
+        type_ids: [],
+        feature_ids: [],
+        only_opened: false,
+        online_booking: false,
+        sort_by: "popular"
+    };
 
+    const {data: barsData, isFetching: barsIsFetching } = useGetBarsQuery(filterValues);
 
     return(
         <div className={styles.sectionContainer}>
@@ -71,12 +78,22 @@ export default function IndexSection(){
             </div>
             <div className={styles.bottle}><NoCapBottle/></div>
             <div className={`${styles.videoCardContainer} ${showTitle? styles.show: ""}`}>
-                <img src={VideoCardsRow} alt=""/>
+                {videoCards.map((card, index) => (
+                    <div className={styles.cardWrapper} key={index}><VideoCard cardInfo={card} onShow={(video) => {setSrc(video); setShow(true)}}/></div>
+                ))
+                }
             </div>
 
             <div className={`${styles.cardContainer} ${showTitle? styles.show: ""}`}>
-                <img src={BarCardsRow} alt=""/>
+                {barsIsFetching && Array.from({ length: filterValues.lim }).map((_, index) => (
+                    <BarCardSkeleton key={`skeleton-${index}`} />
+                ))}
+                {!barsIsFetching && barsData?.data?.map((card, index) => (
+                    <div className={styles.cardWrapper} key={index}><MinimalBarCard cardInfo={card}></MinimalBarCard></div>
+                ))
+                }
             </div>
+            <SingleVideoModal show={show} setShow={setShow} src={src} setSrc={setSrc}/>
         </div>
     )
 }

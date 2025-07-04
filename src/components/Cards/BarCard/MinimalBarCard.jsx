@@ -1,5 +1,5 @@
 import {useState} from "react";
-import styles from "./BarCard.module.scss";
+import styles from "./MinimalBarCard.module.scss";
 import BookMarkIcon from "../../../assets/bookmark-unfill-icon.svg?react";
 import FavIcon from "../../../assets/fav-unfill-icon.svg?react";
 import PropTypes from "prop-types";
@@ -12,8 +12,8 @@ export default function MinimalBarCard({cardInfo}){
     const [cardFav, setCardFav] = useState(false);
     const navigate = useNavigate();
 
-    const goToBeerPage = () => navigate("/bar/1");
-    const [imageSrc, setImageSrc] = useState(cardInfo?.img || cardImagePlaceholder)
+    const goToBeerPage = () => navigate(`/bar/${cardInfo?.alias}`);
+    const [imageSrc, setImageSrc] = useState(cardInfo?.preview || cardImagePlaceholder)
 
     return(
         <div className={styles.card}>
@@ -27,11 +27,13 @@ export default function MinimalBarCard({cardInfo}){
                     <img src={imageSrc} onClick={goToBeerPage} onError={() => setImageSrc(cardImagePlaceholder)} alt=""/>
                     <a onClick={() => setCardFav(!cardFav)} className={`${styles.favButton} ${cardFav? styles.added : ''}`}><FavIcon/></a>
                 </div>
-                <div className={styles.characteristics}>
-                    <p className={styles.cardTextPrimary} onClick={goToBeerPage}>{cardInfo.title}</p>
-                </div>
-                <div className={`${styles.iconText} ${styles.loc}`}>
-                    <p>{cardInfo.address}</p>
+                <div>
+                    <div className={styles.characteristics}>
+                        <p className={`${styles.cardTextPrimary} aa-p2`} onClick={goToBeerPage}>{cardInfo.name}</p>
+                    </div>
+                    <div className={`${styles.iconText} ${styles.loc}`}>
+                        <p className="aa-p2">{cardInfo.address}</p>
+                    </div>
                 </div>
             </div>
         </div>

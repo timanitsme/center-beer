@@ -102,7 +102,7 @@ export default function BreweryBeerCatalog({filters = [], filterButtons = [], se
     // Получение данных с API
     const {data: beerData, isLoading: beerIsLoading, isFetching: beerIsFetching, error: beerError } = useGetBeersQuery(filterValues);
     const {data: beerFilters, isLoading: beerFiltersIsLoading, error: beerFiltersError} = useGetBeersFiltersQuery(filterValues["city_id"] || 1)
-    const {data: cities, isLoading: citiesIsLoading, error: citiesError} = useGetCitiesQuery()
+    const {data: cities, isLoading: citiesIsLoading, error: citiesError} = useGetCitiesQuery({})
     const sortFilters =[
         {id: "popular", name: "Популярное"},
         {id: "price", name: "По цене"},

@@ -80,7 +80,7 @@ export default function BeerMapCatalog({filters = [], filterButtons = []}){
     // Получение данных с API
     const {data: barsData, isLoading: barsIsLoading, error: barsError } = useGetBarsQuery(filterValues);
     const {data: barFilters, isLoading: barFiltersIsLoading, error: barFiltersError} = useGetBarsFiltersQuery(filterValues["city_id"] || 1)
-    const {data: cities, isLoading: citiesIsLoading, error: citiesError} = useGetCitiesQuery()
+    const {data: cities, isLoading: citiesIsLoading, error: citiesError} = useGetCitiesQuery({})
     const sortFilters =[
         {id: "popular", name: "Популярное"},
         {id: "price", name: "По цене"},

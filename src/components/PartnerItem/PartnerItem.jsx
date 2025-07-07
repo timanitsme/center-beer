@@ -3,8 +3,10 @@ import styles from "./PartnerItem.module.scss";
 import PlayButtonIcon from "../../assets/play-button-icon.svg?react"
 import SingleVideoModal from "../Modals/SingleVideoModal/SingleVideoModal.jsx";
 import {useState} from "react";
+import SimpleCatalogSection from "../CatalogSections/SimpleCatalogSection/SimpleCatalogSection.jsx";
+import SimpleVideoCard from "../Cards/SimpleVideoCard/SimpleVideoCard.jsx";
 
-export default function PartnerItem({items, mainImage, title, video}){
+export default function PartnerItem({items, mainImage, title, video, sideVideos}){
     const navigate = useNavigate()
     const [showVideo, setShowVideo] = useState(false)
     const [src, setSrc] = useState(video)
@@ -26,6 +28,9 @@ export default function PartnerItem({items, mainImage, title, video}){
                         </div>
                     ))}
                 </div>
+            </div>
+            <div className={styles.showMobile}>
+                <SimpleCatalogSection CardComponent={SimpleVideoCard} cards={sideVideos} ></SimpleCatalogSection>
             </div>
             <SingleVideoModal show={showVideo} setShow={setShowVideo} src={src} setSrc={setSrc} />
         </>

@@ -150,6 +150,16 @@
     font-weight: 300 !important;
 }
 
+.showMobile{
+    display: none;
+}
+
+@media (max-width: rem(900)) {
+    .showMobile{
+        display: initial;
+    }
+}
+
 @media (max-width: rem(500)) {
     .tagsContainer{
         gap: rem(5);

@@ -6,6 +6,7 @@ import {useParams} from "react-router-dom";
 import {useGetNewsItemQuery} from "../../../store/services/centerBeer.js";
 import {useEffect} from "react";
 import NewsMobileSection from "../../../components/NewsMobileSection/NewsMobileSection.jsx";
+import NewsSimilarItems from "../../../components/NewsSimilarItems/NewsSimilarItems.jsx";
 
 
 

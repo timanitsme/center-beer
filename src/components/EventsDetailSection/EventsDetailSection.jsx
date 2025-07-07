@@ -42,7 +42,7 @@ export default function EventsDetailSection({style = "detail", children}){
     return(
         <div className={styles.sectionContainer}>
             <div className={styles.sectionMenu}>
-                <SearchInput onChange={() => {}} title="Поиск мероприятий"/>
+                {style !== "detail" && <SearchInput onChange={() => {}} title="Поиск мероприятий"/>}
                 <div className={styles.menuItemsContainer}>
                     {sectionMenuMainItems.map((item, index) =>
                         <BorderedGradientButton key={index} onClick={() => navigate(item.path)} text={item.title}/>

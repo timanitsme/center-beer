@@ -93,7 +93,7 @@ export default function BreweryCatalog({filters = [], filterButtons = [], sectio
     const { data: countries, countriesIsLoading, countriesError } = useGetCountriesQuery({name: debouncedCountryInput !== ""? debouncedCountryInput: undefined});
     const {data: breweriesData, isLoading: breweriesIsLoading, isFetching: breweriesIsFetching, error: breweriesError } = useGetBreweriesQuery(filterValues);
     const {data: breweriesFilters, isLoading: breweriesFiltersIsLoading, error: breweriesFiltersError} = useGetBreweriesFiltersQuery()
-    const {data: cities, isLoading: citiesIsLoading, error: citiesError} = useGetCitiesQuery()
+    const {data: cities, isLoading: citiesIsLoading, error: citiesError} = useGetCitiesQuery({})
 
     //TODO:
     const sortFilters =[
@@ -409,7 +409,7 @@ export default function BreweryCatalog({filters = [], filterButtons = [], sectio
 
                             }
 
-                            if (typeof value === "boolean"){
+                            if (typeof value === "boolean" && filterKey !== "is_open"){
                                 if (filterNameMap[filterKey]){
                                     return (
                                         <AppliedFilter key={filterKey} onClick={() => removeFilter(filterKey, value)}>

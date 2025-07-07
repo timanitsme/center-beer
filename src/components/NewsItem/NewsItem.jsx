@@ -1,10 +1,13 @@
 import styles from "./NewsItem.module.scss"
-import NewsContentImage1 from "../../assets/newsMocks/news-content-image-1.svg";
 import QuoteIcon from "../../assets/quote-icon.svg?react";
 import formatDateWithTextMonth from "../../utils/DateFunctions/formatDateWithTextMonth.js";
+import {useGetNewsRelatedQuery} from "../../store/services/centerBeer.js";
+import RelatedNewsCardSkeleton from "../Skeletons/RelatedNewsCardSkeleton/RelatedNewsCardSkeleton.jsx";
+import RelatedNewsCard from "../Cards/RelatedNewsCard/RelatedNewsCard.jsx";
+import SimpleCatalogSection from "../CatalogSections/SimpleCatalogSection/SimpleCatalogSection.jsx";
 
 export default function NewsItem({newsInfo}){
-
+    const {data: relatedNews, isFetching: relatedNewsIsFetching} = useGetNewsRelatedQuery(newsInfo?.id, {skip: newsInfo?.id === null})
     return(
         <div className={styles.itemContainer}>
             <h2 className="ma-h2">{newsInfo?.title}</h2>
@@ -29,6 +32,10 @@ export default function NewsItem({newsInfo}){
                 )}
             </div>
             <div className={styles.source}><p>Источник: </p><a>Profibeer</a></div>
+            <div className={styles.similarSection}>
+                <h3>Похожие новости</h3>
+                <SimpleCatalogSection CardComponent={RelatedNewsCard} SkeletonCardComponent={RelatedNewsCardSkeleton} wideColumns={false} isFetching={relatedNewsIsFetching} cards={relatedNews.data}></SimpleCatalogSection>
+            </div>
         </div>
     )
 

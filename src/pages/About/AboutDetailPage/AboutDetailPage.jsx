@@ -33,6 +33,7 @@ import BreweriesMeet from "../../../assets/partners/breweries-meet.webp"
 import JawsIPA from "../../../assets/partners/jaws-ipa.webp"
 import {MdRestaurantMenu} from "react-icons/md";
 import {useEffect} from "react";
+import AboutMobileSection from "../../../components/AboutMobileSection/AboutMobileSection.jsx";
 
 
 export default function AboutDetailPage() {
@@ -160,10 +161,11 @@ export default function AboutDetailPage() {
         return (
             <div className="content" style={{minHeight: "600px"}}>
                 <NavChain paths={paths}/>
+                <AboutMobileSection paths={specs[alias]?.sectionMenuItems}/>
                 <AboutDetailSection paths={specs[alias]?.paths} sectionMenuItems={specs[alias]?.sectionMenuItems}
                                     cards={specs[alias]?.videoCards}>
                     <PartnerItem items={specs[alias]?.partnerItems} mainImage={specs[alias]?.mainImage}
-                                 title={specs[alias]?.title} video={specs[alias]?.video}/>
+                                 title={specs[alias]?.title} video={specs[alias]?.video} sideVideos={specs[alias]?.videoCards}/>
                 </AboutDetailSection>
 
             </div>

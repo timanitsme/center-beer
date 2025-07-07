@@ -1,19 +1,14 @@
 import styles from "./NewsDetailSection.module.scss"
-import Search from "../Inputs/Search/Search.jsx";
 import ArrowBackIcon from "../../assets/arrow-left-icon.svg?react"
 import LightNavChain from "../Navigation/LightNavChain/LightNavChain.jsx";
 import FavsIcon from "../../assets/fav-unfill-icon.svg?react";
 import BookMarkIcon from "../../assets/bookmark-unfill-icon.svg?react";
 import Ad1 from "../../assets/adsMocks/ad-1.svg"
 import {useState} from "react";
-import NewsContentImage1 from "../../assets/newsMocks/news-content-image-1.svg"
-import QuoteIcon from "../../assets/quote-icon.svg?react"
-import ArrowButton from "../Buttons/ArrowButton/ArrowButton.jsx";
 import RoundLinkButton from "../Buttons/RoundLinkButton/RoundLinkButton.jsx";
 import BlogImage1 from "../../assets/newsMocks/blog-image-1.svg"
 import BlogImage2 from "../../assets/newsMocks/blog-image-2.svg"
 import BlogImage3 from "../../assets/newsMocks/blog-image-3.svg"
-import NewsItem from "../NewsItem/NewsItem.jsx";
 import ComboBox from "../Inputs/ComboBox/ComboBox.jsx";
 import {Link, useNavigate} from "react-router-dom";
 import {useGetNewsCategoriesQuery, useGetNewsRelatedQuery} from "../../store/services/centerBeer.js";

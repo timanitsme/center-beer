@@ -145,7 +145,7 @@ export default function BarsCatalog(){
                 }, {});
             }
             // Обработка only_opened
-            nameMap["only_opened"] = {}// value: "Только открытые"
+            nameMap["only_opened"] = "Открыто сейчас"
             nameMap["online_booking"] = `Онлайн-бронь`
             setFilterNameMap(nameMap);
         }
@@ -382,7 +382,7 @@ export default function BarsCatalog(){
 
                             }
 
-                            if (typeof value === "boolean"){
+                            if (typeof value === "boolean" && filterKey !== "only_opened"){
                                 if (filterNameMap[filterKey]){
                                     return (
                                         <AppliedFilter key={filterKey} onClick={() => removeFilter(filterKey, value)}>

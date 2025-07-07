@@ -99,7 +99,7 @@ export default function BeerCatalog({withoutPrice=false, withHeader = true, brew
     // Получение данных с API
     const {data: beerData, isLoading: beerIsLoading, isFetching: beerIsFetching, error: beerError } = useGetBeersQuery(breweryId === null? filterValues: {...filterValues, brew_ids: breweryId});
     const {data: beerFilters, isLoading: beerFiltersIsLoading, error: beerFiltersError} = useGetBeersFiltersQuery(filterValues["city_id"] || 1)
-    const {data: cities, isLoading: citiesIsLoading, error: citiesError} = useGetCitiesQuery()
+    const {data: cities, isLoading: citiesIsLoading, error: citiesError} = useGetCitiesQuery({})
     const [debouncedCountryInput, setDebouncedCountryInput] = useState("")
     const [debouncedStyleInput, setDebouncedStyleInput] = useState("")
     const { data: countries, countriesIsLoading, countriesError } = useGetBeerCountriesQuery({name: debouncedCountryInput !== ""? debouncedCountryInput: undefined});
@@ -462,7 +462,7 @@ export default function BeerCatalog({withoutPrice=false, withHeader = true, brew
 
                             }
 
-                            if (typeof value === "boolean"){
+                            if (typeof value === "boolean" && filterKey !== "with_reviews"){
                                 if (filterNameMap[filterKey].value){
                                     return (
                                         <AppliedFilter key={filterKey} onClick={() => removeFilter(filterKey, value)}>

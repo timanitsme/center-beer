@@ -42,14 +42,6 @@ export const centerBeerAuthApi = createApi({
                     body: credentials
                 })}
         }),
-        refreshToken: builder.mutation({
-            query: (refreshToken) => {
-                return({
-                    url: 'authentication/refresh-token',
-                    method: "POST",
-                    body: refreshToken
-                })}
-        }),
         refreshTokenCookie: builder.mutation({
             query: () => {
                 return({
@@ -58,6 +50,14 @@ export const centerBeerAuthApi = createApi({
                 })
             }
         }),
+        refreshToken: builder.mutation({
+            query: (refreshToken) => {
+                return({
+                    url: 'authentication/refresh-token',
+                    method: "POST",
+                    body: refreshToken
+                })}
+        }),
         logout: builder.mutation({
             query: () => {
                 return({
@@ -65,9 +65,16 @@ export const centerBeerAuthApi = createApi({
                     method: "POST"
                 })
             }
-        })
+        }),
+        updateNickname: builder.mutation({
+            query: (newNickname) => {
+                return({
+                    url: `user/update-nickname?newNickname=${newNickname}`,
+                    method: "PATCH",
+                })}
+        }),
     })
 })
 
 export const {useGetUserProfileQuery, useLoginMutation, useRefreshTokenMutation,
-    useRefreshTokenCookieMutation, useLogoutMutation, useRegisterMutation } = centerBeerAuthApi
+    useRefreshTokenCookieMutation, useLogoutMutation, useRegisterMutation, useUpdateNicknameMutation } = centerBeerAuthApi

@@ -19,7 +19,7 @@ export default function EventsMobileSection({onChange, withInput=false}){
             </div>
             <div className={styles.tagsContainer}>
                 {menuItems?.map((item, index) =>
-                    <div key={index} className={`${styles.tag} ${currentPath.pathname === item.path? styles.primary: ""}`}><Link to={item.path}>{item.title}</Link></div>
+                    <div key={index} className={`${styles.tag} ${currentPath.pathname === item.path? styles.primary: ""}`}><Link className="noSelect" to={item.path}>{item.title}</Link></div>
 
                 )}
             </div>

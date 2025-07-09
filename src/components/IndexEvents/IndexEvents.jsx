@@ -164,7 +164,7 @@ export default function IndexEvents(){
                         }, {})
                     ).map(([month, monthDates]) => (
                         <div key={month} className={styles.month}>
-                            <p className="ma-p">{month}</p>
+                            <p className="ma-p noSelect">{month}</p>
                             <div className={styles.days}>
                                 {monthDates.map((date, index) => (
                                     <div
@@ -178,8 +178,8 @@ export default function IndexEvents(){
                                         onClick={() => handleDateClick(date.fullDate)}
                                     >
                                         <div className={styles.circle} />
-                                        <p className="ma-p">{date.day}</p>
-                                        <p className="ma-p">{date.weekday}</p>
+                                        <p className="ma-p noSelect">{date.day}</p>
+                                        <p className="ma-p noSelect">{date.weekday}</p>
                                     </div>
                                 ))}
                             </div>

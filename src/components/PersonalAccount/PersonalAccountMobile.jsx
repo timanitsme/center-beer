@@ -5,13 +5,13 @@ import {MdPhotoCamera} from "react-icons/md";
 import {Link, useLocation, useNavigate} from "react-router-dom";
 import {RiCopperCoinFill} from "react-icons/ri";
 
-export default function PersonalAccountMobile({profile, alias = "account"}){
+export default function PersonalAccountMobile({profile, alias = "account", withoutInfo=false}){
     const [selectedPath, setSelectedPath] = useState(alias)
     const navigate = useNavigate()
 
     const paths = [
         {alias: "account", title: "Главная", path: "/account/", innerPaths: []},
-        {alias: "data", title: "Личные данные", path: "/in-dev/", innerPaths: []},
+        {alias: "data", title: "Личные данные", path: "/account/info", innerPaths: []},
         {alias: "checkIns", title: "Чек-ины", path: "/in-dev/", innerPaths: [
                 {title: "Пиво", path: "/my-check-ins/beer"},
                 {title: "Заведения", path: "/my-check-ins/bar"},
@@ -52,33 +52,35 @@ export default function PersonalAccountMobile({profile, alias = "account"}){
 
     return(
         <div className={`${styles.accountSection}`}>
-            <div className={`${styles.sideContent} ${styles.mobile}`}>
-                <div className={styles.profile}>
-                    <div className={styles.avatarWrapper}>
-                        <img className={styles.avatar} src={AvatarMock} alt=''></img>
-                        <div className={styles.updateAvatarMobile}>
-                            <div className={styles.container}>
-                                <MdPhotoCamera/>
+            {!withoutInfo &&
+                <div className={`${styles.sideContent} ${styles.mobile}`}>
+                    <div className={styles.profile}>
+                        <div className={styles.avatarWrapper}>
+                            <img className={styles.avatar} src={AvatarMock} alt=''></img>
+                            <div className={styles.updateAvatarMobile}>
+                                <div className={styles.container}>
+                                    <MdPhotoCamera/>
+                                </div>
                             </div>
                         </div>
+                        <div>
+                            <p className={`${styles.bold} ${styles.overflow}`}>{profile?.nickname}</p>
+                            <p>{profile?.email}</p>
+                            <p><span className={styles.active}>Присоединился:</span> 24.04.2025</p>
+                        </div>
                     </div>
-                    <div>
-                        <p className={`${styles.bold} ${styles.overflow}`}>{profile?.nickname}</p>
-                        <p>{profile?.email}</p>
-                        <p><span className={styles.active}>Присоединился:</span> 24.04.2025</p>
-                    </div>
+                    <div style={{display: "flex", alignItems: "flex-end", gap: "5px"}} className={styles.balance}><p className={styles.active}>На счету</p> <p>150</p> <p className={styles.active}>CB Coin</p> <RiCopperCoinFill color="var(--primary)"/></div>
                 </div>
-                <div style={{display: "flex", alignItems: "flex-end", gap: "5px"}} className={styles.balance}><p className={styles.active}>На счету</p> <p>150</p> <p className={styles.active}>CB Coin</p> <RiCopperCoinFill color="var(--primary)"/></div>
-            </div>
+            }
             <div className={`${styles.tagsContainer}`}>
                 {paths.map((path, index) =>
-                    <div key={index} className={`${styles.tag} ${path.alias === selectedPath? styles.primary: ""}`} onClick={() => handleOuterPathClick(path)}><p>{path.title}</p></div>
+                    <div key={index} className={`${styles.tag} ${path.alias === selectedPath? styles.primary: ""}`} onClick={() => handleOuterPathClick(path)}><p className="noSelect">{path.title}</p></div>
                 )}
             </div>
             {currentInnerPaths.length !== 0 &&
                 <div className={`${styles.tagsContainer} ${styles.outer}`}>
                     {currentInnerPaths.map((path, index) =>
-                        <div key={index} className={`${styles.tag} ${path.alias === selectedPath? styles.primary: ""}`} onClick={() => navigate(path.path)}><p>{path.title}</p></div>
+                        <div key={index} className={`${styles.tag} ${path.alias === selectedPath? styles.primary: ""}`} onClick={() => navigate(path.path)}><p className="noSelect">{path.title}</p></div>
                     )}
                 </div>
             }

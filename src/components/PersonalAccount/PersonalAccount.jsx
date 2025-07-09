@@ -23,7 +23,7 @@ export default function PersonalAccount({isMobile = false, profile}){
                             <p className={styles.bold}>{profile?.nickname}</p>
                             <p>{profile?.email}</p>
                             <p><span className={styles.active}>Присоединился:</span> 24.04.2025</p>
-                            <Link to={"/in-dev"} href="" style={{padding: "15px 0"}}>Личные данные</Link>
+                            <Link to={"/account/info/"} href="" style={{padding: "15px 0"}}>Личные данные</Link>
                             <div style={{display: "flex", alignItems: "flex-end", gap: "5px"}} className={styles.balance}><p className={styles.active}>На счету</p> <p>150</p> <p className={styles.active}>CB Coin</p> <RiCopperCoinFill color="var(--primary)"/></div>
                         </div>
                     </>

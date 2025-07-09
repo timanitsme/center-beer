@@ -41,7 +41,7 @@ export default function NewsDetailSection({style = "detail", children, postId=nu
         {title: "Видеоканал", path: "/in-dev"}]
 
     const paths = [
-        {title: "Новости"},
+        {title: "Новости", path: "/news"},
         {title: "Бары и магазины"}
     ]
 

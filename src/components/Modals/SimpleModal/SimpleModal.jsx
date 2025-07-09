@@ -2,6 +2,7 @@ import styles from "./SimpleModal.module.scss"
 import {useEffect, useState} from "react";
 import CloseIcon from "../../../assets/close-icon.svg?react"
 import EventImage from "../../../assets/eventsMocks/event-picture-3.svg"
+import {createPortal} from "react-dom";
 
 export default function SimpleModal({show, setShow, children, title="", style={}}){
     useEffect(() => {
@@ -17,7 +18,7 @@ export default function SimpleModal({show, setShow, children, title="", style={}
     }, [show]);
 
     if (show){
-        return (
+        return createPortal(
             <div className={styles.modalOverlay} onMouseDown={() => setShow(false)}>
                 <div className={styles.modalContent} onMouseDown={(e) => e.stopPropagation()} style={style}>
                     <div className={styles.modalHeader}>
@@ -30,7 +31,8 @@ export default function SimpleModal({show, setShow, children, title="", style={}
                     </div>
                     {children}
                 </div>
-            </div>
+            </div>,
+            document.body
         )
     }
 }

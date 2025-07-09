@@ -15,7 +15,7 @@ export default function NewsMobileSection({onChange, withInput=false}){
                 <div className={styles.tagsContainer}>
                     {<div className={`${styles.tag} ${styles.primary}`}><p>Все новости</p></div>}
                     {categories?.map((item, index) =>
-                        <div key={index} className={styles.tag}><p>{item.name}</p></div>
+                        <div key={index} className={styles.tag}><p className="noSelect">{item.name}</p></div>
 
                     )}
                 </div>

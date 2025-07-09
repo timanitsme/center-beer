@@ -18,7 +18,7 @@ import {logout} from "../../store/services/authSlice.js";
 
 export default function Header({paths}){
     const dispatch = useDispatch()
-    const { isAuthorized, userProfile, isLoading: profileIsLoading } = useSelector((state) => state.auth);
+    const { isAuthorized, userProfile, isLoading: profileIsLoading, isRefreshing } = useSelector((state) => state.auth);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [toggleState, setToggleState] = useState(false);
     const [hoveredPath, setHoveredPath] = useState(null);
@@ -171,7 +171,7 @@ export default function Header({paths}){
                         }
                     </div>
                     <div className={styles.userContainer}>
-                        {isAuthorized && !profileIsLoading &&
+                        {isAuthorized && !profileIsLoading && !isRefreshing &&
                             <div className={styles.pathContainer} ref={menuRef}>
                                 <div className={styles.profile} onClick={(e) => {e.stopPropagation(); setIsOpen(!isOpen)}}>
                                     <img className={styles.avatar} src={AvatarDefault} alt=''></img>
@@ -186,7 +186,7 @@ export default function Header({paths}){
                                 </div>
                             </div>
                         }
-                        {!isAuthorized && !profileIsLoading && <SimpleButton onClick={() => navigate("/login/")} text={"Войти в аккаунт"}></SimpleButton>}
+                        {!isAuthorized && !profileIsLoading && !isRefreshing && <SimpleButton onClick={() => navigate("/login/")} text={"Войти в аккаунт"}></SimpleButton>}
                     </div>
                 </div>
             </div>

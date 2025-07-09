@@ -48,6 +48,7 @@ import AdultsOnlyModal from "./components/Modals/SimpleModal/AdultsOnlyModal.jsx
 import BalanceHistory from "./pages/PersonalAccountPage/BalanceHistory/BalanceHistory.jsx";
 import BugReportPage from "./pages/BugReportPage/BugReportPage.jsx";
 import AllSimilarBeerPage from "./pages/Beer/AllSimilarBeerPage/AllSimilarBeerPage.jsx";
+import PersonalInfoPage from "./pages/PersonalAccountPage/PersonalInfoPage/PersonalInfoPage.jsx";
 
 function App() {
     const dispatch = useDispatch();
@@ -87,6 +88,7 @@ function App() {
         {path: "/restore/", element: <RestorePasswordPage/>},
 
         {path: "/account/", element: <PersonalAccountPage/>},
+        {path: "/account/info", element: <PersonalInfoPage/>},
         {path: "/account/fav/:alias", element: <MyFavoritePage/>},
         {path: "/account/bookmarked/:alias", element: <MyBookmarksPage/>},
         {path: "/account/earn-cb/", element: <EarnCBPage/>},

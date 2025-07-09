@@ -1,6 +1,6 @@
 import styles from "./TextInput.module.scss"
 
-export default function TextInput({inputValue, setInputValue, placeholder="", maxLength=30}){
+export default function TextInput({inputValue, setInputValue, placeholder="", maxLength=30, adaptive=true}){
     const handleInput = (e) => {
         if (e.target.value.length < maxLength){
             setInputValue(e.target.value)
@@ -13,7 +13,7 @@ export default function TextInput({inputValue, setInputValue, placeholder="", ma
             value={inputValue}
             onChange={handleInput}
             placeholder={placeholder}
-            className={`${styles.textInput} ma-p`}
+            className={`${styles.textInput} ${adaptive? "ma-p": ""}`}
         />
     )
 }

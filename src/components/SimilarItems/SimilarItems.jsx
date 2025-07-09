@@ -5,6 +5,8 @@ import RoundLinkButton from "../Buttons/RoundLinkButton/RoundLinkButton.jsx";
 import SimilarBottledBeerCard from "../Cards/BottledBeerCard/SimilarBottledBeerCard.jsx";
 import SimpleCatalogSection from "../CatalogSections/SimpleCatalogSection/SimpleCatalogSection.jsx";
 import {useNavigate} from "react-router-dom";
+import ShortenedRowSection from "../ShortenedRowSection/ShortenedRowSection.jsx";
+import RowSection from "../RowSection/RowSection.jsx";
 
 export default function SimilarItems({alias, title, cards}){
     const navigate = useNavigate()
@@ -19,7 +21,7 @@ export default function SimilarItems({alias, title, cards}){
                     <RoundLinkButton onClick={() => navigate(`/beer/${alias}/similar`)} text="Все похожее пиво"/>
                 </div>
             </div>
-            <SimpleCatalogSection CardComponent={SimilarBottledBeerCard} wideColumns={false} cards={cards}></SimpleCatalogSection>
+            <RowSection cards={cards} CardComponent={SimilarBottledBeerCard} maxCards={6}/>
         </div>
     )
 }

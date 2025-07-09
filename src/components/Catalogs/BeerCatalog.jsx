@@ -52,7 +52,7 @@ export default function BeerCatalog({withoutPrice=false, withHeader = true, brew
     }
 
     const initialFilters = {
-        lim: 25,
+        lim: 24,
         offset: 0,
         sort_by: 'popular',
         with_reviews: false,

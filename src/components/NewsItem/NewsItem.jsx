@@ -34,7 +34,7 @@ export default function NewsItem({newsInfo}){
             <div className={styles.source}><p>Источник: </p><a>Profibeer</a></div>
             <div className={styles.similarSection}>
                 <h3>Похожие новости</h3>
-                <SimpleCatalogSection CardComponent={RelatedNewsCard} SkeletonCardComponent={RelatedNewsCardSkeleton} wideColumns={false} isFetching={relatedNewsIsFetching} cards={relatedNews.data}></SimpleCatalogSection>
+                <SimpleCatalogSection CardComponent={RelatedNewsCard} SkeletonCardComponent={RelatedNewsCardSkeleton} wideColumns={false} isFetching={relatedNewsIsFetching} cards={relatedNews?.data}></SimpleCatalogSection>
             </div>
         </div>
     )

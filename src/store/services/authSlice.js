@@ -6,7 +6,8 @@ const initialState = {
     userProfile: null,
     isLoading: true,
     error: null,
-    isInitialized: false
+    isInitialized: false,
+    isRefreshing: false,
 };
 
 const authSlice = createSlice({
@@ -39,10 +40,13 @@ const authSlice = createSlice({
         setIsInitialized: (state, action) => {
             state.isInitialized = action.payload;
         },
+        setIsRefreshing: (state, action) => {
+            state.isInitialized = action.payload;
+        },
     },
 });
 
-export const { setCredentials, logout, setUserProfile, setIsLoading, setError, setIsInitialized } = authSlice.actions;
+export const { setCredentials, logout, setUserProfile, setIsLoading, setError, setIsInitialized, setIsRefreshing } = authSlice.actions;
 
 
 export const logoutMiddleware =
@@ -68,27 +72,30 @@ export const logoutMiddleware =
                 }
             };
 
-export const initializeAuthState = () => async (dispatch, getState) => {
+export const initializeAuthState = (needToRefresh=false) => async (dispatch, getState) => {
     const { isInitialized } = getState().auth;
-    if (isInitialized) return;
+    console.log("whatsapp?")
+    if (!needToRefresh && isInitialized) return;
     dispatch(setIsLoading(true)); // Устанавливаем состояние загрузки
     dispatch(setIsInitialized(true));
 
     try {
+        console.log("hey there?")
         // Загружаем профиль пользователя через API
-        const response = await dispatch(centerBeerAuthApi.endpoints.getUserProfile.initiate());
+        const response = await dispatch(centerBeerAuthApi.endpoints.getUserProfile.initiate({ _timestamp: Date.now() }, { forceRefetch: true }));
         if (response.data) { // Тут по хорошему нужно отдавать с апишки 401 код
             const { accessToken, refreshToken } = response.data;
             dispatch(setCredentials({ accessToken, refreshToken }));
             console.log("initializeAuthState: Пользователь авторизован");
             dispatch(setUserProfile(response.data)); // Устанавливаем данные профиля
+            dispatch(setIsLoading(false))
         }
     } catch (error) {
         console.error('Ошибка при проверке сессии:', error);
-        dispatch(logout()); // Выполняем выход в случае ошибки
+        dispatch(logout());
+        dispatch(setIsLoading(false))
     } finally {
         console.log("setting isLoading")
-        dispatch(setIsLoading(false)); // Снимаем состояние загрузки
     }
 };
 

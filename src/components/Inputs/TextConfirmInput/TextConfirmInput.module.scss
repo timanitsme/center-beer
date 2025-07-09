@@ -1,0 +1,73 @@
+@use "../../../utils/partialStyles/_pxToRem.scss" as *;
+
+.passwordContainer {
+  width: 100%;
+  border-radius: rem(5);
+  background: var(--third);
+  display: flex;
+}
+
+.inter {
+  display: flex;
+  border-radius: inherit;
+  overflow: hidden;
+  align-items: stretch;
+  width: 100%;
+}
+
+.textInput {
+  color: var(--txt-active);
+  font-weight: 200;
+  border: none;
+  outline: none;
+  background: var(--third);
+  flex: 1;
+  padding: rem(8) rem(15) rem(8) rem(8);
+}
+
+.box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  aspect-ratio: 1 / 1;
+
+  svg {
+    max-height: rem(16);
+    width: auto;
+  }
+}
+
+.confirmBox {
+  background: var(--primary);
+
+  svg {
+    stroke: var(--section-bg);
+    color: var(--section-bg);
+  }
+}
+
+.declineBox {
+  background: var(--bg);
+  svg {
+    stroke: var(--txt-active);
+    color: var(--txt-active);
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .confirmBox:hover {
+    background: var(--primary-semi-transparent);
+    transition: 0.3s;
+    cursor: pointer;
+  }
+
+  .declineBox:hover {
+    cursor: pointer;
+    svg {
+      stroke: var(--primary);
+      color: var(--primary);
+      transition: 0.3s;
+    }
+  }
+}

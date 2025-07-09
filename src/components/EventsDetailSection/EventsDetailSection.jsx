@@ -3,14 +3,11 @@ import {useState} from "react";
 import BlogImage1 from "../../assets/newsMocks/blog-image-1.svg";
 import BlogImage2 from "../../assets/newsMocks/blog-image-2.svg";
 import BlogImage3 from "../../assets/newsMocks/blog-image-3.svg";
-import Search from "../Inputs/Search/Search.jsx";
 import ArrowBackIcon from "../../assets/arrow-left-icon.svg?react";
 import LightNavChain from "../Navigation/LightNavChain/LightNavChain.jsx";
 import FavsIcon from "../../assets/fav-unfill-icon.svg?react";
 import BookMarkIcon from "../../assets/bookmark-unfill-icon.svg?react";
 import ComboBox from "../Inputs/ComboBox/ComboBox.jsx";
-import Ad1 from "../../assets/adsMocks/ad-1.svg";
-import RoundLinkButton from "../Buttons/RoundLinkButton/RoundLinkButton.jsx";
 import {Link, useNavigate} from "react-router-dom";
 import BorderedGradientButton from "../Buttons/BorderedGradientButton/BorderedGradientButton.jsx";
 import SearchInput from "../ApiInputs/Search/SearchInput.jsx";
@@ -29,8 +26,8 @@ export default function EventsDetailSection({style = "detail", children}){
         {title: "Фестивали", path: "/events/festivals"}
     ]
     const paths = [
-        {title: "Мероприятия"},
-        {title: "Мероприятия заведений"}
+        {title: "Мероприятия", path: "/events"},
+        {title: "Мероприятия заведений", path: "/events/restaurants"}
     ]
 
     const cards = [

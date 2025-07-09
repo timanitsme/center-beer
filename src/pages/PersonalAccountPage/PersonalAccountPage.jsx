@@ -27,7 +27,7 @@ import {useNavigate} from "react-router-dom";
 import PersonalAccountMobile from "../../components/PersonalAccount/PersonalAccountMobile.jsx";
 
 export default function PersonalAccountPage(){
-    const { isAuthorized, userProfile, isLoading: profileIsLoading } = useSelector((state) => state.auth);
+    const { isAuthorized, userProfile, isLoading: profileIsLoading, isRefreshing } = useSelector((state) => state.auth);
     const navigate = useNavigate()
     const [showModal, setShowModal] = useState(false)
 
@@ -121,7 +121,8 @@ export default function PersonalAccountPage(){
         });
     }, [barFavs, beerFavs]);
 
-    if (!isAuthorized && !profileIsLoading && !userProfile){
+    if (!isAuthorized && !profileIsLoading && !userProfile && !isRefreshing){
+        console.log(`isAuthorized: ${isAuthorized} profileIsLoading: ${profileIsLoading} userProfile: ${userProfile}`)
         navigate("/login");
     }
 

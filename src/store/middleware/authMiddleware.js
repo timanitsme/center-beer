@@ -22,8 +22,15 @@ export const authMiddleware =
                         try {
                             // Попытка обновить токен
                             const refreshResult = await dispatch(centerBeerAuthApi.endpoints.refreshTokenCookie.initiate());
-                            console.log('Refresh successful:', refreshResult.data);
-                            return dispatch(initializeAuthState(true))
+                            if (refreshResult.error){
+                                await dispatch(logout())
+                                await dispatch(setIsLoading(false))
+                                console.log("error while refresh")
+                            }
+                            else{
+                                return dispatch(initializeAuthState(true))
+                            }
+
                             /*if (action.meta?.arg) {
                                 console.log('Action meta arg:', JSON.stringify(action.meta.arg));
                                 const { endpointName, originalArgs } = action.meta.arg;

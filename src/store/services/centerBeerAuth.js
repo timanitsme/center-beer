@@ -73,8 +73,24 @@ export const centerBeerAuthApi = createApi({
                     method: "PATCH",
                 })}
         }),
+        requestEmailChange: builder.mutation({
+            query: (newEmail) => {
+                return({
+                    url: `user/request-email-change?newEmail=${newEmail}`,
+                    method: "POST",
+                })}
+        }),
+        confirmEmailChange: builder.mutation({
+            query: (code) => {
+                return({
+                    url: `user/confirm-email-change?code=${code}`,
+                    method: "POST",
+                })}
+        }),
     })
 })
 
 export const {useGetUserProfileQuery, useLoginMutation, useRefreshTokenMutation,
-    useRefreshTokenCookieMutation, useLogoutMutation, useRegisterMutation, useUpdateNicknameMutation } = centerBeerAuthApi
+    useRefreshTokenCookieMutation, useLogoutMutation, useRegisterMutation, useUpdateNicknameMutation,
+    useRequestEmailChangeMutation, useConfirmEmailChangeMutation
+    } = centerBeerAuthApi

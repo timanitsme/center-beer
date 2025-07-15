@@ -16,10 +16,11 @@ export default function SimilarItems({alias, title, cards}){
     return(
         <div className={styles.itemsContainer}>
             <div className={styles.similarDescriptionContainer}>
-                <ComponentHeader HeaderIcon={BeerBottleIcon} title={"Похожее пиво"} description={`Если вы истинный поклонник пива и мечтаете попробовать настоящий ${title}, то этот раздел для вас. Мы составили список лучших баров, где подают этот великолепный напиток, чтобы вы могли насладиться его уникальным вкусом и ароматом в приятной атмосфере.`}/>
-                <div className={styles.button}>
-                    <RoundLinkButton onClick={() => navigate(`/beer/${alias}/similar`)} text="Все похожее пиво"/>
-                </div>
+                <ComponentHeader HeaderIcon={BeerBottleIcon} title={"Похожее пиво"} description={`Если вы истинный поклонник пива и мечтаете попробовать настоящий ${title}, то этот раздел для вас. Мы составили список лучших баров, где подают этот великолепный напиток, чтобы вы могли насладиться его уникальным вкусом и ароматом в приятной атмосфере.`}>
+                    <div className={styles.button}>
+                        <RoundLinkButton onClick={() => navigate(`/beer/${alias}/similar`)} text="Все похожее пиво"/>
+                    </div>
+                </ComponentHeader>
             </div>
             <RowSection cards={cards} CardComponent={SimilarBottledBeerCard} maxCards={6}/>
         </div>

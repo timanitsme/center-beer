@@ -1,13 +1,7 @@
 import styles from "./ShortenedRowSection.module.scss"
-import BarImage1 from "../../assets/barsMocks/bar-3.svg";
-import BarImage2 from "../../assets/barsMocks/bar-2.svg";
-import BarImage3 from "../../assets/barsMocks/bar-5.svg";
-import BarImage4 from "../../assets/barsMocks/bar-4.svg";
-import BarImage5 from "../../assets/barsMocks/bar-1.svg";
-import MinimalBarCard from "../Cards/BarCard/MinimalBarCard.jsx";
 import {useEffect, useState} from "react";
 
-export default function ShortenedRowSection({title=null, cards=[], CardComponent, maxCards=5, totalItems=10}){
+export default function ShortenedRowSection({title=null, cards=[], CardComponent, SkeletonCardComponent, isFetching=false, maxCards=5, totalItems=10, prefix=""}){
     const [visibleCards, setVisibleCards] = useState([]);
 
     useEffect(() => {
@@ -30,14 +24,17 @@ export default function ShortenedRowSection({title=null, cards=[], CardComponent
 
         // Очищаем обработчик при размонтировании компонента
         return () => window.removeEventListener("resize", handleResize);
-    }, [cards]);
+    }, [cards, isFetching]);
 
     return(
         <div className={styles.sectionContainer}>
             {title && <h3>{title}</h3>}
             <div className={styles.cardsRow}>
-                {cards.length > 0 && visibleCards?.map((card, index) => {
-                    return <CardComponent key={index} cardInfo={card}></CardComponent>
+                {isFetching && maxCards?.map((card, index) => {
+                    return <SkeletonCardComponent key={`${prefix}-${index}`}></SkeletonCardComponent>
+                })}
+                {!isFetching && cards.length > 0 && visibleCards?.map((card, index) => {
+                    return <CardComponent key={`${prefix}-${index}`} cardInfo={card}></CardComponent>
                 })}
                 {visibleCards.length < totalItems &&
                     <div className={styles.showMore}>

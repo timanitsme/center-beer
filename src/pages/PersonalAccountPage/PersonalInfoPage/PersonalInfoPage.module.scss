@@ -17,6 +17,12 @@
   }
 }
 
+.primary{
+  color: var(--primary);
+  font-family: "Podkova", sans-serif;
+}
+
+
 .profile{
   display: flex;
   gap: rem(10);
@@ -95,6 +101,25 @@
   display: flex;
   flex-direction: column;
   gap: rem(10);
+}
+
+.flexButtons{
+  display: flex;
+  gap: rem(10);
+}
+
+.timerBox{
+  display: flex;
+  flex-direction: column;
+
+}
+
+.alignRight{
+  text-align: right;
+}
+
+.codeField{
+  width: fit-content;
 }
 
 .updateAvatar{

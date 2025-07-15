@@ -2,8 +2,6 @@ import styles from "./OrderCard.module.scss"
 
 
 export default function OrderCard({cardInfo}){
-
-
     return(
         <div className={styles.card}>
             <div className={styles.headerRow}>

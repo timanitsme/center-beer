@@ -6,6 +6,22 @@
     gap: rem(10);
 }
 
+.beerInfoContainer{
+    display: flex;
+    gap: rem(10);
+}
+
+.flexRow{
+    display: flex;
+    justify-content: space-between;
+
+    div{
+        display: flex;
+        gap: rem(10);
+    }
+}
+
+
 .barIcons{
     display: flex;
     flex-direction: column;
@@ -308,10 +324,16 @@
     .barInfoContainer{
         margin: 0 rem(25) rem(5) rem(25);
     }
+    .barDescription{
+        max-width: 100%;
+    }
     .barInfo.mobile{
         display: flex;
         margin-left: rem(25);
         margin-bottom: rem(10);
+    }
+    .flexRow div{
+        display: none;
     }
 }
 

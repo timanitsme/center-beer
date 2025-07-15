@@ -25,14 +25,17 @@ import MinimalBarCardApi from "../../components/Cards/BarCard/MinimalBarCardApi.
 import MinimalBottledBeerCardApi from "../../components/Cards/BottledBeerCard/MinimalBottledBeerCardApi.jsx";
 import {useNavigate} from "react-router-dom";
 import PersonalAccountMobile from "../../components/PersonalAccount/PersonalAccountMobile.jsx";
+import MinimalBarCardSkeleton from "../../components/Skeletons/MinimalBarCardSkeleton/MinimalBarCardSkeleton.jsx";
+import MinimalBottledBeerCardSkeleton
+    from "../../components/Skeletons/MinimalBottledBeerCardSkeleton/MinimalBottledBeerCardSkeleton.jsx";
 
 export default function PersonalAccountPage(){
     const { isAuthorized, userProfile, isLoading: profileIsLoading, isRefreshing } = useSelector((state) => state.auth);
     const navigate = useNavigate()
     const [showModal, setShowModal] = useState(false)
 
-    const {data: barCuddy, isLoading: barCuddyIsLoading, error: barCuddyError} = useGetUsersCuddyBarsQuery(userProfile?.id, {skip: !userProfile})
-    const {data: beerCuddy, isLoading: beerCuddyIsLoading, error: beerCuddyError} = useGetUsersCuddyBeersQuery(userProfile?.id, {skip: !userProfile})
+    const {data: barCuddy, isLoading: barCuddyIsLoading, error: barCuddyError, isFetching: barCuddyIsFetching} = useGetUsersCuddyBarsQuery(userProfile?.id, {skip: !userProfile})
+    const {data: beerCuddy, isLoading: beerCuddyIsLoading, error: beerCuddyError, isFetching: beerCuddyIsFetching} = useGetUsersCuddyBeersQuery(userProfile?.id, {skip: !userProfile})
 
     useEffect(() => {
         document.title = `center.beer | Профиль`
@@ -46,22 +49,26 @@ export default function PersonalAccountPage(){
         {title: "13 Rules (Киров)", img: BarImage4, address: "г.Киров, Московская, 33"},
     ]
 
-    const {data: barFavs, isLoading: barFavsIsLoading, error: barFavsError} = useGetUsersFavBarsQuery(userProfile?.id, {skip: !userProfile?.id})
-    const {data: beerFavs, isLoading: beerFavsIsLoading, error: beerFavsError} = useGetUsersFavBeersQuery(userProfile?.id, {skip: !userProfile?.id})
+    const {data: barFavs, isLoading: barFavsIsLoading, error: barFavsError, isFetching: barFavsIsFetching} = useGetUsersFavBarsQuery(userProfile?.id, {skip: !userProfile?.id})
+    const {data: beerFavs, isLoading: beerFavsIsLoading, error: beerFavsError, isFetching: beerFavsIsFetching} = useGetUsersFavBeersQuery(userProfile?.id, {skip: !userProfile?.id})
 
     const cuddySwitch = [
         {
             title: "Бары",
             cards: barCuddy,
             CardComponent: MinimalBarCardApi,
+            SkeletonCardComponent: MinimalBarCardSkeleton,
             isLoading: barCuddyIsLoading,
+            isFetching: barCuddyIsFetching,
             error: barCuddyError,
         },
         {
             title: "Пиво",
             cards: beerCuddy,
             CardComponent: MinimalBottledBeerCardApi,
+            SkeletonCardComponent: MinimalBottledBeerCardSkeleton,
             isLoading: beerCuddyIsLoading,
+            isFetching: beerCuddyIsFetching,
             error: beerCuddyError,
         },
     ]

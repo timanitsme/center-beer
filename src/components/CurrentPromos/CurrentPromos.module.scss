@@ -122,3 +122,12 @@
         margin-right: 0;
     }
 }
+
+@media (max-width: rem(600)) {
+    .max600 {
+        flex: 1;
+        button{
+            display: none;
+        }
+    }
+}

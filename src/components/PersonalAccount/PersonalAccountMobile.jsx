@@ -57,11 +57,6 @@ export default function PersonalAccountMobile({profile, alias = "account", witho
                     <div className={styles.profile}>
                         <div className={styles.avatarWrapper}>
                             <img className={styles.avatar} src={AvatarMock} alt=''></img>
-                            <div className={styles.updateAvatarMobile}>
-                                <div className={styles.container}>
-                                    <MdPhotoCamera/>
-                                </div>
-                            </div>
                         </div>
                         <div>
                             <p className={`${styles.bold} ${styles.overflow}`}>{profile?.nickname}</p>

@@ -37,7 +37,7 @@ export default function CurrentPromos({barId = 1, ref}){
                     <h3 className="ma-h3">текущие акции</h3>
                     <p>Погрузитесь в мир выгодных предложений и специальных условий в нашем баре! Скидки на ваше любимое пиво, вкусные комбо-наборы, а также уникальные предложения для больших компаний. Не упустите шанс насладиться отличными напитками и закусками по привлекательным ценам.</p>
                 </div>
-                <IconButton text="Забронировать стол" onClick={() => navigate("/in-dev")}><BeerMugsIcon/></IconButton>
+                <div className={styles.max600}><IconButton text="Забронировать стол" onClick={() => navigate("/in-dev")}><BeerMugsIcon/></IconButton></div>
             </div>
             <div className={styles.promosPictures}>
                 <div>

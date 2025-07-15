@@ -74,10 +74,17 @@
 }
 
 .flex{
+    max-width: calc(100vw - 50px);
     display: flex;
     flex-direction: column;
     gap: rem(10);
+    overflow: hidden;
+    word-wrap: break-word;
+    white-space: normal;
+    box-sizing: border-box;
 }
+
+
 
 .similarSection{
     display: none;

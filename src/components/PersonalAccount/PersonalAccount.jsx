@@ -15,9 +15,6 @@ export default function PersonalAccount({isMobile = false, profile}){
                     <>
                         <div className={styles.avatarWrapper}>
                             <img className={styles.avatar} src={AvatarMock} alt=''></img>
-                            <div className={styles.updateAvatar}>
-                                <MdPhotoCamera/>
-                            </div>
                         </div>
                         <div>
                             <p className={styles.bold}>{profile?.nickname}</p>

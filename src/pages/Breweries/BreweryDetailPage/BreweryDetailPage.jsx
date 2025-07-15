@@ -23,7 +23,7 @@ import Excursions from "../../../components/Excursions/Excursions.jsx";
 import NewProducts from "../../../components/NewProducts/NewProducts.jsx";
 import LightBarCard from "../../../components/Cards/BarCard/LightBarCard.jsx";
 import BarsRow from "../../../components/BarsRow/BarsRow.jsx";
-import {useEffect, useRef} from "react";
+import {useEffect, useRef, useState} from "react";
 import BreweryHistoryApi from "../../../components/BreweryHistory/BreweryHistoryApi.jsx";
 import FlagsIcon from "../../../assets/flags-icon.svg?react";
 import BottlesPairIcon from "../../../assets/bottles-pair-icon.svg?react"
@@ -52,13 +52,23 @@ export default function BreweryDetailPage(){
     const galleryRef = useRef(null)
     const excursionsRef = useRef(null)
 
-    const sections = [
-        {title: "наши новинки", IconComponent: <BottlesPairIcon/>, ref: newProductsRef},
-        {title: "мероприятия", IconComponent: <FlagsIcon/>, ref: eventsRef},
-        {title: "ассортимент", IconComponent: <PhoneIcon/>, ref: menuRef},
-        {title: "фото", IconComponent: <PhoneIcon/>, ref: galleryRef},
-        {title: "экскурсии", IconComponent: <BarrelIcon/>, ref: excursionsRef},
-    ]
+    const [sections, setSections] = useState(
+        [
+            {title: "наши новинки", IconComponent: <BottlesPairIcon/>, ref: newProductsRef, hasSection: false},
+            {title: "мероприятия", IconComponent: <FlagsIcon/>, ref: eventsRef, hasSection: false},
+            {title: "ассортимент", IconComponent: <PhoneIcon/>, ref: menuRef, hasSection: true},
+            {title: "фото", IconComponent: <PhoneIcon/>, ref: galleryRef, hasSection: false},
+            {title: "экскурсии", IconComponent: <BarrelIcon/>, ref: excursionsRef, hasSection: false},
+        ]
+    )
+
+    const setHasSection = (title) => {
+        setSections((prevSections) =>
+            prevSections.map((section) =>
+                section.title === title ? {...section, hasSection: true} : section
+            )
+        );
+    }
 
     useEffect(() => {
         document.title = `center.beer | Пивоварни: ${data?.[0]?.name}`
@@ -74,6 +84,25 @@ export default function BreweryDetailPage(){
         rating: 4.9,
         description: "В среднем это на 15% выше, чем у других пивоварен в нашем рейтинге."
     }}
+
+    useEffect(() => {
+        if (data?.[0]?.alias === "jaws"){
+            setHasSection("мероприятия")
+            setHasSection("наши новинки")
+            setHasSection("экскурсии")
+        }
+        if (Array.isArray(data?.[0]?.gallery) && data?.[0]?.gallery.length > 0) {
+            setHasSection("фото");
+        } else {
+            // Если галерея отсутствует, убедимся, что "фото" не активно
+            setSections((prevSections) =>
+                prevSections.map((section) =>
+                    section.title === "фото" ? { ...section, hasSection: false } : section
+                )
+            );
+        }
+
+    }, [data]);
 
     return(
         <div className="content">

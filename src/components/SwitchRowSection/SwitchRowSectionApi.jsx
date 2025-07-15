@@ -18,14 +18,17 @@ export default function SwitchRowSectionApi({ title, options, selectedOption, se
                 ))}
             </div>
 
-            {selectedOption.isLoading && <p className="ma-p">Загрузка...</p>}
-            {selectedOption.error && <p style={{ color: 'red' }} className="ma-p">Ошибка загрузки</p>}
+
+            {selectedOption.error && <p className="ma-p">Ошибка загрузки</p>}
             {!selectedOption.isLoading && !selectedOption.error && (
                 selectedOption?.cards?.data?.length > 0 ? (
                     <ShortenedRowSection
                         cards={selectedOption.cards.data}
                         maxCards={selectedOption.maxCards || 5}
                         CardComponent={selectedOption.CardComponent}
+                        totalItems={selectedOption.cards.total_items}
+                        SkeletonCardComponent={selectedOption.SkeletonCardComponent}
+                        isFetching={selectedOption.isFetching}
                     />
                 ) : (
                     <p className="ma-p">Нет данных</p>

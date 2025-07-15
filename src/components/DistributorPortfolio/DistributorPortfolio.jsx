@@ -23,8 +23,8 @@ export default function DistributorPortfolio(){
         <div className={styles.portfolioSection}>
             <ComponentHeader title="Наш портфель" HeaderIcon={BeerCaseIcon} description="Мы собрали лучшие сорта пива от проверенных пивоварен и уникальных крафтовых производителей. Мы предлагаем широкий выбор напитков — от классических лагеров до экспериментальных IPA, чтобы удовлетворить вкусы даже самых искушенных ценителей пива. Наш ассортимент — это гарантия качества, разнообразия и свежести каждой партии."/>
             <div className={styles.cardsContainer}>
-                { assetsCards.map((card) => (
-                    <AssetCard cardInfo={card}></AssetCard>
+                { assetsCards.map((card, index) => (
+                    <AssetCard key={index} cardInfo={card}></AssetCard>
                 ))
                 }
             </div>

@@ -1,0 +1,26 @@
+@use "../../../utils/partialStyles/_pxToRem.scss" as *;
+
+.codeContainer {
+  display: flex;
+  gap: rem(5);
+}
+
+.inter {
+  display: flex;
+  border-radius: inherit;
+  overflow: hidden;
+  align-items: stretch;
+  width: 100%;
+}
+
+.textInput {
+  color: var(--txt-active);
+  font-weight: 200;
+  border: none;
+  outline: none;
+  background: var(--third);
+  width: rem(50);
+  text-align: center;
+  border-radius: rem(5);
+  padding: rem(8);
+}

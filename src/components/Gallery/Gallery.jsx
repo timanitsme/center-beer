@@ -6,139 +6,191 @@ import SingleImageModal from "../Modals/SingleImageModal/SingleImageModal.jsx";
 import placeholder from "../../assets/placeholders/card-image-placeholder.svg"
 
 export default function Gallery({pictures= [], ref = null}){
+    const containerRef = useRef(null);
     const galleryRef = useRef(null);
-    const [showModal, setShowModal] = useState(false)
-    const [currentImage, setCurrentImage] = useState(placeholder)
-    const [isDragging, setIsDragging] = useState(false); // Состояние для отслеживания перетаскивания
+    const [showModal, setShowModal] = useState(false);
+    const [currentImage, setCurrentImage] = useState(placeholder);
+    const [isDragging, setIsDragging] = useState(false);
     const [startX, setStartX] = useState(0);
     const [scrollLeft, setScrollLeft] = useState(0);
-    const [isInteracting, setIsInteracting] = useState(false)
-    const [autoScrollInterval, setAutoScrollInterval] = useState(null);
-    const [autoScrollTimeout, setAutoScrollTimeout] = useState(null); // Таймер для автоматической прокрутки
+    const [isInteracting, setIsInteracting] = useState(false);
+    const [showingPictures, setShowingPictures] = useState([]);
+    const [isVisible, setIsVisible] = useState(false);
+    const autoScrollInterval = useRef(null);
+    const scrollDirection = useRef(1);
+
+    useEffect(() => {
+        if (ref) {
+            if (typeof ref === 'function') {
+                ref(containerRef.current);
+            } else {
+                ref.current = containerRef.current;
+            }
+        }
+    }, [ref]);
+
+    // Инициализация "бесконечных" картинок
+    useEffect(() => {
+        if (pictures.length > 0) {
+            setShowingPictures([...pictures, ...pictures, ...pictures]);
+
+            setTimeout(() => {
+                if (galleryRef.current) {
+                    const imageWidth = galleryRef.current.querySelector('img')?.clientWidth || 0;
+                    galleryRef.current.scrollLeft = pictures.length * imageWidth;
+                }
+            }, 0);
+        }
+    }, [pictures]);
+
+    // Наблюдение за видимостью галереи для пользователя
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                setIsVisible(entry.isIntersecting);
+            },
+            { threshold: 0.5 }
+        );
+        if (containerRef.current) {
+            observer.observe(containerRef.current);
+        }
+        return () => {
+            if (containerRef.current) {
+                observer.unobserve(containerRef.current);
+            }
+        };
+    }, []);
+
+    // Автопрокрутка карусели
+    useEffect(() => {
+        if (isVisible && !isInteracting && showingPictures.length > 0) {
+            autoScrollInterval.current = setInterval(() => {
+                if (galleryRef.current && !isInteracting) {
+                    scrollOneImage(scrollDirection.current);
+                    checkInfiniteScroll();
+                }
+            }, 3000);
+        }
+
+        return () => {
+            if (autoScrollInterval.current) {
+                clearInterval(autoScrollInterval.current);
+            }
+        };
+    }, [isVisible, isInteracting, showingPictures.length]);
+
+    const getImageWidth = () => {
+        if (!galleryRef.current) return 0;
+        const img = galleryRef.current.querySelector('img');
+        return img ? img.clientWidth + 10 : 0; // +10 для учета gap
+    };
+
+    const scrollOneImage = (direction) => {
+        if (!galleryRef.current) return;
+        const imageWidth = getImageWidth();
+        galleryRef.current.scrollBy({
+            left: imageWidth * direction,
+            behavior: 'smooth'
+        });
+    };
+
+    const checkInfiniteScroll = () => {
+        if (!galleryRef.current) return;
+        const container = galleryRef.current;
+        const imageWidth = getImageWidth();
+        const pictureCount = pictures.length;
+        if (container.scrollLeft < imageWidth * pictureCount / 2) {
+            setTimeout(() => {
+                container.scrollLeft += imageWidth * pictureCount;
+            }, 500);
+        }
+        else if (container.scrollLeft > imageWidth * pictureCount * 1.5) {
+            setTimeout(() => {
+                container.scrollLeft -= imageWidth * pictureCount;
+            }, 500);
+        }
+    };
+
+    const handleImageError = (index) => {
+        const updatedPictures = [...showingPictures];
+        updatedPictures[index] = placeholder;
+        setShowingPictures(updatedPictures)
+    };
 
     const handleDragStart = (e) => {
         if (!galleryRef.current) return;
         setIsDragging(true);
-        setIsInteracting(true)
-        // Определяем начальную позицию X
+        setIsInteracting(true);
         const startXPosition = e.type === 'touchstart' ? e.touches[0].pageX : e.pageX;
         setStartX(startXPosition);
-
-        // Сохраняем текущую прокрутку
         setScrollLeft(galleryRef.current.scrollLeft);
-        resetAutoScrollTimer();
+
+        if (autoScrollInterval.current) {
+            clearInterval(autoScrollInterval.current);
+        }
     };
 
     // Функция для обработки движения (мыши или касания)
     const handleDragMove = (e) => {
         if (!isDragging || !galleryRef.current) return;
 
-        // Определяем текущую позицию X
         const currentX = e.type === 'touchmove' ? e.touches[0].pageX : e.pageX;
-
-        // Вычисляем расстояние для прокрутки
-        const walk = (currentX - startX) * 2; // Умножаем для чувствительности
+        const walk = (currentX - startX) * 2;
         galleryRef.current.scrollLeft = scrollLeft - walk;
-
     };
-
-    // Функция для запуска автоматической прокрутки после задержки
-    const startAutoScrollAfterDelay = () => {
-        // Очищаем предыдущий таймер, если он существует
-        if (autoScrollTimeout) {
-            clearTimeout(autoScrollTimeout);
-        }
-
-        const timeoutId = setTimeout(() => {
-            if (!isInteracting && galleryRef.current) {
-                startAutoScroll(); // Начинаем автоматическую прокрутку
-            }
-        }, 10000); // 10 секунд бездействия
-        setAutoScrollTimeout(timeoutId);
-    };
-
-    // Функция для запуска автоматической прокрутки
-    const startAutoScroll = () => {
-        // Останавливаем предыдущий интервал, если он существует
-        if (autoScrollInterval) {
-            clearInterval(autoScrollInterval);
-        }
-
-        const intervalId = setInterval(() => {
-            if (!isInteracting && galleryRef.current) {
-                scrollRightHandler(); // Прокручиваем на одно изображение вправо
-            }
-        }, 5000); // Каждые 5 секунд
-        setAutoScrollInterval(intervalId);
-    };
-
-
-
-    const stopAutoScroll = () => {
-        if (autoScrollTimeout) {
-            clearTimeout(autoScrollTimeout); // Останавливаем таймер
-            setAutoScrollTimeout(null);
-        }
-        if (autoScrollInterval) {
-            clearInterval(autoScrollInterval); // Останавливаем интервал
-            setAutoScrollInterval(null);
-        }
-    };
-
-    // Функция для сброса таймера автоматической прокрутки
-    const resetAutoScrollTimer = () => {
-        stopAutoScroll(); // Останавливаем текущие таймеры
-        startAutoScrollAfterDelay(); // Запускаем новый таймер
-    };
-
-    // При монтировании компонента запускаем таймер
-    useEffect(() => {
-        startAutoScrollAfterDelay();
-
-        // Очищаем интервал при размонтировании компонента
-        return () => {
-            stopAutoScroll();
-        };
-    }, []);
 
     // Функция для завершения перетаскивания
     const handleDragEnd = () => {
         setIsDragging(false);
         setIsInteracting(false);
-        startAutoScrollAfterDelay();
+
+        if (galleryRef.current) {
+            const container = galleryRef.current;
+            const imageWidth = container.querySelector('img')?.clientWidth || 0;
+
+            if (container.scrollLeft < imageWidth * pictures.length / 2) {
+                container.scrollLeft += imageWidth * pictures.length;
+            }
+            else if (container.scrollLeft > imageWidth * pictures.length * 1.5) {
+                container.scrollLeft -= imageWidth * pictures.length;
+            }
+        }
     };
 
     // Функция для прокрутки влево
     const scrollLeftHandler = () => {
         if (galleryRef.current) {
+            setIsInteracting(true);
             const container = galleryRef.current;
-            const imageWidth = container.querySelector('img').clientWidth + 10; // Ширина одного изображения + gap
+            const imageWidth = container.querySelector('img')?.clientWidth || 0;
             container.scrollBy({
                 left: -imageWidth,
                 behavior: 'smooth',
             });
+            setTimeout(() => setIsInteracting(false), 1000);
         }
-        resetAutoScrollTimer();
     };
 
     // Функция для прокрутки вправо
-        const scrollRightHandler = () => {
-            if (galleryRef.current) {
-                const container = galleryRef.current;
-                const imageWidth = container.querySelector('img').clientWidth + 10; // Ширина одного изображения + gap
-                container.scrollBy({
-                    left: imageWidth,
-                    behavior: 'smooth',
-                });
-            }
+    const scrollRightHandler = () => {
+        if (galleryRef.current) {
+            setIsInteracting(true);
+            const container = galleryRef.current;
+            const imageWidth = container.querySelector('img')?.clientWidth || 0;
+            container.scrollBy({
+                left: imageWidth,
+                behavior: 'smooth',
+            });
 
-        };
+            setTimeout(() => setIsInteracting(false), 1000);
+        }
+    };
 
     return(
-        <div className={styles.galleryContainer} ref={ref}>
+        <div className={styles.galleryContainer} ref={containerRef}>
             <div className={styles.galleryPictures} ref={galleryRef} onMouseDown={handleDragStart} onMouseMove={handleDragMove} onMouseUp={handleDragEnd} onMouseLeave={handleDragEnd} onTouchStart={handleDragStart} onTouchMove={handleDragMove} onTouchEnd={handleDragEnd}>
-                {pictures.map((picture, index) =>
-                    <img draggable={false} onClick={() => {setCurrentImage(picture); setShowModal(true)}} key={index} src={picture} alt=""/>
+                {showingPictures.map((picture, index) =>
+                    <img draggable={false} onClick={() => {setCurrentImage(picture); setShowModal(true)}} onError={() => handleImageError(index)} key={index} src={picture} alt=""/>
                 )}
             </div>
             { pictures && pictures.length !== 0 && <div className={styles.galleryButtons}>

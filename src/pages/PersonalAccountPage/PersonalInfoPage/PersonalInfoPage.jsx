@@ -7,30 +7,35 @@ import {useSelector} from "react-redux";
 import AvatarMock from "../../../assets/avatar-default.svg";
 import {MdPhotoCamera} from "react-icons/md";
 import {RiCopperCoinFill} from "react-icons/ri";
-import TextInput from "../../../components/Inputs/TextInput/TextInput.jsx";
 import {useEffect, useState} from "react";
 import TextConfirmInput from "../../../components/Inputs/TextConfirmInput/TextConfirmInput.jsx";
 import PasswordInput from "../../../components/Inputs/PasswordInput/PasswordInput.jsx";
 import SimpleButton from "../../../components/Buttons/SimpleButton/SimpleButton.jsx";
 import {
-    centerBeerAuthApi,
-    useLoginMutation,
+    useConfirmEmailChangeMutation,
+    useRequestEmailChangeMutation,
     useUpdateNicknameMutation
 } from "../../../store/services/centerBeerAuth.js";
-import {logout, setUserProfile} from "../../../store/services/authSlice.js";
-import {centerBeerApi} from "../../../store/services/centerBeer.js";
+import CodeInput from "../../../components/Inputs/CodeInput/CodeInput.jsx";
+import CountdownTimer from "../../../components/CountdownTimer/CountdownTimer.jsx";
 
 export default function PersonalInfoPage(){
     const { isAuthorized, userProfile, isLoading: profileIsLoading } = useSelector((state) => state.auth);
     const [nickname, setNickname] = useState("")
+    const [nicknameError, setNicknameError] = useState("")
     const [email, setEmail] = useState("")
+    const [emailError, setEmailError] = useState("")
+    const [emailTimerIsRunning, setEmailTimerIsRunning] = useState(false);
+    const [emailTimerReset, setEmailTimerReset] = useState(false);
     const paths = [
         {title: "center.beer", path: "/"},
         {title: "Личный кабинет", path: "/account/"},
         {title: "Личные данные", path: ""}
     ]
-
-    const [changeNickname, {isLoading: changeNicknameIsLoading}] = useUpdateNicknameMutation()
+    const [code, setCode] = useState(Array(4).fill(""));
+    const [changeNickname] = useUpdateNicknameMutation()
+    const [changeEmail] = useRequestEmailChangeMutation()
+    const [confirmEmailChange] = useConfirmEmailChangeMutation()
 
     useEffect(() => {
         document.title = `center.beer | Личные данные`
@@ -44,16 +49,31 @@ export default function PersonalInfoPage(){
     }, [userProfile, profileIsLoading]);
 
     const handleNicknameChange = async () => {
+        setNicknameError("")
         try {
             const response = await changeNickname(nickname).unwrap();
             if (response) {
                 console.log("nickname changed successfully")
             }
         } catch (err) {
-            /*setError('Неверный email или пароль');*/
+            setNicknameError('Не получилось изменить никнейм');
             console.log("nickname didn't change")
         }
     }
+
+    const handleRequestEmailChange = async () => {
+        setEmailError("")
+        try {
+            const response = await changeEmail(email).unwrap();
+            if (response) {
+                setEmailTimerIsRunning(true)
+            }
+        } catch (err) {
+            setEmailError('Не получилось изменить email');
+            console.log("email didn't change")
+        }
+    }
+
 
 
     return(
@@ -87,11 +107,25 @@ export default function PersonalInfoPage(){
                                     <div>
                                         <p>Никнейм</p>
                                         <TextConfirmInput placeholder="Никнейм" inputValue={nickname} setInputValue={setNickname} initialValue={userProfile?.nickname} onConfirm={handleNicknameChange}/>
+                                        {nicknameError !== "" && <p className={styles.primary}>{nicknameError}</p>}
                                     </div>
                                     <div>
                                         <p>Email</p>
-                                        <TextConfirmInput placeholder="Email" inputValue={email} setInputValue={setEmail} initialValue={userProfile?.email}/>
+                                        <TextConfirmInput placeholder="Email" inputValue={email} setInputValue={setEmail} initialValue={userProfile?.email} onConfirm={handleRequestEmailChange}/>
+                                        {emailError !== "" && <p className={styles.primary}>{emailError}</p>}
                                     </div>
+                                    {emailTimerIsRunning &&
+                                        <div className={styles.codeField}>
+                                            <p>Введите код, отправленный на ваш Email:</p>
+                                            <div className={styles.timerBox}>
+                                                <div className={styles.flexButtons}>
+                                                    <CodeInput inputValue={code} setInputValue={setCode}/>
+                                                    <SimpleButton text="Подтвердить" onClick={() => setEmailTimerIsRunning(true)}></SimpleButton>
+                                                </div>
+                                                <CountdownTimer initialTime={20} styleClasses={`${styles.primary} ${styles.alignRight}`} isRunning={emailTimerIsRunning} reset={emailTimerReset} setReset={setEmailTimerReset} onExpire={() => console.log("onExpire")} onReset={handleRequestEmailChange}></CountdownTimer>
+                                            </div>
+                                        </div>
+                                    }
                                     <div>
                                         <p><span className={styles.active}>Присоединился:</span> 24.04.2025</p>
                                         <div style={{display: "flex", alignItems: "flex-end", gap: "5px"}} className={styles.balance}><p className={styles.active}>На счету</p> <p>150</p> <p className={styles.active}>CB Coin</p> <RiCopperCoinFill color="var(--primary)"/></div>

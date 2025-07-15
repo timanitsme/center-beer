@@ -44,7 +44,7 @@ export default function BreweryInfo({breweryInfo={}, sections=[]}){
                     <p className="ma-p">{breweryInfo?.description}</p>
                     <div className={styles.barButtons}>
                         {sections.map((section, index) =>{
-                            if (section.ref.current !== null){
+                            if (section.hasSection){
                                 return <IconButton key={index} onClick={() => handleScroll(section.ref)} text={section.title}>{section.IconComponent}</IconButton>
                             }
                         })}

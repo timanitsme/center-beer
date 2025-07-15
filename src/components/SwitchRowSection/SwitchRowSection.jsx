@@ -14,7 +14,7 @@ export default function SwitchRowSection({title, options}){
                     return <IconButton key={index} text={option?.title} style={selectedOption.title !== option.title? "secondary": "primary"} onClick={() => {setSelectedOption(option);}}></IconButton>
                 })}
             </div>
-            <ShortenedRowSection cards={selectedOption.cards} maxCards={selectedOption.maxCards} CardComponent={selectedOption.CardComponent}></ShortenedRowSection>
+            <ShortenedRowSection prefix={selectedOption.title} cards={selectedOption.cards} totalItems={selectedOption.cards.length} maxCards={selectedOption.maxCards} CardComponent={selectedOption.CardComponent}></ShortenedRowSection>
         </div>
     )
 }

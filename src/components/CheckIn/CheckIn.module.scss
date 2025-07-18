@@ -1,0 +1,136 @@
+@use "../../utils/partialStyles/_pxToRem.scss" as *;
+
+
+.checkIn{
+  display: flex;
+  flex-direction: column;
+  background: var(--section-bg);
+  padding: rem(10);
+  border-radius: rem(5);
+  gap: rem(10);
+}
+
+.headerRows{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: rem(10);
+}
+
+.checkInContent{
+  display: flex;
+  gap: rem(15)
+}
+
+.imageContainer{
+
+  img{
+    aspect-ratio: 1/1;
+    max-height: rem(250);
+    border-radius: rem(5);
+  }
+}
+.checkInComment{
+  flex: 1;
+}
+
+.header{
+  display: flex;
+  gap: rem(10);
+  img{
+    max-height: rem(56);
+    width: auto;
+  }
+}
+
+.spaceBtw{
+  display: flex;
+  justify-content: space-between;
+  gap: rem(15);
+}
+
+.pHeader{
+  font-family: Podkova, sans-serif;
+  color: var(--txt-active);
+}
+
+.beerBottles{
+  display: flex;
+  align-items: center;
+  gap: rem(5) !important;
+}
+
+.characteristics{
+  display: flex;
+  gap: rem(15);
+
+  div{
+    display: flex;
+    gap: rem(5);
+    svg{
+      max-height: rem(19);
+      color: var(--primary);
+    }
+  }
+}
+
+.characteristic{
+  display: flex;
+  gap: rem(5);
+  svg{
+    max-height: rem(19);
+    color: var(--primary);
+  }
+}
+
+.mobile{
+  display: none;
+}
+
+.active{
+  color: var(--txt-active);
+}
+
+.primary{
+  color: var(--primary);
+  font-weight: 500 !important;
+  font-family: "Podkova", sans-serif;
+}
+
+.primary:hover{
+  color: var(--primary-semi-transparent);
+  transition: 0.3s;
+}
+
+.beerBottles svg{
+  cursor: initial !important;
+}
+
+@media (max-width: rem(1300)) {
+  .minBottles svg{
+    max-height: rem(16);
+  }
+  .minBottles{
+    gap: rem(2) !important;
+  }
+}
+
+@media (max-width: rem(1000)) {
+  .imageContainer img{
+    max-height: rem(150);
+  }
+
+  .mobile{
+    display: flex;
+  }
+
+  .notMobile{
+    display: none !important;
+  }
+}
+
+@media (max-width: rem(400)) {
+  .imageContainer img{
+    max-height: rem(100);
+  }
+}

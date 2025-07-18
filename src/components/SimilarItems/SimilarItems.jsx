@@ -3,9 +3,7 @@ import ComponentHeader from "../ComponentHeader/ComponentHeader.jsx";
 import BeerBottleIcon from "../../assets/label-bottle-icon.svg?react"
 import RoundLinkButton from "../Buttons/RoundLinkButton/RoundLinkButton.jsx";
 import SimilarBottledBeerCard from "../Cards/BottledBeerCard/SimilarBottledBeerCard.jsx";
-import SimpleCatalogSection from "../CatalogSections/SimpleCatalogSection/SimpleCatalogSection.jsx";
 import {useNavigate} from "react-router-dom";
-import ShortenedRowSection from "../ShortenedRowSection/ShortenedRowSection.jsx";
 import RowSection from "../RowSection/RowSection.jsx";
 
 export default function SimilarItems({alias, title, cards}){

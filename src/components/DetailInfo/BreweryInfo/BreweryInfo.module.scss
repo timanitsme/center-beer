@@ -6,6 +6,24 @@
     gap: rem(10);
 }
 
+.infoHeader{
+    display: flex;
+    justify-content: space-between;
+    div{
+        display: flex;
+        gap: rem(10);
+    }
+}
+
+.infoRows{
+    width: 100%;
+}
+
+.barInfoColumns{
+    display: flex;
+    gap: rem(10);
+}
+
 .barIcons{
     display: flex;
     flex-direction: column;
@@ -194,6 +212,9 @@
     }
     .barDescription{
         max-width: 100%;
+    }
+    .infoHeader div{
+        display: none;
     }
 }
 

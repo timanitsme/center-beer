@@ -82,7 +82,7 @@
 
 @media (max-width: rem(700)) {
     .formRow{
-        grid-template-columns: rem(40) rem(200);
+        grid-template-columns: rem(40) auto;
     }
     .formRow input{
         width: 100%;

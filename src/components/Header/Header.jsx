@@ -98,30 +98,28 @@ export default function Header({paths}){
                         </div>
                     </div>
                     <div className={styles.menu}>
-                        {!isMobile &&
-                            <div className={styles.menuItems}>
-                                {paths.map((path) => {
-                                    return(
-                                        <div className={styles.pathContainer} key={path.path} onMouseEnter={() => {setHoveredPath(path.path)}} onMouseLeave={() => {setHoveredPath(null)}}>
-                                            <Link className={`${(currentPage === path.path) || (path.children?.some(child => child.path === currentPage))? styles.active: ''} aa-p1`} to={path.path}>{path.title}</Link>
-                                            {hoveredPath === path.path && path.children && (
-                                                <div className={styles.subMenu}>
-                                                    {path.children.map((child) => (
-                                                        <Link
-                                                            key={child.path}
-                                                            to={child.path}
-                                                            className={`${styles.subMenuItem} ${currentPage === child.path ? styles.active : ''}`}
-                                                        >
-                                                            {child.title}
-                                                        </Link>
-                                                    ))}
-                                                </div>
-                                            )}
-                                        </div>
-                                    )
-                                })}
-                            </div>
-                        }
+                        <div className={styles.menuItems}>
+                            {paths.map((path) => {
+                                return(
+                                    <div className={styles.pathContainer} key={path.path} onMouseEnter={() => {setHoveredPath(path.path)}} onMouseLeave={() => {setHoveredPath(null)}}>
+                                        <Link className={`${(currentPage === path.path) || (path.children?.some(child => child.path === currentPage))? styles.active: ''} aa-p1-2`} to={path.path}>{path.title}</Link>
+                                        {hoveredPath === path.path && path.children && (
+                                            <div className={styles.subMenu}>
+                                                {path.children.map((child) => (
+                                                    <Link
+                                                        key={child.path}
+                                                        to={child.path}
+                                                        className={`${styles.subMenuItem} ${currentPage === child.path ? styles.active : ''}`}
+                                                    >
+                                                        {child.title}
+                                                    </Link>
+                                                ))}
+                                            </div>
+                                        )}
+                                    </div>
+                                )
+                            })}
+                        </div>
                     </div>
                     <div className={`${styles.mobileMenu} ${isMenuOpen ? styles.open : ""}`}>
                         {paths.map((path) => (

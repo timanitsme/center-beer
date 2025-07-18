@@ -3,7 +3,6 @@ import {useState} from "react";
 import {useNavigate} from "react-router-dom";
 import BookMarkIcon from "../../../assets/bookmark-unfill-icon.svg?react";
 import FavIcon from "../../../assets/fav-unfill-icon.svg?react";
-import PropTypes from "prop-types";
 import SimpleButton from "../../Buttons/SimpleButton/SimpleButton.jsx";
 import cardImagePlaceholder from "../../../assets/placeholders/card-image-placeholder.svg"
 

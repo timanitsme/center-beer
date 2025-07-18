@@ -40,6 +40,12 @@
 
 @media (max-width: rem(1000)){
     .mapContainer{
+        height: rem(700);
+    }
+}
+
+@media (max-width: rem(600)) {
+    .mapContainer{
         height: rem(500);
     }
 }

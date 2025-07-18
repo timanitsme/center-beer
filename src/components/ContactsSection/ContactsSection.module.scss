@@ -142,6 +142,15 @@
     .contactsSection{
         margin: 0 rem(25) 0 rem(25);
     }
+    .area{
+        max-width: rem(500);
+    }
+}
+
+@media (max-width: rem(850)) {
+    .area{
+        max-width: rem(350);
+    }
 }
 
 @media (max-width: rem(700)) {

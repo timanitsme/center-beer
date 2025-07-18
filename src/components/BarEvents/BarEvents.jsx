@@ -1,10 +1,9 @@
 import styles from "./BarEvents.module.scss"
 import ArrowButton from "../Buttons/ArrowButton/ArrowButton.jsx";
-import eventPicture from "../../assets/event-picture.svg"
 import ArrowDiagonalIcon from "../../assets/arrow-diagonal-icon.svg?react"
 import {useGetBarEventsQuery} from "../../store/services/centerBeer.js";
 import {useEffect, useMemo, useState} from "react";
-import {Link, useNavigate, useNavigation} from "react-router-dom";
+import {Link} from "react-router-dom";
 
 
 export default function BarEvents({title = "Скоро в баре", barId=1, ref=null}){

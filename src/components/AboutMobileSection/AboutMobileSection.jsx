@@ -1,6 +1,5 @@
-import {Link, useLocation} from "react-router-dom";
-import styles from "../EventsMobileSection/EventsMobileSection.module.scss";
-import SearchInput from "../ApiInputs/Search/SearchInput.jsx";
+import {useLocation} from "react-router-dom";
+import styles from "./AboutMobileSection.module.scss";
 
 export default function AboutMobileSection({paths}){
     const currentPath = useLocation()
@@ -11,7 +10,6 @@ export default function AboutMobileSection({paths}){
             <div className={styles.tagsContainer}>
                 {paths?.map((item, index) =>
                     <div key={index} className={`${styles.tag} ${currentPath.pathname === item.path? styles.primary: ""}`}><a href={item.path} className="noSelect">{item.title}</a></div>
-
                 )}
             </div>
         </div>

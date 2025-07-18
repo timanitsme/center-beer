@@ -6,15 +6,10 @@ import AppliedFilter from "../AppliedFilter/AppliedFilter.jsx";
 import LocationIcon from "../../assets/location-filled-icon.svg?react";
 import LabelBottleIcon from "../../assets/label-bottle-icon.svg?react"
 import BeerMap from "../BeerMap/BeerMap.jsx";
-import AlcoBottleIcon from "../../assets/alco-bottle-icon.svg";
 import FilterItem from "../ApiInputs/FilterItem/FilterItem.jsx";
 import {useNavigate} from "react-router-dom";
 import {useGetBarsFiltersQuery, useGetBarsQuery, useGetCitiesQuery} from "../../store/services/centerBeer.js";
 import SearchCities from "../ApiInputs/Search/SearchCities.jsx";
-import SimpleCatalogSection from "../CatalogSections/SimpleCatalogSection/SimpleCatalogSection.jsx";
-import BarCard from "../Cards/BarCard/BarCard.jsx";
-import ComboBox from "../ApiInputs/ComboBox/ComboBox.jsx";
-import Toggle from "../Toggle/Toggle.jsx";
 import {isMobile} from "react-device-detect";
 import FiltersModal from "../Modals/FiltersModal/FiltersModal.jsx";
 import SingleCheckBox from "../ApiInputs/CheckBox/SingleCheckBox.jsx";

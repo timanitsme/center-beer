@@ -1,7 +1,5 @@
 import styles from "./CurrentPromos.module.scss"
 import BeerMugsIcon from "../../assets/beer-mugs-icon.svg?react"
-import promo1 from "../../assets/promos/promo-1.svg"
-import promo2 from "../../assets/promos/promo-2.svg"
 import ArrowButton from "../Buttons/ArrowButton/ArrowButton.jsx";
 import {useEffect, useState} from "react";
 import RoundLinkButton from "../Buttons/RoundLinkButton/RoundLinkButton.jsx";

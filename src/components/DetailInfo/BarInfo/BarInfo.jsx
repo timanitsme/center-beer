@@ -84,42 +84,48 @@ export default function BarInfo({barInfo={}, sections = []}){
                         <a href={`mailto:${barInfo.email}`}><MailIcon/></a>
                     </div>
                 </div>
-                <div className={styles.barDescription}>
-                    <div className={styles.descriptionRow}>
-                        <h2 className="ma-h2">{barInfo.name}</h2>
-                        <div className={styles.openedSection}>
-                            <div className={`${styles.bigCircle} ${barInfo?.work_time_list[getDayOfWeek()]?.active? styles.green : styles.red}`}/>
-                            <p className="ma-p">{barInfo?.work_time_list[getDayOfWeek()]?.active? `открыт до ${intervals?.[1]}`:`закрыт до ${intervals?.[0]}`}</p>
+                <div style={{width: "100%"}}>
+                    <div className={styles.infoHeader}>
+                        <div className={styles.descriptionRow}>
+                            <h2 className="ma-h2">{barInfo.name} </h2>
+                            <div className={styles.openedSection}>
+                                <div className={`${styles.bigCircle} ${barInfo?.work_time_list[getDayOfWeek()]?.active? styles.green : styles.red}`}/>
+                                <p className="ma-p">{barInfo?.work_time_list[getDayOfWeek()]?.active? `открыт до ${intervals?.[1]}`:`закрыт до ${intervals?.[0]}`}</p>
+                            </div>
+                        </div>
+                        <div className={styles.infoButtons}>
+                            <a className={`${styles.aIconButton} ${isFavourite ? styles.added : ''} noWrap`} onClick={(e) => handleAddToFav(e, barInfo?.id)}><FavsIcon/>{isFavourite? "Убрать из любимых": "Добавить в любимые"}</a>
+                            <a className={`${styles.aIconButton} ${isBookmarked ? styles.added : ''} noWrap`} onClick={(e) => handleAddToCuddy(e, barInfo?.id)}><BookMarkIcon/>{isBookmarked? "Убрать из кладовки": "Добавить в кладовку"}</a>
                         </div>
                     </div>
-                    <p className="ma-p">{barInfo.description}</p>
-                    <div className={styles.barButtons}>
-                        {sections.map((section, index) =>
-                            <IconButton key={index} onClick={() => handleScroll(section.ref)} text={section.title}>{section.IconComponent}</IconButton>
-                        )}
-                        <SimpleButton onClick={() => navigate("/in-dev")} text={"забронировать стол"}/>
-                    </div>
-                </div>
-                <div className={`${styles.barInfo} ${styles.regular}`}>
-                    <div>
-                        <a className={`${styles.aIconButton} ${isFavourite ? styles.added : ''}`} onClick={(e) => handleAddToFav(e, barInfo?.id)}><FavsIcon/>{isFavourite? "Убрать из любимых": "Добавить в любимые"}</a>
-                        <a className={`${styles.aIconButton} ${isBookmarked ? styles.added : ''}`} onClick={(e) => handleAddToCuddy(e, barInfo?.id)}><BookMarkIcon/>{isBookmarked? "Убрать из кладовки": "Добавить в кладовку"}</a>
-                    </div>
-                    <div className={styles.ratingAndComments}>
-                        <div className={styles.beerBottles}>
-                            {getRatingIcons(rating)}
+                    <div className={styles.barInfoColumns}>
+                        <div className={styles.barDescription}>
+                            <p className="ma-p">{barInfo.description}</p>
+                            <div className={styles.barButtons}>
+                                {sections.map((section, index) =>
+                                    <IconButton key={index} onClick={() => handleScroll(section.ref)} text={section.title}>{section.IconComponent}</IconButton>
+                                )}
+                                <SimpleButton onClick={() => navigate("/in-dev")} text={"забронировать стол"}/>
+                            </div>
                         </div>
-                        <p>({rating})</p>
-                        <div className={styles.circle}/>
-                        <a> <CommentIcon/> 116 комментариев</a>
-                    </div>
-                    <h2>{barInfo.contacts}</h2>
-                    <p>{barInfo.address}</p>
-                    <a className={styles.aUnderlinedIconButton} href="https://center.beer/about-us/contact/"><CommentIcon/>Связаться с нами</a>
-                    <a className={styles.aUnderlinedIconButton} onClick={() => setShowModal(true)}><CalendarIcon/>График работы</a>
-                    <div>
-                        <IconButton text="Найти на карте" onClick={() => navigate("/map")} style="secondary"><LocationIcon/></IconButton>
-                        <IconButton text="Заказать такси" onClick={() => window.location.href = `https://3.redirect.appmetrica.yandex.com/route?end-lat=${barInfo?.lon}&end-lon=${barInfo?.lat}&ref=centerbeer&appmetrica_tracking_id=25395763362139037`} style="secondary"><TaxiIcon/></IconButton>
+                        <div className={`${styles.barInfo} ${styles.regular}`}>
+                            <div className={styles.ratingAndComments}>
+                                <div className={styles.beerBottles}>
+                                    {getRatingIcons(rating)}
+                                </div>
+                                <p>({rating})</p>
+                                <div className={styles.circle}/>
+                                <a className="ma-p"> <CommentIcon/> 116 комментариев</a>
+                            </div>
+                            <h2>{barInfo.contacts}</h2>
+                            <p>{barInfo.address}</p>
+                            <a className={styles.aUnderlinedIconButton} href="https://center.beer/about-us/contact/"><CommentIcon/>Связаться с нами</a>
+                            <a className={styles.aUnderlinedIconButton} onClick={() => setShowModal(true)}><CalendarIcon/>График работы</a>
+                            <div style={{display: "flex", flexWrap: "wrap", justifyContent: "flex-end"}}>
+                                <IconButton text="Найти на карте" onClick={() => navigate("/map")} style="secondary"><LocationIcon/></IconButton>
+                                <IconButton text="Заказать такси" onClick={() => window.location.href = `https://3.redirect.appmetrica.yandex.com/route?end-lat=${barInfo?.lon}&end-lon=${barInfo?.lat}&ref=centerbeer&appmetrica_tracking_id=25395763362139037`} style="secondary"><TaxiIcon/></IconButton>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -138,11 +144,16 @@ export default function BarInfo({barInfo={}, sections = []}){
                 </div>
                 <h2 className="ma-h2">{barInfo.contacts}</h2>
                 <p className="ma-p">{barInfo.address}</p>
-                <a className={`${styles.aUnderlinedIconButton} ma-p`} href="https://center.beer/about-us/contact/"><CommentIcon/>Связаться с нами</a>
+                <a className={`${styles.aUnderlinedIconButton} ma-p`} href="https://center.beer/contacts/"><CommentIcon/>Связаться с нами</a>
                 <a className={`${styles.aUnderlinedIconButton} ma-p`} onClick={() => setShowModal(true)}><CalendarIcon/>График работы</a>
                 <div>
                     <IconButton text="Найти на карте" onClick={() => navigate("/map")} style="secondary"><LocationIcon/></IconButton>
                     <IconButton text="Заказать такси" onClick={() => window.location.href = `https://3.redirect.appmetrica.yandex.com/route?end-lat=${barInfo?.lon}&end-lon=${barInfo?.lat}&ref=centerbeer&appmetrica_tracking_id=25395763362139037`} style="secondary"><TaxiIcon/></IconButton>
+                </div>
+                <div className={styles.socials}>
+                    {barInfo["social_media"].tg && <a href={barInfo["social_media"].tg}><TgIcon/></a>}
+                    {barInfo["social_media"].vk && <a href={barInfo["social_media"].vk}><VkIcon/></a>}
+                    <a href={`mailto:${barInfo.email}`}><MailIcon/></a>
                 </div>
             </div>
             <div className={styles.barButtonsMobile}>

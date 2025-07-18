@@ -192,6 +192,16 @@ p{
   color: var(--bg);
 }
 
+.simpleContainer{
+  margin: 0 50px 0 50px;
+}
+
+@media (max-width: 1000px) {
+  .simpleContainer{
+    margin: 0 25px 0 25px;
+  }
+}
+
 @media (hover: hover) and (pointer: fine) {
   a:hover {
     color: var(--primary);
@@ -203,6 +213,10 @@ p{
     color: var(--primary);
     transition: 0.5s;
   }
+}
+
+.noWrap{
+  white-space: nowrap;
 }
 
 .leaflet-popup-content{

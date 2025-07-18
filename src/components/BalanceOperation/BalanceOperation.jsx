@@ -2,7 +2,6 @@ import styles from "./BalanceOperation.module.scss"
 import {RiCopperCoinFill} from "react-icons/ri";
 import ArrowDownIcon from "../../assets/arrow-down-icon.svg?react";
 import {useState} from "react";
-import formatDateWithTextMonth from "../../utils/DateFunctions/formatDateWithTextMonth.js";
 import formatDateTimeWithTextMonth from "../../utils/DateFunctions/formatDateTimeWithTextMonth.js";
 
 export default function BalanceOperation({operation}){

@@ -23,6 +23,13 @@ const reviewsHeader = (title) => {
     })
 }
 
+const checkInsHeader = (title) => {
+    return({
+        title: `Чек-ины о ${title}`,
+        description: `Чек-ины любителей пива, которые уже успели попробовать и оценить ${title}. Поделитесь и вы своим впечатлением о пиве ${title}, чтобы помочь другим сделать правильный выбор и насладиться этим напитком так же, как и вы.`
+    })
+}
+
 const reviewsImages = [Review1, Review2, Review3, Review4, Review5, Review6, Review2, Review3, Review1, Review6, Review4, Review5]
 
 const cardsBars = [
@@ -34,5 +41,6 @@ const cardsBars = [
 
 export const getBeerDetailPaths = () => paths;
 export const getBeerDetailReviewsHeader = (title) => reviewsHeader(title);
+export const getBeerDetailCheckInsHeader = (title) => checkInsHeader(title);
 export const getBeerDetailReviewsImages = () => reviewsImages;
 export const getBeerDetailBarsRowCards = () => cardsBars;

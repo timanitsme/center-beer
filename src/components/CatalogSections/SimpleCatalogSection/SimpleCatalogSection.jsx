@@ -1,7 +1,6 @@
 import styles from "../CatalogSection/CatalogSection.module.scss";
 import PropTypes from "prop-types";
 import SimpleButton from "../../Buttons/SimpleButton/SimpleButton.jsx";
-import {useEffect, useRef} from "react";
 
 export default function SimpleCatalogSection({cards, CardComponent, SkeletonCardComponent, wideColumns=false, title="", totalItems=null, onShowMore=null, isFetching=false, isLoading=false, lim=6, prefix=""}){
     const handleShowMore = async () => {

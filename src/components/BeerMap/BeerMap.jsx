@@ -6,7 +6,6 @@ import MapMarker from "../../assets/map-marker.svg"
 import HopIcon from "../../assets/hop-icon.svg?react"
 import IconButton from "../Buttons/IconButton/IconButton.jsx";
 import {useNavigate} from "react-router-dom";
-import {useGetBarsQuery} from "../../store/services/centerBeer.js";
 
 
 export default function BeerMap({data = []}){

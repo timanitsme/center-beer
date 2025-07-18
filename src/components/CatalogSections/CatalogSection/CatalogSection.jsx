@@ -2,8 +2,6 @@ import styles from "./CatalogSection.module.scss";
 import IconButton from "../../Buttons/IconButton/IconButton.jsx";
 import PropTypes from "prop-types";
 import AppliedFilter from "../../AppliedFilter/AppliedFilter.jsx";
-import LocationIcon from "../../../assets/location-filled-icon.svg?react";
-
 
 export default function CatalogSection({specs, CardComponent, IconComponent, cards = {}, wideColumns=false, filterValues= [], filterNameMap={}, removeFilter = () =>{}, countAppliedFilters = ()=>{}, resetFilters = ()=>{}, alias}){
     if (!cards || cards.isLoading || cards.error || !cards?.data || cards?.data?.length === 0) return null

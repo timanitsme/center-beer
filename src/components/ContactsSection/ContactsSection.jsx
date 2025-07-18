@@ -44,7 +44,7 @@ export default function ContactsSection(){
             <div className={styles.section}>
                 <div className={`${styles.formRow} ${styles.socials}`}>
                     <div className={`${styles.col} ${styles.center}`}>
-                        <h2 className="ma-h2">Мы в социальных сетях</h2>
+                        <h2 className="ma-h3">Мы в социальных сетях</h2>
                     </div>
                     <div className={styles.row}>
                         <IconButton style="third" onClick={() => window.location.href="https://t.me/Alexomel81"} text={"Telegram"}><TgIcon/></IconButton>

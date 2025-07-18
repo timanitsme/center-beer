@@ -69,7 +69,7 @@ export default function BeerInfo({showPrice=false,beerInfo={}}){
                     </div>
                 </div>
 
-                <div>
+                <div style={{width: "100%"}}>
                     <div className={styles.flexRow}>
                         <h2 className={`${styles.beerTitle} ma-h2`}>{beerInfo?.name}</h2>
                         <div>

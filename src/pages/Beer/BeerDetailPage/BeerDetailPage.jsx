@@ -55,7 +55,7 @@ export default function BeerDetailPage(){
                     <BeerInfo beerInfo={data[0]} showPrice={isPriceVisible()}/>
                     <BarsRow title={`Где попробовать ${data[0]?.name}`} beerTitle={data[0]?.name} barCards={data[0]?.sales_in_bars} marketCards={data[0]?.sales_in_markets} CardComponent={LightBarCard}/>
                     {data[0]?.related_items && <SimilarItems alias={alias} title={data[0]?.name} cards={data[0]?.related_items}/>}
-                    <div className="simpleContainer"><ButtonSwitch onClick={() => {setSelectedSection(options[1-selectedSection.id])}} options={options} selectedOption={selectedSection}></ButtonSwitch></div>
+                    <div className="simpleContainer" style={{marginBottom: "15px"}}><ButtonSwitch onClick={() => {setSelectedSection(options[1-selectedSection.id])}} options={options} selectedOption={selectedSection}></ButtonSwitch></div>
                     {selectedSection.title === "Отзывы" && <Reviews header={getBeerDetailReviewsHeader(data[0]?.name)} images={data[0]?.reviews_gallery} resume={reviewsResume(data[0]?.name)} id={data[0]?.id} alias={"beer"}/>}
                     {selectedSection.title === "Чек-ины" && <CheckInReviews header={getBeerDetailCheckInsHeader(data[0]?.name)} resume={reviewsResume(data[0]?.name)}/>}
                 </>

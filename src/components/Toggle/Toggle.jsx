@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react'
+import {useState} from 'react'
 import styles from "./Toggle.module.scss"
 
 export default function Toggle( {label, toggled, onClick, reset}) {
@@ -10,10 +10,12 @@ export default function Toggle( {label, toggled, onClick, reset}) {
     }
 
     return (
-        <label className={styles.toggle}>
-            <input type="checkbox" defaultChecked={isToggled} onClick={callback} />
-            <span />
+        <div className={styles.flexRow} onClick={callback}>
+            <label className={styles.toggle}>
+                <input type="checkbox" defaultChecked={isToggled} />
+                <span />
+            </label>
             <p className="noSelect ma-p">{label}</p>
-        </label>
+        </div>
     )
 }

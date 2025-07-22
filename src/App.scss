@@ -168,6 +168,8 @@ p{
 }
 
 .circle{
+  min-width: 4px;
+  min-height: 4px;
   width: 4px;
   height: 4px;
   background: var(--primary);

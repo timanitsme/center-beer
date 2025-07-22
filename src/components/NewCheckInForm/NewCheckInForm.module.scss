@@ -204,7 +204,7 @@
 
 @media (max-width: rem(1300)) {
   .minBottles svg{
-    max-height: rem(16);
+    max-height: rem(20);
   }
   .minBottles{
     gap: rem(2) !important;
@@ -225,7 +225,7 @@
   }
 }
 
-@media (max-width: rem(400)) {
+@media (max-width: rem(600)) {
   .newImage, .imageContainer img{
     max-height: rem(100);
   }

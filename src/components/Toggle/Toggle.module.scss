@@ -56,3 +56,15 @@
     cursor: pointer;
     color: var(--txt-secondary);
 }
+
+.flexRow{
+    display: flex;
+    align-items: center;
+    gap: rem(8);
+}
+.flexRow p{
+    width: max-content;
+    font-weight: 300;
+    cursor: pointer;
+    color: var(--txt-secondary);
+}

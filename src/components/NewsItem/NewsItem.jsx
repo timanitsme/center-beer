@@ -5,6 +5,7 @@ import {useGetNewsRelatedQuery} from "../../store/services/centerBeer.js";
 import RelatedNewsCardSkeleton from "../Skeletons/RelatedNewsCardSkeleton/RelatedNewsCardSkeleton.jsx";
 import RelatedNewsCard from "../Cards/RelatedNewsCard/RelatedNewsCard.jsx";
 import SimpleCatalogSection from "../CatalogSections/SimpleCatalogSection/SimpleCatalogSection.jsx";
+import {Fragment} from "react";
 
 export default function NewsItem({newsInfo}){
     const {data: relatedNews, isFetching: relatedNewsIsFetching} = useGetNewsRelatedQuery(newsInfo?.id, {skip: newsInfo?.id === null})
@@ -25,7 +26,7 @@ export default function NewsItem({newsInfo}){
             <p>Продажи Bud Light начали падать в апреле: потребители стали бойкотировать бренд после того, как инфлюенсер Дилан Малвейни разместила в соцсети пост с персонализированной банкой Bud Light. Многие американцы, в том числе владельцы баров и магазинов, ошибочно сочли, что реклама с участием Малвейни вышла на телевидении или что банки с её изображением появились в продаже. На самом деле банка, показанная инфлюенсером в соцсети, была изготовлена в единственном экземпляре при помощи термоусадочной плёнки. По данным американо-канадского политического комментатора Стивена Краудера, за это компания Anheuser-Busch заплатила Дилан Малвейни 185 тысяч долларов.</p>
             <p>Рыночная капитализация компании Anheuser-Busch на фоне недовольства части потребителей снизилась более чем на 6 млрд долларов. По сообщениям СМИ, никто из высшего руководства компании не был в курсе готовящего сотрудничества с транс-инфлюенсером, и решение было принято кем-то из младших менеджеров, занимающихся взаимодействием с инфлюенсерами. После скандала от работы отстранили вице-президента по маркетингу бренда Bud Light Алиссу Хейнершейд и её руководителя, вице-президента AB InBev по маркетингу Дэниела Блейка. Позднее компанию Anheuser-Busch покинул директор по маркетингу Бенуа Гарбе.</p>
             <p>Сама Дилан Малвейни в своём недавнем выступлении в ходе фестиваля SXSW заявила, что бренд Bud Light должен был действовать «как родитель», чтобы защитить её от буллинга, так именно компания приняла решение привлечь её к рекламе бренда. </p>
-            <div className={styles.flex} dangerouslySetInnerHTML={{__html: newsInfo?.content}}></div>
+            <div dangerouslySetInnerHTML={{__html: newsInfo?.content}}></div>
             <div className={styles.tagsContainer}>
                 {newsInfo?.tags.map((tag, index) =>
                     <div key={index} className={styles.tag}><p className="text-min">{tag}</p></div>

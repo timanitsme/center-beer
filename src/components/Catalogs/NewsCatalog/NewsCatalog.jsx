@@ -23,7 +23,7 @@ export default function NewsCatalog({searchText = ""}){
                     </div>
                 </div>
             </div>
-            <SimpleCatalogSection isFetching={newsIsFetching} SkeletonCardComponent={NewsCardSkeleton} CardComponent={NewsCard} cards={news?.data} totalItems={news?.["total_items"]}></SimpleCatalogSection>
+            <SimpleCatalogSection alias="news" isFetching={newsIsFetching} SkeletonCardComponent={NewsCardSkeleton} CardComponent={NewsCard} cards={news?.data} totalItems={news?.["total_items"]}></SimpleCatalogSection>
         </div>
     )
 }

@@ -119,7 +119,7 @@ export default function NewCheckInForm({ref, profile}){
                     style={{ display: "none" }}
                 />
                 <div className={styles.checkInComment}>
-                    <textarea className={styles.replyContentTextarea} placeholder="Введите ваше сообщение">
+                    <textarea className={`${styles.replyContentTextarea} ma-p`} placeholder="Введите ваше сообщение">
 
                     </textarea>
                     <div>

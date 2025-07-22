@@ -26,9 +26,9 @@ export default function Task({task, tasksHash}){
             <div className={styles.bottom}>
                 <div className={styles.row}>
                     <div className={styles.col}>
-                        <p className={`${styles.wrap} ma-p`}>{task.description}</p>
+                        <p className={`${styles.wrap} ma-p ${styles.limited}`}>{task.description}</p>
                     </div>
-                    <div className={styles.col}>
+                    <div className={`${styles.col} ${styles.limited}`}>
                         {task.requirement !==null? isTaskCompletedFast(task.requirement)? <p className="ma-p" style={{textDecoration: "line-through"}}>{tasksHash[task.requirement].title}</p>:
                             <p className="ma-p">Условие: <a className="ma-p" onClick={() => handleRequirementClick(task.requirement)}>{tasksHash[task.requirement].title}</a></p>: <p className="ma-p">Задание выполняется в любое время</p> }
                     </div>
@@ -38,12 +38,10 @@ export default function Task({task, tasksHash}){
                         <p className="ma-p" style={{minWidth: "fit-content"}}>Заработай <span style={{color: "var(--txt-active)"}} className="ma-p">{task.reward}</span></p>
                         <RiCopperCoinFill color="var(--primary)"/>
                     </div>
-                    <div className={styles.col}>
+                    <div className={`${styles.col} ${styles.flexCol}`}>
                         {task.requirement !==null && !isTaskCompletedFast(task.requirement)? <a style={{color: "var(--txt-secondary)", textAlign: "center"}} className="ma-p">Перейти к выполнению</a>:
                             <a style={{textAlign: "center"}} onClick={() => window.location.href = task.path} className="ma-p">Перейти к выполнению</a>
                         }
-                    </div>
-                    <div className={styles.col}>
                         {task.complete?
                             <div className={`${styles.status} ${styles.completed}`}>
                                 <p className="ma-p">Выполнено</p>

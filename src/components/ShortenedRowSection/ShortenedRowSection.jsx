@@ -6,11 +6,15 @@ export default function ShortenedRowSection({title=null, cards=[], CardComponent
 
     useEffect(() => {
         const handleResize = () => {
-            if (window.innerWidth >= 1000) {
+            if (window.innerWidth >= 1600) {
                 setVisibleCards(cards.slice(0, maxCards)); // Показать 5 карточек
-            } else if (window.innerWidth >= 768) {
+            } else if (window.innerWidth >= 1300) {
+                setVisibleCards(cards.slice(0, maxCards-1)); // Показать 3 карточки
+            }
+            else if (window.innerWidth >= 900) {
                 setVisibleCards(cards.slice(0, maxCards-2)); // Показать 3 карточки
             }
+
             else {
                 setVisibleCards(cards.slice(0, maxCards-3)); // Показать 2 карточки
             }

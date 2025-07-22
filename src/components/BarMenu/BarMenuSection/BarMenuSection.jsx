@@ -352,23 +352,27 @@ export default function BarMenuSection({alias, barId, tab}){
                         <div className={styles.sectionHeader}>
                             <div className={styles.sectionDescriptionIcon}><tabSpec.Icon/></div>
                             <div className={styles.sectionDescription}>
-                                <h2 className="ma-h2">{tab?.header}</h2>
-                                <p className="ma-p">{tab?.description}</p>
+                                <div className={styles.headerAndButton}>
+                                    <h2 className="ma-h2">{tab?.header}</h2>
+                                    {!isMobile && <div className={`${styles.sectionButton} ${styles.mobileOff}` }><IconButton onClick={() => navigate("/in-dev")} text="Забронировать стол"><tabSpec.Icon/></IconButton></div>}
+                                </div>
+                                <p className="ma-p" style={{maxWidth: "80%"}}>{tab?.description}</p>
                             </div>
 
-                            {!isMobile && <div className={`${styles.sectionButton} ${styles.mobileOff}` }><IconButton onClick={() => navigate("/in-dev")} text="Забронировать стол"><tabSpec.Icon/></IconButton></div>}
-                            {isMobile && <div className={styles.mobileButtons}>
-                                <SimpleButton textStyle={"black"} text="ФИЛЬТРЫ" onClick={() => setShowFiltersModal(true)} style="primary"></SimpleButton>
-                                <div className={styles.sectionButton}><IconButton onClick={() => navigate("/in-dev")} text="Забронировать стол"><tabSpec.Icon/></IconButton></div>
-                            </div>}
+
+
                         </div>
-                        <div className={styles.appliedFiltersRow} style={{marginBottom: "0px"}}>
-                            {alias === "food" && data?.[alias]?.data && Object.keys(data?.[alias]?.data)?.map((tabNum, index) => {
+                        {isMobile && <div className={styles.mobileButtons}>
+                            <SimpleButton textStyle={"black"} text="ФИЛЬТРЫ" onClick={() => setShowFiltersModal(true)} style="primary"></SimpleButton>
+                            <div className={styles.sectionButton}><IconButton onClick={() => navigate("/in-dev")} text="Забронировать стол"><tabSpec.Icon/></IconButton></div>
+                        </div>}
+                        { alias === "food" && <div className={styles.appliedFiltersRow} style={{marginBottom: "0px"}}>
+                            {data?.[alias]?.data && Object.keys(data?.[alias]?.data)?.map((tabNum, index) => {
                                 return(
                                     <IconButton style={tabNum === foodSelectedTab? "primary-third": "third-primary"} key={index} text={data[alias].data[tabNum]?.name} onClick={() => {if (tabNum !== foodSelectedTab) setFoodSelectedTab(tabNum); else setFoodSelectedTab("")}}>{foodIcons[data[alias].data[tabNum]?.name] || <FriesIcon/>}</IconButton>
                                 )
                             })}
-                        </div>
+                        </div>}
                     <div className={styles.appliedFiltersRow}>
                         {Object.entries(filterValues).map(([filterKey, value]) => {
                             // Пропускаем пустые значения
@@ -457,7 +461,7 @@ export default function BarMenuSection({alias, barId, tab}){
                             return(
                                 <Fragment key={index}>
                                     <div key={index} className={`${styles.sectionDescription} ${styles.row}`}>
-                                        <h2>{data[alias].data[tabNum]?.name}</h2>
+                                        <h2 className="ma-h2">{data[alias].data[tabNum]?.name}</h2>
                                     </div>
                                     <div className={tabSpec.wideColumns ? styles.sectionContentWide : styles.sectionContent}>
                                         {data[alias].data[tabNum]?.menu && data[alias].data[tabNum]?.menu?.length > 0 && data[alias].data[tabNum]?.menu?.map((cardInfo, index) => <tabSpec.CardComponent key={index} cardInfo={cardInfo} onShowModal={(image) => {setSelectedFood(image); setShowModal(true)}}/>)}

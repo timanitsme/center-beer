@@ -83,15 +83,22 @@
 
 @media (max-width: rem(700)) {
     .formRow{
-        grid-template-columns: rem(50) rem(200);
+        grid-template-columns: rem(100) auto;
     }
     .formRow input{
         width: 100%;
     }
     .authContent{
         padding: rem(15) rem(20);
+        width: 100%;
     }
     .authSection form{
         width: calc(100% - 50px);
+    }
+}
+
+@media (max-width: rem(400)) {
+    .formRow{
+        grid-template-columns: rem(50) auto;
     }
 }

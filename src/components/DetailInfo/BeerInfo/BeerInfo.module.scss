@@ -299,7 +299,7 @@
     }
 }
 
-@media (max-width: rem(1200)){
+@media (max-width: rem(1600)){
     .selectedPictureContainer{
         height: rem(322) !important;
         width: rem(283) !important;
@@ -317,7 +317,7 @@
 
 }
 
-@media (max-width: rem(1000)) {
+@media (max-width: rem(1400)) {
     .barInfo.regular{
         display: none;
     }
@@ -329,7 +329,7 @@
     }
     .barInfo.mobile{
         display: flex;
-        margin-left: rem(25);
+        margin-left: rem(100);
         margin-bottom: rem(10);
     }
     .flexRow div{

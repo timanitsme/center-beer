@@ -8,7 +8,7 @@
 }
 
 .menuContainer h2{
-    align-self: flex-start;
+    align-self: flex-end;
     text-align: left;
 }
 
@@ -67,8 +67,10 @@
 }
 
 .sectionHeader{
+    width: 100%;
     display: flex;
     gap:rem(10);
+
 }
 
 .sectionDescriptionIcon {
@@ -79,28 +81,37 @@
 }
 
 .sectionDescriptionIcon svg{
-    height: 80%;
+    height: rem(117);
     width: auto;
-    max-height: rem(80);
 }
 
 .sectionDescription{
-    max-width: 70%;
     margin-right: rem(10);
 }
 
 .sectionButton{
-    max-width: 20%;
+
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-left: auto;
+
+}
+
+.sectionButton.mobileOff{
+    align-self: flex-start;
+}
+
+.headerAndButton{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
 }
 
 .appliedFiltersRow{
     display: flex;
     gap: rem(10);
-    margin: rem(15);
+    margin: rem(15) rem(15) 0 rem(15);
     flex-wrap: wrap;
 }
 
@@ -113,13 +124,21 @@
     grid-template-columns: repeat(auto-fill, rem(400));
     gap: rem(20);
     padding: rem(15);
-    justify-content: center;
+    justify-content: flex-start;
     align-items: stretch;
+
 }
 
 .mobileButtons{
     display: flex;
     flex-direction: row;
+    justify-content: flex-start;
+    width: 100%;
+    gap: rem(15);
+    margin-top: rem(10);
+    .sectionButton{
+        margin-left: 0;
+    }
 }
 
 .loadMoreSection{
@@ -139,7 +158,14 @@
 }
 
 .row{
-    margin-left: rem(70);
+    margin-left: rem(15);
+}
+
+
+@media (max-width: rem(1400)) {
+    .mobileOff{
+        display: none;
+    }
 }
 
 @media (max-width: rem(1000)) {
@@ -160,19 +186,22 @@
         justify-content: center;
         display: flex;
         flex: 1;
+
+        h2{
+            text-align: center;
+            align-self: center;
+        }
+
+        p{
+            display: none;
+        }
     }
 
     .sectionButton{
         margin-right: rem(40);
     }
 
-    .sectionDescription h2{
-        text-align: center;
-        align-self: center;
-    }
-    .sectionDescription p{
-        display: none;
-    }
+
 }
 
 @media (max-width: rem(900)) {
@@ -182,6 +211,7 @@
         gap: rem(15);
         padding: rem(15);
         align-items: stretch;
+        grid-template-columns: 1fr 1fr;
     }
 
     .sectionContent{
@@ -191,10 +221,6 @@
 
 @media (max-width: rem(768)) {
     .sectionDescriptionIcon{
-        display: none;
-    }
-
-    .mobileOff{
         display: none;
     }
 
@@ -210,7 +236,7 @@
 
     .sectionDescription{
         margin-right: 0;
-        margin-left: rem(20);
+
     }
 
     .sectionDescription h2{
@@ -220,10 +246,9 @@
     .sectionButton{
         margin-left: rem(60);
     }
-
 }
 
-@media (max-width: rem(600)) {
+@media (max-width: rem(700)) {
     .sectionContentWide{
         display: grid;
         grid-template-columns: 1fr;
@@ -231,7 +256,7 @@
         padding: rem(15);
         align-items: stretch;
         align-content: center;
-        justify-items: center;
+        justify-items: flex-start;
     }
 }
 

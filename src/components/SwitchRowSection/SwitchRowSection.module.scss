@@ -32,10 +32,7 @@
 }
 
 @media (max-width: rem(1000)) {
-    .sectionContainer h3 {
-        margin-left: rem(25);
-    }
-    .buttonSwitch{
+    .sectionContainer h3, .buttonSwitch, .noData{
         margin-left: rem(25);
     }
 }

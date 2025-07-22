@@ -52,7 +52,21 @@
     flex-direction: column;
     align-items: flex-end;
     gap: rem(15);
+
+    &.mobile{
+        display: none;
+        max-width: 100%;
+        flex-direction: row;
+        align-items: flex-start;
+        margin-bottom: rem(15);
+        .col{
+            display: flex;
+            flex-direction: column;
+            gap: rem(10);
+        }
+    }
 }
+
 
 .pHeader{
     font-family: Podkova, sans-serif;
@@ -141,6 +155,7 @@
 .dateAndBottles{
     display: flex;
     gap: rem(10);
+    align-items: center;
 }
 
 .beerBottles{
@@ -224,15 +239,33 @@
     }
 }
 
-@media (max-width: rem(600)) {
+@media (max-width: rem(1100)) {
     .assessmentContainer{
         display: none;
+        
+        &.mobile{
+            display: flex;
+        }
     }
     .commentsContainer{
         width: 100%;
     }
 
 }
+
+
+@media (max-width: rem(500)) {
+    .assessmentContainer.mobile{
+        flex-direction: column;
+        .col{
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            width: 100%;
+        }
+    }
+}
+
 
 @media (max-width: rem(368)) {
     .markRight{

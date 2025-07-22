@@ -62,15 +62,16 @@
 .commentHeader{
     display: flex;
     justify-content: space-between;
-}
 
-.commentHeader p{
-    color: var(--txt-active);
+    p{
+        color: var(--txt-active);
+    }
 }
 
 .pHeader{
     font-family: Podkova, sans-serif;
     color: var(--txt-active);
+    align-self: flex-end;
 }
 
 .dateAndBottles{
@@ -204,6 +205,11 @@
     }
 }
 
+@media (max-width: rem(450)){
+    .max450{
+        display: none;
+    }
+}
 
 @media (max-width: rem(368)) {
     .markRight{

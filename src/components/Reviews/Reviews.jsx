@@ -122,6 +122,26 @@ export default function Reviews({header, images, resume, alias, id}){
             <ComponentHeader HeaderIcon={BeardIcon} title={header.title} description={header.description}/>
             {images && images.length > 0 && <PicturesList images={images}></PicturesList>}
             <div className="hrtLine" style={{margin: "20px 0"}} />
+            <div className={`${styles.assessmentContainer} ${styles.mobile}`}>
+                <div className={styles.assessment}>
+                    <p className={`${styles.pHeader} ma-p`} style={{textTransform: "uppercase"}}>{resume.title}</p>
+                    <p className="ma-p">{resume.rated}</p>
+                    <div className={styles.dateAndBottles}>
+                        <p className="ma-p">Средняя оценка: </p>
+                        <div className={`${styles.beerBottles} ${styles.minBottles}`}>
+                            {getRatingIcons(resume.rating)}
+                        </div>
+                        <p style={{color: "var(--txt-active)"}} className="ma-p">({resume.rating})</p>
+                    </div>
+                    <p className="ma-p">{resume.description}</p>
+
+
+                </div>
+                <div className={styles.col}>
+                    <SimpleButton text="Забронировать стол" onClick={() => navigate("/in-dev")}/>
+                    <IconButton onClick={handleScrollToCommentForm} text="Оставить отзыв"><BeardIcon/></IconButton>
+                </div>
+            </div>
             <div className={styles.commentsSection}>
                 <div className={styles.commentsContainer}>
                     {visibleReviews.data.map((review, index) => {

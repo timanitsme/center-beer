@@ -80,6 +80,16 @@
     color: #339966;
 }
 
+.limited{
+    max-width: 20vw;
+}
+
+.flexCol{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
 @keyframes highlight {
     0% {
         background-color: var(--third);
@@ -93,7 +103,16 @@
     animation: highlight 2.5s ease-in-out;
 }
 
-@media (max-width: rem(600)){
+@media (max-width: rem(1000)) {
+    .limited{
+        max-width: 20vw;
+    }
+}
+
+@media (max-width: rem(1170)){
+    .limited{
+        max-width: initial;
+    }
     .fit{
         min-width: fit-content;
     }

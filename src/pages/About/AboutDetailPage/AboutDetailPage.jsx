@@ -1,7 +1,6 @@
 import NavChain from "../../../components/Navigation/NavChain/NavChain.jsx";
 import AboutDetailSection from "../../../components/AboutDetailSection/AboutDetailSection.jsx";
 import {useNavigate, useParams} from "react-router-dom";
-import EventsItem from "../../Events/EventsItem/EventsItem.jsx";
 import PartnerItem from "../../../components/PartnerItem/PartnerItem.jsx";
 import {
     FaBullhorn,

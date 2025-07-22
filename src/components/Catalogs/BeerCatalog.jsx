@@ -485,7 +485,7 @@ export default function BeerCatalog({withoutPrice=false, withHeader = true, brew
                         {sortFilters &&  <ComboBox options={sortFilters} onChange={(value) => handleSingleFilterApply("sort_by", value.id)}></ComboBox>}
                         <Toggle reset={tabResetFilters["with_reviews"]} label={"Только с отзывами"} toggled={filterValues.with_reviews} onClick={() => handleSingleFilterApply("with_reviews", !filterValues.with_reviews)}/>
                     </div>
-                    <SimpleCatalogSection isFetching={beerIsFetching} lim={filterValues["lim"]} SkeletonCardComponent={BottledBeerCardSkeleton} cards={allCards} CardComponent={withoutPrice? BottledBeerCardWithoutPrice: BottledBeerCard} wideColumns={false} totalItems={beerData?.["total_items"]} onShowMore={handleShowMore}/>
+                    <SimpleCatalogSection alias="bars" isFetching={beerIsFetching} lim={filterValues["lim"]} SkeletonCardComponent={BottledBeerCardSkeleton} cards={allCards} CardComponent={withoutPrice? BottledBeerCardWithoutPrice: BottledBeerCard} wideColumns={false} totalItems={beerData?.["total_items"]} onShowMore={handleShowMore}/>
                 </div>
             </div>
             {isMobile &&

@@ -20,7 +20,7 @@ export default function EventsCatalog({mainCard, eventsCards}){
                     </div>
                 </div>
             </div>
-            <SimpleCatalogSection CardComponent={EventCard} cards={eventsCards}></SimpleCatalogSection>
+            <SimpleCatalogSection alias={"bars"} CardComponent={EventCard} cards={eventsCards}></SimpleCatalogSection>
         </div>
     )
 }

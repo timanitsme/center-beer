@@ -74,7 +74,8 @@
 }
 
 .flex{
-    max-width: calc(100vw - 50px);
+    box-sizing: border-box;
+    max-width: 100%;
     display: flex;
     flex-direction: column;
     gap: rem(10);
@@ -90,7 +91,7 @@
     display: none;
 }
 
-@media (max-width: rem(900)) {
+@media (max-width: rem(1225)) {
     .similarSection{
         display: initial;
     }

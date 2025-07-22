@@ -54,7 +54,7 @@
 }
 
 
-@media (max-width: rem(850)) {
+@media (max-width: rem(1600)) {
     .orderCardsContainer{
         grid-template-columns: repeat(1, 1fr);
         row-gap: rem(15);

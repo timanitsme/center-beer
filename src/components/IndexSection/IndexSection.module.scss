@@ -106,9 +106,9 @@
 
 .videoCardContainer img,
 .cardContainer img {
-    max-width: 100%; // Ограничиваем ширину изображения размерами контейнера
-    height: auto;    // Сохраняем пропорции
-    object-fit: cover; // Обеспечиваем корректное заполнение контейнера
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
 }
 
 .textPrimary{
@@ -118,12 +118,12 @@
     font-weight: 300;
 }
 
-@media (max-width: rem(1200)) {
+@media (max-width: rem(1470)) {
     .videoCardContainer{
         width: 150%;
     }
     .cardContainer{
-        width: 120%;
+        width: 200%;
     }
 }
 

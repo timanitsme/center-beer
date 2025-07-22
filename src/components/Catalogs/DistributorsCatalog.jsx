@@ -82,7 +82,7 @@ export default function DistributorsCatalog({filters = [], filterButtons = [], s
                     <div className={styles.toggleAndOptions}>
                         <ComboBox options={["Сначала популярные", "По умолчанию"]}></ComboBox>
                     </div>
-                    <SimpleCatalogSection cards={cardsBars} CardComponent={DistributorCard} wideColumns={true}/>
+                    <SimpleCatalogSection alias="distributors" cards={cardsBars} CardComponent={DistributorCard} wideColumns={true}/>
 
                 </div>
             </div>

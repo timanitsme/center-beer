@@ -2,7 +2,7 @@ import styles from "../CatalogSection/CatalogSection.module.scss";
 import PropTypes from "prop-types";
 import SimpleButton from "../../Buttons/SimpleButton/SimpleButton.jsx";
 
-export default function SimpleCatalogSection({cards, CardComponent, SkeletonCardComponent, wideColumns=false, title="", totalItems=null, onShowMore=null, isFetching=false, isLoading=false, lim=6, prefix=""}){
+export default function SimpleCatalogSection({cards, CardComponent, SkeletonCardComponent, wideColumns=false, title="", totalItems=null, onShowMore=null, isFetching=false, isLoading=false, lim=6, prefix="", alias=""}){
     const handleShowMore = async () => {
         const currentScrollPosition = window.scrollY;
 
@@ -19,7 +19,7 @@ export default function SimpleCatalogSection({cards, CardComponent, SkeletonCard
 
     return(
         <div className={styles.menuSection}>
-            <div className={wideColumns ? styles.sectionContentWide : styles.sectionContent}>
+            <div className={`${styles[alias]} ${wideColumns ? styles.sectionContentWide : styles.sectionContent}`}>
                 {cards?.map((cardInfo) => (
                     <CardComponent key={`${prefix}-${cardInfo?.id}`} cardInfo={cardInfo} title={title} />
                 ))}

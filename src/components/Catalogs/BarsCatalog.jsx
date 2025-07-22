@@ -406,7 +406,7 @@ export default function BarsCatalog(){
                         <Toggle reset={tabResetFilters["only_opened"]} label={"Только открытые"} toggled={filterValues.only_opened} onClick={() => handleSingleFilterApply("only_opened", !filterValues.only_opened)}/>
 
                     </div>
-                    <SimpleCatalogSection isFetching={barsIsFetching} lim={filterValues["lim"]} totalItems={barsData?.["total_items"]} onShowMore={handleShowMore} cards={allCards} CardComponent={BarCard} SkeletonCardComponent={BarCardSkeleton} wideColumns={false}/>
+                    <SimpleCatalogSection alias={"bars"} isFetching={barsIsFetching} lim={filterValues["lim"]} totalItems={barsData?.["total_items"]} onShowMore={handleShowMore} cards={allCards} CardComponent={BarCard} SkeletonCardComponent={BarCardSkeleton} wideColumns={false}/>
                 </div>
             </div>
             {isMobile &&

@@ -1,5 +1,4 @@
 import NavChain from "../../components/Navigation/NavChain/NavChain.jsx";
-import AuthSection from "../../components/AuthSection/AuthSection.jsx";
 import RegSection from "../../components/RegSection/RegSection.jsx";
 import {useEffect} from "react";
 

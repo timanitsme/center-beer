@@ -1,5 +1,5 @@
 import styles from "./BeerInfo.module.scss"
-import {useEffect, useRef, useState} from "react";
+import {useEffect, useState} from "react";
 import IconButton from "../../Buttons/IconButton/IconButton.jsx";
 import FavsIcon from "../../../assets/fav-unfill-icon.svg?react";
 import BookMarkIcon from "../../../assets/bookmark-unfill-icon.svg?react";

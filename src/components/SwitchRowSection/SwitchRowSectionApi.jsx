@@ -31,7 +31,7 @@ export default function SwitchRowSectionApi({ title, options, selectedOption, se
                         isFetching={selectedOption.isFetching}
                     />
                 ) : (
-                    <p className="ma-p">Нет данных</p>
+                    <p className={`ma-p ${styles.noData}`}>Нет данных</p>
                 )
             )}
         </div>

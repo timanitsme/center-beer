@@ -433,7 +433,7 @@ export default function BreweryCatalog({filters = [], filterButtons = [], sectio
                         {sortDirectionFilters && <SortDirection options={sortDirectionFilters} onChange={(value) => handleSingleFilterApply("order_asc_desc", value.id)}/>}
                         <Toggle reset={tabResetFilters["is_open"]} label={"Только открытые"} toggled={filterValues.is_open} onClick={() => handleSingleFilterApply("is_open", !filterValues.is_open)}/>
                     </div>
-                    <SimpleCatalogSection cards={breweriesData?.data} CardComponent={BreweryCard} wideColumns={true} isFetching={breweriesIsFetching} SkeletonCardComponent={BreweryCardSkeleton} lim={25} totalItems={breweriesData?.["total_items"]}/>
+                    <SimpleCatalogSection alias="distributors" cards={breweriesData?.data} CardComponent={BreweryCard} wideColumns={true} isFetching={breweriesIsFetching} SkeletonCardComponent={BreweryCardSkeleton} lim={25} totalItems={breweriesData?.["total_items"]}/>
                 </div>
             </div>
             {isMobile &&

@@ -108,6 +108,12 @@
     .sectionContent{
         grid-template-columns: rem(200) rem(200);
     }
+    .bars, .news{
+        grid-template-columns: repeat(auto-fill, rem(200));
+    }
+    .distributors{
+        grid-template-columns: repeat(auto-fill, rem(250));
+    }
 }
 
 @media (max-width: rem(768)) {
@@ -151,6 +157,13 @@
         justify-items: center;
     }
 }
+
+@media (max-width: rem(500)){
+    .news{
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
 
 @media (max-width: rem(468)) {
     .sectionContent{

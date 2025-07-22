@@ -30,8 +30,10 @@
     display: flex;
     gap: rem(5);
     align-items: center;
-    color: var(--txt-active);
-    font-family: Podkova, sans-serif;
+    span{
+        color: var(--txt-active);
+        font-family: Podkova, sans-serif;
+    }
 }
 
 .aIconButton svg{
@@ -54,6 +56,7 @@
 .headerBottom{
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     gap: rem(10);
     width: 100%;
     justify-content: space-between;
@@ -61,6 +64,7 @@
 
 .bottomPart{
     display: flex;
+    flex-wrap: wrap;
     gap: rem(10)
 }
 
@@ -89,6 +93,10 @@
     object-fit: cover;
     display: block;
     border-radius: rem(5);
+}
+
+.bottomPart.mobile{
+    display: none;
 }
 
 @media (max-width: rem(768)) {
@@ -137,9 +145,22 @@
 
 }
 
+@media (max-width: rem(500)) {
+    .bottomPart.notMobile{
+        display: none;
+    }
+    .bottomPart.mobile{
+        margin-top: rem(10);
+        display: flex;
+    }
+}
+
 @media (max-width: rem(468)) {
     .placeholdersRow{
         grid-template-columns: 1fr 1fr;
+    }
+    .aIconButton span{
+        display: none;
     }
 }
 

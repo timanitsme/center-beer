@@ -48,7 +48,7 @@ export default function Comment({profile, data}){
                     <div className={styles.commentHeader}>
                         <p className={`${styles.pHeader} ma-p`}>Анонимный пользователь</p>
                         <div className={styles.dateAndBottles}>
-                            <p className="ma-p">{formatDateWithTextMonth(data?.create_date)}</p>
+                            <p className={`${styles.max450} ma-p`} >{formatDateWithTextMonth(data?.create_date)}</p>
                             <div className={`${styles.beerBottles} ${styles.minBottles}`}>
                                 {getRatingIcons(4.2)}
                             </div>

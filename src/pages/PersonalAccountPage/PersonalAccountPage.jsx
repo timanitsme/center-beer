@@ -139,20 +139,16 @@ export default function PersonalAccountPage(){
             {isAuthorized && !profileIsLoading && userProfile &&
                 <>
                     <div style={{display: "flex"}}>
-                        {!isMobile && <PersonalAccount profile={userProfile}/>}
+                        {window.innerWidth > 1000 && <PersonalAccount profile={userProfile}/>}
                         <div style={{display: "flex", flexDirection: "column", width: "100%", gap: "25px"}}>
-                            {isMobile && <PersonalAccountMobile profile={userProfile}/>}
+                            {window.innerWidth <= 1000 && <PersonalAccountMobile profile={userProfile}/>}
                             <SwitchRowSection title="Чек-ины" options={checkInSwitch}/>
                             <ActiveOrders></ActiveOrders>
                             <LatestReviews></LatestReviews>
-                            {/*<SwitchRowSection title="Избранное" options={likedSwitch}/>*/}
-                            {/*<SwitchRowSection title="Кладовка" options={favSwitch}/>*/}
-                            {/*!barCuddyIsLoading && !barCuddyError && barCuddy?.data?.length > 0 && <SwitchRowSectionApi title="Бары в кладовке" option={{title: "Бары", cards: barCuddy, CardComponent: MinimalBarCardApi}}></SwitchRowSectionApi>*/}
-                            {/*!beerCuddyIsLoading && !beerCuddyError && beerCuddy?.data?.length > 0 && <SwitchRowSectionApi title="Пиво в кладовке" option={{title: "Бары", cards: beerCuddy, CardComponent: MinimalBottledBeerCardApi}}></SwitchRowSectionApi>*/}
-                            {/*!barFavsIsLoading && !barFavsError && barFavs?.data?.length > 0 && <SwitchRowSectionApi title="Избранные бары" option={{title: "Бары", cards: barFavs, CardComponent: MinimalBarCardApi}}></SwitchRowSectionApi>*/}
-                            {/*!beerFavsIsLoading && !beerFavsError && beerFavs?.data?.length > 0 && <SwitchRowSectionApi title="Избранное пиво" option={{title: "Бары", cards: beerFavs, CardComponent: MinimalBottledBeerCardApi}}></SwitchRowSectionApi>*/}
                             <SwitchRowSectionApi title="Любимое" options={favSwitch} selectedOption={favSelectedOption} setSelectedOption={setFavSelectedOption} />
                             <SwitchRowSectionApi title="Кладовка" options={cuddySwitch} selectedOption={cuddySelectedOption} setSelectedOption={setCuddySelectedOption}/>
+
+
                         </div>
                     </div>
                     <SingleImageModal show={showModal} setShow={setShowModal} src={EventImage}></SingleImageModal>

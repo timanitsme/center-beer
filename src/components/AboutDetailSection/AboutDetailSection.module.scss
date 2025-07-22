@@ -75,8 +75,9 @@
     padding: rem(20) rem(10);
     display: flex;
     flex-direction: column;
-    max-width: 20%;
     gap: rem(10);
+    width: 20vw;
+
 }
 
 .sideButtons{
@@ -161,7 +162,7 @@
 
 }
 
-@media (max-width: rem(900)) {
+@media (max-width: rem(1200)) {
     .contentSide{
         display: none;
     }
@@ -173,7 +174,7 @@
     }
 }
 
-@media (max-width: rem(500)) {
+@media (max-width: rem(900)) {
     .sectionMenu{
         display: none;
     }

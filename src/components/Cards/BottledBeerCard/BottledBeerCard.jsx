@@ -11,8 +11,6 @@ import cardImagePlaceholder from "../../../assets/placeholders/card-image-placeh
 import {
     useLazyAddBeerToCuddyQuery, useLazyAddBeerToFavQuery
 } from "../../../store/services/centerBeer.js";
-import {logout} from "../../../store/services/authSlice.js";
-import {useDispatch} from "react-redux";
 
 export default function BottledBeerCard({cardInfo}){
     const [cardBookmarked, setCardBookmarked] = useState(cardInfo.is_favor || false);

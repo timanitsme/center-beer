@@ -1,8 +1,7 @@
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import styles from "./PersonalAccount.module.scss";
 import AvatarMock from "../../assets/avatar-default.svg";
-import {MdPhotoCamera} from "react-icons/md";
-import {Link, useLocation, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import {RiCopperCoinFill} from "react-icons/ri";
 
 export default function PersonalAccountMobile({profile, alias = "account", withoutInfo=false}){

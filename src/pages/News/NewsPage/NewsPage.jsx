@@ -1,8 +1,6 @@
 import NavChain from "../../../components/Navigation/NavChain/NavChain.jsx";
 import {GetNewsPagePaths} from "./NewsPageData.jsx";
-import NewsItem from "../../../components/NewsItem/NewsItem.jsx";
 import NewsDetailSection from "../../../components/NewsDetailSection/NewsDetailSection.jsx";
-import ComponentHeader from "../../../components/ComponentHeader/ComponentHeader.jsx";
 import SectionHeader from "../../../components/SectionHeader/SectionHeader.jsx";
 import NewsCatalog from "../../../components/Catalogs/NewsCatalog/NewsCatalog.jsx";
 import {useEffect, useState} from "react";

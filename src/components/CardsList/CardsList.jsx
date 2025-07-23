@@ -1,5 +1,4 @@
 import {useState} from "react";
-import ReviewSection from "../../assets/reviewsMocks/review-section.svg";
 import styles from "./CardsList.module.scss";
 import ArrowButton from "../Buttons/ArrowButton/ArrowButton.jsx";
 import PropTypes from "prop-types";

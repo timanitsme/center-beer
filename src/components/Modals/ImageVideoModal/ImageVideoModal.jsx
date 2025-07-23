@@ -1,7 +1,5 @@
 import styles from "./ImageVideoModal.module.scss"
 import SimpleModal from "../SimpleModal/SimpleModal.jsx";
-import ImagePlaceholder from "../../../assets/placeholders/card-image-placeholder.svg";
-import {useEffect, useRef} from "react";
 
 export default function ImageVideoModal({src, setSrc, show, setShow}){
     const handleError = () => {

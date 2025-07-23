@@ -1,6 +1,6 @@
 import styles from "./BeerMap.module.scss"
 import {MapContainer, Marker, Popup, TileLayer} from "react-leaflet";
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
 import L from "leaflet"
 import MapMarker from "../../assets/map-marker.svg"
 import HopIcon from "../../assets/hop-icon.svg?react"

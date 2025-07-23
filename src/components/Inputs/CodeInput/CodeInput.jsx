@@ -1,7 +1,5 @@
-import {useEffect, useRef, useState} from "react";
+import {useRef} from "react";
 import styles from "./CodeInput.module.scss";
-import {FaCheck} from "react-icons/fa6";
-import CloseIcon from "../../../assets/close-icon.svg?react";
 
 export default function CodeInput({inputValue, setInputValue, onConfirm = () => {}, maxLength = 30, type="text", fieldsCount=4}){
 

@@ -1,5 +1,4 @@
 import {createApi, fetchBaseQuery}  from "@reduxjs/toolkit/query/react";
-import {centerBeerApi} from "./centerBeer.js";
 
 const baseQuery = fetchBaseQuery({
     baseUrl: "/authApi",

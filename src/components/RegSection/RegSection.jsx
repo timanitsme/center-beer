@@ -5,9 +5,9 @@ import SimpleButton from "../Buttons/SimpleButton/SimpleButton.jsx";
 import {Link, useNavigate} from "react-router-dom";
 import CheckBoxChild from "../Inputs/CheckBox/CheckBoxChild.jsx";
 import {useState} from "react";
-import {centerBeerAuthApi, useLoginMutation, useRegisterMutation} from "../../store/services/centerBeerAuth.js";
+import {useRegisterMutation} from "../../store/services/centerBeerAuth.js";
 import {useDispatch} from "react-redux";
-import {logout, setUserProfile} from "../../store/services/authSlice.js";
+import {logout} from "../../store/services/authSlice.js";
 
 export default function RegSection(){
     const [nickname, setNickname] = useState("")

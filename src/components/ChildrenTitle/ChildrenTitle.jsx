@@ -1,6 +1,5 @@
 import styles from "./ChildrenTitle.module.scss"
 import NavChain from "../Navigation/NavChain/NavChain.jsx";
-import {FaTools} from "react-icons/fa";
 
 export default function ChildrenTitle({paths, children, title}){
     return(

@@ -3,7 +3,6 @@ import ArrowButton from "../Buttons/ArrowButton/ArrowButton.jsx";
 import {useState} from "react";
 import ReviewSection from "../../assets/reviewsMocks/review-section.svg";
 import PropTypes from "prop-types";
-import SingleImageModal from "../Modals/SingleImageModal/SingleImageModal.jsx";
 import placeholder from "../../assets/placeholders/card-image-placeholder.svg"
 import ImageVideoModal from "../Modals/ImageVideoModal/ImageVideoModal.jsx";
 import PlayButtonIcon from "../../assets/play-button-icon.svg?react"

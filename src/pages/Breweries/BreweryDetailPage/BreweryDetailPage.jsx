@@ -1,10 +1,7 @@
 import NavChain from "../../../components/Navigation/NavChain/NavChain.jsx";
 import {
-    getBreweryDetailFilters,
     getBreweryDetailPagePaths,
     getBreweryDetailReviewsHeader,
-    getBreweryDetailReviewsImages,
-    getBreweryDetailReviewsResume
 } from "./BreweryDetailPageData.jsx";
 import BarEvents from "../../../components/BarEvents/BarEvents.jsx";
 import Gallery from "../../../components/Gallery/Gallery.jsx";

@@ -11,7 +11,6 @@ import {
     getBarMenuFilterSpec,
     getBarMenuInitialState,
     getBarMenuTabSpec,
-    useGetBarMenuData,
     useGetBarMenuFilters
 } from "../BarMenuData.js";
 import SingleImageModal from "../../Modals/SingleImageModal/SingleImageModal.jsx";

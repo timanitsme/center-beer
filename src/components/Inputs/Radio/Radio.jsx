@@ -1,5 +1,5 @@
 import styles from "./Radio.module.scss"
-import {useEffect, useState} from "react";
+import {useState} from "react";
 
 
 export default function Radio({title, options}){

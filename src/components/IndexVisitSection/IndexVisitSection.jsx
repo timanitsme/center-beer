@@ -6,7 +6,6 @@ import BarrelIcon from "../../assets/barrel-icon.svg?react"
 import BottlesPairIcon from "../../assets/bottles-pair-icon.svg?react"
 import BeerCaseIcon from "../../assets/beer-case-icon.svg?react"
 import BeerPintIcon from "../../assets/beer-pint-icon.svg?react"
-import VisitBackground from "../../assets/visit-background.svg"
 
 export default function IndexVisitSection(){
 

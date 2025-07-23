@@ -1,6 +1,5 @@
 import {useEffect, useMemo, useState} from "react";
 import styles from "./BarsCatalog.module.scss";
-import Search from "../Inputs/Search/Search.jsx";
 import SimpleButton from "../Buttons/SimpleButton/SimpleButton.jsx";
 import AppliedFilter from "../AppliedFilter/AppliedFilter.jsx";
 import LocationIcon from "../../assets/location-filled-icon.svg?react";

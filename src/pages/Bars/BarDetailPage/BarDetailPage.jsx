@@ -4,24 +4,19 @@ import BarEvents from "../../../components/BarEvents/BarEvents.jsx";
 import AdvantagesList from "../../../components/AdvantagesList/AdvantagesList.jsx";
 import Gallery from "../../../components/Gallery/Gallery.jsx";
 import CurrentPromos from "../../../components/CurrentPromos/CurrentPromos.jsx";
-import BarMenu from "../../../components/BarMenu/BarMenu.jsx";
 import {isMobile} from "react-device-detect";
 import BarNews from "../../../components/BarNews/BarNews.jsx";
 import Reviews from "../../../components/Reviews/Reviews.jsx";
 import {
     getBarPagePaths,
-    getBarPageFilterButtons,
-    getBarPageFilters,
-    getBarPageSections,
     getBarReviewsImages, getBarReviewsHeader, getBarReviewsResume
 } from "./BarDetailPageData.jsx";
-import {useGetBarEventsQuery, useGetBarInfoByIdQuery, useGetBarInfoQuery} from "../../../store/services/centerBeer.js";
+import {useGetBarInfoQuery} from "../../../store/services/centerBeer.js";
 import {useParams} from "react-router-dom";
-import {useEffect, useRef, useState} from "react";
+import {useEffect, useRef} from "react";
 import BeerMugsIcon from "../../../assets/beer-mugs-icon.svg?react"
 import SausageIcon from "../../../assets/sausage-icon.svg?react"
 import FlagsIcon from "../../../assets/flags-icon.svg?react"
-import {getBeerDetailPaths} from "../../Beer/BeerDetailPage/BeerDetailPageData.jsx";
 import BarMenuContainer from "../../../components/BarMenu/BarMenuContainer/BarMenuContainer.jsx";
 
 

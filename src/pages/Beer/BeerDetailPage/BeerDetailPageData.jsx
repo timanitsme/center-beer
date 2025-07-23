@@ -1,4 +1,3 @@
-// Navigation
 import Review1 from "../../../assets/reviewsMocks/beer-review-1.svg";
 import Review2 from "../../../assets/reviewsMocks/beer-review-2.svg";
 import Review3 from "../../../assets/reviewsMocks/beer-review-3.svg";
@@ -10,6 +9,7 @@ import Bar2 from "../../../assets/barsMocks/bar-2.svg";
 import Bar3 from "../../../assets/barsMocks/bar-3.svg";
 import Bar4 from "../../../assets/barsMocks/bar-4.svg";
 
+// Navigation
 const paths = [
     {title:"center.beer", path: "/"},
     {title:"Пиво", path: "/beer/"},

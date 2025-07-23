@@ -1,7 +1,6 @@
 import {useState} from "react";
 import styles from "./ComboBox.module.scss";
 import ArrowDownIcon from "../../../assets/arrow-down-icon.svg?react";
-import CheckBox from "../CheckBox/CheckBox.jsx";
 
 export default function ComboBox({ options, onChange }){
     const [isOpen, setIsOpen] = useState(false); // Состояние для открытия/закрытия контейнера

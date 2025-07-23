@@ -1,7 +1,6 @@
 import styles from "./SingleImageModal.module.scss"
 import SimpleModal from "../SimpleModal/SimpleModal.jsx";
 import ImagePlaceholder from "../../../assets/placeholders/card-image-placeholder.svg"
-import {useState} from "react";
 
 export default function SingleImageModal({src, setSrc, show, setShow}){
     return(

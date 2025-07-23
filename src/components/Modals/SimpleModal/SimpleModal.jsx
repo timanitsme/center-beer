@@ -1,7 +1,6 @@
 import styles from "./SimpleModal.module.scss"
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
 import CloseIcon from "../../../assets/close-icon.svg?react"
-import EventImage from "../../../assets/eventsMocks/event-picture-3.svg"
 import {createPortal} from "react-dom";
 
 export default function SimpleModal({show, setShow, children, title="", style={}}){

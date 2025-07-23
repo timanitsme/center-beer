@@ -1,6 +1,4 @@
 import NavChain from "../../../components/Navigation/NavChain/NavChain.jsx";
-import NewsDetailSection from "../../../components/NewsDetailSection/NewsDetailSection.jsx";
-import NewsItem from "../../../components/NewsItem/NewsItem.jsx";
 import EventsDetailSection from "../../../components/EventsDetailSection/EventsDetailSection.jsx";
 import EventsItem from "../EventsItem/EventsItem.jsx";
 import {useEffect} from "react";

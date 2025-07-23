@@ -1,6 +1,5 @@
 import styles from "./NewsMobileSection.module.scss"
 import {useGetNewsCategoriesQuery} from "../../store/services/centerBeer.js";
-import {Link} from "react-router-dom";
 import SearchInput from "../ApiInputs/Search/SearchInput.jsx";
 
 export default function NewsMobileSection({onChange, withInput=false}){

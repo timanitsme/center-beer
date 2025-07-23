@@ -1,6 +1,5 @@
 import {useEffect, useState} from "react";
 import styles from "./SimpleModal.module.scss";
-import CloseIcon from "../../../assets/close-icon.svg?react";
 import SimpleButton from "../../Buttons/SimpleButton/SimpleButton.jsx";
 
 export default function AdultsOnlyModal(){

@@ -1,8 +1,4 @@
 import styles from "./DraftBeerCardSkeleton.module.scss"
-import BookMarkIcon from "../../../assets/bookmark-unfill-icon.svg";
-import IconButton from "../../Buttons/IconButton/IconButton.jsx";
-import BottlesPairIcon from "../../../assets/bottles-pair-icon.svg";
-import FavIcon from "../../../assets/fav-unfill-icon.svg";
 
 export default function DraftBeerCardSkeleton(){
     return(

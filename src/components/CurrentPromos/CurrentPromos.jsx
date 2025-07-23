@@ -1,7 +1,7 @@
 import styles from "./CurrentPromos.module.scss"
 import BeerMugsIcon from "../../assets/beer-mugs-icon.svg?react"
 import ArrowButton from "../Buttons/ArrowButton/ArrowButton.jsx";
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import RoundLinkButton from "../Buttons/RoundLinkButton/RoundLinkButton.jsx";
 import IconButton from "../Buttons/IconButton/IconButton.jsx";
 import {useGetBarPromoQuery} from "../../store/services/centerBeer.js";

@@ -3,7 +3,6 @@ import {useNavigate} from "react-router-dom";
 import styles from "../../BarCard/BarCard.module.scss";
 import BookMarkIcon from "../../../../assets/bookmark-unfill-icon.svg?react";
 import FavIcon from "../../../../assets/fav-unfill-icon.svg?react";
-import LocationIcon from "../../../../assets/location-filled-icon.svg?react";
 import cardImagePlaceholder from "../../../../assets/placeholders/card-image-placeholder.svg";
 
 export default function MinimalBreweryCard({cardInfo}){

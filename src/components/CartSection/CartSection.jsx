@@ -10,14 +10,12 @@ import SberIcon from "../../assets/payments/sber-pay-icon.svg?react"
 import SbpIcon from "../../assets/payments/sbp-icon.svg?react"
 import UmoneyIcon from "../../assets/payments/umoney-icon.svg?react"
 import WalletIcon from "../../assets/advantages/wallet-icon.svg?react";
-import Radio from "../Inputs/Radio/Radio.jsx";
 import RadioBox from "../Inputs/Radio/RadioBox.jsx";
 import LocationIcon from "../../assets/location-filled-icon.svg?react"
 import Bottle1 from "../../assets/bottlesMock/bottle-1.svg"
 import Bottle2 from "../../assets/bottlesMock/bottle-2.svg"
 import Bottle3 from "../../assets/bottlesMock/bottle-3.svg"
 import Bottle4 from "../../assets/bottlesMock/bottle-4.svg"
-import Bottle5 from "../../assets/bottlesMock/bottle-5.svg"
 import PlusIcon from "../../assets/plus-icon.svg?react"
 import MinusIcon from "../../assets/minus-icon.svg?react"
 import TrashIcon from "../../assets/trash-icon.svg?react"

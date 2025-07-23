@@ -2,11 +2,9 @@ import styles from "./NewCommentForm.module.scss"
 import {useRef, useState} from "react";
 import {FaPaperclip, FaPaperPlane} from "react-icons/fa6";
 import AvatarDefault from "../../../assets/avatar-default.svg";
-import {getRatingIcons} from "../../../utils/getRatingIcons.jsx";
 import BeerBottleIcon from "../../../assets/bottle-icon.svg?react";
 import HalfBeerBottleIcon from "../../../assets/bottle-half-icon.svg?react";
 import EmptyBeerBottleIcon from "../../../assets/bottle-empty-icon.svg?react";
-import Bottle1 from "../../../assets/bottlesMock/bottle-1.svg";
 import {IoCloseCircleOutline} from "react-icons/io5";
 
 

@@ -3,9 +3,6 @@ import Bottle1 from "../../../assets/bottlesMock/bottle-1.svg"
 import Review1 from "../../../assets/reviewsMocks/beer-review-1.svg"
 import Review2 from "../../../assets/reviewsMocks/beer-review-2.svg"
 import Review3 from "../../../assets/reviewsMocks/beer-review-3.svg"
-import BeerBottleIcon from "../../../assets/bottle-icon.svg?react";
-import HalfBeerBottleIcon from "../../../assets/bottle-half-icon.svg?react";
-import EmptyBeerBottleIcon from "../../../assets/bottle-empty-icon.svg?react";
 import TrashIcon from "../../../assets/trash-icon.svg?react"
 import SimpleButton from "../../Buttons/SimpleButton/SimpleButton.jsx";
 import {getRatingIcons} from "../../../utils/getRatingIcons.jsx";

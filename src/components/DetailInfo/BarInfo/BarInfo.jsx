@@ -3,10 +3,6 @@ import BarLogo from "../../../assets/bar-info/bar-logo.svg?react"
 import {TgIcon} from "../../../assets/TgIcon.jsx";
 import {VkIcon} from "../../../assets/VkIcon.jsx";
 import {MailIcon} from "../../../assets/MailIcon.jsx";
-import FlagsIcon from "../../../assets/flags-icon.svg?react"
-import BeerMugsIcon from "../../../assets/beer-mugs-icon.svg?react"
-import PhoneIcon from "../../../assets/phone-icon.svg?react"
-import SausageIcon from "../../../assets/sausage-icon.svg?react"
 import IconButton from "../../Buttons/IconButton/IconButton.jsx";
 import SimpleButton from "../../Buttons/SimpleButton/SimpleButton.jsx";
 import FavsIcon from "../../../assets/fav-unfill-icon.svg?react"
@@ -16,9 +12,6 @@ import LocationIcon from "../../../assets/location-icon.svg?react"
 import {useState} from "react";
 import CommentIcon from "../../../assets/comment-icon.svg?react"
 import CalendarIcon from "../../../assets/calendar-icon.svg?react"
-import BeerBottleIcon from "../../../assets/bottle-icon.svg?react"
-import HalfBeerBottleIcon from "../../../assets/bottle-half-icon.svg?react"
-import EmptyBeerBottleIcon from "../../../assets/bottle-empty-icon.svg?react"
 import WorktimeModal from "../../Modals/WorktimeModal/WorktimeModal.jsx";
 import {useNavigate} from "react-router-dom";
 import {getRatingIcons} from "../../../utils/getRatingIcons.jsx";

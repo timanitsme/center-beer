@@ -3,7 +3,6 @@ import {useNavigate} from "react-router-dom";
 import styles from "./VideoCard.module.scss";
 import cardImagePlaceholder from "../../../assets/placeholders/card-image-placeholder.svg";
 import PlayButtonIcon from "../../../assets/play-button-icon.svg?react";
-import SingleVideoModal from "../../Modals/SingleVideoModal/SingleVideoModal.jsx";
 
 
 export default function VideoCard({cardInfo, onShow}){

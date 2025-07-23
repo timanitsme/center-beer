@@ -1,8 +1,4 @@
 import {useState} from "react";
-import History1 from "../../assets/historyMocks/history-1.svg";
-import History2 from "../../assets/historyMocks/history-2.svg";
-import History3 from "../../assets/historyMocks/history-3.svg";
-import History4 from "../../assets/historyMocks/history-4.svg";
 import styles from "./BreweryHistory.module.scss";
 import SimpleButton from "../Buttons/SimpleButton/SimpleButton.jsx";
 

@@ -5,7 +5,6 @@ import {useGetNewsRelatedQuery} from "../../store/services/centerBeer.js";
 import RelatedNewsCardSkeleton from "../Skeletons/RelatedNewsCardSkeleton/RelatedNewsCardSkeleton.jsx";
 import RelatedNewsCard from "../Cards/RelatedNewsCard/RelatedNewsCard.jsx";
 import SimpleCatalogSection from "../CatalogSections/SimpleCatalogSection/SimpleCatalogSection.jsx";
-import {Fragment} from "react";
 
 export default function NewsItem({newsInfo}){
     const {data: relatedNews, isFetching: relatedNewsIsFetching} = useGetNewsRelatedQuery(newsInfo?.id, {skip: newsInfo?.id === null})

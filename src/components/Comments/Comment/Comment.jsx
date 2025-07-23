@@ -1,6 +1,5 @@
 import styles from "./Comment.module.scss"
 import AvatarDefault from "../../../assets/avatar-default.svg";
-import Bottle1 from "../../../assets/bottlesMock/bottle-1.svg";
 import LikeIcon from "../../../assets/like-icon.svg?react";
 import DislikeIcon from "../../../assets/dislike-icon.svg?react";
 import {useEffect, useRef, useState} from "react";

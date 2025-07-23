@@ -7,7 +7,6 @@ import AssetImage3 from "../../assets/breweryMocks/brewery-logo-3.svg"
 import AssetImage4 from "../../assets/breweryMocks/brewery-logo-4.svg"
 import AssetImage5 from "../../assets/breweryMocks/brewery-logo-5.svg"
 import AssetImage6 from "../../assets/breweryMocks/brewery-logo-6.svg"
-import SimpleCatalogSection from "../CatalogSections/SimpleCatalogSection/SimpleCatalogSection.jsx";
 import AssetCard from "../Cards/AssetCard/AssetCard.jsx";
 
 export default function DistributorPortfolio(){

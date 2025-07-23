@@ -1,6 +1,5 @@
 import styles from "./TextConfirmInput.module.scss"
-import {useEffect, useState} from "react";
-import {FiEye, FiEyeOff} from "react-icons/fi";
+import {useState} from "react";
 import CloseIcon from "../../../assets/close-icon.svg?react"
 import {FaCheck} from "react-icons/fa6";
 

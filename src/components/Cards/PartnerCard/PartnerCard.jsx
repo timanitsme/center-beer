@@ -10,7 +10,7 @@ export default function PartnerCard({title, image, description, path}){
 
     return(
         <div className={styles.postCard} onClick={() => navigate(path || "/in-dev/")}>
-            <div className={styles.imgContainer}><img src={imageSrc} onError={() => setImageSrc(cardImagePlaceholder)}/></div>
+            <div className={styles.imgContainer}><img src={imageSrc} loading="lazy" onError={() => setImageSrc(cardImagePlaceholder)}/></div>
             <div className={styles.postContent}>
                 <h3 className="ma-h3-small">{title}</h3>
                 <p className="ma-p1">{description}</p>

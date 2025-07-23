@@ -3,14 +3,13 @@ import {GetPersonalAccountPaths} from "./PersonalAccountPageData.jsx";
 import PersonalAccount from "../../components/PersonalAccount/PersonalAccount.jsx";
 import ActiveOrders from "../../components/ActiveOrders/ActiveOrders.jsx";
 import LatestReviews from "../../components/LatestReviews/LatestReviews.jsx";
-import {useEffect, useMemo, useState} from "react";
+import {useEffect, useState} from "react";
 import SingleImageModal from "../../components/Modals/SingleImageModal/SingleImageModal.jsx";
 import EventImage from "../../assets/eventsMocks/event-picture-1.svg"
 import BarImage1 from "../../assets/barsMocks/bar-3.svg";
 import BarImage2 from "../../assets/barsMocks/bar-2.svg";
 import BarImage3 from "../../assets/barsMocks/bar-5.svg";
 import BarImage4 from "../../assets/barsMocks/bar-4.svg";
-import {isMobile} from "react-device-detect";
 import BeerCheckInCard from "../../components/Cards/CheckIns/BeerCheckInCard/BeerCheckInCard.jsx";
 import SwitchRowSection from "../../components/SwitchRowSection/SwitchRowSection.jsx";
 import BarCheckInCard from "../../components/Cards/CheckIns/BarCheckInCard/BarCheckInCard.jsx";

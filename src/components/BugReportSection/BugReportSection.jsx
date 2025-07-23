@@ -1,8 +1,6 @@
 import styles from "./BugReportSection.module.scss"
 import TextInput from "../Inputs/TextInput/TextInput.jsx";
-import PasswordInput from "../Inputs/PasswordInput/PasswordInput.jsx";
 import SimpleButton from "../Buttons/SimpleButton/SimpleButton.jsx";
-import {Link} from "react-router-dom";
 import {useState} from "react";
 
 export default function BugReportSection(){

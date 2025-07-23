@@ -1,5 +1,4 @@
 import {useEffect, useState} from "react";
-import {useGetCitiesQuery} from "../../../store/services/centerBeer.js";
 import styles from "./Search.module.scss";
 import SearchIcon from "../../../assets/search-icon.svg?react";
 import CloseIcon from "../../../assets/close-icon.svg?react";

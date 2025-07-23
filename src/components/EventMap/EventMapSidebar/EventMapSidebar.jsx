@@ -1,15 +1,10 @@
 import styles from "./EventMapSidebar.module.scss"
 import {useRef, useState} from "react";
-import CloseIcon from "../../../assets/close-icon.svg?react"
-import BreweryCard from "../../Cards/BreweryCard/BreweryCard.jsx";
 import {FaChevronRight} from "react-icons/fa6";
 import {useNavigate} from "react-router-dom";
-import BottledBeerCard from "../../Cards/BottledBeerCard/BottledBeerCard.jsx";
 import FestBeerCard from "../../Cards/BottledBeerCard/FestBeerCard.jsx";
 import ArrowLeftIcon from "../../../assets/arrow-left-icon.svg?react"
-import Search from "../../Inputs/Search/Search.jsx";
 import LocationIcon from "../../../assets/location-filled-icon.svg?react"
-import IconButton from "../../Buttons/IconButton/IconButton.jsx";
 import SearchInput from "../../ApiInputs/Search/SearchInput.jsx";
 
 export default function EventMapSidebar({selectedMarker, setSelectedMarker, breweries, setLightMarker, isMobile=false}){

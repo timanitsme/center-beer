@@ -1,6 +1,6 @@
 import {isRejectedWithValue} from "@reduxjs/toolkit";
 import {centerBeerAuthApi} from "../services/centerBeerAuth.js";
-import {initializeAuthState, logout, setCredentials, setIsLoading, setIsRefreshing} from "../services/authSlice.js";
+import {initializeAuthState, logout, setIsLoading} from "../services/authSlice.js";
 
 let isRefreshing = false;
 let refreshAttempts = 0;

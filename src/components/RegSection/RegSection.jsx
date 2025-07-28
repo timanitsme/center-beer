@@ -92,7 +92,7 @@ export default function RegSection(){
                     </div>
                     <div className={styles.formRow}>
                         <div></div>
-                        <CheckBoxChild checked={checked} setChecked={setChecked}><p style={{color: "var(--txt-secondary)"}} className="ma-p">Я даю согласие на обработку <a href="" className={styles.underline}>персональных данных</a></p></CheckBoxChild>
+                        <CheckBoxChild checked={checked} setChecked={setChecked}><p style={{color: "var(--txt-secondary)"}} className="ma-p">Я даю согласие на обработку <Link to={"/documents/privacy-policy"} className={styles.underline}>персональных данных</Link></p></CheckBoxChild>
                     </div>
                     {error.length > 0 &&
                         <>

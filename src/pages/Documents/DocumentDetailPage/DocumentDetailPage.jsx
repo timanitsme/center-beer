@@ -6,9 +6,10 @@ export default function DocumentDetailPage({setHideFooter}){
     const {alias} = useParams();
     const navigate = useNavigate()
     const specs = {
-        "bars-letter": {src: "https://center.beer/letter_brew_2025.pdf"},
-        "breweries-letter": {src: "https://center.beer/letter_brew_2025.pdf"},
-        "cb-konkurs": "https://center.beer/cb_konkurs.pdf"
+        "bars-letter": "https://center.beer/letter_brew_2025.pdf",
+        "breweries-letter": "https://center.beer/letter_brew_2025.pdf",
+        "cb-konkurs": "https://center.beer/cb_konkurs.pdf",
+        "privacy-policy":"https://center.beer/privacy.pdf"
     }
 
     useEffect(() => {
@@ -37,7 +38,7 @@ export default function DocumentDetailPage({setHideFooter}){
     } else {
         return(
             <div className="content" style={{minHeight: "calc(100vh - 95px)"}}>
-                <iframe src="https://center.beer/cb_konkurs.pdf"className={styles.pdfViewer}></iframe>
+                <iframe src={specs[alias]} className={styles.pdfViewer}></iframe>
             </div>
         )
     }

@@ -1,14 +1,14 @@
 import styles from "./BalanceHistory.module.scss"
-import {useEffect, useState} from "react";
+import {lazy, Suspense, useEffect, useState} from "react";
 import NavChain from "../../../components/Navigation/NavChain/NavChain.jsx";
 import {isMobile} from "react-device-detect";
-import PersonalAccount from "../../../components/PersonalAccount/PersonalAccount.jsx";
 import ButtonSwitch from "../../../components/ButtonSwitch/ButtonSwitch.jsx";
 import {useNavigate} from "react-router-dom";
 import BalanceOperation from "../../../components/BalanceOperation/BalanceOperation.jsx";
 import {useSelector} from "react-redux";
 import {useGetUsersBalanceHistoryQuery} from "../../../store/services/centerBeer.js";
-import PersonalAccountMobile from "../../../components/PersonalAccount/PersonalAccountMobile.jsx";
+const PersonalAccount = lazy(() => import("../../../components/PersonalAccount/PersonalAccount.jsx"));
+const PersonalAccountMobile = lazy(() => import("../../../components/PersonalAccount/PersonalAccountMobile.jsx"));
 
 export default function BalanceHistory(){
     const { isAuthorized, userProfile, isLoading: profileIsLoading } = useSelector((state) => state.auth);
@@ -57,9 +57,13 @@ export default function BalanceHistory(){
         <div className="content">
             <NavChain paths={paths}></NavChain>
             <div style={{display: "flex"}}>
-                {!isMobile && <PersonalAccount profile={userProfile}/>}
+                <Suspense>
+                    {!isMobile && <PersonalAccount profile={userProfile}/>}
+                </Suspense>
                 <div style={{display: "flex", flexDirection: "column", width: "100%", gap: "25px"}}>
-                    {isMobile && <PersonalAccountMobile alias="other" profile={userProfile}/>}
+                    <Suspense>
+                        {isMobile && <PersonalAccountMobile alias="other" profile={userProfile}/>}
+                    </Suspense>
                     <ButtonSwitch options={options} selectedOption={options[1]} onClick={(option) => option.title !== options[1].title? navigate("/account/earn-cb"): navigate("")}/>
                     <div className={`${styles.sectionHeader} ${isMobile? styles.mobile: ""}`}>
                         <h2 className={`${styles.title} ma-h2`}>История операций</h2>

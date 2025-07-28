@@ -1,13 +1,11 @@
 import styles from "./PersonalInfoPage.module.scss"
 import NavChain from "../../../components/Navigation/NavChain/NavChain.jsx";
 import {isMobile} from "react-device-detect";
-import PersonalAccount from "../../../components/PersonalAccount/PersonalAccount.jsx";
-import PersonalAccountMobile from "../../../components/PersonalAccount/PersonalAccountMobile.jsx";
 import {useSelector} from "react-redux";
 import AvatarMock from "../../../assets/avatar-default.svg";
 import {MdPhotoCamera} from "react-icons/md";
 import {RiCopperCoinFill} from "react-icons/ri";
-import {useEffect, useState} from "react";
+import {lazy, Suspense, useEffect, useState} from "react";
 import TextConfirmInput from "../../../components/Inputs/TextConfirmInput/TextConfirmInput.jsx";
 import PasswordInput from "../../../components/Inputs/PasswordInput/PasswordInput.jsx";
 import SimpleButton from "../../../components/Buttons/SimpleButton/SimpleButton.jsx";
@@ -18,6 +16,8 @@ import {
 } from "../../../store/services/centerBeerAuth.js";
 import CodeInput from "../../../components/Inputs/CodeInput/CodeInput.jsx";
 import CountdownTimer from "../../../components/CountdownTimer/CountdownTimer.jsx";
+const PersonalAccount = lazy(() => import("../../../components/PersonalAccount/PersonalAccount.jsx"));
+const PersonalAccountMobile = lazy(() => import("../../../components/PersonalAccount/PersonalAccountMobile.jsx"));
 
 export default function PersonalInfoPage(){
     const { isAuthorized, userProfile, isLoading: profileIsLoading } = useSelector((state) => state.auth);
@@ -80,9 +80,13 @@ export default function PersonalInfoPage(){
         <div className="content">
             <NavChain paths={paths}/>
             <div style={{display: "flex"}}>
-                {!isMobile && <PersonalAccount profile={userProfile}/>}
+                <Suspense>
+                    {!isMobile && <PersonalAccount profile={userProfile}/>}
+                </Suspense>
                 <div style={{display: "flex", flexDirection: "column", width: "100%", gap: "25px"}}>
-                    {isMobile && <PersonalAccountMobile alias="data" profile={userProfile} withoutInfo={true}/>}
+                    <Suspense>
+                        {isMobile && <PersonalAccountMobile alias="data" profile={userProfile} withoutInfo={true}/>}
+                    </Suspense>
                     <div className={styles.accountSection}>
                         <div className={`${styles.sideContent} ${styles.mobile}`}>
                             <div className={styles.profile}>

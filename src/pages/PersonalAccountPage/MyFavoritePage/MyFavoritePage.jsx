@@ -1,6 +1,5 @@
 import NavChain from "../../../components/Navigation/NavChain/NavChain.jsx";
 import {isMobile} from "react-device-detect";
-import PersonalAccount from "../../../components/PersonalAccount/PersonalAccount.jsx";
 import styles from "../MyCheckinsPage/MyCheckinsPage.module.scss";
 import SimpleCatalogSection from "../../../components/CatalogSections/SimpleCatalogSection/SimpleCatalogSection.jsx";
 import {useGetUsersFavBarsQuery, useGetUsersFavBeersQuery} from "../../../store/services/centerBeer.js";
@@ -9,9 +8,10 @@ import {useNavigate, useParams} from "react-router-dom";
 import MinimalBottledBeerCardApi from "../../../components/Cards/BottledBeerCard/MinimalBottledBeerCardApi.jsx";
 import ArrowLeftIcon from "../../../assets/arrow-left-icon.svg?react"
 import BreweryCard from "../../../components/Cards/BreweryCard/BreweryCard.jsx";
-import {useEffect} from "react";
+import {lazy, Suspense, useEffect} from "react";
 import MinimalBarCardApi from "../../../components/Cards/BarCard/MinimalBarCardApi.jsx";
-import PersonalAccountMobile from "../../../components/PersonalAccount/PersonalAccountMobile.jsx";
+const PersonalAccount = lazy(() => import("../../../components/PersonalAccount/PersonalAccount.jsx"));
+const PersonalAccountMobile = lazy(() => import("../../../components/PersonalAccount/PersonalAccountMobile.jsx"));
 
 export default function MyFavoritePage(){
     const {alias} = useParams();
@@ -43,9 +43,13 @@ export default function MyFavoritePage(){
         <div className="content">
             <NavChain paths={paths}></NavChain>
             <div style={{display: "flex"}}>
-                {!isMobile && <PersonalAccount profile={userProfile}/>}
+                <Suspense>
+                    {!isMobile && <PersonalAccount profile={userProfile}/>}
+                </Suspense>
                 <div style={{display: "flex", flexDirection: "column", width: "100%"}}>
-                    {isMobile && <PersonalAccountMobile profile={userProfile} alias="favorite"/>}
+                    <Suspense>
+                        {isMobile && <PersonalAccountMobile profile={userProfile} alias="favorite"/>}
+                    </Suspense>
                     <div className={styles.block}>
                         <div className={styles.row}>
                             <div className={styles.arrowButton} onClick={() => navigate("/account/")}><ArrowLeftIcon/></div>

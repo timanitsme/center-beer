@@ -1,6 +1,5 @@
 import NavChain from "../../../components/Navigation/NavChain/NavChain.jsx";
 import {isMobile} from "react-device-detect";
-import PersonalAccount from "../../../components/PersonalAccount/PersonalAccount.jsx";
 import styles from "./MyCheckinsPage.module.scss"
 import SimpleCatalogSection from "../../../components/CatalogSections/SimpleCatalogSection/SimpleCatalogSection.jsx";
 import BarImage1 from "../../../assets/barsMocks/bar-3.svg";
@@ -12,8 +11,9 @@ import {useSelector} from "react-redux";
 import ArrowLeftIcon from "../../../assets/arrow-left-icon.svg?react";
 import BeerCheckInCard from "../../../components/Cards/CheckIns/BeerCheckInCard/BeerCheckInCard.jsx";
 import BarCheckInCard from "../../../components/Cards/CheckIns/BarCheckInCard/BarCheckInCard.jsx";
-import {useEffect} from "react";
-import PersonalAccountMobile from "../../../components/PersonalAccount/PersonalAccountMobile.jsx";
+import {lazy, Suspense, useEffect} from "react";
+const PersonalAccount = lazy(() => import("../../../components/PersonalAccount/PersonalAccount.jsx"));
+const PersonalAccountMobile = lazy(() => import("../../../components/PersonalAccount/PersonalAccountMobile.jsx"));
 
 export default function MyCheckinsPage(){
     const {alias} = useParams();
@@ -60,9 +60,13 @@ export default function MyCheckinsPage(){
         <div className="content">
             <NavChain paths={paths}></NavChain>
             <div style={{display: "flex"}}>
-                {!isMobile && <PersonalAccount profile={userProfile}/>}
+                <Suspense>
+                    {!isMobile && <PersonalAccount profile={userProfile}/>}
+                </Suspense>
                 <div style={{display: "flex", flexDirection: "column", width: "100%"}}>
-                    {isMobile && <PersonalAccountMobile profile={userProfile} alias="checkIns"/>}
+                    <Suspense>
+                        {isMobile && <PersonalAccountMobile profile={userProfile} alias="checkIns"/>}
+                    </Suspense>
                     <div className={styles.block}>
                         <div className={styles.row}>
                             <div className={styles.arrowButton} onClick={() => navigate("/account/")}><ArrowLeftIcon/></div>

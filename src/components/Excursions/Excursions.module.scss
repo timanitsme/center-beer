@@ -3,7 +3,7 @@
 .excursionsContainer{
     display: flex;
     gap: rem(15);
-    margin: 0 rem(50) rem(50) rem(50);
+    padding: 0 rem(50) rem(50) rem(50);
 }
 
 .imageContainer{
@@ -65,7 +65,7 @@
 
 @media (max-width: rem(1000)) {
     .excursionsContainer{
-        margin: 0 rem(25) rem(25) rem(25);
+        padding: 0 rem(25) rem(25) rem(25);
     }
 }
 

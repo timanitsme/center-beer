@@ -9,6 +9,7 @@ import DistributorAdvantagesList from "../../components/AdvantagesList/Distribut
 import DistributorPortfolio from "../../components/DistributorPortfolio/DistributorPortfolio.jsx";
 import BeerCatalogSection from "../../components/BeerCatalogSection/BeerCatalogSection.jsx";
 import {useEffect} from "react";
+import contactsBg from "../../assets/bgPictures/contacts-bg.webp";
 
 
 export default function DistributorDetailPage(){
@@ -20,8 +21,10 @@ export default function DistributorDetailPage(){
         <div className="content">
             <NavChain paths={getDistributorDetailPagePaths()}/>
             <DistributorInfo></DistributorInfo>
-            <DistributorAdvantagesList></DistributorAdvantagesList>
-            <DistributorPortfolio/>
+            <div style={{backgroundImage: `url(${contactsBg})`, backgroundRepeat: 'no-repeat'}}>
+                <DistributorAdvantagesList></DistributorAdvantagesList>
+                <DistributorPortfolio/>
+            </div>
             <BeerCatalogSection filters={getDistributorDetailPageFilters()} filterButtons={getDistributorDetailPageFilterButtons()}/>
         </div>
     )

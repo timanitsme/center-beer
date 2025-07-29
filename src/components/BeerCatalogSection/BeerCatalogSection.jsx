@@ -2,6 +2,7 @@ import styles from "./BeerCatalogSection.module.scss"
 import ComponentHeader from "../ComponentHeader/ComponentHeader.jsx";
 import BottlesPairIcon from "../../assets/bottles-pair-icon.svg?react"
 import BeerCatalog from "../Catalogs/BeerCatalog.jsx";
+import beerCatalogBg from "../../assets/bgPictures/beer-catalog-bg.webp"
 
 export default function BeerCatalogSection({filters, filterButtons, breweryId, withoutPrice=false, ref=null}){
     const header = {
@@ -13,7 +14,7 @@ export default function BeerCatalogSection({filters, filterButtons, breweryId, w
     return(
         <div className={styles.sectionContainer} ref={ref}>
             <div className={styles.header}><ComponentHeader title={header.title} HeaderIcon={header.icon} description={header.description}></ComponentHeader></div>
-            <BeerCatalog withHeader={false} withoutPrice={withoutPrice} filters={filters} filterButtons={filterButtons} breweryId={breweryId}></BeerCatalog>
+            <BeerCatalog bgImage={beerCatalogBg} withHeader={false} withoutPrice={withoutPrice} filters={filters} filterButtons={filterButtons} breweryId={breweryId}></BeerCatalog>
         </div>
     )
 }

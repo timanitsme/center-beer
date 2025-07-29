@@ -6,6 +6,7 @@ import PostImage3 from "../../assets/postsMocks/post-image-3.svg"
 import PostImage4 from "../../assets/postsMocks/post-image-4.svg"
 import PostCard from "../Cards/PostCard/PostCard.jsx";
 import {useNavigate} from "react-router-dom";
+import beerCatalogBg from "../../assets/bgPictures/beer-catalog-bg.webp";
 
 export default function PopularPosts(){
     const postCards = [
@@ -17,7 +18,7 @@ export default function PopularPosts(){
     const navigate = useNavigate()
 
     return(
-        <div className={styles.postsSection}>
+        <div className={styles.postsSection} style={{backgroundImage: `url(${beerCatalogBg})`, backgroundRepeat: 'no-repeat'}}>
             <div className={styles.postsHeader}>
                 <h1 className="text-big">Популярные статьи</h1>
                 <div className={styles.buttonContainer}><RoundLinkButton text="Все статьи" onClick={() => navigate("/news")}/></div>

@@ -3,7 +3,7 @@
 .historyContainer{
     display: flex;
     flex-direction: column;
-    margin: 0 rem(193) rem(50) rem(193);
+    margin-bottom: rem(50);
     gap: rem(10)
 }
 
@@ -17,6 +17,7 @@
     align-items: center;
     max-height: rem(300);
     justify-content: space-between;
+    padding: 0 rem(193) 0 rem(193);
 }
 
 .image{
@@ -25,7 +26,7 @@
     align-items: center;
     object-position: center;
     max-width: 50%;
-    background: var(--bg);
+    background: transparent;
 }
 
 .image img{
@@ -82,8 +83,13 @@
 
 @media (max-width: rem(1000)) {
     .historyContainer{
-        margin: 0 rem(25) rem(25) rem(25);
+        margin-bottom: rem(25);
     }
+
+    .story{
+        padding: 0 rem(25) 0 rem(25);
+    }
+
     .story{
         gap: rem(15);
     }

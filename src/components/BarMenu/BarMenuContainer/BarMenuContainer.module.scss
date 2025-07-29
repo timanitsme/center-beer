@@ -1,10 +1,13 @@
 @use "../../../utils/partialStyles/_pxToRem.scss" as *;
 
 .menuContainer{
-    margin: 0 rem(50) rem(50) rem(50);
     display: flex;
     gap: rem(10);
     flex-direction: column;
+}
+
+.marginize, .filterButtons{
+    margin: 0 rem(50) 0 rem(50);
 }
 
 .menuContainer h2{

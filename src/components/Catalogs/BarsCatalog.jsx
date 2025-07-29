@@ -22,7 +22,7 @@ import {isMobile} from "react-device-detect";
 import SingleCheckBox from "../ApiInputs/CheckBox/SingleCheckBox.jsx";
 import BarCardSkeleton from "../Skeletons/BarCardSkeleton/BarCardSkeleton.jsx";
 import SearchInput from "../ApiInputs/Search/SearchInput.jsx";
-
+import contactsBg from "../../assets/bgPictures/contacts-bg.webp"
 
 
 export default function BarsCatalog(){
@@ -316,7 +316,7 @@ export default function BarsCatalog(){
     };
 
     return(
-        <div className={styles.menuContainer}>
+        <div className={styles.menuContainer} style={{backgroundImage: `url(${contactsBg})`, backgroundRepeat: 'no-repeat'}}>
             <div className={styles.menuHeader}>
                 <div className={styles.catalogHeader}>
                     <div className={styles.justy}>

@@ -14,6 +14,7 @@ import AvatarDefault from "../../assets/avatar-default.svg";
 import SimpleButton from "../Buttons/SimpleButton/SimpleButton.jsx";
 import {useDispatch, useSelector} from "react-redux";
 import {logout} from "../../store/services/authSlice.js";
+import indexBubblesBg from "../../assets/bgPictures/index-bubbles-bg.webp";
 
 
 export default function Header({paths}){
@@ -89,7 +90,7 @@ export default function Header({paths}){
     return(
         <>
             <div className={styles.headerSpace}></div>
-            <div className={`${styles.header} ${isHeaderVisible ? '' : styles.hidden}`}>
+            <div className={`${styles.header} ${isHeaderVisible ? '' : styles.hidden}`} style={location.pathname === "/"? {backgroundImage: `url(${indexBubblesBg})`, backgroundRepeat: 'no-repeat', backgroundPosition: 'center top'}: {}}>
                 <div className={styles.headerGrid}>
                     <div className={styles.logoMenu}>
                         <a onClick={toggleMenu}>{isMenuOpen? <CloseIcon/> : <BurgerIcon/>}</a>

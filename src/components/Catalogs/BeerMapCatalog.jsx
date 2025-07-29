@@ -14,6 +14,7 @@ import {isMobile} from "react-device-detect";
 import FiltersModal from "../Modals/FiltersModal/FiltersModal.jsx";
 import SingleCheckBox from "../ApiInputs/CheckBox/SingleCheckBox.jsx";
 import SearchInput from "../ApiInputs/Search/SearchInput.jsx";
+import contactsBg from "../../assets/bgPictures/contacts-bg.webp";
 
 export default function BeerMapCatalog({filters = [], filterButtons = []}){
     const navigate = useNavigate()
@@ -261,7 +262,7 @@ export default function BeerMapCatalog({filters = [], filterButtons = []}){
 
 
     return(
-        <div className={styles.menuContainer}>
+        <div className={styles.menuContainer} style={{backgroundImage: `url(${contactsBg})`, backgroundRepeat: 'no-repeat'}}>
             <div className={styles.menuHeader}>
                 <div className={styles.catalogHeader}>
                     <div>

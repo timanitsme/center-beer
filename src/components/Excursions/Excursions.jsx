@@ -1,10 +1,11 @@
 import styles from "./Excursions.module.scss"
 import ExcursionPicture from "../../assets/excursion-picture.svg"
+import excursionsBg from "../../assets/bgPictures/excursions-bg.webp"
 
 export default function Excursions({ref = null}){
     return(
-        <div className={styles.excursionsContainer} ref={ref}>
-            <div className={styles.imageContainer}>
+        <div className={styles.excursionsContainer} ref={ref} style={{backgroundImage: `url(${excursionsBg})`}}>
+            <div className={styles.imageContainer} >
                 <img src={ExcursionPicture} alt=""/>
             </div>
             <div className={styles.description}>

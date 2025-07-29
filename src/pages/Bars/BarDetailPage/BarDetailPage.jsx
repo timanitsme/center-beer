@@ -18,7 +18,7 @@ import BeerMugsIcon from "../../../assets/beer-mugs-icon.svg?react"
 import SausageIcon from "../../../assets/sausage-icon.svg?react"
 import FlagsIcon from "../../../assets/flags-icon.svg?react"
 import BarMenuContainer from "../../../components/BarMenu/BarMenuContainer/BarMenuContainer.jsx";
-
+import barEventsBg from "../../../assets/bgPictures/bar-events-n-gallery.webp"
 
 export default function BarDetailPage(){
     const {alias} = useParams();
@@ -47,9 +47,11 @@ export default function BarDetailPage(){
                 <>
                     <NavChain paths={[...getBarPagePaths(), {title: data?.data[0].name, path: ""}]}/>
                     <BarInfo barInfo={data?.data[0]} sections={sections}/>
-                    <AdvantagesList barInfo={data?.data[0]}/>
-                    <BarEvents barId={data?.data[0].id}/>
-                    {data?.data[0]?.gallery?.length !== 0 && <Gallery pictures={data?.data[0].gallery}/>}
+                    <div style={{backgroundImage: `url(${barEventsBg})`, backgroundRepeat: 'no-repeat'}}>
+                        <AdvantagesList barInfo={data?.data[0]}/>
+                        <BarEvents barId={data?.data[0].id}/>
+                        {data?.data[0]?.gallery?.length !== 0 && <Gallery pictures={data?.data[0].gallery}/>}
+                    </div>
                     {/*<BarMenu filters={getBarPageFilters()} filterButtons={getBarPageFilterButtons()} sections={getBarPageSections()} ref={menuRef} barId={Number(data?.data?.[0]?.id)}/>*/}
                     <BarMenuContainer ref={menuRef} barId={Number(data?.data?.[0]?.id)}/>
                     <CurrentPromos barId={data?.data[0].id} ref={promosRef}/>

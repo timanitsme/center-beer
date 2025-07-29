@@ -30,6 +30,11 @@ import {
     useGetBarMenuBottleQuery, useGetBarMenuCocktailsQuery, useGetBarMenuFoodQuery
 } from "../../../store/services/centerBeer.js";
 import SearchInput from "../../ApiInputs/Search/SearchInput.jsx";
+import beerBg from "../../../assets/bgPictures/new-products-bg.webp"
+import beerBottleBg from "../../../assets/bgPictures/beer-catalog-bg.webp"
+import alcoBg from "../../../assets/bgPictures/alcohol-bg.webp"
+import nonAlcoBg from "../../../assets/bgPictures/non-alcohol-bg.webp"
+import foodBg from "../../../assets/bgPictures/food-bg.webp"
 
 export default function BarMenuSection({alias, barId, tab}){
     const [filterNameMap, setFilterNameMap] = useState({});
@@ -87,11 +92,11 @@ export default function BarMenuSection({alias, barId, tab}){
     const {data: cocktailsData, isLoading: cocktailsIsLoading, error: cocktailsError, isFetching: cocktailsIsFetching, reset: cocktailsReset} = useGetBarMenuCocktailsQuery(filterValues, {skip: alias !== "cocktails"})
     const {data: foodData, isLoading: foodIsLoading, error: foodError, isFetching: foodIsFetching, reset: foodReset} = useGetBarMenuFoodQuery(filterValues, {skip: alias !== "food"})
     const data = {
-        "beer": {data: beerData, isFetching: beerIsFetching},
-        "beer_bottle": {data: bottleData, isFetching: bottleIsFetching},
-        "alc": {data: alcData, isFetching: alcIsFetching},
-        "cocktails": {data: cocktailsData, isFetching: cocktailsIsFetching},
-        "food": {data: foodData, isFetching: foodIsFetching}
+        "beer": {data: beerData, isFetching: beerIsFetching, bg: beerBg},
+        "beer_bottle": {data: bottleData, isFetching: bottleIsFetching, bg: beerBottleBg},
+        "alc": {data: alcData, isFetching: alcIsFetching, bg: alcoBg},
+        "cocktails": {data: cocktailsData, isFetching: cocktailsIsFetching, bg: nonAlcoBg},
+        "food": {data: foodData, isFetching: foodIsFetching, bg: foodBg}
     }
     //const {data: data, isLoading: dataIsLoading, isFetching: dataIsFetching, error: dataError } = useGetBarMenuData(alias, filterValues, {skip: !filterValues});
     const {data: dataFilters, isLoading: dataFiltersIsLoading, error: dataFiltersError} = useGetBarMenuFilters(alias, barId)
@@ -332,7 +337,7 @@ export default function BarMenuSection({alias, barId, tab}){
 
     return(
         <>
-            <div className={styles.menuContent}>
+            <div className={styles.menuContent} style={{backgroundImage: `url(${data[alias].bg})`, backgroundRepeat: 'no-repeat'}}>
                 {!isMobile && <div className={styles.menuFilters}>
                     <SearchInput title="Поиск по названию" onChange={() => {}}/>
                     {

@@ -3,6 +3,7 @@ import ComponentHeader from "../ComponentHeader/ComponentHeader.jsx";
 import FlagsIcon from "../../assets/flags-icon.svg?react"
 import PicturesList from "../PicturesList/PicturesList.jsx";
 
+
 export default function NewProducts({images, ref}){
     return(
         <div className={styles.newProductsContainer} ref={ref}>

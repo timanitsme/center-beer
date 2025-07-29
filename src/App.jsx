@@ -1,10 +1,10 @@
 import './App.scss'
-import {BrowserRouter, Route, Routes} from "react-router-dom";
+import {BrowserRouter, Route, Routes, useLocation} from "react-router-dom";
 import Header from "./components/Header/Header.jsx";
 import Footer from "./components/Footer/Footer.jsx";
 import bottlePath from "../src/assets/beer-bottle.svg"
 import ErrorBoundary from "./utils/ErrorBoundary/ErrorBoundary.jsx";
-import BottleIcon from "./assets/bottle-icon.svg?react"
+import BottleIcon from "./assets/bottle-icon.svg?react";
 import {lazy, Suspense, useEffect, useState} from "react";
 import ScrollToTop from "./utils/ScrollToTop/ScrollToTop.jsx";
 import useAuth from "./store/utils/customHooks/useAuth.js";
@@ -12,6 +12,7 @@ import {useDispatch} from "react-redux";
 import {initializeAuthState} from "./store/services/authSlice.js";
 import CookieConsent from "./components/CookieConsent/CookieConsent.jsx";
 import AdultsOnlyModal from "./components/Modals/SimpleModal/AdultsOnlyModal.jsx";
+import indexBubblesBg from "./assets/bgPictures/index-bubbles-bg.webp";
 const RegistrationPage = lazy(() => import("./pages/RegistrationPage/RegistrationPage.jsx"));
 const RestaurantEventsPage = lazy(() => import("./pages/Events/RestaurantEventsPage/RestaurantEventsPage.jsx"));
 const BreweryEventsPage = lazy(() => import("./pages/Events/BreweryEventsPage/BreweryEventsPage.jsx"));
@@ -51,10 +52,11 @@ const BugReportPage = lazy(() => import("./pages/BugReportPage/BugReportPage.jsx
 const AllSimilarBeerPage = lazy(() => import("./pages/Beer/AllSimilarBeerPage/AllSimilarBeerPage.jsx"));
 const PersonalInfoPage = lazy(() => import("./pages/PersonalAccountPage/PersonalInfoPage/PersonalInfoPage.jsx"));
 
+
 function App() {
     const dispatch = useDispatch();
     const {isAuthorized, userProfile, isLoading, error} = useAuth()
-
+    const location = useLocation()
     useEffect(() => {
         dispatch(initializeAuthState());
     }, [dispatch]);
@@ -110,9 +112,10 @@ function App() {
     ]
     const [hideFooter, setHideFooter] = useState(false);
     const [hideHeader, setHideHeader] = useState(false);
+    console.log(window.location.pathname)
     return (
-    <BrowserRouter>
-        <div className="app">
+    <>
+        <div className="app" style={location.pathname === "/"? {backgroundImage: `url(${indexBubblesBg})`, backgroundRepeat: 'no-repeat', backgroundPosition: 'center top'}: {}}>
             {!hideHeader && <Header paths={paths}/>}
             <div className="contentContainer">
                 <Suspense fallback={<div className="fallback"><BottleIcon/></div>}>
@@ -129,14 +132,14 @@ function App() {
                         })}
                     </Routes>
                 </Suspense>
-                {!hideFooter && <img className="bottle" src={bottlePath}></img>}
+                {!hideFooter && <img className="bottle" src={bottlePath} ></img>}
                 {!hideFooter && <Footer />}
             </div>
         </div>
         <CookieConsent/>
         <AdultsOnlyModal/>
         <ScrollToTop/>
-    </BrowserRouter>
+    </>
   )
 }
 

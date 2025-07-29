@@ -18,6 +18,7 @@ import SimpleCatalogSection from "../CatalogSections/SimpleCatalogSection/Simple
 import PropTypes from "prop-types";
 import DistributorCard from "../Cards/DistributorCard/DistributorCard.jsx";
 import SearchInput from "../ApiInputs/Search/SearchInput.jsx";
+import contactsBg from "../../assets/bgPictures/contacts-bg.webp";
 
 export default function DistributorsCatalog({filters = [], filterButtons = [], sections = []}){
     const cardsBars = [
@@ -34,7 +35,7 @@ export default function DistributorsCatalog({filters = [], filterButtons = [], s
 
 
     return(
-        <div className={styles.menuContainer}>
+        <div className={styles.menuContainer} style={{backgroundImage: `url(${contactsBg})`, backgroundRepeat: 'no-repeat'}}>
             <div className={styles.menuHeader}>
                 <div className={styles.catalogHeader}>
                     <div>

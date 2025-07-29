@@ -1,7 +1,6 @@
 import {useEffect, useMemo, useState} from "react";
 import styles from "./BarsCatalog.module.scss";
 import LocationIcon from "../../assets/location-filled-icon.svg?react";
-import SearchCities from "../ApiInputs/Search/SearchCities.jsx";
 import SimpleButton from "../Buttons/SimpleButton/SimpleButton.jsx";
 import AppliedFilter from "../AppliedFilter/AppliedFilter.jsx";
 import ComboBox from "../ApiInputs/ComboBox/ComboBox.jsx";
@@ -24,7 +23,7 @@ import BottledBeerCardSkeleton from "../Skeletons/BottledBeerCardSkeleton/Bottle
 import SearchInput from "../ApiInputs/Search/SearchInput.jsx";
 
 
-export default function BeerCatalog({withoutPrice=false, withHeader = true, breweryId=null}){
+export default function BeerCatalog({withoutPrice=false, withHeader = true, breweryId=null, bgImage=null}){
     const [filterNameMap, setFilterNameMap] = useState({});
     const [showFiltersModal, setShowFiltersModal] = useState(false)
     const [allCards, setAllCards] = useState([])
@@ -370,7 +369,7 @@ export default function BeerCatalog({withoutPrice=false, withHeader = true, brew
     };
 
     return(
-        <div className={styles.menuContainer}>
+        <div className={styles.menuContainer} style={bgImage? {backgroundImage: `url(${bgImage})`, backgroundRepeat: 'no-repeat'}: {}}>
             {withHeader &&
                 <div className={styles.menuHeader}>
                     <div>

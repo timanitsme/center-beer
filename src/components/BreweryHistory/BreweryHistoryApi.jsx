@@ -1,6 +1,7 @@
 import {useState} from "react";
 import styles from "./BreweryHistory.module.scss";
 import SimpleButton from "../Buttons/SimpleButton/SimpleButton.jsx";
+import contactsPicture from "../../assets/bgPictures/contacts-bg.webp"
 
 export default function BreweryHistoryApi({stories}){
     const [showAllStories, setShowAllStories] = useState(false);
@@ -9,7 +10,7 @@ export default function BreweryHistoryApi({stories}){
     const visibleStories = showAllStories ? stories : stories.slice(0, 3);
 
     return(
-        <div className={styles.historyContainer}>
+        <div className={styles.historyContainer} style={{backgroundImage: `url(${contactsPicture})`}}>
             {visibleStories.map((story, index) => {
                 if(index % 2 === 0){
                     return(

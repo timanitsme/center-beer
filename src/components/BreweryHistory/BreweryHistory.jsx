@@ -5,6 +5,7 @@ import History3 from "../../assets/historyMocks/history-3.svg"
 import History4 from "../../assets/historyMocks/history-4.svg"
 import {useState} from "react";
 import SimpleButton from "../Buttons/SimpleButton/SimpleButton.jsx";
+import contactsPicture from "../../assets/bgPictures/contacts-bg.webp"
 
 export default function BreweryHistory(){
     const [showAllStories, setShowAllStories] = useState(false);
@@ -35,7 +36,7 @@ export default function BreweryHistory(){
     const visibleStories = showAllStories ? stories : stories.slice(0, 3);
 
     return(
-        <div className={styles.historyContainer}>
+        <div className={styles.historyContainer} style={{backgroundImage: `url(${contactsPicture})`}}>
             {visibleStories.map((story, index) => {
                 if(index % 2 === 0){
                     return(

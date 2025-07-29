@@ -3,6 +3,7 @@ import {isMobile} from "react-device-detect";
 import {getBeerPagePaths} from "./BeerPageData.jsx";
 import BeerCatalog from "../../../components/Catalogs/BeerCatalog.jsx";
 import {useEffect} from "react";
+import contactsBg from "../../../assets/bgPictures/contacts-bg.webp"
 
 export default function BeerPage(){
     useEffect(() => {
@@ -12,7 +13,7 @@ export default function BeerPage(){
     return(
         <div className="content">
             <NavChain paths={getBeerPagePaths()}/>
-            <BeerCatalog/>
+            <BeerCatalog bgImage={contactsBg}/>
             {!isMobile && <div style={{height: "200px"}}></div>}
         </div>
     )

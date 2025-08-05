@@ -54,6 +54,7 @@ export default function PersonalInfoPage(){
             const response = await changeNickname(nickname).unwrap();
             if (response) {
                 console.log("nickname changed successfully")
+                window.location.reload()
             }
         } catch (err) {
             setNicknameError('Не получилось изменить никнейм');

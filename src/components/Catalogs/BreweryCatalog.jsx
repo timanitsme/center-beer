@@ -23,6 +23,7 @@ import {FaSortAmountDown, FaSortAmountUp} from "react-icons/fa";
 import SortDirection from "../ApiInputs/SortDirectionButton/SortDirection.jsx";
 import BreweryCardSkeleton from "../Skeletons/BreweryCardSkeleton/BreweryCardSkeleton.jsx";
 import SearchInput from "../ApiInputs/Search/SearchInput.jsx";
+import contactsBg from "../../assets/bgPictures/contacts-bg.webp";
 
 export default function BreweryCatalog({filters = [], filterButtons = [], sections = []}){
     const [filterNameMap, setFilterNameMap] = useState({});
@@ -319,7 +320,7 @@ export default function BreweryCatalog({filters = [], filterButtons = [], sectio
     };
 
     return(
-        <div className={styles.menuContainer}>
+        <div className={styles.menuContainer} style={{backgroundImage: `url(${contactsBg})`, backgroundRepeat: 'no-repeat'}}>
             <div className={styles.menuHeader}>
                 <div>
                     <h2 className="ma-h2">Каталог пивоварен</h2>

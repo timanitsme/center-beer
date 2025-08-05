@@ -51,7 +51,7 @@ const BalanceHistory = lazy(() => import("./pages/PersonalAccountPage/BalanceHis
 const BugReportPage = lazy(() => import("./pages/BugReportPage/BugReportPage.jsx"));
 const AllSimilarBeerPage = lazy(() => import("./pages/Beer/AllSimilarBeerPage/AllSimilarBeerPage.jsx"));
 const PersonalInfoPage = lazy(() => import("./pages/PersonalAccountPage/PersonalInfoPage/PersonalInfoPage.jsx"));
-
+const NotFoundPage = lazy(() => import("./pages/NotFoundPage/NotFoundPage.jsx"));
 
 function App() {
     const dispatch = useDispatch();
@@ -89,7 +89,6 @@ function App() {
         {path: "/event-map-mobile/", element: EventMapPageMobile, hideFooter: true, hideHeader: true},
         {path: "/login/", element: AuthorizationPage},
         {path: "/restore/", element: RestorePasswordPage},
-
         {path: "/account/", element: PersonalAccountPage},
         {path: "/account/info", element: PersonalInfoPage},
         {path: "/account/fav/:alias", element: MyFavoritePage},
@@ -109,6 +108,7 @@ function App() {
         {path: "/about-us/:alias", element: AboutDetailPage},
         {path: "/bug-report", element: BugReportPage},
         {path: "/documents/:alias", element: DocumentDetailPage, hideFooter: true},
+        {path: "*", element: NotFoundPage},
     ]
     const [hideFooter, setHideFooter] = useState(false);
     const [hideHeader, setHideHeader] = useState(false);

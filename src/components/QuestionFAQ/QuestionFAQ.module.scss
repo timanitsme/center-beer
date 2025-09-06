@@ -1,0 +1,68 @@
+@use "../../utils/partialStyles/_pxToRem.scss" as *;
+
+.question{
+  display: flex;
+  gap: rem(20);
+  justify-content: space-between;
+  margin: 0 rem(20) 0 rem(20);
+  cursor: pointer;
+
+  p{
+    font-family: "Podkova", sans-serif;
+    text-transform: uppercase;
+    color: var(--txt-active);
+  }
+
+  svg{
+    transition: transform 0.3s ease;
+  }
+
+  &.expanded svg{
+    transform: rotate(180deg);
+  }
+
+}
+
+.answer {
+  max-height: 0;
+  opacity: 0;
+  visibility: hidden;
+  overflow: hidden;
+  transition: max-height 0.5s ease, opacity 0.5s ease, visibility 0.5s ease, padding 0.5s ease;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  cursor: pointer;
+
+  &.expanded {
+    min-height: fit-content;
+    max-height: rem(300);
+    opacity: 1;
+    visibility: visible;
+    padding: rem(5) rem(7);
+  }
+
+  p{
+    margin: 0 rem(20) 0 rem(20);
+    font-weight: 300;
+    color: var(--txt-active);
+  }
+
+}
+
+
+.hrtLine{
+  width: 100%;
+  height: rem(1);
+  background: var(--third);
+  margin: rem(20) 0 rem(20) 0;
+}
+
+@media (max-width: rem(750)) {
+  .question{
+    svg{
+      width: rem(15);
+      height: auto;
+    }
+  }
+}

@@ -1,0 +1,94 @@
+@use "../../utils/partialStyles/_pxToRem.scss" as *;
+
+.datePicker{
+  display: flex;
+  flex-direction: column;
+  background: var(--section-bg);
+  border-radius: rem(15);
+  width: rem(300);
+  padding: rem(15);
+}
+
+.topBar{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.left svg{
+  transform: rotate(90deg);
+  width: rem(20);
+}
+
+.right svg{
+  transform: rotate(270deg);
+  width: rem(20);
+}
+
+.hrtLine{
+  width: 100%;
+  height: rem(2);
+  background: var(--third);
+  margin: rem(10) 0 rem(10) 0;
+}
+
+.daysGrid{
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.date{
+  font-weight: 300;
+  color: var(--txt-active);
+}
+
+.weekday{
+  color: var(--primary);
+  font-weight: 300;
+  text-align: center;
+  width: rem(30);
+}
+
+.day{
+  p{
+    color: var(--txt-active);
+    text-align: center;
+    border-radius: 15%;
+    height: rem(30);
+    aspect-ratio: 1/1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+  }
+
+}
+
+.past{
+  p{
+    color: var(--txt-secondary);
+  }
+}
+
+.next{
+  p{
+    &:hover{
+      background: var(--primary);
+      color: var(--bg);
+      cursor: pointer;
+      transition: 0.3s;
+    }
+  }
+}
+
+.current{
+  p{
+    color: var(--primary);
+    &:hover{
+      background: var(--primary);
+      color: var(--bg);
+      cursor: pointer;
+      transition: 0.3s;
+    }
+  }
+}

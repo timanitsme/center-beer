@@ -1,0 +1,158 @@
+@use "../../utils/partialStyles/_pxToRem.scss" as *;
+
+.formatsSection{
+  background: var(--section-bg);
+  padding: rem(50);
+  margin: 0 0 rem(50) 0;
+
+  h1{
+    margin-bottom: rem(50);
+  }
+}
+
+.formats{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: rem(50);
+}
+
+.format{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: rem(10);
+
+  p{
+    text-align: center;
+    font-weight: 300;
+    margin-bottom: rem(50);
+  }
+}
+
+.iconContainer{
+  width: rem(50);
+  height: rem(50);
+  background: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.formatButton{
+  width: 100%;
+  background: var(--primary);
+  text-transform: uppercase;
+  padding: rem(15) 0;
+  p{
+    margin: 0;
+    color: var(--bg);
+  }
+}
+
+.formatButton:hover{
+  background: var(--primary-semi-transparent);
+  transition: 0.3s;
+}
+
+
+.buttons{
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.conditionsButton{
+  width: 100%;
+  background: var(--third);
+  color: var(--txt-active);
+  text-transform: uppercase;
+  padding: rem(15) 0;
+  height: rem(50);
+  display: grid;
+  grid-template-columns: rem(35) 1fr rem(35);
+  align-items: center;
+
+  p{
+    color: var(--txt-active);
+    margin: 0;
+  }
+
+  &:hover{
+    p, svg{
+      color: var(--primary);
+      transition: 0.3s;
+    }
+
+  }
+
+}
+
+.opened {
+  .conditionsDetail{
+    width: 100%;
+    height: rem(200);
+    background: #2E2E2E;
+    transition: 0.3s;
+    padding: rem(10) rem(15);
+    p{
+      display: initial;
+      color: var(--txt-active);
+    }
+  }
+  .conditionsButton{
+    svg{
+      transform: rotate(180deg);
+      transition: 0.3s;
+    }
+  }
+}
+
+
+.conditionsDetail{
+  height: 0;
+  transition: 0.3s;
+  p{
+    display: none;
+  }
+  p{
+    font-weight: 200;
+  }
+  b{
+    font-weight: 600;
+  }
+}
+
+@media (max-width: rem(1000)) {
+  .formats{
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .opened{
+    .conditionsDetail{
+      height: rem(150);
+    }
+  }
+
+  .formatsSection{
+    padding: rem(25);
+    margin-bottom: rem(25);
+
+    h1{
+      margin-bottom: rem(25);
+    }
+  }
+
+}
+
+@media (max-width: rem(500)) {
+  .formats{
+    gap: rem(25);
+  }
+  .opened{
+    .conditionsDetail{
+      height: rem(180);
+    }
+  }
+}

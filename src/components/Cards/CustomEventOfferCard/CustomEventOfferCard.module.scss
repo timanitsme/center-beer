@@ -1,0 +1,94 @@
+@use "../../../utils/partialStyles/_pxToRem.scss" as *;
+
+
+.offerCard{
+  background: var(--section-bg);
+  padding: rem(20) rem(15);
+  width: rem(360);
+  min-width: rem(360);
+  border-radius: rem(20);
+  display: flex;
+  flex-direction: column;
+  gap: rem(20);
+  height: fit-content;
+  svg{
+    height: rem(50);
+    width: auto;
+    color: var(--primary);
+    cursor: initial;
+  }
+}
+
+.priceBox{
+  margin-top: rem(10);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.characteristic{
+  background: var(--third);
+  width: 100%;
+  border-radius: rem(20);
+  padding: rem(10) rem(15);
+  color: var(--txt-active);
+  font-weight: 200;
+  b{
+    font-weight: 600;
+  }
+
+  li{
+    font-size: inherit;
+    margin-left: rem(30);
+  }
+
+  li::marker{
+    color: var(--primary);
+  }
+
+  &.disclaimer{
+    background: none;
+    padding: 0;
+    color: var(--txt-secondary);
+  }
+
+}
+
+.benefit{
+  text-transform: uppercase;
+  background: var(--primary);
+  color: var(--bg);
+  padding: rem(8) rem(10);
+  border-radius: rem(20);
+}
+
+@media (max-width: rem(1250)) {
+  .offerCard{
+    width: rem(330);
+    min-width: rem(330);
+  }
+}
+
+@media (max-width: rem(750)) {
+  .offerCard{
+    width: 100%;
+    min-width: 100%;
+  }
+}
+
+// 600 is the latest with good cards view, and the cards width is 270 at this point
+
+@media (max-width: rem(600)) {
+  .offerCard{
+    width: rem(270);
+    min-width: rem(270);
+    scroll-snap-align: start;
+  }
+}
+
+@media (max-width: rem(400)) {
+  .offerCard{
+    width: rem(250);
+    min-width: rem(250);
+  }
+}

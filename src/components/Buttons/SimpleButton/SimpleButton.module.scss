@@ -66,6 +66,10 @@
     transition: 0.5s;
 }
 
+.white{
+    color: var(--txt-active) !important;
+}
+
 
 @media (hover: hover) and (pointer: fine) {
     .simpleButton.secondary:hover{

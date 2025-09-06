@@ -1,0 +1,108 @@
+@use "../../utils/partialStyles/_pxToRem.scss" as *;
+
+
+.hero{
+  width: 100%;
+  height: rem(680);
+  background-image: url("../../assets/bgPictures/event-hero-mock.webp");
+  background-repeat: no-repeat;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.heroContent{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: rem(20);
+}
+
+.features{
+  height: rem(45);
+  background: var(--third-70-transparent);
+  display: flex;
+  gap: rem(21);
+  align-items: center;
+  font-weight: 300;
+  padding: 0 rem(21) 0 rem(21);
+  border-radius: rem(50);
+
+  p{
+    text-transform: uppercase;
+    color: var(--txt-active);
+    white-space: nowrap;
+  }
+}
+
+.dot{
+  width: rem(7);
+  height: rem(7);
+  background: var(--txt-active);
+  border-radius: 50%;
+}
+
+.gradient{
+  width: 100%;
+  height: rem(100);
+
+  &.top{
+    background: linear-gradient(to top, var(--bg-full-opacity) 0%, var(--bg) 50%);
+  }
+
+  &.bottom{
+    background: linear-gradient(to bottom, var(--bg-full-opacity) 0%, var(--bg) 50%);
+  }
+
+}
+
+.buttonsRow{
+  display: flex;
+  gap: rem(15);
+  flex-wrap: wrap;
+}
+
+@media (max-width: rem(850)) {
+  .features{
+    gap: rem(10);
+    height: rem(35);
+    padding: 0 rem(15) 0 rem(15);
+  }
+
+  .heroContent{
+    margin: 0 rem(25) 0 rem(25);
+  }
+}
+
+@media (max-width: rem(715)) {
+  .dot{
+    display: none;
+  }
+}
+
+@media (max-width: rem(600)) {
+  .hero{
+    height: rem(340);
+  }
+
+  .gradient{
+    height: rem(30);
+  }
+
+  .buttonsRow{
+    gap: rem(10);
+  }
+
+  .heroContent h2{
+    text-align: left;
+  }
+
+  .features{
+    flex-wrap: wrap;
+    height: auto;
+    padding: rem(15);
+    justify-content: center;
+  }
+}

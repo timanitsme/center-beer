@@ -1,0 +1,108 @@
+@use "../../utils/partialStyles/_pxToRem.scss" as *;
+
+.formSection{
+  background-image: url("../../assets/custom-event-form-bg.webp");
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.requestForm{
+  background: var(--third-semi-transparent);
+  border-radius: rem(45);
+  padding: rem(50);
+  width: rem(1000);
+  button{
+    align-self: center;
+    justify-self: center;
+  }
+}
+
+.fieldCols{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: rem(100);
+  margin-top: rem(15);
+}
+
+.fieldsRow{
+  display: flex;
+  flex-direction: column;
+  gap: rem(15);
+}
+
+.gradient{
+  width: 100%;
+  height: rem(100);
+
+  &.top{
+    background: linear-gradient(to top, var(--bg-full-opacity) 0%, var(--bg) 50%);
+  }
+
+  &.bottom{
+    background: linear-gradient(to bottom, var(--bg-full-opacity) 0%, var(--bg) 50%);
+  }
+
+}
+
+.field{
+  display: flex;
+  flex-direction: column;
+  gap: rem(5);
+
+  p{
+    font-weight: 300;
+  }
+
+  textarea{
+    background: var(--third);
+    outline: none;
+    border: none;
+    resize: none;
+    width: 100%;
+    padding: rem(8) rem(15) rem(8) rem(8);
+    border-radius: rem(5);
+    color: var(--txt-active);
+    font-weight: 200;
+  }
+}
+
+.comment{
+  margin: rem(15) 0 rem(15) 0;
+}
+
+@media (max-width: rem(1100)) {
+  .requestForm{
+    margin: 0 rem(25) 0 rem(25);
+    width: max-content;
+  }
+}
+
+@media (max-width: rem(1000)) {
+  .gradient{
+    height: rem(50);
+  }
+
+  .requestForm{
+    padding: rem(25);
+
+  }
+
+}
+
+@media (max-width: rem(800)) {
+  .requestForm{
+    width: calc(100vw - 50px);
+  }
+
+  .fieldCols{
+    gap: rem(15)
+  }
+}
+
+@media (max-width: rem(450)) {
+  .requestForm{
+    padding: rem(25) rem(15);
+    border-radius: rem(25);
+  }
+}

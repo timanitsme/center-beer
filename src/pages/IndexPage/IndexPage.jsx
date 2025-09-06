@@ -9,7 +9,6 @@ import IndexEvents from "../../components/IndexEvents/IndexEvents.jsx";
 import {useEffect} from "react";
 import contactsBg from "../../assets/bgPictures/contacts-bg.webp";
 import newProductsBg from "../../assets/bgPictures/new-products-bg.webp";
-import indexBubblesBg from "../../assets/bgPictures/index-bubbles-bg.webp"
 
 export default function IndexPage(){
     useEffect(() => {

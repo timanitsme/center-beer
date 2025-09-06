@@ -18,6 +18,7 @@
   --bg-semi-transparent: rgba(20, 20, 20, 0.3);
   --third-semi-transparent: rgba(60, 59, 59, 0.3);
   --txt-secondary-semi-transparent: rgba(243, 243, 243, 0.3);
+  --third-70-transparent: rgba(60, 59, 59, 0.7);
   --icon-added: #FF2F2F;
   --third: #3C3B3B;
   --selectable: #303030;
@@ -78,6 +79,10 @@ a{
   user-select: none;
 }
 
+body{
+  background: var(--bg);
+}
+
 .app {
   position: relative;
   top: 0;
@@ -88,6 +93,8 @@ a{
   flex-direction: column;
   background: var(--bg);
   overflow-y: auto;
+  max-width: 1920px;
+  margin: 0 auto;
 }
 
 svg{
@@ -256,4 +263,11 @@ p{
 
 .leaflet-popup-content{
   max-width: 70vw;
+}
+
+
+.clear-button{
+  border-style: none;
+  cursor: pointer;
+  padding: 0;
 }

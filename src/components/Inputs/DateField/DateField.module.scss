@@ -1,0 +1,70 @@
+@use "../../../utils/partialStyles/_pxToRem.scss" as *;
+
+.comboBox {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.comboBoxHeader {
+
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: rem(8) rem(12);
+  border-radius: rem(5) rem(5) rem(5) rem(5);
+  cursor: pointer;
+  background-color: var(--third);
+
+}
+
+
+.comboBoxHeader p{
+  color: var(--txt-active);
+  font-weight: 200;
+}
+
+.comboBoxHeader .icon{
+  margin-left: rem(10);
+  display: flex;
+  align-items: center;
+  svg{
+    color: var(--txt-secondary);
+  }
+
+}
+
+
+
+.picker {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: fit-content;
+  margin-top: rem(5);
+  padding: 0;
+  list-style: none;
+  background: var(--section-bg);
+  border-radius: rem(5);
+  box-shadow: 0 rem(4) rem(6) rgba(0, 0, 0, 0.1);
+  z-index: 10;
+}
+
+.textInput{
+  width: 100%;
+  flex: 1;
+  color: var(--txt-active);
+  font-weight: 200;
+  border: none;
+  outline: none;
+  background: var(--third);
+}
+
+
+@media (max-width: rem(1000)) {
+  .comboBoxHeader{
+    padding: rem(4) rem(8);
+  }
+}

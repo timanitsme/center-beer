@@ -1,0 +1,114 @@
+@use "../../utils/partialStyles/_pxToRem.scss" as *;
+
+.rulesSection{
+  margin: 0 rem(50) rem(50) rem(50);
+  display: grid;
+  grid-template-columns: rem(200) 1fr;
+  gap: rem(50);
+  svg{
+    width: rem(200);
+    height: auto;
+    color: var(--primary);
+  }
+  background: var(--section-bg);
+  border-radius: rem(45);
+  padding: rem(30) rem(50);
+}
+
+.title{
+  background: var(--primary);
+  color: var(--bg);
+  width: fit-content;
+  padding: rem(10) rem(30);
+  text-transform: uppercase;
+}
+
+.description{
+  background: var(--txt-active);
+  color: var(--bg) !important;
+  margin-right: rem(100);
+  padding: rem(15) rem(20);
+  border-radius: 0 rem(15) rem(15) rem(15);
+  li{
+    margin-left: rem(30);
+  }
+}
+
+
+.sectionContent{
+  display: flex;
+  flex-direction: column;
+  gap: rem(20);
+  h2{
+    text-align: left;
+    color: var(--bg);
+  }
+}
+
+.rule{
+
+}
+
+.heading{
+  display: flex;
+  svg{
+    display: none;
+  }
+}
+
+@media (max-width: rem(1000)) {
+  .rulesSection{
+    margin: 0 rem(25) rem(25) rem(25);
+    grid-template-columns: rem(150) 1fr;
+    gap: rem(25);
+    svg{
+      width: rem(150);
+      height: auto;
+    }
+  }
+
+  .description{
+    margin-right: rem(25);
+  }
+}
+
+@media (max-width: rem(750)) {
+  .rulesSection{
+    grid-template-columns: rem(100) 1fr;
+    padding: rem(15) rem(25);
+    svg{
+      width: rem(100);
+      height: auto;
+    }
+  }
+  .description{
+    margin-right: 0;
+  }
+}
+
+@media (max-width: rem(650)) {
+  .rulesSection{
+    display: flex;
+    flex-direction: column;
+    svg{
+      display: none;
+    }
+  }
+
+  .sectionContent{
+    gap: rem(15);
+  }
+
+  .heading{
+    gap: rem(20);
+    align-items: center;
+    svg{
+      display: flex;
+      width: rem(45);
+    }
+  }
+  .title{
+    padding: rem(10) rem(15);
+    max-width: 80%;
+  }
+}

@@ -1,0 +1,100 @@
+@use "../../utils/partialStyles/_pxToRem.scss" as *;
+
+.reviews{
+  margin: 0 rem(50) rem(50) rem(50);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: rem(50);
+}
+
+.reviewContent{
+  display: flex;
+  flex-direction: column;
+  gap: rem(20);
+  justify-content: space-between;
+
+}
+
+.bottomPart{
+  display: flex;
+  justify-content: space-between;
+  gap: rem(20);
+  p{
+    font-weight: 300;
+  }
+
+}
+
+.feedback h3{
+  font-weight: 500;
+}
+
+.bottles{
+  display: flex;
+  gap: rem(15);
+  justify-content: center;
+  margin-bottom: rem(30);
+  svg{
+    height: rem(50);
+    width: auto;
+  }
+}
+
+.hrtLine{
+  height: rem(1);
+  width: 100%;
+  background: var(--third);
+  margin-bottom: rem(20);
+}
+
+.buttons{
+  display: flex;
+  gap: rem(15);
+  svg{
+    color: var(--txt-active);
+    &:hover{
+      color: var(--primary);
+      transition: 0.3s;
+    }
+  }
+}
+
+.imageContainer{
+  display: flex;
+  align-items: center;
+  img{
+    width: 100%;
+    border-radius: rem(45);
+  }
+}
+
+@media (max-width: rem(1300)) {
+  .bottles{
+    margin-bottom: rem(15);
+    svg{
+      height: rem(35);
+    }
+  }
+}
+
+@media (max-width: rem(1000)) {
+  .reviews{
+    margin: 0 rem(25) rem(25) rem(25);
+    gap: rem(25);
+  }
+}
+
+// 850 stop
+
+@media (max-width: rem(850)) {
+  .reviews{
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: rem(500)) {
+  .bottles{
+    gap: rem(10);
+  }
+}

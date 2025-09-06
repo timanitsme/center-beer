@@ -1,0 +1,23 @@
+@use "../../utils/partialStyles/_pxToRem.scss" as *;
+
+.typesCatalog{
+  margin: 0 rem(50) rem(50) rem(50);
+  display: flex;
+  gap: rem(15);
+  justify-content: space-between;
+}
+
+@media (max-width: rem(1000)) {
+  .typesCatalog{
+    margin: 0 rem(25) rem(25) rem(25);
+  }
+}
+
+@media (max-width: rem(950)) {
+  .typesCatalog{
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: center;
+    gap: rem(25);
+  }
+}

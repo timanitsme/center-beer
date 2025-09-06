@@ -13,6 +13,8 @@ import {initializeAuthState} from "./store/services/authSlice.js";
 import CookieConsent from "./components/CookieConsent/CookieConsent.jsx";
 import AdultsOnlyModal from "./components/Modals/SimpleModal/AdultsOnlyModal.jsx";
 import indexBubblesBg from "./assets/bgPictures/index-bubbles-bg.webp";
+
+const BarCustomEventsPage = lazy(() => import("./pages/BarCustomEventsPage/BarCustomEventsPage.jsx"));
 const RegistrationPage = lazy(() => import("./pages/RegistrationPage/RegistrationPage.jsx"));
 const RestaurantEventsPage = lazy(() => import("./pages/Events/RestaurantEventsPage/RestaurantEventsPage.jsx"));
 const BreweryEventsPage = lazy(() => import("./pages/Events/BreweryEventsPage/BreweryEventsPage.jsx"));
@@ -107,6 +109,7 @@ function App() {
         {path: "/my-check-ins/:alias", element: MyCheckinsPage},
         {path: "/about-us/:alias", element: AboutDetailPage},
         {path: "/bug-report", element: BugReportPage},
+        {path: "/test", element: BarCustomEventsPage},
         {path: "/documents/:alias", element: DocumentDetailPage, hideFooter: true},
         {path: "*", element: NotFoundPage},
     ]

@@ -1,0 +1,31 @@
+@use "../../utils/partialStyles/_pxToRem.scss" as *;
+
+.faq{
+  margin: 0 rem(50) rem(50) rem(50);
+
+  h2{
+    text-align: left;
+    margin-bottom: rem(30);
+  }
+}
+
+.hrtLine{
+  width: 100%;
+  height: rem(1);
+  background: var(--third);
+  margin: rem(20) 0 rem(20) 0;
+}
+
+@media (max-width: rem(1000)) {
+  .faq {
+    margin: 0 rem(25) rem(25) rem(25);
+  }
+}
+
+@media (max-width: rem(650)){
+  .faq{
+    h2{
+      margin-bottom: rem(15);
+    }
+  }
+}

@@ -1,0 +1,41 @@
+@use "../../utils/partialStyles/_pxToRem.scss" as *;
+
+.offerCards{
+  margin: rem(50);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, rem(360));
+  justify-content: center;
+  gap: rem(30);
+  flex-wrap: wrap;
+}
+
+@media (max-width: rem(1250)) {
+  .offerCards{
+    gap: rem(15);
+    grid-template-columns: repeat(auto-fit, rem(330));
+  }
+}
+
+@media (max-width: rem(1000)) {
+  .offerCards{
+    margin: rem(25);
+  }
+}
+
+@media (max-width: rem(750)) {
+  .offerCards{
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: rem(600)) {
+  .offerCards{
+    display: flex;
+    overflow-x: scroll;
+    justify-content: initial;
+    flex-wrap: nowrap;
+    scroll-snap-type: x mandatory;
+    -ms-overflow-style: none;
+    scrollbar-width: thin;
+  }
+}

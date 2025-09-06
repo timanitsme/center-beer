@@ -1,0 +1,34 @@
+@use "../../utils/partialStyles/_pxToRem.scss" as *;
+
+.infrastructureSection{
+  margin: 0 rem(50) rem(50) rem(50);
+
+  svg{
+    cursor: initial;
+  }
+}
+
+
+.mobileInfrastructure{
+  svg{
+    display: none;
+  }
+}
+
+@media (max-width: rem(1000)) {
+  .infrastructureSection {
+    margin: 0 rem(25) rem(25) rem(25);
+  }
+}
+
+@media (max-width: rem(700)) {
+  .mobileInfrastructure{
+    svg{
+      display: initial;
+    }
+  }
+
+  .defaultInfrastructure{
+    display: none;
+  }
+}

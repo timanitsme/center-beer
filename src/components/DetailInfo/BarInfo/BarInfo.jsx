@@ -96,7 +96,9 @@ export default function BarInfo({barInfo={}, sections = []}){
                             <p className="ma-p">{barInfo.description}</p>
                             <div className={styles.barButtons}>
                                 {sections.map((section, index) =>
-                                    <IconButton key={index} onClick={() => handleScroll(section.ref)} text={section.title}>{section.IconComponent}</IconButton>
+                                    section.ref? <IconButton key={index} onClick={() => handleScroll(section.ref)} text={section.title}>{section.IconComponent}</IconButton>:
+                                        <IconButton key={index} onClick={() => window.location=`${window.location.pathname}/${section.path}`} text={section.title}>{section.IconComponent}</IconButton>
+
                                 )}
                                 <SimpleButton onClick={() => navigate("/in-dev")} text={"забронировать стол"}/>
                             </div>

@@ -1,0 +1,156 @@
+@use "../../utils/partialStyles/_pxToRem.scss" as *;
+
+.calculatorSection{
+  margin: 0 rem(50) rem(50) rem(50);
+  display: grid;
+  grid-template-columns: 4fr 6fr;
+  gap: rem(50);
+}
+
+.description{
+
+  h2{
+    text-align: left;
+  }
+
+  p{
+    font-weight: 300;
+    margin-top: rem(15);
+  }
+
+}
+
+
+.data{
+  display: flex;
+  flex-direction: column;
+  gap: rem(15);
+}
+
+.calculator{
+  display: grid;
+  grid-template-columns: 1fr rem(375);
+  gap: rem(50);
+  padding: rem(25);
+  background: var(--section-bg);
+  border-radius: rem(25);
+}
+
+.total{
+  width: 100%;
+  background: var(--third);
+  border-radius: rem(25);
+  border: rem(2) solid #4a4a4a;
+  display: flex;
+  flex-direction: column;
+  padding: rem(20);
+  gap: rem(10);
+
+  button{
+    margin-top: rem(15);
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.totalPrice{
+  margin: rem(10) 0 rem(10) 0;
+}
+
+.hrtLine{
+  height: rem(1);
+  width: 100%;
+  background: var(--txt-secondary);
+}
+
+.stat{
+  display: flex;
+  justify-content: space-between;
+  p{
+    font-weight: 300;
+  }
+}
+
+.field{
+  display: flex;
+  flex-direction: column;
+  gap: rem(5);
+
+  p{
+    font-weight: 300;
+  }
+
+}
+
+.additionalOptions{
+  display: flex;
+  flex-direction: column;
+  gap: rem(10);
+
+  p{
+    font-weight: 300;
+  }
+
+}
+
+.options{
+  display: flex;
+  gap: rem(10);
+  flex-wrap: wrap;
+}
+
+.option{
+  padding: rem(5) rem(10);
+  background: var(--third);
+  border-radius: rem(15);
+  cursor: pointer;
+
+  p{
+    font-weight: 300;
+    text-transform: uppercase;
+    color: var(--txt-active)
+
+  }
+
+  &.selected{
+    background: var(--primary);
+    transition: 0.3s;
+    p{
+      color: var(--bg);
+      transition: 0.3s;
+    }
+  }
+
+}
+
+
+
+@media (max-width: rem(1000)) {
+  .calculatorSection{
+    margin: 0 rem(25) rem(25) rem(25);
+    display: flex;
+    flex-direction: column;
+    gap: rem(25);
+  }
+
+
+}
+
+@media (max-width: rem(800)) {
+  .calculator{
+    grid-template-columns: 1fr 1fr;
+    padding: rem(15);
+    gap: rem(15);
+  }
+  .total{
+    padding: rem(15);
+  }
+}
+
+@media (max-width: rem(500)) {
+  .calculator{
+    display: flex;
+    flex-direction: column;
+  }
+}

@@ -15,6 +15,56 @@
   }
 }
 
+
+.cls1, .cls2, .cls3, .cls4, .cls5 {
+ stroke-width: 0;
+}
+
+.cls1, .cls4 {
+  fill: #f2c247;
+}
+
+.cls2 {
+  fill: #fff;
+}
+
+.cls3 {
+  fill: #272727;
+}
+
+.cls4 {
+  fill-rule: evenodd;
+}
+
+.cls5 {
+  fill: #efefef;
+}
+
+.flare {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: rem(25);
+  transform: skewX(-45deg);
+  left: -100%;
+  background: linear-gradient(
+                  90deg,
+                  rgba(255, 255, 255, 0.1),
+                  rgba(255, 255, 255, 0.4)
+  );
+  animation: flareAnimation 2.5s infinite linear;
+}
+
+@keyframes flareAnimation {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+
 @media (max-width: rem(1000)) {
   .infrastructureSection {
     margin: 0 rem(25) rem(25) rem(25);

@@ -46,7 +46,7 @@ export default function BarDetailPage(){
             {!isLoading && !error && data && data?.data?.length > 0 && data?.data?.[0]?.id &&
                 <>
                     <NavChain paths={[...getBarPagePaths(), {title: data?.data[0].name, path: ""}]}/>
-                    <BarInfo barInfo={data?.data[0]} sections={sections}/>
+                    <BarInfo barInfo={data?.data[0]} sections={data?.data[0].alias === "13rules_suchevskiy_val"?  [...sections, {title: "Забронировать мероприятие", IconComponent: <FlagsIcon/>, path: "events"}]: sections}/>
                     <div style={{backgroundImage: `url(${barEventsBg})`, backgroundRepeat: 'no-repeat'}}>
                         <AdvantagesList barInfo={data?.data[0]}/>
                         <BarEvents barId={data?.data[0].id}/>

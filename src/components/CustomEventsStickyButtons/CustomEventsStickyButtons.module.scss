@@ -1,0 +1,73 @@
+@use "../../utils/partialStyles/_pxToRem.scss" as *;
+
+.stickyButtons{
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 0) !important;
+  display: flex;
+  gap: rem(10);
+  align-items: center;
+  justify-content: center;
+  padding: rem(10);
+  z-index: 2000;
+  background: var(--section-bg-semi-transparent);
+  border-radius: rem(15);
+  margin-bottom: rem(15);
+}
+.waMobile{
+  display: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .waMobile:hover{
+    background: var(--primary-semi-transparent);
+    transition: 0.5s;
+  }
+}
+
+@media (max-width: rem(768)) {
+  .waMobile{
+    padding: rem(10);
+  }
+}
+
+
+@media (max-width: rem(550)) {
+  .wa{
+    display: none;
+  }
+  .waMobile{
+    background: var(--primary);
+    border: none;
+    border-radius: rem(5);
+    display: flex;
+    gap: rem(10);
+    padding: rem(10);
+    width: fit-content;
+    align-items: center;
+    cursor: pointer;
+    svg{
+      color: var(--bg);
+      fill: var(--bg);
+      height: rem(17);
+      width: auto;
+    }
+    justify-self: flex-end;
+  }
+  .stickyButtons{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .costButton{
+    grid-column: span 2;
+    button{
+      width: 100%;
+      justify-content: center;
+    }
+  }
+}
+
+
+
+

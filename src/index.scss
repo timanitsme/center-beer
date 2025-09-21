@@ -18,6 +18,8 @@
           #{$maxSize * 1rem}
   );
 }
+.text-giant {@include fluid-text(70, 40)}
+
 .text-big {@include fluid-text(56,36)}
 h1 { @include fluid-text(40, 28) }
 h2 { @include fluid-text(36, 26) }
@@ -55,3 +57,7 @@ span { @include fluid-text(18, 16) }
 .ma-h4-small {@include fluid-text(28, 12)}
 .ma-h2-small {@include fluid-text(36, 18)}
 .ma-h3-small {@include fluid-text(32, 14)}
+
+body.no-scroll {
+  overflow: hidden;
+}

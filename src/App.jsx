@@ -109,7 +109,7 @@ function App() {
         {path: "/my-check-ins/:alias", element: MyCheckinsPage},
         {path: "/about-us/:alias", element: AboutDetailPage},
         {path: "/bug-report", element: BugReportPage},
-        {path: "/test", element: BarCustomEventsPage},
+        {path: "/bar/13rules_suchevskiy_val/events", element: BarCustomEventsPage},
         {path: "/documents/:alias", element: DocumentDetailPage, hideFooter: true},
         {path: "*", element: NotFoundPage},
     ]

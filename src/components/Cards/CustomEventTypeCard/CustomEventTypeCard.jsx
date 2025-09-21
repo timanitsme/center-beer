@@ -4,6 +4,7 @@ export default function CustomEventTypeCard({cardInfo, onClick}){
 
     return(
         <div className={styles.card} onClick={onClick}>
+            {cardInfo.promo && <p className={`${styles.promo} ma-p`}>{cardInfo.promo}</p>}
             <div className={styles.pictureContainer}>
                 <img src={cardInfo.image} alt=""></img>
             </div>

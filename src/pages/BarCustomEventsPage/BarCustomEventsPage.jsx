@@ -21,8 +21,16 @@ import Cake from "../../assets/customEventsPictures/cake.webp";
 import Business from "../../assets/customEventsPictures/business.webp";
 import BoardGames from "../../assets/customEventsPictures/board-games.webp";
 import Sport from "../../assets/customEventsPictures/sport.webp";
-import ReviewMock from "../../assets/customEventMocks/review-mock.png"
+import CustomEventReview1 from "../../assets/customEventReviews/event-review-1.webp"
+import CustomEventReview2 from "../../assets/customEventReviews/event-review-2.webp"
+import CustomEventReview3 from "../../assets/customEventReviews/event-review-3.webp"
+import CustomEventReview4 from "../../assets/customEventReviews/event-review-4.webp"
+import CustomEventReview5 from "../../assets/customEventReviews/event-review-5.webp"
 import DatePicker from "../../components/DatePicker/DatePicker.jsx";
+import CustomEventsStickyButtons from "../../components/CustomEventsStickyButtons/CustomEventsStickyButtons.jsx";
+import CustomEventCostCalculatorAlt
+    from "../../components/CustomEventCostCalculatorAlt/CustomEventCostCalculatorAlt.jsx";
+import CustomEventRequestOverlay from "../../components/CustomEventRequestOverlay/CustomEventRequestOverlay.jsx";
 
 
 export default function BarCustomEventsPage(){
@@ -36,6 +44,31 @@ export default function BarCustomEventsPage(){
 
     const calculatorRef = useRef(null)
     const orderRef = useRef(null)
+
+    const heroRef = useRef(null)
+    const [isHeroVisible, setIsHeroVisible] = useState(true)
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                setIsHeroVisible(entry.isIntersecting);
+            },
+            {
+                root: null,
+                threshold: 0.1,
+            }
+        );
+
+        if (heroRef.current) {
+            observer.observe(heroRef.current);
+        }
+
+        return () => {
+            if (heroRef.current) {
+                observer.unobserve(heroRef.current);
+            }
+        };
+    }, []);
 
     const gallery = [
         "https://img.center.beer/bar/c4/ca/42/1/13-rules-narodnyy-bar-gallery-1.jpg",
@@ -97,49 +130,54 @@ export default function BarCustomEventsPage(){
     ]
 
     const questions = [
-        {question: "Можно ли со своими тортами/фото-зоной?", answer: "Да, согласуем"},
-        {question: "Сколько длится аренда?", answer: "Стандарт 4 часа, +1 час по прайсу"},
-        {question: "Шум/соседи?", answer: "Звуковые ограничения соблюдаем, музыка допустима"},
-        {question: "Можно детское мероприятие?", answer: "Обсудим формат и меню"},
-        {question: "Есть ли возрастные ограничения", answer: "Возраст 18+ для алкогольных мероприятий"},
-        {question: "Фото/видео-съёмка?", answer: "Да, согласуем"}
+        {question: "Можно ли со своими тортами/фото-зоной?", answer: "Да, вы можете привезти свои торты или организовать фото-зону. Мы всегда готовы помочь с согласованием деталей, чтобы всё прошло идеально."},
+        {question: "Сколько длится аренда?", answer: "Стандартное время аренды составляет 4 часа. Если вам нужно больше времени, каждый дополнительный час оплачивается согласно прайсу. Уточните детали у менеджера."},
+        {question: "Шум/соседи?", answer: "Мы соблюдаем звуковые ограничения, установленные для комфортного сосуществования с соседями. Музыка допустима до определённого уровня громкости, который мы оговариваем заранее. "},
+        {question: "Можно детское мероприятие?", answer: "Да, мы можем организовать детское мероприятие. Давайте обсудим формат, количество участников и составим подходящее меню для ваших гостей."},
+        {question: "Есть ли возрастные ограничения", answer: "Для мероприятий с алкоголем действует возрастное ограничение 18+. Для других типов мероприятий ограничений нет, если это не противоречит формату."},
+        {question: "Фото/видео-съёмка?", answer: "Да, фото- и видеосъемка разрешена. Мы можем предоставить рекомендации по расположению оборудования или помочь с планировкой пространства для съемки. Согласуем все детали заранее."}
     ]
 
     useEffect(() => {
         document.title = ""
     }, []);
 
-    const formats = [
-        {title: "Частные праздники", singular: "Частный праздник", description: "День рождения, Юбилей, Мальчишник/Девичник, Afterparty", image: Cake, onClick: () => {}},
-        {title: "Бизнес-мероприятия", singular: "Бизнес-мероприятие", description: "Корпоратив, Тимбилдинг, Презентации, Встречи предпринимателей", image: Business, onClick: () => {}},
+    const types = [
+        {title: "Частные праздники", singular: "Частный праздник", promo: "Сертификат и подарки", description: "День рождения, Юбилей, Мальчишник/Девичник, Afterparty", image: Cake, onClick: () => {}},
+        {title: "Бизнес-мероприятия", singular: "Бизнес-мероприятие", promo: "welcome-drink", description: "Корпоратив, Тимбилдинг, Презентации, Встречи предпринимателей", image: Business, onClick: () => {}},
         {title: "Тематические мероприятия", singular: "Тематическое мероприятие", description: "Крафтовые дегустации, Квиз, Stand-up, Караоке-батл, Музыкальный батл, Джем/«квартирник», Трибьют-вечера, Настолки/Мафия/PS4/5, Beer-pong", image: BoardGames, onClick: () => {}},
-        {title: "Спорт", singular: "Спортивное мероприятие", description: "Футбол, хоккей, UFC — смотрите любимые события на большом экране с друзьями и холодным пивом", image: Sport, onClick: () => {}},
+        {title: "Спорт", singular: "Спортивное мероприятие", promo: "Закуски к матчу -20%", description: "Футбол, хоккей, UFC — смотрите любимые события на большом экране с друзьями и холодным пивом", image: Sport, onClick: () => {}},
     ]
 
     const [selectedFormat, setSelectedFormat] = useState(null)
+    const [requestOverlayExpanded, setRequestOverlayExpanded] = useState(false)
 
     const reviews = [
-        {id: 0, picture: ReviewMock, rating: 4.5, author: "Сергей К.", comment: "Это именно бар, а не паб. Душевное место, небольшое, человек на 40-50. Хороший выбор пива и настоек. Еда - барное меню. Готовят чаще вкусно, чем нет. Прекрасные рёбрышки и пивные тарелки. Отличное место для встречи с друзьями. В выходные живая музыка - разная, но обычно бывает весело"},
-        {id: 1, picture: ReviewMock, rating: 5, author: "", comment: ""},
-        {id: 2, picture: ReviewMock, rating: 5, author: "", comment: ""},
-        {id: 3, picture: ReviewMock, rating: 5, author: "", comment: ""},
+        {id: 0, picture: CustomEventReview1, rating: 5, author: "Сергей К.", comment: "Бар с живой музыкой, есть гитара и дартс, это была приятная пятница после работы. Кухня класс, мясные стрипсы, крутые блюда в кляре. Есть бонусно-скидочная система. Рекомендую!"},
+        {id: 1, picture: CustomEventReview2, rating: 5, author: "Анна П.", comment: "Это именно бар, а не паб. Душевное место, небольшое, человек на 40-50. Хороший выбор пива и настоек. Еда - барное меню. Готовят чаще вкусно, чем нет. Прекрасные рёбрышки и пивные тарелки. Отличное место для встречи с друзьями. В выходные живая музыка - разная, но обычно бывает весело"},
+        {id: 2, picture: CustomEventReview3, rating: 5, author: "Дмитрий М.", comment: "Попали сюда за призом, выигранным в телеге. Все очень классно! Уютно, вкусно, кто-то постоянно у микрофона даёт фон. Нам понравилось! Бармен Полина-просто солнце! Молодцы! Так держать!!!"},
+        {id: 3, picture: CustomEventReview4, rating: 5, author: "Екатерина С.", comment: "Классный бар для небольших вечерних посиделок с друзьями, вкусная еда, неплохой выбор напитков, которые делают с душой и качественно, а также за приемлимый ценник. Даже есть активности с живым выступлением, которые отлично дополняют атмосферу. Очень рекомендую!"},
+        {id: 4, picture: CustomEventReview5, rating: 5, author: "Александр Т.", comment: "Хорошее место, чтобы просто попить пиво и заесть всякими закусками. Можно прийти и поиграть в настолки или просто игры в дни игротек, можно просто послушать авторскую музыку или классику дворов (Батарейка, Летова, Кино и.т.д, даже Гайка Борзова). Крайне рекомендую"},
     ]
 
 
     return(
         <div className="content">
-            <HeroSection calculatorRef={calculatorRef} orderRef={orderRef}/>
+            <CustomEventsStickyButtons isVisible={isHeroVisible} calculatorRef={calculatorRef} requestOverlay={requestOverlayExpanded} setRequestOverlay={setRequestOverlayExpanded}></CustomEventsStickyButtons>
+            <HeroSection calculatorRef={calculatorRef} setRequestOverlay={setRequestOverlayExpanded} heroRef={heroRef}/>
             <NavChain paths={paths}></NavChain>
-            <CustomEventTypes cards={formats} orderRef={orderRef}/>
+            <CustomEventTypes cards={types} orderRef={orderRef}/>
             <CustomEventFormats/>
             <PromotionCombinationRules/>
             <CustomEventOffers cards={offerCards}/>
-            <CustomEventCostCalculator calculatorRef={calculatorRef}/>
-            <CustomEventRequestForm orderRef={orderRef}/>
+            <CustomEventCostCalculatorAlt calculatorRef={calculatorRef}/>
             <CustomEventInfrastructure/>
             <CustomEventReviews reviews={reviews}/>
             <Gallery pictures={gallery}></Gallery>
             <FAQ questions={questions}/>
+            <CustomEventRequestOverlay isExpanded={requestOverlayExpanded} setIsExpanded={setRequestOverlayExpanded}/>
+
+
         </div>
     )
 }

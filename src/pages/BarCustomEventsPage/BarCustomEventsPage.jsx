@@ -166,7 +166,7 @@ export default function BarCustomEventsPage(){
             <CustomEventsStickyButtons isVisible={isHeroVisible} calculatorRef={calculatorRef} requestOverlay={requestOverlayExpanded} setRequestOverlay={setRequestOverlayExpanded}></CustomEventsStickyButtons>
             <HeroSection calculatorRef={calculatorRef} setRequestOverlay={setRequestOverlayExpanded} heroRef={heroRef}/>
             <NavChain paths={paths}></NavChain>
-            <CustomEventTypes cards={types} orderRef={orderRef}/>
+            <CustomEventTypes cards={types} orderRef={orderRef} setRequestOverlay={setRequestOverlayExpanded}/>
             <CustomEventFormats/>
             <PromotionCombinationRules/>
             <CustomEventOffers cards={offerCards}/>

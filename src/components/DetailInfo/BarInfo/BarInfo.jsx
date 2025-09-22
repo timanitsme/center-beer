@@ -99,6 +99,7 @@ export default function BarInfo({barInfo={}, sections = []}){
                                     section.ref? <IconButton key={index} onClick={() => handleScroll(section.ref)} text={section.title}>{section.IconComponent}</IconButton>:
                                         <IconButton key={index} onClick={() => window.location=`${window.location.pathname}/${section.path}`} text={section.title}>{section.IconComponent}</IconButton>
 
+
                                 )}
                                 <SimpleButton onClick={() => navigate("/in-dev")} text={"забронировать стол"}/>
                             </div>
@@ -153,7 +154,8 @@ export default function BarInfo({barInfo={}, sections = []}){
             </div>
             <div className={styles.barButtonsMobile}>
                 {sections.map((section, index) =>
-                    <IconButton key={index} onClick={() => handleScroll(section.ref)} text={section.title}>{section.IconComponent}</IconButton>
+                    section.ref? <IconButton key={index} onClick={() => handleScroll(section.ref)} text={section.title}>{section.IconComponent}</IconButton>:
+                        <IconButton key={index} onClick={() => window.location=`${window.location.pathname}/${section.path}`} text={section.title}>{section.IconComponent}</IconButton>
                 )}
                 <SimpleButton onClick={() => navigate("/in-dev")} text={"забронировать стол"}/>
             </div>

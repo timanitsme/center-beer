@@ -92,7 +92,7 @@
 .opened {
   .conditionsDetail{
     width: 100%;
-    height: rem(200);
+    height: rem(450);
     background: #2E2E2E;
     transition: 0.3s;
     padding: rem(10) rem(15);
@@ -105,6 +105,21 @@
     svg{
       transform: rotate(180deg);
       transition: 0.3s;
+    }
+  }
+  li{
+    text-align: left;
+    list-style-type: none;
+    padding-left: rem(20);
+    font-size: inherit;
+    position: relative;
+    &::before {
+      content: "—";
+      position: absolute;
+      left: 0;
+      font-size: inherit;
+
+      color: var(--txt-active);
     }
   }
 }
@@ -124,14 +139,23 @@
   }
 }
 
-@media (max-width: rem(1000)) {
+@media (max-width: rem(1700)) {
+  .opened{
+    .conditionsDetail{
+      height: rem(600);
+    }
+  }
+  
+}
+
+@media (max-width: rem(1100)) {
   .formats{
     grid-template-columns: 1fr 1fr;
   }
 
   .opened{
     .conditionsDetail{
-      height: rem(150);
+      height: rem(450);
     }
   }
 
@@ -146,13 +170,19 @@
 
 }
 
+@media (max-width: rem(600)) {
+  .formats{
+    grid-template-columns: 1fr;
+  }
+}
+
 @media (max-width: rem(500)) {
   .formats{
     gap: rem(25);
   }
   .opened{
     .conditionsDetail{
-      height: rem(180);
+      height: rem(300);
     }
   }
 }

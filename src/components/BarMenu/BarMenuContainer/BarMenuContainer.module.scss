@@ -24,7 +24,13 @@
 
 @media (max-width: rem(1000)) {
     .menuContainer{
-        margin: 0 rem(25) rem(25) rem(25);
+        margin: 0 0 rem(25) 0;
+    }
+    .marginize, .filterButtons{
+        margin: 0 rem(25) 0 rem(25);
+    }
+    .filterButtons{
+        margin-bottom: rem(20);
     }
 
 }

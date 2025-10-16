@@ -12,8 +12,8 @@ import {
     getBarReviewsImages, getBarReviewsHeader, getBarReviewsResume
 } from "./BarDetailPageData.jsx";
 import {useGetBarInfoQuery} from "../../../store/services/centerBeer.js";
-import {useParams} from "react-router-dom";
-import {useEffect, useRef} from "react";
+import {useParams, useSearchParams} from "react-router-dom";
+import {useEffect, useRef, useState} from "react";
 import BeerMugsIcon from "../../../assets/beer-mugs-icon.svg?react"
 import SausageIcon from "../../../assets/sausage-icon.svg?react"
 import FlagsIcon from "../../../assets/flags-icon.svg?react"
@@ -23,6 +23,8 @@ import barEventsBg from "../../../assets/bgPictures/bar-events-n-gallery.webp"
 export default function BarDetailPage(){
     const {alias} = useParams();
     const {data, isLoading, error} = useGetBarInfoQuery(alias)
+    const [searchParams] = useSearchParams();
+    const menuAlias = searchParams.get('menu');
 
     useEffect(() => {
         document.title = `center.beer | Бары: ${data?.data[0]?.name}`
@@ -31,6 +33,9 @@ export default function BarDetailPage(){
     const menuRef = useRef(null)
     const promosRef = useRef(null)
     const newsRef = useRef(null)
+
+    const [isMenuReady, setIsMenuReady] = useState(false);
+
     const sections = [
         {title: "меню", IconComponent: <SausageIcon/>, ref: menuRef},
         {title: "скидки и акции", IconComponent: <FlagsIcon/>, ref: promosRef},
@@ -40,6 +45,22 @@ export default function BarDetailPage(){
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
+
+    useEffect(() => {
+        if (menuAlias && isMenuReady && menuRef.current) {
+            menuRef.current.scrollIntoView({
+                behavior: "smooth",
+            });
+        }
+    }, [menuAlias, isMenuReady, menuRef]);
+
+    useEffect(() => {
+        console.log(`menu ready: ${isMenuReady}`)
+    }, [isMenuReady])
+
+    const handleMenuReady = () => {
+        setIsMenuReady(true);
+    };
 
     return(
         <div className="content">
@@ -53,7 +74,7 @@ export default function BarDetailPage(){
                         {data?.data[0]?.gallery?.length !== 0 && <Gallery pictures={data?.data[0].gallery}/>}
                     </div>
                     {/*<BarMenu filters={getBarPageFilters()} filterButtons={getBarPageFilterButtons()} sections={getBarPageSections()} ref={menuRef} barId={Number(data?.data?.[0]?.id)}/>*/}
-                    <BarMenuContainer ref={menuRef} barId={Number(data?.data?.[0]?.id)}/>
+                    <BarMenuContainer ref={menuRef} barId={Number(data?.data?.[0]?.id)} onReady={handleMenuReady}/>
                     <CurrentPromos barId={data?.data[0].id} ref={promosRef}/>
                     <BarNews barId={data?.data[0].id} ref={newsRef}/>
                     <Reviews images={getBarReviewsImages()} header={getBarReviewsHeader()} resume={getBarReviewsResume()} id={data?.data[0].id} alias="bar"/>

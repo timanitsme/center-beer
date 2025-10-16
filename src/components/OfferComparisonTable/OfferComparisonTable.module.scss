@@ -1,0 +1,39 @@
+@use "../../utils/partialStyles/_pxToRem.scss" as *;
+
+.comparisonSection{
+  display: flex;
+  flex-direction: column;
+  margin: 0 rem(50) rem(50) rem(50);
+  gap: rem(16);
+}
+
+.tableContainer{
+  width: 100%;
+
+  text-align: center;
+  color: var(--txt-active);
+  background: #261E10;
+  border: rem(2) solid #f59e0b;
+  border-radius: rem(16);
+}
+
+.compareTable{
+  width: 100%;
+  border-collapse: collapse;
+  th, td {
+    padding: 10px;
+    border-bottom: 1px solid var(--third);
+  }
+
+}
+
+.accent{
+  color: var(--primary);
+}
+
+
+@media (max-width: rem(1000)) {
+  .comparisonSection{
+    margin: 0 rem(25) rem(25) rem(25);
+  }
+}

@@ -36,7 +36,7 @@ export default function HeroSection({calculatorRef, setRequestOverlay, heroRef})
                     <div className={styles.dot}/>
                     <p className="ma-p" style={{fontWeight: 500}}>Экраны</p>
                     <div className={styles.dot}/>
-                    <p className="ma-p" style={{fontWeight: 500}}>Пакеты &#34;Под ключ&#34;</p>
+                    <p className="ma-p" style={{fontWeight: 500}}>Организация &#34;Под ключ&#34;</p>
                     <div className={styles.dot}/>
                     <p className="ma-p" style={{fontWeight: 500}}>Зал до 50 человек</p>
                 </div>

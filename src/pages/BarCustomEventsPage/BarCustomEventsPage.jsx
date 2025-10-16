@@ -26,11 +26,27 @@ import CustomEventReview2 from "../../assets/customEventReviews/event-review-2.w
 import CustomEventReview3 from "../../assets/customEventReviews/event-review-3.webp"
 import CustomEventReview4 from "../../assets/customEventReviews/event-review-4.webp"
 import CustomEventReview5 from "../../assets/customEventReviews/event-review-5.webp"
-import DatePicker from "../../components/DatePicker/DatePicker.jsx";
 import CustomEventsStickyButtons from "../../components/CustomEventsStickyButtons/CustomEventsStickyButtons.jsx";
 import CustomEventCostCalculatorAlt
     from "../../components/CustomEventCostCalculatorAlt/CustomEventCostCalculatorAlt.jsx";
 import CustomEventRequestOverlay from "../../components/CustomEventRequestOverlay/CustomEventRequestOverlay.jsx";
+import Gallery1 from "../../assets/customEventGallery/gallery-1.webp"
+import Gallery2 from "../../assets/customEventGallery/gallery-2.webp"
+import Gallery3 from "../../assets/customEventGallery/gallery-3.webp"
+import Gallery4 from "../../assets/customEventGallery/gallery-4.webp"
+import Gallery5 from "../../assets/customEventGallery/gallery-5.webp"
+import Gallery6 from "../../assets/customEventGallery/gallery-6.webp"
+import Gallery7 from "../../assets/customEventGallery/gallery-7.webp"
+import Gallery8 from "../../assets/customEventGallery/gallery-8.webp"
+import Gallery9 from "../../assets/customEventGallery/gallery-9.webp"
+import Gallery10 from "../../assets/customEventGallery/gallery-10.webp"
+import Gallery11 from "../../assets/customEventGallery/gallery-11.webp"
+import Gallery12 from "../../assets/customEventGallery/gallery-12.webp"
+import Gallery13 from "../../assets/customEventGallery/gallery-13.webp"
+import Gallery14 from "../../assets/customEventGallery/gallery-14.webp"
+import Gallery15 from "../../assets/customEventGallery/gallery-15.webp"
+import OfferComparisonTable from "../../components/OfferComparisonTable/OfferComparisonTable.jsx";
+import CustomEventCaseReview from "../../components/CustomEventCaseReview/CustomEventCaseReview.jsx";
 
 
 export default function BarCustomEventsPage(){
@@ -72,20 +88,33 @@ export default function BarCustomEventsPage(){
 
     const gallery = [
         "https://img.center.beer/bar/c4/ca/42/1/13-rules-narodnyy-bar-gallery-1.jpg",
-        "https://img.center.beer/bar/c4/ca/42/1/13-rules-narodnyy-bar-gallery-2.jpg",
+        Gallery1,
+        Gallery2,
         "https://img.center.beer/bar/c4/ca/42/1/13-rules-narodnyy-bar-gallery-3.jpg",
+        Gallery3,
         "https://img.center.beer/bar/c4/ca/42/1/13-rules-narodnyy-bar-gallery-4.jpg",
+        Gallery4,
         "https://img.center.beer/bar/c4/ca/42/1/13-rules-narodnyy-bar-gallery-5.jpg",
         "https://img.center.beer/bar/c4/ca/42/1/13-rules-narodnyy-bar-gallery-6.jpg",
+        Gallery6,
         "https://img.center.beer/bar/c4/ca/42/1/13-rules-narodnyy-bar-gallery-7.jpg",
+        Gallery7,
         "https://img.center.beer/bar/c4/ca/42/1/13-rules-narodnyy-bar-gallery-8.jpg",
+        Gallery8,
         "https://img.center.beer/bar/c4/ca/42/1/13-rules-narodnyy-bar-gallery-9.jpg",
+        Gallery9,
         "https://img.center.beer/bar/c4/ca/42/1/13-rules-narodnyy-bar-gallery-10.jpg",
+        Gallery10,
         "https://img.center.beer/bar/c4/ca/42/1/13-rules-narodnyy-bar-gallery-11.jpg",
+        Gallery11,
         "https://img.center.beer/bar/c4/ca/42/1/13-rules-narodnyy-bar-gallery-12.jpg",
+        Gallery12,
         "https://img.center.beer/bar/c4/ca/42/1/13-rules-narodnyy-bar-gallery-13.jpg",
+        Gallery13,
         "https://img.center.beer/bar/c4/ca/42/1/13-rules-narodnyy-bar-gallery-14.jpg",
+        Gallery14,
         "https://img.center.beer/bar/c4/ca/42/1/13-rules-narodnyy-bar-gallery-15.jpg",
+        Gallery15,
         "https://img.center.beer/bar/c4/ca/42/1/13-rules-narodnyy-bar-gallery-16.jpg",
         "https://img.center.beer/bar/c4/ca/42/1/13-rules-narodnyy-bar-gallery-17.jpg",
         "https://img.center.beer/bar/c4/ca/42/1/13-rules-narodnyy-bar-gallery-18.jpg",
@@ -105,12 +134,7 @@ export default function BarCustomEventsPage(){
             <><b>Бонус:</b> экран/флипчарт с подключением — <b>бесплатно</b></>]},
         { Icon: GiPartyPopper, title: "Мальчишник/Девичник", price: "ОТ 20 000 ₽", badge: {oldPrice: true, content: "45 000 ₽"}, characteristics: [
             <>Первый кег пива или сет шотов — бесплатно</>,
-            <>Пакет «Закуски XL» по специальной цене (бургеры + снеки)</>,
-            <>Диджей/караоке с <b>–30%</b></>]},
-        { Icon: PiSoccerBallFill, title: "Большой матч", price: "ОТ 20 000 ₽", badge: {oldPrice: true, content: "45 000 ₽"}, characteristics: [
-            <>Полная или частичная аренда</>,
-            <><b>–20%</b> на закуски к матчу</>,
-            <><b>Комбо-наборы «Пиво + закуски»</b> (пример меню): <li>«Хэт-трик» (3 пива 0,5 + крылья + картофель) — <b>1 990 ₽</b></li><li>«Дубль» (2 пива 0,5 + начос + сырные палочки) — <b>1 290 ₽</b></li><li>«Капитан» (4 пива 0,5 + бургер-мини 4 шт + кольца) — <b>2 790 ₽</b></li></>]},
+            <>Пакет «Закуски XL» по специальной цене (бургеры + снеки)</>]},
         { Icon: MdOutlineStars, title: "Все включено", price: "100 000 ₽", badge: {benefit: true, content: "Выгода 30 000 ₽"}, characteristics: [
             <>Полная аренда</>,
             <>Ведущий</>,
@@ -121,7 +145,7 @@ export default function BarCustomEventsPage(){
                 <>Фото/видео</>
             ]},
         { Icon: FaGift, title: "Дополнительные механики", price: "ОТ 20 000 ₽", badge: {oldPrice: true, content: "45 000 ₽"}, characteristics: [
-            <><b>Happy Birthday Week:</b> в течение 7 дней после ДР — <b>–20%</b> на весь стол (ре-визит)</>,
+            <><b>Happy Birthday Week:</b> в течение 7 дней после ДР <b>–20%</b> на бар при повторном визите</>,
             <><b>Afterwork Party (будни с 18:00):</b> первый сет закусок — бесплатно</>,
             <><b>Weekend Special:</b> аренда в Сб/Вс — пакет «Пиво + закуски» <b>–20%</b></>,
             <><b>Карта «Организатор»:</b> за 2+ мероприятий — сертификат 5 000 ₽</>
@@ -135,7 +159,8 @@ export default function BarCustomEventsPage(){
         {question: "Шум/соседи?", answer: "Мы соблюдаем звуковые ограничения, установленные для комфортного сосуществования с соседями. Музыка допустима до определённого уровня громкости, который мы оговариваем заранее. "},
         {question: "Можно детское мероприятие?", answer: "Да, мы можем организовать детское мероприятие. Давайте обсудим формат, количество участников и составим подходящее меню для ваших гостей."},
         {question: "Есть ли возрастные ограничения", answer: "Для мероприятий с алкоголем действует возрастное ограничение 18+. Для других типов мероприятий ограничений нет, если это не противоречит формату."},
-        {question: "Фото/видео-съёмка?", answer: "Да, фото- и видеосъемка разрешена. Мы можем предоставить рекомендации по расположению оборудования или помочь с планировкой пространства для съемки. Согласуем все детали заранее."}
+        {question: "Фото/видео-съёмка?", answer: "Да, фото- и видеосъемка разрешена. Мы можем предоставить рекомендации по расположению оборудования или помочь с планировкой пространства для съемки. Согласуем все детали заранее."},
+        {question: "Есть ли предоплата?", answer: "Да, при бронировании мероприятия вносится 30% предоплата"}
     ]
 
     useEffect(() => {
@@ -143,10 +168,10 @@ export default function BarCustomEventsPage(){
     }, []);
 
     const types = [
-        {title: "Частные праздники", singular: "Частный праздник", promo: "Сертификат и подарки", description: "День рождения, Юбилей, Мальчишник/Девичник, Afterparty", image: Cake, onClick: () => {}},
-        {title: "Бизнес-мероприятия", singular: "Бизнес-мероприятие", promo: "welcome-drink", description: "Корпоратив, Тимбилдинг, Презентации, Встречи предпринимателей", image: Business, onClick: () => {}},
-        {title: "Тематические мероприятия", singular: "Тематическое мероприятие", description: "Крафтовые дегустации, Квиз, Stand-up, Караоке-батл, Музыкальный батл, Джем/«квартирник», Трибьют-вечера, Настолки/Мафия/PS4/5, Beer-pong", image: BoardGames, onClick: () => {}},
-        {title: "Спорт", singular: "Спортивное мероприятие", promo: "Закуски к матчу -20%", description: "Футбол, хоккей, UFC — смотрите любимые события на большом экране с друзьями и холодным пивом", image: Sport, onClick: () => {}},
+        {title: "Частные праздники", singular: "Частный праздник", promo: "Сертификат и подарки", description: "День рождения, Юбилей, Мальчишник, Девичник, Afterparty", image: Cake, onClick: () => {}},
+        {title: "Бизнес-мероприятия", singular: "Бизнес-мероприятие", promo: "Пивная кега по себестоимости", description: "Корпоратив, Тимбилдинг, Презентации, Встречи предпринимателей", image: Business, onClick: () => {}},
+        {title: "Тематические мероприятия", singular: "Тематическое мероприятие", description: "Крафтовые дегустации, Квиз, Stand-up, Караоке-батл, Музыкальный батл, Джем, «квартирник», Трибьют-вечера, Настолки, Мафия, PS4, PS5, Beer-pong", image: BoardGames, onClick: () => {}},
+        {title: "Спорт", singular: "Спортивное мероприятие", promo: "Выигрыла ваша команда - шоты в подарок", description: "Футбол, хоккей, UFC — смотрите любимые события на большом экране с друзьями и холодным пивом", image: Sport, onClick: () => {}},
     ]
 
     const [selectedFormat, setSelectedFormat] = useState(null)
@@ -168,16 +193,15 @@ export default function BarCustomEventsPage(){
             <NavChain paths={paths}></NavChain>
             <CustomEventTypes cards={types} orderRef={orderRef} setRequestOverlay={setRequestOverlayExpanded}/>
             <CustomEventFormats/>
-            <PromotionCombinationRules/>
             <CustomEventOffers cards={offerCards}/>
-            <CustomEventCostCalculatorAlt calculatorRef={calculatorRef}/>
+            <OfferComparisonTable/>
+            <CustomEventCostCalculatorAlt calculatorRef={calculatorRef} setIsExpanded={setRequestOverlayExpanded}/>
             <CustomEventInfrastructure/>
             <CustomEventReviews reviews={reviews}/>
+            <CustomEventCaseReview/>
             <Gallery pictures={gallery}></Gallery>
             <FAQ questions={questions}/>
             <CustomEventRequestOverlay isExpanded={requestOverlayExpanded} setIsExpanded={setRequestOverlayExpanded}/>
-
-
         </div>
     )
 }

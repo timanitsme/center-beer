@@ -76,6 +76,19 @@ function App() {
         {title: "Новости", path: "/news", element: NewsPage},
         {title: "Контакты", path: "/contacts", element: ContactsPage}, // /contacts
     ]
+
+    const headerSidePaths = [
+        {title: "Пиво", path: "/beer", element: BeerPage},
+        {title: "Бары", path: "/bars"},
+        {title: "Пивоварни", path: "/breweries"},
+        {title: "Дистрибьюторы", path: "/distributors"},
+        {title: "Карта баров", path: "/map"},
+        {title: "Мероприятия", path: "/events", element: EventsPage}, // /events
+        {title: "Партнерам", path: "/about-us", element: AboutPage},
+        {title: "Новости", path: "/news", element: NewsPage},
+        {title: "Контакты", path: "/contacts", element: ContactsPage}, // /contacts
+    ]
+
     const anonymousPaths = [
         {path: "/", element: IndexPage},
         {path: "/breweries", element: BreweryPage},
@@ -119,7 +132,7 @@ function App() {
     return (
     <>
         <div className="app" style={location.pathname === "/"? {backgroundImage: `url(${indexBubblesBg})`, backgroundRepeat: 'no-repeat', backgroundPosition: 'center top'}: {}}>
-            {!hideHeader && <Header paths={paths}/>}
+            {!hideHeader && <Header paths={paths} sidePaths={headerSidePaths}/>}
             <div className="contentContainer">
                 <Suspense fallback={<div className="fallback"><BottleIcon/></div>}>
                     <Routes>

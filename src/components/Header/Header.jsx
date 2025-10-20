@@ -17,7 +17,7 @@ import {logout} from "../../store/services/authSlice.js";
 import indexBubblesBg from "../../assets/bgPictures/index-bubbles-bg.webp";
 
 
-export default function Header({paths}){
+export default function Header({paths, sidePaths}){
     const dispatch = useDispatch()
     const { isAuthorized, userProfile, isLoading: profileIsLoading, isRefreshing } = useSelector((state) => state.auth);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -123,7 +123,7 @@ export default function Header({paths}){
                         </div>
                     </div>
                     <div className={`${styles.mobileMenu} ${isMenuOpen ? styles.open : ""}`}>
-                        {paths.map((path) => (
+                        {sidePaths.map((path) => (
                             <div key={path.path}>
                                 <div className={styles.mobileMenuItem}>
                                     <Link

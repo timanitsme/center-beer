@@ -53,8 +53,8 @@ export default function BottledBeerCard({cardInfo}){
             <div className={styles.bottledBeerCard}>
                 <div className={styles.cardTop}>
                     <div className={styles.textContainer}>
-                        <h6 className={`${styles.cardTextPrimary} ma-h6`} onClick={() => goToBeerPage(cardInfo?.alias || cardInfo?.beer_alias)}>{cardInfo?.name}</h6>
-                        <p className={`${styles.textActive} ma-p ${styles.breweryAlias}`}  onClick={() => goToBreweryPage(cardInfo?.brewery_alias)}>{cardInfo?.brewery}{cardInfo?.brewery && cardInfo?.country && ","} {cardInfo?.country}</p>
+                        <div className={styles.primaryContainer}><h6 className={`${styles.cardTextPrimary} ma-h6`} title={cardInfo?.name} onClick={() => goToBeerPage(cardInfo?.alias || cardInfo?.beer_alias)} data-full-text={cardInfo?.name}>{cardInfo?.name}</h6></div>
+                        <p className={`${styles.textActive} ma-p ${styles.breweryAlias}`} title={`${cardInfo?.brewery}${cardInfo?.brewery && cardInfo?.country && ","} ${cardInfo?.country}`}  onClick={() => goToBreweryPage(cardInfo?.brewery_alias)}>{cardInfo?.brewery}{cardInfo?.brewery && cardInfo?.country && ","} {cardInfo?.country}</p>
                     </div>
                     <div>
                         <a onClick={(e) => handleAddToCuddy(e, cardInfo?.id)} className={`${styles.bookMarkButton} ${cardBookmarked && styles.added}`}><BookMarkIcon/></a>

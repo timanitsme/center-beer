@@ -4,6 +4,7 @@
     max-width: rem(270);
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 
 
@@ -69,7 +70,18 @@
     text-transform: uppercase;
     overflow: hidden;
     text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    white-space: normal;
+    cursor: pointer;
+    position: relative;
 }
+
+.primaryContainer{
+    height: rem(42);
+}
+
 
 .cardTop{
     display: flex;
@@ -149,6 +161,12 @@
 
 .breweryAlias{
     cursor: pointer;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    white-space: normal;
 }
 
 .favButton.added svg{
@@ -208,5 +226,11 @@
 
     .cardFooter{
         padding: rem(5);
+    }
+}
+
+@media (max-width: rem(650)) {
+    .primaryContainer{
+        height: rem(30);
     }
 }

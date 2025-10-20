@@ -31,8 +31,8 @@ export default function MinimalBottledBeerCard({cardInfo}){
                 </div>
                 <div className={styles.cardTop}>
                     <div className={styles.textContainer}>
-                        <h6 className={styles.cardTextPrimary}>{cardInfo?.name}</h6>
-                        <p className={styles.textActive}>{[cardInfo?.brewery_name, cardInfo?.city, cardInfo?.country].join(", ")}</p>
+                        <div className={styles.primaryContainer}><h6 title={cardInfo?.name} className={styles.cardTextPrimary}>{cardInfo?.name}</h6></div>
+                        <p className={styles.textActive} title={`${[cardInfo?.brewery_name, cardInfo?.city, cardInfo?.country].join(", ")}`}>{[cardInfo?.brewery_name, cardInfo?.city, cardInfo?.country].join(", ")}</p>
                     </div>
                     <div>
                         <div style={{height: "25px"}}></div>

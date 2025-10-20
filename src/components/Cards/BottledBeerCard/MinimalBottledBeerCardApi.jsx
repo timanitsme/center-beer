@@ -60,8 +60,8 @@ export default function MinimalBottledBeerCardApi({cardInfo}){
                 </div>
                 <div className={styles.cardTop}>
                     <div className={styles.textContainer}>
-                        <h6 className={`${styles.cardTextPrimary} ma-h6`} onClick={() => goToBeerPage(cardInfo?.beer_alias)}>{cardInfo?.beer_name}</h6>
-                        <p className={`${styles.textActive} ma-p ${styles.breweryAlias}`} onClick={() => goToBreweryPage(cardInfo?.brewery_alias)}>{[cardInfo?.brewery_name].join(", ")}</p>
+                        <div className={styles.primaryContainer}><h6 title={cardInfo?.beer_name} className={`${styles.cardTextPrimary} ma-h6`} onClick={() => goToBeerPage(cardInfo?.beer_alias)}>{cardInfo?.beer_name}</h6></div>
+                        <p className={`${styles.textActive} ma-p ${styles.breweryAlias}`} title={`${[cardInfo?.brewery_name].join(", ")}`} onClick={() => goToBreweryPage(cardInfo?.brewery_alias)}>{[cardInfo?.brewery_name].join(", ")}</p>
                     </div>
                     <div>
                         <div style={{height: "25px"}}></div>

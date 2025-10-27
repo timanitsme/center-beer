@@ -53,7 +53,7 @@ export default function BarCustomEventsPage(){
     const paths = [
         /*{title: "center.beer", path: "/"},
         {title: "Бары и магазины", path: ""},*/
-        {title: "13 RULES (Народный бар)", path: "/bar/13rules_suchevskiy_val"},
+        {title: "13 RULES", path: "/bar/13rules_suchevskiy_val"},
         {title: "Мероприятия", path: ""},
 
     ]
@@ -133,7 +133,7 @@ export default function BarCustomEventsPage(){
             <><b>–10% меню</b></>, <><b>Условие активации выгоды:</b> будни и/или депозит/аренда от <b>100 000 ₽</b></>,
             <><b>Бонус:</b> экран/флипчарт с подключением — <b>бесплатно</b></>]},
         { Icon: GiPartyPopper, title: "Мальчишник/Девичник", price: "ОТ 20 000 ₽", badge: {oldPrice: true, content: "45 000 ₽"}, characteristics: [
-            <>Первый кег пива или сет шотов — бесплатно</>,
+            <>Первый сет шотов или пива — бесплатно</>,
             <>Пакет «Закуски XL» по специальной цене (бургеры + снеки)</>]},
         { Icon: MdOutlineStars, title: "Все включено", price: "100 000 ₽", badge: {benefit: true, content: "Выгода 30 000 ₽"}, characteristics: [
             <>Полная аренда</>,
@@ -170,7 +170,7 @@ export default function BarCustomEventsPage(){
     const types = [
         {title: "Частные праздники", singular: "Частный праздник", promo: "Сертификат и подарки", description: "День рождения, Юбилей, Мальчишник, Девичник, Afterparty", image: Cake, onClick: () => {}},
         {title: "Бизнес-мероприятия", singular: "Бизнес-мероприятие", promo: "Пивная кега по себестоимости", description: "Корпоратив, Тимбилдинг, Презентации, Встречи предпринимателей", image: Business, onClick: () => {}},
-        {title: "Тематические мероприятия", singular: "Тематическое мероприятие", description: "Крафтовые дегустации, Квиз, Stand-up, Караоке-батл, Музыкальный батл, Джем, «квартирник», Трибьют-вечера, Настолки, Мафия, PS4, PS5, Beer-pong", image: BoardGames, onClick: () => {}},
+        {title: "Тематические мероприятия", singular: "Тематическое мероприятие", promo: "Открытое мероприятие или закрытое с входом по билетам", description: "Крафтовые дегустации, Квиз, Stand-up, Караоке-батл, Музыкальный батл, Джем, «квартирник», Трибьют-вечера, Настолки, Мафия, PS4, PS5, Beer-pong", image: BoardGames, onClick: () => {}},
         {title: "Спорт", singular: "Спортивное мероприятие", promo: "Выигрыла ваша команда - шоты в подарок", description: "Футбол, хоккей, UFC — смотрите любимые события на большом экране с друзьями и холодным пивом", image: Sport, onClick: () => {}},
     ]
 

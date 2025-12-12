@@ -1,21 +1,36 @@
 import styles from "./CustomEventRequestOverlay.module.scss"
-import {useEffect} from "react";
+import {useEffect, useRef} from "react";
 import CloseIcon from "../../assets/close-icon.svg?react"
 
-export default function CustomEventRequestOverlay({isExpanded, setIsExpanded}){
+export default function CustomEventRequestOverlay({ isExpanded, setIsExpanded }) {
+    const formContainerRef = useRef(null);
+
     useEffect(() => {
-        // Добавляем класс no-scroll к body при открытии overlay
         if (isExpanded) {
             document.body.classList.add('no-scroll');
+
+            const existingScript = document.querySelector('script[data-b24-form]');
+            if (!existingScript && formContainerRef.current) {
+                const script = document.createElement('script');
+                script.src = `https://cdn-ru.bitrix24.ru/b35920520/crm/form/loader_6.js?${Date.now() / 180000 | 0}`;
+                script.async = true;
+                script.setAttribute('data-b24-form', 'inline/6/behc11');
+                script.setAttribute('data-skip-moving', 'true');
+
+                formContainerRef.current.appendChild(script);
+
+                return () => {
+                    document.body.classList.remove('no-scroll');
+                    if (formContainerRef.current && formContainerRef.current.contains(script)) {
+                        formContainerRef.current.removeChild(script);
+                    }
+                };
+            }
         } else {
             document.body.classList.remove('no-scroll');
         }
-
-        // Очистка при размонтировании компонента
-        return () => {
-            document.body.classList.remove('no-scroll');
-        };
     }, [isExpanded]);
+
 
 
     return(
@@ -32,7 +47,7 @@ export default function CustomEventRequestOverlay({isExpanded, setIsExpanded}){
                     <div className={styles.closeButton} onClick={() => setIsExpanded(!isExpanded)}><CloseIcon/></div>
                 </div>
 
-                <iframe className={styles.formFrame}  src="https://forms.amocrm.ru/rcltwmv"></iframe>
+                <div ref={formContainerRef} data-b24-form="inline/6/behc11" data-skip-moving="true"></div>
             </div>
             }
 

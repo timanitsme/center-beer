@@ -70,7 +70,8 @@ export default function BeerCatalog({withoutPrice=false, withHeader = true, brew
         ibu_to: '',
         vol_ids: [],
         pack_ids: [],
-        style_ids: []
+        style_ids: [],
+        name: ''
     }
 
     // Фильтры, от изменения которых изменяется запрос
@@ -381,7 +382,7 @@ export default function BeerCatalog({withoutPrice=false, withHeader = true, brew
             }
             <div className={styles.menuContent}>
                 {!isMobile && <div className={styles.menuFilters}>
-                    <SearchInput title="Поиск по названию" onChange={() => {}}></SearchInput>
+                    <SearchInput title="Поиск по названию" onChange={(value) => {handleSingleFilterChange("name", value)}} reset={tabResetFilters["name"]}></SearchInput>
                     <HookedFilterComboBox options={countries} isLoading={countriesIsLoading} error={countriesError} debouncedInput={debouncedCountryInput} setDebouncedInput={setDebouncedCountryInput} title={"Страна производства"}  fetchHook={useGetBeerCountriesQuery} onChange={(value) => handleFilterChange("country_ids", value)} reset={tabResetFilters["country_ids"]}/>
                     <HookedFilterComboBox options={stylesFilter} isLoading={stylesIsLoading} error={stylesError} debouncedInput={debouncedStyleInput} setDebouncedInput={setDebouncedStyleInput} title={"Стиль"}  fetchHook={useGetStylesQuery} onChange={(value) => handleFilterChange("style_ids", value)} reset={tabResetFilters["style_ids"]}/>
                     {
@@ -489,7 +490,7 @@ export default function BeerCatalog({withoutPrice=false, withHeader = true, brew
             </div>
             {isMobile &&
                 <FiltersModal setShow={setShowFiltersModal} show={showFiltersModal}>
-                    <SearchInput title="Поиск по названию" onChange={() => {}}/>
+                    <SearchInput title="Поиск по названию" onChange={(value) => {handleSingleFilterChange("name", value)}} reset={tabResetFilters["name"]}></SearchInput>
                     <HookedFilterComboBox options={countries} isLoading={countriesIsLoading} error={countriesError} debouncedInput={debouncedCountryInput} setDebouncedInput={setDebouncedCountryInput} title={"Страна производства"}  fetchHook={useGetBeerCountriesQuery} onChange={(value) => handleFilterChange("country_ids", value)} reset={tabResetFilters["country_ids"]}/>
                     <HookedFilterComboBox options={stylesFilter} isLoading={stylesIsLoading} error={stylesError} debouncedInput={debouncedStyleInput} setDebouncedInput={setDebouncedStyleInput} title={"Стиль"}  fetchHook={useGetStylesQuery} onChange={(value) => handleFilterChange("style_ids", value)} reset={tabResetFilters["style_ids"]}/>
                     {filtersConfig.map((filter) => (

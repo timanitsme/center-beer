@@ -6,9 +6,10 @@ export const centerBeerApi = createApi({
     endpoints: (builder) => ({
         // Каталог баров
         getBars: (builder.query({
-            query: ({lim, offset, city_id, subways_ids, kitchen_ids, visit_type_ids, price_ids, type_ids, feature_ids, only_opened, sort_by, online_booking}) => {
+            query: ({lim, offset, name, city_id, subways_ids, kitchen_ids, visit_type_ids, price_ids, type_ids, feature_ids, only_opened, sort_by, online_booking}) => {
                 const params = new URLSearchParams();
                 if (lim !== undefined) params.append('lim', lim);
+                if (name !== undefined) params.append('name', name);
                 if (offset !== undefined) params.append('offset', offset);
                 if (city_id !== undefined) params.append('city_id', city_id);
                 if (subways_ids !== undefined) params.append('subways_ids', subways_ids);
@@ -28,9 +29,10 @@ export const centerBeerApi = createApi({
         })),
         //Каталог пива
         getBeers: (builder.query({
-            query: ({lim, offset, sort_by, with_reviews, city_id, color_ids, country_ids, price_ids, abv_id, abv_from, abv_to, og_id, og_from, og_to, ibu_id, ibu_from, ibu_to, vol_ids, pack_ids, brew_ids}) => {
+            query: ({lim, name, offset, sort_by, with_reviews, city_id, color_ids, country_ids, price_ids, abv_id, abv_from, abv_to, og_id, og_from, og_to, ibu_id, ibu_from, ibu_to, vol_ids, pack_ids, brew_ids}) => {
                 const params = new URLSearchParams();
                 if (lim !== undefined) params.append("lim", lim);
+                if (name !== undefined) params.append("name", name);
                 if (offset !== undefined) params.append("offset", offset);
                 if (sort_by !== undefined) params.append("sort_by", sort_by);
                 if (with_reviews !== undefined) params.append("with_reviews", with_reviews);
@@ -83,10 +85,11 @@ export const centerBeerApi = createApi({
         })),
         // Каталог пивоварен
         getBreweries: (builder.query({
-            query: ({id, is_open, is_new, country_id, city_id, type_id, order_by, order_asc_desc}) => {
+            query: ({id, name, is_open, is_new, country_id, city_id, type_id, order_by, order_asc_desc}) => {
                 const params = new URLSearchParams()
                 if (is_open !== undefined) params.append("is_open", is_open)
                 if (id !== undefined) params.append("id", id)
+                if (name !== undefined) params.append("name", name)
                 if (is_new !== undefined) params.append("new", is_new)
                 if (country_id !== undefined) params.append("country_id", country_id)
                 if (city_id !== undefined) params.append("city_id", city_id)
@@ -143,10 +146,11 @@ export const centerBeerApi = createApi({
             query: (bar_id) => `getBarMenuTabs?bar_id=${bar_id}`
         })),
         getBarMenuFood: (builder.query({
-            query: ({bar_id, lim, offset, kitchen_ids, price_ids}) => {
+            query: ({bar_id, name, lim, offset, kitchen_ids, price_ids}) => {
                 const params = new URLSearchParams();
                 params.append("bar_id", bar_id)
                 if (lim !== undefined) params.append("lim", lim)
+                if (name !== undefined) params.append("name", name)
                 if (offset !== undefined) params.append("offset", offset)
                 if (kitchen_ids !== undefined) params.append("kitchen_ids", kitchen_ids)
                 if (price_ids !== undefined) params.append("price_ids", price_ids)
@@ -157,10 +161,11 @@ export const centerBeerApi = createApi({
             query: (bar_id) => `getBarMenuFoodFilters?bar_id=${bar_id}`
         })),
         getBarMenuBottle: (builder.query({
-            query: ({bar_id, lim, offset, color_ids, abv_id, abv_from, abv_to, og_id, og_from, og_to, ibu_id, ibu_from, ibu_to, pack_ids, brew_ids, price_ids }) => {
+            query: ({bar_id, lim, name, offset, color_ids, abv_id, abv_from, abv_to, og_id, og_from, og_to, ibu_id, ibu_from, ibu_to, pack_ids, brew_ids, price_ids }) => {
                 const params = new URLSearchParams()
                 params.append("bar_id", bar_id)
                 if (lim !== undefined) params.append("lim", lim)
+                if (name !== undefined) params.append("name", name)
                 if (offset !== undefined) params.append("offset", offset)
                 if (color_ids !== undefined) params.append("color_ids", color_ids)
                 if (abv_id !== undefined) params.append("abv_id", abv_id)
@@ -182,11 +187,12 @@ export const centerBeerApi = createApi({
             query: (bar_id) => `getBarMenuBottleFilters?bar_id=${bar_id}`
         })),
         getBarMenuBeer: (builder.query({
-            query: ({bar_id, lim, offset, color_ids, abv_id, abv_from, abv_to, og_id, og_from, og_to, ibu_id, ibu_from, ibu_to, brew_ids, price_ids }) => {
+            query: ({bar_id, lim, name, offset, color_ids, abv_id, abv_from, abv_to, og_id, og_from, og_to, ibu_id, ibu_from, ibu_to, brew_ids, price_ids }) => {
                 const params = new URLSearchParams()
                 params.append("bar_id", bar_id)
                 if (lim !== undefined) params.append("lim", lim)
                 if (offset !== undefined) params.append("offset", offset)
+                if (name !== undefined) params.append("name", name)
                 if (color_ids !== undefined) params.append("color_ids", color_ids)
                 if (abv_id !== undefined) params.append("abv_id", abv_id)
                 if (abv_from !== undefined) params.append("abv_from", abv_from)
@@ -206,10 +212,11 @@ export const centerBeerApi = createApi({
             query: (bar_id) => `getBarMenuBeerFilters?bar_id=${bar_id}`
         })),
         getBarMenuAlc: (builder.query({
-            query: ({bar_id, lim, offset, abv_id, abv_from, abv_to, price_ids }) => {
+            query: ({bar_id, lim, name, offset, abv_id, abv_from, abv_to, price_ids }) => {
                 const params = new URLSearchParams()
                 params.append("bar_id", bar_id)
                 if (lim !== undefined) params.append("lim", lim)
+                if (name !== undefined) params.append("name", name)
                 if (offset !== undefined) params.append("offset", offset)
                 if (abv_id !== undefined) params.append("abv_id", abv_id)
                 if (abv_from !== undefined) params.append("abv_from", abv_from)
@@ -222,10 +229,11 @@ export const centerBeerApi = createApi({
             query: (bar_id) => `getBarMenuBeerFilters?bar_id=${bar_id}`
         })),
         getBarMenuCocktails: (builder.query({
-            query: ({bar_id, lim, offset, abv_id, abv_from, abv_to, price_ids }) => {
+            query: ({bar_id, lim, name, offset, abv_id, abv_from, abv_to, price_ids }) => {
                 const params = new URLSearchParams()
                 params.append("bar_id", bar_id)
                 if (lim !== undefined) params.append("lim", lim)
+                if (name !== undefined) params.append("name", name)
                 if (offset !== undefined) params.append("offset", offset)
                 if (abv_id !== undefined) params.append("abv_id", abv_id)
                 if (abv_from !== undefined) params.append("abv_from", abv_from)
@@ -313,10 +321,10 @@ export const centerBeerApi = createApi({
             query: (beer_id) => `addBeerToFav?beer_id=${beer_id}`
         })),
         addBarToCuddy: (builder.query({
-            query: (beer_id) => `addBarToCuddy?beer_id=${beer_id}`
+            query: (beer_id) => `addBarToCuddy?bar_id=${beer_id}`
         })),
         addBarToFav: (builder.query({
-            query: (beer_id) => `addBarToFav?beer_id=${beer_id}`
+            query: (beer_id) => `addBarToFav?bar_id=${beer_id}`
         })),
         getUsersFavBars: (builder.query({
             query: (user_guid) => `getUsersFavBars?user_id=${user_guid}`

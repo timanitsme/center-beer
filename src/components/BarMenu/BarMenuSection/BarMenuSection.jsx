@@ -339,7 +339,7 @@ export default function BarMenuSection({alias, barId, tab}){
         <>
             <div className={styles.menuContent} style={{backgroundImage: `url(${data[alias].bg})`, backgroundRepeat: 'no-repeat'}}>
                 {!isMobile && <div className={styles.menuFilters}>
-                    <SearchInput title="Поиск по названию" onChange={() => {}}/>
+                    <SearchInput title="Поиск по названию" onChange={(value) => {handleSingleFilterChange("name", value)}} reset={tabResetFilters["name"]}></SearchInput>
                     {
                         filtersConfig.map((filter) => (
                             <FilterItem
@@ -479,6 +479,7 @@ export default function BarMenuSection({alias, barId, tab}){
             </div>
             {isMobile &&
                 <FiltersModal setShow={setShowFiltersModal} show={showFiltersModal}>
+                    <SearchInput title="Поиск по названию" onChange={(value) => {handleSingleFilterChange("name", value)}} reset={tabResetFilters["name"]}></SearchInput>
                     {filtersConfig.map((filter) => (
                         <FilterItem
                             key={filter.key}

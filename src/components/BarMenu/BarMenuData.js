@@ -66,11 +66,11 @@ export function getBarMenuFilterSpec(alias){
 
 export function getBarMenuInitialState(alias, barId){
     const initialStates = {
-        beer: { bar_id: barId, lim: 24, offset: 0, color_ids: [], abv_id: '', abv_from: '', abv_to: '', og_id: '', og_from: '', og_to: '', ibu_id: '', ibu_from: '', ibu_to: '', brew_ids: [], price_ids: ''},
-        beer_bottle: { bar_id: barId, lim: 24, offset: 0, color_ids: [], abv_id: '', abv_from: '', abv_to: '', og_id: '', og_from: '', og_to: '', ibu_id: '', ibu_from: '', ibu_to: '', pack_ids: [], brew_ids: [], price_ids: ''},
-        alc: {bar_id: barId, lim: 24, offset: 0, abv_id: '', abv_from: '', abv_to: '', price_ids: ''},
-        cocktails: {bar_id: barId, lim: 24, offset: 0, abv_id: '', abv_from: '', abv_to: '', price_ids: ''},
-        food: {bar_id: barId, lim: 24, offset: 0, kitchen_ids: [], price_ids: ''}
+        beer: { bar_id: barId, name: '', lim: 24, offset: 0, color_ids: [], abv_id: '', abv_from: '', abv_to: '', og_id: '', og_from: '', og_to: '', ibu_id: '', ibu_from: '', ibu_to: '', brew_ids: [], price_ids: ''},
+        beer_bottle: { bar_id: barId, name: '', lim: 24, offset: 0, color_ids: [], abv_id: '', abv_from: '', abv_to: '', og_id: '', og_from: '', og_to: '', ibu_id: '', ibu_from: '', ibu_to: '', pack_ids: [], brew_ids: [], price_ids: ''},
+        alc: {bar_id: barId, name: '', lim: 24, offset: 0, abv_id: '', abv_from: '', abv_to: '', price_ids: ''},
+        cocktails: {bar_id: barId, name: '', lim: 24, offset: 0, abv_id: '', abv_from: '', abv_to: '', price_ids: ''},
+        food: {bar_id: barId, name: '', lim: 24, offset: 0, kitchen_ids: [], price_ids: ''}
     }
     return initialStates[alias]
 }

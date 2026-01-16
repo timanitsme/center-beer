@@ -49,6 +49,7 @@ export default function BarsCatalog(){
         lim: 24,
         offset: 0,
         city_id: '',
+        name: '',
         subways_ids: [],
         kitchen_ids: [],
         visit_type_ids: [],
@@ -63,6 +64,7 @@ export default function BarsCatalog(){
     // Временные фильтры (хранят выбранные значения до применения)
     const [selectedFilters, setSelectedFilters] = useState({
         city_id: '',
+        name: '',
         subways_ids: [],
         kitchen_ids: [],
         visit_type_ids: [],
@@ -209,6 +211,7 @@ export default function BarsCatalog(){
 
         const initialState = {
             lim: 24,
+            name: '',
             offset: 0,
             city_id: '',
             subways_ids: [],
@@ -330,7 +333,7 @@ export default function BarsCatalog(){
             </div>
             <div className={styles.menuContent}>
                 {!isMobile && <div className={styles.menuFilters}>
-                    <SearchInput title="Поиск по названию" onChange={() => {}}></SearchInput>
+                    <SearchInput title="Поиск по названию" onChange={(value) => {handleSingleFilterChange("name", value)}} reset={tabResetFilters["name"]}></SearchInput>
                     <SearchCities title="Город" reset={tabResetFilters["city_id"]} onChange={(value) => handleSingleFilterChange("city_id", value)}></SearchCities>
                     <SingleCheckBox text="Онлайн-бронь" onChange={(value) => {handleSingleFilterChange("online_booking", value)}} reset={tabResetFilters["online_booking"]}></SingleCheckBox>
                     {filtersConfig.map((filter) => (
@@ -411,7 +414,7 @@ export default function BarsCatalog(){
             </div>
             {isMobile &&
                 <FiltersModal setShow={setShowFiltersModal} show={showFiltersModal}>
-                    <SearchInput title="Поиск по названию" onChange={() => {}}></SearchInput>
+                    <SearchInput title="Поиск по названию" onChange={(value) => {handleSingleFilterChange("name", value)}} reset={tabResetFilters["name"]}></SearchInput>
                     <SearchCities title="Город" reset={tabResetFilters["city_id"]} onChange={(value) => handleSingleFilterChange("city_id", value)}></SearchCities>
                     <SingleCheckBox text="Онлайн-бронь" onChange={(value) => {handleSingleFilterChange("online_booking", value)}} reset={tabResetFilters["online_booking"]}/>
                     {filtersConfig.map((filter) => (

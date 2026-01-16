@@ -62,6 +62,7 @@ export default function BreweryCatalog({filters = [], filterButtons = [], sectio
         type_id: [],
         order_by: 'name',
         order_asc_desc: 'asc',
+        name: ''
     }
 
     // Фильтры, от изменения которых изменяется запрос
@@ -329,7 +330,7 @@ export default function BreweryCatalog({filters = [], filterButtons = [], sectio
             </div>
             <div className={styles.menuContent}>
                 {!isMobile && <div className={styles.menuFilters}>
-                    <SearchInput title="Поиск по названию" onChange={() => {}}></SearchInput>
+                    <SearchInput title="Поиск по названию" onChange={(value) => {handleSingleFilterChange("name", value)}} reset={tabResetFilters["name"]}></SearchInput>
                     <HookedFilterComboBox options={types} isLoading={typesIsLoading} error={typesError} debouncedInput={debouncedTypeInput} setDebouncedInput={setDebouncedTypeInput} title={"Тип"}  fetchHook={useGetBeerCountriesQuery} onChange={(value) => handleFilterChange("type_id", value)} reset={tabResetFilters["type_id"]}/>
                     <HookedFilterComboBox options={countries} isLoading={countriesIsLoading} error={countriesError} debouncedInput={debouncedCountryInput} setDebouncedInput={setDebouncedCountryInput} title={"Страна"}  fetchHook={useGetBeerCountriesQuery} onChange={(value) => handleFilterChange("country_id", value)} reset={tabResetFilters["country_id"]}/>
                     <SingleCheckBox text="Только недавно открытые" onChange={(value) => {handleSingleFilterChange("is_new", value)}} reset={tabResetFilters["is_new"]}/>
@@ -438,7 +439,7 @@ export default function BreweryCatalog({filters = [], filterButtons = [], sectio
             </div>
             {isMobile &&
                 <FiltersModal setShow={setShowFiltersModal} show={showFiltersModal}>
-                    <SearchInput title="Поиск по названию" onChange={() => {}}></SearchInput>
+                    <SearchInput title="Поиск по названию" onChange={(value) => {handleSingleFilterChange("name", value)}} reset={tabResetFilters["name"]}></SearchInput>
                     <HookedFilterComboBox options={types} isLoading={typesIsLoading} error={typesError} debouncedInput={debouncedTypeInput} setDebouncedInput={setDebouncedTypeInput} title={"Тип"}  fetchHook={useGetBeerCountriesQuery} onChange={(value) => handleFilterChange("type_id", value)} reset={tabResetFilters["type_id"]}/>
                     <HookedFilterComboBox options={countries} isLoading={countriesIsLoading} error={countriesError} debouncedInput={debouncedCountryInput} setDebouncedInput={setDebouncedCountryInput} title={"Страна"}  fetchHook={useGetBeerCountriesQuery} onChange={(value) => handleFilterChange("country_id", value)} reset={tabResetFilters["country_id"]}/>
                     <SingleCheckBox text="Только недавно открытые" onChange={(value) => {handleSingleFilterChange("is_new", value)}} reset={tabResetFilters["is_new"]}/>

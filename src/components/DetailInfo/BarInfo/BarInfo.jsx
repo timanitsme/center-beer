@@ -67,7 +67,7 @@ export default function BarInfo({barInfo={}, sections = []}){
     const getDayOfWeek = () =>  dayOfWeek === 0? 6: dayOfWeek-1
     const intervals = barInfo?.work_time_list[getDayOfWeek()]?.interval?.split(" - ")
     return(
-        <div>
+        <div id="bar-info">
             <div className={styles.barInfoContainer}>
                 <div className={styles.barIcons}>
                     {barInfo.logo !== undefined && barInfo.logo !== "" ? <img className={styles.logoImg} src={barInfo.logo} alt=""></img> :<BarLogo/>}

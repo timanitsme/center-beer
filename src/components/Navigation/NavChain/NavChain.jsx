@@ -4,9 +4,9 @@ import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
 import {Fragment} from "react";
 
-export default function NavChain({paths}){
+export default function NavChain({paths, customStyle = ""}){
     return(
-        <div className={styles.navChainContainer}>
+        <div className={`${styles.navChainContainer} ${customStyle}`}>
             {paths.map((path, index) => {
                 const isLast = paths.length - 1 === index;
                 return(

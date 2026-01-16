@@ -6,10 +6,11 @@ import RoundLinkButton from "../Buttons/RoundLinkButton/RoundLinkButton.jsx";
 import ComponentHeader from "../ComponentHeader/ComponentHeader.jsx";
 import {useNavigate} from "react-router-dom";
 import {useGetBarNewsQuery} from "../../store/services/centerBeer.js";
+import {useState} from "react";
 
 export default function BarNews({barId = 1, ref, description = "Будьте с нами, чтобы не пропустить ни одного яркого момента и всегда быть в курсе всех новостей и предложений бара.", picture = NewsPhoto}){
     const navigate = useNavigate()
-
+    const [unlimitedNews, setUnlimitedNews] = useState(new Set())
     const {data: news, isLoading: newsIsLoading, error: newsError}  = useGetBarNewsQuery({bar_id: barId, lim: 5})
 
     const paths = [
@@ -19,8 +20,39 @@ export default function BarNews({barId = 1, ref, description = "Будьте с 
 
     if (!news || news?.length === 0 || newsIsLoading || newsError) return null
 
+    function parseEmojis(htmlText) {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(htmlText, "text/html");
+        const emojiElements = doc.querySelectorAll("i.emoji");
+
+        emojiElements.forEach((emoji) => {
+            const style = emoji.getAttribute("style");
+            const urlMatch = style?.match(/url\(['"]?(.*?)['"]?\)/);
+            if (urlMatch && urlMatch[1]) {
+                const emojiUrl = urlMatch[1];
+
+                const img = document.createElement("img");
+                img.src = emojiUrl;
+                img.alt = "Emoji";
+                img.style.width = "16px";
+                img.style.height = "16px";
+
+                emoji.replaceWith(img);
+            }
+        });
+
+
+        let firstChild = doc.body.firstChild;
+        while (firstChild && firstChild.tagName === "BR") {
+            firstChild.remove();
+            firstChild = doc.body.firstChild;
+        }
+
+        return doc.body.innerHTML;
+    }
+
     return(
-        <div className={styles.news} ref={ref}>
+        <div id="bar-news" className={styles.news} ref={ref}>
             <div className={styles.mobileHeader}>
                 <div className={styles.newsIcon}><BeerCalendarIcon/></div>
                 <h3>Новости</h3>
@@ -33,13 +65,31 @@ export default function BarNews({barId = 1, ref, description = "Будьте с 
             </div>
             <div className={styles.newsContainer}>
                 {news.data.map(((item, index) => {
+                    const idNum = Number(item.id)
+                    const unlimited = unlimitedNews.has(idNum);
                     return(
-                        <div key={index} className={styles.newsCard}>
+                        <a key={index} className={styles.newsCard} href={item?.url} target="_blank" rel="noopener noreferrer">
                             <LightNavChain paths={paths}/>
-                            <h3 className="ma-h3-small">{item?.title}</h3>
-                            <div className="limited-text" dangerouslySetInnerHTML={{ __html: item?.text }} />
+                            {/*<h3 className="ma-h3-small">{item?.title}</h3>*/}
+                            <div className={`${unlimited? "": "limited-text-7"} ${styles.newsText}`} dangerouslySetInnerHTML={{ __html: parseEmojis(item?.text) }} />
+                            <p onClick={(e) => {
+                                e.preventDefault();
+                                setUnlimitedNews(prev => {
+                                    const newSet = new Set(prev);
+                                    newSet.add(idNum);
+                                    return newSet;
+                                });
+                            }} className={` ${styles.expand} ${unlimited? styles.none: ""}`}>Читать полностью</p>
+                            <p onClick={(e) => {
+                                e.preventDefault();
+                                setUnlimitedNews(prev => {
+                                    const newSet = new Set(prev);
+                                    newSet.delete(idNum);
+                                    return newSet;
+                                });
+                            }}  className={`${styles.expand} ${unlimited? "": styles.none}`}>Свернуть</p>
                             <div className="hrtLine" style={{margin: "10px 0"}}/>
-                        </div>
+                        </a>
                     )
                 }))}
                 <div className={styles.buttonContainer}>

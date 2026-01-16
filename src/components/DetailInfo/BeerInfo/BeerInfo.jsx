@@ -16,7 +16,7 @@ import {useLazyAddBeerToCuddyQuery, useLazyAddBeerToFavQuery} from "../../../sto
 export default function BeerInfo({showPrice=false,beerInfo={}}){
     const [isFavourite, setIsFavourite] = useState(beerInfo?.is_favor || false);
     const [isBookmarked, setIsBookmarked] = useState(beerInfo?.is_liked || false);
-    const rating = 3.5
+
     const [selectedPicture, setSelectedPicture] = useState(beerInfo?.gallery[0])
     const [showModal ,setShowModal] = useState(false)
     const formatNumber = (num) => Number(num).toString()
@@ -52,7 +52,7 @@ export default function BeerInfo({showPrice=false,beerInfo={}}){
     }, [beerInfo]);
 
     return(
-        <div>
+        <div id="beer-info">
             <div className={styles.barInfoContainer}>
                 <div className={styles.beerPictures}>
                     <div className={styles.picturesColumn}>

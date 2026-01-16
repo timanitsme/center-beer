@@ -27,10 +27,10 @@ export default function BeerDetailPage(){
     const {data, isLoading, error} = useGetBeerInfoQuery(alias)
     const location = useLocation();
     const prevPath = location.state?.from || null;
-    const reviewsResume = (title) => {return {
+    const reviewsResume = (title, rating) => {return {
         title: "Пиво нравится",
         rated: `${title} оценило 344 посетителя.`,
-        rating: 4.9,
+        rating: rating,
         description: "В среднем это на 15% выше, чем у других сортов пива в нашем рейтинге."
     }}
 
@@ -59,8 +59,8 @@ export default function BeerDetailPage(){
                         {data[0]?.related_items && <SimilarItems alias={alias} title={data[0]?.name} cards={data[0]?.related_items}/>}
                     </div>
                     <div className="simpleContainer" style={{marginBottom: "15px"}}><ButtonSwitch onClick={() => {setSelectedSection(options[1-selectedSection.id])}} options={options} selectedOption={selectedSection}></ButtonSwitch></div>
-                    {selectedSection.title === "Отзывы" && <Reviews header={getBeerDetailReviewsHeader(data[0]?.name)} images={data[0]?.reviews_gallery} resume={reviewsResume(data[0]?.name)} id={data[0]?.id} alias={"beer"}/>}
-                    {selectedSection.title === "Чек-ины" && <CheckInReviews header={getBeerDetailCheckInsHeader(data[0]?.name)} resume={reviewsResume(data[0]?.name)}/>}
+                    {selectedSection.title === "Отзывы" && <Reviews header={getBeerDetailReviewsHeader(data[0]?.name)} images={data[0]?.reviews_gallery} resume={reviewsResume(data[0]?.name, data[0]?.rating)} id={data[0]?.id} alias={"beer"}/>}
+                    {selectedSection.title === "Чек-ины" && <CheckInReviews header={getBeerDetailCheckInsHeader(data[0]?.name)} resume={reviewsResume(data[0]?.name, data[0]?.rating)}/>}
                 </>
             }
         </div>

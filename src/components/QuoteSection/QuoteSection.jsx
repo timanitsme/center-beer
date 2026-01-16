@@ -3,7 +3,7 @@ import QuoteIcon from "../../assets/quote-icon.svg?react"
 
 export default function QuoteSection(){
     return(
-        <div className={styles.quoteSection}>
+        <div className={styles.quoteSection} id="quote-section">
             <h1>Цитаты великих</h1>
             <div className={styles.quoteContainer}>
                 <QuoteIcon></QuoteIcon>

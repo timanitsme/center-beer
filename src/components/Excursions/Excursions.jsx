@@ -4,7 +4,7 @@ import excursionsBg from "../../assets/bgPictures/excursions-bg.webp"
 
 export default function Excursions({ref = null}){
     return(
-        <div className={styles.excursionsContainer} ref={ref} style={{backgroundImage: `url(${excursionsBg})`}}>
+        <div className={styles.excursionsContainer} ref={ref} style={{backgroundImage: `url(${excursionsBg})`}} id="excursions">
             <div className={styles.imageContainer} >
                 <img src={ExcursionPicture} alt=""/>
             </div>

@@ -14,7 +14,7 @@ import SimpleCatalogSection from "../../../components/CatalogSections/SimpleCata
 import {lazy, Suspense, useEffect} from "react";
 import MinimalBarCardApi from "../../../components/Cards/BarCard/MinimalBarCardApi.jsx";
 import BreweryCard from "../../../components/Cards/BreweryCard/BreweryCard.jsx";
-const PersonalAccount = lazy(() => import("../../../components/PersonalAccount/PersonalAccount.jsx"));
+const PersonalAccountAlt = lazy(() => import("../../../components/PersonalAccount/PersonalAccountAlt/PersonalAccountAlt.jsx"));
 const PersonalAccountMobile = lazy(() => import("../../../components/PersonalAccount/PersonalAccountMobile.jsx"));
 
 export default function MyBookmarksPage(){
@@ -46,12 +46,13 @@ export default function MyBookmarksPage(){
     if (!profileIsLoading && !isAuthorized) navigate("/login/")
     return(
         <div className="content">
-            <NavChain paths={paths}></NavChain>
             <div style={{display: "flex"}}>
                 <Suspense>
-                    {!isMobile && <PersonalAccount profile={userProfile}/>}
+                    {!isMobile && <PersonalAccountAlt profile={userProfile}/>}
                 </Suspense>
                 <div style={{display: "flex", flexDirection: "column", width: "100%"}}>
+                    <NavChain paths={paths} customStyle="nav-chain-no-margin"></NavChain>
+                    <div style={{height: "20px"}}/>
                     <Suspense>
                         {isMobile && <PersonalAccountMobile alias="bookmarks" profile={userProfile}/>}
                     </Suspense>

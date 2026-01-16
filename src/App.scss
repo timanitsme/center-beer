@@ -192,6 +192,14 @@ p{
   -webkit-line-clamp: 5;
 }
 
+.limited-text-7{
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 7;
+}
+
 .quantity{
   background: var(--primary);
   padding: 2px 5px;
@@ -271,4 +279,14 @@ p{
   border-style: none;
   cursor: pointer;
   padding: 0;
+}
+
+.nav-chain-no-margin{
+  margin: 0 50px 0 0 !important;
+}
+
+@media (max-width: 1000px) {
+  .nav-chain-no-margin{
+    margin: 0 25px 0 25px !important;
+  }
 }

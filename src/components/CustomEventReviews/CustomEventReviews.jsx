@@ -10,7 +10,7 @@ export default function CustomEventReviews({reviews}){
     const [currentReview, setCurrentReview] = useState(reviews[0])
 
     return(
-        <>
+        <div id="custom-event-reviews">
             <SectionHeader title={"Отзывы"} description={"Наша команда стремится сделать каждое мероприятие уникальным и запоминающимся. Убедитесь сами: прочитайте отзывы наших гостей, которые доверили нам организацию своих праздников. Мы знаем, как важно превзойти ожидания!"}/>
             <section className={styles.reviews}>
                 <div className={styles.imageContainer}>
@@ -47,6 +47,6 @@ export default function CustomEventReviews({reviews}){
                     </div>
                 </div>
             </section>
-        </>
+        </div>
     )
 }

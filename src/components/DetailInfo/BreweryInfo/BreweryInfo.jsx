@@ -27,7 +27,7 @@ export default function BreweryInfo({breweryInfo={}, sections=[]}){
     };
 
     return(
-        <div>
+        <div id="brewery-info">
             <div className={styles.barInfoContainer}>
                 <div className={styles.barIcons}>
                     {breweryInfo.logo !== undefined && breweryInfo.logo !== "" ? <img className={styles.logoImg} src={breweryInfo.logo} alt=""></img> :<BreweryLogo/>}

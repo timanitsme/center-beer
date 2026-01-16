@@ -96,7 +96,7 @@ export default function BarEvents({title = "Скоро в баре", barId=1, re
     const currentEvent = events?.data?.[currentEventIndex];
 
     return(
-        <div className={styles.barEventsContainer} style={{minHeight: containerHeight}} ref={ref}>
+        <div id="bar-events" className={styles.barEventsContainer} style={{minHeight: containerHeight}} ref={ref}>
             <div className={styles.barEvent}>
                 <div className={styles.soonAtBar}><h1 className="text-big">{title}</h1></div>
                 <div className={styles.eventPictureMobile}>

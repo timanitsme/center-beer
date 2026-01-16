@@ -12,7 +12,7 @@ export default function BeerCatalogSection({filters, filterButtons, breweryId, w
     }
 
     return(
-        <div className={styles.sectionContainer} ref={ref}>
+        <div className={styles.sectionContainer} ref={ref} id="beer-catalog">
             <div className={styles.header}><ComponentHeader title={header.title} HeaderIcon={header.icon} description={header.description}></ComponentHeader></div>
             <BeerCatalog bgImage={beerCatalogBg} withHeader={false} withoutPrice={withoutPrice} filters={filters} filterButtons={filterButtons} breweryId={breweryId}></BeerCatalog>
         </div>

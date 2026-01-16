@@ -12,7 +12,7 @@ export default function SimilarItems({alias, title, cards}){
         return null
     }
     return(
-        <div className={styles.itemsContainer}>
+        <div className={styles.itemsContainer} id="similar-items">
             <div className={styles.similarDescriptionContainer}>
                 <ComponentHeader HeaderIcon={BeerBottleIcon} title={"Похожее пиво"} description={`Если вы истинный поклонник пива и мечтаете попробовать настоящий ${title}, то этот раздел для вас. Мы составили список лучших баров, где подают этот великолепный напиток, чтобы вы могли насладиться его уникальным вкусом и ароматом в приятной атмосфере.`}>
                     <div className={styles.button}>

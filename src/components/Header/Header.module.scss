@@ -4,6 +4,9 @@
     text-align: center;
     height: rem(95);
     padding: rem(15) 3%;
+}
+
+.headerContainer{
     background: var(--bg);
     position: fixed;
     top: 0;
@@ -12,14 +15,16 @@
     width: 100%;
     z-index: 999;
     transition: transform 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
 }
 
-.header.hidden {
-    transform: translateY(-100%);
+.headerContainer.hidden {
+    transform: translateY(-95px);
 }
 
 .headerSpace{
-    height: rem(95);
+    height: rem(139);
     padding: rem(15) 3%;
 }
 
@@ -278,6 +283,8 @@
     pointer-events: none;
 }
 
+
+
 @media (hover: hover) and (pointer: fine) {
     .subMenuItem:hover {
         background: var(--section-bg);
@@ -302,6 +309,116 @@
     max-width: rem(250);
 }
 
+.pageNavigation{
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    p{
+        font-weight: 200;
+    }
+
+
+    .content{
+        display: flex;
+        justify-content: space-between;
+        height: rem(40);
+        align-items: center;
+        padding: 0 rem(50);
+        transition: 0.3s;
+        gap: rem(10);
+        p, svg{
+            transition: 0.3s;
+        }
+        &:hover{
+            p, svg{
+                color: var(--txt-active);
+            }
+        }
+
+        &.expanded{
+            p, svg{
+                color: var(--primary);
+            }
+            svg{
+                transform: rotate(180deg);
+            }
+        }
+    }
+}
+
+.pageNavigationTabs{
+    &.expanded{
+        .pageNavigationTabsContent{
+            pointer-events: initial;
+        }
+    }
+}
+
+.pageNavigationTabsContent{
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+    background: var(--bg);
+    gap: rem(4);
+    padding: rem(12) rem(50) rem(12) rem(50);
+    div{
+        padding: rem(8) rem(20);
+        width: 100%;
+        border-radius: rem(8);
+        cursor: pointer;
+        transition: 0.3s;
+        p{
+            transition: 0.3s;
+        }
+
+        &.active{
+            background: var(--primary);
+            p{
+                color: var(--bg);
+            }
+            &:hover{
+                background: var(--primary);
+                p{
+                    color: var(--bg);
+                }
+            }
+        }
+
+        &:hover{
+            background: var(--section-bg);
+            p{
+                color: var(--txt-active);
+            }
+        }
+    }
+}
+
+.progressBar{
+    height: rem(4);
+    width: 100%;
+    background: var(--section-bg);
+}
+
+.progress{
+    background: var(--primary);
+    height: 100%;
+}
+
+.onlyProgress{
+    height: rem(4);
+    .content{
+        display: none;
+    }
+}
+
+.currentBlock{
+    display: flex;
+    gap: rem(8);
+    svg{
+        color: var(--txt-secondary);
+    }
+}
+
 @media (max-width: rem(1550)) {
     .menuItems{
         display: none;
@@ -315,6 +432,14 @@
 @media (max-width: rem(1000)) {
     .socialsTheme{
         width: 0;
+    }
+
+    .content{
+        padding: 0 rem(25) !important;
+    }
+
+    .pageNavigationTabsContent{
+        padding: rem(12) rem(25) rem(12) rem(25);
     }
 
     .logoMenu svg{
@@ -357,3 +482,16 @@
 
 }
 
+
+.noWrap {
+    white-space: nowrap;
+}
+
+
+.ellipsis {
+    max-width: 40vw;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    align-self: center;
+}

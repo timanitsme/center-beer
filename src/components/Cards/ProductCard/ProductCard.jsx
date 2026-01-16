@@ -12,6 +12,8 @@ export default function ProductCard({cardInfo, onShowModal}){
     const [cardFav, setCardFav] = useState(cardInfo.is_liked || false);
     const [imageSrc, setImageSrc] = useState(cardInfo?.photo || cardImagePlaceholder)
 
+    const showWeight = (cardInfo?.vol !== "" && cardInfo?.vol) || (cardInfo?.weight && cardInfo?.weight !== "")
+
     return(
         <div className={styles.card}>
             <div className={styles.productCard}>
@@ -31,8 +33,8 @@ export default function ProductCard({cardInfo, onShowModal}){
 
 
             </div>
-            <div className={styles.cardFooter}>
-                <p className={`${styles.textActive} ma-p`}><span style={{color: "var(--txt-secondary)"}} className="ma-p">Вес:</span> {cardInfo?.vol || `${cardInfo?.weight} гр.`}</p>
+            <div className={`${styles.cardFooter} ${showWeight? "": styles.priceDivider}`}>
+                {showWeight && <p className={`${styles.textActive} ma-p`}><span style={{color: "var(--txt-secondary)"}} className="ma-p">Вес:</span> {cardInfo?.vol || `${cardInfo?.weight} гр.`}</p>}
                 <div className={styles.cardFooterLeft}>
                     <p className={`${styles.cardTextPrimary} ma-h6`}>{Number(cardInfo.price).toLocaleString("ru-Ru")}₽</p>
                     <IconButton text="Купить"><BottlesPairIcon/></IconButton>

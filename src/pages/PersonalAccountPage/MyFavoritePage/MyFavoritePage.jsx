@@ -10,7 +10,7 @@ import ArrowLeftIcon from "../../../assets/arrow-left-icon.svg?react"
 import BreweryCard from "../../../components/Cards/BreweryCard/BreweryCard.jsx";
 import {lazy, Suspense, useEffect} from "react";
 import MinimalBarCardApi from "../../../components/Cards/BarCard/MinimalBarCardApi.jsx";
-const PersonalAccount = lazy(() => import("../../../components/PersonalAccount/PersonalAccount.jsx"));
+const PersonalAccountAlt = lazy(() => import("../../../components/PersonalAccount/PersonalAccountAlt/PersonalAccountAlt.jsx"));
 const PersonalAccountMobile = lazy(() => import("../../../components/PersonalAccount/PersonalAccountMobile.jsx"));
 
 export default function MyFavoritePage(){
@@ -41,12 +41,13 @@ export default function MyFavoritePage(){
     if (!profileIsLoading && !isAuthorized) navigate("/login/")
     return(
         <div className="content">
-            <NavChain paths={paths}></NavChain>
             <div style={{display: "flex"}}>
                 <Suspense>
-                    {!isMobile && <PersonalAccount profile={userProfile}/>}
+                    {!isMobile && <PersonalAccountAlt profile={userProfile}/>}
                 </Suspense>
                 <div style={{display: "flex", flexDirection: "column", width: "100%"}}>
+                    <NavChain paths={paths} customStyle="nav-chain-no-margin"></NavChain>
+                    <div style={{height: "20px"}}/>
                     <Suspense>
                         {isMobile && <PersonalAccountMobile profile={userProfile} alias="favorite"/>}
                     </Suspense>

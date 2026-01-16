@@ -9,7 +9,7 @@ import CasePicture from "../../assets/customEventsPictures/case-picture.webp"
 
 export default function CustomEventCaseReview(){
     return(
-        <section className={styles.case}>
+        <section className={styles.case} id="custom-event-case-review">
             <div className={styles.badge}><p className="ma-p">Кейс: история успеха</p></div>
             <div>
                 <h2 className="ma-h3">Корпоратив на 30 гостей</h2>

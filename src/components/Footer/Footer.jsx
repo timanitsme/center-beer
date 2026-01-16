@@ -4,6 +4,7 @@ import AppPhone from "../../assets/app-phone.svg"
 import QrCode from "../../assets/new-qr-code.svg"
 import DownloadGooglePlay from "../../assets/download-google-play.svg?react"
 import DownloadAppStore from "../../assets/download-app-store.svg?react"
+import DownloadRuStore from "../../assets/rustor-download-icon.svg?react"
 import RoundLinkButton from "../Buttons/RoundLinkButton/RoundLinkButton.jsx";
 import {Link} from "react-router-dom";
 
@@ -22,6 +23,9 @@ export default function Footer(){
                             </button>
                             <button className={styles.downloadButton}>
                                 <a href="https://center.beer/app/ios"><DownloadAppStore/></a>
+                            </button>
+                            <button className={styles.downloadButton}>
+                                <a href="https://center.beer/app/rustore"><DownloadRuStore/></a>
                             </button>
                             <RoundLinkButton text="Скачать .apk" onClick={() => window.location.href="https://center.beer/app/apk"}/>
                         </div>

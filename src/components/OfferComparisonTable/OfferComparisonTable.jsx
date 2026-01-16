@@ -2,7 +2,7 @@ import styles from "./OfferComparisonTable.module.scss"
 
 export default function OfferComparisonTable(){
     return(
-        <section className={styles.comparisonSection}>
+        <section className={styles.comparisonSection} id="offer-comparison-table">
             <h2 className="ma-h3">Сравнение: <span className={`${styles.accent} ma-h3`} style={{fontFamily: "Podkova"}}>пакет</span> vs по отдельности</h2>
             <div className={styles.tableContainer}>
                 <table className={styles.compareTable}>

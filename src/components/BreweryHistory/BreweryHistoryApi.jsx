@@ -10,7 +10,7 @@ export default function BreweryHistoryApi({stories}){
     const visibleStories = showAllStories ? stories : stories.slice(0, 3);
 
     return(
-        <div className={styles.historyContainer} style={{backgroundImage: `url(${contactsPicture})`}}>
+        <div className={styles.historyContainer} id="brewery-history" style={{backgroundImage: `url(${contactsPicture})`}}>
             {visibleStories.map((story, index) => {
                 if(index % 2 === 0){
                     return(

@@ -12,7 +12,7 @@ export default function RangeRadio({title, options, onChange, reset, defaultOpti
         return options && options.length !== 0 && options[0];
     };
 
-    const [selectedOption, setSelectedOption] = useState(getDefaultOption() || { name: "все", id: 0 });
+    const [selectedOption, setSelectedOption] = useState(getDefaultOption() || { name: "Все", id: 0 });
     const [range, setRange] = useState({ from: "", to: "" }); // Состояние для значений "от" и "до"
 
     useEffect(() => {

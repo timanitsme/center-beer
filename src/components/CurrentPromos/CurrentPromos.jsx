@@ -28,7 +28,7 @@ export default function CurrentPromos({barId = 1, ref}){
 
 
     return(
-        <div className={styles.currentPromosContainer} ref={ref}>
+        <div className={styles.currentPromosContainer} ref={ref} id="current-promos">
             <div className={styles.promosDescriptionContainer}>
                 <div className={styles.descriptionIcon}><BeerMugsIcon/></div>
                 <div className={styles.promosDescription}>

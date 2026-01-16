@@ -7,7 +7,7 @@ import {lazy, Suspense, useEffect} from "react";
 import ButtonSwitch from "../../../components/ButtonSwitch/ButtonSwitch.jsx";
 import {useNavigate} from "react-router-dom";
 import {useSelector} from "react-redux";
-const PersonalAccount = lazy(() => import("../../../components/PersonalAccount/PersonalAccount.jsx"));
+const PersonalAccountAlt = lazy(() => import("../../../components/PersonalAccount/PersonalAccountAlt/PersonalAccountAlt.jsx"));
 const PersonalAccountMobile = lazy(() => import("../../../components/PersonalAccount/PersonalAccountMobile.jsx"));
 
 export default function EarnCBPage(){
@@ -71,12 +71,12 @@ export default function EarnCBPage(){
 
     return(
         <div className="content">
-            <NavChain paths={paths}></NavChain>
             <div style={{display: "flex"}}>
                 <Suspense>
-                    {!isMobile && <PersonalAccount profile={userProfile}/>}
+                    {!isMobile && <PersonalAccountAlt profile={userProfile}/>}
                 </Suspense>
                 <div style={{display: "flex", flexDirection: "column", width: "100%", gap: "25px"}}>
+                    <NavChain paths={paths} customStyle="nav-chain-no-margin"></NavChain>
                     <Suspense>
                         {isMobile && <PersonalAccountMobile alias="other" profile={userProfile}/>}
                     </Suspense>

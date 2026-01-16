@@ -1,0 +1,380 @@
+@use "../../../utils/partialStyles/_pxToRem.scss" as *;
+
+.accountSection{
+  margin: 0 rem(50) rem(50) rem(50);
+}
+
+.pc{
+  background: var(--section-bg);
+  margin: 0 rem(25) 0 rem(50);
+  border-radius: rem(8);
+  border: 1px solid var(--third);
+
+  .avatarWrapper{
+    align-self: center;
+  }
+
+  .centered{
+    text-align: center;
+    align-self: center;
+    color: var(--bg) !important;
+    &.bold{
+      font-weight: 600;
+    }
+  }
+}
+
+.settings{
+  display: flex;
+  gap: rem(8);
+  background: oklab(0.999994 0.0000455678 0.0000200868 / 0.2);
+  backdrop-filter: blur(rem(8));
+  margin-top: rem(12);
+  padding: rem(8) rem(20) !important;
+  border-radius: rem(8);
+  border: rem(2) solid oklab(0.999994 0.0000455678 0.0000200868 / 0.3);
+  transition: 0.3s;
+  &:hover{
+    background: oklab(0.999994 0.0000455678 0.0000200868 / 0.3);
+    border-color: var(--txt-active);
+  }
+  p{
+    color: var(--txt-active);
+    font-weight: 400;
+  }
+}
+
+.balanceBlock{
+  display: flex;
+  gap: rem(8);
+  margin-top: rem(12);
+  padding: rem(8) rem(20) !important;
+  background: var(--txt-active);
+  border-radius: rem(8);
+  p{
+    color: var(--bg);
+    font-weight: 400;
+  }
+  svg{
+    color: #FDA40C;
+  }
+  .coins{
+    margin-left: auto;
+    font-weight: 600;
+  }
+}
+
+.metrics{
+  background: #1A1A1A;
+  padding: rem(20);
+  border-bottom: 1px solid var(--third);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: rem(10);
+}
+
+.metric{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .primary{
+    background: none;
+    color: var(--primary);
+    font-weight: 500;
+  }
+}
+
+.primaryBlock{
+  background: linear-gradient(to bottom, var(--primary), #FF9D00);
+  padding: rem(20);
+  border-radius: rem(8) rem(8) 0 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.navigationBlock{
+  display: flex;
+  flex-direction: column;
+  margin: rem(4) rem(16);
+}
+
+
+.navigationSection{
+  display: flex;
+  gap: rem(8);
+  cursor: pointer;
+  padding: rem(12) rem(10);
+  border-radius: rem(8);
+  transition: 0.3s;
+  &:hover{
+    background: var(--third);
+  }
+
+
+}
+
+.expanded{
+  .navigationSection{
+    background: #3C372A;
+    p, svg{
+      color: var(--primary);
+    }
+    .arrowRight{
+      transform: rotate(90deg);
+    }
+  }
+  .navigationSectionContent{
+    display: flex;
+  }
+}
+
+.navigationSectionContent{
+  display: none;
+  flex-direction: column;
+  margin-left: rem(10);
+  padding: rem(4);
+  a{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: rem(8) rem(16);
+    border-radius: rem(8);
+    transition: 0.3s;
+    font-weight: 200;
+
+    &:hover{
+      color: var(--txt-active);
+      background: var(--third);
+
+      .quantity{
+        background: var(--primary);
+        p{
+          color: var(--bg);
+        }
+      }
+    }
+  }
+
+  .quantity{
+    background: var(--third);
+    padding: rem(2) rem(8);
+    border-radius: rem(4);
+    transition: 0.3s;
+    p{
+      transition: 0.3s;
+      color: var(--txt-active);
+      font-weight: 400;
+    }
+  }
+}
+
+
+
+.arrowRight{
+  margin-left: auto;
+  transition: 0.3s;
+}
+
+.avatarWrapper{
+  position: relative;
+  display: inline-block;
+  width: fit-content;
+}
+
+.updateAvatar{
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  max-width: rem(120);
+  max-height: rem(120);
+  position: absolute;
+  display: flex;
+  opacity: 0;
+  visibility: hidden;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--primary-semi-transparent);
+  cursor: pointer;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.balance svg{
+  align-self: center;
+}
+
+.updateAvatar svg{
+  width: rem(35);
+  height: fit-content;
+}
+
+.updateAvatarMobile{
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+.updateAvatarMobile .container{
+  background: var(--third);
+  padding: rem(5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.updateAvatarMobile svg{
+  width: rem(15);
+  height: fit-content;
+}
+
+.accountSection p{
+  font-weight: 200;
+}
+
+.accountSection .bold{
+  font-weight: 300;
+  color: var(--fg);
+}
+
+.accountSection .active{
+  color: var(--fg);
+}
+
+.sideContent{
+  display: flex;
+  flex-direction: column;
+  width: max-content;
+}
+
+.mobile.sideContent{
+  flex-direction: column;
+  width: 100%;
+  gap: rem(5);
+  background: var(--section-bg);
+  padding: rem(15);
+  border-radius: rem(5);
+}
+
+.profile{
+  display: flex;
+  gap: rem(10);
+}
+
+.overflow{
+  flex-wrap: wrap;
+  word-break: break-word;
+  white-space: normal;
+  max-width: 100%;
+}
+
+.avatar{
+  border-radius: rem(100);
+  max-height: rem(120);
+  max-width: rem(120);
+  border: rem(3) solid var(--txt-active);
+}
+
+.innerList{
+  display: flex;
+  flex-direction: column;
+  gap: rem(5);
+  margin-left: rem(10);
+}
+
+.innerList li{
+  list-style-type: none;
+}
+
+.innerList a{
+  color: var(--txt-secondary);
+  display: flex;
+  gap: rem(5);
+  align-items: center;
+}
+
+.tagsContainer{
+  margin-top: rem(15);
+  display: flex;
+  gap: rem(10);
+  overflow-x: auto;
+  padding-bottom: rem(15);
+}
+
+.tag{
+  background: var(--section-bg);
+  padding: rem(5) rem(7);
+  border-radius: rem(5);
+  white-space: nowrap;
+
+}
+
+.primary{
+  background: var(--primary);
+}
+
+.tag p{
+  color: var(--txt-secondary);
+}
+
+.tag.primary p{
+  color: var(--bg);
+}
+
+.tagsContainer.outer{
+  margin-top: rem(5);
+
+
+  .tag{
+    background: var(--bg);
+    border: rem(2) solid var(--primary);
+
+    p{
+      color: var(--fg);
+    }
+  }
+}
+
+
+
+@media (hover: hover) and (pointer: fine) {
+  .avatarWrapper:hover .updateAvatar {
+    opacity: 1;
+    visibility: visible;
+    transition: 0.5s;
+  }
+
+  .updateAvatarMobile svg:hover, .updateAvatar svg:hover{
+    color: var(--txt-active);
+  }
+
+  .innerList a:hover{
+    color: var(--txt-active);
+    transition: 0.5s;
+  }
+
+  .hoverPrimary:hover{
+    color: var(--primary);
+    transition: 0.5s;
+  }
+}
+
+@media (max-width: rem(1000)) {
+  .accountSection{
+    margin: 0 rem(25) rem(25) rem(25);
+  }
+  .avatar, .updateAvatar{
+    max-width: rem(60);
+    max-height: rem(60);
+  }
+  .updateAvatar svg{
+    width: rem(25);
+  }
+}

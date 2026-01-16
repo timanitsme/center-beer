@@ -39,7 +39,7 @@ export default function BeerMapSection(){
     const goToBarPage = (alias) => navigate(`/bar/${alias}`);
     if (!barsData) return null
     return(
-        <>
+        <div id="beer-map-section">
             <SectionHeader title="Карта баров" description="Собрали для вас список лучших пивных баров, где можно насладиться свежесваренным пивом, закусками и уютной атмосферой. От классических пабов до оригинальных крафтовых баров — каждый найдет место по вкусу."/>
             <div className={styles.mapContainer}>
                 <MapContainer center={[55.755820, 37.617633]} zoom={13} scrollWheelZoom={true}>
@@ -64,6 +64,6 @@ export default function BeerMapSection(){
                     })}
                 </MapContainer>
             </div>
-        </>
+        </div>
     )
 }

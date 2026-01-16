@@ -44,7 +44,7 @@ export default function CustomEventFormats(){
 
 
     return(
-        <section className={styles.formatsSection}>
+        <section className={styles.formatsSection} id="custom-event-formats">
             <h1 className="ma-h2">Форматы проведения</h1>
             <div className={styles.formats}>
                 {formats.map((format, index) =>

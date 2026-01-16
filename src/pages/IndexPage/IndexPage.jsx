@@ -17,7 +17,7 @@ export default function IndexPage(){
 
     return(
         <div className="content">
-            <div >
+            <div>
                 <IndexSection></IndexSection>
             </div>
 

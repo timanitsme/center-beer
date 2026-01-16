@@ -1,6 +1,5 @@
 import NavChain from "../../components/Navigation/NavChain/NavChain.jsx";
 import {GetPersonalAccountPaths} from "./PersonalAccountPageData.jsx";
-import PersonalAccount from "../../components/PersonalAccount/PersonalAccount.jsx";
 import ActiveOrders from "../../components/ActiveOrders/ActiveOrders.jsx";
 import LatestReviews from "../../components/LatestReviews/LatestReviews.jsx";
 import {useEffect, useState} from "react";
@@ -27,6 +26,7 @@ import PersonalAccountMobile from "../../components/PersonalAccount/PersonalAcco
 import MinimalBarCardSkeleton from "../../components/Skeletons/MinimalBarCardSkeleton/MinimalBarCardSkeleton.jsx";
 import MinimalBottledBeerCardSkeleton
     from "../../components/Skeletons/MinimalBottledBeerCardSkeleton/MinimalBottledBeerCardSkeleton.jsx";
+import PersonalAccountAlt from "../../components/PersonalAccount/PersonalAccountAlt/PersonalAccountAlt.jsx";
 
 export default function PersonalAccountPage(){
     const { isAuthorized, userProfile, isLoading: profileIsLoading, isRefreshing } = useSelector((state) => state.auth);
@@ -134,12 +134,12 @@ export default function PersonalAccountPage(){
 
     return(
         <div className="content">
-            <NavChain paths={GetPersonalAccountPaths()}></NavChain>
             {isAuthorized && !profileIsLoading && userProfile &&
                 <>
                     <div style={{display: "flex"}}>
-                        {window.innerWidth > 1000 && <PersonalAccount profile={userProfile}/>}
+                        {window.innerWidth > 1000 && <PersonalAccountAlt profile={userProfile}/>}
                         <div style={{display: "flex", flexDirection: "column", width: "100%", gap: "25px"}}>
+                            <NavChain paths={GetPersonalAccountPaths()} customStyle="nav-chain-no-margin"></NavChain>
                             {window.innerWidth <= 1000 && <PersonalAccountMobile profile={userProfile}/>}
                             <SwitchRowSection title="Чек-ины" options={checkInSwitch}/>
                             <ActiveOrders></ActiveOrders>

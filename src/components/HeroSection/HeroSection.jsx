@@ -20,7 +20,7 @@ export default function HeroSection({calculatorRef, setRequestOverlay, heroRef})
     };
 
     return(
-        <section className={styles.hero}>
+        <section className={styles.hero} id="hero-section">
             <div className={`${styles.gradient} ${styles.top}`}/>
             <div className={styles.heroContent}>
                 <div>

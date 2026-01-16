@@ -111,7 +111,7 @@ export default function CustomEventInfrastructure(){
     }
 
     return(
-        <section className={styles.infrastructureSection}>
+        <section className={styles.infrastructureSection} id="custom-event-infrastructure">
             <div className={styles.defaultInfrastructure}><Infrastructure/></div>
             <div className={styles.kitchen} onClick={() => setCurrentTab("kitchen")}>
                 <div className={styles.flare}></div>

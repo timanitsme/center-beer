@@ -45,7 +45,7 @@ export default function CustomEventCostCalculatorAlt({calculatorRef=null, setIsE
     }
 
     return(
-        <section className={styles.calculatorSection} ref={calculatorRef}>
+        <section className={styles.calculatorSection} ref={calculatorRef} id="custom-event-cost-calculator-alt">
             <div className={styles.description}>
                 <h2 className="ma-h2">Калькулятор стоимости</h2>
                 <p className="ma-p">

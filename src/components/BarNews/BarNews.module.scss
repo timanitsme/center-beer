@@ -46,9 +46,41 @@
 }
 
 .newsCard{
+    cursor: pointer;
     display: flex;
     flex-direction: column;
-    gap: rem(5);
+    font-weight: 200;
+    color: var(--txt-secondary);
+    .h3, b, br{
+        color: var(--txt-active);
+    }
+    &:hover{
+        color: var(--txt-secondary);
+        .h3, b, br{
+            color: var(--txt-active);
+        }
+    }
+
+}
+
+.none{
+    display: none;
+}
+
+.expand{
+    color: var(--txt-active);
+    font-weight: 500;
+    transition: 0.3s;
+
+    &:hover{
+        color: var(--primary);
+    }
+}
+
+.newsText{
+    a, a b{
+        color: var(--primary) !important;
+    }
 }
 
 .buttonContainer{

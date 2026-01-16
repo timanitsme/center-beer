@@ -19,7 +19,7 @@ export default function BarsRow({title, beerTitle, barCards, marketCards, CardCo
     const [currentCards, setCurrentCards] = useState(marketCards)
     const placeholders = [MarketBar1, MarketBar2, MarketBar3, MarketBar4]
     return(
-        <div className={styles.barsRowContainer}>
+        <div className={styles.barsRowContainer} id="bars-row">
             <div className={styles.headerContainer}>
                 <div className={styles.headerIcon}><BeerTapIcon/></div>
                 <div className={styles.headerDescription}>

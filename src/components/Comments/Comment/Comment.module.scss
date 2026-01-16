@@ -3,6 +3,10 @@
 .comment{
     display: flex;
     gap: rem(10);
+    width: 100%;
+    & > div{
+        width: 100%;
+    }
 }
 
 .avatar{

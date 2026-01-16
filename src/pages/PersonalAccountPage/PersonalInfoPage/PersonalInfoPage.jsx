@@ -16,7 +16,7 @@ import {
 } from "../../../store/services/centerBeerAuth.js";
 import CodeInput from "../../../components/Inputs/CodeInput/CodeInput.jsx";
 import CountdownTimer from "../../../components/CountdownTimer/CountdownTimer.jsx";
-const PersonalAccount = lazy(() => import("../../../components/PersonalAccount/PersonalAccount.jsx"));
+const PersonalAccountAlt = lazy(() => import("../../../components/PersonalAccount/PersonalAccountAlt/PersonalAccountAlt.jsx"));
 const PersonalAccountMobile = lazy(() => import("../../../components/PersonalAccount/PersonalAccountMobile.jsx"));
 
 export default function PersonalInfoPage(){
@@ -79,12 +79,12 @@ export default function PersonalInfoPage(){
 
     return(
         <div className="content">
-            <NavChain paths={paths}/>
             <div style={{display: "flex"}}>
                 <Suspense>
-                    {!isMobile && <PersonalAccount profile={userProfile}/>}
+                    {!isMobile && <PersonalAccountAlt profile={userProfile}/>}
                 </Suspense>
                 <div style={{display: "flex", flexDirection: "column", width: "100%", gap: "25px"}}>
+                    <NavChain paths={paths} customStyle="nav-chain-no-margin"/>
                     <Suspense>
                         {isMobile && <PersonalAccountMobile alias="data" profile={userProfile} withoutInfo={true}/>}
                     </Suspense>

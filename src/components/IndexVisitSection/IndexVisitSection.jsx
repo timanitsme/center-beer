@@ -17,7 +17,7 @@ export default function IndexVisitSection(){
     ]
 
     return(
-        <div className={styles.visitSection}>
+        <div className={styles.visitSection} id="index-visit-section">
             <div className={styles.bottlesContainer}>
                 <BottleIcon/>
                 <BottleHalfIcon/>

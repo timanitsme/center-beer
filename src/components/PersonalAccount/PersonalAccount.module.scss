@@ -4,6 +4,22 @@
     margin: 0 rem(50) rem(50) rem(50);
 }
 
+.pc{
+    background: var(--section-bg);
+    margin: 0 rem(25) 0 rem(50);
+    padding: rem(20);
+    border-radius: rem(8);
+
+    .avatarWrapper{
+        align-self: center;
+    }
+
+    .centered{
+        text-align: center;
+        align-self: center;
+    }
+}
+
 .avatarWrapper{
     position: relative;
     display: inline-block;

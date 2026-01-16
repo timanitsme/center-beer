@@ -118,7 +118,7 @@ export default function Reviews({header, images, resume, alias, id}){
     }
 
     return(
-        <div className={styles.reviews}>
+        <div className={styles.reviews} id="reviews">
             <ComponentHeader HeaderIcon={BeardIcon} title={header.title} description={header.description}/>
             {images && images.length > 0 && <PicturesList images={images}></PicturesList>}
             <div className="hrtLine" style={{margin: "20px 0"}} />

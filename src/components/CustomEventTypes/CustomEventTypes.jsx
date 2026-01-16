@@ -15,7 +15,7 @@ export default function CustomEventTypes({cards, orderRef, setRequestOverlay}){
     };
 
     return(
-        <>
+        <div id={"custom-event-types"}>
             <SectionHeader title={"Организуем мероприятие по любому поводу"} description={"Неважно, какой у вас план — отмечать личный праздник, собрать команду или устроить тематическую вечеринку. Мы знаем, как сделать ваше событие особенным!"}/>
             <div className={styles.typesCatalog}>
                 {cards.map((card, index) =>
@@ -24,6 +24,6 @@ export default function CustomEventTypes({cards, orderRef, setRequestOverlay}){
 
             </div>
 
-        </>
+        </div>
     )
 }

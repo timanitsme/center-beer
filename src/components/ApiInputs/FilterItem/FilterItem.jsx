@@ -34,7 +34,7 @@ export default function FilterItem({ filter, onChange, reset, filterKey = "" }) 
                         options={filter.options}
                         onChange={onChange}
                         reset={reset}
-                        defaultOption={{name: "все", id: 0}}
+                        defaultOption={{name: "Все", id: 0}}
                         filterKey={filterKey}
                     />
                 )
@@ -45,7 +45,7 @@ export default function FilterItem({ filter, onChange, reset, filterKey = "" }) 
                         options={filter.options}
                         onChange={onChange}
                         reset={reset}
-                        defaultOption={{name: "все", id: 0}}
+                        defaultOption={{name: "Все", id: 0}}
                         filterKey={filterKey}
                     />
                 )

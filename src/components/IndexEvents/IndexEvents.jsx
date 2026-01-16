@@ -149,7 +149,7 @@ export default function IndexEvents(){
     };
 
     return(
-        <div className={styles.eventsSection}>
+        <div className={styles.eventsSection} id="index-events">
             <h1 className="ma-h2">Мероприятия</h1>
             <div className={styles.datesSection}>
                 <div className={styles.scrollButton} onClick={() => scrollDates("left")}><ArrowLeftIcon/></div>

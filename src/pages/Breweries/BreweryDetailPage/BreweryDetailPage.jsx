@@ -75,10 +75,10 @@ export default function BreweryDetailPage(){
         navigate(prevPath, { replace: true });
     };
 
-    const reviewsResume = (title) => {return {
+    const reviewsResume = (title, rating) => {return {
         title: "Продукция нравится",
         rated: `${title} оценило 344 посетителя.`,
-        rating: 4.9,
+        rating: rating,
         description: "В среднем это на 15% выше, чем у других пивоварен в нашем рейтинге."
     }}
 
@@ -124,7 +124,7 @@ export default function BreweryDetailPage(){
                     </div>
 
                     <BeerCatalogSection withoutPrice={true} breweryId={data[0].id} ref={menuRef}/>
-                    <Reviews header={getBreweryDetailReviewsHeader(data[0]?.name)} resume={reviewsResume(data[0]?.name)} id={data[0].id} alias="brewery"></Reviews>
+                    <Reviews header={getBreweryDetailReviewsHeader(data[0]?.name)} resume={reviewsResume(data[0]?.name, data[0]?.rating)} id={data[0].id} alias="brewery"></Reviews>
                     {data[0].alias === "jaws" && <Excursions ref={excursionsRef}/>}
                 </>
             }

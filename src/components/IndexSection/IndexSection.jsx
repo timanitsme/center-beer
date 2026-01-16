@@ -524,7 +524,7 @@ export default function IndexSection(){
     const {data: barsData, isFetching: barsIsFetching } = useGetBarsQuery(filterValues);
 
     return(
-        <div className={styles.sectionContainer}>
+        <div className={styles.sectionContainer} id="index-section">
 
             <div className={`${styles.cap} ${showTitle? styles.show: ""}`}><Cap/></div>
             <div className={`${styles.titleContainer} ${showTitle? styles.show: ""}`} >

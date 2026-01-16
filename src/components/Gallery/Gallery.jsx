@@ -186,7 +186,7 @@ export default function Gallery({pictures= [], ref = null}){
     };
 
     return(
-        <div className={styles.galleryContainer} ref={containerRef}>
+        <div className={styles.galleryContainer} ref={containerRef} id="gallery">
             <div className={styles.galleryPictures} ref={galleryRef} onMouseDown={handleDragStart} onMouseMove={handleDragMove} onMouseUp={handleDragEnd} onMouseLeave={handleDragEnd} onTouchStart={handleDragStart} onTouchMove={handleDragMove} onTouchEnd={handleDragEnd}>
                 {showingPictures.map((picture, index) =>
                     <img draggable={false} onClick={() => {setCurrentImage(picture); setShowModal(true)}} onError={() => handleImageError(index)} key={index} src={picture} alt=""/>

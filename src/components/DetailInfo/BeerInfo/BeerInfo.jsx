@@ -12,6 +12,7 @@ import ImageVideoModal from "../../Modals/ImageVideoModal/ImageVideoModal.jsx";
 import {getRatingIcons} from "../../../utils/getRatingIcons.jsx";
 import {Link} from "react-router-dom";
 import {useLazyAddBeerToCuddyQuery, useLazyAddBeerToFavQuery} from "../../../store/services/centerBeer.js";
+import BeardIcon from "../../../assets/beard-icon.svg?react";
 
 export default function BeerInfo({showPrice=false,beerInfo={}}){
     const [isFavourite, setIsFavourite] = useState(beerInfo?.is_favor || false);
@@ -50,6 +51,23 @@ export default function BeerInfo({showPrice=false,beerInfo={}}){
             setSelectedPicture(null);
         }
     }, [beerInfo]);
+
+    const scrollToSection = (sectionId) => {
+        const element = document.getElementById(sectionId);
+        if (!element) {
+            return;
+        }
+
+        const rect = element.getBoundingClientRect();
+        const elementHeight = rect.height;
+        const viewportHeight = window.innerHeight;
+        const targetPosition = window.scrollY + rect.top - (viewportHeight - elementHeight) / 2;
+
+        window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth',
+        });
+    };
 
     return(
         <div id="beer-info">
@@ -114,6 +132,7 @@ export default function BeerInfo({showPrice=false,beerInfo={}}){
                                 <a> <CommentIcon/> 116 комментариев</a>
                             </div>
                             <IconButton text="добавить check-in" style="secondary"><CheckInIcon/></IconButton>
+                            <IconButton text="Оставить отзыв" onClick={() => scrollToSection("reviews")} style=""><BeardIcon/></IconButton>
                             { showPrice &&
                                 <div className={styles.cartAndPrice}>
                                     <h2 style={{color: "var(--primary)"}}>380₽</h2>
@@ -139,6 +158,7 @@ export default function BeerInfo({showPrice=false,beerInfo={}}){
                     <a className="ma-p"> <CommentIcon/> 116 комментариев</a>
                 </div>
                 <IconButton text="добавить check-in" style="secondary"><CheckInIcon/></IconButton>
+                <IconButton text="Оставить отзыв" onClick={() => scrollToSection("reviews")} style=""><BeardIcon/></IconButton>
                 { showPrice &&
                     <div className={styles.cartAndPrice}>
                         <h2 style={{color: "var(--primary)"}}>380₽</h2>

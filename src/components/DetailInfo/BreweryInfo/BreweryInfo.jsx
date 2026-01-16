@@ -9,6 +9,7 @@ import {useState} from "react";
 import CommentIcon from "../../../assets/comment-icon.svg?react"
 import BreweryLogo from "../../../assets/bar-info/brewery-logo.svg?react"
 import {getRatingIcons} from "../../../utils/getRatingIcons.jsx";
+import BeardIcon from "../../../assets/beard-icon.svg?react";
 
 
 
@@ -24,6 +25,23 @@ export default function BreweryInfo({breweryInfo={}, sections=[]}){
                 behavior: "smooth",
             });
         }
+    };
+
+    const scrollToSection = (sectionId) => {
+        const element = document.getElementById(sectionId);
+        if (!element) {
+            return;
+        }
+
+        const rect = element.getBoundingClientRect();
+        const elementHeight = rect.height;
+        const viewportHeight = window.innerHeight;
+        const targetPosition = window.scrollY + rect.top - (viewportHeight - elementHeight) / 2;
+
+        window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth',
+        });
     };
 
     return(
@@ -76,6 +94,7 @@ export default function BreweryInfo({breweryInfo={}, sections=[]}){
                                     {breweryInfo.email && <a href={`mailto:${breweryInfo.email}`}><MailIcon/></a>}
                                 </div>
                             }
+                            <IconButton text="Оставить отзыв" onClick={() => scrollToSection("reviews")} style=""><BeardIcon/></IconButton>
                         </div>
                     </div>
                 </div>
@@ -103,6 +122,7 @@ export default function BreweryInfo({breweryInfo={}, sections=[]}){
                     <a href="https://vk.com/center.beer.news"><VkIcon/></a>
                     <a href="mailto:hello@center.beer"><MailIcon/></a>
                 </div>
+                <div style={{alignSelf: "flex-end"}}><IconButton text="Оставить отзыв" onClick={() => scrollToSection("reviews")} style=""><BeardIcon/></IconButton></div>
             </div>
             <div className={styles.barButtonsMobile}>
                 {sections.map((section, index) =>

@@ -15,6 +15,7 @@ import CalendarIcon from "../../../assets/calendar-icon.svg?react"
 import WorktimeModal from "../../Modals/WorktimeModal/WorktimeModal.jsx";
 import {useNavigate} from "react-router-dom";
 import {getRatingIcons} from "../../../utils/getRatingIcons.jsx";
+import BeardIcon from "../../../assets/beard-icon.svg?react"
 import {useLazyAddBarToCuddyQuery, useLazyAddBarToFavQuery} from "../../../store/services/centerBeer.js";
 
 
@@ -66,6 +67,24 @@ export default function BarInfo({barInfo={}, sections = []}){
     const dayOfWeek = today.getDay()
     const getDayOfWeek = () =>  dayOfWeek === 0? 6: dayOfWeek-1
     const intervals = barInfo?.work_time_list[getDayOfWeek()]?.interval?.split(" - ")
+
+    const scrollToSection = (sectionId) => {
+        const element = document.getElementById(sectionId);
+        if (!element) {
+            return;
+        }
+
+        const rect = element.getBoundingClientRect();
+        const elementHeight = rect.height;
+        const viewportHeight = window.innerHeight;
+        const targetPosition = window.scrollY + rect.top - (viewportHeight - elementHeight) / 2;
+
+        window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth',
+        });
+    };
+
     return(
         <div id="bar-info">
             <div className={styles.barInfoContainer}>
@@ -121,6 +140,7 @@ export default function BarInfo({barInfo={}, sections = []}){
                                 <IconButton text="Найти на карте" onClick={() => navigate("/map")} style="secondary"><LocationIcon/></IconButton>
                                 <IconButton text="Заказать такси" onClick={() => window.location.href = `https://3.redirect.appmetrica.yandex.com/route?end-lat=${barInfo?.lon}&end-lon=${barInfo?.lat}&ref=centerbeer&appmetrica_tracking_id=25395763362139037`} style="secondary"><TaxiIcon/></IconButton>
                             </div>
+                            <IconButton text="Оставить отзыв" onClick={() => scrollToSection("reviews")} style=""><BeardIcon/></IconButton>
                         </div>
                     </div>
                 </div>
@@ -146,6 +166,7 @@ export default function BarInfo({barInfo={}, sections = []}){
                     <IconButton text="Найти на карте" onClick={() => navigate("/map")} style="secondary"><LocationIcon/></IconButton>
                     <IconButton text="Заказать такси" onClick={() => window.location.href = `https://3.redirect.appmetrica.yandex.com/route?end-lat=${barInfo?.lon}&end-lon=${barInfo?.lat}&ref=centerbeer&appmetrica_tracking_id=25395763362139037`} style="secondary"><TaxiIcon/></IconButton>
                 </div>
+                <IconButton text="Оставить отзыв" onClick={() => scrollToSection("reviews")} style=""><BeardIcon/></IconButton>
                 <div className={styles.socials}>
                     {barInfo["social_media"].tg && <a href={barInfo["social_media"].tg}><TgIcon/></a>}
                     {barInfo["social_media"].vk && <a href={barInfo["social_media"].vk}><VkIcon/></a>}

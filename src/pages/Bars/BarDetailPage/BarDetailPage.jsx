@@ -70,13 +70,13 @@ export default function BarDetailPage(){
                     <BarInfo barInfo={data?.data[0]} sections={data?.data[0].alias === "13rules_suchevskiy_val"?  [...sections, {title: "Забронировать мероприятие", IconComponent: <FlagsIcon/>, path: "events"}]: sections}/>
                     <div style={{backgroundImage: `url(${barEventsBg})`, backgroundRepeat: 'no-repeat'}}>
                         <AdvantagesList barInfo={data?.data[0]}/>
-                        <BarEvents barId={data?.data[0].id}/>
+                        <BarEvents id={data?.data[0].id}/>
                         {data?.data[0]?.gallery?.length !== 0 && <Gallery pictures={data?.data[0].gallery}/>}
                     </div>
                     {/*<BarMenu filters={getBarPageFilters()} filterButtons={getBarPageFilterButtons()} sections={getBarPageSections()} ref={menuRef} barId={Number(data?.data?.[0]?.id)}/>*/}
                     <BarMenuContainer ref={menuRef} barId={Number(data?.data?.[0]?.id)} onReady={handleMenuReady}/>
                     <CurrentPromos barId={data?.data[0].id} ref={promosRef}/>
-                    <BarNews barId={data?.data[0].id} ref={newsRef}/>
+                    <BarNews id={data?.data[0].id} ref={newsRef}/>
                     <Reviews images={getBarReviewsImages()} header={getBarReviewsHeader()} resume={getBarReviewsResume()} id={data?.data[0].id} alias="bar"/>
                 </>
 

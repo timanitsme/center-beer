@@ -9,25 +9,19 @@ export default function RowSection({title=null, cards=[], CardComponent, maxCard
         {width: 950, count: 4},
         {width: 600, count: 3},
         {width: 0, count: 2},
-
     ]
 
     useEffect(() => {
         const handleResize = () => {
-            stops.map((stop, index) => {
-                if (window.innerWidth >= stop.width){
-                    setVisibleCards(cards.slice(0, stop.count))
-                }
-            })
+            // Находим первую остановку, которая соответствует текущей ширине
+            const stop = stops.find(stop => window.innerWidth >= stop.width);
 
-            /*if (window.innerWidth >= 1000) {
-                setVisibleCards(cards.slice(0, maxCards)); // Показать 5 карточек
-            } else if (window.innerWidth >= 768) {
-                setVisibleCards(cards.slice(0, maxCards-2)); // Показать 3 карточки
+            if (stop) {
+                setVisibleCards(cards.slice(0, stop.count));
+            } else {
+                // Fallback на минимальное значение
+                setVisibleCards(cards.slice(0, 2));
             }
-            else {
-                setVisibleCards(cards.slice(0, maxCards-3)); // Показать 2 карточки
-            }*/
         };
 
         // Устанавливаем начальное состояние
@@ -38,7 +32,7 @@ export default function RowSection({title=null, cards=[], CardComponent, maxCard
 
         // Очищаем обработчик при размонтировании компонента
         return () => window.removeEventListener("resize", handleResize);
-    }, [cards]);
+    }, [cards]); // Добавляем cards в зависимости
 
     return(
         <div className={styles.sectionContainer}>
@@ -48,7 +42,6 @@ export default function RowSection({title=null, cards=[], CardComponent, maxCard
                     return <CardComponent key={index} cardInfo={card}></CardComponent>
                 })}
             </div>
-
         </div>
     )
 }

@@ -13,7 +13,7 @@ export default function BeerPage(){
     return(
         <div className="content">
             <NavChain paths={getBeerPagePaths()}/>
-            <BeerCatalog bgImage={contactsBg}/>
+            <BeerCatalog bgImage={contactsBg} withoutPrice={true}/>
             {!isMobile && <div style={{height: "200px"}}></div>}
         </div>
     )

@@ -27,6 +27,7 @@ import BottlesPairIcon from "../../../assets/bottles-pair-icon.svg?react"
 import BarrelIcon from "../../../assets/barrel-icon.svg?react"
 import PhoneIcon from "../../../assets/phone-icon.svg?react"
 import newProductsBg from "../../../assets/bgPictures/new-products-bg.webp"
+import BarNews from "../../../components/BarNews/BarNews.jsx";
 
 export default function BreweryDetailPage(){
     const images = [
@@ -82,6 +83,13 @@ export default function BreweryDetailPage(){
         description: "В среднем это на 15% выше, чем у других пивоварен в нашем рейтинге."
     }}
 
+    const reviewsHeader = (title) => {
+        return {
+            title: `отзывы о ${title}`,
+            description: `Отзывы любителей пива, которые уже успели попробовать продукцию ${title}. Поделитесь и вы своим впечатлением о пивоварне ${title}, чтобы помочь другим сделать правильный выбор и насладиться их напитками, как и вы.`
+        }
+    }
+
     useEffect(() => {
         if (data?.[0]?.alias === "jaws"){
             setHasSection("мероприятия")
@@ -116,7 +124,7 @@ export default function BreweryDetailPage(){
                     <NavChain paths={[...getBreweryDetailPagePaths(), {title:data[0]?.name, path: ""}]}/>
                     <BreweryInfo breweryInfo={data[0]} sections={sections}/>
                     {data[0]?.history_block && <BreweryHistoryApi stories={data[0]?.history_block}/>}
-                    {data[0].alias === "jaws" && <BarEvents title="Новости" ref={eventsRef}></BarEvents>}
+                    {data[0].alias === "jaws" && <BarEvents title="Новости" alias="brewery" id={data[0].id} ref={eventsRef}></BarEvents>}
                     {data[0]?.gallery?.length !== 0 && <Gallery ref={galleryRef} pictures={data[0].gallery}/>}
                     <div style={{backgroundImage: `url(${newProductsBg})`}}>
                         {data[0].alias === "jaws" && <NewProducts images={images} ref={newProductsRef}/>}
@@ -124,7 +132,8 @@ export default function BreweryDetailPage(){
                     </div>
 
                     <BeerCatalogSection withoutPrice={true} breweryId={data[0].id} ref={menuRef}/>
-                    <Reviews header={getBreweryDetailReviewsHeader(data[0]?.name)} resume={reviewsResume(data[0]?.name, data[0]?.rating)} id={data[0].id} alias="brewery"></Reviews>
+                    <BarNews id={data[0].id} alias="brewery"/>
+                    <Reviews header={reviewsHeader(data[0]?.name)} resume={reviewsResume(data[0]?.name, data[0]?.rating)} id={data[0].id} alias="brewery"></Reviews>
                     {data[0].alias === "jaws" && <Excursions ref={excursionsRef}/>}
                 </>
             }

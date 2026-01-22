@@ -18,11 +18,11 @@ import contactsBg from "../../../assets/bgPictures/contacts-bg.webp";
 
 
 export default function BeerDetailPage(){
-    const options = [
+    /*const options = [
         {id: 0, title: "Отзывы"},
         {id: 1, title: "Чек-ины"}
     ]
-    const [selectedSection, setSelectedSection] = useState(options[0])
+    const [selectedSection, setSelectedSection] = useState(options[0])*/
     const {alias} = useParams();
     const {data, isLoading, error} = useGetBeerInfoQuery(alias)
     const location = useLocation();
@@ -58,9 +58,8 @@ export default function BeerDetailPage(){
                         <BarsRow title={`Где попробовать ${data[0]?.name}`} beerTitle={data[0]?.name} barCards={data[0]?.sales_in_bars} marketCards={data[0]?.sales_in_markets} CardComponent={LightBarCard}/>
                         {data[0]?.related_items && <SimilarItems alias={alias} title={data[0]?.name} cards={data[0]?.related_items}/>}
                     </div>
-                    <div className="simpleContainer" style={{marginBottom: "15px"}}><ButtonSwitch onClick={() => {setSelectedSection(options[1-selectedSection.id])}} options={options} selectedOption={selectedSection}></ButtonSwitch></div>
-                    {selectedSection.title === "Отзывы" && <Reviews header={getBeerDetailReviewsHeader(data[0]?.name)} images={data[0]?.reviews_gallery} resume={reviewsResume(data[0]?.name, data[0]?.rating)} id={data[0]?.id} alias={"beer"}/>}
-                    {selectedSection.title === "Чек-ины" && <CheckInReviews header={getBeerDetailCheckInsHeader(data[0]?.name)} resume={reviewsResume(data[0]?.name, data[0]?.rating)}/>}
+                    {/*<div className="simpleContainer" style={{marginBottom: "15px"}}><ButtonSwitch onClick={() => {setSelectedSection(options[1-selectedSection.id])}} options={options} selectedOption={selectedSection}></ButtonSwitch></div>*/}
+                    <CheckInReviews header={getBeerDetailCheckInsHeader(data[0]?.name)} resume={reviewsResume(data[0]?.name, data[0]?.rating)}/>
                 </>
             }
         </div>

@@ -4,6 +4,7 @@ import EventsDetailSection from "../../../components/EventsDetailSection/EventsD
 import EventsCatalog from "../../../components/EventsCatalog/EventsCatalog.jsx";
 import {useEffect} from "react";
 import EventsMobileSection from "../../../components/EventsMobileSection/EventsMobileSection.jsx";
+import {useGetBarEventsQuery} from "../../../store/services/centerBeer.js";
 
 export default function RestaurantEventsPage(){
     const paths = [
@@ -11,6 +12,7 @@ export default function RestaurantEventsPage(){
         {title: "Мероприятия", path: "/"},
         {title: "Заведения", path: "/"},
     ]
+    const {data: barEvents, isLoading: barEventsIsLoading, error: barEventsError} = useGetBarEventsQuery({})
 
     useEffect(() => {
         document.title = `center.beer | Мероприятия заведений`
@@ -29,7 +31,9 @@ export default function RestaurantEventsPage(){
             <NavChain paths={paths}/>
             <SectionHeader title="Мероприятия" description={"Погрузитесь в мир пивной культуры вместе с нами! Узнайте о предстоящих фестивалях, дегустациях, мастер-классах и других захватывающих событиях, посвященных пиву. Будь то встреча с мастерами пивоварения, дружеские посиделки или масштабные индустриальные форумы — здесь вы найдете все, что нужно для настоящих ценителей пенного напитка. Присоединяйтесь к сообществу энтузиастов и откройте для себя новые грани пивной культуры!"}></SectionHeader>
             <EventsMobileSection withInput={true} onChange={() => {}}></EventsMobileSection>
-            <EventsDetailSection style="regular"><EventsCatalog mainCard={mainCard} eventsCards={eventsCards}/></EventsDetailSection>
+            <EventsDetailSection style="regular">
+                {!barEventsIsLoading && !barEventsError &&  barEvents?.data && <EventsCatalog mainCard={mainCard} eventsCards={barEvents?.data}/>}
+            </EventsDetailSection>
         </div>
     )
 }

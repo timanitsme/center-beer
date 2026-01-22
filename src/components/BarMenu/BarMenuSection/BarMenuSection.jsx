@@ -42,6 +42,7 @@ export default function BarMenuSection({alias, barId, tab}){
     const [allCards, setAllCards] = useState([])
     const [selectedFood, setSelectedFood] = useState(null)
     const [showModal, setShowModal] = useState(false)
+    const [timestamp, setTimestamp] = useState(Date.now());
     const foodIcons = {
         "Бургеры": <BurgerIcon/>,
         "Салаты": <SaladIcon/>,
@@ -86,11 +87,11 @@ export default function BarMenuSection({alias, barId, tab}){
     const multiSelectParams = Object.keys(initialFilters).filter(isMultiSelectParam);
 
     // Получение данных с API
-    const {data: beerData, isLoading: beerIsLoading, error: beerError, isFetching:beerIsFetching, reset: beerReset} = useGetBarMenuBeerQuery(filterValues, {skip: alias !== "beer"})
-    const {data: bottleData, isLoading: bottleIsLoading, error: bottleError, isFetching: bottleIsFetching, reset: bottleReset} = useGetBarMenuBottleQuery(filterValues, {skip: alias !== "beer_bottle"})
-    const {data: alcData, isLoading: alcIsLoading, error: alcError, isFetching: alcIsFetching, reset: alcReset} = useGetBarMenuAlcQuery(filterValues, {skip: alias !== "alc"})
-    const {data: cocktailsData, isLoading: cocktailsIsLoading, error: cocktailsError, isFetching: cocktailsIsFetching, reset: cocktailsReset} = useGetBarMenuCocktailsQuery(filterValues, {skip: alias !== "cocktails"})
-    const {data: foodData, isLoading: foodIsLoading, error: foodError, isFetching: foodIsFetching, reset: foodReset} = useGetBarMenuFoodQuery(filterValues, {skip: alias !== "food"})
+    const {data: beerData, isLoading: beerIsLoading, error: beerError, isFetching:beerIsFetching, reset: beerReset} = useGetBarMenuBeerQuery({ ...filterValues, ts: timestamp }, { skip: alias !== "beer" })
+    const {data: bottleData, isLoading: bottleIsLoading, error: bottleError, isFetching: bottleIsFetching, reset: bottleReset} = useGetBarMenuBottleQuery({ ...filterValues, ts: timestamp }, {skip: alias !== "beer_bottle"})
+    const {data: alcData, isLoading: alcIsLoading, error: alcError, isFetching: alcIsFetching, reset: alcReset} = useGetBarMenuAlcQuery({ ...filterValues, ts: timestamp }, {skip: alias !== "alc"})
+    const {data: cocktailsData, isLoading: cocktailsIsLoading, error: cocktailsError, isFetching: cocktailsIsFetching, reset: cocktailsReset} = useGetBarMenuCocktailsQuery({ ...filterValues, ts: timestamp }, {skip: alias !== "cocktails"})
+    const {data: foodData, isLoading: foodIsLoading, error: foodError, isFetching: foodIsFetching, reset: foodReset} = useGetBarMenuFoodQuery({ ...filterValues, ts: timestamp }, {skip: alias !== "food"})
     const data = {
         "beer": {data: beerData, isFetching: beerIsFetching, bg: beerBg},
         "beer_bottle": {data: bottleData, isFetching: bottleIsFetching, bg: beerBottleBg},
@@ -208,6 +209,7 @@ export default function BarMenuSection({alias, barId, tab}){
             ...selectedFilters,
             ["offset"]: 0,
         }));
+        setTimestamp(Date.now());
     };
 
     // Сброс фильтров
@@ -215,6 +217,7 @@ export default function BarMenuSection({alias, barId, tab}){
         setAllCards([]);
         setFilterValues(initialFilters);
         setSelectedFilters(initialFilters);
+        setTimestamp(Date.now());
         setTabResetFilters(() => {
             const newState = {};
             Object.values(filterSpecs).forEach((value) => {

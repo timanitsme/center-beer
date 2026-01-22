@@ -27,6 +27,7 @@ export default function BeerCatalog({withoutPrice=false, withHeader = true, brew
     const [filterNameMap, setFilterNameMap] = useState({});
     const [showFiltersModal, setShowFiltersModal] = useState(false)
     const [allCards, setAllCards] = useState([])
+    const [timestamp, setTimestamp] = useState(Date.now());
 
     // Спецификация фильтров
     const beerFilterSpecs = {
@@ -97,7 +98,7 @@ export default function BeerCatalog({withoutPrice=false, withHeader = true, brew
     const multiSelectParams = Object.keys(initialFilters).filter(isMultiSelectParam);
 
     // Получение данных с API
-    const {data: beerData, isLoading: beerIsLoading, isFetching: beerIsFetching, error: beerError } = useGetBeersQuery(breweryId === null? filterValues: {...filterValues, brew_ids: breweryId});
+    const {data: beerData, isLoading: beerIsLoading, isFetching: beerIsFetching, error: beerError } = useGetBeersQuery({...(breweryId === null ? filterValues : { ...filterValues, brew_ids: breweryId }), ts: timestamp});
     const {data: beerFilters, isLoading: beerFiltersIsLoading, error: beerFiltersError} = useGetBeersFiltersQuery(filterValues["city_id"] || 1)
     const {data: cities, isLoading: citiesIsLoading, error: citiesError} = useGetCitiesQuery({})
     const [debouncedCountryInput, setDebouncedCountryInput] = useState("")
@@ -243,6 +244,7 @@ export default function BeerCatalog({withoutPrice=false, withHeader = true, brew
             ...selectedFilters,
             ["offset"]: 0,
         }));
+        setTimestamp(Date.now());
     };
 
     // Сброс фильтров
@@ -250,6 +252,7 @@ export default function BeerCatalog({withoutPrice=false, withHeader = true, brew
         setAllCards([]);
         setFilterValues(initialFilters);
         setSelectedFilters(initialFilters);
+        setTimestamp(Date.now());
         setTabResetFilters(() => {
             const newState = {};
             Object.values(beerFilterSpecs).forEach((value) => {

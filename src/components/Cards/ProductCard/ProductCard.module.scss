@@ -60,10 +60,8 @@
 .priceDivider{
     .cardFooterLeft{
         width: 100%;
+        justify-content: flex-end;
 
-        .cardTextPrimary{
-            margin-right: auto;
-        }
     }
 }
 

@@ -30,6 +30,8 @@ export default function BarsCatalog(){
     const [filterNameMap, setFilterNameMap] = useState({});
     const [showFiltersModal, setShowFiltersModal] = useState(false)
     const [allCards, setAllCards] = useState([])
+    const [timestamp, setTimestamp] = useState(Date.now());
+
     // Спецификация фильтров
     const barFilterSpecs = {
         kitchen: {title: "Кухня", component: "combobox", id: "kitchen_ids"},
@@ -89,7 +91,7 @@ export default function BarsCatalog(){
     });
 
     // Получение данных с API
-    const {data: barsData, isLoading: barsIsLoading, error: barsError, isFetching: barsIsFetching } = useGetBarsQuery(filterValues);
+    const {data: barsData, isLoading: barsIsLoading, error: barsError, isFetching: barsIsFetching } = useGetBarsQuery({ ...filterValues, ts: timestamp });
     const {data: barFilters, isLoading: barFiltersIsLoading, error: barFiltersError} = useGetBarsFiltersQuery(filterValues["city_id"] || 1)
     const {data: cities, isLoading: citiesIsLoading, error: citiesError} = useGetCitiesQuery({})
     const sortFilters =[
@@ -204,6 +206,7 @@ export default function BarsCatalog(){
             ...selectedFilters,
             ["offset"]: 0,
         }));
+        setTimestamp(Date.now());
     }
 
     // Сброс фильтров
@@ -226,6 +229,7 @@ export default function BarsCatalog(){
         };
         setFilterValues(initialState)
         setSelectedFilters(initialState)
+        setTimestamp(Date.now());
         setTabResetFilters(() => {
             const newState = {};
             Object.values(barFilterSpecs).forEach((value) => {

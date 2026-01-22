@@ -102,7 +102,7 @@ export default function CheckInReviews({header, resume}){
     }
 
     return(
-        <div className={styles.reviews}>
+        <div className={styles.reviews} id="check-ins">
             <ComponentHeader HeaderIcon={BeardIcon} title={header.title} description={header.description}/>
             <div className="hrtLine" style={{margin: "20px 0"}} />
             <div className={styles.commentsSection}>

@@ -68,7 +68,7 @@ export default function BarCheckInCard({cardInfo}){
                     <p className="aa-p2">Первое посещение: <span className="aa-p2" style={{color: "var(--txt-active)"}}>24.04.2025</span></p>
                 </div>
                 <div className={`${styles.iconText} ${styles.loc}`}>
-                    <p className="aa-p2">Количество посещений: <span className="aa-p2" style={{color: "var(--txt-active)"}}>21</span></p>
+                    <p className="aa-p2">Количество чек-инов: <span className="aa-p2" style={{color: "var(--txt-active)"}}>21</span></p>
                 </div>
 
                 <div className={styles.characteristics}>

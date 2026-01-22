@@ -29,7 +29,7 @@ export const centerBeerApi = createApi({
         })),
         //Каталог пива
         getBeers: (builder.query({
-            query: ({lim, name, offset, sort_by, with_reviews, city_id, color_ids, country_ids, price_ids, abv_id, abv_from, abv_to, og_id, og_from, og_to, ibu_id, ibu_from, ibu_to, vol_ids, pack_ids, brew_ids}) => {
+            query: ({lim, name, offset, sort_by, with_reviews, city_id, style_ids, color_ids, country_ids, price_ids, abv_id, abv_from, abv_to, og_id, og_from, og_to, ibu_id, ibu_from, ibu_to, vol_ids, pack_ids, brew_ids}) => {
                 const params = new URLSearchParams();
                 if (lim !== undefined) params.append("lim", lim);
                 if (name !== undefined) params.append("name", name);
@@ -52,6 +52,7 @@ export const centerBeerApi = createApi({
                 if (vol_ids !== undefined) params.append("vol_ids", vol_ids);
                 if (pack_ids !== undefined) params.append("pack_ids", pack_ids);
                 if (brew_ids !== undefined) params.append("brew_ids", brew_ids);
+                if (style_ids !== undefined && style_ids.length !== 0) params.append("style_id", style_ids);
                 return(`getBeers?${params.toString()}`)
             }
         })),
@@ -85,8 +86,10 @@ export const centerBeerApi = createApi({
         })),
         // Каталог пивоварен
         getBreweries: (builder.query({
-            query: ({id, name, is_open, is_new, country_id, city_id, type_id, order_by, order_asc_desc}) => {
+            query: ({lim, offset, id, name, is_open, is_new, country_id, city_id, type_id, order_by, order_asc_desc}) => {
                 const params = new URLSearchParams()
+                if (lim !== undefined) params.append("lim", lim)
+                if (offset !== undefined) params.append("offset", offset)
                 if (is_open !== undefined) params.append("is_open", is_open)
                 if (id !== undefined) params.append("id", id)
                 if (name !== undefined) params.append("name", name)
@@ -248,10 +251,19 @@ export const centerBeerApi = createApi({
         getBarEvents: (builder.query({
             query: ({bar_id, lim, offset}) => {
                 const params = new URLSearchParams()
-                params.append("bar_id", bar_id)
+                if (bar_id !== undefined) params.append("bar_id", bar_id)
                 if (lim !== undefined) params.append("lim", lim)
                 if (offset !== undefined) params.append("offset", offset)
                 return(`getBarEvents?${params.toString()}`)
+            }
+        })),
+        getBreweryEvents: (builder.query({
+            query: ({brew_id, lim, offset}) => {
+                const params = new URLSearchParams()
+                if (brew_id !== undefined) params.append("brew_id", brew_id)
+                if (lim !== undefined) params.append("lim", lim)
+                if (offset !== undefined) params.append("offset", offset)
+                return(`getBreweryEvents?${params.toString()}`)
             }
         })),
         getBarPromo: (builder.query({
@@ -270,6 +282,15 @@ export const centerBeerApi = createApi({
                 if (lim !== undefined) params.append("lim", lim)
                 if (offset !== undefined) params.append("offset", offset)
                 return(`getBarNews?${params.toString()}`)
+            }
+        })),
+        getBreweryNews: (builder.query({
+            query: ({brew_id, lim, offset}) => {
+                const params = new URLSearchParams()
+                params.append("brew_id", brew_id)
+                if (lim !== undefined) params.append("lim", lim)
+                if (offset !== undefined) params.append("offset", offset)
+                return(`getBreweryNews?${params.toString()}`)
             }
         })),
         // Страница пива
@@ -394,8 +415,8 @@ export const centerBeerApi = createApi({
 
 export const { useGetBarsQuery, useGetBarInfoQuery, useGetBarsFiltersQuery,
     useGetStylesQuery, useGetBarTypesQuery, useGetBreweryTypesQuery,
-    useGetCountriesQuery, useGetCitiesQuery, useGetBarEventsQuery,
-    useGetBarPromoQuery, useGetBarNewsQuery, useGetBarMenuTabsQuery,
+    useGetCountriesQuery, useGetCitiesQuery, useGetBarEventsQuery, useGetBreweryEventsQuery,
+    useGetBarPromoQuery, useGetBarNewsQuery, useGetBreweryNewsQuery, useGetBarMenuTabsQuery,
     useGetBarMenuFoodQuery, useGetBarMenuBottleQuery, useGetBarMenuBeerQuery,
     useGetBarMenuAlcQuery, useGetBarMenuCocktailsQuery, useGetBarMenuFoodFiltersQuery,
     useGetBarMenuBottleFiltersQuery, useGetBarMenuBeerFiltersQuery, useGetBarMenuAlcFiltersQuery,

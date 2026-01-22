@@ -20,6 +20,7 @@ export default function BeerMapCatalog({filters = [], filterButtons = []}){
     const navigate = useNavigate()
     const [filterNameMap, setFilterNameMap] = useState({});
     const [showFiltersModal, setShowFiltersModal] = useState(false)
+    const [timestamp, setTimestamp] = useState(Date.now());
 
     // Спецификация фильтров
     const barFilterSpecs = {
@@ -74,7 +75,7 @@ export default function BeerMapCatalog({filters = [], filterButtons = []}){
     });
 
     // Получение данных с API
-    const {data: barsData, isLoading: barsIsLoading, error: barsError } = useGetBarsQuery(filterValues);
+    const {data: barsData, isLoading: barsIsLoading, error: barsError } = useGetBarsQuery({ ...filterValues, ts: timestamp });
     const {data: barFilters, isLoading: barFiltersIsLoading, error: barFiltersError} = useGetBarsFiltersQuery(filterValues["city_id"] || 1)
     const {data: cities, isLoading: citiesIsLoading, error: citiesError} = useGetCitiesQuery({})
     const sortFilters =[
@@ -150,6 +151,7 @@ export default function BeerMapCatalog({filters = [], filterButtons = []}){
     // Применение фильтров
     const applyFilters = () => {
         setFilterValues(selectedFilters);
+        setTimestamp(Date.now());
     }
 
     // Сброс фильтров
@@ -171,6 +173,7 @@ export default function BeerMapCatalog({filters = [], filterButtons = []}){
         };
         setFilterValues(initialState)
         setSelectedFilters(initialState)
+        setTimestamp(Date.now());
         setTabResetFilters(() => {
             const newState = {};
             Object.values(barFilterSpecs).forEach((value) => {
@@ -178,6 +181,7 @@ export default function BeerMapCatalog({filters = [], filterButtons = []}){
             });
             return newState;
         });
+
     }
 
     // Возвращение reset к изначальному состоянию

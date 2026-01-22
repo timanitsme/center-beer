@@ -30,7 +30,7 @@ export default function BreweryCatalog({filters = [], filterButtons = [], sectio
     const [showFiltersModal, setShowFiltersModal] = useState(false)
     const [allCards, setAllCards] = useState([])
     const [isLoadingMore, setIsLoadingMore] = useState(false);
-
+    const [timestamp, setTimestamp] = useState(Date.now());
 
 
     // TODO:
@@ -55,6 +55,8 @@ export default function BreweryCatalog({filters = [], filterButtons = [], sectio
     }
 
     const initialFilters = {
+        lim: 24,
+        offset: 0,
         is_open: false,
         is_new: false,
         country_id: [],
@@ -92,7 +94,7 @@ export default function BreweryCatalog({filters = [], filterButtons = [], sectio
     const { data: types, typesIsLoading, typesError } = useGetBreweryTypesQuery({name: debouncedTypeInput !== ""? debouncedTypeInput: undefined});
     const [debouncedCountryInput, setDebouncedCountryInput] = useState("")
     const { data: countries, countriesIsLoading, countriesError } = useGetCountriesQuery({name: debouncedCountryInput !== ""? debouncedCountryInput: undefined});
-    const {data: breweriesData, isLoading: breweriesIsLoading, isFetching: breweriesIsFetching, error: breweriesError } = useGetBreweriesQuery(filterValues);
+    const {data: breweriesData, isLoading: breweriesIsLoading, isFetching: breweriesIsFetching, error: breweriesError } = useGetBreweriesQuery({ ...filterValues, ts: timestamp });
     const {data: breweriesFilters, isLoading: breweriesFiltersIsLoading, error: breweriesFiltersError} = useGetBreweriesFiltersQuery()
     const {data: cities, isLoading: citiesIsLoading, error: citiesError} = useGetCitiesQuery({})
 
@@ -106,6 +108,36 @@ export default function BreweryCatalog({filters = [], filterButtons = [], sectio
         {id: "asc", Icon: FaSortAmountUp, name: "По возрастанию"},
         {id: "desc", Icon: FaSortAmountDown, name: "По убыванию"}
     ]
+
+    // Эффект, собирающий все карточки, полученные при выполнении соответствующего запроса
+    useEffect(() => {
+        if (!breweriesIsFetching && breweriesData?.data){
+            if (filterValues["offset"] !== 0){
+                setAllCards(prev => [
+                    ...prev,
+                    ...breweriesData.data.filter(newCard =>
+                        !prev.some(existingCard => existingCard.id === newCard.id)
+                    )
+                ]);
+            }
+            else{
+                setAllCards([...breweriesData.data])
+            }
+        }
+
+    }, [breweriesIsFetching]);
+
+    const handleShowMore = () => {
+        const newOffset = filterValues["offset"] + filterValues["lim"];
+        setSelectedFilters((prevState) => ({
+            ...prevState,
+            [`offset`]: newOffset,
+        }));
+        setFilterValues((prevState) => ({
+            ...prevState,
+            [`offset`]: newOffset,
+        }));
+    }
 
 
     useEffect(() => {
@@ -191,22 +223,33 @@ export default function BreweryCatalog({filters = [], filterButtons = [], sectio
         setSelectedFilters((prevState) => ({
             ...prevState,
             [filterKey]: value,
+            ["offset"]: 0,
         }));
         setFilterValues((prevState) => ({
             ...prevState,
             [filterKey]: value,
+            ["offset"]: 0,
         }));
     }
 
     // Применение фильтров
     const applyFilters = () => {
-        setFilterValues(selectedFilters);
+        setSelectedFilters((prevState) => ({
+            ...prevState,
+            ["offset"]: 0,
+        }));
+        setFilterValues(() => ({
+            ...selectedFilters,
+            ["offset"]: 0,
+        }));
+        setTimestamp(Date.now());
     }
 
     // Сброс фильтров
     const resetFilters = () => {
         setFilterValues(initialFilters)
         setSelectedFilters(initialFilters)
+        setTimestamp(Date.now());
         setTabResetFilters(() => {
             const newState = {};
             Object.values(breweryFilterSpecs).forEach((value) => {
@@ -245,12 +288,14 @@ export default function BreweryCatalog({filters = [], filterButtons = [], sectio
                 return {
                     ...prev,
                     [filterKey]: currentValue.filter((id) => id !== idToRemove),
+                    ["offset"]: 0,
                 };
             } else {
                 // Сбрасываем не массивное значение
                 return {
                     ...prev,
                     [filterKey]: "",
+                    ["offset"]: 0,
                 };
             }
 
@@ -261,11 +306,13 @@ export default function BreweryCatalog({filters = [], filterButtons = [], sectio
                 return {
                     ...prev,
                     [filterKey]: currentValue.filter((id) => id !== idToRemove),
+                    ["offset"]: 0,
                 };
             } else {
                 return {
                     ...prev,
                     [filterKey]: "",
+                    ["offset"]: 0,
                 };
             }
 
@@ -282,6 +329,7 @@ export default function BreweryCatalog({filters = [], filterButtons = [], sectio
                 ...prev,
                 [`${filterName}_from`]: "",
                 [`${filterName}_to`]: "",
+                ["offset"]: 0,
             };
         });
         setFilterValues((prev) => {
@@ -289,6 +337,7 @@ export default function BreweryCatalog({filters = [], filterButtons = [], sectio
                 ...prev,
                 [`${filterName}_from`]: "",
                 [`${filterName}_to`]: "",
+                ["offset"]: 0,
             }
         });
         setTabResetFilters((prev) => {
@@ -434,7 +483,7 @@ export default function BreweryCatalog({filters = [], filterButtons = [], sectio
                         {sortDirectionFilters && <SortDirection options={sortDirectionFilters} onChange={(value) => handleSingleFilterApply("order_asc_desc", value.id)}/>}
                         <Toggle reset={tabResetFilters["is_open"]} label={"Только открытые"} toggled={filterValues.is_open} onClick={() => handleSingleFilterApply("is_open", !filterValues.is_open)}/>
                     </div>
-                    <SimpleCatalogSection alias="distributors" cards={breweriesData?.data} CardComponent={BreweryCard} wideColumns={true} isFetching={breweriesIsFetching} SkeletonCardComponent={BreweryCardSkeleton} lim={25} totalItems={breweriesData?.["total_items"]}/>
+                    <SimpleCatalogSection lim={filterValues["lim"]} alias="distributors" cards={allCards} CardComponent={BreweryCard} wideColumns={true} isFetching={breweriesIsFetching} SkeletonCardComponent={BreweryCardSkeleton} totalItems={breweriesData?.["total_items"]} onShowMore={handleShowMore}/>
                 </div>
             </div>
             {isMobile &&

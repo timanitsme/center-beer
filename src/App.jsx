@@ -114,7 +114,7 @@ function App() {
                 {id: "beer-info", title: "Информация"},
                 {id: "bars-row", title: "Где попробовать"},
                 {id: "similar-items", title: "Похожее пиво"},
-                {id: "reviews", title: "Отзывы"}
+                {id: "check-ins", title: "Чек-ины"}
             ]},
         {path: "/beer/:alias/similar", element: AllSimilarBeerPage}, //
         {path: "/brewery/:alias", element: BreweryDetailPage, sections: [

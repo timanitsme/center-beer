@@ -5,20 +5,29 @@ import LightNavChain from "../Navigation/LightNavChain/LightNavChain.jsx";
 import RoundLinkButton from "../Buttons/RoundLinkButton/RoundLinkButton.jsx";
 import ComponentHeader from "../ComponentHeader/ComponentHeader.jsx";
 import {useNavigate} from "react-router-dom";
-import {useGetBarNewsQuery} from "../../store/services/centerBeer.js";
+import {useGetBarNewsQuery, useGetBreweryNewsQuery} from "../../store/services/centerBeer.js";
 import {useState} from "react";
+import {current} from "@reduxjs/toolkit";
 
-export default function BarNews({barId = 1, ref, description = "Будьте с нами, чтобы не пропустить ни одного яркого момента и всегда быть в курсе всех новостей и предложений бара.", picture = NewsPhoto}){
+export default function BarNews({id = 1, alias = "bar", ref=null, description = "Будьте с нами, чтобы не пропустить ни одного яркого момента и всегда быть в курсе всех новостей и предложений бара.", picture = NewsPhoto}){
     const navigate = useNavigate()
     const [unlimitedNews, setUnlimitedNews] = useState(new Set())
-    const {data: news, isLoading: newsIsLoading, error: newsError}  = useGetBarNewsQuery({bar_id: barId, lim: 5})
+    const {data: barNews, isLoading: barNewsIsLoading, error: barNewsError}  = useGetBarNewsQuery({bar_id: id, lim: 5}, {skip: alias !== "bar"})
+    const {data: breweryNews, isLoading: breweryNewsIsLoading, error: breweryNewsError}  = useGetBreweryNewsQuery({brew_id: id, lim: 5}, {skip: alias !== "brewery"})
+
+    const newsData = {
+        bar: {data: barNews, isLoading: barNewsIsLoading, error: barNewsError},
+        brewery: {data: breweryNews, isLoading: breweryNewsIsLoading, error: breweryNewsError}
+    }
+
+    const currentNews = newsData[alias]
 
     const paths = [
         {title: "Новости", path: "/news"},
         {title: "Пиво", path: "/news"},
     ]
 
-    if (!news || news?.length === 0 || newsIsLoading || newsError) return null
+    if (!currentNews.data || currentNews.data?.length === 0 || currentNews.isLoading || currentNews.error) return null
 
     function parseEmojis(htmlText) {
         const parser = new DOMParser();
@@ -64,7 +73,7 @@ export default function BarNews({barId = 1, ref, description = "Будьте с 
                 </div>
             </div>
             <div className={styles.newsContainer}>
-                {news.data.map(((item, index) => {
+                {currentNews.data.data.map(((item, index) => {
                     const idNum = Number(item.id)
                     const unlimited = unlimitedNews.has(idNum);
                     return(

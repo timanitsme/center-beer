@@ -131,8 +131,7 @@ export default function BeerInfo({showPrice=false,beerInfo={}}){
                                 <div className={styles.circle}/>
                                 <a> <CommentIcon/> 116 комментариев</a>
                             </div>
-                            <IconButton text="добавить check-in" style="secondary"><CheckInIcon/></IconButton>
-                            <IconButton text="Оставить отзыв" onClick={() => scrollToSection("reviews")} style=""><BeardIcon/></IconButton>
+                            <IconButton text="добавить check-in" onClick={() => scrollToSection("check-ins")} style="secondary"><CheckInIcon/></IconButton>
                             { showPrice &&
                                 <div className={styles.cartAndPrice}>
                                     <h2 style={{color: "var(--primary)"}}>380₽</h2>

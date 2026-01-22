@@ -1,15 +1,23 @@
 import styles from "./BarEvents.module.scss"
 import ArrowButton from "../Buttons/ArrowButton/ArrowButton.jsx";
 import ArrowDiagonalIcon from "../../assets/arrow-diagonal-icon.svg?react"
-import {useGetBarEventsQuery} from "../../store/services/centerBeer.js";
+import {useGetBarEventsQuery, useGetBreweryEventsQuery} from "../../store/services/centerBeer.js";
 import {useEffect, useMemo, useState} from "react";
 import {Link} from "react-router-dom";
 
 
-export default function BarEvents({title = "Скоро в баре", barId=1, ref=null}){
-    const {data: events, isLoading: eventsIsLoading, error: eventsError} = useGetBarEventsQuery({bar_id: barId})
+export default function BarEvents({title = "Скоро в баре", alias="bar", id=1, ref=null}){
+    const {data: barEvents, isLoading: barEventsIsLoading, error: barEventsError} = useGetBarEventsQuery({bar_id: id}, {skip: alias !== "bar"})
+    const {data: breweryEvents, isLoading: breweryEventsIsLoading, error: breweryEventsError} = useGetBreweryEventsQuery({brew_id: id}, {skip: alias !== "brewery"})
     const [containerHeight, setContainerHeight] = useState(500);
-    const memoizedEvents = useMemo(() => events?.data, [events]);
+
+    const eventsData = {
+        bar: {data: barEvents, isLoading: barEventsIsLoading, error: barEventsError},
+        brewery: {data: breweryEvents, isLoading: breweryEventsIsLoading, error: breweryEventsError}
+    }
+
+    const currentEvents = eventsData[alias]
+    const memoizedEvents = useMemo(() => currentEvents?.data?.data, [currentEvents.data]);
 
 
     const getImageSize = (url, containerWidth, callback) => {
@@ -36,17 +44,17 @@ export default function BarEvents({title = "Скоро в баре", barId=1, re
 
         const containerWidth = container.clientWidth;
 
-        if (events?.data && events?.data.length > 0) {
+        if (currentEvents?.data?.data && currentEvents?.data?.data.length > 0) {
             let processedImages = 0;
 
-            events?.data.forEach((event) => {
+            currentEvents?.data?.data.forEach((event) => {
                 getImageSize(event.preview, containerWidth, (scaledHeight) => {
                     if (scaledHeight > maxHeight) {
                         maxHeight = scaledHeight;
                     }
 
                     processedImages++;
-                    if (processedImages === events.data.length) {
+                    if (processedImages === currentEvents?.data.data.length) {
                         setContainerHeight(maxHeight); // Обновляем высоту только после завершения всех вычислений
                     }
                 });
@@ -62,7 +70,7 @@ export default function BarEvents({title = "Скоро в баре", barId=1, re
 
     // Функция для переключения на следующее событие
     const handleNextEvent = () => {
-        if (events?.data && currentEventIndex < events?.data.length - 1) {
+        if (currentEvents?.data?.data && currentEventIndex < currentEvents?.data?.data.length - 1) {
             setCurrentEventIndex(currentEventIndex + 1);
         }
     };
@@ -89,11 +97,11 @@ export default function BarEvents({title = "Скоро в баре", barId=1, re
         window.addEventListener("resize", handleResize);
         // Очистка слушателя
         return () => window.removeEventListener("resize", handleResize);
-    }, [memoizedEvents, eventsIsLoading]);
+    }, [memoizedEvents, currentEvents?.isLoading]);
 
 
-    if (eventsIsLoading || eventsError || !events || events?.data?.length === 0 || !events?.data?.length) return null;
-    const currentEvent = events?.data?.[currentEventIndex];
+    if (currentEvents?.isLoading || currentEvents?.error || !currentEvents?.data || currentEvents?.data?.data?.length === 0 || !currentEvents?.data?.data?.length) return null;
+    const currentEvent = currentEvents?.data?.data?.[currentEventIndex];
 
     return(
         <div id="bar-events" className={styles.barEventsContainer} style={{minHeight: containerHeight}} ref={ref}>

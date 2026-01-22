@@ -138,7 +138,7 @@ export default function Reviews({header, images, resume, alias, id}){
 
                 </div>
                 <div className={styles.col}>
-                    <SimpleButton text="Забронировать стол" onClick={() => navigate("/in-dev")}/>
+                    {alias === "bar" && <SimpleButton text="Забронировать стол" onClick={() => navigate("/in-dev")}/>}
                     <IconButton onClick={handleScrollToCommentForm} text="Оставить отзыв"><BeardIcon/></IconButton>
                 </div>
             </div>
@@ -183,7 +183,7 @@ export default function Reviews({header, images, resume, alias, id}){
 
 
                     </div>
-                    <SimpleButton text="Забронировать стол" onClick={() => navigate("/in-dev")}/>
+                    {alias === "bar" && <SimpleButton text="Забронировать стол" onClick={() => navigate("/in-dev")}/>}
                     <IconButton onClick={handleScrollToCommentForm} text="Оставить отзыв"><BeardIcon/></IconButton>
 
                 </div>

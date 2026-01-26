@@ -19,7 +19,7 @@ import {
     useGetBreweryCommentsQuery
 } from "../../store/services/centerBeer.js";
 
-export default function Reviews({header, images, resume, alias, id}){
+export default function Reviews({header, images, resume, alias, id, contacts=null}){
     const { isAuthorized, userProfile, isLoading: profileIsLoading } = useSelector((state) => state.auth);
     const textRef = useRef(null);
     const [isTextClamped, setIsTextClamped] = useState(false);
@@ -138,7 +138,7 @@ export default function Reviews({header, images, resume, alias, id}){
 
                 </div>
                 <div className={styles.col}>
-                    {alias === "bar" && <SimpleButton text="Забронировать стол" onClick={() => navigate("/in-dev")}/>}
+                    {alias === "bar" && <SimpleButton text="Забронировать стол" onClick={() => window.location.href = `tel:${contacts}`}/>}
                     <IconButton onClick={handleScrollToCommentForm} text="Оставить отзыв"><BeardIcon/></IconButton>
                 </div>
             </div>
@@ -183,7 +183,7 @@ export default function Reviews({header, images, resume, alias, id}){
 
 
                     </div>
-                    {alias === "bar" && <SimpleButton text="Забронировать стол" onClick={() => navigate("/in-dev")}/>}
+                    {alias === "bar" && <SimpleButton text="Забронировать стол" onClick={() => window.location.href = `tel:${contacts}`}/>}
                     <IconButton onClick={handleScrollToCommentForm} text="Оставить отзыв"><BeardIcon/></IconButton>
 
                 </div>

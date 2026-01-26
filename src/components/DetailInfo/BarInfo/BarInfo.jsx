@@ -120,7 +120,7 @@ export default function BarInfo({barInfo={}, sections = []}){
 
 
                                 )}
-                                <SimpleButton onClick={() => navigate("/in-dev")} text={"забронировать стол"}/>
+                                <SimpleButton onClick={() => window.location.href = `tel:${barInfo.contacts}`} text={"забронировать стол"}/>
                             </div>
                         </div>
                         <div className={`${styles.barInfo} ${styles.regular}`}>
@@ -132,7 +132,7 @@ export default function BarInfo({barInfo={}, sections = []}){
                                 <div className={styles.circle}/>
                                 <a className="ma-p"> <CommentIcon/> 116 комментариев</a>
                             </div>
-                            <h2>{barInfo.contacts}</h2>
+                            <a href={`tel:${barInfo.contacts}`}><h2>{barInfo.contacts}</h2></a>
                             <p>{barInfo.address}</p>
                             <a className={styles.aUnderlinedIconButton} href="https://center.beer/about-us/contact/"><CommentIcon/>Связаться с нами</a>
                             <a className={styles.aUnderlinedIconButton} onClick={() => setShowModal(true)}><CalendarIcon/>График работы</a>
@@ -158,7 +158,7 @@ export default function BarInfo({barInfo={}, sections = []}){
                     <div className={styles.circle}/>
                     <a className="ma-p"> <CommentIcon/> 116 комментариев</a>
                 </div>
-                <h2 className="ma-h2">{barInfo.contacts}</h2>
+                <a href={`tel:${barInfo.contacts}`}><h2 className="ma-h2">{barInfo.contacts}</h2></a>
                 <p className="ma-p">{barInfo.address}</p>
                 <a className={`${styles.aUnderlinedIconButton} ma-p`} href="https://center.beer/contacts/"><CommentIcon/>Связаться с нами</a>
                 <a className={`${styles.aUnderlinedIconButton} ma-p`} onClick={() => setShowModal(true)}><CalendarIcon/>График работы</a>
@@ -178,7 +178,7 @@ export default function BarInfo({barInfo={}, sections = []}){
                     section.ref? <IconButton key={index} onClick={() => handleScroll(section.ref)} text={section.title}>{section.IconComponent}</IconButton>:
                         <IconButton key={index} onClick={() => window.location=`${window.location.pathname}/${section.path}`} text={section.title}>{section.IconComponent}</IconButton>
                 )}
-                <SimpleButton onClick={() => navigate("/in-dev")} text={"забронировать стол"}/>
+                <SimpleButton onClick={() => window.location.href = `tel:${barInfo.contacts}`} text={"забронировать стол"}/>
             </div>
             <WorktimeModal setShow={setShowModal} show={showModal} workTimeList={barInfo["work_time_list"]}/>
         </div>

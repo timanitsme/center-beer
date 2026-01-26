@@ -146,7 +146,7 @@ export default function CheckInReviews({header, resume}){
 
 
                     </div>
-                    <SimpleButton text="Забронировать стол" onClick={() => navigate("/in-dev")}/>
+                    {/*<SimpleButton text="Забронировать стол" onClick={() => navigate("/in-dev")}/>*/}
                     <IconButton onClick={handleScrollToCommentForm} text="Оставить чек-ин"><BeardIcon/></IconButton>
 
                 </div>

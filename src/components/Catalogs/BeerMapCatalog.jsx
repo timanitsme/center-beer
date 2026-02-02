@@ -15,6 +15,7 @@ import FiltersModal from "../Modals/FiltersModal/FiltersModal.jsx";
 import SingleCheckBox from "../ApiInputs/CheckBox/SingleCheckBox.jsx";
 import SearchInput from "../ApiInputs/Search/SearchInput.jsx";
 import contactsBg from "../../assets/bgPictures/contacts-bg.webp";
+import SearchInputAlt from "../ApiInputs/Search/SearchInputAlt.jsx";
 
 export default function BeerMapCatalog({filters = [], filterButtons = []}){
     const navigate = useNavigate()
@@ -41,6 +42,7 @@ export default function BeerMapCatalog({filters = [], filterButtons = []}){
         lim: 24,
         offset: 0,
         city_id: '',
+        name: "",
         subways_ids: [],
         kitchen_ids: [],
         visit_type_ids: [],
@@ -55,6 +57,7 @@ export default function BeerMapCatalog({filters = [], filterButtons = []}){
     // Временные фильтры (хранят выбранные значения до применения)
     const [selectedFilters, setSelectedFilters] = useState({
         city_id: '',
+        name: "",
         subways_ids: [],
         kitchen_ids: [],
         visit_type_ids: [],
@@ -151,6 +154,18 @@ export default function BeerMapCatalog({filters = [], filterButtons = []}){
     // Применение фильтров
     const applyFilters = () => {
         setFilterValues(selectedFilters);
+        setTimestamp(Date.now());
+    }
+
+    const applyFiltersWithName = (currentName) => {
+        setSelectedFilters((prevState) => ({
+            ...prevState,
+            ["name"]: currentName,
+        }));
+        setFilterValues(() => ({
+            ...selectedFilters,
+            ["name"]: currentName,
+        }));
         setTimestamp(Date.now());
     }
 
@@ -287,7 +302,6 @@ export default function BeerMapCatalog({filters = [], filterButtons = []}){
             </div>
             <div className={styles.menuContent}>
                 {!isMobile && <div className={styles.menuFilters}>
-                    <SearchInput title="Поиск по названию" onChange={() => {}}/>
                     <SearchCities title="Город" reset={tabResetFilters["city_id"]} onChange={(value) => handleSingleFilterChange("city_id", value)}></SearchCities>
                     <SingleCheckBox text="Открыто сейчас" onChange={(value) => handleSingleFilterChange("only_opened", value)} reset={tabResetFilters["only_opened"]}/>
                     <SingleCheckBox text="Онлайн-бронь" onChange={(value) => handleSingleFilterChange("online_booking", value)} reset={tabResetFilters["online_booking"]}/>
@@ -302,6 +316,7 @@ export default function BeerMapCatalog({filters = [], filterButtons = []}){
                     <SimpleButton text="Применить фильтры" onClick={applyFilters}></SimpleButton>
                 </div>}
                 <div className={styles.menuItemsSections}>
+                    <SearchInputAlt title="Поиск по названию" onChange={(value) => {handleSingleFilterChange("name", value)}} reset={tabResetFilters["name"]} onApply={(value) => applyFiltersWithName(value)}></SearchInputAlt>
                     {isMobile && <div className={styles.toggleAndOptions} style={{marginBottom: "10px"}}>
                         <SimpleButton textStyle={"black"} text="ФИЛЬТРЫ" onClick={() => setShowFiltersModal(true)} style="primary"></SimpleButton>
                     </div>}
@@ -365,7 +380,6 @@ export default function BeerMapCatalog({filters = [], filterButtons = []}){
             </div>
             {isMobile &&
                 <FiltersModal setShow={setShowFiltersModal} show={showFiltersModal}>
-                    <SearchInput title="Поиск по названию" onChange={() => {}}/>
                     <SearchCities title="Город" reset={tabResetFilters["city_id"]} onChange={(value) => handleSingleFilterChange("city_id", value)}></SearchCities>
                     <SingleCheckBox text="Открыто сейчас" onChange={(value) => handleSingleFilterChange("only_opened", value)} reset={tabResetFilters["only_opened"]}/>
                     <SingleCheckBox text="Онлайн-бронь" onChange={(value) => handleSingleFilterChange("online_booking", value)} reset={tabResetFilters["online_booking"]}/>

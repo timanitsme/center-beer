@@ -17,6 +17,21 @@
     background: var(--third);
 }
 
+.searchInputAlt{
+    width: 100%;
+    padding: rem(16) rem(102) rem(16) rem(16);
+    border-radius: rem(8);
+    color: var(--txt-active);
+    font-weight: 200;
+    border: rem(2) solid var(--third);
+    outline: none;
+    background: var(--section-bg);
+    transition: 0.3s;
+    &:focus{
+        border-color: var(--primary);
+    }
+}
+
 .searchIcon {
     position: absolute;
     right: rem(10);
@@ -28,6 +43,52 @@
     color: var(--primary);
     max-height: rem(22);
     max-width: rem(22);
+}
+
+.searchIconSecond{
+    position: absolute;
+    right: rem(70);
+    top: 50%;
+    transform: translateY(-50%);
+
+    svg{
+        color: var(--txt-active);
+        max-height: rem(22);
+        max-width: rem(22);
+    }
+}
+
+
+
+.searchIconPrimary{
+    position: absolute;
+    right: rem(8);
+    background: var(--primary);
+    top: 50%;
+    transform: translateY(-50%);
+    aspect-ratio: 1/1;
+    width: rem(44);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: rem(8);
+    transition: 0.5s;
+    cursor: pointer;
+    border: none;
+    outline: none;
+
+    &:hover{
+        background: var(--primary-semi-transparent);
+    }
+    p{
+        color: var(--bg);
+    }
+
+    svg{
+        color: var(--bg);
+        max-height: rem(22);
+        max-width: rem(22);
+    }
 }
 
 .suggestionsList {

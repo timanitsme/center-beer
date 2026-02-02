@@ -23,6 +23,7 @@ import SingleCheckBox from "../ApiInputs/CheckBox/SingleCheckBox.jsx";
 import BarCardSkeleton from "../Skeletons/BarCardSkeleton/BarCardSkeleton.jsx";
 import SearchInput from "../ApiInputs/Search/SearchInput.jsx";
 import contactsBg from "../../assets/bgPictures/contacts-bg.webp"
+import SearchInputAlt from "../ApiInputs/Search/SearchInputAlt.jsx";
 
 
 export default function BarsCatalog(){
@@ -209,6 +210,20 @@ export default function BarsCatalog(){
         setTimestamp(Date.now());
     }
 
+    const applyFiltersWithName = (currentName) => {
+        setSelectedFilters((prevState) => ({
+            ...prevState,
+            ["name"]: currentName,
+            ["offset"]: 0,
+        }));
+        setFilterValues(() => ({
+            ...selectedFilters,
+            ["name"]: currentName,
+            ["offset"]: 0,
+        }));
+        setTimestamp(Date.now());
+    }
+
     // Сброс фильтров
     const resetFilters = () => {
 
@@ -337,7 +352,6 @@ export default function BarsCatalog(){
             </div>
             <div className={styles.menuContent}>
                 {!isMobile && <div className={styles.menuFilters}>
-                    <SearchInput title="Поиск по названию" onChange={(value) => {handleSingleFilterChange("name", value)}} reset={tabResetFilters["name"]}></SearchInput>
                     <SearchCities title="Город" reset={tabResetFilters["city_id"]} onChange={(value) => handleSingleFilterChange("city_id", value)}></SearchCities>
                     <SingleCheckBox text="Онлайн-бронь" onChange={(value) => {handleSingleFilterChange("online_booking", value)}} reset={tabResetFilters["online_booking"]}></SingleCheckBox>
                     {filtersConfig.map((filter) => (
@@ -351,6 +365,7 @@ export default function BarsCatalog(){
                     <SimpleButton text="Применить фильтры" onClick={applyFilters}></SimpleButton>
                 </div>}
                 <div className={styles.menuItemsSections}>
+                    <SearchInputAlt title="Поиск по названию" onChange={(value) => {handleSingleFilterChange("name", value)}} reset={tabResetFilters["name"]} onApply={(value) => applyFiltersWithName(value)}></SearchInputAlt>
                     <div className={styles.appliedFiltersRow}>
                         {Object.entries(filterValues).map(([filterKey, value]) => {
                             // Пропускаем пустые значения
@@ -418,7 +433,6 @@ export default function BarsCatalog(){
             </div>
             {isMobile &&
                 <FiltersModal setShow={setShowFiltersModal} show={showFiltersModal}>
-                    <SearchInput title="Поиск по названию" onChange={(value) => {handleSingleFilterChange("name", value)}} reset={tabResetFilters["name"]}></SearchInput>
                     <SearchCities title="Город" reset={tabResetFilters["city_id"]} onChange={(value) => handleSingleFilterChange("city_id", value)}></SearchCities>
                     <SingleCheckBox text="Онлайн-бронь" onChange={(value) => {handleSingleFilterChange("online_booking", value)}} reset={tabResetFilters["online_booking"]}/>
                     {filtersConfig.map((filter) => (

@@ -35,6 +35,7 @@ import beerBottleBg from "../../../assets/bgPictures/beer-catalog-bg.webp"
 import alcoBg from "../../../assets/bgPictures/alcohol-bg.webp"
 import nonAlcoBg from "../../../assets/bgPictures/non-alcohol-bg.webp"
 import foodBg from "../../../assets/bgPictures/food-bg.webp"
+import SearchInputAlt from "../../ApiInputs/Search/SearchInputAlt.jsx";
 
 export default function BarMenuSection({alias, barId, tab}){
     const [filterNameMap, setFilterNameMap] = useState({});
@@ -212,6 +213,20 @@ export default function BarMenuSection({alias, barId, tab}){
         setTimestamp(Date.now());
     };
 
+    const applyFiltersWithName = (currentName) => {
+        setSelectedFilters((prevState) => ({
+            ...prevState,
+            ["name"]: currentName,
+            ["offset"]: 0,
+        }));
+        setFilterValues(() => ({
+            ...selectedFilters,
+            ["name"]: currentName,
+            ["offset"]: 0,
+        }));
+        setTimestamp(Date.now());
+    }
+
     // Сброс фильтров
     const resetFilters = () => {
         setAllCards([]);
@@ -342,7 +357,6 @@ export default function BarMenuSection({alias, barId, tab}){
         <>
             <div className={styles.menuContent} style={{backgroundImage: `url(${data[alias].bg})`, backgroundRepeat: 'no-repeat'}}>
                 {!isMobile && <div className={styles.menuFilters}>
-                    <SearchInput title="Поиск по названию" onChange={(value) => {handleSingleFilterChange("name", value)}} reset={tabResetFilters["name"]}></SearchInput>
                     {
                         filtersConfig.map((filter) => (
                             <FilterItem
@@ -373,6 +387,8 @@ export default function BarMenuSection({alias, barId, tab}){
                             <SimpleButton textStyle={"black"} text="ФИЛЬТРЫ" onClick={() => setShowFiltersModal(true)} style="primary"></SimpleButton>
                             <div className={styles.sectionButton}><IconButton onClick={() => navigate("/in-dev")} text="Забронировать стол"><tabSpec.Icon/></IconButton></div>
                         </div>}
+                        <div style={{height: "12px"}}></div>
+                        <SearchInputAlt title="Поиск по названию" onChange={(value) => {handleSingleFilterChange("name", value)}} reset={tabResetFilters["name"]} onApply={(value) => applyFiltersWithName(value)}></SearchInputAlt>
                         { alias === "food" && <div className={styles.appliedFiltersRow} style={{marginBottom: "0px"}}>
                             {data?.[alias]?.data && Object.keys(data?.[alias]?.data)?.map((tabNum, index) => {
                                 return(
@@ -482,7 +498,6 @@ export default function BarMenuSection({alias, barId, tab}){
             </div>
             {isMobile &&
                 <FiltersModal setShow={setShowFiltersModal} show={showFiltersModal}>
-                    <SearchInput title="Поиск по названию" onChange={(value) => {handleSingleFilterChange("name", value)}} reset={tabResetFilters["name"]}></SearchInput>
                     {filtersConfig.map((filter) => (
                         <FilterItem
                             key={filter.key}

@@ -90,6 +90,9 @@
     gap: rem(10);
     margin-bottom: rem(15);
     flex-wrap: wrap;
+    &:has(> *) {
+        margin-top: rem(15);
+    }
 }
 
 

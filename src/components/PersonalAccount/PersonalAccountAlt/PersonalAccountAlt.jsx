@@ -7,9 +7,14 @@ import BeerIcon from "../../../assets/lucide/beer-lucide-icon.svg?react"
 import CaretRightIcon from "../../../assets/lucide/caret-right-icon.svg?react"
 import SettingsIcon from "../../../assets/lucide/settings-icon.svg?react"
 import CoinsIcon from "../../../assets/lucide/coins-icon.svg?react"
+import UsersIcon from "../../../assets/lucide/users-lucide-icon.svg?react"
+import ShoppingBagIcon from "../../../assets/lucide/shopping-bag-icon.svg?react"
+import HeartIcon from "../../../assets/lucide/heart-icon.svg?react"
+import ArchiveIcon from "../../../assets/lucide/archive-icon.svg?react"
 
-export default function PersonalAccountAlt({profile}){
+export default function PersonalAccountAlt({profile, dashboard}){
     const [expandedTabs, setExpandedTabs] = useState([])
+
 
     const navigationData = [
         {
@@ -17,41 +22,41 @@ export default function PersonalAccountAlt({profile}){
             title: "Чек-ины",
             icon: BeerIcon,
             children: [
-                { label: "Пиво", to: "/my-check-ins/beer", quantity: 2 },
-                { label: "Заведения", to: "/my-check-ins/bar", quantity: 2 },
+                { label: "Пиво", to: "/my-check-ins/beer", alias: dashboard?.checkins?.unique_beers},
+                { label: "Заведения", to: "/my-check-ins/bar", alias: dashboard?.checkins?.unique_bars},
             ],
         },
         {
             id: 2,
             title: "Друзья",
-            icon: BeerIcon,
+            icon: UsersIcon,
             to: "/in-dev",
         },
         {
             id: 3,
             title: "Любимое",
-            icon: BeerIcon,
+            icon: HeartIcon,
             children: [
-                { label: "Пиво", to: "/account/fav/beer" },
-                { label: "Пивоварни", to: "/account/fav/brewery", quantity: 12 },
-                { label: "Заведения", to: "/account/fav/bar", quantity: 1 },
+                { label: "Пиво", to: "/account/fav/beer", alias: dashboard?.favorites?.beer },
+                { label: "Пивоварни", to: "/account/fav/brewery", alias: dashboard?.favorites?.brewery},
+                { label: "Заведения", to: "/account/fav/bar", alias: dashboard?.favorites?.bar},
             ],
         },
         {
             id: 4,
             title: "Кладовка",
-            icon: BeerIcon,
+            icon: ArchiveIcon,
             children: [
-                { label: "Пиво", to: "/account/bookmarked/beer" },
-                { label: "Пивоварни", to: "/account/bookmarked/brewery", quantity: 12 },
-                { label: "Заведения", to: "/account/bookmarked/bar", quantity: 1 },
-                { label: "Мероприятия", to: "/account/bookmarked/event", quantity: 1 },
+                { label: "Пиво", to: "/account/bookmarked/beer", alias: dashboard?.cuddy?.beer },
+                { label: "Пивоварни", to: "/account/bookmarked/brewery", alias: dashboard?.cuddy?.brewery },
+                { label: "Заведения", to: "/account/bookmarked/bar", alias: dashboard?.cuddy?.bar},
+                { label: "Мероприятия", to: "/account/bookmarked/event", alias: dashboard?.cuddy?.events},
             ],
         },
         {
             id: 5,
             title: "Прочее",
-            icon: BeerIcon,
+            icon: ShoppingBagIcon,
             children: [
                 { label: "Заработать CB Coin", to: "/account/earn-cb" },
                 { label: "Мои заказы", to: "/in-dev", quantity: 64 },
@@ -61,8 +66,6 @@ export default function PersonalAccountAlt({profile}){
     ];
 
     const navigate = useNavigate()
-
-
     return(
         <div className={`${styles.accountSection} ${styles.pc}`}>
             <div className={styles.sideContent}>
@@ -82,12 +85,11 @@ export default function PersonalAccountAlt({profile}){
                         </div>
                     </div>
                 </div>
-
                 <div className={styles.metrics}>
-                    <div className={styles.metric}><p className={styles.primary}>342</p><p className="aa-p2">Чек-инов</p></div>
-                    <div className={styles.metric}><p className={styles.primary}>178</p><p className="aa-p2">Сортов пива</p></div>
-                    <div className={styles.metric}><p className={styles.primary}>6</p><p className="aa-p2">Заведений</p></div>
-                    <div className={styles.metric}><p className={styles.primary}>89</p><p className="aa-p2">Друзей</p></div>
+                    <div className={styles.metric}><p className={styles.primary}>{dashboard?.checkins?.total || "0"}</p><p className="aa-p2">Чек-инов</p></div>
+                    <div className={styles.metric}><p className={styles.primary}>{dashboard?.checkins?.unique_beers || "0"}</p><p className="aa-p2">Сортов пива</p></div>
+                    <div className={styles.metric}><p className={styles.primary}>{dashboard?.checkins?.unique_bars || "0"}</p><p className="aa-p2">Заведений</p></div>
+                    <div className={styles.metric}><p className={styles.primary}>{dashboard?.checkins?.friends || "0"}</p><p className="aa-p2">Друзей</p></div>
                 </div>
 
 
@@ -109,7 +111,7 @@ export default function PersonalAccountAlt({profile}){
                             }><nav.icon/><p className={styles.bold}>{nav.title}</p> {nav.children && <CaretRightIcon className={styles.arrowRight}/>}</div>
                             {nav.children && <div className={`${styles.navigationSectionContent} `}>
                                 {nav.children.map((child, index) =>
-                                    <Link key={index} to={child.to}>{child.label} {child.quantity && <div className={styles.quantity}><p>{child.quantity}</p></div>}</Link>
+                                    <Link key={index} to={child.to}>{child.label} {child.alias !== undefined && child.alias !== 0 && <div className={styles.quantity}><p>{child.alias}</p></div>}</Link>
                                 )}
                             </div>}
                         </div>

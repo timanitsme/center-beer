@@ -24,7 +24,7 @@ import BarCardSkeleton from "../Skeletons/BarCardSkeleton/BarCardSkeleton.jsx";
 import SearchInput from "../ApiInputs/Search/SearchInput.jsx";
 import contactsBg from "../../assets/bgPictures/contacts-bg.webp"
 import SearchInputAlt from "../ApiInputs/Search/SearchInputAlt.jsx";
-
+import Ad from "../../../src/assets/adsMocks/ad-1.svg"
 
 export default function BarsCatalog(){
     const navigate = useNavigate()
@@ -79,9 +79,6 @@ export default function BarsCatalog(){
         sort_by: "popular"
     });
 
-    const imageMapping = {
-
-    }
 
     const [tabResetFilters, setTabResetFilters] = useState(() => {
         const resetFiltersStates = {};
@@ -195,6 +192,7 @@ export default function BarsCatalog(){
             [filterKey]: value,
             ["offset"]: 0
         }));
+        setTimestamp(Date.now());
     }
 
     // Применение фильтров
@@ -338,114 +336,120 @@ export default function BarsCatalog(){
     };
 
     return(
-        <div className={styles.menuContainer} style={{backgroundImage: `url(${contactsBg})`, backgroundRepeat: 'no-repeat'}}>
-            <div className={styles.menuHeader}>
-                <div className={styles.catalogHeader}>
-                    <div className={styles.justy}>
-                        <h2 className="ma-h2">Каталог баров</h2>
-                        <div className={styles.forSvg}>
-                            <IconButton text="Все бары на карте" onClick={() => navigate("/map")}><LocationIcon/></IconButton>
+        <div className={styles.wrapper} style={{backgroundImage: `url(${contactsBg})`, backgroundRepeat: 'no-repeat'}}>
+            <div className={styles.menuContainer}>
+                <div className={styles.menuHeader}>
+                    <div className={styles.catalogHeader}>
+                        <div className={styles.justy}>
+                            <h2 className="ma-h2">Каталог баров</h2>
+                            <div className={styles.forSvg}>
+                                <IconButton text="Все бары на карте" onClick={() => navigate("/map")}><LocationIcon/></IconButton>
+                            </div>
                         </div>
+                        <p className="ma-p">Собрали для вас список лучших пивных баров, где можно насладиться свежесваренным пивом, закусками и уютной атмосферой. От классических пабов до оригинальных крафтовых баров — каждый найдет место по вкусу.</p>
                     </div>
-                    <p className="ma-p">Собрали для вас список лучших пивных баров, где можно насладиться свежесваренным пивом, закусками и уютной атмосферой. От классических пабов до оригинальных крафтовых баров — каждый найдет место по вкусу.</p>
                 </div>
-            </div>
-            <div className={styles.menuContent}>
-                {!isMobile && <div className={styles.menuFilters}>
-                    <SearchCities title="Город" reset={tabResetFilters["city_id"]} onChange={(value) => handleSingleFilterChange("city_id", value)}></SearchCities>
-                    <SingleCheckBox text="Онлайн-бронь" onChange={(value) => {handleSingleFilterChange("online_booking", value)}} reset={tabResetFilters["online_booking"]}></SingleCheckBox>
-                    {filtersConfig.map((filter) => (
-                        <FilterItem
-                            key={filter.key}
-                            filter={filter}
-                            onChange={(value) => handleFilterChange(filter.key, value)}
-                            reset={tabResetFilters[filter.key]}
-                        />
-                    ))}
-                    <SimpleButton text="Применить фильтры" onClick={applyFilters}></SimpleButton>
-                </div>}
-                <div className={styles.menuItemsSections}>
-                    <SearchInputAlt title="Поиск по названию" onChange={(value) => {handleSingleFilterChange("name", value)}} reset={tabResetFilters["name"]} onApply={(value) => applyFiltersWithName(value)}></SearchInputAlt>
-                    <div className={styles.appliedFiltersRow}>
-                        {Object.entries(filterValues).map(([filterKey, value]) => {
-                            // Пропускаем пустые значения
-                            if (!value || (Array.isArray(value) && value.length === 0)) return null;
-                            if (filterKey === "sort_by") return null
-                            // Если значение — массив, обрабатываем каждый элемент
-                            if (Array.isArray(value)) {
-                                return value.map((id) => {
-                                    const filterName = filterNameMap[filterKey]?.[id];
-                                    if (!filterName) return null;
-                                    return (
-                                        <AppliedFilter key={`${filterKey}-${id}`} onClick={() => removeFilter(filterKey, id)}>
-                                            <p>{filterName}</p>
-                                        </AppliedFilter>
-                                    );
-                                });
-                            }
-
-                            // Если значение не массив (например, строка или булево значение)
-                            if (typeof value === "string") {
-                                if (filterKey === "city_id"){
-                                    return (
-                                        <AppliedFilter key={filterKey} onClick={() => removeFilter(filterKey, value)}>
-                                            <LocationIcon></LocationIcon>
-                                            <p>{filterNameMap[filterKey]?.[value] || value.toString()}</p>
-                                        </AppliedFilter>
-                                    );
-                                }
-                                else{
-                                    return (
-                                        <AppliedFilter key={filterKey} onClick={() => removeFilter(filterKey, value)}>
-                                            <p>{filterNameMap[filterKey]?.[value] || value.toString()}</p>
-                                        </AppliedFilter>
-                                    );
+                <div className={styles.menuContent}>
+                    {!isMobile && <div className={styles.menuFilters}>
+                        <SearchCities title="Город" reset={tabResetFilters["city_id"]} onChange={(value) => handleSingleFilterChange("city_id", value)}></SearchCities>
+                        <SingleCheckBox text="Онлайн-бронь" onChange={(value) => {handleSingleFilterChange("online_booking", value)}} reset={tabResetFilters["online_booking"]}></SingleCheckBox>
+                        {filtersConfig.map((filter) => (
+                            <FilterItem
+                                key={filter.key}
+                                filter={filter}
+                                onChange={(value) => handleFilterChange(filter.key, value)}
+                                reset={tabResetFilters[filter.key]}
+                            />
+                        ))}
+                        <SimpleButton text="Применить фильтры" onClick={applyFilters}></SimpleButton>
+                    </div>}
+                    <div className={styles.menuItemsSections}>
+                        <SearchInputAlt title="Поиск по названию" onChange={(value) => {handleSingleFilterChange("name", value)}} reset={tabResetFilters["name"]} onApply={(value) => applyFiltersWithName(value)}></SearchInputAlt>
+                        <div className={styles.appliedFiltersRow}>
+                            {Object.entries(filterValues).map(([filterKey, value]) => {
+                                // Пропускаем пустые значения
+                                if (!value || (Array.isArray(value) && value.length === 0)) return null;
+                                if (filterKey === "sort_by") return null
+                                // Если значение — массив, обрабатываем каждый элемент
+                                if (Array.isArray(value)) {
+                                    return value.map((id) => {
+                                        const filterName = filterNameMap[filterKey]?.[id];
+                                        if (!filterName) return null;
+                                        return (
+                                            <AppliedFilter key={`${filterKey}-${id}`} onClick={() => removeFilter(filterKey, id)}>
+                                                <p>{filterName}</p>
+                                            </AppliedFilter>
+                                        );
+                                    });
                                 }
 
-                            }
+                                // Если значение не массив (например, строка или булево значение)
+                                if (typeof value === "string") {
+                                    if (filterKey === "city_id"){
+                                        return (
+                                            <AppliedFilter key={filterKey} onClick={() => removeFilter(filterKey, value)}>
+                                                <LocationIcon></LocationIcon>
+                                                <p>{filterNameMap[filterKey]?.[value] || value.toString()}</p>
+                                            </AppliedFilter>
+                                        );
+                                    }
+                                    else{
+                                        return (
+                                            <AppliedFilter key={filterKey} onClick={() => removeFilter(filterKey, value)}>
+                                                <p>{filterNameMap[filterKey]?.[value] || value.toString()}</p>
+                                            </AppliedFilter>
+                                        );
+                                    }
 
-                            if (typeof value === "boolean" && filterKey !== "only_opened"){
-                                if (filterNameMap[filterKey]){
-                                    return (
-                                        <AppliedFilter key={filterKey} onClick={() => removeFilter(filterKey, value)}>
-                                            <p>{filterNameMap[filterKey]}</p>
-                                        </AppliedFilter>
-                                    )
                                 }
 
-                            }
+                                if (typeof value === "boolean" && filterKey !== "only_opened"){
+                                    if (filterNameMap[filterKey]){
+                                        return (
+                                            <AppliedFilter key={filterKey} onClick={() => removeFilter(filterKey, value)}>
+                                                <p>{filterNameMap[filterKey]}</p>
+                                            </AppliedFilter>
+                                        )
+                                    }
 
-                            return null;
-                        })}
+                                }
 
-                        {countAppliedFilters() > 0 && <AppliedFilter style="secondary" onClick={resetFilters}>
-                            <p>Сбросить фильтры</p>
-                        </AppliedFilter>}
+                                return null;
+                            })}
+
+                            {countAppliedFilters() > 0 && <AppliedFilter style="secondary" onClick={resetFilters}>
+                                <p>Сбросить фильтры</p>
+                            </AppliedFilter>}
+                        </div>
+                        <div className={styles.toggleAndOptions}>
+                            {isMobile && <SimpleButton textStyle={"black"} text="ФИЛЬТРЫ" onClick={() => setShowFiltersModal(true)} style="primary"></SimpleButton>}
+                            {sortFilters &&  <ComboBox options={sortFilters} onChange={(value) => handleSingleFilterApply("sort_by", value.id)}></ComboBox>}
+                            <Toggle reset={tabResetFilters["only_opened"]} label={"Только открытые"} toggled={filterValues.only_opened} onClick={() => handleSingleFilterApply("only_opened", !filterValues.only_opened)}/>
+
+                        </div>
+                        <SimpleCatalogSection alias={"bars"} isFetching={barsIsFetching} lim={filterValues["lim"]} totalItems={barsData?.["total_items"]} onShowMore={handleShowMore} cards={allCards} CardComponent={BarCard} SkeletonCardComponent={BarCardSkeleton} wideColumns={false}/>
                     </div>
-                    <div className={styles.toggleAndOptions}>
-                        {isMobile && <SimpleButton textStyle={"black"} text="ФИЛЬТРЫ" onClick={() => setShowFiltersModal(true)} style="primary"></SimpleButton>}
-                        {sortFilters &&  <ComboBox options={sortFilters} onChange={(value) => handleSingleFilterApply("sort_by", value.id)}></ComboBox>}
-                        <Toggle reset={tabResetFilters["only_opened"]} label={"Только открытые"} toggled={filterValues.only_opened} onClick={() => handleSingleFilterApply("only_opened", !filterValues.only_opened)}/>
-
-                    </div>
-                    <SimpleCatalogSection alias={"bars"} isFetching={barsIsFetching} lim={filterValues["lim"]} totalItems={barsData?.["total_items"]} onShowMore={handleShowMore} cards={allCards} CardComponent={BarCard} SkeletonCardComponent={BarCardSkeleton} wideColumns={false}/>
                 </div>
+                {isMobile &&
+                    <FiltersModal setShow={setShowFiltersModal} show={showFiltersModal}>
+                        <SearchCities title="Город" reset={tabResetFilters["city_id"]} onChange={(value) => handleSingleFilterChange("city_id", value)}></SearchCities>
+                        <SingleCheckBox text="Онлайн-бронь" onChange={(value) => {handleSingleFilterChange("online_booking", value)}} reset={tabResetFilters["online_booking"]}/>
+                        {filtersConfig.map((filter) => (
+                            <FilterItem
+                                key={filter.key}
+                                filter={filter}
+                                onChange={(value) => handleFilterChange(filter.key, value)}
+                                reset={tabResetFilters[filter.key]}
+                            />
+                        ))}
+                        <SimpleButton text="Применить фильтры" onClick={() => {setShowFiltersModal(false); applyFilters()}}></SimpleButton>
+                    </FiltersModal>
+                }
             </div>
-            {isMobile &&
-                <FiltersModal setShow={setShowFiltersModal} show={showFiltersModal}>
-                    <SearchCities title="Город" reset={tabResetFilters["city_id"]} onChange={(value) => handleSingleFilterChange("city_id", value)}></SearchCities>
-                    <SingleCheckBox text="Онлайн-бронь" onChange={(value) => {handleSingleFilterChange("online_booking", value)}} reset={tabResetFilters["online_booking"]}/>
-                    {filtersConfig.map((filter) => (
-                        <FilterItem
-                            key={filter.key}
-                            filter={filter}
-                            onChange={(value) => handleFilterChange(filter.key, value)}
-                            reset={tabResetFilters[filter.key]}
-                        />
-                    ))}
-                    <SimpleButton text="Применить фильтры" onClick={() => {setShowFiltersModal(false); applyFilters()}}></SimpleButton>
-                </FiltersModal>
-            }
+            <div className={styles.banner}>
+                <img src={Ad} alt=""/>
+            </div>
+
         </div>
     )
 }

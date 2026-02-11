@@ -195,6 +195,7 @@ export default function BreweryBeerCatalog({filters = [], filterButtons = [], se
             ...prevState,
             [filterKey]: value,
         }));
+
         //resetPages()
     }
 

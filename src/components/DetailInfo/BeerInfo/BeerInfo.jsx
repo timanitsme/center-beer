@@ -18,7 +18,7 @@ export default function BeerInfo({showPrice=false,beerInfo={}}){
     const [isFavourite, setIsFavourite] = useState(beerInfo?.is_favor || false);
     const [isBookmarked, setIsBookmarked] = useState(beerInfo?.is_liked || false);
 
-    const [selectedPicture, setSelectedPicture] = useState(beerInfo?.gallery[0])
+    const [selectedPicture, setSelectedPicture] = useState(beerInfo?.gallery?.[0])
     const [showModal ,setShowModal] = useState(false)
     const formatNumber = (num) => Number(num).toString()
     const [triggerAddToCuddy, { isLoading: addToCuddyIsLoading }] = useLazyAddBeerToCuddyQuery();
@@ -83,7 +83,7 @@ export default function BeerInfo({showPrice=false,beerInfo={}}){
                     </div>
                     <div className={styles.selectedPictureContainer} onClick={() => setShowModal(true)}>
                         {selectedPicture?.type === "video" && <PlayButtonIcon/>}
-                        <img src={selectedPicture.preview} alt=""/>
+                        <img src={selectedPicture?.preview} alt=""/>
                     </div>
                 </div>
 
@@ -125,11 +125,11 @@ export default function BeerInfo({showPrice=false,beerInfo={}}){
                         <div className={`${styles.barInfo} ${styles.regular}`}>
                             <div className={styles.ratingAndComments}>
                                 <div className={styles.beerBottles}>
-                                    {getRatingIcons(beerInfo?.rating)}
+                                    {getRatingIcons(beerInfo?.untappd)}
                                 </div>
-                                <p>({beerInfo?.rating})</p>
+                                <p>({beerInfo?.untappd})</p>
                                 <div className={styles.circle}/>
-                                <a> <CommentIcon/> 116 комментариев</a>
+                                <a onClick={() => scrollToSection("check-ins")}> <CommentIcon/> {beerInfo?.comments_qty || "0"} Чек-инов</a>
                             </div>
                             <IconButton text="добавить check-in" onClick={() => scrollToSection("check-ins")} style="secondary"><CheckInIcon/></IconButton>
                             { showPrice &&
@@ -150,11 +150,11 @@ export default function BeerInfo({showPrice=false,beerInfo={}}){
                 </div>
                 <div className={styles.ratingAndComments}>
                     <div className={styles.beerBottles}>
-                        {getRatingIcons(beerInfo?.rating)}
+                        {getRatingIcons(beerInfo?.untappd)}
                     </div>
-                    <p className="ma-p">({beerInfo?.rating})</p>
+                    <p className="ma-p">({beerInfo?.untappd})</p>
                     <div className={styles.circle}/>
-                    <a className="ma-p"> <CommentIcon/> 116 комментариев</a>
+                    <a className="ma-p" onClick={() => scrollToSection("check-ins")}> <CommentIcon/> {beerInfo?.comments_qty || "0"} Чек-инов</a>
                 </div>
                 <IconButton text="добавить check-in" style="secondary"><CheckInIcon/></IconButton>
                 <IconButton text="Оставить отзыв" onClick={() => scrollToSection("reviews")} style=""><BeardIcon/></IconButton>
@@ -166,7 +166,7 @@ export default function BeerInfo({showPrice=false,beerInfo={}}){
                 }
             </div>
             <div className={styles.descriptionMobile}>
-                <p className="ma-p">Классический светлый пилснер в чешском стиле. Сваренный на светлом солоде типа пилс, с жатецким хмелем Saaz. Прозрачного золотистого цвета, с плотной пенной шапкой. Имеет насыщенный хмелевой аромат с цветочными нотами. Вкус яркий, искристый с отличным хмелево-солодовым балансом. Горечь уверенная, но не выпирающая. Послевкусие хмелевое.</p>
+                <p className="ma-p">{beerInfo?.description}</p>
                 <div>
                     <ul className={styles.characteristicsList}>
                         <li><p className="ma-p">Пивоварня: <a href="">{beerInfo?.brewery_name}</a></p></li>
@@ -176,7 +176,7 @@ export default function BeerInfo({showPrice=false,beerInfo={}}){
                     </ul>
                 </div>
             </div>
-            <ImageVideoModal src={selectedPicture} setSrc={setSelectedPicture} show={showModal} setShow={setShowModal} />
+            {beerInfo.gallery.length !== 0 && <ImageVideoModal src={selectedPicture} setSrc={setSelectedPicture} show={showModal} setShow={setShowModal} />}
 
         </div>
 

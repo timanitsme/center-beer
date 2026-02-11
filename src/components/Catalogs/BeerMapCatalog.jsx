@@ -149,6 +149,7 @@ export default function BeerMapCatalog({filters = [], filterButtons = []}){
             ...prevState,
             [filterKey]: value,
         }));
+        setTimestamp(Date.now());
     }
 
     // Применение фильтров

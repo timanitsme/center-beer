@@ -1,9 +1,11 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {centerBeerAuthApi} from "./centerBeerAuth.js";
+import {centerBeerApi} from "./centerBeer.js";
 
 const initialState = {
     isAuthorized: false,
     userProfile: null,
+    userDashboard: null,
     isLoading: true,
     error: null,
     isInitialized: false,
@@ -31,6 +33,9 @@ const authSlice = createSlice({
         setUserProfile: (state, action) => {
             state.userProfile = action.payload;
         },
+        setUserDashboard: (state, action) => {
+            state.userDashboard = action.payload;
+        },
         setIsLoading: (state, action) => {
             state.isLoading = action.payload;
         },
@@ -46,7 +51,7 @@ const authSlice = createSlice({
     },
 });
 
-export const { setCredentials, logout, setUserProfile, setIsLoading, setError, setIsInitialized, setIsRefreshing } = authSlice.actions;
+export const { setCredentials, logout, setUserProfile, setIsLoading, setError, setIsInitialized, setIsRefreshing, setUserDashboard } = authSlice.actions;
 
 
 export const logoutMiddleware =
@@ -88,6 +93,11 @@ export const initializeAuthState = (needToRefresh=false) => async (dispatch, get
             dispatch(setCredentials({ accessToken, refreshToken }));
             console.log("initializeAuthState: Пользователь авторизован");
             dispatch(setUserProfile(response.data)); // Устанавливаем данные профиля
+            await dispatch(centerBeerApi.endpoints.refreshUserToken.initiate({ user_id: response.data.id, token: accessToken, _timestamp: Date.now()}));
+            const dashboardResponse = await dispatch(centerBeerApi.endpoints.getUserDashboard.initiate({_timestamp: Date.now()}, {forceRefetch: true}));
+            if (dashboardResponse.data){
+                dispatch(setUserDashboard(dashboardResponse.data.data));
+            }
             dispatch(setIsLoading(false))
         }
     } catch (error) {

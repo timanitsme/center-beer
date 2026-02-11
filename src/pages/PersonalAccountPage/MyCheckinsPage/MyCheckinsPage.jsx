@@ -12,13 +12,16 @@ import ArrowLeftIcon from "../../../assets/arrow-left-icon.svg?react";
 import BeerCheckInCard from "../../../components/Cards/CheckIns/BeerCheckInCard/BeerCheckInCard.jsx";
 import BarCheckInCard from "../../../components/Cards/CheckIns/BarCheckInCard/BarCheckInCard.jsx";
 import {lazy, Suspense, useEffect} from "react";
+import {useGetCheckinsBeersQuery, useGetUsersFavBreweriesQuery} from "../../../store/services/centerBeer.js";
 const PersonalAccountAlt = lazy(() => import("../../../components/PersonalAccount/PersonalAccountAlt/PersonalAccountAlt.jsx"));
 const PersonalAccountMobile = lazy(() => import("../../../components/PersonalAccount/PersonalAccountMobile.jsx"));
 
 export default function MyCheckinsPage(){
     const {alias} = useParams();
     const navigate = useNavigate()
-    const { isAuthorized, userProfile, isLoading: profileIsLoading } = useSelector((state) => state.auth);
+    const { isAuthorized, userProfile, userDashboard, isLoading: profileIsLoading } = useSelector((state) => state.auth);
+
+    const {data: beerCheckinsData, isLoading: beerCheckinsIsLoading, error: beerCheckinsError} = useGetCheckinsBeersQuery({}, {skip: !userProfile || alias !== "beer"})
 
     const barCards = [
         {title: "13 RULES (Народный бар)", img: BarImage1, address: "г.Москва, Сущевский вал, 41"},
@@ -34,7 +37,6 @@ export default function MyCheckinsPage(){
         {is_favor: false, is_liked: false, title: "13 RULES (Народный бар)", img: BarImage1, address: "г.Москва, Сущевский вал, 41"},
         {is_favor: false, is_liked: false, title: "13 RULES (Народный бар)", img: BarImage1, address: "г.Москва, Сущевский вал, 41"},
         {is_favor: false, is_liked: false, title: "13 RULES (Народный бар)", img: BarImage1, address: "г.Москва, Сущевский вал, 41"},
-
     ]
 
     const selectors = {
@@ -60,7 +62,7 @@ export default function MyCheckinsPage(){
         <div className="content">
             <div style={{display: "flex"}}>
                 <Suspense>
-                    {!isMobile && <PersonalAccountAlt profile={userProfile}/>}
+                    {!isMobile && <PersonalAccountAlt profile={userProfile} dashboard={userDashboard}/>}
                 </Suspense>
                 <div style={{display: "flex", flexDirection: "column", width: "100%"}}>
                     <NavChain paths={paths} customStyle="nav-chain-no-margin"></NavChain>

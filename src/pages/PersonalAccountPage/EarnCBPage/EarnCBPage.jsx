@@ -11,7 +11,7 @@ const PersonalAccountAlt = lazy(() => import("../../../components/PersonalAccoun
 const PersonalAccountMobile = lazy(() => import("../../../components/PersonalAccount/PersonalAccountMobile.jsx"));
 
 export default function EarnCBPage(){
-    const { isAuthorized, userProfile, isLoading: profileIsLoading } = useSelector((state) => state.auth);
+    const { isAuthorized, userProfile, userDashboard, isLoading: profileIsLoading } = useSelector((state) => state.auth);
     const paths = [
         {title: "center.beer", path: "/"},
         {title: "Личный кабинет", path: "/account/"},
@@ -73,7 +73,7 @@ export default function EarnCBPage(){
         <div className="content">
             <div style={{display: "flex"}}>
                 <Suspense>
-                    {!isMobile && <PersonalAccountAlt profile={userProfile}/>}
+                    {!isMobile && <PersonalAccountAlt profile={userProfile} dashboard={userDashboard}/>}
                 </Suspense>
                 <div style={{display: "flex", flexDirection: "column", width: "100%", gap: "25px"}}>
                     <NavChain paths={paths} customStyle="nav-chain-no-margin"></NavChain>

@@ -13,7 +13,7 @@ export default function BreweryEventsPage(){
         {title: "Мероприятия", path: "/events"},
         {title: "Пивоварни", path: ""},
     ]
-    const {data: breweryEvents, isLoading: breweryEventsIsLoading, error: breweryEventsError} = useGetBreweryEventsQuery({})
+    const {data: breweryEvents, isLoading: breweryEventsIsLoading, error: breweryEventsError} = useGetBreweryEventsQuery({brew_id: 1})
 
 
     const eventsCards = [

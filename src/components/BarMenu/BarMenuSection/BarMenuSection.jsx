@@ -198,6 +198,7 @@ export default function BarMenuSection({alias, barId, tab}){
             [filterKey]: value,
             ["offset"]: 0,
         }));
+        setTimestamp(Date.now());
     }
 
     // Применение фильтров

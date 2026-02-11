@@ -59,7 +59,7 @@ export default function BeerDetailPage(){
                         {data[0]?.related_items && <SimilarItems alias={alias} title={data[0]?.name} cards={data[0]?.related_items}/>}
                     </div>
                     {/*<div className="simpleContainer" style={{marginBottom: "15px"}}><ButtonSwitch onClick={() => {setSelectedSection(options[1-selectedSection.id])}} options={options} selectedOption={selectedSection}></ButtonSwitch></div>*/}
-                    <CheckInReviews header={getBeerDetailCheckInsHeader(data[0]?.name)} resume={reviewsResume(data[0]?.name, data[0]?.rating)}/>
+                    <CheckInReviews header={getBeerDetailCheckInsHeader(data[0]?.name)} resume={reviewsResume(data[0]?.name, data[0]?.untappd)}/>
                 </>
             }
         </div>

@@ -21,7 +21,7 @@ import HookedFilterComboBox from "../ApiInputs/FilterComboBox/HookedFilterComboB
 import BottledBeerCardWithoutPrice from "../Cards/BottledBeerCard/BottledBeerCardWithoutPrice.jsx";
 import BottledBeerCardSkeleton from "../Skeletons/BottledBeerCardSkeleton/BottledBeerCardSkeleton.jsx";
 import SearchInputAlt from "../ApiInputs/Search/SearchInputAlt.jsx";
-
+import Ad from "../../assets/adsMocks/ad-1.svg"
 
 export default function BeerCatalog({withoutPrice=false, withHeader = true, breweryId=null, bgImage=null}){
     const [filterNameMap, setFilterNameMap] = useState({});
@@ -107,8 +107,8 @@ export default function BeerCatalog({withoutPrice=false, withHeader = true, brew
     const { data: stylesFilter, stylesIsLoading, stylesError } = useGetBeerStylesQuery({name: debouncedStyleInput !== ""? debouncedStyleInput: undefined});
     const sortFilters =[
         {id: "popular", name: "Популярное"},
-        {id: "price", name: "По цене"},
         {id: "rating", name: "По отзывам"},
+        {id: "name", name: "По названию"},
     ]
 
     // Эффект, собирающий все карточки, полученные при выполнении соответствующего запроса
@@ -232,6 +232,7 @@ export default function BeerCatalog({withoutPrice=false, withHeader = true, brew
             [filterKey]: value,
             ["offset"]: 0,
         }));
+        setTimestamp(Date.now());
     }
 
     // Применение фильтров
@@ -387,138 +388,145 @@ export default function BeerCatalog({withoutPrice=false, withHeader = true, brew
     };
 
     return(
-        <div className={styles.menuContainer} style={bgImage? {backgroundImage: `url(${bgImage})`, backgroundRepeat: 'no-repeat'}: {}}>
-            {withHeader &&
-                <div className={styles.menuHeader}>
-                    <div>
-                        <h2 className="ma-h2">Каталог пива</h2>
-                        <p className="ma-p">В этом списке представлены лучшие сорта пива, выбранные на основе нашей формулы средневзвешенного рейтинга, которая позволяет объективно сравнить все напитки между собой. Чтобы попасть в этот перечень, пиво должно иметь не менее 150 отзывов. Подробнее о составлении рейтинга.</p>
-                        <a className="ma-p">Подробнее о составлении рейтинга.</a>
+        <div className={styles.wrapper} style={bgImage? {backgroundImage: `url(${bgImage})`, backgroundRepeat: 'no-repeat'}: {}}>
+            <div className={styles.menuContainer}>
+                {withHeader &&
+                    <div className={styles.menuHeader}>
+                        <div>
+                            <h2 className="ma-h2">Каталог пива</h2>
+                            <p className="ma-p">В этом списке представлены лучшие сорта пива, выбранные на основе нашей формулы средневзвешенного рейтинга, которая позволяет объективно сравнить все напитки между собой. Чтобы попасть в этот перечень, пиво должно иметь не менее 150 отзывов. Подробнее о составлении рейтинга.</p>
+                            <a className="ma-p">Подробнее о составлении рейтинга.</a>
+                        </div>
                     </div>
-                </div>
-            }
-            <div className={styles.menuContent}>
-                {!isMobile && <div className={styles.menuFilters}>
-                    <HookedFilterComboBox options={countries} isLoading={countriesIsLoading} error={countriesError} debouncedInput={debouncedCountryInput} setDebouncedInput={setDebouncedCountryInput} title={"Страна производства"}  fetchHook={useGetBeerCountriesQuery} onChange={(value) => handleFilterChange("country_ids", value)} reset={tabResetFilters["country_ids"]}/>
-                    <HookedFilterComboBox options={stylesFilter} isLoading={stylesIsLoading} error={stylesError} debouncedInput={debouncedStyleInput} setDebouncedInput={setDebouncedStyleInput} title={"Стиль"}  fetchHook={useGetStylesQuery} onChange={(value) => handleFilterChange("style_ids", value)} reset={tabResetFilters["style_ids"]}/>
-                    {
-                        filtersConfig.map((filter) => (
-                        <FilterItem
-                            key={filter.key}
-                            filter={filter}
-                            onChange={(value) => handleFilterChange(filter.key, value)}
-                            reset={tabResetFilters[filter.key]}
-                        />
-                    ))}
-                    <SimpleButton text="Применить фильтры" onClick={applyFilters}></SimpleButton>
-                </div>}
-                <div className={styles.menuItemsSections}>
-                    <SearchInputAlt onApply={(value) => applyFiltersWithName(value)} title="Поиск по названию" onChange={(value) => {handleSingleFilterChange("name", value)}} reset={tabResetFilters["name"]}></SearchInputAlt>
-                    <div className={styles.appliedFiltersRow}>
-                        {Object.entries(filterValues).map(([filterKey, value]) => {
-                            // Пропускаем пустые значения
-                            if (!value || (Array.isArray(value) && value.length === 0)) return null;
-                            if (filterKey === "sort_by") return null
-                            // Если значение — массив, обрабатываем каждый элемент
-                            if (Array.isArray(value)) {
-                                return value.map((id) => {
-                                    if (multiSelectParams.includes(filterKey)){
-                                        const filterName = filterKey.split("_")[0]
-                                        const filterDirection = filterKey.split("_")[1]
-                                        if (!filterName) return null;
-                                        if (filterDirection === "id"){
-                                            const filterValue = filterNameMap[filterName]?.[id]
-                                            return <>
-                                                {filterValue && <AppliedFilter key={`${filterKey}`} onClick={() => removeFilter(filterKey, id)}>
-                                                    <p>{filterValue}</p>
-                                                </AppliedFilter>}
-                                            </>
+                }
+                <div className={styles.menuContent}>
+                    {!isMobile && <div className={styles.menuFilters}>
+                        <HookedFilterComboBox options={countries} isLoading={countriesIsLoading} error={countriesError} debouncedInput={debouncedCountryInput} setDebouncedInput={setDebouncedCountryInput} title={"Страна производства"}  fetchHook={useGetBeerCountriesQuery} onChange={(value) => handleFilterChange("country_ids", value)} reset={tabResetFilters["country_ids"]}/>
+                        <HookedFilterComboBox options={stylesFilter} isLoading={stylesIsLoading} error={stylesError} debouncedInput={debouncedStyleInput} setDebouncedInput={setDebouncedStyleInput} title={"Стиль"}  fetchHook={useGetStylesQuery} onChange={(value) => handleFilterChange("style_ids", value)} reset={tabResetFilters["style_ids"]}/>
+                        {
+                            filtersConfig.map((filter) => (
+                                <FilterItem
+                                    key={filter.key}
+                                    filter={filter}
+                                    onChange={(value) => handleFilterChange(filter.key, value)}
+                                    reset={tabResetFilters[filter.key]}
+                                />
+                            ))}
+                        <SimpleButton text="Применить фильтры" onClick={applyFilters}></SimpleButton>
+                    </div>}
+                    <div className={styles.menuItemsSections}>
+                        <SearchInputAlt onApply={(value) => applyFiltersWithName(value)} title="Поиск по названию" onChange={(value) => {handleSingleFilterChange("name", value)}} reset={tabResetFilters["name"]}></SearchInputAlt>
+                        <div className={styles.appliedFiltersRow}>
+                            {Object.entries(filterValues).map(([filterKey, value]) => {
+                                // Пропускаем пустые значения
+                                if (!value || (Array.isArray(value) && value.length === 0)) return null;
+                                if (filterKey === "sort_by") return null
+                                // Если значение — массив, обрабатываем каждый элемент
+                                if (Array.isArray(value)) {
+                                    return value.map((id) => {
+                                        if (multiSelectParams.includes(filterKey)){
+                                            const filterName = filterKey.split("_")[0]
+                                            const filterDirection = filterKey.split("_")[1]
+                                            if (!filterName) return null;
+                                            if (filterDirection === "id"){
+                                                const filterValue = filterNameMap[filterName]?.[id]
+                                                return <>
+                                                    {filterValue && <AppliedFilter key={`${filterKey}`} onClick={() => removeFilter(filterKey, id)}>
+                                                        <p>{filterValue}</p>
+                                                    </AppliedFilter>}
+                                                </>
+                                            }
+                                            else if ((filterDirection === "from")){
+                                                const filterValueFrom = filterValues[`${filterName}_from`]
+                                                const filterValueTo = filterValues[`${filterName}_to`]
+                                                if (JSON.stringify(filterValueFrom) === '[""]' && JSON.stringify(filterValueTo) === '[""]' || JSON.stringify(filterValueFrom) === '[null]' && JSON.stringify(filterValueTo) === '[null]') return null
+                                                return <>
+                                                    <AppliedFilter key={`${filterKey}_from`} onClick={() => removeRangeRadioFilter(filterName)}>
+                                                        <p>{`${beerFilterSpecs[filterName]?.title}: ${JSON.stringify(filterValueFrom) === '[""]'? "0": filterValueFrom} - ${JSON.stringify(filterValueTo) === '[""]' ? "∞" : filterValueTo}`}</p>
+                                                    </AppliedFilter>
+                                                </>
+                                            }
                                         }
-                                        else if ((filterDirection === "from")){
-                                            const filterValueFrom = filterValues[`${filterName}_from`]
-                                            const filterValueTo = filterValues[`${filterName}_to`]
-                                            if (JSON.stringify(filterValueFrom) === '[""]' && JSON.stringify(filterValueTo) === '[""]' || JSON.stringify(filterValueFrom) === '[null]' && JSON.stringify(filterValueTo) === '[null]') return null
-                                            return <>
-                                                <AppliedFilter key={`${filterKey}_from`} onClick={() => removeRangeRadioFilter(filterName)}>
-                                                    <p>{`${beerFilterSpecs[filterName]?.title}: ${JSON.stringify(filterValueFrom) === '[""]'? "0": filterValueFrom} - ${JSON.stringify(filterValueTo) === '[""]' ? "∞" : filterValueTo}`}</p>
+                                        else{
+                                            const filterName = filterNameMap[filterKey]?.[id];
+                                            if (!filterName) return null;
+                                            return (
+                                                <AppliedFilter key={`${filterKey}-${id}`} onClick={() => removeFilter(filterKey, id)}>
+                                                    <p>{filterName}</p>
                                                 </AppliedFilter>
-                                            </>
+                                            );
                                         }
+
+
+                                    });
+                                }
+
+                                // Если значение не массив (например, строка или булево значение)
+                                if (typeof value === "string") {
+                                    if (filterKey === "city_id"){
+                                        return (
+                                            <AppliedFilter key={filterKey} onClick={() => removeFilter(filterKey, value)}>
+                                                <LocationIcon></LocationIcon>
+                                                <p>{filterNameMap[filterKey]?.[value] || value.toString()}</p>
+                                            </AppliedFilter>
+                                        );
                                     }
                                     else{
-                                        const filterName = filterNameMap[filterKey]?.[id];
-                                        if (!filterName) return null;
                                         return (
-                                            <AppliedFilter key={`${filterKey}-${id}`} onClick={() => removeFilter(filterKey, id)}>
-                                                <p>{filterName}</p>
+                                            <AppliedFilter key={filterKey} onClick={() => removeFilter(filterKey, value)}>
+                                                <p>{filterNameMap[filterKey]?.[value] || value.toString()}</p>
                                             </AppliedFilter>
                                         );
                                     }
 
-
-                                });
-                            }
-
-                            // Если значение не массив (например, строка или булево значение)
-                            if (typeof value === "string") {
-                                if (filterKey === "city_id"){
-                                    return (
-                                        <AppliedFilter key={filterKey} onClick={() => removeFilter(filterKey, value)}>
-                                            <LocationIcon></LocationIcon>
-                                            <p>{filterNameMap[filterKey]?.[value] || value.toString()}</p>
-                                        </AppliedFilter>
-                                    );
-                                }
-                                else{
-                                    return (
-                                        <AppliedFilter key={filterKey} onClick={() => removeFilter(filterKey, value)}>
-                                            <p>{filterNameMap[filterKey]?.[value] || value.toString()}</p>
-                                        </AppliedFilter>
-                                    );
                                 }
 
-                            }
+                                if (typeof value === "boolean" && filterKey !== "with_reviews"){
+                                    if (filterNameMap[filterKey].value){
+                                        return (
+                                            <AppliedFilter key={filterKey} onClick={() => removeFilter(filterKey, value)}>
+                                                <p>{filterNameMap[filterKey].value}</p>
+                                            </AppliedFilter>
+                                        )
+                                    }
 
-                            if (typeof value === "boolean" && filterKey !== "with_reviews"){
-                                if (filterNameMap[filterKey].value){
-                                    return (
-                                        <AppliedFilter key={filterKey} onClick={() => removeFilter(filterKey, value)}>
-                                            <p>{filterNameMap[filterKey].value}</p>
-                                        </AppliedFilter>
-                                    )
                                 }
 
-                            }
+                                return null;
+                            })}
 
-                            return null;
-                        })}
-
-                        {countAppliedFilters() > 0 && <AppliedFilter style="secondary" onClick={resetFilters}>
-                            <p>Сбросить фильтры</p>
-                        </AppliedFilter>}
+                            {countAppliedFilters() > 0 && <AppliedFilter style="secondary" onClick={resetFilters}>
+                                <p>Сбросить фильтры</p>
+                            </AppliedFilter>}
+                        </div>
+                        <div className={styles.toggleAndOptions}>
+                            {isMobile && <SimpleButton textStyle={"black"} text="ФИЛЬТРЫ" onClick={() => setShowFiltersModal(true)} style="primary"></SimpleButton>}
+                            {sortFilters &&  <ComboBox options={sortFilters} onChange={(value) => handleSingleFilterApply("sort_by", value.id)}></ComboBox>}
+                            <Toggle reset={tabResetFilters["with_reviews"]} label={"Только с отзывами"} toggled={filterValues.with_reviews} onClick={() => handleSingleFilterApply("with_reviews", !filterValues.with_reviews)}/>
+                        </div>
+                        <SimpleCatalogSection alias="bars" isFetching={beerIsFetching} lim={filterValues["lim"]} SkeletonCardComponent={BottledBeerCardSkeleton} cards={allCards} CardComponent={withoutPrice? BottledBeerCardWithoutPrice: BottledBeerCard} wideColumns={false} totalItems={beerData?.["total_items"]} onShowMore={handleShowMore}/>
                     </div>
-                    <div className={styles.toggleAndOptions}>
-                        {isMobile && <SimpleButton textStyle={"black"} text="ФИЛЬТРЫ" onClick={() => setShowFiltersModal(true)} style="primary"></SimpleButton>}
-                        {sortFilters &&  <ComboBox options={sortFilters} onChange={(value) => handleSingleFilterApply("sort_by", value.id)}></ComboBox>}
-                        <Toggle reset={tabResetFilters["with_reviews"]} label={"Только с отзывами"} toggled={filterValues.with_reviews} onClick={() => handleSingleFilterApply("with_reviews", !filterValues.with_reviews)}/>
-                    </div>
-                    <SimpleCatalogSection alias="bars" isFetching={beerIsFetching} lim={filterValues["lim"]} SkeletonCardComponent={BottledBeerCardSkeleton} cards={allCards} CardComponent={withoutPrice? BottledBeerCardWithoutPrice: BottledBeerCard} wideColumns={false} totalItems={beerData?.["total_items"]} onShowMore={handleShowMore}/>
                 </div>
+                {isMobile &&
+                    <FiltersModal setShow={setShowFiltersModal} show={showFiltersModal}>
+                        <HookedFilterComboBox options={countries} isLoading={countriesIsLoading} error={countriesError} debouncedInput={debouncedCountryInput} setDebouncedInput={setDebouncedCountryInput} title={"Страна производства"}  fetchHook={useGetBeerCountriesQuery} onChange={(value) => handleFilterChange("country_ids", value)} reset={tabResetFilters["country_ids"]}/>
+                        <HookedFilterComboBox options={stylesFilter} isLoading={stylesIsLoading} error={stylesError} debouncedInput={debouncedStyleInput} setDebouncedInput={setDebouncedStyleInput} title={"Стиль"}  fetchHook={useGetStylesQuery} onChange={(value) => handleFilterChange("style_ids", value)} reset={tabResetFilters["style_ids"]}/>
+                        {filtersConfig.map((filter) => (
+                            <FilterItem
+                                key={filter.key}
+                                filter={filter}
+                                onChange={(value) => handleFilterChange(filter.key, value)}
+                                reset={tabResetFilters[filter.key]}
+                            />
+                        ))}
+                        <SimpleButton text="Применить фильтры" onClick={() => {setShowFiltersModal(false); applyFilters()}}></SimpleButton>
+                    </FiltersModal>
+                }
             </div>
-            {isMobile &&
-                <FiltersModal setShow={setShowFiltersModal} show={showFiltersModal}>
-                    <HookedFilterComboBox options={countries} isLoading={countriesIsLoading} error={countriesError} debouncedInput={debouncedCountryInput} setDebouncedInput={setDebouncedCountryInput} title={"Страна производства"}  fetchHook={useGetBeerCountriesQuery} onChange={(value) => handleFilterChange("country_ids", value)} reset={tabResetFilters["country_ids"]}/>
-                    <HookedFilterComboBox options={stylesFilter} isLoading={stylesIsLoading} error={stylesError} debouncedInput={debouncedStyleInput} setDebouncedInput={setDebouncedStyleInput} title={"Стиль"}  fetchHook={useGetStylesQuery} onChange={(value) => handleFilterChange("style_ids", value)} reset={tabResetFilters["style_ids"]}/>
-                    {filtersConfig.map((filter) => (
-                        <FilterItem
-                            key={filter.key}
-                            filter={filter}
-                            onChange={(value) => handleFilterChange(filter.key, value)}
-                            reset={tabResetFilters[filter.key]}
-                        />
-                    ))}
-                    <SimpleButton text="Применить фильтры" onClick={() => {setShowFiltersModal(false); applyFilters()}}></SimpleButton>
-                </FiltersModal>
+            {breweryId === null &&
+                <div className={styles.banner}>
+                    <img src={Ad}></img>
+                </div>
             }
         </div>
     )

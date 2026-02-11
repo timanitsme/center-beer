@@ -2,7 +2,11 @@ import NavChain from "../../../components/Navigation/NavChain/NavChain.jsx";
 import {isMobile} from "react-device-detect";
 import styles from "../MyCheckinsPage/MyCheckinsPage.module.scss";
 import SimpleCatalogSection from "../../../components/CatalogSections/SimpleCatalogSection/SimpleCatalogSection.jsx";
-import {useGetUsersFavBarsQuery, useGetUsersFavBeersQuery} from "../../../store/services/centerBeer.js";
+import {
+    useGetUsersFavBarsQuery,
+    useGetUsersFavBeersQuery,
+    useGetUsersFavBreweriesQuery
+} from "../../../store/services/centerBeer.js";
 import {useSelector} from "react-redux";
 import {useNavigate, useParams} from "react-router-dom";
 import MinimalBottledBeerCardApi from "../../../components/Cards/BottledBeerCard/MinimalBottledBeerCardApi.jsx";
@@ -16,15 +20,17 @@ const PersonalAccountMobile = lazy(() => import("../../../components/PersonalAcc
 export default function MyFavoritePage(){
     const {alias} = useParams();
     const navigate = useNavigate()
-    const { isAuthorized, userProfile, isLoading: profileIsLoading } = useSelector((state) => state.auth);
+    const { isAuthorized, userProfile, userDashboard, isLoading: profileIsLoading } = useSelector((state) => state.auth);
 
     const {data: beerData, isLoading: beerIsLoading, error: beerError} = useGetUsersFavBeersQuery(userProfile?.id, {skip: !userProfile || alias !== "beer"})
     const {data: barData, isLoading: barIsLoading, error: barError} = useGetUsersFavBarsQuery(userProfile?.id, {skip: !userProfile || alias !== "bar"})
+    const {data: breweryData, isLoading: breweryIsLoading, error: breweryError} = useGetUsersFavBreweriesQuery(userProfile?.id, {skip: !userProfile || alias !== "bar"})
+
 
     const selectors = {
-        beer: {pathname: "Любимое пиво", data: beerData, isLoading: beerIsLoading, error: beerError, CardComponent: MinimalBottledBeerCardApi, alias: "bars"},
-        bar: {pathname: "Любимые заведения", data: barData, isLoading: barIsLoading, error: barError, CardComponent: MinimalBarCardApi, alias: "bars"},
-        brewery: {pathname: "Любимые пивоварни", data: {data: []}, isLoading: false, error: false, CardComponent: BreweryCard, alias: "distributors"}
+        beer: {pathname: "Любимое пиво", data: beerData?.data?.beer, isLoading: beerIsLoading, error: beerError, CardComponent: MinimalBottledBeerCardApi, alias: "bars"},
+        bar: {pathname: "Любимые заведения", data: barData?.data?.bar, isLoading: barIsLoading, error: barError, CardComponent: MinimalBarCardApi, alias: "bars"},
+        brewery: {pathname: "Любимые пивоварни", data: {data: breweryData?.data?.bar}, isLoading: breweryIsLoading, error: breweryError, CardComponent: BreweryCard, alias: "distributors"}
     }
 
     useEffect(() => {
@@ -39,11 +45,12 @@ export default function MyFavoritePage(){
 
     if (!alias) navigate("/account/")
     if (!profileIsLoading && !isAuthorized) navigate("/login/")
+    console.log(JSON.stringify(selectors[alias]?.data))
     return(
         <div className="content">
             <div style={{display: "flex"}}>
                 <Suspense>
-                    {!isMobile && <PersonalAccountAlt profile={userProfile}/>}
+                    {!isMobile && <PersonalAccountAlt profile={userProfile} dashboard={userDashboard}/>}
                 </Suspense>
                 <div style={{display: "flex", flexDirection: "column", width: "100%"}}>
                     <NavChain paths={paths} customStyle="nav-chain-no-margin"></NavChain>
@@ -56,7 +63,7 @@ export default function MyFavoritePage(){
                             <div className={styles.arrowButton} onClick={() => navigate("/account/")}><ArrowLeftIcon/></div>
                             <h2 className={`${styles.title} ma-h2-small`}>{selectors[alias]?.pathname}</h2>
                         </div>
-                        {selectors[alias].data && !selectors[alias].isLoading && !selectors[alias].error && <SimpleCatalogSection alias={selectors[alias]?.alias} cards={selectors[alias]?.data?.data} CardComponent={selectors[alias].CardComponent}></SimpleCatalogSection>}
+                        {selectors[alias].data && !selectors[alias].isLoading && !selectors[alias].error && <SimpleCatalogSection alias={selectors[alias]?.alias} cards={selectors[alias]?.data} CardComponent={selectors[alias].CardComponent}></SimpleCatalogSection>}
                     </div>
                 </div>
             </div>

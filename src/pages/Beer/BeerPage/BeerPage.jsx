@@ -4,6 +4,7 @@ import {getBeerPagePaths} from "./BeerPageData.jsx";
 import BeerCatalog from "../../../components/Catalogs/BeerCatalog.jsx";
 import {useEffect} from "react";
 import contactsBg from "../../../assets/bgPictures/contacts-bg.webp"
+import Ad from "../../../assets/adsMocks/ad-1.svg"
 
 export default function BeerPage(){
     useEffect(() => {

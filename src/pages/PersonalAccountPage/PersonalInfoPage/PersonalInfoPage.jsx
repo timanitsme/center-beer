@@ -16,11 +16,12 @@ import {
 } from "../../../store/services/centerBeerAuth.js";
 import CodeInput from "../../../components/Inputs/CodeInput/CodeInput.jsx";
 import CountdownTimer from "../../../components/CountdownTimer/CountdownTimer.jsx";
+import {useGetUserDashboardQuery} from "../../../store/services/centerBeer.js";
 const PersonalAccountAlt = lazy(() => import("../../../components/PersonalAccount/PersonalAccountAlt/PersonalAccountAlt.jsx"));
 const PersonalAccountMobile = lazy(() => import("../../../components/PersonalAccount/PersonalAccountMobile.jsx"));
 
 export default function PersonalInfoPage(){
-    const { isAuthorized, userProfile, isLoading: profileIsLoading } = useSelector((state) => state.auth);
+    const { isAuthorized, userProfile, userDashboard, isLoading: profileIsLoading } = useSelector((state) => state.auth);
     const [nickname, setNickname] = useState("")
     const [nicknameError, setNicknameError] = useState("")
     const [email, setEmail] = useState("")
@@ -81,7 +82,7 @@ export default function PersonalInfoPage(){
         <div className="content">
             <div style={{display: "flex"}}>
                 <Suspense>
-                    {!isMobile && <PersonalAccountAlt profile={userProfile}/>}
+                    {!isMobile && <PersonalAccountAlt profile={userProfile} dashboard={userDashboard} />}
                 </Suspense>
                 <div style={{display: "flex", flexDirection: "column", width: "100%", gap: "25px"}}>
                     <NavChain paths={paths} customStyle="nav-chain-no-margin"/>

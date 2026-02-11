@@ -8,14 +8,16 @@ export default function SearchCities({title, onChange, reset}){
     const [inputValue, setInputValue] = useState(''); // Значение поля поиска
     const [debouncedInput, setDebouncedInput] = useState(inputValue);
     const [filteredSuggestions, setFilteredSuggestions] = useState([]);
-    const {data: cities = [], isLoading, error} = useGetCitiesQuery(debouncedInput)
+    const [timestamp, setTimestamp] = useState(Date.now());
+    const {data: cities = [], isLoading, error} = useGetCitiesQuery({name: debouncedInput, ts: timestamp}, {skip: inputValue.length === 0})
 
     useEffect(() => {
         const handler = setTimeout(() => {
             if ((inputValue === '' || inputValue.length >= 2) && debouncedInput !== inputValue){
                 setDebouncedInput(inputValue);
+                setTimestamp(Date.now())
             }
-        }, 500);
+        }, 700);
 
         return () => {
             clearTimeout(handler);

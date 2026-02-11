@@ -29,7 +29,7 @@ import MinimalBottledBeerCardSkeleton
 import PersonalAccountAlt from "../../components/PersonalAccount/PersonalAccountAlt/PersonalAccountAlt.jsx";
 
 export default function PersonalAccountPage(){
-    const { isAuthorized, userProfile, isLoading: profileIsLoading, isRefreshing } = useSelector((state) => state.auth);
+    const { isAuthorized, userProfile, userDashboard, isLoading: profileIsLoading, isRefreshing } = useSelector((state) => state.auth);
     const navigate = useNavigate()
     const [showModal, setShowModal] = useState(false)
 
@@ -51,10 +51,11 @@ export default function PersonalAccountPage(){
     const {data: barFavs, isLoading: barFavsIsLoading, error: barFavsError, isFetching: barFavsIsFetching} = useGetUsersFavBarsQuery(userProfile?.id, {skip: !userProfile?.id})
     const {data: beerFavs, isLoading: beerFavsIsLoading, error: beerFavsError, isFetching: beerFavsIsFetching} = useGetUsersFavBeersQuery(userProfile?.id, {skip: !userProfile?.id})
 
+
     const cuddySwitch = [
         {
             title: "Бары",
-            cards: barCuddy,
+            cards: barCuddy?.data?.bar,
             CardComponent: MinimalBarCardApi,
             SkeletonCardComponent: MinimalBarCardSkeleton,
             isLoading: barCuddyIsLoading,
@@ -63,7 +64,7 @@ export default function PersonalAccountPage(){
         },
         {
             title: "Пиво",
-            cards: beerCuddy,
+            cards: beerCuddy?.data?.beer,
             CardComponent: MinimalBottledBeerCardApi,
             SkeletonCardComponent: MinimalBottledBeerCardSkeleton,
             isLoading: beerCuddyIsLoading,
@@ -78,14 +79,14 @@ export default function PersonalAccountPage(){
     const favSwitch = [
         {
             title: "Бары",
-            cards: barFavs,
+            cards: barFavs?.data?.bar,
             CardComponent: MinimalBarCardApi,
             isLoading: barFavsIsLoading,
             error: barFavsError,
         },
         {
             title: "Пиво",
-            cards: beerFavs,
+            cards: beerFavs?.data?.beer,
             CardComponent: MinimalBottledBeerCardApi,
             isLoading: beerFavsIsLoading,
             error: beerFavsError,
@@ -137,7 +138,7 @@ export default function PersonalAccountPage(){
             {isAuthorized && !profileIsLoading && userProfile &&
                 <>
                     <div style={{display: "flex"}}>
-                        {window.innerWidth > 1000 && <PersonalAccountAlt profile={userProfile}/>}
+                        {window.innerWidth > 1000 && <PersonalAccountAlt profile={userProfile} dashboard={userDashboard}/>}
                         <div style={{display: "flex", flexDirection: "column", width: "100%", gap: "25px"}}>
                             <NavChain paths={GetPersonalAccountPaths()} customStyle="nav-chain-no-margin"></NavChain>
                             {window.innerWidth <= 1000 && <PersonalAccountMobile profile={userProfile}/>}

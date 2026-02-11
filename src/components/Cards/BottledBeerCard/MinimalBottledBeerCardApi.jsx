@@ -8,10 +8,11 @@ import {useLazyAddBeerToCuddyQuery, useLazyAddBeerToFavQuery} from "../../../sto
 import {useNavigate} from "react-router-dom";
 
 export default function MinimalBottledBeerCardApi({cardInfo}){
+    console.log(JSON.stringify(cardInfo))
     const [cardBookmarked, setCardBookmarked] = useState(cardInfo?.is_favor || false);
     const [cardFav, setCardFav] = useState(cardInfo?.is_liked || false);
     const formatNumber = (num) => Number(num).toString()
-    const [imageSrc, setImageSrc] = useState(cardInfo?.preview || cardImagePlaceholder)
+    const [imageSrc, setImageSrc] = useState(cardInfo?.photo || cardImagePlaceholder)
     const [triggerAddToCuddy, { isLoading: addToCuddyIsLoading }] = useLazyAddBeerToCuddyQuery();
     const [triggerAddToFav, { isLoading: addToFavIsLoading }] = useLazyAddBeerToFavQuery();
     const navigate = useNavigate()
@@ -41,8 +42,8 @@ export default function MinimalBottledBeerCardApi({cardInfo}){
     }
 
     useEffect(() => {
-        setImageSrc(cardInfo?.preview || cardImagePlaceholder);
-    }, [cardInfo?.preview]);
+        setImageSrc(cardInfo?.photo || cardImagePlaceholder);
+    }, [cardInfo?.photo]);
 
     return(
         <div className={styles.card}>
@@ -55,13 +56,13 @@ export default function MinimalBottledBeerCardApi({cardInfo}){
 
                 </div>
                 <div className={styles.imgContainer}>
-                    <img src={imageSrc} onError={() => setImageSrc(cardImagePlaceholder)} alt="" onClick={() => goToBeerPage(cardInfo?.beer_alias)}/>
+                    <img src={imageSrc} onError={() => setImageSrc(cardImagePlaceholder)} alt="" onClick={() => goToBeerPage(cardInfo?.alias)}/>
                     <a onClick={(e) => handleAddToFav(e, cardInfo?.id)} className={`${styles.favButton} ${cardFav? styles.added : ''}`}><FavIcon/></a>
                 </div>
                 <div className={styles.cardTop}>
                     <div className={styles.textContainer}>
-                        <div className={styles.primaryContainer}><h6 title={cardInfo?.beer_name} className={`${styles.cardTextPrimary} ma-h6`} onClick={() => goToBeerPage(cardInfo?.beer_alias)}>{cardInfo?.beer_name}</h6></div>
-                        <p className={`${styles.textActive} ma-p ${styles.breweryAlias}`} title={`${[cardInfo?.brewery_name].join(", ")}`} onClick={() => goToBreweryPage(cardInfo?.brewery_alias)}>{[cardInfo?.brewery_name].join(", ")}</p>
+                        <div className={styles.primaryContainer}><h6 title={cardInfo?.name} className={`${styles.cardTextPrimary} ma-h6`} onClick={() => goToBeerPage(cardInfo?.alias)}>{cardInfo?.name}</h6></div>
+                        <p className={`${styles.textActive} ma-p ${styles.breweryAlias}`} title={`${[cardInfo?.brewery?.name].join(", ")}`} onClick={() => goToBreweryPage(cardInfo?.brewery?.alias)}>{[cardInfo?.brewery?.name].join(", ")}</p>
                     </div>
                     <div>
                         <div style={{height: "25px"}}></div>

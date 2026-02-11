@@ -12,7 +12,7 @@ export default function RestaurantEventsPage(){
         {title: "Мероприятия", path: "/"},
         {title: "Заведения", path: "/"},
     ]
-    const {data: barEvents, isLoading: barEventsIsLoading, error: barEventsError} = useGetBarEventsQuery({})
+    const {data: barEvents, isLoading: barEventsIsLoading, error: barEventsError} = useGetBarEventsQuery({bar_id: 1})
 
     useEffect(() => {
         document.title = `center.beer | Мероприятия заведений`

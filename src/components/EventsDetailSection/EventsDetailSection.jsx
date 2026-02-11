@@ -11,6 +11,7 @@ import ComboBox from "../Inputs/ComboBox/ComboBox.jsx";
 import {Link, useNavigate} from "react-router-dom";
 import BorderedGradientButton from "../Buttons/BorderedGradientButton/BorderedGradientButton.jsx";
 import SearchInput from "../ApiInputs/Search/SearchInput.jsx";
+import Ad1 from "../../assets/adsMocks/ad-1.svg";
 
 export default function EventsDetailSection({style = "detail", children}){
     const [isFavourite, setIsFavourite] = useState(false);
@@ -71,6 +72,9 @@ export default function EventsDetailSection({style = "detail", children}){
                         {children}
                     </div>
                 </div>
+            </div>
+            <div className={styles.banner}>
+                <img src={Ad1} alt=""></img>
             </div>
         </div>
     )

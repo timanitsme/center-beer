@@ -21,6 +21,13 @@
     display: flex;
     flex-direction: row;
     gap: rem(10);
+    height: 100%;
+}
+
+.rating{
+    display: flex;
+    align-items: center;
+    gap: rem(5);
 }
 
 .hrtLine{
@@ -94,7 +101,7 @@
 
 .cardBottom{
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     gap: rem(10);
     align-items: center;
 }
@@ -134,9 +141,6 @@
 .ratingText {
     font-weight: 200;
     color: var(--txt-active);
-    margin-top: rem(-15);
-    position: relative;
-    right: 0;
     text-align: center;
 }
 
@@ -214,9 +218,6 @@
     }
     .bookMarkButton svg{
         top: rem(-11);
-    }
-    .ratingText {
-        display: none;
     }
     .imgContainer img{
         width: rem(60);

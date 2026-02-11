@@ -11,7 +11,7 @@ const PersonalAccountAlt = lazy(() => import("../../../components/PersonalAccoun
 const PersonalAccountMobile = lazy(() => import("../../../components/PersonalAccount/PersonalAccountMobile.jsx"));
 
 export default function BalanceHistory(){
-    const { isAuthorized, userProfile, isLoading: profileIsLoading } = useSelector((state) => state.auth);
+    const { isAuthorized, userProfile, userDashboard, isLoading: profileIsLoading } = useSelector((state) => state.auth);
     const {data: balanceHistory, isLoading: balanceHistoryIsLoading, error: balanceError} = useGetUsersBalanceHistoryQuery({user_id: userProfile?.id}, {skip: !userProfile})
     const navigate = useNavigate()
     const paths = [
@@ -57,7 +57,7 @@ export default function BalanceHistory(){
         <div className="content">
             <div style={{display: "flex"}}>
                 <Suspense>
-                    {!isMobile && <PersonalAccountAlt profile={userProfile}/>}
+                    {!isMobile && <PersonalAccountAlt profile={userProfile} dashboard={userDashboard}/>}
                 </Suspense>
                 <div style={{display: "flex", flexDirection: "column", width: "100%", gap: "25px"}}>
                     <NavChain paths={paths} customStyle="nav-chain-no-margin"></NavChain>

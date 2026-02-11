@@ -9,8 +9,10 @@ export const centerBeerApi = createApi({
             query: ({lim, offset, name, city_id, subways_ids, kitchen_ids, visit_type_ids, price_ids, type_ids, feature_ids, only_opened, sort_by, online_booking}) => {
                 const params = new URLSearchParams();
                 if (lim !== undefined) params.append('lim', lim);
-                if (name !== undefined) params.append('name', name);
                 if (offset !== undefined) params.append('offset', offset);
+                if (sort_by !== undefined) params.append('sort_by', sort_by)
+                if (only_opened !== undefined) params.append('only_opened', only_opened.toString())
+                if (online_booking !== undefined) params.append('online_booking', online_booking)
                 if (city_id !== undefined) params.append('city_id', city_id);
                 if (subways_ids !== undefined) params.append('subways_ids', subways_ids);
                 if (kitchen_ids !== undefined) params.append('kitchen_ids', kitchen_ids);
@@ -18,21 +20,21 @@ export const centerBeerApi = createApi({
                 if (price_ids !== undefined) params.append('price_ids', price_ids);
                 if (type_ids !== undefined) params.append('type_ids', type_ids);
                 if (feature_ids !== undefined) params.append('feature_ids', feature_ids);
-                if (only_opened !== undefined) params.append('only_opened', only_opened.toString())
-                if (sort_by !== undefined) params.append('sort_by', sort_by)
-                if (online_booking !== undefined) params.append('online_booking', online_booking)
+                if (name !== undefined) params.append('name', name);
                 return(`getBars?${params.toString()}`)
             }
         })),
         getBarsFilters: (builder.query({
             query: (cityId) => `getBarsFilters?id=${cityId}`
         })),
+
+
+
         //Каталог пива
         getBeers: (builder.query({
             query: ({lim, name, offset, sort_by, with_reviews, city_id, style_ids, color_ids, country_ids, price_ids, abv_id, abv_from, abv_to, og_id, og_from, og_to, ibu_id, ibu_from, ibu_to, vol_ids, pack_ids, brew_ids}) => {
                 const params = new URLSearchParams();
                 if (lim !== undefined) params.append("lim", lim);
-                if (name !== undefined) params.append("name", name);
                 if (offset !== undefined) params.append("offset", offset);
                 if (sort_by !== undefined) params.append("sort_by", sort_by);
                 if (with_reviews !== undefined) params.append("with_reviews", with_reviews);
@@ -53,6 +55,7 @@ export const centerBeerApi = createApi({
                 if (pack_ids !== undefined) params.append("pack_ids", pack_ids);
                 if (brew_ids !== undefined) params.append("brew_ids", brew_ids);
                 if (style_ids !== undefined && style_ids.length !== 0) params.append("style_id", style_ids);
+                if (name !== undefined) params.append("name", name);
                 return(`getBeers?${params.toString()}`)
             }
         })),
@@ -62,10 +65,10 @@ export const centerBeerApi = createApi({
         getBeerStyles: (builder.query({
             query: ({id, name, offset, lim}) => {
                 const params = new URLSearchParams();
-                if (lim !== undefined) params.append("lim", lim)
-                if (offset !== undefined) params.append("offset", offset)
                 if (id !== undefined) params.append("id", id)
                 if (name !== undefined) params.append("name", name)
+                if (lim !== undefined) params.append("lim", lim)
+                if (offset !== undefined) params.append("offset", offset)
                 return(`getStyles?${params.toString()}`)
             }
         })),
@@ -76,14 +79,9 @@ export const centerBeerApi = createApi({
                 return(`getCountries?${params.toString()}`)
             }
         })),
-        getBeerCities: (builder.query({
-            query: ({name, country_id}) => {
-                const params = new URLSearchParams();
-                if (country_id !== undefined) params.append("country_id", country_id)
-                if (name !== undefined) params.append("name", name)
-                return(`getCountries?${params.toString()}`)
-            }
-        })),
+
+
+
         // Каталог пивоварен
         getBreweries: (builder.query({
             query: ({lim, offset, id, name, is_open, is_new, country_id, city_id, type_id, order_by, order_asc_desc}) => {
@@ -92,7 +90,7 @@ export const centerBeerApi = createApi({
                 if (offset !== undefined) params.append("offset", offset)
                 if (is_open !== undefined) params.append("is_open", is_open)
                 if (id !== undefined) params.append("id", id)
-                if (name !== undefined) params.append("name", name)
+                if (name !== "") params.append("name", name)
                 if (is_new !== undefined) params.append("new", is_new)
                 if (country_id !== undefined) params.append("country_id", country_id)
                 if (city_id !== undefined) params.append("city_id", city_id)
@@ -105,6 +103,8 @@ export const centerBeerApi = createApi({
         getBreweriesFilters: (builder.query({
             query: () => `getBreweriesFilters`
         })),
+
+
 
         // Каталог новостей
         getNews: (builder.query({
@@ -134,6 +134,8 @@ export const centerBeerApi = createApi({
                 return(`getNewsItem?${params.toString()}`)
             }
         })),
+
+
 
         //Страница бара
         getBarComments: (builder.query({
@@ -257,15 +259,6 @@ export const centerBeerApi = createApi({
                 return(`getBarEvents?${params.toString()}`)
             }
         })),
-        getBreweryEvents: (builder.query({
-            query: ({brew_id, lim, offset}) => {
-                const params = new URLSearchParams()
-                if (brew_id !== undefined) params.append("brew_id", brew_id)
-                if (lim !== undefined) params.append("lim", lim)
-                if (offset !== undefined) params.append("offset", offset)
-                return(`getBreweryEvents?${params.toString()}`)
-            }
-        })),
         getBarPromo: (builder.query({
             query: ({bar_id, lim, offset}) => {
                 const params = new URLSearchParams()
@@ -284,15 +277,8 @@ export const centerBeerApi = createApi({
                 return(`getBarNews?${params.toString()}`)
             }
         })),
-        getBreweryNews: (builder.query({
-            query: ({brew_id, lim, offset}) => {
-                const params = new URLSearchParams()
-                params.append("brew_id", brew_id)
-                if (lim !== undefined) params.append("lim", lim)
-                if (offset !== undefined) params.append("offset", offset)
-                return(`getBreweryNews?${params.toString()}`)
-            }
-        })),
+
+
         // Страница пива
         getBeerComments: (builder.query({
             query: (beer_id) => `getBeerComments?beer_id=${beer_id}`
@@ -317,6 +303,26 @@ export const centerBeerApi = createApi({
         getBreweryFilters: (builder.query({
             query: () => `getBreweryFilters`
         })),
+        getBreweryEvents: (builder.query({
+            query: ({brew_id, lim, offset}) => {
+                const params = new URLSearchParams()
+                if (brew_id !== undefined) params.append("brew_id", brew_id)
+                if (lim !== undefined) params.append("lim", lim)
+                if (offset !== undefined) params.append("offset", offset)
+                return(`getBreweryEvents?${params.toString()}`)
+            }
+        })),
+        getBreweryNews: (builder.query({
+            query: ({brew_id, lim, offset}) => {
+                const params = new URLSearchParams()
+                params.append("brew_id", brew_id)
+                if (lim !== undefined) params.append("lim", lim)
+                if (offset !== undefined) params.append("offset", offset)
+                return(`getBreweryNews?${params.toString()}`)
+            }
+        })),
+
+
 
         // Получение информации о фестивале
         getFest: (builder.query({
@@ -324,6 +330,8 @@ export const centerBeerApi = createApi({
                 return(`getFest?fest_id=${fest_id}`)
             }
         })),
+
+
 
         // Пользователь
         refreshUserToken: (builder.query({
@@ -336,29 +344,15 @@ export const centerBeerApi = createApi({
             }
         })),
         addBeerToCuddy: (builder.query({
-            query: (beer_id) => `addBeerToCuddy?beer_id=${beer_id}`
+            query: (beer_id) => `user/addBeerToCuddy?beer_id=${beer_id}`
         })),
         addBeerToFav: (builder.query({
-            query: (beer_id) => `addBeerToFav?beer_id=${beer_id}`
+            query: (beer_id) => `user/addBeerToFav?beer_id=${beer_id}`
         })),
         addBarToCuddy: (builder.query({
-            query: (beer_id) => `addBarToCuddy?bar_id=${beer_id}`
+            query: (bar_id) => `user/addBarToCuddy?bar_id=${bar_id}`
         })),
-        addBarToFav: (builder.query({
-            query: (beer_id) => `addBarToFav?bar_id=${beer_id}`
-        })),
-        getUsersFavBars: (builder.query({
-            query: (user_guid) => `getUsersFavBars?user_id=${user_guid}`
-        })),
-        getUsersFavBeers: (builder.query({
-            query: (user_guid) => `getUsersFavBeers?user_id=${user_guid}`
-        })),
-        getUsersCuddyBars: (builder.query({
-            query: (user_guid) => `getUsersCuddyBars?user_id=${user_guid}`
-        })),
-        getUsersCuddyBeers: (builder.query({
-            query: (user_guid) => `getUsersCuddyBeers?user_id=${user_guid}`
-        })),
+        //getUserComments
         getUsersBalanceHistory: (builder.query({
             query: ({user_id, user_guid}) => {
                 const params = new URLSearchParams()
@@ -367,6 +361,7 @@ export const centerBeerApi = createApi({
                 return(`getUsersBalanceHistory?${params.toString()}`)
             }
         })),
+
         addUserReward: (builder.query({
             query: ({user_id, user_guid, reward_alias}) => {
                 const params = new URLSearchParams()
@@ -376,6 +371,56 @@ export const centerBeerApi = createApi({
                 return(`addUserReward?${params.toString()}`)
             }
         })),
+        getCheckinsBeers: (builder.query({
+            query: ({beerId, lim, offset}) => {
+                const params = new URLSearchParams()
+                if (beerId !== undefined) params.append("beer_id", beerId)
+                if (lim !== undefined) params.append("lim", lim)
+                if (offset !== undefined) params.append("offset", offset)
+                return(`user/getCheckinsBeers?${params.toString()}`)
+            }
+        })),
+        addBarToFav: (builder.query({
+            query: (bar_id) => `user/addBarToFav?bar_id=${bar_id}`
+        })),
+        getUsersFavBars: (builder.query({
+            query: () => `user/getFavorites?type=bar`
+        })),
+        getUsersFavBeers: (builder.query({
+            query: () => `user/getFavorites?type=beer`
+        })),
+        getUsersFavBreweries: (builder.query({
+            query: () => `user/getFavorites?type=brewery`
+        })),
+        getUsersCuddyBars: (builder.query({
+            query: () => `user/getCuddy?type=bar`
+        })),
+        getUsersCuddyBeers: (builder.query({
+            query: () => `user/getCuddy?type=beer`
+        })),
+        getUsersCuddyBreweries: (builder.query({
+            query: () => `user/getCuddy?type=brewery`
+        })),
+        getUserDashboard: (builder.query({
+            query: ({userId}) => {
+                const params = new URLSearchParams();
+                if (userId !== undefined) params.append("user_id", userId);
+                return(`user/getDashboard?${params.toString()}`);
+            }
+        })),
+        voteComment: builder.mutation({
+            query: ({commentId, commentType, action}) => {
+                return({
+                    url: 'user/voteComment',
+                    method: "POST",
+                    body: {comment_id: commentId, comment_type: commentType, action}
+                })}
+        }),
+
+
+
+
+
 
         //Справочники
         getStyles: (builder.query({
@@ -425,6 +470,7 @@ export const { useGetBarsQuery, useGetBarInfoQuery, useGetBarsFiltersQuery,
     useGetBreweryInfoQuery, useGetBreweryInfoByIdQuery, useGetFestQuery,
     useLazyAddBeerToCuddyQuery, useLazyAddBeerToFavQuery, useLazyAddBarToCuddyQuery,
     useLazyAddBarToFavQuery, useGetUsersFavBarsQuery, useGetUsersCuddyBarsQuery,
-    useGetUsersFavBeersQuery, useGetUsersCuddyBeersQuery, useGetUsersBalanceHistoryQuery, useGetNewsQuery,
+    useGetUsersFavBeersQuery, useGetUsersCuddyBeersQuery, useGetUsersFavBreweriesQuery, useGetUsersCuddyBreweriesQuery, useGetUsersBalanceHistoryQuery, useGetNewsQuery,
     useGetBeerCountriesQuery, useGetBeerStylesQuery, useGetNewsItemQuery, useGetNewsRelatedQuery,
-    useGetNewsCategoriesQuery, useGetBarCommentsQuery, useGetBeerCommentsQuery, useGetBreweryCommentsQuery} = centerBeerApi
+    useGetNewsCategoriesQuery, useGetBarCommentsQuery, useGetBeerCommentsQuery, useGetBreweryCommentsQuery,
+    useGetUserDashboardQuery, useGetCheckinsBeersQuery, useVoteCommentMutation} = centerBeerApi

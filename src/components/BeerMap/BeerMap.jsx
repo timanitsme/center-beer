@@ -44,7 +44,7 @@ export default function BeerMap({data = []}){
                 {data?.length !== 0 && data?.map((marker, index) => {
                     if (marker.lat !== null && marker.lon !== null){
                         return(
-                            <Marker key={index} position={[marker?.lon, marker?.lat]} icon={myIcon}>
+                            <Marker key={index} position={[marker?.lat, marker?.lon]} icon={myIcon}>
                                 <Popup>
                                     <div className={styles.markerPopUp}>
                                         <h5>{marker?.name}</h5>

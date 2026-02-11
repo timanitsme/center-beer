@@ -3,7 +3,7 @@ import {useNavigate, useParams} from "react-router-dom";
 import {useSelector} from "react-redux";
 import {
     useGetUsersCuddyBarsQuery,
-    useGetUsersCuddyBeersQuery,
+    useGetUsersCuddyBeersQuery, useGetUsersCuddyBreweriesQuery,
 } from "../../../store/services/centerBeer.js";
 import MinimalBottledBeerCardApi from "../../../components/Cards/BottledBeerCard/MinimalBottledBeerCardApi.jsx";
 import MinimalBarCard from "../../../components/Cards/BarCard/MinimalBarCard.jsx";
@@ -20,15 +20,16 @@ const PersonalAccountMobile = lazy(() => import("../../../components/PersonalAcc
 export default function MyBookmarksPage(){
     const {alias} = useParams();
     const navigate = useNavigate()
-    const { isAuthorized, userProfile, isLoading: profileIsLoading } = useSelector((state) => state.auth);
+    const { isAuthorized, userProfile, userDashboard, isLoading: profileIsLoading } = useSelector((state) => state.auth);
 
     const {data: beerData, isLoading: beerIsLoading, error: beerError} = useGetUsersCuddyBeersQuery(userProfile?.id, {skip: !userProfile || alias !== "beer"})
     const {data: barData, isLoading: barIsLoading, error: barError} = useGetUsersCuddyBarsQuery(userProfile?.id, {skip: !userProfile || alias !== "bar"})
+    const {data: breweryData, isLoading: breweryIsLoading, error: breweryError} = useGetUsersCuddyBreweriesQuery(userProfile?.id, {skip: !userProfile || alias !== "bar"})
 
     const selectors = {
-        beer: {pathname: "Пиво в кладовке", data: beerData, isLoading: beerIsLoading, error: beerError, CardComponent: MinimalBottledBeerCardApi, alias: "bars"},
-        bar: {pathname: "Заведения в кладовке", data: barData, isLoading: barIsLoading, error: barError, CardComponent: MinimalBarCardApi, alias: "bars"},
-        brewery: {pathname: "Пивоварни в кладовке", data: {data: []}, isLoading: false, error: false, CardComponent: BreweryCard, alias: "distributors"},
+        beer: {pathname: "Пиво в кладовке", data: beerData?.data?.beer, isLoading: beerIsLoading, error: beerError, CardComponent: MinimalBottledBeerCardApi, alias: "bars"},
+        bar: {pathname: "Заведения в кладовке", data: barData?.data?.bar, isLoading: barIsLoading, error: barError, CardComponent: MinimalBarCardApi, alias: "bars"},
+        brewery: {pathname: "Пивоварни в кладовке", data: {data: breweryData?.data?.brewery}, isLoading: breweryIsLoading, error: breweryError, CardComponent: BreweryCard, alias: "distributors"},
         event: {pathname: "Мероприятия в кладовке", data: {data: []}, isLoading: false, error: false, CardComponent: MinimalBarCard, alias: "bars"},
     }
 
@@ -48,7 +49,7 @@ export default function MyBookmarksPage(){
         <div className="content">
             <div style={{display: "flex"}}>
                 <Suspense>
-                    {!isMobile && <PersonalAccountAlt profile={userProfile}/>}
+                    {!isMobile && <PersonalAccountAlt profile={userProfile} dashboard={userDashboard}/>}
                 </Suspense>
                 <div style={{display: "flex", flexDirection: "column", width: "100%"}}>
                     <NavChain paths={paths} customStyle="nav-chain-no-margin"></NavChain>

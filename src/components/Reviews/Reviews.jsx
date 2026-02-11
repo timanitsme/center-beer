@@ -145,7 +145,7 @@ export default function Reviews({header, images, resume, alias, id, contacts=nul
             <div className={styles.commentsSection}>
                 <div className={styles.commentsContainer}>
                     {visibleReviews.data.map((review, index) => {
-                       return <Comment key={index} data={review}/>
+                       return <Comment key={index} data={review} alias={alias}/>
                     })}
 
                     {reviewsData[alias].data?.data?.length > 3 && !showAllReviews && (

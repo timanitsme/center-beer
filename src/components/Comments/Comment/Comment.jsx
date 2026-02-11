@@ -6,8 +6,9 @@ import {useEffect, useRef, useState} from "react";
 import {getRatingIcons} from "../../../utils/getRatingIcons.jsx";
 import {FaPaperclip, FaPaperPlane} from "react-icons/fa6";
 import formatDateWithTextMonth from "../../../utils/DateFunctions/formatDateWithTextMonth.js";
+import {useVoteCommentMutation} from "../../../store/services/centerBeer.js";
 
-export default function Comment({profile, data}){
+export default function Comment({profile, data, alias}){
     const textRef = useRef(null);
     const [isTextClamped, setIsTextClamped] = useState(false);
     const [unlimitedText, setUnlimitedText] = useState(false);
@@ -15,6 +16,8 @@ export default function Comment({profile, data}){
     const [isDisliked, setIsDisliked] = useState(data?.is_disliked || false)
     const [replyMode, setReplyMode] = useState(null)
     const [showComments, setShowComments] = useState(false)
+    const comments = []
+    const [vote, {isLoading}] = useVoteCommentMutation()
 
     // Проверка, обрезан ли текст
     useEffect(() => {
@@ -25,18 +28,34 @@ export default function Comment({profile, data}){
         }
     }, []);
 
-    const handleLike = () => {
-        if (isDisliked && !isLiked){
-            setIsDisliked(false)
+    const handleLike = async () => {
+        try{
+            const response = await vote({commentId: data?.id, commentType: alias, action: "like"}).unwrap()
+            if (response.error === false){
+                if (isDisliked && !isLiked){
+                    setIsDisliked(false)
+                }
+                setIsLiked(!isLiked)
+            }
         }
-        setIsLiked(!isLiked)
+        catch (err){
+
+        }
     }
 
-    const handleDislike = () => {
-        if (isLiked && !isDisliked){
-            setIsLiked(false)
+    const handleDislike = async () => {
+        try{
+            const response = await vote({commentId: data?.id, commentType: alias, action: "dislike"}).unwrap()
+            if (response.error === false){
+                if (isLiked && !isDisliked){
+                    setIsLiked(false)
+                }
+                setIsDisliked(!isDisliked)
+            }
         }
-        setIsDisliked(!isDisliked)
+        catch (err){
+
+        }
     }
 
     return(
@@ -49,7 +68,7 @@ export default function Comment({profile, data}){
                         <div className={styles.dateAndBottles}>
                             <p className={`${styles.max450} ma-p`} >{formatDateWithTextMonth(data?.create_date)}</p>
                             <div className={`${styles.beerBottles} ${styles.minBottles}`}>
-                                {getRatingIcons(4.2)}
+                                {getRatingIcons(data?.rating)}
                             </div>
                         </div>
                     </div>
@@ -74,13 +93,13 @@ export default function Comment({profile, data}){
                             <div onClick={handleDislike} className={`${isDisliked && styles.active}`}><a><DislikeIcon/></a><p className="ma-p">{isDisliked && !data?.is_disliked ? Number(data?.disliked) + 1: data?.disliked}</p></div>
                         </div>
                         <div className={styles.markRight}>
-                            <a className={`${styles.aComment} ma-p ${showComments ? styles.secondary: ''}`} onClick={() => setShowComments(!showComments)}>{showComments? "Скрыть комментарии":"1 Комментариев"}</a>
+                            <a className={`${styles.aComment} ma-p ${showComments || comments.length === 0 ? styles.secondary: ''}`} onClick={() => setShowComments(!showComments)}>{showComments && comments.length !== 0? "Скрыть комментарии":`${comments.length} Комментариев`}</a>
                             <a className={`${styles.aComment} ma-p ${replyMode === data?.id ? styles.secondary: ''}`} onClick={() => replyMode === data?.id? setReplyMode(null): setReplyMode(data?.id)}>Ответить</a>
                         </div>
                     </div>
                 </div>
             </div>
-            {showComments &&
+            {showComments && comments.length !== 0 &&
                 <div className={styles.reply}>
                     <img className={styles.avatar} src={AvatarDefault} alt=""></img>
                     <div className={styles.replyContent}>

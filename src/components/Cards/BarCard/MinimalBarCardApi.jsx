@@ -12,8 +12,8 @@ export default function MinimalBarCardApi({cardInfo}){
     const navigate = useNavigate();
     const [triggerAddToCuddy, { isLoading: addToCuddyIsLoading }] = useLazyAddBarToCuddyQuery();
     const [triggerAddToFav, { isLoading: addToFavIsLoading }] = useLazyAddBarToFavQuery();
-    const [imageSrc, setImageSrc] = useState(cardInfo?.preview || cardImagePlaceholder)
-    const goToBeerPage = () => navigate(`/bar/${cardInfo?.bar_alias}`, {
+    const [imageSrc, setImageSrc] = useState(cardInfo?.logo || cardImagePlaceholder)
+    const goToBeerPage = () => navigate(`/bar/${cardInfo?.alias}`, {
         state: {from: location.pathname}
     });
 
@@ -50,10 +50,10 @@ export default function MinimalBarCardApi({cardInfo}){
                     <a onClick={(e) => handleAddToFav(e, cardInfo?.id)} className={`${styles.favButton} ${cardFav? styles.added : ''}`}><FavIcon/></a>
                 </div>
                 <div className={styles.characteristics}>
-                    <p className={`${styles.cardTextPrimary} aa-p2`} onClick={goToBeerPage}>{cardInfo.bar_name}</p>
+                    <p className={`${styles.cardTextPrimary} aa-p2`} onClick={goToBeerPage}>{cardInfo.name}</p>
                 </div>
                 <div className={`${styles.iconText} ${styles.loc}`}>
-                    <p className={`aa-p2`}>{cardInfo.address}</p>
+                    <p className={`aa-p2`}>{cardInfo.city}</p>
                 </div>
             </div>
         </div>

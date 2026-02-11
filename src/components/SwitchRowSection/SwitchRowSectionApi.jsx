@@ -2,7 +2,7 @@ import styles from "./SwitchRowSection.module.scss";
 import IconButton from "../Buttons/IconButton/IconButton.jsx";
 import ShortenedRowSection from "../ShortenedRowSection/ShortenedRowSection.jsx";
 
-export default function SwitchRowSectionApi({ title, options, selectedOption, setSelectedOption }) {
+    export default function SwitchRowSectionApi({ title, options, selectedOption, setSelectedOption }) {
     return (
         <div className={styles.sectionContainer}>
             {title && <h3 className="ma-h3">{title}</h3>}
@@ -20,9 +20,9 @@ export default function SwitchRowSectionApi({ title, options, selectedOption, se
 
             {selectedOption.error && <p className="ma-p">Ошибка загрузки</p>}
             {!selectedOption.isLoading && !selectedOption.error && (
-                selectedOption?.cards?.data?.length > 0 ? (
+                selectedOption?.cards?.length > 0 ? (
                     <ShortenedRowSection
-                        cards={selectedOption.cards.data}
+                        cards={selectedOption.cards}
                         maxCards={selectedOption.maxCards || 5}
                         CardComponent={selectedOption.CardComponent}
                         totalItems={selectedOption.cards.total_items}

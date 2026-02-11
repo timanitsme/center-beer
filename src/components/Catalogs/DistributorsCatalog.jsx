@@ -19,6 +19,7 @@ import PropTypes from "prop-types";
 import DistributorCard from "../Cards/DistributorCard/DistributorCard.jsx";
 import SearchInput from "../ApiInputs/Search/SearchInput.jsx";
 import contactsBg from "../../assets/bgPictures/contacts-bg.webp";
+import Ad from "../../assets/adsMocks/ad-1.svg"
 
 export default function DistributorsCatalog({filters = [], filterButtons = [], sections = []}){
     const cardsBars = [
@@ -35,58 +36,64 @@ export default function DistributorsCatalog({filters = [], filterButtons = [], s
 
 
     return(
-        <div className={styles.menuContainer} style={{backgroundImage: `url(${contactsBg})`, backgroundRepeat: 'no-repeat'}}>
-            <div className={styles.menuHeader}>
-                <div className={styles.catalogHeader}>
-                    <div>
-                        <h2 className="ma-h2">Каталог Дистрибьюторов</h2>
-                        <p className="ma-p1">Собрали для вас список лучших дистрибьюторов, у которых можно заказывать ассортимент пива, пивных закусок, еды, алкоголя и всего, что продается в заведениях и без чего их жизнедеятельность не возможна или крайне затруднительна. С помощью фильтров вы легко найдете нужную компанию и необходимый ассортимент в своем городе.</p>
+        <div className={styles.wrapper} style={{backgroundImage: `url(${contactsBg})`, backgroundRepeat: 'no-repeat'}}>
+            <div className={styles.menuContainer} >
+                <div className={styles.menuHeader}>
+                    <div className={styles.catalogHeader}>
+                        <div>
+                            <h2 className="ma-h2">Каталог Дистрибьюторов</h2>
+                            <p className="ma-p1">Собрали для вас список лучших дистрибьюторов, у которых можно заказывать ассортимент пива, пивных закусок, еды, алкоголя и всего, что продается в заведениях и без чего их жизнедеятельность не возможна или крайне затруднительна. С помощью фильтров вы легко найдете нужную компанию и необходимый ассортимент в своем городе.</p>
+                        </div>
+                        {/*Филлер для переноса текста, мб прописать отдельные стили*/}
+                        <div style={{width: "20%"}}></div>
                     </div>
-                    {/*Филлер для переноса текста, мб прописать отдельные стили*/}
-                    <div style={{width: "20%"}}></div>
+                    <div className={styles.filterButtons}>
+                        {filterButtons.map((button) => (
+                            <IconButton key={button.text} text={button.text}>{button.icon}</IconButton>
+                        ))}
+                    </div>
                 </div>
-                <div className={styles.filterButtons}>
-                    {filterButtons.map((button) => (
-                        <IconButton key={button.text} text={button.text}>{button.icon}</IconButton>
-                    ))}
+                <div className={styles.menuContent}>
+                    <div className={styles.menuFilters}>
+                        {filters.map((filter) => {
+                            switch (filter.type) {
+                                case "combobox":
+                                    return <FilterComboBox key={filter.title} title={filter.title} options={filter.options} />;
+                                case "radio":
+                                    return <Radio key={filter.title} title={filter.title} options={filter.options} />;
+                                case "checkbox":
+                                    return <CheckBox text={filter.title}/>
+                                case "search":
+                                    return <SearchInput title={filter.title} onChange={() => {}}/>
+                                default:
+                                    return null;
+                            }
+                        })}
+                        <SimpleButton text="Применить фильтры"></SimpleButton>
+                    </div>
+                    <div className={styles.menuItemsSections}>
+                        <div className={styles.appliedFiltersRow}>
+                            <AppliedFilter>
+                                <LocationIcon/>
+                                <p className="ma-p1">Москва</p>
+                            </AppliedFilter>
+                            <AppliedFilter style="secondary">
+                                <p className="ma-p1">Сбросить фильтры</p>
+                            </AppliedFilter>
+                        </div>
+                        <div className={styles.toggleAndOptions}>
+                            <ComboBox options={["Сначала популярные", "По умолчанию"]}></ComboBox>
+                        </div>
+                        <SimpleCatalogSection alias="distributors" cards={cardsBars} CardComponent={DistributorCard} wideColumns={true}/>
+
+                    </div>
                 </div>
             </div>
-            <div className={styles.menuContent}>
-                <div className={styles.menuFilters}>
-                    {filters.map((filter) => {
-                        switch (filter.type) {
-                            case "combobox":
-                                return <FilterComboBox key={filter.title} title={filter.title} options={filter.options} />;
-                            case "radio":
-                                return <Radio key={filter.title} title={filter.title} options={filter.options} />;
-                            case "checkbox":
-                                return <CheckBox text={filter.title}/>
-                            case "search":
-                                return <SearchInput title={filter.title} onChange={() => {}}/>
-                            default:
-                                return null;
-                        }
-                    })}
-                    <SimpleButton text="Применить фильтры"></SimpleButton>
-                </div>
-                <div className={styles.menuItemsSections}>
-                    <div className={styles.appliedFiltersRow}>
-                        <AppliedFilter>
-                            <LocationIcon/>
-                            <p className="ma-p1">Москва</p>
-                        </AppliedFilter>
-                        <AppliedFilter style="secondary">
-                            <p className="ma-p1">Сбросить фильтры</p>
-                        </AppliedFilter>
-                    </div>
-                    <div className={styles.toggleAndOptions}>
-                        <ComboBox options={["Сначала популярные", "По умолчанию"]}></ComboBox>
-                    </div>
-                    <SimpleCatalogSection alias="distributors" cards={cardsBars} CardComponent={DistributorCard} wideColumns={true}/>
-
-                </div>
+            <div className={styles.banner}>
+                <img src={Ad} alt=""/>
             </div>
         </div>
+
     )
 }
 

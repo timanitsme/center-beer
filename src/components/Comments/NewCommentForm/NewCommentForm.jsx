@@ -6,9 +6,10 @@ import BeerBottleIcon from "../../../assets/bottle-icon.svg?react";
 import HalfBeerBottleIcon from "../../../assets/bottle-half-icon.svg?react";
 import EmptyBeerBottleIcon from "../../../assets/bottle-empty-icon.svg?react";
 import {IoCloseCircleOutline} from "react-icons/io5";
+import {useAddBarCommentMutation} from "../../../store/services/centerBeer.js";
 
 
-export default function NewCommentForm({ ref, onSubmit, profile }) {
+export default function NewCommentForm({ ref, onSubmit, profile, id }) {
     const [text, setText] = useState(""); // Состояние текста комментария
     const [isSubmitting, setIsSubmitting] = useState(false); // Состояние отправки
     const [isHovered, setIsHovered] = useState(null)
@@ -17,6 +18,7 @@ export default function NewCommentForm({ ref, onSubmit, profile }) {
     const bottles = [{id: 1}, {id: 2}, {id: 3}, {id: 4}, {id: 5}]
     const [images, setImages] = useState([]);
     const fileInputRef = useRef(null);
+    const [addBarComment, { isLoading }] = useAddBarCommentMutation();
 
     const triggerFileInput = () => {
         fileInputRef.current.click();
@@ -82,22 +84,34 @@ export default function NewCommentForm({ ref, onSubmit, profile }) {
         setHoverPosition(isLeftSide ? 'left' : 'right');
     };
 
-    // Обработчик отправки формы
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (!text.trim()) return; // Если текст пустой, ничего не делаем
-
-        setIsSubmitting(true); // Устанавливаем состояние отправки
+        if (!text.trim()) return;
+        setIsSubmitting(true);
         try {
-            await onSubmit(text); // Вызываем переданную функцию onSubmit
-            setText(""); // Очищаем поле ввода после успешной отправки
+            const formData = {
+                id: id,
+                comment: text,
+                rating: selectedRating,
+                photos: images.map((image) => image.file), // Берем только файлы изображений
+            };
+
+            await addBarComment({barId: formData.id, comment: formData.comment, rating: formData.rating, photos: formData.photos}).unwrap();
+            onSubmit(formData)
+            setText("");
             setImages([]);
         } catch (error) {
             console.error("Ошибка при отправке комментария:", error);
         } finally {
-            setIsSubmitting(false); // Сбрасываем состояние отправки
+            setIsSubmitting(false);
         }
     };
+
+    const handleInput = (e) => {
+        if (e.target.value.length < 301){
+            setText(e.target.value)
+        }
+    }
 
     return (
         <div className={styles.comment} ref={ref}>
@@ -107,7 +121,7 @@ export default function NewCommentForm({ ref, onSubmit, profile }) {
                     <p className={styles.pHeader} style={{marginBottom: "5px"}}>{profile?.nickname}</p>
                     <textarea
                         value={text}
-                        onChange={(e) => setText(e.target.value)}
+                        onChange={handleInput}
                         placeholder="Напишите сообщение..."
                         className={styles.replyContentTextarea}
                         disabled={isSubmitting}

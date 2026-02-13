@@ -31,68 +31,43 @@ export default function Reviews({header, images, resume, alias, id, contacts=nul
         total_items: 0,
         data: [],
     });
+    const [filters, setFilters] = useState({lim: 10, offset: 0, _ts: Date.now()})
 
-    const {data: barReviews, isLoading: barReviewsIsLoading, error: barReviewsError} = useGetBarCommentsQuery(id, {skip: alias !== "bar"})
-    const {data: beerReviews, isLoading: beerReviewsIsLoading, error: beerReviewsError} = useGetBeerCommentsQuery(id, {skip: alias !== "beer"})
-    const {data: breweryReviews, isLoading: breweryReviewsIsLoading, error: breweryReviewsError} = useGetBreweryCommentsQuery(id, {skip: alias !== "brewery"})
+    const {data: barReviews, isLoading: barReviewsIsLoading, isFetching: barReviewsIsFetching, error: barReviewsError, refetch: barReviewsRefetch} = useGetBarCommentsQuery({barId: id, ...filters}, {skip: alias !== "bar"})
+    const {data: beerReviews, isLoading: beerReviewsIsLoading, isFetching: beerReviewsIsFetching, error: beerReviewsError, refetch: beerReviewsRefetch} = useGetBeerCommentsQuery({beerId: id, ...filters}, {skip: alias !== "beer"})
+    const {data: breweryReviews, isLoading: breweryReviewsIsLoading, isFetching: breweryReviewsIsFetching, error: breweryReviewsError, refetch: breweryReviewsRefetch} = useGetBreweryCommentsQuery({brewId: id, ...filters}, {skip: alias !== "brewery"})
 
     const reviewsData = {
-        bar: {data: barReviews, isLoading: barReviewsIsLoading, error: barReviewsError},
-        beer: {data: beerReviews, isLoading: beerReviewsIsLoading, error: beerReviewsError},
-        brewery: {data: breweryReviews, isLoading: breweryReviewsIsLoading, error: breweryReviewsError}
+        bar: {data: barReviews, isLoading: barReviewsIsLoading, isFetching: barReviewsIsFetching, error: barReviewsError, refetch: barReviewsRefetch},
+        beer: {data: beerReviews, isLoading: beerReviewsIsLoading, isFetching: beerReviewsIsFetching, error: beerReviewsError, refetch: beerReviewsRefetch},
+        brewery: {data: breweryReviews, isLoading: breweryReviewsIsLoading, isFetching: breweryReviewsIsFetching, error: breweryReviewsError, refetch: breweryReviewsRefetch}
     }
 
+    const handleNewComment = async () => {
+        switch (alias) {
+            case "bar":
+                await barReviewsRefetch();
+                break;
+            case "beer":
+                await beerReviewsRefetch();
+                break;
+            case "brewery":
+                await breweryReviewsRefetch();
+                break;
+            default:
+                break;
+        }
+    };
 
     useEffect(() => {
-        if (!reviewsData[alias].isLoading && reviewsData[alias].data && reviewsData[alias].data.data) {
+        if (!reviewsData[alias].isFetching && reviewsData[alias].data && reviewsData[alias].data.data) {
             setVisibleReviews({
                 ...reviewsData[alias].data,
                 data: showAllReviews ? reviewsData[alias].data.data : reviewsData[alias].data.data.slice(0, 3),
             });
         }
-    }, [reviewsData[alias].isLoading, alias, showAllReviews]);
-    /*const reviews = {
-        "total_items": 1,
-        "data": [
-            {
-                "id": "1",
-                "create_date": "2025-04-30 23:09:53",
-                "user_guid": "b32d3968-0472-4560-a48e-bdaf60f6a8c8",
-                "user_id": "1",
-                "bar_id": "1",
-                "comment": "Посещение этого пивного бара всегда оставляет только положительные эмоции! Здесь царит уютная и дружелюбная атмосфера, которая сразу создает ощущение, что ты попал в гости к старым друзьям. Интерьер бара оформлен со вкусом, каждая деталь подобрана с любовью к своему делу. Ассортимент пива впечатляет – от классических сортов до эксклюзивных крафтовых вариантов, каждый из которых имеет свою изюминку. Персонал всегда готов помочь с выбором напитка и дать рекомендации по закускам. Особенно понравились их фирменные колбаски – сочные и ароматные, идеально сочетающиеся с пивом.",
-                "liked": "4",
-                "disliked": "0",
-                "parent_id": "0",
-                "media": []
-            },
-            {
-                "id": "1",
-                "create_date": "2025-04-30 23:09:53",
-                "user_guid": "b32d3968-0472-4560-a48e-bdaf60f6a8c8",
-                "user_id": "1",
-                "bar_id": "1",
-                "comment": "Посещение этого пивного бара всегда оставляет только положительные эмоции! Здесь царит уютная и дружелюбная атмосфера, которая сразу создает ощущение, что ты попал в гости к старым друзьям. Интерьер бара оформлен со вкусом, каждая деталь подобрана с любовью к своему делу. Ассортимент пива впечатляет – от классических сортов до эксклюзивных крафтовых вариантов, каждый из которых имеет свою изюминку. Персонал всегда готов помочь с выбором напитка и дать рекомендации по закускам. Особенно понравились их фирменные колбаски – сочные и ароматные, идеально сочетающиеся с пивом.",
-                "liked": "4",
-                "disliked": "0",
-                "parent_id": "0",
-                "media": []
-            },
-            {
-                "id": "1",
-                "create_date": "2025-04-30 23:09:53",
-                "user_guid": "b32d3968-0472-4560-a48e-bdaf60f6a8c8",
-                "user_id": "1",
-                "bar_id": "1",
-                "comment": "Посещение этого пивного бара всегда оставляет только положительные эмоции! Здесь царит уютная и дружелюбная атмосфера, которая сразу создает ощущение, что ты попал в гости к старым друзьям. Интерьер бара оформлен со вкусом, каждая деталь подобрана с любовью к своему делу. Ассортимент пива впечатляет – от классических сортов до эксклюзивных крафтовых вариантов, каждый из которых имеет свою изюминку. Персонал всегда готов помочь с выбором напитка и дать рекомендации по закускам. Особенно понравились их фирменные колбаски – сочные и ароматные, идеально сочетающиеся с пивом.",
-                "liked": "4",
-                "disliked": "0",
-                "parent_id": "0",
-                "media": []
-            },
+    }, [reviewsData[alias].isFetching, alias, showAllReviews]);
 
-        ]
-    }*/
 
     // Проверка, обрезан ли текст
     useEffect(() => {
@@ -165,7 +140,7 @@ export default function Reviews({header, images, resume, alias, id, contacts=nul
                         </div>
                     )}
                     {!profileIsLoading && isAuthorized &&
-                        <NewCommentForm ref={commentRef} profile={userProfile}/>
+                        <NewCommentForm id={id} onSubmit={(newComment) => handleNewComment(newComment)} ref={commentRef} profile={userProfile}/>
                     }
                 </div>
                 <div className={styles.assessmentContainer}>

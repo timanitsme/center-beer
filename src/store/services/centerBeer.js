@@ -139,7 +139,13 @@ export const centerBeerApi = createApi({
 
         //Страница бара
         getBarComments: (builder.query({
-            query: (bar_id) => `getBarComments?bar_id=${bar_id}`
+            query: ({barId, lim, offset}) => {
+                const params = new URLSearchParams()
+                params.append("bar_id", barId)
+                if (lim !== undefined) params.append("lim", lim)
+                if (offset !== undefined) params.append("offset", offset)
+                return(`getBarComments?${params.toString()}`)
+            }
         })),
         getBarInfo: (builder.query({
             query: (alias) => `getBarInfo?alias=${alias}`
@@ -281,7 +287,13 @@ export const centerBeerApi = createApi({
 
         // Страница пива
         getBeerComments: (builder.query({
-            query: (beer_id) => `getBeerComments?beer_id=${beer_id}`
+            query: ({beerId, lim, offset}) => {
+                const params = new URLSearchParams()
+                params.append("beer_id", beerId)
+                if (lim !== undefined) params.append("lim", lim)
+                if (offset !== undefined) params.append("offset", offset)
+                return(`getBeerComments?${params.toString()}`)
+            }
         })),
         getBeerInfo: (builder.query({
             query: (alias) => `getBeerInfo?alias=${alias}`
@@ -292,7 +304,13 @@ export const centerBeerApi = createApi({
 
         // Страница пивоварни
         getBreweryComments: (builder.query({
-            query: (brew_id) => `getBreweryComments?brew_id=${brew_id}`
+            query: ({brewId, lim, offset}) => {
+                const params = new URLSearchParams()
+                params.append("brew_id", brewId)
+                if (lim !== undefined) params.append("lim", lim)
+                if (offset !== undefined) params.append("offset", offset)
+                return(`getBreweryComments?${params.toString()}`)
+            }
         })),
         getBreweryInfo: (builder.query({
             query: (alias) => `getBreweryInfo?alias=${alias}`
@@ -416,6 +434,45 @@ export const centerBeerApi = createApi({
                     body: {comment_id: commentId, comment_type: commentType, action}
                 })}
         }),
+        addCheckin: builder.mutation({
+            query: ({beerId, barId, comment, rating, lat, lon, isPrivate, photo}) => {
+                const body = {}
+                if (beerId !== undefined ) body.beer_id = beerId;
+                if (barId !== undefined ) body.bar_id = barId;
+                if (comment !== undefined ) body.comment = comment;
+                if (rating !== undefined ) body.rating = rating;
+                if (lat !== undefined ) body.lat = lat;
+                if (lon !== undefined ) body.lon = lon;
+                if (isPrivate !== undefined ) body.is_private = isPrivate;
+                if (photo !== undefined ) body.photo = photo;
+
+                return({
+                    url: 'user/addCheckin',
+                    method: "POST",
+                    body: body
+                })}
+        }),
+        addBarComment: builder.mutation({
+            query: ({barId, comment, rating, photos}) => {
+                const formData = new FormData();
+                if (barId !== undefined ) formData.append("bar_id", barId);
+                if (comment !== undefined ) formData.append("comment", comment);
+                if (rating !== undefined ) formData.append("rating", rating);
+                if (photos !== undefined && Array.isArray(photos)) {
+                    photos.forEach((photo, index) => {
+                        formData.append(`photos`, photo);
+                    });
+                }
+
+                return({
+                    url: 'user/addBarComment',
+                    method: "POST",
+                    body: formData,
+                    headers: {
+                        "Content-Type": undefined,
+                    }
+                })}
+        }),
 
 
 
@@ -473,4 +530,4 @@ export const { useGetBarsQuery, useGetBarInfoQuery, useGetBarsFiltersQuery,
     useGetUsersFavBeersQuery, useGetUsersCuddyBeersQuery, useGetUsersFavBreweriesQuery, useGetUsersCuddyBreweriesQuery, useGetUsersBalanceHistoryQuery, useGetNewsQuery,
     useGetBeerCountriesQuery, useGetBeerStylesQuery, useGetNewsItemQuery, useGetNewsRelatedQuery,
     useGetNewsCategoriesQuery, useGetBarCommentsQuery, useGetBeerCommentsQuery, useGetBreweryCommentsQuery,
-    useGetUserDashboardQuery, useGetCheckinsBeersQuery, useVoteCommentMutation} = centerBeerApi
+    useGetUserDashboardQuery, useGetCheckinsBeersQuery, useVoteCommentMutation, useAddBarCommentMutation} = centerBeerApi

@@ -15,7 +15,7 @@ import {lazy, Suspense, useEffect} from "react";
 import MinimalBarCardApi from "../../../components/Cards/BarCard/MinimalBarCardApi.jsx";
 import BreweryCard from "../../../components/Cards/BreweryCard/BreweryCard.jsx";
 const PersonalAccountAlt = lazy(() => import("../../../components/PersonalAccount/PersonalAccountAlt/PersonalAccountAlt.jsx"));
-const PersonalAccountMobile = lazy(() => import("../../../components/PersonalAccount/PersonalAccountMobile.jsx"));
+const PersonalAccountMobileAlt = lazy(() => import("../../../components/PersonalAccount/PersonalAccountMobileAlt/PersonalAccountMobileAlt.jsx"));
 
 export default function MyBookmarksPage(){
     const {alias} = useParams();
@@ -55,7 +55,7 @@ export default function MyBookmarksPage(){
                     <NavChain paths={paths} customStyle="nav-chain-no-margin"></NavChain>
                     <div style={{height: "20px"}}/>
                     <Suspense>
-                        {isMobile && <PersonalAccountMobile alias="bookmarks" profile={userProfile}/>}
+                        {isMobile && <PersonalAccountMobileAlt dashboard={userDashboard} alias="bookmarks" profile={userProfile}/>}
                     </Suspense>
                     <div className={styles.block}>
                         <div className={styles.row}>

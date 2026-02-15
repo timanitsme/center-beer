@@ -22,11 +22,10 @@ import SwitchRowSectionApi from "../../components/SwitchRowSection/SwitchRowSect
 import MinimalBarCardApi from "../../components/Cards/BarCard/MinimalBarCardApi.jsx";
 import MinimalBottledBeerCardApi from "../../components/Cards/BottledBeerCard/MinimalBottledBeerCardApi.jsx";
 import {useNavigate} from "react-router-dom";
-import PersonalAccountMobile from "../../components/PersonalAccount/PersonalAccountMobile.jsx";
 import MinimalBarCardSkeleton from "../../components/Skeletons/MinimalBarCardSkeleton/MinimalBarCardSkeleton.jsx";
-import MinimalBottledBeerCardSkeleton
-    from "../../components/Skeletons/MinimalBottledBeerCardSkeleton/MinimalBottledBeerCardSkeleton.jsx";
+import MinimalBottledBeerCardSkeleton from "../../components/Skeletons/MinimalBottledBeerCardSkeleton/MinimalBottledBeerCardSkeleton.jsx";
 import PersonalAccountAlt from "../../components/PersonalAccount/PersonalAccountAlt/PersonalAccountAlt.jsx";
+import PersonalAccountMobileAlt from "../../components/PersonalAccount/PersonalAccountMobileAlt/PersonalAccountMobileAlt.jsx";
 
 export default function PersonalAccountPage(){
     const { isAuthorized, userProfile, userDashboard, isLoading: profileIsLoading, isRefreshing } = useSelector((state) => state.auth);
@@ -141,7 +140,7 @@ export default function PersonalAccountPage(){
                         {window.innerWidth > 1000 && <PersonalAccountAlt profile={userProfile} dashboard={userDashboard}/>}
                         <div style={{display: "flex", flexDirection: "column", width: "100%", gap: "25px"}}>
                             <NavChain paths={GetPersonalAccountPaths()} customStyle="nav-chain-no-margin"></NavChain>
-                            {window.innerWidth <= 1000 && <PersonalAccountMobile profile={userProfile}/>}
+                            {window.innerWidth <= 1000 && <PersonalAccountMobileAlt profile={userProfile} dashboard={userDashboard}/>}
                             <SwitchRowSection title="Чек-ины" options={checkInSwitch}/>
                             <ActiveOrders></ActiveOrders>
                             <LatestReviews></LatestReviews>

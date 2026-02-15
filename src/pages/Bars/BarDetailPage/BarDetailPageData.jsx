@@ -181,7 +181,7 @@ const barReviewsImages = [
 
 const barReviewsResume = {
     title: "Гости довольны",
-    rated: "Бар оценило 344 посетителя.",
+    rated: (number) => `Бар оценило ${number} посетителя.`,
     rating: 3.5,
     description: "В среднем это на 15% выше, чем у других баров в нашем рейтинге."
 }

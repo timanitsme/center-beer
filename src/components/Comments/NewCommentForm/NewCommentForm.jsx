@@ -184,7 +184,7 @@ export default function NewCommentForm({ ref, onSubmit, profile, id }) {
                                 disabled={isSubmitting || !text.trim()}
                                 className={styles.replyButtonsButton}
                             >
-                                <FaPaperPlane className={styles.replyButtonsIcon} />
+                                <button className={styles.sendButton}><FaPaperPlane/><p className="ma-p">Отправить</p></button>
                             </button>
                         </div>
                     </div>

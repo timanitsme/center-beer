@@ -7,8 +7,9 @@ import {getRatingIcons} from "../../../utils/getRatingIcons.jsx";
 import {FaPaperclip, FaPaperPlane} from "react-icons/fa6";
 import formatDateWithTextMonth from "../../../utils/DateFunctions/formatDateWithTextMonth.js";
 import {useVoteCommentMutation} from "../../../store/services/centerBeer.js";
+import IconButton from "../../Buttons/IconButton/IconButton.jsx";
 
-export default function Comment({profile, data, alias}){
+export default function Comment({profile, data, alias, onShowPicture}){
     const textRef = useRef(null);
     const [isTextClamped, setIsTextClamped] = useState(false);
     const [unlimitedText, setUnlimitedText] = useState(false);
@@ -64,7 +65,7 @@ export default function Comment({profile, data, alias}){
                 <img className={styles.avatar} src={AvatarDefault} alt=""></img>
                 <div>
                     <div className={styles.commentHeader}>
-                        <p className={`${styles.pHeader} ma-p`}>Анонимный пользователь</p>
+                        <p className={`${styles.pHeader} ma-p`}>{data?.username || "Анонимный пользователь"}</p>
                         <div className={styles.dateAndBottles}>
                             <p className={`${styles.max450} ma-p`} >{formatDateWithTextMonth(data?.create_date)}</p>
                             <div className={`${styles.beerBottles} ${styles.minBottles}`}>
@@ -74,19 +75,16 @@ export default function Comment({profile, data, alias}){
                     </div>
                     <p className={`${unlimitedText ? "" : "limited-text"} ma-p`} ref={textRef}>{data?.comment}</p>
                     {isTextClamped && <a onClick={() => setUnlimitedText(!unlimitedText)} className="ma-p">{unlimitedText? "Свернуть" : "Читать полностью"}</a>}
-                    {/* FIXME: Потом media сюда всунуть
-                    <div className={styles.commentPhotos}>
-                        <div className={styles.imageWrapper}>
-                            <img src={Bottle1} alt=""/>
+
+                    { data?.media?.length > 0 &&
+                        <div className={styles.commentPhotos}>
+                            {data?.media?.map((image, index) =>
+                                <div key={index} className={styles.imageWrapper} onClick={() => onShowPicture(image)}>
+                                    <img src={image} alt=""/>
+                                </div>
+                            )}
                         </div>
-                        <div className={styles.imageWrapper}>
-                            <img src={Bottle1} alt=""/>
-                        </div>
-                        <div className={styles.imageWrapper}>
-                            <img src={Bottle1} alt=""/>
-                        </div>
-                    </div>
-                    */}
+                    }
                     <div className={styles.commentButtons}>
                         <div className={styles.mark}>
                             <div onClick={handleLike} className={`${isLiked && styles.active}`}><a><LikeIcon/></a><p className="ma-p">{isLiked && !data.is_liked? Number(data?.liked) + 1: data?.liked}</p></div>
@@ -133,7 +131,7 @@ export default function Comment({profile, data, alias}){
                     </textarea>
                         <div className={styles.replyButtons}>
                             <FaPaperclip></FaPaperclip>
-                            <FaPaperPlane></FaPaperPlane>
+                            <button className={styles.sendButton}><FaPaperPlane/><p className="ma-p">Отправить</p></button>
                         </div>
                     </div>
                 </div>

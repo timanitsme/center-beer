@@ -76,7 +76,7 @@ export default function PersonalAccountAlt({profile, dashboard}){
                     <div>
                         <p className={`${styles.bold} ${styles.centered}`}>{profile?.nickname}</p>
                         <p className={styles.centered}>{profile?.email}</p>
-                        <p className={`${styles.centered} aa-p3`} style={{marginTop: "10px"}}>С нами с 24.04.2025</p>
+                        {/*<p className={`${styles.centered} aa-p3`} style={{marginTop: "10px"}}>С нами с 24.04.2025</p>*/}
                         <Link to={"/account/info/"} href="" style={{padding: "15px 0"}} className={styles.settings}><SettingsIcon/><p>Личные данные</p></Link>
                         <div className={styles.balanceBlock}>
                             <CoinsIcon/>

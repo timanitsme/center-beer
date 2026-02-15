@@ -15,7 +15,7 @@ import BreweryCard from "../../../components/Cards/BreweryCard/BreweryCard.jsx";
 import {lazy, Suspense, useEffect} from "react";
 import MinimalBarCardApi from "../../../components/Cards/BarCard/MinimalBarCardApi.jsx";
 const PersonalAccountAlt = lazy(() => import("../../../components/PersonalAccount/PersonalAccountAlt/PersonalAccountAlt.jsx"));
-const PersonalAccountMobile = lazy(() => import("../../../components/PersonalAccount/PersonalAccountMobile.jsx"));
+const PersonalAccountMobileAlt = lazy(() => import("../../../components/PersonalAccount/PersonalAccountMobileAlt/PersonalAccountMobileAlt.jsx"));
 
 export default function MyFavoritePage(){
     const {alias} = useParams();
@@ -30,7 +30,7 @@ export default function MyFavoritePage(){
     const selectors = {
         beer: {pathname: "Любимое пиво", data: beerData?.data?.beer, isLoading: beerIsLoading, error: beerError, CardComponent: MinimalBottledBeerCardApi, alias: "bars"},
         bar: {pathname: "Любимые заведения", data: barData?.data?.bar, isLoading: barIsLoading, error: barError, CardComponent: MinimalBarCardApi, alias: "bars"},
-        brewery: {pathname: "Любимые пивоварни", data: {data: breweryData?.data?.bar}, isLoading: breweryIsLoading, error: breweryError, CardComponent: BreweryCard, alias: "distributors"}
+        brewery: {pathname: "Любимые пивоварни", data: breweryData?.data?.bar, isLoading: breweryIsLoading, error: breweryError, CardComponent: BreweryCard, alias: "distributors"}
     }
 
     useEffect(() => {
@@ -56,7 +56,7 @@ export default function MyFavoritePage(){
                     <NavChain paths={paths} customStyle="nav-chain-no-margin"></NavChain>
                     <div style={{height: "20px"}}/>
                     <Suspense>
-                        {isMobile && <PersonalAccountMobile profile={userProfile} alias="favorite"/>}
+                        {isMobile && <PersonalAccountMobileAlt dashboard={userDashboard} profile={userProfile} alias="favorite"/>}
                     </Suspense>
                     <div className={styles.block}>
                         <div className={styles.row}>

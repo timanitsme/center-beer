@@ -14,10 +14,13 @@ import {useNavigate} from "react-router-dom";
 import SimpleModal from "../Modals/SimpleModal/SimpleModal.jsx";
 import {FaLock} from "react-icons/fa6";
 import {
-    useGetBarCommentsQuery,
-    useGetBeerCommentsQuery,
+    useGetBarCommentsMediaQuery,
+    useGetBarCommentsQuery, useGetBeerCommentsMediaQuery,
+    useGetBeerCommentsQuery, useGetBreweryCommentsMediaQuery,
     useGetBreweryCommentsQuery
 } from "../../store/services/centerBeer.js";
+import ImageVideoModal from "../Modals/ImageVideoModal/ImageVideoModal.jsx";
+import placeholder from "../../assets/placeholders/card-image-placeholder.svg";
 
 export default function Reviews({header, images, resume, alias, id, contacts=null}){
     const { isAuthorized, userProfile, isLoading: profileIsLoading } = useSelector((state) => state.auth);
@@ -31,16 +34,28 @@ export default function Reviews({header, images, resume, alias, id, contacts=nul
         total_items: 0,
         data: [],
     });
+    const [showModal, setShowModal] = useState(false)
+    const [currentImage, setCurrentImage] = useState({type: "image", preview: placeholder})
     const [filters, setFilters] = useState({lim: 10, offset: 0, _ts: Date.now()})
 
     const {data: barReviews, isLoading: barReviewsIsLoading, isFetching: barReviewsIsFetching, error: barReviewsError, refetch: barReviewsRefetch} = useGetBarCommentsQuery({barId: id, ...filters}, {skip: alias !== "bar"})
     const {data: beerReviews, isLoading: beerReviewsIsLoading, isFetching: beerReviewsIsFetching, error: beerReviewsError, refetch: beerReviewsRefetch} = useGetBeerCommentsQuery({beerId: id, ...filters}, {skip: alias !== "beer"})
     const {data: breweryReviews, isLoading: breweryReviewsIsLoading, isFetching: breweryReviewsIsFetching, error: breweryReviewsError, refetch: breweryReviewsRefetch} = useGetBreweryCommentsQuery({brewId: id, ...filters}, {skip: alias !== "brewery"})
+    const {data: barReviewsMedia, isLoading: barReviewsMediaIsLoading, isFetching: barReviewsMediaIsFetching, error: barReviewsMediaError, refetch: barReviewsMediaRefetch} = useGetBarCommentsMediaQuery({barId: id}, {skip: alias !== "bar"})
+    const {data: beerReviewsMedia, isLoading: beerReviewsMediaIsLoading, isFetching: beerReviewsMediaIsFetching, error: beerReviewsMediaError, refetch: beerReviewsMediaRefetch} = useGetBeerCommentsMediaQuery({beerId: id}, {skip: alias !== "beer"})
+    const {data: breweryReviewsMedia, isLoading: breweryReviewsMediaIsLoading, isFetching: breweryReviewsMediaIsFetching, error: breweryReviewsMediaError, refetch: breweryReviewsMediaRefetch} = useGetBreweryCommentsMediaQuery({brewId: id}, {skip: alias !== "brewery"})
+
 
     const reviewsData = {
         bar: {data: barReviews, isLoading: barReviewsIsLoading, isFetching: barReviewsIsFetching, error: barReviewsError, refetch: barReviewsRefetch},
         beer: {data: beerReviews, isLoading: beerReviewsIsLoading, isFetching: beerReviewsIsFetching, error: beerReviewsError, refetch: beerReviewsRefetch},
         brewery: {data: breweryReviews, isLoading: breweryReviewsIsLoading, isFetching: breweryReviewsIsFetching, error: breweryReviewsError, refetch: breweryReviewsRefetch}
+    }
+
+    const reviewsMediaData = {
+        bar: {data: barReviewsMedia, isLoading: barReviewsMediaIsLoading, isFetching: barReviewsMediaIsFetching, error: barReviewsMediaError, refetch: barReviewsMediaRefetch},
+        beer: {data: beerReviewsMedia, isLoading: beerReviewsMediaIsLoading, isFetching: beerReviewsMediaIsFetching, error: beerReviewsMediaError, refetch: beerReviewsMediaRefetch},
+        brewery: {data: breweryReviewsMedia, isLoading: breweryReviewsMediaIsLoading, isFetching: breweryReviewsMediaIsFetching, error: breweryReviewsMediaError, refetch: breweryReviewsMediaRefetch}
     }
 
     const handleNewComment = async () => {
@@ -100,13 +115,13 @@ export default function Reviews({header, images, resume, alias, id, contacts=nul
             <div className={`${styles.assessmentContainer} ${styles.mobile}`}>
                 <div className={styles.assessment}>
                     <p className={`${styles.pHeader} ma-p`} style={{textTransform: "uppercase"}}>{resume.title}</p>
-                    <p className="ma-p">{resume.rated}</p>
+                    <p className="ma-p">{resume.rated(reviewsData[alias].data?.rating_info?.rated_visitors || 0)}</p>
                     <div className={styles.dateAndBottles}>
                         <p className="ma-p">Средняя оценка: </p>
                         <div className={`${styles.beerBottles} ${styles.minBottles}`}>
-                            {getRatingIcons(resume.rating)}
+                            {getRatingIcons(reviewsData[alias].data?.rating_info?.average_rating || 0)}
                         </div>
-                        <p style={{color: "var(--txt-active)"}} className="ma-p">({resume.rating})</p>
+                        <p style={{color: "var(--txt-active)"}} className="ma-p">({reviewsData[alias].data?.rating_info?.average_rating || 0})</p>
                     </div>
                     <p className="ma-p">{resume.description}</p>
 
@@ -120,7 +135,7 @@ export default function Reviews({header, images, resume, alias, id, contacts=nul
             <div className={styles.commentsSection}>
                 <div className={styles.commentsContainer}>
                     {visibleReviews.data.map((review, index) => {
-                       return <Comment key={index} data={review} alias={alias}/>
+                       return <Comment key={index} data={review} onShowPicture={(image) => {setCurrentImage({type: "image", preview: image}); setShowModal(true)}} alias={alias}/>
                     })}
 
                     {reviewsData[alias].data?.data?.length > 3 && !showAllReviews && (
@@ -146,13 +161,13 @@ export default function Reviews({header, images, resume, alias, id, contacts=nul
                 <div className={styles.assessmentContainer}>
                     <div className={styles.assessment}>
                         <p className={styles.pHeader} style={{textTransform: "uppercase"}}>{resume.title}</p>
-                        <p>{resume.rated}</p>
+                        <p>{resume.rated(reviewsData[alias].data?.rating_info?.rated_visitors || 0)}</p>
                         <div className={styles.dateAndBottles}>
                             <p>Средняя оценка: </p>
                             <div className={`${styles.beerBottles} ${styles.minBottles}`}>
-                                {getRatingIcons(resume.rating)}
+                                {getRatingIcons(reviewsData[alias].data?.rating_info?.average_rating || 0)}
                             </div>
-                            <p style={{color: "var(--txt-active)"}}>({resume.rating})</p>
+                            <p style={{color: "var(--txt-active)"}}>({reviewsData[alias].data?.rating_info?.average_rating || 0})</p>
                         </div>
                         <p>{resume.description}</p>
 
@@ -170,6 +185,7 @@ export default function Reviews({header, images, resume, alias, id, contacts=nul
                     <SimpleButton text="Авторизация" onClick={() => navigate("/login")}></SimpleButton>
                 </div>
             </SimpleModal>
+            <ImageVideoModal show={showModal} setSrc={setCurrentImage} setShow={setShowModal} src={currentImage}></ImageVideoModal>
         </div>
     )
 }

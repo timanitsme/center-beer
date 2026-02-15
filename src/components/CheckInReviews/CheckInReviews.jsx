@@ -11,8 +11,9 @@ import SimpleModal from "../Modals/SimpleModal/SimpleModal.jsx";
 import {FaLock} from "react-icons/fa6";
 import CheckIn from "../CheckIn/CheckIn.jsx";
 import NewCheckInForm from "../NewCheckInForm/NewCheckInForm.jsx";
+import {useGetBeerCheckinsQuery} from "../../store/services/centerBeer.js";
 
-export default function CheckInReviews({header, resume}){
+export default function CheckInReviews({header, resume, id}){
     const { isAuthorized, userProfile, isLoading: profileIsLoading } = useSelector((state) => state.auth);
     const textRef = useRef(null);
     const [isTextClamped, setIsTextClamped] = useState(false);
@@ -24,59 +25,21 @@ export default function CheckInReviews({header, resume}){
         total_items: 0,
         data: [],
     });
+    const {data: checkIns, isLoading: checkinsIsLoading, isFetching: checkinsIsFetching, refetch: checkinsRefetch, error: checkinsError} = useGetBeerCheckinsQuery({beerId: id})
 
-    const checkIns = {
-        "total_items": 3,
-        "data": [
-            {
-                "id": "1",
-                "create_date": "2025-04-30 23:09:53",
-                "user_guid": "b32d3968-0472-4560-a48e-bdaf60f6a8c8",
-                "user_id": "1",
-                "bar_id": "1",
-                "comment": "Посещение этого пивного бара всегда оставляет только положительные эмоции! Здесь царит уютная и дружелюбная атмосфера, которая сразу создает ощущение, что ты попал в гости к старым друзьям. Интерьер бара оформлен со вкусом, каждая деталь подобрана с любовью к своему делу. Ассортимент пива впечатляет – от классических сортов до эксклюзивных крафтовых вариантов, каждый из которых имеет свою изюминку. Персонал всегда готов помочь с выбором напитка и дать рекомендации по закускам. Особенно понравились их фирменные колбаски – сочные и ароматные, идеально сочетающиеся с пивом.",
-                "liked": "4",
-                "disliked": "0",
-                "parent_id": "0",
-                "media": []
-            },
-            {
-                "id": "1",
-                "create_date": "2025-04-30 23:09:53",
-                "user_guid": "b32d3968-0472-4560-a48e-bdaf60f6a8c8",
-                "user_id": "1",
-                "bar_id": "1",
-                "comment": "Посещение этого пивного бара всегда оставляет только положительные эмоции! Здесь царит уютная и дружелюбная атмосфера, которая сразу создает ощущение, что ты попал в гости к старым друзьям. Интерьер бара оформлен со вкусом, каждая деталь подобрана с любовью к своему делу. Ассортимент пива впечатляет – от классических сортов до эксклюзивных крафтовых вариантов, каждый из которых имеет свою изюминку. Персонал всегда готов помочь с выбором напитка и дать рекомендации по закускам. Особенно понравились их фирменные колбаски – сочные и ароматные, идеально сочетающиеся с пивом.",
-                "liked": "4",
-                "disliked": "0",
-                "parent_id": "0",
-                "media": []
-            },
-            {
-                "id": "1",
-                "create_date": "2025-04-30 23:09:53",
-                "user_guid": "b32d3968-0472-4560-a48e-bdaf60f6a8c8",
-                "user_id": "1",
-                "bar_id": "1",
-                "comment": "Посещение этого пивного бара всегда оставляет только положительные эмоции! Здесь царит уютная и дружелюбная атмосфера, которая сразу создает ощущение, что ты попал в гости к старым друзьям. Интерьер бара оформлен со вкусом, каждая деталь подобрана с любовью к своему делу. Ассортимент пива впечатляет – от классических сортов до эксклюзивных крафтовых вариантов, каждый из которых имеет свою изюминку. Персонал всегда готов помочь с выбором напитка и дать рекомендации по закускам. Особенно понравились их фирменные колбаски – сочные и ароматные, идеально сочетающиеся с пивом.",
-                "liked": "4",
-                "disliked": "0",
-                "parent_id": "0",
-                "media": []
-            },
-
-        ]
-    }
+    const handleNewCheckin = async () => {
+        checkinsRefetch()
+    };
 
 
     useEffect(() => {
-        if (checkIns.data) {
+        if (checkIns?.data) {
             setVisibleCheckIns({
                 ...checkIns,
                 data: showAllCheckIns ? checkIns.data : checkIns.data.slice(0, 3),
             });
         }
-    }, [showAllCheckIns]);
+    }, [showAllCheckIns, checkinsIsFetching]);
 
     // Проверка, обрезан ли текст
     useEffect(() => {
@@ -107,7 +70,7 @@ export default function CheckInReviews({header, resume}){
             <div className="hrtLine" style={{margin: "20px 0"}} />
             <div className={styles.commentsSection}>
                 <div className={styles.commentsContainer}>
-                    {visibleCheckIns.data.map((review, index) => {
+                    {visibleCheckIns?.data.map((review, index) => {
                         return <CheckIn key={index} data={review}/>
                     })}
 
@@ -128,19 +91,19 @@ export default function CheckInReviews({header, resume}){
                         </div>
                     )}
                     {!profileIsLoading && isAuthorized &&
-                        <NewCheckInForm ref={commentRef} profile={userProfile}/>
+                        <NewCheckInForm onSubmit={handleNewCheckin} id={id} ref={commentRef} profile={userProfile}/>
                     }
                 </div>
                 <div className={styles.assessmentContainer}>
                     <div className={styles.assessment}>
                         <p className={styles.pHeader} style={{textTransform: "uppercase"}}>{resume.title}</p>
-                        <p>{resume.rated}</p>
+                        <p>{resume.rated(checkIns?.rating_info?.rated_visitors || 0)}</p>
                         <div className={styles.dateAndBottles}>
                             <p>Средняя оценка: </p>
                             <div className={`${styles.beerBottles} ${styles.minBottles}`}>
-                                {getRatingIcons(resume.rating)}
+                                {getRatingIcons(checkIns?.rating_info?.average_rating || 0)}
                             </div>
-                            <p style={{color: "var(--txt-active)"}}>({resume.rating})</p>
+                            <p style={{color: "var(--txt-active)"}}>({checkIns?.rating_info?.average_rating || 0})</p>
                         </div>
                         <p>{resume.description}</p>
 

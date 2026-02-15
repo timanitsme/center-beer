@@ -78,7 +78,7 @@ export default function BreweryDetailPage(){
 
     const reviewsResume = (title, rating) => {return {
         title: "Продукция нравится",
-        rated: `${title} оценило 344 посетителя.`,
+        rated: (number) => `${title} оценило ${number} посетителя.`,
         rating: rating,
         description: "В среднем это на 15% выше, чем у других пивоварен в нашем рейтинге."
     }}

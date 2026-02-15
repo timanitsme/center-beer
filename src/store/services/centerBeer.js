@@ -79,6 +79,13 @@ export const centerBeerApi = createApi({
                 return(`getCountries?${params.toString()}`)
             }
         })),
+        getBeerCheckins: (builder.query({
+            query: ({beerId}) => {
+                const params = new URLSearchParams();
+                if (beerId !== undefined) params.append("beer_id", beerId)
+                return(`getBeerCheckins?${params.toString()}`)
+            }
+        })),
 
 
 
@@ -145,6 +152,15 @@ export const centerBeerApi = createApi({
                 if (lim !== undefined) params.append("lim", lim)
                 if (offset !== undefined) params.append("offset", offset)
                 return(`getBarComments?${params.toString()}`)
+            }
+        })),
+        getBarCommentsMedia: (builder.query({
+            query: ({barId, lim, offset}) => {
+                const params = new URLSearchParams()
+                params.append("bar_id", barId)
+                if (lim !== undefined) params.append("lim", lim)
+                if (offset !== undefined) params.append("offset", offset)
+                return(`getBarCommentsMedia?${params.toString()}`)
             }
         })),
         getBarInfo: (builder.query({
@@ -295,6 +311,15 @@ export const centerBeerApi = createApi({
                 return(`getBeerComments?${params.toString()}`)
             }
         })),
+        getBeerCommentsMedia: (builder.query({
+            query: ({beerId, lim, offset}) => {
+                const params = new URLSearchParams()
+                params.append("beer_id", beerId)
+                if (lim !== undefined) params.append("lim", lim)
+                if (offset !== undefined) params.append("offset", offset)
+                return(`getBeerCommentsMedia?${params.toString()}`)
+            }
+        })),
         getBeerInfo: (builder.query({
             query: (alias) => `getBeerInfo?alias=${alias}`
         })),
@@ -310,6 +335,15 @@ export const centerBeerApi = createApi({
                 if (lim !== undefined) params.append("lim", lim)
                 if (offset !== undefined) params.append("offset", offset)
                 return(`getBreweryComments?${params.toString()}`)
+            }
+        })),
+        getBreweryCommentsMedia: (builder.query({
+            query: ({brewId, lim, offset}) => {
+                const params = new URLSearchParams()
+                params.append("brew_id", brewId)
+                if (lim !== undefined) params.append("lim", lim)
+                if (offset !== undefined) params.append("offset", offset)
+                return(`getBreweryCommentsMedia?${params.toString()}`)
             }
         })),
         getBreweryInfo: (builder.query({
@@ -436,20 +470,23 @@ export const centerBeerApi = createApi({
         }),
         addCheckin: builder.mutation({
             query: ({beerId, barId, comment, rating, lat, lon, isPrivate, photo}) => {
-                const body = {}
-                if (beerId !== undefined ) body.beer_id = beerId;
-                if (barId !== undefined ) body.bar_id = barId;
-                if (comment !== undefined ) body.comment = comment;
-                if (rating !== undefined ) body.rating = rating;
-                if (lat !== undefined ) body.lat = lat;
-                if (lon !== undefined ) body.lon = lon;
-                if (isPrivate !== undefined ) body.is_private = isPrivate;
-                if (photo !== undefined ) body.photo = photo;
+                const formData = new FormData();
+                if (beerId !== undefined ) formData.append("beer_id", beerId)
+                if (barId !== undefined ) formData.append("bar_id", barId);
+                if (comment !== undefined ) formData.append("comment", comment);
+                if (rating !== undefined ) formData.append("rating", rating);
+                if (lat !== undefined ) formData.append("lat", lat);
+                if (lon !== undefined ) formData.append("lon", lon);
+                if (isPrivate !== undefined ) formData.append("is_private", isPrivate);
+                if (photo !== undefined ) formData.append("photo", photo);
 
                 return({
                     url: 'user/addCheckin',
                     method: "POST",
-                    body: body
+                    body: formData,
+                    headers: {
+                        "Content-Type": undefined,
+                    }
                 })}
         }),
         addBarComment: builder.mutation({
@@ -529,5 +566,5 @@ export const { useGetBarsQuery, useGetBarInfoQuery, useGetBarsFiltersQuery,
     useLazyAddBarToFavQuery, useGetUsersFavBarsQuery, useGetUsersCuddyBarsQuery,
     useGetUsersFavBeersQuery, useGetUsersCuddyBeersQuery, useGetUsersFavBreweriesQuery, useGetUsersCuddyBreweriesQuery, useGetUsersBalanceHistoryQuery, useGetNewsQuery,
     useGetBeerCountriesQuery, useGetBeerStylesQuery, useGetNewsItemQuery, useGetNewsRelatedQuery,
-    useGetNewsCategoriesQuery, useGetBarCommentsQuery, useGetBeerCommentsQuery, useGetBreweryCommentsQuery,
-    useGetUserDashboardQuery, useGetCheckinsBeersQuery, useVoteCommentMutation, useAddBarCommentMutation} = centerBeerApi
+    useGetNewsCategoriesQuery, useGetBarCommentsQuery, useGetBarCommentsMediaQuery, useGetBeerCommentsQuery, useGetBeerCommentsMediaQuery, useGetBreweryCommentsQuery, useGetBreweryCommentsMediaQuery,
+    useGetUserDashboardQuery, useGetBeerCheckinsQuery, useGetCheckinsBeersQuery, useVoteCommentMutation, useAddBarCommentMutation, useAddCheckinMutation} = centerBeerApi

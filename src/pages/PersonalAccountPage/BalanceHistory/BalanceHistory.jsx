@@ -8,7 +8,7 @@ import BalanceOperation from "../../../components/BalanceOperation/BalanceOperat
 import {useSelector} from "react-redux";
 import {useGetUsersBalanceHistoryQuery} from "../../../store/services/centerBeer.js";
 const PersonalAccountAlt = lazy(() => import("../../../components/PersonalAccount/PersonalAccountAlt/PersonalAccountAlt.jsx"));
-const PersonalAccountMobile = lazy(() => import("../../../components/PersonalAccount/PersonalAccountMobile.jsx"));
+const PersonalAccountMobileAlt = lazy(() => import("../../../components/PersonalAccount/PersonalAccountMobileAlt/PersonalAccountMobileAlt.jsx"));
 
 export default function BalanceHistory(){
     const { isAuthorized, userProfile, userDashboard, isLoading: profileIsLoading } = useSelector((state) => state.auth);
@@ -62,7 +62,7 @@ export default function BalanceHistory(){
                 <div style={{display: "flex", flexDirection: "column", width: "100%", gap: "25px"}}>
                     <NavChain paths={paths} customStyle="nav-chain-no-margin"></NavChain>
                     <Suspense>
-                        {isMobile && <PersonalAccountMobile alias="other" profile={userProfile}/>}
+                        {isMobile && <PersonalAccountMobileAlt alias="other" dashboard={userDashboard} profile={userProfile}/>}
                     </Suspense>
                     <ButtonSwitch options={options} selectedOption={options[1]} onClick={(option) => option.title !== options[1].title? navigate("/account/earn-cb"): navigate("")}/>
                     <div className={`${styles.sectionHeader} ${isMobile? styles.mobile: ""}`}>

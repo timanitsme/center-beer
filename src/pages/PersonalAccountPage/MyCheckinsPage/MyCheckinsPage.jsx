@@ -14,7 +14,7 @@ import BarCheckInCard from "../../../components/Cards/CheckIns/BarCheckInCard/Ba
 import {lazy, Suspense, useEffect} from "react";
 import {useGetCheckinsBeersQuery, useGetUsersFavBreweriesQuery} from "../../../store/services/centerBeer.js";
 const PersonalAccountAlt = lazy(() => import("../../../components/PersonalAccount/PersonalAccountAlt/PersonalAccountAlt.jsx"));
-const PersonalAccountMobile = lazy(() => import("../../../components/PersonalAccount/PersonalAccountMobile.jsx"));
+const PersonalAccountMobileAlt = lazy(() => import("../../../components/PersonalAccount/PersonalAccountMobileAlt/PersonalAccountMobileAlt.jsx"));
 
 export default function MyCheckinsPage(){
     const {alias} = useParams();
@@ -68,7 +68,7 @@ export default function MyCheckinsPage(){
                     <NavChain paths={paths} customStyle="nav-chain-no-margin"></NavChain>
                     <div style={{height: "20px"}}></div>
                     <Suspense>
-                        {isMobile && <PersonalAccountMobile profile={userProfile} alias="checkIns"/>}
+                        {isMobile && <PersonalAccountMobileAlt dashboard={userDashboard} profile={userProfile} alias="checkIns"/>}
                     </Suspense>
                     <div className={styles.block}>
                         <div className={styles.row}>

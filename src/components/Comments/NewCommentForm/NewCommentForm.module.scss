@@ -2,7 +2,7 @@
 
 .comment{
     display: flex;
-    gap: rem(10);
+    gap: rem(16);
 }
 
 .avatar{
@@ -13,6 +13,33 @@
 .secondary{
     color: var(--txt-secondary) !important;
 }
+.sendButton{
+    background: var(--primary);
+    border-radius: rem(5);
+    display: flex;
+    gap: rem(5);
+    padding: rem(6) rem(10);
+    width: fit-content;
+    align-items: center;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    color: var(--bg);
+    p{
+        color: var(--bg);
+        font-weight: 500 !important;
+    }
+    svg{
+        color: var(--bg);
+        fill: var(--bg);
+    }
+    transition: 0.3s;
+
+    &:hover{
+        background: var(--primary-semi-transparent);
+    }
+}
+
 
 
 .reply{

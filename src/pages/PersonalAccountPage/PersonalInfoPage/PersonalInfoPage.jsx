@@ -18,7 +18,7 @@ import CodeInput from "../../../components/Inputs/CodeInput/CodeInput.jsx";
 import CountdownTimer from "../../../components/CountdownTimer/CountdownTimer.jsx";
 import {useGetUserDashboardQuery} from "../../../store/services/centerBeer.js";
 const PersonalAccountAlt = lazy(() => import("../../../components/PersonalAccount/PersonalAccountAlt/PersonalAccountAlt.jsx"));
-const PersonalAccountMobile = lazy(() => import("../../../components/PersonalAccount/PersonalAccountMobile.jsx"));
+const PersonalAccountMobile = lazy(() => import("../../../components/PersonalAccount/PersonalAccountMobileAlt/PersonalAccountMobileAlt.jsx"));
 
 export default function PersonalInfoPage(){
     const { isAuthorized, userProfile, userDashboard, isLoading: profileIsLoading } = useSelector((state) => state.auth);
@@ -87,7 +87,7 @@ export default function PersonalInfoPage(){
                 <div style={{display: "flex", flexDirection: "column", width: "100%", gap: "25px"}}>
                     <NavChain paths={paths} customStyle="nav-chain-no-margin"/>
                     <Suspense>
-                        {isMobile && <PersonalAccountMobile alias="data" profile={userProfile} withoutInfo={true}/>}
+                        {isMobile && <PersonalAccountMobile dashboard={userDashboard} alias="data" profile={userProfile} withoutInfo={true}/>}
                     </Suspense>
                     <div className={styles.accountSection}>
                         <div className={`${styles.sideContent} ${styles.mobile}`}>

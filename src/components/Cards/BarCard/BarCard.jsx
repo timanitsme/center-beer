@@ -23,7 +23,7 @@ export default function BarCard({cardInfo}){
     const navigate = useNavigate();
     const today = new Date()
     const dayOfWeek = today.getDay()
-    const rating = 4.9
+    const rating = (cardInfo?.cb_rating === 0? Number(cardInfo?.untappd_rating): cardInfo.cb_rating) || 4.9;
     const [triggerAddToCuddy, { isLoading: addToCuddyIsLoading }] = useLazyAddBarToCuddyQuery();
     const [triggerAddToFav, { isLoading: addToFavIsLoading }] = useLazyAddBarToFavQuery();
     const [imageSrc, setImageSrc] = useState(cardInfo?.preview || cardImagePlaceholder)

@@ -8,7 +8,7 @@ import ButtonSwitch from "../../../components/ButtonSwitch/ButtonSwitch.jsx";
 import {useNavigate} from "react-router-dom";
 import {useSelector} from "react-redux";
 const PersonalAccountAlt = lazy(() => import("../../../components/PersonalAccount/PersonalAccountAlt/PersonalAccountAlt.jsx"));
-const PersonalAccountMobile = lazy(() => import("../../../components/PersonalAccount/PersonalAccountMobile.jsx"));
+const PersonalAccountMobileAlt = lazy(() => import("../../../components/PersonalAccount/PersonalAccountMobileAlt/PersonalAccountMobileAlt.jsx"));
 
 export default function EarnCBPage(){
     const { isAuthorized, userProfile, userDashboard, isLoading: profileIsLoading } = useSelector((state) => state.auth);
@@ -78,7 +78,7 @@ export default function EarnCBPage(){
                 <div style={{display: "flex", flexDirection: "column", width: "100%", gap: "25px"}}>
                     <NavChain paths={paths} customStyle="nav-chain-no-margin"></NavChain>
                     <Suspense>
-                        {isMobile && <PersonalAccountMobile alias="other" profile={userProfile}/>}
+                        {isMobile && <PersonalAccountMobileAlt dashboard={userDashboard} alias="other" profile={userProfile}/>}
                     </Suspense>
                     <ButtonSwitch options={options} selectedOption={options[0]} onClick={(option) => option.title !== options[0].title? navigate("/account/balance-history"): navigate("")}/>
                     <div className={`${styles.sectionHeader} ${isMobile? styles.mobile: ""}`}>

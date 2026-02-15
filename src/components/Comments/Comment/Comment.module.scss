@@ -9,6 +9,35 @@
     }
 }
 
+.sendButton{
+    background: var(--primary);
+    border-radius: rem(5);
+    display: flex;
+    gap: rem(5);
+    padding: rem(6) rem(10);
+    width: fit-content;
+    align-items: center;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    color: var(--bg);
+    p{
+        color: var(--bg);
+        font-weight: 500;
+    }
+    svg{
+        color: var(--bg);
+        fill: var(--bg);
+    }
+    transition: 0.3s;
+
+    &:hover{
+        background: var(--primary-semi-transparent);
+    }
+}
+
+
+
 .avatar{
     max-width: rem(100);
     max-height: rem(100);
@@ -49,6 +78,7 @@
     margin-top: rem(5);
     margin-right: rem(5);
     display: flex;
+    align-items: center;
     gap: rem(10);
 }
 

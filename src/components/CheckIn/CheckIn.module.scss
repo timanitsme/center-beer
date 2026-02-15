@@ -22,6 +22,10 @@
   gap: rem(15)
 }
 
+.avatar{
+  border-radius: 50%;
+}
+
 .imageContainer{
 
   img{
@@ -40,6 +44,7 @@
   img{
     max-height: rem(56);
     width: auto;
+    aspect-ratio: 1/1;
   }
 }
 

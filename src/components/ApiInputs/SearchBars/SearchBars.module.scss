@@ -1,0 +1,145 @@
+@use "../../../utils/partialStyles/_pxToRem.scss" as *;
+
+.searchField {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.searchInput {
+  width: 100%;
+  padding: rem(8) rem(30) rem(8) rem(8);
+  border-radius: rem(5);
+  color: var(--txt-active);
+  font-weight: 200;
+  border: none;
+  outline: none;
+  background: var(--third);
+}
+
+.selectedBar{
+  padding: rem(6) rem(10);
+  border-radius: rem(6);
+  background: var(--primary) ;
+  display: flex;
+  color: var(--bg);
+  p{
+    color: var(--bg);
+  }
+  .selectedBarIcon{
+    color: var(--bg) !important;
+    fill: var(--bg);
+    svg{
+      color: var(--bg) !important;
+    }
+  }
+}
+
+.selectedBar{
+  .searchIcon{
+    display: none;
+  }
+}
+
+.searchInputAlt{
+  width: 100%;
+  padding: rem(16) rem(102) rem(16) rem(16);
+  border-radius: rem(8);
+  color: var(--txt-active);
+  font-weight: 200;
+  border: rem(2) solid var(--third);
+  outline: none;
+  background: var(--section-bg);
+  transition: 0.3s;
+  &:focus{
+    border-color: var(--primary);
+  }
+}
+
+.searchIcon {
+  position: absolute;
+  right: rem(10);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.searchIcon svg{
+  color: var(--primary);
+  max-height: rem(22);
+  max-width: rem(22);
+}
+
+.searchIconSecond{
+  position: absolute;
+  right: rem(70);
+  top: 50%;
+  transform: translateY(-50%);
+
+  svg{
+    color: var(--txt-active);
+    max-height: rem(22);
+    max-width: rem(22);
+  }
+}
+
+
+
+.searchIconPrimary{
+  position: absolute;
+  right: rem(8);
+  background: var(--primary);
+  top: 50%;
+  transform: translateY(-50%);
+  aspect-ratio: 1/1;
+  width: rem(44);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: rem(8);
+  transition: 0.5s;
+  cursor: pointer;
+  border: none;
+  outline: none;
+
+  &:hover{
+    background: var(--primary-semi-transparent);
+  }
+  p{
+    color: var(--bg);
+  }
+
+  svg{
+    color: var(--bg);
+    max-height: rem(22);
+    max-width: rem(22);
+  }
+}
+
+.suggestionsList {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  margin-top: rem(5);
+  padding: 0;
+  list-style: none;
+  background: var(--section-bg);
+  border: rem(1) solid var(--bg);
+  border-radius: rem(5);
+  box-shadow: 0 rem(4) rem(6) rgba(0, 0, 0, 0.1);
+  z-index: 10;
+}
+
+.suggestionItem {
+  padding: rem(8) rem(12);
+  cursor: pointer;
+  color: var(--txt-active);
+  font-weight: 200;
+  border-radius: rem(5);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .suggestionItem:hover {
+    background-color: var(--third);
+  }
+}

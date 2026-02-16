@@ -130,7 +130,7 @@ export default function BarInfo({barInfo={}, sections = []}){
                                 </div>
                                 <p>({rating})</p>
                                 <div className={styles.circle}/>
-                                <a className="ma-p"> <CommentIcon/> 116 комментариев</a>
+                                <a className="ma-p"> <CommentIcon/> {barInfo?.comments_qty} комментариев</a>
                             </div>
                             <a href={`tel:${barInfo.contacts}`}><h2>{barInfo.contacts}</h2></a>
                             <p>{barInfo.address}</p>
@@ -156,7 +156,7 @@ export default function BarInfo({barInfo={}, sections = []}){
                     </div>
                     <p className="ma-p">({rating})</p>
                     <div className={styles.circle}/>
-                    <a className="ma-p"> <CommentIcon/> 116 комментариев</a>
+                    <a className="ma-p"> <CommentIcon/> {barInfo?.comments_qty} комментариев</a>
                 </div>
                 <a href={`tel:${barInfo.contacts}`}><h2 className="ma-h2">{barInfo.contacts}</h2></a>
                 <p className="ma-p">{barInfo.address}</p>

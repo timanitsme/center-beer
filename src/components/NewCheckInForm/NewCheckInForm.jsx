@@ -108,8 +108,8 @@ export default function NewCheckInForm({ref, onSubmit, profile, id}){
         }
         setIsSubmitting(true);
         try {
-            await addCheckin({beerId: id, barId: selectedBar.id, comment: text, rating: selectedRating, photo: image.file}).unwrap();
-            onSubmit({beerId: id, comment: text, rating: selectedRating, photo: image.file})
+            await addCheckin({beerId: id, barId: selectedBar.id, comment: text, rating: selectedRating, photo: image?.file}).unwrap();
+            onSubmit({beerId: id, comment: text, rating: selectedRating, photo: image?.file})
             setText("");
             setSelectedRating(0)
             setImage(null);

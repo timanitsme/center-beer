@@ -36,9 +36,9 @@ export default function CheckIn({profile, data}) {
                 </div>
             </div>
             <div className={styles.checkInContent}>
-                {data?.media?.length > 0 &&
+                {data?.photo &&
                     <div className={styles.imageContainer}>
-                        <img src={data?.media[0]}></img>
+                        <img src={data?.photo}></img>
                     </div>
                 }
                 <div className={styles.checkInComment}>

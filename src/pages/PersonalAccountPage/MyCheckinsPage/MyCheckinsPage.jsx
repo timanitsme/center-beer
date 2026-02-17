@@ -12,7 +12,11 @@ import ArrowLeftIcon from "../../../assets/arrow-left-icon.svg?react";
 import BeerCheckInCard from "../../../components/Cards/CheckIns/BeerCheckInCard/BeerCheckInCard.jsx";
 import BarCheckInCard from "../../../components/Cards/CheckIns/BarCheckInCard/BarCheckInCard.jsx";
 import {lazy, Suspense, useEffect} from "react";
-import {useGetCheckinsBeersQuery, useGetUsersFavBreweriesQuery} from "../../../store/services/centerBeer.js";
+import {
+    useGetCheckinsBeersQuery,
+    useGetUserCheckinsBeerQuery,
+    useGetUsersFavBreweriesQuery
+} from "../../../store/services/centerBeer.js";
 const PersonalAccountAlt = lazy(() => import("../../../components/PersonalAccount/PersonalAccountAlt/PersonalAccountAlt.jsx"));
 const PersonalAccountMobileAlt = lazy(() => import("../../../components/PersonalAccount/PersonalAccountMobileAlt/PersonalAccountMobileAlt.jsx"));
 
@@ -21,7 +25,7 @@ export default function MyCheckinsPage(){
     const navigate = useNavigate()
     const { isAuthorized, userProfile, userDashboard, isLoading: profileIsLoading } = useSelector((state) => state.auth);
 
-    const {data: beerCheckinsData, isLoading: beerCheckinsIsLoading, error: beerCheckinsError} = useGetCheckinsBeersQuery({}, {skip: !userProfile || alias !== "beer"})
+    const {data: beerCheckinsData, isLoading: beerCheckinsIsLoading, error: beerCheckinsError} = useGetUserCheckinsBeerQuery({}, {skip: !userProfile || alias !== "beer"})
 
     const barCards = [
         {title: "13 RULES (Народный бар)", img: BarImage1, address: "г.Москва, Сущевский вал, 41"},

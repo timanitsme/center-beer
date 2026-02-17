@@ -105,7 +105,7 @@ export default function RegSection(){
                     <div className={styles.formRow}>
                         <div></div>
                         <div className={styles.innerRow}>
-                            <SimpleButton type="submit" text="Регистрация" ></SimpleButton>
+                            <SimpleButton buttonType="submit" text="Регистрация" ></SimpleButton>
                         </div>
                     </div>
                     <div className={styles.formRow}>

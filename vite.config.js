@@ -23,7 +23,7 @@ export default defineConfig({
         rewrite: path => path.replace(/^\/api/, '')
       },
       '/authApi': {
-        target: "https://api.center.beer:8443/",
+        target: "https://center.beer/authApi/",
         changeOrigin: true,
         rewrite: path => path.replace(/^\/authApi/, ''),
         secure: false,

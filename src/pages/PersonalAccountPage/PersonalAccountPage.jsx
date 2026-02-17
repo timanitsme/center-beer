@@ -32,8 +32,8 @@ export default function PersonalAccountPage(){
     const navigate = useNavigate()
     const [showModal, setShowModal] = useState(false)
 
-    const {data: barCuddy, isLoading: barCuddyIsLoading, error: barCuddyError, isFetching: barCuddyIsFetching} = useGetUsersCuddyBarsQuery(userProfile?.id, {skip: !userProfile})
-    const {data: beerCuddy, isLoading: beerCuddyIsLoading, error: beerCuddyError, isFetching: beerCuddyIsFetching} = useGetUsersCuddyBeersQuery(userProfile?.id, {skip: !userProfile})
+    const {data: barCuddy, isLoading: barCuddyIsLoading, error: barCuddyError, isFetching: barCuddyIsFetching} = useGetUsersCuddyBarsQuery({lim: 10, offset: 0}, {skip: !userProfile})
+    const {data: beerCuddy, isLoading: beerCuddyIsLoading, error: beerCuddyError, isFetching: beerCuddyIsFetching} = useGetUsersCuddyBeersQuery({lim: 10, offset: 0},{skip: !userProfile})
 
     useEffect(() => {
         document.title = `center.beer | Профиль`
@@ -47,27 +47,29 @@ export default function PersonalAccountPage(){
         {title: "13 Rules (Киров)", img: BarImage4, address: "г.Киров, Московская, 33"},
     ]
 
-    const {data: barFavs, isLoading: barFavsIsLoading, error: barFavsError, isFetching: barFavsIsFetching} = useGetUsersFavBarsQuery(userProfile?.id, {skip: !userProfile?.id})
-    const {data: beerFavs, isLoading: beerFavsIsLoading, error: beerFavsError, isFetching: beerFavsIsFetching} = useGetUsersFavBeersQuery(userProfile?.id, {skip: !userProfile?.id})
+    const {data: barFavs, isLoading: barFavsIsLoading, error: barFavsError, isFetching: barFavsIsFetching} = useGetUsersFavBarsQuery({lim: 10, offset: 0}, {skip: !userProfile?.id})
+    const {data: beerFavs, isLoading: beerFavsIsLoading, error: beerFavsError, isFetching: beerFavsIsFetching} = useGetUsersFavBeersQuery({lim: 10, offset: 0}, {skip: !userProfile?.id})
 
 
     const cuddySwitch = [
         {
             title: "Бары",
-            cards: barCuddy?.data?.bar,
+            cards: barCuddy?.data?.bar?.data,
             CardComponent: MinimalBarCardApi,
             SkeletonCardComponent: MinimalBarCardSkeleton,
             isLoading: barCuddyIsLoading,
             isFetching: barCuddyIsFetching,
+            totalItems: barCuddy?.data?.bar?.total_items,
             error: barCuddyError,
         },
         {
             title: "Пиво",
-            cards: beerCuddy?.data?.beer,
+            cards: beerCuddy?.data?.beer?.data,
             CardComponent: MinimalBottledBeerCardApi,
             SkeletonCardComponent: MinimalBottledBeerCardSkeleton,
             isLoading: beerCuddyIsLoading,
             isFetching: beerCuddyIsFetching,
+            totalItems: beerCuddy?.data?.beer?.total_items,
             error: beerCuddyError,
         },
     ]
@@ -78,15 +80,17 @@ export default function PersonalAccountPage(){
     const favSwitch = [
         {
             title: "Бары",
-            cards: barFavs?.data?.bar,
+            cards: barFavs?.data?.bar?.data,
             CardComponent: MinimalBarCardApi,
+            totalItems: barFavs?.data?.bar?.total_items,
             isLoading: barFavsIsLoading,
             error: barFavsError,
         },
         {
             title: "Пиво",
-            cards: beerFavs?.data?.beer,
+            cards: beerFavs?.data?.beer?.data,
             CardComponent: MinimalBottledBeerCardApi,
+            totalItems: beerFavs?.data?.beer?.total_items,
             isLoading: beerFavsIsLoading,
             error: beerFavsError,
         },

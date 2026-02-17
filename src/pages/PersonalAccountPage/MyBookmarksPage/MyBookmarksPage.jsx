@@ -14,22 +14,32 @@ import SimpleCatalogSection from "../../../components/CatalogSections/SimpleCata
 import {lazy, Suspense, useEffect} from "react";
 import MinimalBarCardApi from "../../../components/Cards/BarCard/MinimalBarCardApi.jsx";
 import BreweryCard from "../../../components/Cards/BreweryCard/BreweryCard.jsx";
+import {useState, useMemo} from "react"
 const PersonalAccountAlt = lazy(() => import("../../../components/PersonalAccount/PersonalAccountAlt/PersonalAccountAlt.jsx"));
 const PersonalAccountMobileAlt = lazy(() => import("../../../components/PersonalAccount/PersonalAccountMobileAlt/PersonalAccountMobileAlt.jsx"));
+
 
 export default function MyBookmarksPage(){
     const {alias} = useParams();
     const navigate = useNavigate()
     const { isAuthorized, userProfile, userDashboard, isLoading: profileIsLoading } = useSelector((state) => state.auth);
+    const [lim, setLim] = useState(4);
+    const [offset, setOffset] = useState(0);
+    const filters = useMemo(() => ({
+        lim,
+        offset,
+        ts: Date.now()
+    }), [lim, offset]);
 
-    const {data: beerData, isLoading: beerIsLoading, error: beerError} = useGetUsersCuddyBeersQuery(userProfile?.id, {skip: !userProfile || alias !== "beer"})
-    const {data: barData, isLoading: barIsLoading, error: barError} = useGetUsersCuddyBarsQuery(userProfile?.id, {skip: !userProfile || alias !== "bar"})
-    const {data: breweryData, isLoading: breweryIsLoading, error: breweryError} = useGetUsersCuddyBreweriesQuery(userProfile?.id, {skip: !userProfile || alias !== "bar"})
+    const {data: beerData, isLoading: beerIsLoading, isFetching: beerIsFetching, error: beerError} = useGetUsersCuddyBeersQuery(filters, {skip: !userProfile || alias !== "beer"})
+    const {data: barData, isLoading: barIsLoading, isFetching: barIsFetching, error: barError} = useGetUsersCuddyBarsQuery(filters, {skip: !userProfile || alias !== "bar"})
+    const {data: breweryData, isLoading: breweryIsLoading, isFetching: breweryIsFetching, error: breweryError} = useGetUsersCuddyBreweriesQuery(filters, {skip: !userProfile || alias !== "brewery"})
+    const [allCards, setAllCards] = useState([])
 
     const selectors = {
-        beer: {pathname: "Пиво в кладовке", data: beerData?.data?.beer, isLoading: beerIsLoading, error: beerError, CardComponent: MinimalBottledBeerCardApi, alias: "bars"},
-        bar: {pathname: "Заведения в кладовке", data: barData?.data?.bar, isLoading: barIsLoading, error: barError, CardComponent: MinimalBarCardApi, alias: "bars"},
-        brewery: {pathname: "Пивоварни в кладовке", data: {data: breweryData?.data?.brewery}, isLoading: breweryIsLoading, error: breweryError, CardComponent: BreweryCard, alias: "distributors"},
+        beer: {pathname: "Пиво в кладовке", data: beerData?.data?.beer?.data, totalItems: beerData?.data?.beer?.total_items, isFetching: beerIsFetching, isLoading: beerIsLoading, error: beerError, CardComponent: MinimalBottledBeerCardApi, alias: "bars"},
+        bar: {pathname: "Заведения в кладовке", data: barData?.data?.bar?.data, totalItems: barData?.data?.bar?.total_items, isFetching: barIsFetching, isLoading: barIsLoading, error: barError, CardComponent: MinimalBarCardApi, alias: "bars"},
+        brewery: {pathname: "Пивоварни в кладовке", data: breweryData?.data?.brewery?.data, totalItems: breweryData?.data?.brewery?.total_items, isFetching: breweryIsFetching, isLoading: breweryIsLoading, error: breweryError, CardComponent: BreweryCard, alias: "distributors"},
         event: {pathname: "Мероприятия в кладовке", data: {data: []}, isLoading: false, error: false, CardComponent: MinimalBarCard, alias: "bars"},
     }
 
@@ -42,6 +52,29 @@ export default function MyBookmarksPage(){
     useEffect(() => {
         document.title = `center.beer | ${selectors[alias]?.pathname}`
     }, []);
+
+    useEffect(() => {
+        if (!selectors[alias].isFetching && selectors[alias].data){
+            if (offset !== 0){
+                setAllCards(prev => [
+                    ...prev,
+                    ...selectors[alias].data.filter(newCard =>
+                        !prev.some(existingCard => existingCard.id === newCard.id)
+                    )
+                ]);
+            }
+            else{
+                setAllCards([...selectors[alias].data])
+            }
+        }
+
+    }, [selectors[alias].isFetching]);
+
+    const handleShowMore = () => {
+        const newOffset = offset + lim;
+        setOffset(newOffset)
+    }
+
 
     if (!alias) navigate("/account/")
     if (!profileIsLoading && !isAuthorized) navigate("/login/")
@@ -62,7 +95,7 @@ export default function MyBookmarksPage(){
                             <div className={styles.arrowButton} onClick={() => navigate("/account/")}><ArrowLeftIcon/></div>
                             <h2 className={`${styles.title} ma-h2-small`}>{selectors[alias]?.pathname}</h2>
                         </div>
-                        {selectors[alias].data && !selectors[alias].isLoading && !selectors[alias].error && <SimpleCatalogSection alias={selectors[alias]?.alias} cards={selectors[alias]?.data?.data} CardComponent={selectors[alias].CardComponent}></SimpleCatalogSection>}
+                        {selectors[alias].data && !selectors[alias].isLoading && !selectors[alias].error && <SimpleCatalogSection alias={selectors[alias]?.alias} cards={allCards} isFetching={selectors[alias]?.isFetching} CardComponent={selectors[alias].CardComponent} totalItems={selectors[alias]?.totalItems} onShowMore={handleShowMore}></SimpleCatalogSection>}
                     </div>
                 </div>
             </div>

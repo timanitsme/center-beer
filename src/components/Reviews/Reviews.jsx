@@ -21,6 +21,7 @@ import {
 } from "../../store/services/centerBeer.js";
 import ImageVideoModal from "../Modals/ImageVideoModal/ImageVideoModal.jsx";
 import placeholder from "../../assets/placeholders/card-image-placeholder.svg";
+import PicturesListApi from "../PicturesList/PicturesListApi.jsx";
 
 export default function Reviews({header, images, resume, alias, id, contacts=null}){
     const { isAuthorized, userProfile, isLoading: profileIsLoading } = useSelector((state) => state.auth);
@@ -110,7 +111,10 @@ export default function Reviews({header, images, resume, alias, id, contacts=nul
     return(
         <div className={styles.reviews} id="reviews">
             <ComponentHeader HeaderIcon={BeardIcon} title={header.title} description={header.description}/>
-            {images && images.length > 0 && <PicturesList images={images}></PicturesList>}
+            {reviewsMediaData[alias]?.data?.data?.length > 0 ? <PicturesListApi images={reviewsMediaData[alias]?.data?.data}></PicturesListApi>
+            :
+                images && images?.length !== 0 && <PicturesList images={images}></PicturesList>
+            }
             <div className="hrtLine" style={{margin: "20px 0"}} />
             <div className={`${styles.assessmentContainer} ${styles.mobile}`}>
                 <div className={styles.assessment}>

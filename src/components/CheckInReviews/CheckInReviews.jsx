@@ -12,6 +12,8 @@ import {FaLock} from "react-icons/fa6";
 import CheckIn from "../CheckIn/CheckIn.jsx";
 import NewCheckInForm from "../NewCheckInForm/NewCheckInForm.jsx";
 import {useGetBeerCheckinsQuery} from "../../store/services/centerBeer.js";
+import placeholder from "../../assets/placeholders/card-image-placeholder.svg";
+import ImageVideoModal from "../Modals/ImageVideoModal/ImageVideoModal.jsx";
 
 export default function CheckInReviews({header, resume, id}){
     const { isAuthorized, userProfile, isLoading: profileIsLoading } = useSelector((state) => state.auth);
@@ -21,6 +23,8 @@ export default function CheckInReviews({header, resume, id}){
     const navigate = useNavigate()
     const [showAuthModal, setShowAuthModal] = useState(false)
     const [showAllCheckIns, setShowAllCheckIns] = useState(false);
+    const [showModal, setShowModal] = useState(false)
+    const [currentImage, setCurrentImage] = useState({type: "image", preview: placeholder})
     const [visibleCheckIns, setVisibleCheckIns] = useState({
         total_items: 0,
         data: [],
@@ -71,7 +75,7 @@ export default function CheckInReviews({header, resume, id}){
             <div className={styles.commentsSection}>
                 <div className={styles.commentsContainer}>
                     {visibleCheckIns?.data.map((review, index) => {
-                        return <CheckIn key={index} data={review}/>
+                        return <CheckIn key={index} data={review} onShowPicture={(image) => {setCurrentImage({type: "image", preview: image}); setShowModal(true)}}/>
                     })}
 
                     {checkIns?.data?.length > 3 && !showAllCheckIns && (
@@ -121,6 +125,7 @@ export default function CheckInReviews({header, resume, id}){
                     <SimpleButton text="Авторизация" onClick={() => navigate("/login")}></SimpleButton>
                 </div>
             </SimpleModal>
+            <ImageVideoModal show={showModal} setSrc={setCurrentImage} setShow={setShowModal} src={currentImage}></ImageVideoModal>
         </div>
     )
 }

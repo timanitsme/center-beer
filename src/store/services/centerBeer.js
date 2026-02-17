@@ -432,26 +432,80 @@ export const centerBeerApi = createApi({
                 return(`user/getCheckinsBeers?${params.toString()}`)
             }
         })),
+        getUserCheckinsBeer: (builder.query({
+            query: ({lim, offset}) => {
+                const params = new URLSearchParams()
+                params.append("type", "beer")
+                if (lim !== undefined) params.append("lim", lim)
+                if (offset !== undefined) params.append("offset", offset)
+                return(`/user/getCheckins?${params.toString()}`)
+            }
+        })),
+        getUserCheckinsBar: (builder.query({
+            query: ({lim, offset}) => {
+                const params = new URLSearchParams()
+                params.append("type", "bar")
+                if (lim !== undefined) params.append("lim", lim)
+                if (offset !== undefined) params.append("offset", offset)
+                return(`/user/getCheckins?${params.toString()}`)
+            }
+        })),
         addBarToFav: (builder.query({
             query: (bar_id) => `user/addBarToFav?bar_id=${bar_id}`
         })),
         getUsersFavBars: (builder.query({
-            query: () => `user/getFavorites?type=bar`
+            query: ({lim, offset}) => {
+                const params = new URLSearchParams()
+                params.append("type", "bar")
+                if (lim !== undefined) params.append("lim", lim)
+                if (offset !== undefined) params.append("offset", offset)
+                return(`user/getFavorites?${params.toString()}`)
+            }
         })),
         getUsersFavBeers: (builder.query({
-            query: () => `user/getFavorites?type=beer`
+            query: ({lim, offset}) => {
+                const params = new URLSearchParams()
+                params.append("type", "beer")
+                if (lim !== undefined) params.append("lim", lim)
+                if (offset !== undefined) params.append("offset", offset)
+                return(`user/getFavorites?${params.toString()}`)
+            }
         })),
         getUsersFavBreweries: (builder.query({
-            query: () => `user/getFavorites?type=brewery`
+            query: ({lim, offset}) => {
+                const params = new URLSearchParams()
+                params.append("type", "brewery")
+                if (lim !== undefined) params.append("lim", lim)
+                if (offset !== undefined) params.append("offset", offset)
+                return(`user/getFavorites?${params.toString()}`)
+            }
         })),
         getUsersCuddyBars: (builder.query({
-            query: () => `user/getCuddy?type=bar`
+            query: ({lim, offset}) => {
+                const params = new URLSearchParams()
+                params.append("type", "bar")
+                if (lim !== undefined) params.append("lim", lim)
+                if (offset !== undefined) params.append("offset", offset)
+                return(`user/getCuddy?${params.toString()}`)
+            }
         })),
         getUsersCuddyBeers: (builder.query({
-            query: () => `user/getCuddy?type=beer`
+            query: ({lim, offset}) => {
+                const params = new URLSearchParams()
+                params.append("type", "beer")
+                if (lim !== undefined) params.append("lim", lim)
+                if (offset !== undefined) params.append("offset", offset)
+                return(`user/getCuddy?${params.toString()}`)
+            }
         })),
         getUsersCuddyBreweries: (builder.query({
-            query: () => `user/getCuddy?type=brewery`
+            query: ({lim, offset}) => {
+                const params = new URLSearchParams()
+                params.append("type", "brewery")
+                if (lim !== undefined) params.append("lim", lim)
+                if (offset !== undefined) params.append("offset", offset)
+                return(`user/getCuddy?${params.toString()}`)
+            }
         })),
         getUserDashboard: (builder.query({
             query: ({userId}) => {
@@ -567,4 +621,5 @@ export const { useGetBarsQuery, useGetBarInfoQuery, useGetBarsFiltersQuery,
     useGetUsersFavBeersQuery, useGetUsersCuddyBeersQuery, useGetUsersFavBreweriesQuery, useGetUsersCuddyBreweriesQuery, useGetUsersBalanceHistoryQuery, useGetNewsQuery,
     useGetBeerCountriesQuery, useGetBeerStylesQuery, useGetNewsItemQuery, useGetNewsRelatedQuery,
     useGetNewsCategoriesQuery, useGetBarCommentsQuery, useGetBarCommentsMediaQuery, useGetBeerCommentsQuery, useGetBeerCommentsMediaQuery, useGetBreweryCommentsQuery, useGetBreweryCommentsMediaQuery,
-    useGetUserDashboardQuery, useGetBeerCheckinsQuery, useGetCheckinsBeersQuery, useVoteCommentMutation, useAddBarCommentMutation, useAddCheckinMutation} = centerBeerApi
+    useGetUserDashboardQuery, useGetBeerCheckinsQuery, useGetCheckinsBeersQuery, useVoteCommentMutation, useAddBarCommentMutation, useAddCheckinMutation,
+    useGetUserCheckinsBeerQuery, useGetUserCheckinsBarQuery} = centerBeerApi

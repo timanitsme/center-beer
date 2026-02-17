@@ -25,6 +25,8 @@ import SearchInput from "../ApiInputs/Search/SearchInput.jsx";
 import contactsBg from "../../assets/bgPictures/contacts-bg.webp"
 import SearchInputAlt from "../ApiInputs/Search/SearchInputAlt.jsx";
 import Ad from "../../../src/assets/adsMocks/ad-1.svg"
+import Ad1 from "../../../src/assets/adsMocks/ad-banner-1.webp"
+import Ad2 from "../../../src/assets/adsMocks/ad-banner-2.webp"
 
 export default function BarsCatalog(){
     const navigate = useNavigate()
@@ -447,7 +449,8 @@ export default function BarsCatalog(){
                 }
             </div>
             <div className={styles.banner}>
-                <img src={Ad} alt=""/>
+                <img src={Ad1} alt=""/>
+                <img src={Ad2} alt=""/>
             </div>
 
         </div>

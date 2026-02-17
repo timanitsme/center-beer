@@ -123,7 +123,7 @@ export default function Comment({profile, data, alias, onShowPicture}){
                 </div>
             }
             {replyMode === data?.id &&
-                <div className={styles.reply}>
+                <form className={styles.reply}>
                     <img className={styles.avatar} src={AvatarDefault} alt=""></img>
                     <div className={styles.replyContent}>
                     <textarea className="ma-p" type="text" placeholder="Напишите сообщение...">
@@ -131,10 +131,10 @@ export default function Comment({profile, data, alias, onShowPicture}){
                     </textarea>
                         <div className={styles.replyButtons}>
                             <FaPaperclip></FaPaperclip>
-                            <button className={styles.sendButton}><FaPaperPlane/><p className="ma-p">Отправить</p></button>
+                            <button type="submit" className={styles.sendButton}><FaPaperPlane/><p className="ma-p">Отправить</p></button>
                         </div>
                     </div>
-                </div>
+                </form>
             }
 
         </>

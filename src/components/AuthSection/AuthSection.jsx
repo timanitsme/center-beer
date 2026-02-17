@@ -18,6 +18,7 @@ export default function AuthSection(){
     const navigate = useNavigate()
 
     const handleSubmit = async (event) => {
+        console.log("whatsapp")
         setError("");
         event.preventDefault();
         // Проверяем, что все поля заполнены
@@ -86,7 +87,7 @@ export default function AuthSection(){
                         <div></div>
                         <div className={styles.innerRow}>
                             {/* Кнопка отправки формы */}
-                            <SimpleButton type="submit" text="Войти"></SimpleButton>
+                            <SimpleButton buttonType="submit" text="Войти"></SimpleButton>
                             {/*<a href="" className={styles.dottedA}>Напомнить пароль</a>*/}
                         </div>
                     </div>

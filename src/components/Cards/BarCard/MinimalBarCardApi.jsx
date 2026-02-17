@@ -12,7 +12,7 @@ export default function MinimalBarCardApi({cardInfo}){
     const navigate = useNavigate();
     const [triggerAddToCuddy, { isLoading: addToCuddyIsLoading }] = useLazyAddBarToCuddyQuery();
     const [triggerAddToFav, { isLoading: addToFavIsLoading }] = useLazyAddBarToFavQuery();
-    const [imageSrc, setImageSrc] = useState(cardInfo?.logo || cardImagePlaceholder)
+    const [imageSrc, setImageSrc] = useState(cardInfo?.preview || cardImagePlaceholder)
     const goToBeerPage = () => navigate(`/bar/${cardInfo?.alias}`, {
         state: {from: location.pathname}
     });

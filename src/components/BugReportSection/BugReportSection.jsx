@@ -50,7 +50,7 @@ export default function BugReportSection(){
                         <div className={styles.formRow}>
                             <div></div>
                             <div className={styles.innerRow}>
-                                <SimpleButton type="submit" text="Отправить"></SimpleButton>
+                                <SimpleButton buttonType="submit" text="Отправить"></SimpleButton>
                             </div>
                         </div>
 

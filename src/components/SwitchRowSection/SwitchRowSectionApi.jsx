@@ -25,7 +25,7 @@ import ShortenedRowSection from "../ShortenedRowSection/ShortenedRowSection.jsx"
                         cards={selectedOption.cards}
                         maxCards={selectedOption.maxCards || 5}
                         CardComponent={selectedOption.CardComponent}
-                        totalItems={selectedOption.cards.total_items}
+                        totalItems={selectedOption.totalItems}
                         SkeletonCardComponent={selectedOption.SkeletonCardComponent}
                         isFetching={selectedOption.isFetching}
                     />

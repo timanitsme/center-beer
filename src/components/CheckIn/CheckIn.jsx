@@ -7,7 +7,7 @@ import ImageMock from "../../assets/partners/bar-partner.webp"
 import formatDateWithTextMonth from "../../utils/DateFunctions/formatDateWithTextMonth.js";
 import {Link} from "react-router-dom"
 
-export default function CheckIn({profile, data}) {
+export default function CheckIn({profile, data, onShowPicture}) {
     if (!data) return null;
     return(
         <div className={styles.checkIn}>
@@ -37,7 +37,7 @@ export default function CheckIn({profile, data}) {
             </div>
             <div className={styles.checkInContent}>
                 {data?.media?.length > 0 &&
-                    <div className={styles.imageContainer}>
+                    <div className={styles.imageContainer} onClick={() => onShowPicture(data?.media[0])}>
                         <img src={data?.media[0]}></img>
                     </div>
                 }

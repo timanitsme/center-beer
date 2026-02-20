@@ -8,7 +8,11 @@ import LabelBottleIcon from "../../assets/label-bottle-icon.svg?react"
 import BeerMap from "../BeerMap/BeerMap.jsx";
 import FilterItem from "../ApiInputs/FilterItem/FilterItem.jsx";
 import {useNavigate} from "react-router-dom";
-import {useGetBarsFiltersQuery, useGetBarsQuery, useGetCitiesQuery} from "../../store/services/centerBeer.js";
+import {
+    useGetBarsFiltersQuery,
+    useGetBarsMapQuery,
+    useGetCitiesQuery
+} from "../../store/services/centerBeer.js";
 import SearchCities from "../ApiInputs/Search/SearchCities.jsx";
 import {isMobile} from "react-device-detect";
 import FiltersModal from "../Modals/FiltersModal/FiltersModal.jsx";
@@ -78,7 +82,7 @@ export default function BeerMapCatalog({filters = [], filterButtons = []}){
     });
 
     // Получение данных с API
-    const {data: barsData, isLoading: barsIsLoading, error: barsError } = useGetBarsQuery({ ...filterValues, ts: timestamp });
+    const {data: barsData, isLoading: barsIsLoading, error: barsError } = useGetBarsMapQuery({ ...filterValues, ts: timestamp });
     const {data: barFilters, isLoading: barFiltersIsLoading, error: barFiltersError} = useGetBarsFiltersQuery(filterValues["city_id"] || 1)
     const {data: cities, isLoading: citiesIsLoading, error: citiesError} = useGetCitiesQuery({})
     const sortFilters =[

@@ -11,13 +11,86 @@
     padding: rem(20) rem(10);
     display: flex;
     flex-direction: column;
-    width: 20vw;
-    gap: rem(10);
+    width: 15vw;
+    gap: rem(20);
 
     img{
         border-radius: rem(8);
     }
 }
+
+.distributorBanner{
+    padding: rem(20) rem(10);
+    display: flex;
+    flex-direction: column;
+    width: 15vw;
+    gap: rem(20);
+
+    img{
+        border-radius: rem(8);
+    }
+}
+
+.distributorBannerMobile{
+    padding: rem(20) rem(10);
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    max-width: rem(220);
+    gap: rem(20);
+
+    img{
+        border-radius: rem(8);
+    }
+}
+
+
+@media (max-width: rem(1440)) {
+    .distributorBanner{
+        display: none;
+    }
+    .distributorBannerMobile{
+        display: flex;
+    }
+}
+
+.barsBanner{
+    padding: rem(20) rem(10);
+    display: flex;
+    flex-direction: column;
+    width: 15vw;
+    gap: rem(20);
+
+    img{
+        border-radius: rem(8);
+    }
+}
+
+.barsBannerMobile{
+    padding: rem(20) rem(10);
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    max-width: rem(220);
+    gap: rem(20);
+
+    img{
+        border-radius: rem(8);
+    }
+}
+
+
+@media (max-width: rem(1476)) {
+    .barsBanner{
+        display: none;
+    }
+    .barsBannerMobile{
+        display: flex;
+    }
+}
+
+
+
 
 @media (max-width: rem(1225)) {
     .banner{

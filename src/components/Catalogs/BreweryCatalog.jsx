@@ -25,6 +25,8 @@ import BreweryCardSkeleton from "../Skeletons/BreweryCardSkeleton/BreweryCardSke
 import contactsBg from "../../assets/bgPictures/contacts-bg.webp";
 import SearchInputAlt from "../ApiInputs/Search/SearchInputAlt.jsx";
 import Ad from "../../assets/adsMocks/ad-1.svg"
+import Ad1 from "../../assets/adsMocks/ad-banner-1.webp";
+import Ad2 from "../../assets/adsMocks/ad-banner-2.webp";
 
 export default function BreweryCatalog({filters = [], filterButtons = [], sections = []}){
     const [filterNameMap, setFilterNameMap] = useState({});
@@ -408,6 +410,10 @@ export default function BreweryCatalog({filters = [], filterButtons = [], sectio
                             />
                         ))}
                         <SimpleButton text="Применить фильтры" onClick={applyFilters}></SimpleButton>
+                        <div className={styles.distributorBannerMobile}>
+                            <img src={Ad1} alt=""/>
+                            <img src={Ad2} alt=""/>
+                        </div>
                     </div>}
                     <div className={styles.menuItemsSections}>
                         <SearchInputAlt title="Поиск по названию" onChange={(value) => {handleSingleFilterChange("name", value)}} reset={tabResetFilters["name"]} onApply={(value) => applyFiltersWithName(value)}></SearchInputAlt>
@@ -520,8 +526,9 @@ export default function BreweryCatalog({filters = [], filterButtons = [], sectio
                     </FiltersModal>
                 }
             </div>
-            <div className={styles.banner}>
-                <img src={Ad} alt=""/>
+            <div className={styles.distributorBanner}>
+                <img src={Ad1} alt=""/>
+                <img src={Ad2} alt=""/>
             </div>
         </div>
     )

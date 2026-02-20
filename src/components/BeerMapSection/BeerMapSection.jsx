@@ -7,7 +7,7 @@ import {useNavigate} from "react-router-dom";
 import {useEffect} from "react";
 import L from "leaflet";
 import MapMarker from "../../assets/map-marker.svg";
-import {useGetBarsQuery} from "../../store/services/centerBeer.js";
+import {useGetBarsMapQuery} from "../../store/services/centerBeer.js";
 
 export default function BeerMapSection(){
     const markers = [
@@ -21,7 +21,7 @@ export default function BeerMapSection(){
     ]
 
 
-    const {data: barsData, isLoading: barsIsLoading, error: barsError } = useGetBarsQuery({lim: 200, offset: 0});
+    const {data: barsData, isLoading: barsIsLoading, error: barsError } = useGetBarsMapQuery({lim: 200, offset: 0});
 
     const navigate = useNavigate()
     useEffect(() => {
@@ -46,10 +46,10 @@ export default function BeerMapSection(){
                     <TileLayer
                         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                     />
-                    {barsData.data?.length !== 0 && barsData.data?.map((marker, index) => {
+                    {barsData?.data?.length !== 0 && barsData?.data?.map((marker, index) => {
                         if (marker.lat !== null && marker.lon !== null){
                             return(
-                                <Marker key={index} position={[marker?.lon, marker?.lat]} icon={myIcon}>
+                                <Marker key={index} position={[marker?.lat, marker?.lon]} icon={myIcon}>
                                     <Popup>
                                         <div className={styles.markerPopUp}>
                                             <h5>{marker?.name}</h5>

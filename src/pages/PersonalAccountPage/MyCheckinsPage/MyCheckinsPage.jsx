@@ -13,10 +13,13 @@ import BeerCheckInCard from "../../../components/Cards/CheckIns/BeerCheckInCard/
 import BarCheckInCard from "../../../components/Cards/CheckIns/BarCheckInCard/BarCheckInCard.jsx";
 import {lazy, Suspense, useEffect} from "react";
 import {
-    useGetCheckinsBeersQuery,
+    useGetCheckinsBeersQuery, useGetUserCheckinsBarQuery,
     useGetUserCheckinsBeerQuery,
     useGetUsersFavBreweriesQuery
 } from "../../../store/services/centerBeer.js";
+import BeerCheckInCardApi from "../../../components/Cards/CheckIns/BeerCheckInCard/BeerCheckinCardApi.jsx";
+import BarCheckInCardApi from "../../../components/Cards/CheckIns/BarCheckInCard/BarCheckinCardApi.jsx";
+import {useState, useMemo} from "react"
 const PersonalAccountAlt = lazy(() => import("../../../components/PersonalAccount/PersonalAccountAlt/PersonalAccountAlt.jsx"));
 const PersonalAccountMobileAlt = lazy(() => import("../../../components/PersonalAccount/PersonalAccountMobileAlt/PersonalAccountMobileAlt.jsx"));
 
@@ -24,8 +27,17 @@ export default function MyCheckinsPage(){
     const {alias} = useParams();
     const navigate = useNavigate()
     const { isAuthorized, userProfile, userDashboard, isLoading: profileIsLoading } = useSelector((state) => state.auth);
+    const [lim, setLim] = useState(20);
+    const [offset, setOffset] = useState(0);
+    const filters = useMemo(() => ({
+        lim,
+        offset,
+        ts: Date.now()
+    }), [lim, offset]);
 
-    const {data: beerCheckinsData, isLoading: beerCheckinsIsLoading, error: beerCheckinsError} = useGetUserCheckinsBeerQuery({}, {skip: !userProfile || alias !== "beer"})
+    const {data: beerCheckinsData, isLoading: beerCheckinsIsLoading, isFetching: beerCheckinsIsFetching, error: beerCheckinsError} = useGetUserCheckinsBeerQuery(filters, {skip: !userProfile || alias !== "beer"})
+    const {data: barCheckinsData, isLoading: barCheckinsIsLoading, isFetching: barCheckinsIsFetching, error: barCheckinsError} = useGetUserCheckinsBarQuery(filters, {skip: !userProfile || alias !== "bar"})
+    const [allCards, setAllCards] = useState([])
 
     const barCards = [
         {title: "13 RULES (Народный бар)", img: BarImage1, address: "г.Москва, Сущевский вал, 41"},
@@ -44,9 +56,31 @@ export default function MyCheckinsPage(){
     ]
 
     const selectors = {
-        beer: {pathname: "Чек-ины пива", data: barCards, isLoading: false, error: false, CardComponent: BeerCheckInCard},
-        bar: {pathname: "Чек-ины заведений", data: barsCards, isLoading: false, error: false, CardComponent: BarCheckInCard}
+        beer: {pathname: "Чек-ины пива", data: beerCheckinsData?.data, isLoading: beerCheckinsIsLoading, isFetching: beerCheckinsIsFetching, error: beerCheckinsError, CardComponent: BeerCheckInCardApi},
+        bar: {pathname: "Чек-ины заведений", data: barCheckinsData?.data, isLoading: barCheckinsIsLoading, isFetching: barCheckinsIsFetching, error: barCheckinsError, CardComponent: BarCheckInCardApi}
     }
+
+    const handleShowMore = () => {
+        const newOffset = offset + lim;
+        setOffset(newOffset)
+    }
+
+    useEffect(() => {
+        if (!selectors[alias].isFetching && selectors[alias].data){
+            if (offset !== 0){
+                setAllCards(prev => [
+                    ...prev,
+                    ...selectors[alias].data.filter(newCard =>
+                        !prev.some(existingCard => existingCard.id === newCard.id)
+                    )
+                ]);
+            }
+            else{
+                setAllCards([...selectors[alias].data])
+            }
+        }
+
+    }, [selectors[alias].isFetching]);
 
 
 
@@ -79,7 +113,7 @@ export default function MyCheckinsPage(){
                             <div className={styles.arrowButton} onClick={() => navigate("/account/")}><ArrowLeftIcon/></div>
                             <h2 className={`${styles.title} ma-h2-small`}>{selectors[alias]?.pathname}</h2>
                         </div>
-                        {selectors[alias].data && !selectors[alias].isLoading && !selectors[alias].error && <SimpleCatalogSection cards={selectors[alias]?.data} CardComponent={selectors[alias].CardComponent}></SimpleCatalogSection>}
+                        {selectors[alias].data && !selectors[alias].isLoading && !selectors[alias].error && <SimpleCatalogSection cards={selectors[alias]?.data} isFetching={selectors[alias]?.isFetching} onShowMore={handleShowMore} totalItems={selectors[alias]?.data} CardComponent={selectors[alias].CardComponent}></SimpleCatalogSection>}
                     </div>
                 </div>
             </div>

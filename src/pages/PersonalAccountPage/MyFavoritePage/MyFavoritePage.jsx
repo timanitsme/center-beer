@@ -22,7 +22,7 @@ export default function MyFavoritePage(){
     const {alias} = useParams();
     const navigate = useNavigate()
     const { isAuthorized, userProfile, userDashboard, isLoading: profileIsLoading } = useSelector((state) => state.auth);
-    const [lim, setLim] = useState(4);
+    const [lim, setLim] = useState(20);
     const [offset, setOffset] = useState(0);
     const filters = useMemo(() => ({
         lim,

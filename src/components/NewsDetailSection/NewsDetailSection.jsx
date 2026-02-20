@@ -3,7 +3,8 @@ import ArrowBackIcon from "../../assets/arrow-left-icon.svg?react"
 import LightNavChain from "../Navigation/LightNavChain/LightNavChain.jsx";
 import FavsIcon from "../../assets/fav-unfill-icon.svg?react";
 import BookMarkIcon from "../../assets/bookmark-unfill-icon.svg?react";
-import Ad1 from "../../assets/adsMocks/ad-1.svg"
+import Ad1 from "../../assets/adsMocks/ad-banner-1.webp"
+import Ad2 from "../../assets/adsMocks/ad-banner-2.webp"
 import {useState} from "react";
 import RoundLinkButton from "../Buttons/RoundLinkButton/RoundLinkButton.jsx";
 import BlogImage1 from "../../assets/newsMocks/blog-image-1.svg"
@@ -63,6 +64,10 @@ export default function NewsDetailSection({style = "detail", children, postId=nu
                             <a href="" key={index}>{item.name}</a>
 
                         )}
+                        <div className={styles.secondBanner}>
+                            <img src={Ad1} alt=""></img>
+                            <img src={Ad2} alt=""></img>
+                        </div>
                     </div>
                 }
             </div>
@@ -88,8 +93,9 @@ export default function NewsDetailSection({style = "detail", children, postId=nu
                     <div className={styles.contentMain}>
                         {children}
                     </div>
-                    <div className={styles.contentSide}>
+                    <div className={`${styles.contentSide} ${style !== "detail"? styles.banner : ""}`}>
                         <img src={Ad1} alt=""></img>
+                        <img src={Ad2} alt=""></img>
                         {style === "detail" &&
                             <>
                                 <h3>Похожие статьи</h3>

@@ -11,7 +11,8 @@ import ComboBox from "../Inputs/ComboBox/ComboBox.jsx";
 import {Link, useNavigate} from "react-router-dom";
 import BorderedGradientButton from "../Buttons/BorderedGradientButton/BorderedGradientButton.jsx";
 import SearchInput from "../ApiInputs/Search/SearchInput.jsx";
-import Ad1 from "../../assets/adsMocks/ad-1.svg";
+import Ad1 from "../../assets/adsMocks/ad-banner-1.webp";
+import Ad2 from "../../assets/adsMocks/ad-banner-2.webp";
 
 export default function EventsDetailSection({style = "detail", children}){
     const [isFavourite, setIsFavourite] = useState(false);
@@ -52,6 +53,10 @@ export default function EventsDetailSection({style = "detail", children}){
                     )}
 
                 </div>
+                <div className={styles.secondBanner}>
+                    <img src={Ad1} alt=""/>
+                    <img src={Ad2} alt=""/>
+                </div>
             </div>
             <div className={styles.section}>
                 { style === "detail" && <div className={styles.sectionHeader}>
@@ -74,7 +79,8 @@ export default function EventsDetailSection({style = "detail", children}){
                 </div>
             </div>
             <div className={styles.banner}>
-                <img src={Ad1} alt=""></img>
+                <img src={Ad1} alt=""/>
+                <img src={Ad2} alt=""/>
             </div>
         </div>
     )

@@ -24,6 +24,25 @@ export const centerBeerApi = createApi({
                 return(`getBars?${params.toString()}`)
             }
         })),
+        getBarsMap: (builder.query({
+            query: ({lim, offset, name, city_id, subways_ids, kitchen_ids, visit_type_ids, price_ids, type_ids, feature_ids, only_opened, sort_by, online_booking}) => {
+                const params = new URLSearchParams();
+                if (lim !== undefined) params.append('lim', lim);
+                if (offset !== undefined) params.append('offset', offset);
+                if (sort_by !== undefined) params.append('sort_by', sort_by)
+                if (only_opened !== undefined) params.append('only_opened', only_opened.toString())
+                if (online_booking !== undefined) params.append('online_booking', online_booking)
+                if (city_id !== undefined) params.append('city_id', city_id);
+                if (subways_ids !== undefined) params.append('subways_ids', subways_ids);
+                if (kitchen_ids !== undefined) params.append('kitchen_ids', kitchen_ids);
+                if (visit_type_ids !== undefined) params.append('visit_type_ids', visit_type_ids);
+                if (price_ids !== undefined) params.append('price_ids', price_ids);
+                if (type_ids !== undefined) params.append('type_ids', type_ids);
+                if (feature_ids !== undefined) params.append('feature_ids', feature_ids);
+                if (name !== undefined) params.append('name', name);
+                return(`getBarsMap?${params.toString()}`)
+            }
+        })),
         getBarsFilters: (builder.query({
             query: (cityId) => `getBarsFilters?id=${cityId}`
         })),
@@ -622,4 +641,4 @@ export const { useGetBarsQuery, useGetBarInfoQuery, useGetBarsFiltersQuery,
     useGetBeerCountriesQuery, useGetBeerStylesQuery, useGetNewsItemQuery, useGetNewsRelatedQuery,
     useGetNewsCategoriesQuery, useGetBarCommentsQuery, useGetBarCommentsMediaQuery, useGetBeerCommentsQuery, useGetBeerCommentsMediaQuery, useGetBreweryCommentsQuery, useGetBreweryCommentsMediaQuery,
     useGetUserDashboardQuery, useGetBeerCheckinsQuery, useGetCheckinsBeersQuery, useVoteCommentMutation, useAddBarCommentMutation, useAddCheckinMutation,
-    useGetUserCheckinsBeerQuery, useGetUserCheckinsBarQuery} = centerBeerApi
+    useGetUserCheckinsBeerQuery, useGetUserCheckinsBarQuery, useGetBarsMapQuery} = centerBeerApi

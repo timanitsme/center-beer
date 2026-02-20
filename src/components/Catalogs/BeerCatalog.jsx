@@ -22,6 +22,8 @@ import BottledBeerCardWithoutPrice from "../Cards/BottledBeerCard/BottledBeerCar
 import BottledBeerCardSkeleton from "../Skeletons/BottledBeerCardSkeleton/BottledBeerCardSkeleton.jsx";
 import SearchInputAlt from "../ApiInputs/Search/SearchInputAlt.jsx";
 import Ad from "../../assets/adsMocks/ad-1.svg"
+import Ad1 from "../../assets/adsMocks/ad-banner-1.webp";
+import Ad2 from "../../assets/adsMocks/ad-banner-2.webp";
 
 export default function BeerCatalog({withoutPrice=false, withHeader = true, breweryId=null, bgImage=null}){
     const [filterNameMap, setFilterNameMap] = useState({});
@@ -413,6 +415,12 @@ export default function BeerCatalog({withoutPrice=false, withHeader = true, brew
                                 />
                             ))}
                         <SimpleButton text="Применить фильтры" onClick={applyFilters}></SimpleButton>
+                        {breweryId === null &&
+                            <div className={styles.barsBannerMobile}>
+                                <img src={Ad1} alt=""/>
+                                <img src={Ad2} alt=""/>
+                            </div>
+                        }
                     </div>}
                     <div className={styles.menuItemsSections}>
                         <SearchInputAlt onApply={(value) => applyFiltersWithName(value)} title="Поиск по названию" onChange={(value) => {handleSingleFilterChange("name", value)}} reset={tabResetFilters["name"]}></SearchInputAlt>
@@ -524,8 +532,9 @@ export default function BeerCatalog({withoutPrice=false, withHeader = true, brew
                 }
             </div>
             {breweryId === null &&
-                <div className={styles.banner}>
-                    <img src={Ad}></img>
+                <div className={styles.barsBanner}>
+                    <img src={Ad1} alt=""/>
+                    <img src={Ad2} alt=""/>
                 </div>
             }
         </div>

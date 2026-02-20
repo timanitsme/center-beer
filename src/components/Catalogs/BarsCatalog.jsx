@@ -364,6 +364,10 @@ export default function BarsCatalog(){
                             />
                         ))}
                         <SimpleButton text="Применить фильтры" onClick={applyFilters}></SimpleButton>
+                        <div className={styles.barsBannerMobile}>
+                            <img src={Ad1} alt=""/>
+                            <img src={Ad2} alt=""/>
+                        </div>
                     </div>}
                     <div className={styles.menuItemsSections}>
                         <SearchInputAlt title="Поиск по названию" onChange={(value) => {handleSingleFilterChange("name", value)}} reset={tabResetFilters["name"]} onApply={(value) => applyFiltersWithName(value)}></SearchInputAlt>
@@ -448,7 +452,7 @@ export default function BarsCatalog(){
                     </FiltersModal>
                 }
             </div>
-            <div className={styles.banner}>
+            <div className={styles.barsBanner}>
                 <img src={Ad1} alt=""/>
                 <img src={Ad2} alt=""/>
             </div>

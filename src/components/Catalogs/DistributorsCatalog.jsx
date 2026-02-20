@@ -20,6 +20,8 @@ import DistributorCard from "../Cards/DistributorCard/DistributorCard.jsx";
 import SearchInput from "../ApiInputs/Search/SearchInput.jsx";
 import contactsBg from "../../assets/bgPictures/contacts-bg.webp";
 import Ad from "../../assets/adsMocks/ad-1.svg"
+import Ad1 from "../../assets/adsMocks/ad-banner-1.webp";
+import Ad2 from "../../assets/adsMocks/ad-banner-2.webp";
 
 export default function DistributorsCatalog({filters = [], filterButtons = [], sections = []}){
     const cardsBars = [
@@ -70,6 +72,10 @@ export default function DistributorsCatalog({filters = [], filterButtons = [], s
                             }
                         })}
                         <SimpleButton text="Применить фильтры"></SimpleButton>
+                        <div className={styles.distributorBannerMobile}>
+                            <img src={Ad1} alt=""/>
+                            <img src={Ad2} alt=""/>
+                        </div>
                     </div>
                     <div className={styles.menuItemsSections}>
                         <div className={styles.appliedFiltersRow}>
@@ -89,8 +95,9 @@ export default function DistributorsCatalog({filters = [], filterButtons = [], s
                     </div>
                 </div>
             </div>
-            <div className={styles.banner}>
-                <img src={Ad} alt=""/>
+            <div className={styles.distributorBanner}>
+                <img src={Ad1} alt=""/>
+                <img src={Ad2} alt=""/>
             </div>
         </div>
 

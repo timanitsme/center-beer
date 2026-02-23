@@ -80,7 +80,7 @@ export default function BreweryInfo({breweryInfo={}, sections=[]}){
                                 </div>
                                 <p>({breweryInfo?.rating?.toFixed(1)})</p>
                                 <div className={styles.circle}/>
-                                <a className="noWrap"> <CommentIcon/> 116 комментариев</a>
+                                <a className="noWrap" onClick={() => scrollToSection("reviews")}> <CommentIcon/> 116 комментариев</a>
                             </div>
                             <h2>{breweryInfo?.contacts}</h2>
                             <p>{breweryInfo?.country && breweryInfo?.address
@@ -110,7 +110,7 @@ export default function BreweryInfo({breweryInfo={}, sections=[]}){
                     </div>
                     <p className="ma-p">({breweryInfo?.rating?.toFixed(1)})</p>
                     <div className={styles.circle}/>
-                    <a className="ma-p"> <CommentIcon/> 116 комментариев</a>
+                    <a className="ma-p" onClick={() => scrollToSection("reviews")}> <CommentIcon/> 116 комментариев</a>
                 </div>
                 <h2 className="ma-h2">{breweryInfo?.contacts}</h2>
                 <p className='ma-p'>{breweryInfo?.country && breweryInfo?.address

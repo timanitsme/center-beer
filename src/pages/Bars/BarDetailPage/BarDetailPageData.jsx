@@ -179,12 +179,12 @@ const barReviewsImages = [
     {preview: Review6, type: "image"},
 ]
 
-const barReviewsResume = {
+const barReviewsResume = (rating) => {return {
     title: "Гости довольны",
     rated: (number) => `Бар оценило ${number} посетителя.`,
-    rating: 3.5,
+    rating: rating,
     description: "В среднем это на 15% выше, чем у других баров в нашем рейтинге."
-}
+}}
 
 export const getBarPagePaths = () => paths;
 export const getBarPageFilterButtons = () => filterButtons;
@@ -192,4 +192,4 @@ export const getBarPageFilters = () => filters;
 export const getBarPageSections = () => sections;
 export const getBarReviewsHeader = () => barReviewsHeader;
 export const getBarReviewsImages = () => barReviewsImages;
-export const getBarReviewsResume = () => barReviewsResume;
+export const getBarReviewsResume = (rating) => barReviewsResume(rating);

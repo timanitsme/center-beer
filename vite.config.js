@@ -22,10 +22,10 @@ export default defineConfig({
         changeOrigin: true,
         rewrite: path => path.replace(/^\/api/, '')
       },
-      '/authApi': {
-        target: "https://center.beer/authApi/",
+      '/auth_service': {
+        target: "https://center.beer/auth_service/",
         changeOrigin: true,
-        rewrite: path => path.replace(/^\/authApi/, ''),
+        rewrite: path => path.replace(/^\/auth_service/, ''),
         secure: false,
         headers: {
           'Access-Control-Allow-Origin': '*'

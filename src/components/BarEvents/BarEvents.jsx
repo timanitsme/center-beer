@@ -20,6 +20,37 @@ export default function BarEvents({title = "Скоро в баре", alias="bar"
     const memoizedEvents = useMemo(() => currentEvents?.data?.data, [currentEvents.data]);
 
 
+    function parseEmojis(htmlText) {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(htmlText, "text/html");
+        const emojiElements = doc.querySelectorAll("i.emoji");
+
+        emojiElements.forEach((emoji) => {
+            const style = emoji.getAttribute("style");
+            const urlMatch = style?.match(/url\(['"]?(.*?)['"]?\)/);
+            if (urlMatch && urlMatch[1]) {
+                const emojiUrl = urlMatch[1];
+
+                const img = document.createElement("img");
+                img.src = emojiUrl;
+                img.alt = "Emoji";
+                img.style.width = "16px";
+                img.style.height = "16px";
+
+                emoji.replaceWith(img);
+            }
+        });
+
+
+        let firstChild = doc.body.firstChild;
+        while (firstChild && firstChild.tagName === "BR") {
+            firstChild.remove();
+            firstChild = doc.body.firstChild;
+        }
+
+        return doc.body.innerHTML;
+    }
+
     const getImageSize = (url, containerWidth, callback) => {
         const img = new Image();
         img.src = url;
@@ -113,9 +144,9 @@ export default function BarEvents({title = "Скоро в баре", alias="bar"
                 <div className={styles.eventDescriptionContainer}>
                     <ArrowButton direction="left" className={styles.leftArrow} onClick={handlePreviousEvent} withBg={true}></ArrowButton>
                     <div className={styles.eventDescription}>
-                        <h4 className="ma-h4">{currentEvent?.title}</h4>
+                        <h4 className="ma-h4">{parseEmojis(currentEvent?.title)}</h4>
                         <p className={`${styles.eventDate} ma-p`}>{currentEvent?.date_formated}</p>
-                        <div className="ma-p" dangerouslySetInnerHTML={{ __html: currentEvent?.text }} />
+                        <div className={`ma-p ${styles.eventText}`} dangerouslySetInnerHTML={{ __html: parseEmojis(currentEvent?.text) }} />
                         <Link to={currentEvent?.url} className={`${styles.orderTable} ma-p`}>
                             Подробнее
                             <ArrowDiagonalIcon/>

@@ -34,7 +34,24 @@
     padding: rem(20);
     width:100%;
     align-self: flex-start;
-    gap: rem(5);
+    font-weight: 200;
+    color: var(--txt-secondary);
+    .h3, b, br{
+        color: var(--txt-active);
+    }
+
+    &:hover{
+        color: var(--txt-secondary);
+        .h3, b, br{
+            color: var(--txt-active);
+        }
+    }
+}
+
+.eventText{
+    a, a b{
+        color: var(--primary) !important;
+    }
 }
 
 

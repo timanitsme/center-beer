@@ -24,7 +24,7 @@ export default function BarInfo({barInfo={}, sections = []}){
     const [showModal, setShowModal] = useState(false)
     const [isFavourite, setIsFavourite] = useState(barInfo.is_favor || false);
     const [isBookmarked, setIsBookmarked] = useState(barInfo.is_liked || false);
-    const rating = 4.8
+    const rating = barInfo?.rating || 0
     const navigate = useNavigate()
     const [triggerAddToCuddy, { isLoading: addToCuddyIsLoading }] = useLazyAddBarToCuddyQuery();
     const [triggerAddToFav, { isLoading: addToFavIsLoading }] = useLazyAddBarToFavQuery();
@@ -130,7 +130,7 @@ export default function BarInfo({barInfo={}, sections = []}){
                                 </div>
                                 <p>({rating})</p>
                                 <div className={styles.circle}/>
-                                <a className="ma-p"> <CommentIcon/> {barInfo?.comments_qty} комментариев</a>
+                                <a className="ma-p" onClick={() => scrollToSection("reviews")}> <CommentIcon/> {barInfo?.comments_qty} комментариев</a>
                             </div>
                             <a href={`tel:${barInfo.contacts}`}><h2>{barInfo.contacts}</h2></a>
                             <p>{barInfo.address}</p>
@@ -156,7 +156,7 @@ export default function BarInfo({barInfo={}, sections = []}){
                     </div>
                     <p className="ma-p">({rating})</p>
                     <div className={styles.circle}/>
-                    <a className="ma-p"> <CommentIcon/> {barInfo?.comments_qty} комментариев</a>
+                    <a className="ma-p" onClick={() => scrollToSection("reviews")}> <CommentIcon/> {barInfo?.comments_qty} комментариев</a>
                 </div>
                 <a href={`tel:${barInfo.contacts}`}><h2 className="ma-h2">{barInfo.contacts}</h2></a>
                 <p className="ma-p">{barInfo.address}</p>

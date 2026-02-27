@@ -2,18 +2,15 @@ import NavChain from "../../../components/Navigation/NavChain/NavChain.jsx";
 import {
     getBeerDetailCheckInsHeader,
     getBeerDetailPaths,
-    getBeerDetailReviewsHeader,
 } from "./BeerDetailPageData.jsx";
-import Reviews from "../../../components/Reviews/Reviews.jsx";
 import SimilarItems from "../../../components/SimilarItems/SimilarItems.jsx";
 import BarsRow from "../../../components/BarsRow/BarsRow.jsx";
 import BeerInfo from "../../../components/DetailInfo/BeerInfo/BeerInfo.jsx";
 import LightBarCard from "../../../components/Cards/BarCard/LightBarCard.jsx";
 import {useLocation, useParams} from "react-router-dom";
 import {useGetBeerInfoQuery} from "../../../store/services/centerBeer.js";
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
 import CheckInReviews from "../../../components/CheckInReviews/CheckInReviews.jsx";
-import ButtonSwitch from "../../../components/ButtonSwitch/ButtonSwitch.jsx";
 import contactsBg from "../../../assets/bgPictures/contacts-bg.webp";
 
 

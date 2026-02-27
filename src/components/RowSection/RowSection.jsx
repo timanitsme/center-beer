@@ -39,7 +39,7 @@ export default function RowSection({title=null, cards=[], CardComponent, maxCard
             {title && <h3>{title}</h3>}
             <div className={styles.cardsRow}>
                 {cards.length > 0 && visibleCards?.map((card, index) => {
-                    return <CardComponent key={index} cardInfo={card}></CardComponent>
+                    return <CardComponent key={`${card.alias}`} cardInfo={card}></CardComponent>
                 })}
             </div>
         </div>

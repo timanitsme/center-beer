@@ -13,16 +13,30 @@ import {getRatingIcons} from "../../../utils/getRatingIcons.jsx";
 import {Link} from "react-router-dom";
 import {useLazyAddBeerToCuddyQuery, useLazyAddBeerToFavQuery} from "../../../store/services/centerBeer.js";
 import BeardIcon from "../../../assets/beard-icon.svg?react";
+import cardImagePlaceholder from "../../../assets/placeholders/card-image-placeholder.svg"
 
 export default function BeerInfo({showPrice=false,beerInfo={}}){
     const [isFavourite, setIsFavourite] = useState(beerInfo?.is_favor || false);
     const [isBookmarked, setIsBookmarked] = useState(beerInfo?.is_liked || false);
 
-    const [selectedPicture, setSelectedPicture] = useState(beerInfo?.gallery?.[0])
+    const [selectedPicture, setSelectedPicture] = useState(beerInfo?.gallery?.length === 0? {type: "image", preview: cardImagePlaceholder}: beerInfo?.gallery?.[0])
     const [showModal ,setShowModal] = useState(false)
     const formatNumber = (num) => Number(num).toString()
     const [triggerAddToCuddy, { isLoading: addToCuddyIsLoading }] = useLazyAddBeerToCuddyQuery();
     const [triggerAddToFav, { isLoading: addToFavIsLoading }] = useLazyAddBeerToFavQuery();
+
+    useEffect(() => {
+        console.log(selectedPicture)
+        if (selectedPicture === null){
+            if (beerInfo?.gallery?.length === 0){
+                setSelectedPicture({type: "image", preview: cardImagePlaceholder})
+            }
+            else{
+                setSelectedPicture(beerInfo?.gallery?.[0])
+            }
+        }
+    }, [selectedPicture])
+
 
     const handleAddToCuddy = async (event, id) => {
         event.preventDefault();
@@ -75,7 +89,7 @@ export default function BeerInfo({showPrice=false,beerInfo={}}){
                 <div className={styles.beerPictures}>
                     <div className={styles.picturesColumn}>
                         {beerInfo?.gallery.map((picture, index) =>(
-                            <div key={index} onClick={() => setSelectedPicture(picture)} className={`${picture === selectedPicture? styles.selected : ""} ${styles.sidePictureContainer}`}>
+                            <div key={`gallery-${picture}`} onClick={() => setSelectedPicture(picture)} className={`${picture === selectedPicture? styles.selected : ""} ${styles.sidePictureContainer}`}>
                                 {picture?.type === "video" && <PlayButtonIcon/>}
                                 <img src={picture?.preview} alt=""/>
                             </div>

@@ -30,6 +30,12 @@ export default function BarInfo({barInfo={}, sections = []}){
     const [triggerAddToFav, { isLoading: addToFavIsLoading }] = useLazyAddBarToFavQuery();
 
 
+    const goToMapPage = () => {
+        navigate(`/map`, {
+            state: { id: barInfo.id}
+        });
+    };
+
     const handleAddToCuddy = async (event, id) => {
         event.preventDefault();
         try {
@@ -137,8 +143,8 @@ export default function BarInfo({barInfo={}, sections = []}){
                             <a className={styles.aUnderlinedIconButton} href="https://center.beer/about-us/contact/"><CommentIcon/>Связаться с нами</a>
                             <a className={styles.aUnderlinedIconButton} onClick={() => setShowModal(true)}><CalendarIcon/>График работы</a>
                             <div style={{display: "flex", flexWrap: "wrap", justifyContent: "flex-end"}}>
-                                <IconButton text="Найти на карте" onClick={() => navigate("/map")} style="secondary"><LocationIcon/></IconButton>
-                                <IconButton text="Заказать такси" onClick={() => window.location.href = `https://3.redirect.appmetrica.yandex.com/route?end-lat=${barInfo?.lon}&end-lon=${barInfo?.lat}&ref=centerbeer&appmetrica_tracking_id=25395763362139037`} style="secondary"><TaxiIcon/></IconButton>
+                                <IconButton text="Найти на карте" onClick={goToMapPage} style="secondary"><LocationIcon/></IconButton>
+                                <IconButton text="Заказать такси" onClick={() => window.location.href = `https://3.redirect.appmetrica.yandex.com/route?end-lat=${barInfo?.lat}&end-lon=${barInfo?.lon}&ref=centerbeer&appmetrica_tracking_id=25395763362139037`} style="secondary"><TaxiIcon/></IconButton>
                             </div>
                             <IconButton text="Оставить отзыв" onClick={() => scrollToSection("reviews")} style=""><BeardIcon/></IconButton>
                         </div>
@@ -163,8 +169,8 @@ export default function BarInfo({barInfo={}, sections = []}){
                 <a className={`${styles.aUnderlinedIconButton} ma-p`} href="https://center.beer/contacts/"><CommentIcon/>Связаться с нами</a>
                 <a className={`${styles.aUnderlinedIconButton} ma-p`} onClick={() => setShowModal(true)}><CalendarIcon/>График работы</a>
                 <div>
-                    <IconButton text="Найти на карте" onClick={() => navigate("/map")} style="secondary"><LocationIcon/></IconButton>
-                    <IconButton text="Заказать такси" onClick={() => window.location.href = `https://3.redirect.appmetrica.yandex.com/route?end-lat=${barInfo?.lon}&end-lon=${barInfo?.lat}&ref=centerbeer&appmetrica_tracking_id=25395763362139037`} style="secondary"><TaxiIcon/></IconButton>
+                    <IconButton text="Найти на карте" onClick={goToMapPage} style="secondary"><LocationIcon/></IconButton>
+                    <IconButton text="Заказать такси" onClick={() => window.location.href = `https://3.redirect.appmetrica.yandex.com/route?end-lat=${barInfo?.lat}&end-lon=${barInfo?.lon}&ref=centerbeer&appmetrica_tracking_id=25395763362139037`} style="secondary"><TaxiIcon/></IconButton>
                 </div>
                 <IconButton text="Оставить отзыв" onClick={() => scrollToSection("reviews")} style=""><BeardIcon/></IconButton>
                 <div className={styles.socials}>

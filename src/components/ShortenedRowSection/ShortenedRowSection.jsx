@@ -1,8 +1,10 @@
 import styles from "./ShortenedRowSection.module.scss"
 import {useEffect, useState} from "react";
+import {useNavigate} from "react-router-dom";
 
-export default function ShortenedRowSection({title=null, cards=[], CardComponent, SkeletonCardComponent, isFetching=false, maxCards=5, totalItems=10, prefix=""}){
+export default function ShortenedRowSection({title=null, cards=[], CardComponent, totalItemsLink = "", SkeletonCardComponent, isFetching=false, maxCards=5, totalItems=10, prefix=""}){
     const [visibleCards, setVisibleCards] = useState([]);
+    const navigate = useNavigate()
 
     useEffect(() => {
         const handleResize = () => {
@@ -34,14 +36,14 @@ export default function ShortenedRowSection({title=null, cards=[], CardComponent
         <div className={styles.sectionContainer}>
             {title && <h3>{title}</h3>}
             <div className={styles.cardsRow}>
-                {isFetching && maxCards?.map((card, index) => {
-                    return <SkeletonCardComponent key={`${prefix}-${index}`}></SkeletonCardComponent>
+                {isFetching && maxCards?.map((card) => {
+                    return <SkeletonCardComponent key={`${prefix}-${card.id}`}></SkeletonCardComponent>
                 })}
-                {!isFetching && cards.length > 0 && visibleCards?.map((card, index) => {
-                    return <CardComponent key={`${prefix}-${index}`} cardInfo={card}></CardComponent>
+                {!isFetching && cards.length > 0 && visibleCards?.map((card) => {
+                    return <CardComponent key={`${prefix}-${card.id}`} cardInfo={card}></CardComponent>
                 })}
                 {visibleCards.length < totalItems &&
-                    <div className={styles.showMore}>
+                    <div onClick={() => navigate(totalItemsLink)} className={styles.showMore}>
                         <p className="ma-p">Все ({totalItems})</p>
                     </div>
                 }

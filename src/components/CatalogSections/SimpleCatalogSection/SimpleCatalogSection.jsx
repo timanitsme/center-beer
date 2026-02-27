@@ -21,7 +21,7 @@ export default function SimpleCatalogSection({cards, CardComponent, SkeletonCard
         <div className={styles.menuSection}>
             <div className={`${styles[alias]} ${wideColumns ? styles.sectionContentWide : styles.sectionContent}`}>
                 {cards?.map((cardInfo) => (
-                    <CardComponent key={`${prefix}-${cardInfo?.id}`} cardInfo={cardInfo} title={title} />
+                    <CardComponent key={`${prefix}-${cardInfo?.id || cardInfo?.name}`} cardInfo={cardInfo} title={title} />
                 ))}
                 {isFetching && SkeletonCardComponent && Array.from({ length: lim }).map((_, index) => (
                     <SkeletonCardComponent key={`skeleton-${index}`} />

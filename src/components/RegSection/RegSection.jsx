@@ -7,7 +7,6 @@ import CheckBoxChild from "../Inputs/CheckBox/CheckBoxChild.jsx";
 import {useState} from "react";
 import {useRegisterMutation} from "../../store/services/centerBeerAuth.js";
 import {useDispatch} from "react-redux";
-import {logout} from "../../store/services/authSlice.js";
 
 export default function RegSection(){
     const [nickname, setNickname] = useState("")
@@ -59,8 +58,15 @@ export default function RegSection(){
                 window.location.href = "/login/";
             }
         } catch (err) {
-            setError('Неверные данные');
-            dispatch(logout());
+            if(err.data.error === "email_exists"){
+                setError('Пользователь с таким email уже существует');
+            }
+            else if(err.data.error === "nickname_exists"){
+                setError('Пользователь с таким никнеймом уже существует');
+            }
+            else{
+                setError('Неверные данные');
+            }
         }
     }
 

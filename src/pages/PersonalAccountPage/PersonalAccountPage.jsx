@@ -60,6 +60,7 @@ export default function PersonalAccountPage(){
             isLoading: barCuddyIsLoading,
             isFetching: barCuddyIsFetching,
             totalItems: barCuddy?.data?.bar?.total_items,
+            totalItemsLink: "/account/bookmarked/bar",
             error: barCuddyError,
         },
         {
@@ -70,6 +71,7 @@ export default function PersonalAccountPage(){
             isLoading: beerCuddyIsLoading,
             isFetching: beerCuddyIsFetching,
             totalItems: beerCuddy?.data?.beer?.total_items,
+            totalItemsLink: "/account/bookmarked/beer",
             error: beerCuddyError,
         },
     ]
@@ -84,6 +86,7 @@ export default function PersonalAccountPage(){
             CardComponent: MinimalBarCardApi,
             totalItems: barFavs?.data?.bar?.total_items,
             isLoading: barFavsIsLoading,
+            totalItemsLink: "/account/fav/bar",
             error: barFavsError,
         },
         {
@@ -92,6 +95,7 @@ export default function PersonalAccountPage(){
             CardComponent: MinimalBottledBeerCardApi,
             totalItems: beerFavs?.data?.beer?.total_items,
             isLoading: beerFavsIsLoading,
+            totalItemsLink: "/account/fav/beer",
             error: beerFavsError,
         },
     ]

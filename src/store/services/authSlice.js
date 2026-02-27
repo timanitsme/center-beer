@@ -78,7 +78,7 @@ export const logoutMiddleware =
             };
 
 export const initializeAuthState = (needToRefresh=false) => async (dispatch, getState) => {
-    const { isInitialized } = getState().auth;
+    const { isInitialized, isAuthorized } = getState().auth;
     console.log("whatsapp?")
     if (!needToRefresh && isInitialized) return;
     dispatch(setIsLoading(true)); // Устанавливаем состояние загрузки
@@ -88,6 +88,10 @@ export const initializeAuthState = (needToRefresh=false) => async (dispatch, get
         console.log("hey there?")
         // Загружаем профиль пользователя через API
         const response = await dispatch(centerBeerAuthApi.endpoints.getUserProfile.initiate({ _timestamp: Date.now() }, { forceRefetch: true }));
+        if (response?.error?.data?.error === "token_not_found"){
+            dispatch(logout());
+            dispatch(setIsLoading(false))
+        }
         if (response.data) { // Тут по хорошему нужно отдавать с апишки 401 код
             const { accessToken, refreshToken } = response.data;
             dispatch(setCredentials({ accessToken, refreshToken }));

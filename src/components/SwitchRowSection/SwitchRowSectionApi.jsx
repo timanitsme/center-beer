@@ -28,6 +28,8 @@ import ShortenedRowSection from "../ShortenedRowSection/ShortenedRowSection.jsx"
                         totalItems={selectedOption.totalItems}
                         SkeletonCardComponent={selectedOption.SkeletonCardComponent}
                         isFetching={selectedOption.isFetching}
+                        prefix={selectedOption.title}
+                        totalItemsLink={selectedOption.totalItemsLink}
                     />
                 ) : (
                     <p className={`ma-p ${styles.noData}`}>Нет данных</p>

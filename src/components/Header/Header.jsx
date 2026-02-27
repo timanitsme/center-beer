@@ -171,8 +171,8 @@ export default function Header({paths, sidePaths, scrollRef=null, sections}){
                     <div className={styles.headerGrid}>
                         <div className={styles.logoMenu}>
                             <a onClick={toggleMenu}>{isMenuOpen? <CloseIcon/> : <BurgerIcon/>}</a>
-                            <div className={styles.logoWrapper} onClick={() => navigate("/")}>
-                                <CenterBeerLogo/>
+                            <div className={styles.logoWrapper}>
+                                <CenterBeerLogo onClick={() => navigate("/")}/>
                             </div>
                         </div>
                         <div className={styles.menu}>
@@ -269,7 +269,7 @@ export default function Header({paths, sidePaths, scrollRef=null, sections}){
                 <div className={`${styles.pageNavigation} ${sections? "": styles.onlyProgress}`}>
                     <div className={styles.progressBar}><div className={styles.progress} style={{ width: `${scrollProgress}%` }}></div></div>
                     <div className={`${styles.content} ${pageNavigationExpanded? styles.expanded: ""}`} onClick={() => setPageNavigationExpanded(!pageNavigationExpanded)}>
-                        <p className={`${styles.noWrap} ma-p`}>Текущий раздел</p>
+                        <p className={`${styles.noWrap} ma-p`} onClick={(e) => {e.stopPropagation(); window.scrollTo({top: 0, behavior: "smooth"});}}>В НАЧАЛО ↑</p>
                         <div className={styles.currentBlock}>
                             <p className={`${styles.ellipsis} ma-p`}>{currentSection ? sections?.find(section => section.id === currentSection)?.title: ""}</p>
                             <CaretDownIcon/>

@@ -7,8 +7,8 @@ import {useLazyAddBarToCuddyQuery, useLazyAddBarToFavQuery} from "../../../store
 import cardImagePlaceholder from "../../../assets/placeholders/card-image-placeholder.svg"
 
 export default function MinimalBarCardApi({cardInfo}){
-    const [cardBookmarked, setCardBookmarked] = useState(false);
-    const [cardFav, setCardFav] = useState(false);
+    const [cardBookmarked, setCardBookmarked] = useState(cardInfo?.is_favor || false);
+    const [cardFav, setCardFav] = useState(cardInfo?.is_liked || false);
     const navigate = useNavigate();
     const [triggerAddToCuddy, { isLoading: addToCuddyIsLoading }] = useLazyAddBarToCuddyQuery();
     const [triggerAddToFav, { isLoading: addToFavIsLoading }] = useLazyAddBarToFavQuery();

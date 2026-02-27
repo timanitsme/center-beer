@@ -1,6 +1,6 @@
 import styles from "./BeerMap.module.scss"
 import {MapContainer, Marker, Popup, TileLayer} from "react-leaflet";
-import {useEffect} from "react";
+import {useEffect, useState, useRef} from "react";
 import L from "leaflet"
 import MapMarker from "../../assets/map-marker.svg"
 import HopIcon from "../../assets/hop-icon.svg?react"
@@ -8,8 +8,10 @@ import IconButton from "../Buttons/IconButton/IconButton.jsx";
 import {useNavigate} from "react-router-dom";
 
 
-export default function BeerMap({data = []}){
-
+export default function BeerMap({data = [], id = null}){
+    const [currentBar, setCurrentBar] = useState(null)
+    const markersRef = useRef({})
+    const mapRef = useRef(null)
     const markers = [
         {lon: 55.731945, lat: 37.617379, name: "13 rules",  address: "ул. Такая-то д.19", phone: "+7 (916) 298-06-14"},
         {lon: 55.755820, lat: 37.617633, name: "13 rules",  address: "ул. Такая-то д.19", phone: "+7 (916) 298-06-14"},
@@ -34,10 +36,36 @@ export default function BeerMap({data = []}){
     });
     const goToBarPage = (alias) => navigate(`/bar/${alias}`);
 
+
+    useEffect(() => {
+        if (id !== null && data){
+            console.log(`id: ${id}`)
+            const foundItem = data.find(item => item.id === id)
+            if (foundItem){
+                setCurrentBar(
+                    {
+                        coords: [parseFloat(foundItem?.lat), parseFloat(foundItem?.lon)],
+                        id: foundItem?.id
+                    }
+                )
+
+            }
+        }
+    }, [data, id]);
+
+    useEffect(() => {
+        console.log(`currentBar: ${JSON.stringify(currentBar)}`)
+        const map = mapRef.current
+        if (currentBar && markersRef.current && map !== null) {
+            map.flyTo(currentBar.coords, 15)
+
+        }
+    }, [currentBar, markersRef, mapRef]);
+
     if (!data) return null
     return(
         <div className={styles.mapContainer}>
-            <MapContainer center={[55.755820, 37.617633]} zoom={13} scrollWheelZoom={true}>
+            <MapContainer center={currentBar?.coords || [55.755820, 37.617633]} zoom={13} scrollWheelZoom={true} ref={mapRef}>
                 <TileLayer
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />
@@ -45,7 +73,7 @@ export default function BeerMap({data = []}){
                     if (marker.lat !== null && marker.lon !== null){
                         return(
                             <Marker key={index} position={[marker?.lat, marker?.lon]} icon={myIcon}>
-                                <Popup>
+                                <Popup >
                                     <div className={styles.markerPopUp}>
                                         <h5>{marker?.name}</h5>
                                         <p><span className={styles.active}>Адрес:</span> {marker?.address}</p>

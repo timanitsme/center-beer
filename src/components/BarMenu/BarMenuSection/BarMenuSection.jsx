@@ -110,7 +110,7 @@ export default function BarMenuSection({alias, barId, tab}){
                 setAllCards(prev => [
                     ...prev,
                     ...data[alias].data.data.filter(newCard =>
-                        !prev.some(existingCard => existingCard.id === newCard.id)
+                        !prev.some(existingCard => existingCard.name === newCard.name)
                     )
                 ]);
             }

@@ -1,0 +1,40 @@
+@use "../../../utils/partialStyles/_pxToRem.scss" as *;
+
+.filterContainer{
+  position: relative;
+  min-width: rem(200);
+  display: flex;
+  flex-direction: column;
+  gap: rem(5);
+}
+
+.filterContainerHeader{
+  color: var(--primary) !important;
+  font-family: Podkova, sans-serif !important;
+  margin-bottom: rem(5);
+}
+
+.toggle{
+  width: fit-content;
+  background: var(--section-bg);
+  padding: rem(8) rem(12);
+  display: flex;
+  gap: rem(8);
+  border-radius: rem(50);
+  p{
+    font-weight: 200;
+
+    padding: rem(8) rem(20);
+    border-radius: rem(20);
+    cursor: pointer;
+    transition: 0.3s;
+    &:hover{
+      background: var(--third);
+      color: var(--txt-active);
+    }
+    &.active{
+      background: var(--third);
+      color: var(--txt-active);
+    }
+  }
+}

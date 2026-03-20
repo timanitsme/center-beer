@@ -37,13 +37,14 @@ import nonAlcoBg from "../../../assets/bgPictures/non-alcohol-bg.webp"
 import foodBg from "../../../assets/bgPictures/food-bg.webp"
 import SearchInputAlt from "../../ApiInputs/Search/SearchInputAlt.jsx";
 
-export default function BarMenuSection({alias, barId, tab}){
+export default function BarMenuSection({hasAwayPrice = false, tapsVolumes = null, alias, barId, tab}){
     const [filterNameMap, setFilterNameMap] = useState({});
     const [showFiltersModal, setShowFiltersModal] = useState(false)
     const [allCards, setAllCards] = useState([])
     const [selectedFood, setSelectedFood] = useState(null)
     const [showModal, setShowModal] = useState(false)
     const [timestamp, setTimestamp] = useState(Date.now());
+    const [isPriceAway, setIsPriceAway] = useState(false)
     const foodIcons = {
         "Бургеры": <BurgerIcon/>,
         "Салаты": <SaladIcon/>,
@@ -358,6 +359,14 @@ export default function BarMenuSection({alias, barId, tab}){
         <>
             <div className={styles.menuContent} style={{backgroundImage: `url(${data[alias].bg})`, backgroundRepeat: 'no-repeat'}}>
                 {!isMobile && <div className={styles.menuFilters}>
+                    {(alias === "beer" || alias === "beer_bottle") && hasAwayPrice &&
+                        <FilterItem
+                            key={"price_toggle"}
+                            filter={{componentType: "toggle", title: "Цена"}}
+                            onChange={(value) => {setIsPriceAway(value)}}
+                            reset={null}
+                        />
+                    }
                     {
                         filtersConfig.map((filter) => (
                             <FilterItem
@@ -494,7 +503,7 @@ export default function BarMenuSection({alias, barId, tab}){
                             )
                         }
                     })}
-                    {alias !== "food" && <SimpleCatalogSection isFetching={data[alias].isFetching} lim={filterValues["lim"]} SkeletonCardComponent={tabSpec.SkeletonCard} cards={allCards} CardComponent={tabSpec.CardComponent} wideColumns={tabSpec.wideColumns} totalItems={data[alias].data?.["total_items"]} onShowMore={handleShowMore}/>}
+                    {alias !== "food" && <SimpleCatalogSection tapsPrices={alias === "beer"? tapsVolumes: null} isAway={isPriceAway} isFetching={data[alias].isFetching} lim={filterValues["lim"]} SkeletonCardComponent={tabSpec.SkeletonCard} cards={allCards} CardComponent={tabSpec.CardComponent} wideColumns={tabSpec.wideColumns} totalItems={data[alias].data?.["total_items"]} onShowMore={handleShowMore}/>}
                 </div>
             </div>
             {isMobile &&

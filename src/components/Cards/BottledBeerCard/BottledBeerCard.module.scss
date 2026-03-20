@@ -8,6 +8,8 @@
 }
 
 
+
+
 .bottledBeerCard{
     padding: rem(20);
     display: flex;
@@ -76,6 +78,17 @@
     white-space: normal;
     cursor: pointer;
     position: relative;
+}
+
+.volume{
+    position: absolute;
+    bottom: rem(10);
+    left: rem(10);
+    background: var(--primary);
+    color: var(--bg);
+    padding: 4px 8px;
+    border-radius: 8px;
+    z-index: 10;
 }
 
 .primaryContainer{

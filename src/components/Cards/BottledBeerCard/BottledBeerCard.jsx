@@ -12,7 +12,7 @@ import {
     useLazyAddBeerToCuddyQuery, useLazyAddBeerToFavQuery
 } from "../../../store/services/centerBeer.js";
 
-export default function BottledBeerCard({cardInfo}){
+export default function BottledBeerCard({cardInfo, isAway=false, tapsPrices=null}){
     const [cardBookmarked, setCardBookmarked] = useState(cardInfo.is_favor || false);
     const [cardFav, setCardFav] = useState(cardInfo.is_liked || false);
     const navigate = useNavigate()
@@ -64,6 +64,7 @@ export default function BottledBeerCard({cardInfo}){
                 </div>
                 <div className={`${styles.imgContainer} ${imageSrc === cardImagePlaceholder? styles.third : ''}`}>
                     <img src={imageSrc} onError={() => setImageSrc(cardImagePlaceholder)} onClick={() => goToBeerPage(cardInfo?.alias || cardInfo?.beer_alias)} alt=""/>
+                    {tapsPrices !== null && <p className={`${styles.volume} ma-p`} >{isAway? tapsPrices[1]: tapsPrices[0]}Л</p>}
                     <a onClick={(e) => handleAddToFav(e, cardInfo?.id)} className={`${styles.favButton} ${cardFav? styles.added : ''}`}><FavIcon/></a>
                 </div>
                 {cardInfo?.style && <p className={styles.textActive}><span style={{color: "var(--txt-secondary)"}}>Стиль:</span> {cardInfo?.style}</p>}
@@ -84,7 +85,7 @@ export default function BottledBeerCard({cardInfo}){
 
             </div>
             <div className={styles.cardFooter}>
-                <p className={styles.cardTextPrimary}>{Number(cardInfo.price).toLocaleString("ru-Ru")}₽</p>
+                <p className={styles.cardTextPrimary}>{Number(isAway? cardInfo.price_away: cardInfo.price).toLocaleString("ru-Ru")}₽</p>
                 <IconButton text="Купить" onClick={() => navigate("/in-dev")}><BottlesPairIcon/></IconButton>
             </div>
         </div>

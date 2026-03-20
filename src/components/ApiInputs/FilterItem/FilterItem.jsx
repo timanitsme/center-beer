@@ -3,6 +3,7 @@ import CheckBoxSection from "../CheckBoxSection/CheckBoxSection.jsx";
 import Radio from "../Radio/Radio.jsx";
 import SearchCities from "../Search/SearchCities.jsx";
 import RangeRadio from "../Radio/RangeRadio.jsx";
+import ToggleInput from "../../Inputs/ToggleInput/ToggleInput.jsx";
 
 
 export default function FilterItem({ filter, onChange, reset, filterKey = "" }) {
@@ -47,6 +48,14 @@ export default function FilterItem({ filter, onChange, reset, filterKey = "" }) 
                         reset={reset}
                         defaultOption={{name: "Все", id: 0}}
                         filterKey={filterKey}
+                    />
+                )
+            case "toggle":
+                return (
+                    <ToggleInput
+                        title={"Цена"}
+                        onChange={onChange}
+                        reset={reset}
                     />
                 )
             case "search":

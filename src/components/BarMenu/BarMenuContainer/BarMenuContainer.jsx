@@ -7,7 +7,7 @@ import {useGetBarMenuTabsQuery} from "../../../store/services/centerBeer.js";
 import {getBarMenuTabSpec} from "../BarMenuData.js";
 import {useSearchParams} from "react-router-dom";
 
-export default function BarMenuContainer({ref, barId=1, onReady}){
+export default function BarMenuContainer({ref, awayInfo = null, barId=1, onReady}){
     const [searchParams] = useSearchParams();
     const menuAlias = searchParams.get('menu');
     const [selectedTab, setSelectedTab] = useState("")
@@ -42,7 +42,7 @@ export default function BarMenuContainer({ref, barId=1, onReady}){
 
                     )}
                 </div>
-                <BarMenuSection key={selectedTab} alias={selectedTab} barId={barId} tab={tabs?.find(item => item.alias === selectedTab)}/>
+                <BarMenuSection key={selectedTab} alias={selectedTab} barId={barId} tapsVolumes={awayInfo?.tapsVolumes} hasAwayPrice={awayInfo?.hasPriceAway} tab={tabs?.find(item => item.alias === selectedTab)}/>
             </div>
         </div>
     )

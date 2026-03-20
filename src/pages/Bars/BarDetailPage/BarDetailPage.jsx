@@ -74,7 +74,7 @@ export default function BarDetailPage(){
                         {data?.data[0]?.gallery?.length !== 0 && <Gallery pictures={data?.data[0].gallery}/>}
                     </div>
                     {/*<BarMenu filters={getBarPageFilters()} filterButtons={getBarPageFilterButtons()} sections={getBarPageSections()} ref={menuRef} barId={Number(data?.data?.[0]?.id)}/>*/}
-                    <BarMenuContainer ref={menuRef} barId={Number(data?.data?.[0]?.id)} onReady={handleMenuReady}/>
+                    <BarMenuContainer awayInfo={data?.data?.[0]?.is_price_away === 1? {hasPriceAway: true, tapsVolumes: [data?.data?.[0]?.taps_price_for, data?.data?.[0]?.taps_price_away_for]}: {hasPriceAway: false, tapsVolumes: null}} ref={menuRef} barId={Number(data?.data?.[0]?.id)} onReady={handleMenuReady}/>
                     <CurrentPromos barId={data?.data[0].id} ref={promosRef} contacts={data?.data[0].contacts}/>
                     <BarNews id={data?.data[0].id} ref={newsRef}/>
                     <Reviews images={getBarReviewsImages()} header={getBarReviewsHeader()} resume={getBarReviewsResume(data?.data[0]?.rating || 0)} id={data?.data[0].id} alias="bar" contacts={data?.data[0].contacts}/>

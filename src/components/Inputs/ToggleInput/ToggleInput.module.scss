@@ -24,7 +24,7 @@
   p{
     font-weight: 200;
 
-    padding: rem(8) rem(20);
+    padding: rem(8) rem(12);
     border-radius: rem(20);
     cursor: pointer;
     transition: 0.3s;
@@ -35,6 +35,24 @@
     &.active{
       background: var(--third);
       color: var(--txt-active);
+    }
+  }
+}
+
+@media (max-width: 400px) {
+  .toggle{
+    p{
+      padding: rem(8) rem(10);
+    }
+  }
+}
+
+@media (max-width: 1600px) {
+  .toggle{
+    flex-direction: column;
+    border-radius: rem(12);
+    p{
+      border-radius: rem(8);
     }
   }
 }

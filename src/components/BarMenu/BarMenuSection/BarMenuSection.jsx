@@ -508,6 +508,14 @@ export default function BarMenuSection({hasAwayPrice = false, tapsVolumes = null
             </div>
             {isMobile &&
                 <FiltersModal setShow={setShowFiltersModal} show={showFiltersModal}>
+                    {(alias === "beer" || alias === "beer_bottle") && hasAwayPrice &&
+                        <FilterItem
+                            key={"price_toggle"}
+                            filter={{componentType: "toggle", title: "Цена"}}
+                            onChange={(value) => {setIsPriceAway(value)}}
+                            reset={null}
+                        />
+                    }
                     {filtersConfig.map((filter) => (
                         <FilterItem
                             key={filter.key}

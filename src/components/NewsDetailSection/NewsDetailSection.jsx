@@ -65,8 +65,12 @@ export default function NewsDetailSection({style = "detail", children, postId=nu
 
                         )}
                         <div className={styles.secondBanner}>
-                            <img src={Ad1} alt=""></img>
-                            <img src={Ad2} alt=""></img>
+                            <Link to="https://13rules.ru/craftunion" target="_blank" rel="noopener noreferrer">
+                                <img src={Ad1} alt=""/>
+                            </Link>
+                            <Link to="https://franshiza.13rules.ru/" target="_blank" rel="noopener noreferrer">
+                                <img src={Ad2} alt=""/>
+                            </Link>
                         </div>
                     </div>
                 }
@@ -94,8 +98,12 @@ export default function NewsDetailSection({style = "detail", children, postId=nu
                         {children}
                     </div>
                     <div className={`${styles.contentSide} ${style !== "detail"? styles.banner : ""}`}>
-                        <img src={Ad1} alt=""></img>
-                        <img src={Ad2} alt=""></img>
+                        <Link to="https://13rules.ru/craftunion" target="_blank" rel="noopener noreferrer">
+                            <img src={Ad1} alt=""/>
+                        </Link>
+                        <Link to="https://franshiza.13rules.ru/" target="_blank" rel="noopener noreferrer">
+                            <img src={Ad2} alt=""/>
+                        </Link>
                         {style === "detail" &&
                             <>
                                 <h3>Похожие статьи</h3>

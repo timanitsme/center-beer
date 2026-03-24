@@ -14,7 +14,7 @@ import {
     useGetBarsQuery,
     useGetCitiesQuery
 } from "../../store/services/centerBeer";
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import FilterItem from "../ApiInputs/FilterItem/FilterItem.jsx";
 import SearchCities from "../ApiInputs/Search/SearchCities.jsx";
 import FiltersModal from "../Modals/FiltersModal/FiltersModal.jsx";
@@ -365,8 +365,12 @@ export default function BarsCatalog(){
                         ))}
                         <SimpleButton text="Применить фильтры" onClick={applyFilters}></SimpleButton>
                         <div className={styles.barsBannerMobile}>
-                            <img src={Ad1} alt=""/>
-                            <img src={Ad2} alt=""/>
+                            <Link to="https://13rules.ru/craftunion" target="_blank" rel="noopener noreferrer">
+                                <img src={Ad1} alt=""/>
+                            </Link>
+                            <Link to="https://franshiza.13rules.ru/" target="_blank" rel="noopener noreferrer">
+                                <img src={Ad2} alt=""/>
+                            </Link>
                         </div>
                     </div>}
                     <div className={styles.menuItemsSections}>
@@ -453,8 +457,12 @@ export default function BarsCatalog(){
                 }
             </div>
             <div className={styles.barsBanner}>
-                <img src={Ad1} alt=""/>
-                <img src={Ad2} alt=""/>
+                <Link to="https://13rules.ru/craftunion" target="_blank" rel="noopener noreferrer">
+                    <img src={Ad1} alt=""/>
+                </Link>
+                <Link to="https://franshiza.13rules.ru/" target="_blank" rel="noopener noreferrer">
+                    <img src={Ad2} alt=""/>
+                </Link>
             </div>
 
         </div>

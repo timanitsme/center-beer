@@ -54,8 +54,12 @@ export default function EventsDetailSection({style = "detail", children}){
 
                 </div>
                 <div className={styles.secondBanner}>
-                    <img src={Ad1} alt=""/>
-                    <img src={Ad2} alt=""/>
+                    <Link to="https://13rules.ru/craftunion" target="_blank" rel="noopener noreferrer">
+                        <img src={Ad1} alt=""/>
+                    </Link>
+                    <Link to="https://franshiza.13rules.ru/" target="_blank" rel="noopener noreferrer">
+                        <img src={Ad2} alt=""/>
+                    </Link>
                 </div>
             </div>
             <div className={styles.section}>
@@ -79,8 +83,12 @@ export default function EventsDetailSection({style = "detail", children}){
                 </div>
             </div>
             <div className={styles.banner}>
-                <img src={Ad1} alt=""/>
-                <img src={Ad2} alt=""/>
+                <Link to="https://13rules.ru/craftunion" target="_blank" rel="noopener noreferrer">
+                    <img src={Ad1} alt=""/>
+                </Link>
+                <Link to="https://franshiza.13rules.ru/" target="_blank" rel="noopener noreferrer">
+                    <img src={Ad2} alt=""/>
+                </Link>
             </div>
         </div>
     )

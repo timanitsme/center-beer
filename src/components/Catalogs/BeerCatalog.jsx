@@ -24,6 +24,7 @@ import SearchInputAlt from "../ApiInputs/Search/SearchInputAlt.jsx";
 import Ad from "../../assets/adsMocks/ad-1.svg"
 import Ad1 from "../../assets/adsMocks/ad-banner-1.webp";
 import Ad2 from "../../assets/adsMocks/ad-banner-2.webp";
+import {Link} from "react-router-dom"
 
 export default function BeerCatalog({withoutPrice=false, withHeader = true, breweryId=null, bgImage=null}){
     const [filterNameMap, setFilterNameMap] = useState({});
@@ -417,8 +418,12 @@ export default function BeerCatalog({withoutPrice=false, withHeader = true, brew
                         <SimpleButton text="Применить фильтры" onClick={applyFilters}></SimpleButton>
                         {breweryId === null &&
                             <div className={styles.barsBannerMobile}>
-                                <img src={Ad1} alt=""/>
-                                <img src={Ad2} alt=""/>
+                                <Link to="https://13rules.ru/craftunion" target="_blank" rel="noopener noreferrer">
+                                    <img src={Ad1} alt=""/>
+                                </Link>
+                                <Link to="https://franshiza.13rules.ru/" target="_blank" rel="noopener noreferrer">
+                                    <img src={Ad2} alt=""/>
+                                </Link>
                             </div>
                         }
                     </div>}
@@ -533,8 +538,12 @@ export default function BeerCatalog({withoutPrice=false, withHeader = true, brew
             </div>
             {breweryId === null &&
                 <div className={styles.barsBanner}>
-                    <img src={Ad1} alt=""/>
-                    <img src={Ad2} alt=""/>
+                    <Link to="https://13rules.ru/craftunion" target="_blank" rel="noopener noreferrer">
+                        <img src={Ad1} alt=""/>
+                    </Link>
+                    <Link to="https://franshiza.13rules.ru/" target="_blank" rel="noopener noreferrer">
+                        <img src={Ad2} alt=""/>
+                    </Link>
                 </div>
             }
         </div>

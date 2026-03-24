@@ -140,9 +140,10 @@ export const centerBeerApi = createApi({
                 if (bar_id !== undefined) params.append("bar_id", bar_id)
                 if (post_id !== undefined) params.append("post_id", post_id)
                 if (search_text !== undefined && search_text !== "") params.append("search_text", search_text)
-                return(`getNews?${params.toString()}`)
+                return(`getAllNews?${params.toString()}`)
             }
         })),
+
         getNewsCategories: (builder.query({
             query: () => `getNewsCategories`
         })),
@@ -583,8 +584,6 @@ export const centerBeerApi = createApi({
                     }
                 })}
         }),
-
-
 
 
 
